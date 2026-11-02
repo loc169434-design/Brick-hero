@@ -113,8 +113,38 @@ Quái và bùa sau này là file Resource (`.tres`), nên thêm quái mới ch�
 | **B2** | Bảng chơi được + ghép ảnh gạch Training/Orc | Xong (PR #2, làm lại sang nối ô ở PR #7) |
 | **B4** | Trận đánh: hiệp sĩ, quái, máu, khiên, đồng hồ, thắng/thua | Xong (PR #4, #6). Ảnh nhân vật, nền, hiệu ứng thật ở PR #8 |
 | **Nối ô** | Bảng luôn đầy, vuốt nối, hàng 3 tự nổ, ô đặc biệt theo độ dài nối | Xong (PR #7) |
-| **B3** | Cảm giác "đã tay": rung màn hình, âm thanh, chữ nảy | Chưa làm |
-| **B5** | Chơi thử và chỉnh số liệu | Chưa làm. Tự thấy muốn chơi thêm trận nữa thì mới làm bùa. |
+| **B3** | Cảm giác "đã tay": rung màn hình, âm thanh, chữ nảy | Chưa làm (giai đoạn 2 bên dưới) |
+| **B5** | Chơi thử và chỉnh số liệu | Chưa làm (giai đoạn 3 bên dưới). Tự thấy muốn chơi thêm trận nữa thì mới làm bùa. |
+
+### Lộ trình tiếp theo (chốt 2026-11-02)
+
+Làm theo thứ tự. Giai đoạn 1 đi trước vì cảm giác chơi trên điện thoại quyết định các bước sau.
+
+**Giai đoạn 1: chơi được trên điện thoại**
+- Xuất bản web, đưa lên GitHub Pages ở `https://loc169434-design.github.io/Brick-hero/play/`. Giữ nguyên trang xem ảnh hiện có ở gốc `gh-pages`. Cần tải export templates của Godot 4.7.2 (khoảng 1 GB); hỏi người dùng trước khi tải.
+- GitHub Actions chạy `tests/run_tests.gd` trên mỗi PR.
+- Repo đã 195 MB vì ảnh: chuyển ảnh sang Git LFS.
+- Người dùng chơi 10–15 phút, báo lại: bảng 7×8 có vừa tay, ô đặc biệt có quá dễ, hàng 3 tự nổ có quá nhiều (mục 6).
+
+**Giai đoạn 2: cảm giác "đã tay" (B3)**
+- Claude: rung màn hình khi nổ lớn và khi quái đánh, chữ nảy, âm cao dần theo dây chuyền, rung điện thoại khi nối.
+- Âm thanh lấy từ bộ miễn phí bản quyền (ví dụ Kenney), vì ChatGPT không tạo được file âm thanh tốt.
+- ChatGPT: ảnh hiệu ứng nổ cho sét, bom, sao; chữ "CHUỖI" dạng ảnh.
+
+**Giai đoạn 3: chỉnh độ khó (B5)**
+- Chỉnh máu quái, giá trị từng màu, đồng hồ Orc, ngưỡng 5/6/7 theo phản hồi giai đoạn 1.
+- Mục tiêu: thắng bù nhìn trong khoảng 8–10 lượt; với Orc thì khoảng một nửa số lần là suýt thua.
+
+**Giai đoạn 4: vòng chơi dài hơn**
+- Mở đầu ở sảnh nhà vua: vài câu thoại, hiệp sĩ ghi danh đi cứu công chúa.
+- Bản đồ: thắng trận này mới mở trận kế.
+- Lò rèn: dùng vàng nâng kiếm gỗ lên kiếm sắt, mua giáp; giáp vỡ dần khi bị đánh.
+- ChatGPT: ảnh sảnh nhà vua, nhà vua, công chúa, bản đồ, lò rèn, hiệp sĩ mặc giáp.
+
+**Giai đoạn 5: thêm quái, rồng trùm cuối**
+- 3–4 quái mới, mỗi con một chiêu làm thay đổi bảng (ví dụ: yêu tinh trộm vàng, slime đóng băng ô, pháp sư khóa một màu).
+- Rồng trùm cuối, đánh nhiều giai đoạn. Thắng thì cứu được công chúa.
+- ChatGPT: ảnh từng quái và bộ gạch riêng cho mỗi trận.
 
 ---
 

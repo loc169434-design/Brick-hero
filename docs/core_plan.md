@@ -109,10 +109,10 @@ Quái và bùa sau này là file Resource (`.tres`), nên thêm quái mới ch�
 
 | Bước | Nội dung | Trạng thái |
 |---|---|---|
-| **B1** | Luật bảng + kiểm tra tự động | Xong (bản khối rơi, PR #1), làm lại sang nối ô |
-| **B2** | Bảng chơi được + ghép ảnh gạch Training/Orc | Xong (PR #2), làm lại sang nối ô |
-| **B4** | Trận đánh: hiệp sĩ, quái, máu, khiên, đồng hồ, thắng/thua | Xong (PR #4, #6) |
-| **Nối ô** | Bảng luôn đầy, vuốt nối, hàng 3 tự nổ, ô đặc biệt theo độ dài nối | PR này |
+| **B1** | Luật bảng + kiểm tra tự động | Xong (bản khối rơi PR #1, làm lại sang nối ô ở PR #7) |
+| **B2** | Bảng chơi được + ghép ảnh gạch Training/Orc | Xong (PR #2, làm lại sang nối ô ở PR #7) |
+| **B4** | Trận đánh: hiệp sĩ, quái, máu, khiên, đồng hồ, thắng/thua | Xong (PR #4, #6). Ảnh nhân vật, nền, hiệu ứng thật ở PR #8 |
+| **Nối ô** | Bảng luôn đầy, vuốt nối, hàng 3 tự nổ, ô đặc biệt theo độ dài nối | Xong (PR #7) |
 | **B3** | Cảm giác "đã tay": rung màn hình, âm thanh, chữ nảy | Chưa làm |
 | **B5** | Chơi thử và chỉnh số liệu | Chưa làm. Tự thấy muốn chơi thêm trận nữa thì mới làm bùa. |
 
@@ -124,7 +124,11 @@ Quái và bùa sau này là file Resource (`.tres`), nên thêm quái mới ch�
 - **Claude**: toàn bộ code và scene. Đặt việc cho ChatGPT bằng GitHub issue.
 - **ChatGPT**: ảnh, ý tưởng và chữ, làm trên nhánh `art/...`.
 
-Đã xong: gạch Training/Orc kèm hoạt ảnh, ô đặc biệt (issue #3). Đang làm: nhân vật, nền, hiệu ứng trận đánh (issue #5, quy cách tên file nằm trong đó).
+Đã xong:
+- Gạch Training/Orc kèm hoạt ảnh, ô đặc biệt (issue #3).
+- Nhân vật, nền, hiệu ứng trận đánh (issue #5, quy cách tên file nằm trong đó; gộp ở PR #8).
+
+Việc mới thì tạo nhánh mới từ `main`, xong thì comment trực tiếp vào issue.
 
 ---
 

@@ -1,6 +1,6 @@
 # Bộ ô gạch theo quái — Orc Khiên
 
-> Cập nhật sau khi người dùng chốt concept: bộ gỗ/nẹp sắt được dùng cho **Training**; bộ **Orc** dùng mặt quái với mũ vá/băng trán và animation. Xem [bàn giao animation](animation_pack.md) và [trang xem thử](asset_preview/index.html). Các ghi chú ý tưởng ban đầu bên dưới được thay bằng quy ước mới tại đây.
+> Cập nhật issue #3: bộ gỗ/nẹp sắt dùng cho **Training**; bộ **Orc** dùng viền sơn màu rộng, khăn đỏ/kiếm, mũ lá/lá, mũ sắt vàng/đồng xu, mũ trùm tím/pha lê. Cả hai bộ có hình thật 120×120 trong canvas 128. Xem [bản sửa và ảnh kiểm tra](issue3_feedback.md), [bàn giao animation](animation_pack.md) và [trang xem thử](asset_preview/index.html). Các ghi chú concept ban đầu bên dưới chỉ là lịch sử ý tưởng.
 
 Theo mục 5 của `docs/core_plan.md`. Nhánh: `art/tiles`.
 

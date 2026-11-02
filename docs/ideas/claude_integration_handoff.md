@@ -2,9 +2,9 @@
 
 ## Mục tiêu và phần đã có
 
-Ghép bộ ảnh và animation đã chốt vào game Godot 4.7.2, giữ nguyên luật bảng, thao tác chạm/bàn phím, Hold và 3 khối tiếp theo. Người dùng chọn **Training khung gỗ có nẹp sắt; Orc có mũ vá/băng trán**, không dùng concept khung trơn đã bị loại.
+Ghép bộ ảnh và animation đã chốt vào game Godot 4.7.2, giữ nguyên luật bảng, thao tác chạm/bàn phím, Hold và 3 khối tiếp theo. **Cập nhật issue #3:** Training giữ khung gỗ/nẹp sắt; Orc chuyển sang viền sơn gameplay rộng và phụ kiện/huy hiệu cùng màu: khăn đỏ/kiếm, mũ lá/lá, mũ sắt vàng/đồng xu, mũ trùm tím/pha lê. Thay mô tả mũ vá/băng trán cũ bằng [bản sửa issue #3](issue3_feedback.md).
 
-ChatGPT chỉ làm asset và tài liệu; phần code/scene/tests thuộc Claude theo `AGENTS.md`. Doc này là kế hoạch tích hợp, **chưa có code tích hợp được viết hoặc kiểm thử gameplay với ảnh mới**.
+ChatGPT chỉ làm asset và tài liệu; phần code/scene/tests thuộc Claude theo `AGENTS.md`. Theo issue #3, Claude đã ghép bộ trước vào PR #2/`board/playable`. Bản sửa ảnh này chưa được kiểm thử lại trong gameplay; Claude cần merge `art/tiles` vào PR đó rồi chạy kiểm tra và chụp màn hình.
 
 Nguồn để ghép:
 
@@ -41,11 +41,11 @@ Làm trên nhánh tích hợp riêng từ nhánh code phù hợp, dùng checkout
 
 Bốn PNG ở gốc `assets/tiles/tile_<color>.png` vẫn là hình Training cũ để tương thích. Chỉ thay `TILE_PATHS` hiện tại sẽ thấy gạch tĩnh; **không đủ để có animation hay chọn theme**.
 
-Không có PNG mới cho `special_lightning`, `special_bomb`, `special_rainbow`. Giữ phần vẽ dự phòng/special overlay đang có. Đừng làm ô đặc biệt trông giống ô thường khi thêm mặt Orc; Rainbow không tự chọn mặt theo màu `-1`.
+Đã bổ sung `assets/tiles/special_lightning.png` và `special_bomb.png` là **lớp phủ trong suốt** trên ô màu; `special_rainbow.png` là **cả ô thay thế**. Giữ cơ chế nạp hiện tại và phần vẽ dự phòng khi thiếu ảnh. Đừng làm ô đặc biệt trông giống ô thường khi thêm mặt Orc; Rainbow không tự chọn mặt theo màu `-1`. Không cần thêm animation cho ba ảnh này.
 
 ## Kích thước, vị trí và cách phát
 
-- PNG tĩnh: canvas 128×128, hình có đệm trong suốt.
+- PNG tĩnh: canvas 128×128, phần hình đúng 120×120 tại (4,4); cả bốn màu và hai bộ đã chuẩn hóa cùng cỡ.
 - Animation: 24 frame, atlas 1536×576, 8 cột × 3 hàng, mỗi frame **192×192** gồm gạch 128 px ở giữa và đệm FX. Rect frame `i`: `(i % 8 × 192, floor(i / 8) × 192, 192, 192)`.
 - `SpriteFrames` đã lưu rect, fps và loop, không cắt lại atlas thành ô 128 px.
 - Tâm frame là `(96,96)`. Đặt node tại tâm ô bảng. `AnimatedSprite2D.centered = true`; scale = **kích thước ô logic / 128**, không phải `/192`.

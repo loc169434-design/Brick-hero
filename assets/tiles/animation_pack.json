@@ -7,10 +7,10 @@
     "purple"
   ],
   "colorLabels": [
-    "Đỏ · Tóc dựng",
-    "Xanh · Băng trán",
-    "Vàng · Mũ vá",
-    "Tím · Tai gập"
+    "Đỏ · Khăn đỏ",
+    "Xanh · Mũ lá",
+    "Vàng · Mũ sắt",
+    "Tím · Mũ trùm"
   ],
   "expressions": [
     {
@@ -166,6 +166,10 @@
       "poses": [
         [
           0,
+          0
+        ],
+        [
+          0.04,
           8
         ],
         [

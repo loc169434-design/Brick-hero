@@ -83,6 +83,8 @@ var _popup_tween: Tween
 var _link_pop := 0.0
 var _link_pop_tween: Tween
 var _sprite_layer: Node2D
+## Blasts of specials going off, above the tiles.
+var _special_fx: SpecialFx
 ## Drawn above the sprites: the link being traced, popups and the end screen.
 var _overlay: Node2D
 
@@ -90,6 +92,9 @@ var _overlay: Node2D
 func _ready() -> void:
 	_sprite_layer = Node2D.new()
 	add_child(_sprite_layer)
+	_special_fx = SpecialFx.new()
+	_special_fx.cell_size = CELL
+	add_child(_special_fx)
 	_overlay = Node2D.new()
 	add_child(_overlay)
 	_overlay.draw.connect(_draw_overlay)
@@ -103,6 +108,7 @@ func _ready() -> void:
 func new_game() -> void:
 	_generation += 1
 	_clear_sprites()
+	_special_fx.clear()
 	_flashing.clear()
 	_falling.clear()
 	path.clear()
@@ -113,6 +119,7 @@ func new_game() -> void:
 	_popup_alpha = 0.0
 	_finished = false
 	game = LinkGame.new(BoardRules.new(), seed_value)
+	_special_fx.board_size = board_size()
 	_shown = _snapshot()
 	_busy = false
 	_redraw()
@@ -259,6 +266,7 @@ func _replay(result: MoveResult, before: Dictionary) -> void:
 				_flashing[step.cleared[i]] = true
 		_redraw()
 		_feel_step(step, result.path.size())
+		_special_fx.play_step(step)
 		await get_tree().create_timer(burst if burst > 0.0 else FLASH_TIME).timeout
 		if generation != _generation:
 			return

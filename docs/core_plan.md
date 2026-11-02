@@ -69,8 +69,9 @@ scripts/
     move_result.gd   tổng kết một lượt: đường nối + các vòng nổ
   board/           # hiển thị + điều khiển
     board_view.gd    vẽ ô, đường nối đang vuốt, hoạt ảnh nổ/rơi
-    board_input.gd   chạm/chuột để nối, phím R/T
+    board_input.gd   chạm/chuột để nối, phím R/T/M
     tile_art.gd      nạp ảnh gạch và hoạt ảnh theo bộ
+    special_fx.gd    hiệu ứng nổ sét, bom, sao, hai ô đặc biệt nổ chung
   battle/
     battle_rules.gd    mọi con số trận đánh (sửa trong data/balance.tres)
     monster_data.gd    một loại quái: máu, khiên, đòn đánh, đồng hồ, bộ gạch
@@ -151,6 +152,8 @@ B3 gồm:
 Đã xong:
 - Gạch Training/Orc kèm hoạt ảnh, ô đặc biệt (issue #3).
 - Nhân vật, nền, hiệu ứng trận đánh (issue #5, quy cách tên file nằm trong đó; gộp ở PR #8).
+- Hiệu ứng nổ ô đặc biệt và font Baloo 2 (PR #13, quy cách ở `docs/ideas/specials_fx.md`). Đã ghép vào game: `scripts/board/special_fx.gd` phát hiệu ứng, font đặt làm mặc định trong `project.godot`.
+- Thiết kế 4 quái, rồng, lò rèn, lời thoại (nhánh `docs/monsters`) và ảnh vương quốc (nhánh `art/kingdom`). Dùng cho giai đoạn 4–5, chưa ghép.
 
 Việc mới thì tạo nhánh mới từ `main`, xong thì comment trực tiếp vào issue.
 

@@ -1,0 +1,66 @@
+{
+  "checks": 28,
+  "atlases": {
+    "lightning_beam.png": {
+      "frame_width": 256,
+      "frame_height": 96,
+      "frames": 8,
+      "fps": 24,
+      "loop": false
+    },
+    "lightning_hub.png": {
+      "frame_width": 256,
+      "frame_height": 256,
+      "frames": 8,
+      "fps": 24,
+      "loop": false
+    },
+    "bomb_blast.png": {
+      "frame_width": 512,
+      "frame_height": 512,
+      "frames": 12,
+      "fps": 24,
+      "loop": false
+    },
+    "star_burst.png": {
+      "frame_width": 512,
+      "frame_height": 512,
+      "frames": 12,
+      "fps": 24,
+      "loop": false
+    },
+    "star_spark.png": {
+      "frame_width": 192,
+      "frame_height": 192,
+      "frames": 8,
+      "fps": 24,
+      "loop": false
+    },
+    "fusion_flash.png": {
+      "frame_width": 512,
+      "frame_height": 512,
+      "frames": 8,
+      "fps": 24,
+      "loop": false
+    }
+  },
+  "lastFrameTransparent": true,
+  "lightningSeamsIdentical": true,
+  "board": [
+    980,
+    1120
+  ],
+  "cell": 140,
+  "bombArea": [
+    280,
+    280,
+    420,
+    420
+  ],
+  "font": "Baloo 2 ExtraBold",
+  "fontProof": "font_samples.png",
+  "pixelChecks": 62,
+  "activeFramesNonempty": true,
+  "neutralEffectsGrayscale": true,
+  "unusedCellsTransparent": true
+}

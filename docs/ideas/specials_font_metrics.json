@@ -1,0 +1,20 @@
+{
+  "family": "Baloo 2 ExtraBold",
+  "weight": 800,
+  "license": "SIL OFL 1.1",
+  "source_url": "https://github.com/google/fonts/tree/main/ofl/baloo2",
+  "source_sha256": "d47a6852548059b1db49a1319d06d499d546c3fa2237cf9eee9c43c8abb025c2",
+  "output_sha256": "0ce80203f4323802a58f2e9e9fd5d43ef8802676031e344149d4e245cb75cec2",
+  "unicode_characters_checked": 136,
+  "missing": [],
+  "samples": [
+    "CHUỖI x3",
+    "NỐI 7!",
+    "CHIẾN THẮNG",
+    "THẤT BẠI",
+    "XÁO BẢNG",
+    "KHIÊN -10",
+    "+12 VÀNG",
+    "Ữ Ỗ Ặ Ẫ Ợ"
+  ]
+}

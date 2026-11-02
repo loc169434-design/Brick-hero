@@ -1,0 +1,20 @@
+{
+  "base_commit": "0d24119f2dbd84ed024c46fd460f728549a68599",
+  "style": "Approved original adult hero: square jaw, broad grin, chestnut hair, slate tunic, red scarf, leather shoulder strap; no chibi variants.",
+  "sheets": [
+    {"file":"exec-4ef6438b-bdaa-44e1-aa58-7e8f5b0505be.png","id":"hero_rookie","cols":1,"rows":1,"poses":["fresh_idle"]},
+    {"file":"exec-3c31ee66-7986-495c-83fb-010e6eaf0058.png","id":"hero_rookie","cols":2,"rows":2,"poses":["fresh_attack","fresh_hurt","fresh_scared","fresh_cheer"]},
+    {"file":"exec-3e7f26d5-8c6e-483e-8d20-6fc3189b9106.png","id":"hero_rookie","cols":3,"rows":2,"poses":["bruised_idle","bruised_attack","bruised_hurt","bruised_scared","bruised_cheer",null]},
+    {"file":"exec-cd6a9a7e-77f3-4d90-aa1d-a9bd6f38296a.png","id":"hero_rookie","cols":3,"rows":2,"poses":["battered_idle","battered_attack","battered_hurt","battered_scared","battered_cheer",null]},
+    {"file":"exec-e365eb71-75e6-404f-83e8-9d2d4dffb84f.png","id":"hero_rookie","cols":2,"rows":1,"poses":["victory","defeat"],"shared_end_scale":true},
+    {"file":"exec-23ca1924-e640-422a-97f9-0f817a7bd390.png","id":"orc_shield","cols":1,"rows":1,"poses":["fresh_idle"]},
+    {"file":"exec-0a90760b-f0c4-4259-b183-656a9a6c425c.png","id":"orc_shield","cols":2,"rows":2,"poses":["fresh_attack","fresh_hurt","fresh_scared","fresh_cheer"]},
+    {"file":"exec-5792a66e-a60d-4153-888f-a52c58461c79.png","id":"orc_shield","cols":3,"rows":2,"poses":["bruised_idle","bruised_attack","bruised_hurt","bruised_scared","bruised_cheer",null]},
+    {"file":"exec-67aabfe0-acef-4288-ae77-b067d357cf5b.png","id":"orc_shield","cols":3,"rows":2,"poses":["battered_idle","battered_attack","battered_hurt","battered_scared","battered_cheer",null]},
+    {"file":"exec-584112ef-0916-4394-8d0c-1cb1cffa8221.png","id":"orc_shield","cols":2,"rows":1,"poses":["victory","defeat"],"shared_end_scale":true},
+    {"file":"exec-7451fea6-668c-4d4c-a239-80168f71ad59.png","id":"scarecrow","cols":4,"rows":2,"poses":["fresh_idle","fresh_hurt","bruised_idle","bruised_hurt","battered_idle","battered_hurt","defeat",null],"shared_scale":true}
+  ],
+  "shields":"exec-fda7ccb2-be84-44a2-9797-022c9b2adb19.png",
+  "backgrounds":[{"name":"training_field","file":"exec-08551838-f16e-467b-9236-7a8de3e1325f.png","source_ground_y":650},{"name":"orc_camp","file":"exec-775939fa-f151-4607-b438-f1782be80d31.png","source_ground_y":650}],
+  "fx":"exec-040a89d6-52db-4f91-9607-796d842ed735.png"
+}

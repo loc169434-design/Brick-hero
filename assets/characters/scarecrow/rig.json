@@ -1,0 +1,83 @@
+{
+  "id": "scarecrow",
+  "canvas": [
+    512,
+    512
+  ],
+  "feet": [
+    256,
+    500
+  ],
+  "anchors": {
+    "fresh_idle": {
+      "head": [
+        263,
+        143
+      ],
+      "mouth": [
+        249,
+        174
+      ]
+    },
+    "fresh_hurt": {
+      "head": [
+        309,
+        147
+      ],
+      "mouth": [
+        285,
+        178
+      ]
+    },
+    "bruised_idle": {
+      "head": [
+        265,
+        143
+      ],
+      "mouth": [
+        251,
+        174
+      ]
+    },
+    "bruised_hurt": {
+      "head": [
+        307,
+        145
+      ],
+      "mouth": [
+        283,
+        175
+      ]
+    },
+    "battered_idle": {
+      "head": [
+        241,
+        143
+      ],
+      "mouth": [
+        227,
+        174
+      ]
+    },
+    "battered_hurt": {
+      "head": [
+        290,
+        151
+      ],
+      "mouth": [
+        266,
+        181
+      ]
+    },
+    "defeat": {
+      "head": [
+        140,
+        420
+      ],
+      "mouth": [
+        132,
+        440
+      ]
+    }
+  }
+}

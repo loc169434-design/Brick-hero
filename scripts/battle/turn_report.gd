@@ -7,6 +7,9 @@ var shield_damage := 0
 var layers_broken := 0
 var heal := 0
 var gold := 0
+## Rounds in this drop's chain and the combo it reached, for the fighters' reactions.
+var chain := 0
+var combo := 0
 ## Damage the monster dealt to the hero this turn; 0 if it didn't attack.
 var monster_attack := 0
 var outcome := BattleState.Outcome.ONGOING

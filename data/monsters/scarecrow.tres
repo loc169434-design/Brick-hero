@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MonsterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/battle/monster_data.gd" id="1_monster"]
+
+[resource]
+script = ExtResource("1_monster")
+id = "scarecrow"
+display_name = "Bù nhìn"
+max_hp = 40
+shield_layers = 1
+counterattacks = false
+attack = 0
+countdown = 0
+tile_theme = "training"
+background = "training_field"
+hints = PackedStringArray("Kéo ngang để di chuyển, chạm để xoay, vuốt xuống để thả.", "Lấp kín một hàng để xóa nó.", "4 ô cùng màu chạm nhau cũng nổ!", "Đỏ đánh, xanh hồi máu, vàng ra tiền, tím phá khiên.", "Ô rơi xuống tạo cụm mới thì nổ tiếp: dây chuyền nhân sát thương.", "Cụm 5 ô tạo sét, cụm 6 ô tạo bom. Thử xem!", "Thả liên tiếp lượt nào cũng xóa được ô thì combo tăng.")

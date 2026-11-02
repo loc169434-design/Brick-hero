@@ -120,6 +120,24 @@ func test_full_board_loses() -> void:
 	assert_eq(battle.outcome, BattleState.Outcome.LOST)
 
 
+func test_training_dummy_never_hits_back() -> void:
+	var dummy := _monster(80, 0, 12, 1)
+	dummy.counterattacks = false
+	var battle := _battle(dummy)
+	for i in 10:
+		assert_true(not battle.attacks_next_drop())
+		assert_eq(battle.apply_drop(_drop()).monster_attack, 0)
+	assert_eq(battle.hero_hp, 100)
+	assert_eq(battle.drops, 10)
+
+
+func test_scarecrow_data_loads() -> void:
+	var scarecrow: MonsterData = load("res://data/monsters/scarecrow.tres")
+	assert_true(not scarecrow.counterattacks)
+	assert_true(scarecrow.hints.size() >= 5)
+	assert_eq(scarecrow.tile_theme, "training")
+
+
 func test_orc_data_loads() -> void:
 	var orc: MonsterData = load("res://data/monsters/orc_shield.tres")
 	var battle := BattleState.new(load("res://data/balance.tres"), orc)

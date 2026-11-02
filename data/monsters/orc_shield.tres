@@ -5,9 +5,10 @@
 [resource]
 script = ExtResource("1_monster")
 id = "orc_shield"
-display_name = "Shield Orc"
+display_name = "Orc Khiên"
 max_hp = 80
 shield_layers = 3
 attack = 12
 countdown = 4
 tile_theme = "orc_shield"
+background = "orc_camp"

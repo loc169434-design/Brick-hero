@@ -81,7 +81,9 @@ scripts/
     monster_data.gd    một loại quái: máu, khiên, đòn đánh, đồng hồ, bộ gạch
     battle_state.gd    luật trận đánh thuần, không dùng Node: ô xóa → sát thương, lượt quái
     turn_report.gd     kết quả một lần thả, để hiển thị
-    battle_view.gd     vẽ anh hùng, quái, thanh máu, khiên, đồng hồ, số bay lên
+    battle_view.gd     nền, thanh máu, khiên, đồng hồ, gợi ý, số bay lên; dựng cảnh mỗi lượt
+    character_rig.gd   một nhân vật: mức tơi tả theo máu, cảm xúc chớp nhoáng, cảnh kết trận, hiệu ứng
+                       (quy cách ảnh: issue #5)
     battle_manager.gd  nối bảng chơi với trận đánh, kết thúc trận
   autoload/
     events.gd        kênh tín hiệu chung

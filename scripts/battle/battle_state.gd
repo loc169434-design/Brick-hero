@@ -15,6 +15,8 @@ var shield: int
 var countdown: int
 var gold := 0
 var outcome := Outcome.ONGOING
+## Drops played this fight.
+var drops := 0
 
 
 func _init(p_rules: BattleRules, p_monster: MonsterData) -> void:
@@ -32,7 +34,7 @@ func shield_layers() -> int:
 
 ## Shown above the monster one drop ahead, so the player can react.
 func attacks_next_drop() -> bool:
-	return outcome == Outcome.ONGOING and countdown == 1
+	return monster.counterattacks and outcome == Outcome.ONGOING and countdown == 1
 
 
 func apply_drop(result: DropResult) -> TurnReport:
@@ -40,6 +42,8 @@ func apply_drop(result: DropResult) -> TurnReport:
 	if outcome != Outcome.ONGOING:
 		report.outcome = outcome
 		return report
+	report.chain = result.chain_length()
+	report.combo = result.combo
 
 	var red := 0.0
 	var green := 0.0
@@ -76,7 +80,7 @@ func apply_drop(result: DropResult) -> TurnReport:
 
 	if monster_hp <= 0:
 		outcome = Outcome.WON
-	else:
+	elif monster.counterattacks:
 		countdown -= 1
 		if countdown <= 0:
 			report.monster_attack = monster.attack
@@ -85,7 +89,16 @@ func apply_drop(result: DropResult) -> TurnReport:
 			if hero_hp == 0:
 				outcome = Outcome.LOST
 	report.outcome = outcome
+	drops += 1
 	return report
+
+
+func hero_health() -> float:
+	return clampf(float(hero_hp) / rules.hero_max_hp, 0.0, 1.0)
+
+
+func monster_health() -> float:
+	return clampf(float(monster_hp) / monster.max_hp, 0.0, 1.0)
 
 
 ## The board filled up: the fight is lost whatever the health bars say.

@@ -59,6 +59,7 @@ var _busy := false
 ## Set once the board is done for good (fight decided or board full) until restart.
 var _finished := false
 var _end_title := ""
+var _end_subtitle := ""
 ## Bumped on restart so a replay still waiting on a timer knows to stop.
 var _generation := 0
 ## The combo as of the last finished replay, so the counter doesn't jump ahead of the show.
@@ -106,11 +107,12 @@ func new_game() -> void:
 
 
 ## Stops play and has every tile react to the result. Safe to call more than once.
-func finish(won: bool) -> void:
+func finish(won: bool, subtitle := "chạm để chơi lại") -> void:
 	if _finished:
 		return
 	_finished = true
-	_end_title = "VICTORY" if won else "DEFEAT"
+	_end_title = "CHIẾN THẮNG" if won else "THẤT BẠI"
+	_end_subtitle = subtitle
 	_clear_sprites()
 	_play_on_every_square(&"win" if won else &"lose")
 	_redraw()
@@ -395,7 +397,7 @@ func _draw_overlay() -> void:
 	if _finished and not _busy:
 		_overlay.draw_rect(Rect2(Vector2.ZERO, size), Color(0, 0, 0, 0.45))
 		_draw_centered_text(_overlay, _end_title, Vector2(size.x / 2, size.y * 0.45), 96, TEXT)
-		_draw_centered_text(_overlay, "tap or press R to play again", Vector2(size.x / 2, size.y * 0.45 + 80), 40, TEXT_DIM)
+		_draw_centered_text(_overlay, _end_subtitle, Vector2(size.x / 2, size.y * 0.45 + 80), 40, TEXT_DIM)
 
 
 func _draw_ghost() -> void:

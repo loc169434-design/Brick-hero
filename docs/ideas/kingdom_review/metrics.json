@@ -1,0 +1,1265 @@
+{
+  "checks": 257,
+  "poseCount": 29,
+  "rigCount": 4,
+  "pngCount": 41,
+  "mapNodes": [
+    {
+      "id": "scarecrow",
+      "x": 531,
+      "y": 1577
+    },
+    {
+      "id": "orc_shield",
+      "x": 326,
+      "y": 1368
+    },
+    {
+      "id": "frost_slime",
+      "x": 749,
+      "y": 1148
+    },
+    {
+      "id": "goblin_thief",
+      "x": 321,
+      "y": 919
+    },
+    {
+      "id": "stone_golem",
+      "x": 735,
+      "y": 769
+    },
+    {
+      "id": "rune_witch",
+      "x": 366,
+      "y": 602
+    },
+    {
+      "id": "royal_dragon",
+      "x": 632,
+      "y": 310
+    }
+  ],
+  "sceneFeetY": 1250,
+  "displaySize": 360,
+  "errors": [],
+  "images": [
+    {
+      "key": "hero_iron/fresh_attack",
+      "file": "characters/hero_iron/fresh_attack.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 74796
+      },
+      "visibleBounds": [
+        90,
+        100,
+        428,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          268,
+          163
+        ],
+        "mouth": [
+          274,
+          201
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/fresh_hurt",
+      "file": "characters/hero_iron/fresh_hurt.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 80094
+      },
+      "visibleBounds": [
+        32,
+        99,
+        401,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          168,
+          160
+        ],
+        "mouth": [
+          180,
+          206
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/fresh_idle",
+      "file": "characters/hero_iron/fresh_idle.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 79793
+      },
+      "visibleBounds": [
+        82,
+        99,
+        456,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          265,
+          160
+        ],
+        "mouth": [
+          271,
+          195
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/fresh_scared",
+      "file": "characters/hero_iron/fresh_scared.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 75640
+      },
+      "visibleBounds": [
+        24,
+        99,
+        371,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          167,
+          163
+        ],
+        "mouth": [
+          179,
+          193
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/fresh_cheer",
+      "file": "characters/hero_iron/fresh_cheer.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 75076
+      },
+      "visibleBounds": [
+        78,
+        65,
+        428,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          242,
+          158
+        ],
+        "mouth": [
+          252,
+          182
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/bruised_idle",
+      "file": "characters/hero_iron/bruised_idle.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 80907
+      },
+      "visibleBounds": [
+        82,
+        100,
+        445,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          266,
+          161
+        ],
+        "mouth": [
+          275,
+          199
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/bruised_attack",
+      "file": "characters/hero_iron/bruised_attack.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 74544
+      },
+      "visibleBounds": [
+        98,
+        100,
+        428,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          269,
+          163
+        ],
+        "mouth": [
+          276,
+          203
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/bruised_scared",
+      "file": "characters/hero_iron/bruised_scared.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 77143
+      },
+      "visibleBounds": [
+        24,
+        99,
+        371,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          169,
+          164
+        ],
+        "mouth": [
+          180,
+          197
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/bruised_hurt",
+      "file": "characters/hero_iron/bruised_hurt.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 81253
+      },
+      "visibleBounds": [
+        27,
+        99,
+        401,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          171,
+          162
+        ],
+        "mouth": [
+          176,
+          198
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/bruised_cheer",
+      "file": "characters/hero_iron/bruised_cheer.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 76161
+      },
+      "visibleBounds": [
+        72,
+        65,
+        420,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          242,
+          160
+        ],
+        "mouth": [
+          254,
+          207
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/battered_attack",
+      "file": "characters/hero_iron/battered_attack.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 72786
+      },
+      "visibleBounds": [
+        90,
+        100,
+        420,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          269,
+          163
+        ],
+        "mouth": [
+          276,
+          203
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/battered_idle",
+      "file": "characters/hero_iron/battered_idle.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 78270
+      },
+      "visibleBounds": [
+        80,
+        99,
+        408,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          265,
+          161
+        ],
+        "mouth": [
+          277,
+          203
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/battered_hurt",
+      "file": "characters/hero_iron/battered_hurt.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 79041
+      },
+      "visibleBounds": [
+        21,
+        99,
+        404,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          174,
+          161
+        ],
+        "mouth": [
+          176,
+          197
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/battered_scared",
+      "file": "characters/hero_iron/battered_scared.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 74613
+      },
+      "visibleBounds": [
+        14,
+        100,
+        370,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          171,
+          165
+        ],
+        "mouth": [
+          180,
+          198
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/battered_cheer",
+      "file": "characters/hero_iron/battered_cheer.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 87464
+      },
+      "visibleBounds": [
+        42,
+        65,
+        410,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          241,
+          148
+        ],
+        "mouth": [
+          253,
+          184
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/victory",
+      "file": "characters/hero_iron/victory.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 73375
+      },
+      "visibleBounds": [
+        82,
+        46,
+        408,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          241,
+          161
+        ],
+        "mouth": [
+          247,
+          197
+        ]
+      }
+    },
+    {
+      "key": "hero_iron/defeat",
+      "file": "characters/hero_iron/defeat.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 71699
+      },
+      "visibleBounds": [
+        52,
+        185,
+        436,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          265,
+          250
+        ],
+        "mouth": [
+          270,
+          284
+        ]
+      }
+    },
+    {
+      "key": "king/idle",
+      "file": "characters/king/idle.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 72799
+      },
+      "visibleBounds": [
+        130,
+        100,
+        402,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          242,
+          165
+        ],
+        "mouth": [
+          230,
+          212
+        ]
+      }
+    },
+    {
+      "key": "princess/idle",
+      "file": "characters/princess/idle.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 52448
+      },
+      "visibleBounds": [
+        166,
+        100,
+        361,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          256,
+          163
+        ],
+        "mouth": [
+          254,
+          190
+        ]
+      }
+    },
+    {
+      "key": "king/worried",
+      "file": "characters/king/worried.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 72750
+      },
+      "visibleBounds": [
+        126,
+        100,
+        403,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          257,
+          165
+        ],
+        "mouth": [
+          238,
+          210
+        ]
+      }
+    },
+    {
+      "key": "king/talk",
+      "file": "characters/king/talk.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 77257
+      },
+      "visibleBounds": [
+        79,
+        100,
+        403,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          249,
+          165
+        ],
+        "mouth": [
+          237,
+          212
+        ]
+      }
+    },
+    {
+      "key": "king/cheer",
+      "file": "characters/king/cheer.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 78572
+      },
+      "visibleBounds": [
+        107,
+        100,
+        403,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          251,
+          165
+        ],
+        "mouth": [
+          245,
+          196
+        ]
+      }
+    },
+    {
+      "key": "princess/talk",
+      "file": "characters/princess/talk.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 56322
+      },
+      "visibleBounds": [
+        118,
+        100,
+        360,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          255,
+          163
+        ],
+        "mouth": [
+          250,
+          190
+        ]
+      }
+    },
+    {
+      "key": "princess/cheer",
+      "file": "characters/princess/cheer.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 57156
+      },
+      "visibleBounds": [
+        150,
+        100,
+        362,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          255,
+          162
+        ],
+        "mouth": [
+          243,
+          208
+        ]
+      }
+    },
+    {
+      "key": "princess/scared",
+      "file": "characters/princess/scared.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 51085
+      },
+      "visibleBounds": [
+        148,
+        100,
+        354,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          251,
+          163
+        ],
+        "mouth": [
+          250,
+          190
+        ]
+      }
+    },
+    {
+      "key": "blacksmith/idle",
+      "file": "characters/blacksmith/idle.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 65401
+      },
+      "visibleBounds": [
+        102,
+        100,
+        391,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          254,
+          156
+        ],
+        "mouth": [
+          242,
+          197
+        ]
+      }
+    },
+    {
+      "key": "blacksmith/talk",
+      "file": "characters/blacksmith/talk.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 66694
+      },
+      "visibleBounds": [
+        85,
+        100,
+        403,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          267,
+          160
+        ],
+        "mouth": [
+          246,
+          195
+        ]
+      }
+    },
+    {
+      "key": "blacksmith/hammer",
+      "file": "characters/blacksmith/hammer.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 72046
+      },
+      "visibleBounds": [
+        90,
+        100,
+        394,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          261,
+          159
+        ],
+        "mouth": [
+          249,
+          204
+        ]
+      }
+    },
+    {
+      "key": "blacksmith/cheer",
+      "file": "characters/blacksmith/cheer.png",
+      "width": 512,
+      "height": 512,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 71286
+      },
+      "visibleBounds": [
+        123,
+        100,
+        402,
+        500
+      ],
+      "feet": [
+        256,
+        500
+      ],
+      "visibleGroundY": 500,
+      "anchors": {
+        "head": [
+          270,
+          159
+        ],
+        "mouth": [
+          251,
+          198
+        ]
+      }
+    },
+    {
+      "key": "locked",
+      "file": "ui/map_node_locked.png",
+      "width": 128,
+      "height": 128,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 9568
+      },
+      "visibleBounds": [
+        10,
+        8,
+        117,
+        119
+      ]
+    },
+    {
+      "key": "king_hall",
+      "file": "bg/king_hall.png",
+      "width": 1080,
+      "height": 1920,
+      "alpha": {
+        "min": 255,
+        "max": 255,
+        "transparent": false,
+        "fullyOpaque": true,
+        "visiblePixels": 2073600
+      },
+      "visibleBounds": [
+        0,
+        0,
+        1079,
+        1919
+      ],
+      "lowerFloorMeanLuma": 33.81
+    },
+    {
+      "key": "open",
+      "file": "ui/map_node_open.png",
+      "width": 128,
+      "height": 128,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 9643
+      },
+      "visibleBounds": [
+        9,
+        8,
+        117,
+        119
+      ]
+    },
+    {
+      "key": "done",
+      "file": "ui/map_node_done.png",
+      "width": 128,
+      "height": 128,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 9541
+      },
+      "visibleBounds": [
+        10,
+        8,
+        117,
+        119
+      ]
+    },
+    {
+      "key": "wood_sword",
+      "file": "ui/items/wood_sword.png",
+      "width": 256,
+      "height": 256,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 18581
+      },
+      "visibleBounds": [
+        21,
+        8,
+        233,
+        247
+      ]
+    },
+    {
+      "key": "iron_sword",
+      "file": "ui/items/iron_sword.png",
+      "width": 256,
+      "height": 256,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 13169
+      },
+      "visibleBounds": [
+        76,
+        8,
+        178,
+        247
+      ]
+    },
+    {
+      "key": "iron_armor",
+      "file": "ui/items/iron_armor.png",
+      "width": 256,
+      "height": 256,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 40007
+      },
+      "visibleBounds": [
+        8,
+        16,
+        247,
+        238
+      ]
+    },
+    {
+      "key": "tempered_sword",
+      "file": "ui/items/tempered_sword.png",
+      "width": 256,
+      "height": 256,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 12492
+      },
+      "visibleBounds": [
+        81,
+        8,
+        173,
+        247
+      ]
+    },
+    {
+      "key": "leather_armor",
+      "file": "ui/items/leather_armor.png",
+      "width": 256,
+      "height": 256,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 39548
+      },
+      "visibleBounds": [
+        22,
+        8,
+        232,
+        247
+      ]
+    },
+    {
+      "key": "reinforced_boots",
+      "file": "ui/items/reinforced_boots.png",
+      "width": 256,
+      "height": 256,
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "transparent": true,
+        "fullyOpaque": false,
+        "visiblePixels": 27622
+      },
+      "visibleBounds": [
+        8,
+        50,
+        247,
+        204
+      ]
+    },
+    {
+      "key": "forge",
+      "file": "bg/forge.png",
+      "width": 1080,
+      "height": 1920,
+      "alpha": {
+        "min": 255,
+        "max": 255,
+        "transparent": false,
+        "fullyOpaque": true,
+        "visiblePixels": 2073600
+      },
+      "visibleBounds": [
+        0,
+        0,
+        1079,
+        1919
+      ],
+      "lowerFloorMeanLuma": 35.25
+    },
+    {
+      "key": "world_map",
+      "file": "bg/world_map.png",
+      "width": 1080,
+      "height": 1920,
+      "alpha": {
+        "min": 255,
+        "max": 255,
+        "transparent": false,
+        "fullyOpaque": true,
+        "visiblePixels": 2073600
+      },
+      "visibleBounds": [
+        0,
+        0,
+        1079,
+        1919
+      ],
+      "lowerFloorMeanLuma": 118.67
+    }
+  ]
+}

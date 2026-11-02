@@ -1,0 +1,1340 @@
+{
+  "base": "b4c61d7",
+  "style": "Original adult hero, warm brown outlines, angular cel shading",
+  "records": [
+    {
+      "id": "hero_iron",
+      "pose": "fresh_idle",
+      "file": "assets/characters/hero_iron/fresh_idle.png",
+      "source": "exec-9d1bcd00-f977-4c94-8db6-9ad1f61a2f79.png",
+      "sourceSHA256": "970514fb1809d3b4e9ad8691443423caa28a1664771d2e2719aa28d94b445551",
+      "sourceBounds": {
+        "x": 42,
+        "y": 7,
+        "w": 424,
+        "h": 454
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 424,
+        "h": 454,
+        "x": 42,
+        "y": 7,
+        "cx": 229.5,
+        "cy": 243.7,
+        "area": 100041
+      },
+      "scale": 0.8807947019867549,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 82,
+        "y": 99,
+        "w": 375,
+        "h": 402,
+        "n": 79793,
+        "cx": 248.35358991390223,
+        "cy": 308.36850350281355
+      },
+      "hand": null,
+      "head": [
+        265,
+        160
+      ],
+      "mouth": [
+        271,
+        195
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "fresh_hurt",
+      "file": "assets/characters/hero_iron/fresh_hurt.png",
+      "source": "exec-9d1bcd00-f977-4c94-8db6-9ad1f61a2f79.png",
+      "sourceSHA256": "970514fb1809d3b4e9ad8691443423caa28a1664771d2e2719aa28d94b445551",
+      "sourceBounds": {
+        "x": 1058,
+        "y": 10,
+        "w": 420,
+        "h": 456
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 420,
+        "h": 456,
+        "x": 1058,
+        "y": 10,
+        "cx": 1248.7,
+        "cy": 250.2,
+        "area": 101348
+      },
+      "scale": 0.8769230769230769,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 32,
+        "y": 99,
+        "w": 370,
+        "h": 402,
+        "n": 80094,
+        "cx": 200.55333732863886,
+        "cy": 310.51384623067895
+      },
+      "hand": null,
+      "head": [
+        168,
+        160
+      ],
+      "mouth": [
+        180,
+        206
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "fresh_scared",
+      "file": "assets/characters/hero_iron/fresh_scared.png",
+      "source": "exec-9d1bcd00-f977-4c94-8db6-9ad1f61a2f79.png",
+      "sourceSHA256": "970514fb1809d3b4e9ad8691443423caa28a1664771d2e2719aa28d94b445551",
+      "sourceBounds": {
+        "x": 44,
+        "y": 537,
+        "w": 403,
+        "h": 465
+      },
+      "mainBounds": {
+        "id": 14,
+        "w": 403,
+        "h": 465,
+        "x": 44,
+        "y": 537,
+        "cx": 236,
+        "cy": 776.7,
+        "area": 99703
+      },
+      "scale": 0.8599137931034483,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 24,
+        "y": 99,
+        "w": 348,
+        "h": 402,
+        "n": 75640,
+        "cx": 190.32826546800635,
+        "cy": 306.0078662083554
+      },
+      "hand": null,
+      "head": [
+        167,
+        163
+      ],
+      "mouth": [
+        179,
+        193
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "fresh_cheer",
+      "file": "assets/characters/hero_iron/fresh_cheer.png",
+      "source": "exec-9d1bcd00-f977-4c94-8db6-9ad1f61a2f79.png",
+      "sourceSHA256": "970514fb1809d3b4e9ad8691443423caa28a1664771d2e2719aa28d94b445551",
+      "sourceBounds": {
+        "x": 545,
+        "y": 484,
+        "w": 411,
+        "h": 512
+      },
+      "mainBounds": {
+        "id": 13,
+        "w": 411,
+        "h": 512,
+        "x": 545,
+        "y": 484,
+        "cx": 729.7,
+        "cy": 761.2,
+        "area": 101276
+      },
+      "scale": 0.8488639264743426,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 78,
+        "y": 65,
+        "w": 351,
+        "h": 436,
+        "n": 75076,
+        "cx": 236.12354147796898,
+        "cy": 300.5375219777292
+      },
+      "hand": null,
+      "head": [
+        242,
+        158
+      ],
+      "mouth": [
+        252,
+        182
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "bruised_idle",
+      "file": "assets/characters/hero_iron/bruised_idle.png",
+      "source": "exec-9ec302df-9fe5-4ae1-8b53-7c8fc2075e05.png",
+      "sourceSHA256": "5f9faa6cd6418dac85643871a2d845f71414dbdeeb8024024ca171a1e487dc95",
+      "sourceBounds": {
+        "x": 40,
+        "y": 5,
+        "w": 414,
+        "h": 457
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 414,
+        "h": 457,
+        "x": 40,
+        "y": 5,
+        "cx": 228.1,
+        "cy": 241,
+        "area": 102824
+      },
+      "scale": 0.875,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 82,
+        "y": 100,
+        "w": 364,
+        "h": 401,
+        "n": 80907,
+        "cx": 247.90005809138887,
+        "cy": 306.3777423461505
+      },
+      "hand": null,
+      "head": [
+        266,
+        161
+      ],
+      "mouth": [
+        275,
+        199
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "bruised_hurt",
+      "file": "assets/characters/hero_iron/bruised_hurt.png",
+      "source": "exec-9ec302df-9fe5-4ae1-8b53-7c8fc2075e05.png",
+      "sourceSHA256": "5f9faa6cd6418dac85643871a2d845f71414dbdeeb8024024ca171a1e487dc95",
+      "sourceBounds": {
+        "x": 1053,
+        "y": 9,
+        "w": 427,
+        "h": 457
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 427,
+        "h": 457,
+        "x": 1053,
+        "y": 9,
+        "cx": 1248.1,
+        "cy": 248.5,
+        "area": 103565
+      },
+      "scale": 0.875,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 27,
+        "y": 99,
+        "w": 375,
+        "h": 402,
+        "n": 81253,
+        "cx": 198.83601836239893,
+        "cy": 309.58248926193494
+      },
+      "hand": null,
+      "head": [
+        171,
+        162
+      ],
+      "mouth": [
+        176,
+        198
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "bruised_scared",
+      "file": "assets/characters/hero_iron/bruised_scared.png",
+      "source": "exec-9ec302df-9fe5-4ae1-8b53-7c8fc2075e05.png",
+      "sourceSHA256": "5f9faa6cd6418dac85643871a2d845f71414dbdeeb8024024ca171a1e487dc95",
+      "sourceBounds": {
+        "x": 41,
+        "y": 531,
+        "w": 407,
+        "h": 470
+      },
+      "mainBounds": {
+        "id": 8,
+        "w": 407,
+        "h": 470,
+        "x": 41,
+        "y": 531,
+        "cx": 233,
+        "cy": 774.5,
+        "area": 103931
+      },
+      "scale": 0.8507462686567164,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 24,
+        "y": 99,
+        "w": 348,
+        "h": 402,
+        "n": 77143,
+        "cx": 188.60650998794446,
+        "cy": 307.0487017616634
+      },
+      "hand": null,
+      "head": [
+        169,
+        164
+      ],
+      "mouth": [
+        180,
+        197
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "bruised_cheer",
+      "file": "assets/characters/hero_iron/bruised_cheer.png",
+      "source": "exec-9ec302df-9fe5-4ae1-8b53-7c8fc2075e05.png",
+      "sourceSHA256": "5f9faa6cd6418dac85643871a2d845f71414dbdeeb8024024ca171a1e487dc95",
+      "sourceBounds": {
+        "x": 536,
+        "y": 479,
+        "w": 413,
+        "h": 517
+      },
+      "mainBounds": {
+        "id": 7,
+        "w": 413,
+        "h": 517,
+        "x": 536,
+        "y": 479,
+        "cx": 727.3,
+        "cy": 759.4,
+        "area": 104965
+      },
+      "scale": 0.8406371144446316,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 72,
+        "y": 65,
+        "w": 349,
+        "h": 436,
+        "n": 76161,
+        "cx": 233.93530809732016,
+        "cy": 301.0752747469177
+      },
+      "hand": null,
+      "head": [
+        242,
+        160
+      ],
+      "mouth": [
+        254,
+        207
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "battered_idle",
+      "file": "assets/characters/hero_iron/battered_idle.png",
+      "source": "exec-79fec9bf-9fd8-41b8-8a60-b5ba7289a966.png",
+      "sourceSHA256": "5352c22592908c33224e0f785bef30dfd7f494958ea607da23e875f1f2d082c5",
+      "sourceBounds": {
+        "x": 38,
+        "y": 7,
+        "w": 373,
+        "h": 456
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 373,
+        "h": 456,
+        "x": 38,
+        "y": 7,
+        "cx": 221,
+        "cy": 248.2,
+        "area": 98603
+      },
+      "scale": 0.8769230769230769,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 80,
+        "y": 99,
+        "w": 329,
+        "h": 402,
+        "n": 78270,
+        "cx": 241.47433243899323,
+        "cy": 311.2907499680593
+      },
+      "hand": null,
+      "head": [
+        265,
+        161
+      ],
+      "mouth": [
+        277,
+        203
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "battered_hurt",
+      "file": "assets/characters/hero_iron/battered_hurt.png",
+      "source": "exec-79fec9bf-9fd8-41b8-8a60-b5ba7289a966.png",
+      "sourceSHA256": "5352c22592908c33224e0f785bef30dfd7f494958ea607da23e875f1f2d082c5",
+      "sourceBounds": {
+        "x": 1015,
+        "y": 9,
+        "w": 440,
+        "h": 459
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 440,
+        "h": 459,
+        "x": 1015,
+        "y": 9,
+        "cx": 1213.4,
+        "cy": 255.1,
+        "area": 101195
+      },
+      "scale": 0.87117903930131,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 21,
+        "y": 99,
+        "w": 384,
+        "h": 402,
+        "n": 79041,
+        "cx": 194.6857580243165,
+        "cy": 314.2312850292886
+      },
+      "hand": null,
+      "head": [
+        174,
+        161
+      ],
+      "mouth": [
+        176,
+        197
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "battered_scared",
+      "file": "assets/characters/hero_iron/battered_scared.png",
+      "source": "exec-79fec9bf-9fd8-41b8-8a60-b5ba7289a966.png",
+      "sourceSHA256": "5352c22592908c33224e0f785bef30dfd7f494958ea607da23e875f1f2d082c5",
+      "sourceBounds": {
+        "x": 28,
+        "y": 529,
+        "w": 419,
+        "h": 472
+      },
+      "mainBounds": {
+        "id": 20,
+        "w": 419,
+        "h": 472,
+        "x": 28,
+        "y": 529,
+        "cx": 228.3,
+        "cy": 779.6,
+        "area": 101028
+      },
+      "scale": 0.8471337579617835,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 14,
+        "y": 100,
+        "w": 357,
+        "h": 401,
+        "n": 74613,
+        "cx": 184.8599841850616,
+        "cy": 312.2779676463887
+      },
+      "hand": null,
+      "head": [
+        171,
+        165
+      ],
+      "mouth": [
+        180,
+        198
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "battered_cheer",
+      "file": "assets/characters/hero_iron/battered_cheer.png",
+      "source": "exec-79fec9bf-9fd8-41b8-8a60-b5ba7289a966.png",
+      "sourceSHA256": "5352c22592908c33224e0f785bef30dfd7f494958ea607da23e875f1f2d082c5",
+      "sourceBounds": {
+        "x": 518,
+        "y": 518,
+        "w": 405,
+        "h": 480
+      },
+      "mainBounds": {
+        "id": 19,
+        "w": 405,
+        "h": 480,
+        "x": 518,
+        "y": 518,
+        "cx": 719.8,
+        "cy": 767.6,
+        "area": 103737
+      },
+      "scale": 0.9055832955061279,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 42,
+        "y": 65,
+        "w": 369,
+        "h": 436,
+        "n": 87464,
+        "cx": 225.85993094301656,
+        "cy": 291.3400027439861
+      },
+      "hand": null,
+      "head": [
+        241,
+        148
+      ],
+      "mouth": [
+        253,
+        184
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "victory",
+      "file": "assets/characters/hero_iron/victory.png",
+      "source": "exec-037c6b45-73d5-4678-bc0a-18d5bf029380.png",
+      "sourceSHA256": "d08f2568599a35db6c0445d3fbf1262574caf10ec27e77b8e90f35b0cb58df49",
+      "sourceBounds": {
+        "x": 363,
+        "y": 9,
+        "w": 500,
+        "h": 698
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 500,
+        "h": 698,
+        "x": 363,
+        "y": 9,
+        "cx": 596.8,
+        "cy": 398.8,
+        "area": 168975
+      },
+      "scale": 0.6506424890744243,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 82,
+        "y": 46,
+        "w": 327,
+        "h": 455,
+        "n": 73375,
+        "cx": 235.02600340715503,
+        "cy": 299.5793798977854
+      },
+      "hand": null,
+      "head": [
+        241,
+        161
+      ],
+      "mouth": [
+        247,
+        197
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "defeat",
+      "file": "assets/characters/hero_iron/defeat.png",
+      "source": "exec-037c6b45-73d5-4678-bc0a-18d5bf029380.png",
+      "sourceSHA256": "d08f2568599a35db6c0445d3fbf1262574caf10ec27e77b8e90f35b0cb58df49",
+      "sourceBounds": {
+        "x": 1211,
+        "y": 228,
+        "w": 589,
+        "h": 483
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 589,
+        "h": 483,
+        "x": 1211,
+        "y": 228,
+        "cx": 1503.7,
+        "cy": 524.3,
+        "area": 165073
+      },
+      "scale": 0.6506424890744243,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 52,
+        "y": 185,
+        "w": 385,
+        "h": 316,
+        "n": 71699,
+        "cx": 243.2749689674891,
+        "cy": 378.05873164200335
+      },
+      "hand": null,
+      "head": [
+        265,
+        250
+      ],
+      "mouth": [
+        270,
+        284
+      ]
+    },
+    {
+      "id": "king",
+      "pose": "idle",
+      "file": "assets/characters/king/idle.png",
+      "source": "exec-6c730548-2be2-4687-a881-5722c349e330.png",
+      "sourceSHA256": "2bf59fd601c6f1ba9ef364f41baf5aed667c753d4cbe03efc3594524364e3e76",
+      "sourceBounds": {
+        "x": 176,
+        "y": 1,
+        "w": 392,
+        "h": 576
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 392,
+        "h": 576,
+        "x": 176,
+        "y": 1,
+        "cx": 370.1,
+        "cy": 323.9,
+        "area": 149172
+      },
+      "scale": 0.6939130434782609,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 130,
+        "y": 100,
+        "w": 273,
+        "h": 401,
+        "n": 72799,
+        "cx": 265.10744653085897,
+        "cy": 324.54580420060717
+      },
+      "hand": null,
+      "head": [
+        242,
+        165
+      ],
+      "mouth": [
+        230,
+        212
+      ]
+    },
+    {
+      "id": "king",
+      "pose": "talk",
+      "file": "assets/characters/king/talk.png",
+      "source": "exec-6c730548-2be2-4687-a881-5722c349e330.png",
+      "sourceSHA256": "2bf59fd601c6f1ba9ef364f41baf5aed667c753d4cbe03efc3594524364e3e76",
+      "sourceBounds": {
+        "x": 703,
+        "y": 1,
+        "w": 466,
+        "h": 576
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 466,
+        "h": 576,
+        "x": 703,
+        "y": 1,
+        "cx": 959.2,
+        "cy": 321,
+        "area": 157937
+      },
+      "scale": 0.6939130434782609,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 79,
+        "y": 100,
+        "w": 325,
+        "h": 401,
+        "n": 77257,
+        "cx": 257.42985101673634,
+        "cy": 322.4637638013384
+      },
+      "hand": null,
+      "head": [
+        249,
+        165
+      ],
+      "mouth": [
+        237,
+        212
+      ]
+    },
+    {
+      "id": "king",
+      "pose": "cheer",
+      "file": "assets/characters/king/cheer.png",
+      "source": "exec-6c730548-2be2-4687-a881-5722c349e330.png",
+      "sourceSHA256": "2bf59fd601c6f1ba9ef364f41baf5aed667c753d4cbe03efc3594524364e3e76",
+      "sourceBounds": {
+        "x": 142,
+        "y": 599,
+        "w": 427,
+        "h": 578
+      },
+      "mainBounds": {
+        "id": 6,
+        "w": 427,
+        "h": 578,
+        "x": 142,
+        "y": 599,
+        "cx": 357.4,
+        "cy": 910.4,
+        "area": 161619
+      },
+      "scale": 0.6915077989601387,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 107,
+        "y": 100,
+        "w": 297,
+        "h": 401,
+        "n": 78572,
+        "cx": 256.64236623733643,
+        "cy": 315.7650944356768
+      },
+      "hand": null,
+      "head": [
+        251,
+        165
+      ],
+      "mouth": [
+        245,
+        196
+      ]
+    },
+    {
+      "id": "king",
+      "pose": "worried",
+      "file": "assets/characters/king/worried.png",
+      "source": "exec-6c730548-2be2-4687-a881-5722c349e330.png",
+      "sourceSHA256": "2bf59fd601c6f1ba9ef364f41baf5aed667c753d4cbe03efc3594524364e3e76",
+      "sourceBounds": {
+        "x": 770,
+        "y": 598,
+        "w": 400,
+        "h": 579
+      },
+      "mainBounds": {
+        "id": 5,
+        "w": 400,
+        "h": 579,
+        "x": 770,
+        "y": 598,
+        "cx": 969.2,
+        "cy": 922.9,
+        "area": 150155
+      },
+      "scale": 0.6903114186851211,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 126,
+        "y": 100,
+        "w": 278,
+        "h": 401,
+        "n": 72750,
+        "cx": 264.37459793814435,
+        "cy": 324.7450446735395
+      },
+      "hand": null,
+      "head": [
+        257,
+        165
+      ],
+      "mouth": [
+        238,
+        210
+      ]
+    },
+    {
+      "id": "princess",
+      "pose": "idle",
+      "file": "assets/characters/princess/idle.png",
+      "source": "exec-90e11ed3-7d0f-49b9-b0c4-6131e0316290.png",
+      "sourceSHA256": "7047e4f38e7819feaf1fed54e12796cbaf168249259c9fc028bdd17308213d76",
+      "sourceBounds": {
+        "x": 205,
+        "y": 5,
+        "w": 276,
+        "h": 567
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 276,
+        "h": 567,
+        "x": 205,
+        "y": 5,
+        "cx": 350.6,
+        "cy": 307.2,
+        "area": 103636
+      },
+      "scale": 0.7049469964664311,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 166,
+        "y": 100,
+        "w": 196,
+        "h": 401,
+        "n": 52448,
+        "cx": 269.22622406955463,
+        "cy": 313.64683114704087
+      },
+      "hand": null,
+      "head": [
+        256,
+        163
+      ],
+      "mouth": [
+        254,
+        190
+      ]
+    },
+    {
+      "id": "princess",
+      "pose": "talk",
+      "file": "assets/characters/princess/talk.png",
+      "source": "exec-90e11ed3-7d0f-49b9-b0c4-6131e0316290.png",
+      "sourceSHA256": "7047e4f38e7819feaf1fed54e12796cbaf168249259c9fc028bdd17308213d76",
+      "sourceBounds": {
+        "x": 739,
+        "y": 5,
+        "w": 342,
+        "h": 567
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 342,
+        "h": 567,
+        "x": 739,
+        "y": 5,
+        "cx": 940.2,
+        "cy": 302.4,
+        "area": 111001
+      },
+      "scale": 0.7049469964664311,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 118,
+        "y": 100,
+        "w": 243,
+        "h": 401,
+        "n": 56322,
+        "cx": 260.53909662298923,
+        "cy": 310.2436170590533
+      },
+      "hand": null,
+      "head": [
+        255,
+        163
+      ],
+      "mouth": [
+        250,
+        190
+      ]
+    },
+    {
+      "id": "princess",
+      "pose": "cheer",
+      "file": "assets/characters/princess/cheer.png",
+      "source": "exec-90e11ed3-7d0f-49b9-b0c4-6131e0316290.png",
+      "sourceSHA256": "7047e4f38e7819feaf1fed54e12796cbaf168249259c9fc028bdd17308213d76",
+      "sourceBounds": {
+        "x": 181,
+        "y": 597,
+        "w": 304,
+        "h": 574
+      },
+      "mainBounds": {
+        "id": 3,
+        "w": 304,
+        "h": 574,
+        "x": 181,
+        "y": 597,
+        "cx": 340.1,
+        "cy": 895.8,
+        "area": 115811
+      },
+      "scale": 0.6963350785340314,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 150,
+        "y": 100,
+        "w": 213,
+        "h": 401,
+        "n": 57156,
+        "cx": 261.2149730561971,
+        "cy": 308.5741479459724
+      },
+      "hand": null,
+      "head": [
+        255,
+        162
+      ],
+      "mouth": [
+        243,
+        208
+      ]
+    },
+    {
+      "id": "princess",
+      "pose": "scared",
+      "file": "assets/characters/princess/scared.png",
+      "source": "exec-90e11ed3-7d0f-49b9-b0c4-6131e0316290.png",
+      "sourceSHA256": "7047e4f38e7819feaf1fed54e12796cbaf168249259c9fc028bdd17308213d76",
+      "sourceBounds": {
+        "x": 781,
+        "y": 597,
+        "w": 295,
+        "h": 574
+      },
+      "mainBounds": {
+        "id": 4,
+        "w": 295,
+        "h": 574,
+        "x": 781,
+        "y": 597,
+        "cx": 936.9,
+        "cy": 901.3,
+        "area": 103385
+      },
+      "scale": 0.6963350785340314,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 148,
+        "y": 100,
+        "w": 207,
+        "h": 401,
+        "n": 51085,
+        "cx": 257.23175100322993,
+        "cy": 312.5933835763923
+      },
+      "hand": null,
+      "head": [
+        251,
+        163
+      ],
+      "mouth": [
+        250,
+        190
+      ]
+    },
+    {
+      "id": "blacksmith",
+      "pose": "idle",
+      "file": "assets/characters/blacksmith/idle.png",
+      "source": "exec-c889bf63-2805-4368-9f5b-b468e7b1b00e.png",
+      "sourceSHA256": "4ca6c4253e1fd25eda6b630642970f2819d21136dfa577a3d523027e7d210456",
+      "sourceBounds": {
+        "x": 123,
+        "y": 9,
+        "w": 413,
+        "h": 572
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 413,
+        "h": 572,
+        "x": 123,
+        "y": 9,
+        "cx": 345.1,
+        "cy": 322.1,
+        "area": 131254
+      },
+      "scale": 0.6987740805604203,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 102,
+        "y": 100,
+        "w": 290,
+        "h": 401,
+        "n": 65401,
+        "cx": 257.6421155639822,
+        "cy": 319.41392333450557
+      },
+      "hand": null,
+      "head": [
+        254,
+        156
+      ],
+      "mouth": [
+        242,
+        197
+      ]
+    },
+    {
+      "id": "blacksmith",
+      "pose": "talk",
+      "file": "assets/characters/blacksmith/talk.png",
+      "source": "exec-c889bf63-2805-4368-9f5b-b468e7b1b00e.png",
+      "sourceSHA256": "4ca6c4253e1fd25eda6b630642970f2819d21136dfa577a3d523027e7d210456",
+      "sourceBounds": {
+        "x": 711,
+        "y": 9,
+        "w": 454,
+        "h": 572
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 454,
+        "h": 572,
+        "x": 711,
+        "y": 9,
+        "cx": 967.2,
+        "cy": 314.6,
+        "area": 133532
+      },
+      "scale": 0.6987740805604203,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 85,
+        "y": 100,
+        "w": 319,
+        "h": 401,
+        "n": 66694,
+        "cx": 264.7467388370768,
+        "cy": 314.0591957297508
+      },
+      "hand": null,
+      "head": [
+        267,
+        160
+      ],
+      "mouth": [
+        246,
+        195
+      ]
+    },
+    {
+      "id": "blacksmith",
+      "pose": "hammer",
+      "file": "assets/characters/blacksmith/hammer.png",
+      "source": "exec-c889bf63-2805-4368-9f5b-b468e7b1b00e.png",
+      "sourceSHA256": "4ca6c4253e1fd25eda6b630642970f2819d21136dfa577a3d523027e7d210456",
+      "sourceBounds": {
+        "x": 127,
+        "y": 616,
+        "w": 425,
+        "h": 560
+      },
+      "mainBounds": {
+        "id": 8,
+        "w": 425,
+        "h": 560,
+        "x": 127,
+        "y": 616,
+        "cx": 354.1,
+        "cy": 896.4,
+        "area": 138507
+      },
+      "scale": 0.7137745974955277,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 90,
+        "y": 100,
+        "w": 305,
+        "h": 401,
+        "n": 72046,
+        "cx": 252.63870305082864,
+        "cy": 300.52308247508535
+      },
+      "hand": null,
+      "head": [
+        261,
+        159
+      ],
+      "mouth": [
+        249,
+        204
+      ]
+    },
+    {
+      "id": "blacksmith",
+      "pose": "cheer",
+      "file": "assets/characters/blacksmith/cheer.png",
+      "source": "exec-c889bf63-2805-4368-9f5b-b468e7b1b00e.png",
+      "sourceSHA256": "4ca6c4253e1fd25eda6b630642970f2819d21136dfa577a3d523027e7d210456",
+      "sourceBounds": {
+        "x": 766,
+        "y": 614,
+        "w": 392,
+        "h": 562
+      },
+      "mainBounds": {
+        "id": 7,
+        "w": 392,
+        "h": 562,
+        "x": 766,
+        "y": 614,
+        "cx": 961.8,
+        "cy": 907.6,
+        "area": 138101
+      },
+      "scale": 0.7112299465240641,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 123,
+        "y": 100,
+        "w": 280,
+        "h": 401,
+        "n": 71286,
+        "cx": 262.7951631456387,
+        "cy": 309.3459024212328
+      },
+      "hand": null,
+      "head": [
+        270,
+        159
+      ],
+      "mouth": [
+        251,
+        198
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "fresh_attack",
+      "file": "assets/characters/hero_iron/fresh_attack.png",
+      "source": "exec-4909e3ad-24bd-49b7-8e41-84da5a93248b.png",
+      "sourceSHA256": "7540ed1b3d26ae55e4ca866a5c7fb86d4d28a09675e32fd50e2d01db04872b1f",
+      "sourceBounds": {
+        "x": 90,
+        "y": 29,
+        "w": 560,
+        "h": 663
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 560,
+        "h": 663,
+        "x": 90,
+        "y": 29,
+        "cx": 349.8,
+        "cy": 360.3,
+        "area": 201482
+      },
+      "scale": 0.6027190332326284,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 90,
+        "y": 100,
+        "w": 339,
+        "h": 401,
+        "n": 74796,
+        "cx": 247.47894272420984,
+        "cy": 300.0044788491363
+      },
+      "hand": null,
+      "head": [
+        268,
+        163
+      ],
+      "mouth": [
+        274,
+        201
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "bruised_attack",
+      "file": "assets/characters/hero_iron/bruised_attack.png",
+      "source": "exec-4909e3ad-24bd-49b7-8e41-84da5a93248b.png",
+      "sourceSHA256": "7540ed1b3d26ae55e4ca866a5c7fb86d4d28a09675e32fd50e2d01db04872b1f",
+      "sourceBounds": {
+        "x": 827,
+        "y": 29,
+        "w": 547,
+        "h": 663
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 547,
+        "h": 663,
+        "x": 827,
+        "y": 29,
+        "cx": 1074.5,
+        "cy": 360.3,
+        "area": 200824
+      },
+      "scale": 0.6027190332326284,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 98,
+        "y": 100,
+        "w": 331,
+        "h": 401,
+        "n": 74544,
+        "cx": 247.85340201760033,
+        "cy": 300.01798937540246
+      },
+      "hand": null,
+      "head": [
+        269,
+        163
+      ],
+      "mouth": [
+        276,
+        203
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "pose": "battered_attack",
+      "file": "assets/characters/hero_iron/battered_attack.png",
+      "source": "exec-4909e3ad-24bd-49b7-8e41-84da5a93248b.png",
+      "sourceSHA256": "7540ed1b3d26ae55e4ca866a5c7fb86d4d28a09675e32fd50e2d01db04872b1f",
+      "sourceBounds": {
+        "x": 1538,
+        "y": 29,
+        "w": 548,
+        "h": 663
+      },
+      "mainBounds": {
+        "id": 3,
+        "w": 548,
+        "h": 663,
+        "x": 1538,
+        "y": 29,
+        "cx": 1793.9,
+        "cy": 364.2,
+        "area": 196276
+      },
+      "scale": 0.6027190332326284,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 90,
+        "y": 100,
+        "w": 331,
+        "h": 401,
+        "n": 72786,
+        "cx": 244.57718517297283,
+        "cy": 302.37041464017807
+      },
+      "hand": null,
+      "head": [
+        269,
+        163
+      ],
+      "mouth": [
+        276,
+        203
+      ]
+    }
+  ]
+}

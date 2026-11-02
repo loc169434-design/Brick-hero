@@ -1,0 +1,37 @@
+[
+  {
+    "id": "scarecrow",
+    "x": 531,
+    "y": 1577
+  },
+  {
+    "id": "orc_shield",
+    "x": 326,
+    "y": 1368
+  },
+  {
+    "id": "frost_slime",
+    "x": 749,
+    "y": 1148
+  },
+  {
+    "id": "goblin_thief",
+    "x": 321,
+    "y": 919
+  },
+  {
+    "id": "stone_golem",
+    "x": 735,
+    "y": 769
+  },
+  {
+    "id": "rune_witch",
+    "x": 366,
+    "y": 602
+  },
+  {
+    "id": "royal_dragon",
+    "x": 632,
+    "y": 310
+  }
+]

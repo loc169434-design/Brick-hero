@@ -7,7 +7,8 @@ extends Resource
 ## Squares a link needs before it clears.
 @export var min_link := 3
 ## Same-colored squares in a straight row or column that clear by themselves after a fall.
-@export var min_line := 3
+## 4, not 3: with 3, two moves in three set off chains and the board plays itself (docs/core_plan.md, section 6).
+@export var min_line := 4
 
 @export_group("Specials left by long links")
 @export var lightning_link := 5

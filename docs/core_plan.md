@@ -11,7 +11,7 @@ Mục tiêu giai đoạn này: **một trận đánh quái chơi được và vu
 
 **Bảng chơi**
 - 7 cột × 8 hàng, mỗi ô 140 px, **luôn đầy**. Phía trên là khu trận đánh.
-- Khi chia bảng, không có sẵn hàng 3 nào, và luôn có ít nhất một nước nối. Nếu sau một lượt không còn nước nối nào thì chia lại bảng ("XÁO BẢNG").
+- Khi chia bảng, không có sẵn hàng 4 nào, và luôn có ít nhất một nước nối. Nếu sau một lượt không còn nước nối nào thì chia lại bảng ("XÁO BẢNG").
 - Kích thước và các ngưỡng nằm trong `BoardRules`.
 
 **Một lượt = một lần nối**
@@ -19,7 +19,8 @@ Mục tiêu giai đoạn này: **một trận đánh quái chơi được và vu
 - Cần từ **3 ô** trở lên. Kéo lùi lại ô trước thì bỏ ô vừa nối.
 - Các ô trong đường nối nổ. Ô phía trên rơi xuống, ô mới rơi từ trên vào lấp đầy bảng.
 
-**Dây chuyền**: sau khi rơi, hàng thẳng **3 ô cùng màu** trở lên (ngang hoặc dọc) tự nổ, rồi lại rơi và lấp đầy. Mỗi vòng nổ thêm thì hệ số dây chuyền tăng x1 → x2 → x3…
+**Dây chuyền**: sau khi rơi, hàng thẳng **4 ô cùng màu** trở lên (ngang hoặc dọc) tự nổ, rồi lại rơi và lấp đầy. Mỗi vòng nổ thêm thì hệ số dây chuyền tăng x1 → x2 → x3…
+Trước là hàng 3, đổi sang hàng 4 ngày 2026-11-02 sau khi mô phỏng cho thấy hàng 3 làm game tự chơi (mục 6).
 
 **Ô đặc biệt**: nối dài thì sinh ô đặc biệt ngay tại ô cuối cùng, chỗ ngón tay thả ra.
 
@@ -30,8 +31,8 @@ Mục tiêu giai đoạn này: **một trận đánh quái chơi được và vu
 | 7 ô trở lên | Sao | Ghép được với **mọi màu** khi người chơi nối. Khi nổ thì xóa hết ô cùng màu với đường nối. |
 | 2 ô đặc biệt cạnh nhau | Siêu hiệu ứng | Ví dụ sét + bom: xóa 3 hàng và 3 cột |
 
-- Nối đi qua ô đặc biệt thì kích nổ nó. Hàng 3 tự nổ có chứa sét hoặc bom cũng kích nổ chúng.
-- Sao **không** tự ghép vào hàng 3 khi các ô rơi xuống: sao chỉ dành cho người chơi tự nối.
+- Nối đi qua ô đặc biệt thì kích nổ nó. Hàng tự nổ có chứa sét hoặc bom cũng kích nổ chúng.
+- Sao **không** tự ghép vào hàng tự nổ khi các ô rơi xuống: sao chỉ dành cho người chơi tự nối.
 
 **Thua**: chỉ khi máu hiệp sĩ về 0 (bảng luôn đầy nên không có thua vì đầy bảng).
 
@@ -63,7 +64,7 @@ scripts/
     board_rules.gd   mọi con số của bảng: kích thước, độ dài nối, ngưỡng ô đặc biệt
     board_model.gd   lưới ô
     link_game.gd     một ván: chia bảng, kiểm tra đường nối, chơi một lượt, xáo bảng
-    resolver.gd      nổ đường nối, kích ô đặc biệt, rơi + lấp ô mới, hàng 3 tự nổ, dây chuyền
+    resolver.gd      nổ đường nối, kích ô đặc biệt, rơi + lấp ô mới, hàng 4 tự nổ, dây chuyền
     clear_step.gd    kết quả mỗi vòng nổ, gửi sang trận đánh và phần hiển thị
     move_result.gd   tổng kết một lượt: đường nối + các vòng nổ
   board/           # hiển thị + điều khiển
@@ -96,13 +97,23 @@ assets/
   tiles/ characters/ monsters/ fx/ ui/ bg/ audio/
 tests/
   run_tests.gd       chạy tất cả bài kiểm tra
-  test_resolver.gd, test_link_game.gd, test_tile_art.gd, test_battle_state.gd, test_feel.gd
+  test_resolver.gd, test_link_game.gd, test_tile_art.gd, test_battle_state.gd, test_feel.gd,
+  test_battle_sim.gd
+  sim_balance.gd     mô phỏng hàng trăm trận bằng bot, in bảng số liệu (B5)
 ```
+
+`scripts/sim/battle_sim.gd` là bot chơi trên luật thật, có ba kiểu: ngẫu nhiên, luôn nối dài nhất, và chơi khôn (ưu tiên màu đang cần).
 
 Chạy kiểm tra (đường dẫn Godot trên máy Windows hiện tại):
 
 ```bash
 ~/Downloads/Godot_v4.7.2-stable_win64.exe/Godot_v4.7.2-stable_win64_console.exe --headless --path . -s res://tests/run_tests.gd
+```
+
+Chạy mô phỏng cân bằng. Thử số liệu khác mà không cần sửa file, bằng cách thêm `--<tên luật>=<giá trị>` (luật trong `BattleRules`/`BoardRules`) hoặc `--monster.<thuộc tính>=<giá trị>`:
+
+```bash
+~/Downloads/Godot_v4.7.2-stable_win64.exe/Godot_v4.7.2-stable_win64_console.exe --headless --path . -s res://tests/sim_balance.gd -- --fights=300 --monster=orc_shield --min_line=4
 ```
 
 **Âm thanh**: mỗi âm có một tên. Đặt file `assets/audio/<tên>.wav` (hoặc `.ogg`) thì game tự dùng file đó thay cho âm tổng hợp, không cần sửa code. Danh sách tên nằm trong `RECIPES` của `scripts/feel/sfx_bank.gd`: `tick` (mỗi ô nối thêm), `untick`, `charge` (nối đủ dài để ra ô đặc biệt), `pop` (một vòng nổ), `land`, `boom` (sét/bom nổ), `special` (ô đặc biệt xuất hiện), `shuffle`, `hit` (hiệp sĩ đánh trúng), `clang` (đánh vào khiên), `shatter` (vỡ một lớp khiên), `heal`, `coin`, `thud` (quái đánh trúng), `warn` (quái sắp đánh), `win`, `lose`.
@@ -118,9 +129,9 @@ Quái và bùa sau này là file Resource (`.tres`), nên thêm quái mới ch�
 | **B1** | Luật bảng + kiểm tra tự động | Xong (bản khối rơi PR #1, làm lại sang nối ô ở PR #7) |
 | **B2** | Bảng chơi được + ghép ảnh gạch Training/Orc | Xong (PR #2, làm lại sang nối ô ở PR #7) |
 | **B4** | Trận đánh: hiệp sĩ, quái, máu, khiên, đồng hồ, thắng/thua | Xong (PR #4, #6). Ảnh nhân vật, nền, hiệu ứng thật ở PR #8 |
-| **Nối ô** | Bảng luôn đầy, vuốt nối, hàng 3 tự nổ, ô đặc biệt theo độ dài nối | Xong (PR #7) |
-| **B3** | Cảm giác "đã tay": rung màn hình, âm thanh, chữ nảy | Xong (nhánh `core/juice`). Âm thanh đang là âm tổng hợp, chờ file thật |
-| **B5** | Chơi thử và chỉnh số liệu | Chưa làm. Tự thấy muốn chơi thêm trận nữa thì mới làm bùa. Khi chạy thử B3 có lần một nước nối 3 ô tự nổ dây chuyền gây 80 sát thương, giết Orc ngay lượt đầu: cần đo xem dây chuyền tự nổ có quá mạnh không. |
+| **Nối ô** | Bảng luôn đầy, vuốt nối, hàng tự nổ, ô đặc biệt theo độ dài nối | Xong (PR #7) |
+| **B3** | Cảm giác "đã tay": rung màn hình, âm thanh, chữ nảy | Xong (PR #11). Âm thanh đang là âm tổng hợp, chờ file thật |
+| **B5** | Chơi thử và chỉnh số liệu | Đang làm (nhánh `core/balance-sim`). Bot mô phỏng và số đo ở mục 6. Đã chốt: hàng 4 tự nổ, Orc 60 máu, đánh 12 mỗi 3 lượt. Còn chơi thử trên điện thoại. Tự thấy muốn chơi thêm trận nữa thì mới làm bùa. |
 
 B3 gồm:
 - Rung màn hình theo lực: nối dài, dây chuyền, ô đặc biệt nổ, hiệp sĩ đánh trúng, quái đánh trả. Ngừng hình vài khung khi vỡ khiên, kích ô đặc biệt và đòn kết liễu. Rung điện thoại khi va chạm mạnh (bản Android cần quyền VIBRATE khi tạo cấu hình xuất).
@@ -145,8 +156,27 @@ Việc mới thì tạo nhánh mới từ `main`, xong thì comment trực tiế
 
 ---
 
-## 6. Còn để ngỏ, chốt khi chơi thử
+## 6. Số đo B5 (mô phỏng, 300 trận mỗi kiểu chơi)
+
+Đo ngày 2026-11-02 bằng `tests/sim_balance.gd`. Mỗi ô ghi: kiểu ngẫu nhiên / nối dài nhất / chơi khôn.
+
+| Luật | Orc: thắng | Orc: số lượt (trung vị) | Orc: máu hiệp sĩ còn | Lượt có tự nổ | Sát thương từ tự nổ | Chuỗi dài nhất | Ô đặc biệt mỗi trận |
+|---|---|---|---|---|---|---|---|
+| Hiện tại (hàng 3) | 100 / 100 / 100% | 7 / 7 / 7 | 98 / 98 / 98 | ~65% | 80–87% | 17 vòng | 0.1 / 0.5 / 0.5 |
+| Hàng 3, ô mới không tạo sẵn hàng | 100 / 100 / 100% | 15 / 14 / 16 | 88 / 91 / 90 | ~42% | 60–73% | 12 vòng | 0.1 / 0.9 / 0.8 |
+| Hàng 4 | 96 / 100 / 100% | 33 / 21 / 23 | 47 / 79 / 79 | ~20% | 23–38% | 6 vòng | 1.3 / 7.0 / 5.8 |
+| **Đã chọn:** hàng 4, Orc 60 máu, đánh mỗi 3 lượt | 86 / 99 / 100% | 26 / 17 / 18 | 38 / 70 / 69 | ~20% | 23–38% | 6 vòng | 1.0 / 5.8 / 4.6 |
+
+Nhận xét:
+- Với hàng 3, trung bình mỗi lượt kéo theo 2.6 vòng nổ, có chuỗi 17 vòng (hệ số x17). Game gần như tự chơi: chơi bừa và chơi khôn ra kết quả như nhau, Orc không gây áp lực. Ô đặc biệt hầu như không xuất hiện vì trận kết thúc trước khi kịp nối dài.
+- Giảm hệ số dây chuyền (`chain_step` 0.5 hoặc 0.25) chỉ kéo dài trận, không làm kỹ năng có giá trị hơn.
+- Cho ô mới không tạo sẵn hàng giảm tự nổ nhưng chơi khôn vẫn không hơn chơi bừa.
+- Hàng 4 là thay đổi duy nhất khiến kỹ năng có giá trị: chơi khôn thắng nhanh hơn và còn nhiều máu hơn hẳn, ô đặc biệt xuất hiện 5–7 lần mỗi trận, dây chuyền vẫn có nhưng thành phần thưởng (khoảng 1/5 số lượt).
+
+---
+
+## 7. Còn để ngỏ, chốt khi chơi thử
 
 - Bảng 7×8 vừa tay trên điện thoại chưa. Bốn màu có làm nối quá dễ hay quá khó không.
 - Ngưỡng ô đặc biệt 5/6/7 có hợp lý không.
-- Hàng 3 tự nổ sau khi rơi có xảy ra quá nhiều (game tự chơi hộ) hay quá ít không.
+- Hàng 4 tự nổ có làm dây chuyền quá hiếm, mất cảm giác "nổ dây chuyền" không. Mô phỏng nói khoảng 1/5 số lượt có tự nổ, cần cảm nhận bằng tay.

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BattleRules" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_rules.gd" id="1_rules"]
+
+[resource]
+script = ExtResource("1_rules")
+hero_max_hp = 100
+red_damage = 2.0
+green_heal = 1.0
+yellow_gold = 1.0
+purple_shield = 2.0
+chain_step = 1.0
+combo_bonus = 0.25
+shield_layer_size = 10
+shielded_damage_factor = 0.5
+layer_break_chain = 3

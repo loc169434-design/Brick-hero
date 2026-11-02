@@ -6,6 +6,7 @@ extends Node2D
 ## through its own burst. Without art, each color falls back to a square with its own symbol.
 
 signal drop_finished(result: DropResult)
+signal restarted
 
 const CELL := 100
 const PREVIEW_CELL := 46
@@ -55,6 +56,9 @@ var _fall_tween: Tween
 ## Squares currently drawn by an animation: position -> AnimatedSprite2D.
 var _sprites := {}
 var _busy := false
+## Set once the board is done for good (fight decided or board full) until restart.
+var _finished := false
+var _end_title := ""
 ## Bumped on restart so a replay still waiting on a timer knows to stop.
 var _generation := 0
 ## The combo as of the last finished replay, so the counter doesn't jump ahead of the show.
@@ -91,12 +95,40 @@ func new_game() -> void:
 		_popup_tween.kill()
 	_popup_alpha = 0.0
 	_combo_shown = 0
+	_finished = false
 	game = BoardGame.new(BoardRules.new(), seed_value)
 	game.piece_changed.connect(_redraw)
 	game.start()
 	_shown = _snapshot()
 	_busy = false
 	_redraw()
+	restarted.emit()
+
+
+## Stops play and has every tile react to the result. Safe to call more than once.
+func finish(won: bool) -> void:
+	if _finished:
+		return
+	_finished = true
+	_end_title = "VICTORY" if won else "DEFEAT"
+	_clear_sprites()
+	_play_on_every_square(&"win" if won else &"lose")
+	_redraw()
+
+
+func is_finished() -> bool:
+	return _finished
+
+
+## Up to `count` idle tiles play `clip` at normal speed without holding up play.
+## Does nothing if the theme has no such clip (Training tiles don't taunt, for one).
+func play_reaction(clip: StringName, count: int) -> void:
+	if _busy or _finished or not _art.has_clip(clip):
+		return
+	var idle := _shown.keys().filter(func(p: Vector2i) -> bool: return not _shown[p].is_special() and not _sprites.has(p))
+	idle.shuffle()
+	for p in idle.slice(0, count):
+		_play_clip(p, clip, null, true, 1.0)
 
 
 ## Switches between tile themes. Waits for the current replay so no clip changes art mid-play.
@@ -124,7 +156,7 @@ func hold_rect() -> Rect2:
 
 
 func can_act() -> bool:
-	return not _busy and not game.is_over
+	return not _busy and not _finished and not game.is_over
 
 
 func try_move(dx: int) -> void:
@@ -226,9 +258,9 @@ func _replay(result: DropResult, before: Dictionary, piece: Piece, hover: Vector
 	_shown = _snapshot()
 	_busy = false
 	if game.is_over:
-		_play_on_every_square(&"lose")
+		finish(false)
 	elif not result.cleared_anything():
-		_taunt()
+		play_reaction(&"taunt", 1)
 	_redraw()
 	drop_finished.emit(result)
 
@@ -287,16 +319,6 @@ func _free_sprite(p: Vector2i) -> void:
 func _clear_sprites() -> void:
 	for p in _sprites.keys():
 		_free_sprite(p)
-
-
-## After a drop that cleared nothing, one tile laughs at full speed. It doesn't block input:
-## the next drop cuts it short.
-func _taunt() -> void:
-	if not _art.has_clip(&"taunt"):
-		return
-	var candidates := _shown.keys().filter(func(p: Vector2i) -> bool: return not _shown[p].is_special())
-	if not candidates.is_empty():
-		_play_clip(candidates.pick_random(), &"taunt", null, true, 1.0)
 
 
 ## Holds on the last frame until restart.
@@ -359,7 +381,7 @@ func _draw() -> void:
 		if _flashing.has(p):
 			draw_rect(rect.grow(-6), Color(1, 1, 1, 0.75))
 
-	if not _busy and not game.is_over:
+	if can_act():
 		_draw_ghost()
 		_draw_piece(game.current, game.origin, Vector2.ZERO, CELL)
 
@@ -370,10 +392,10 @@ func _draw_overlay() -> void:
 	var size := board_size()
 	if _popup_alpha > 0.0:
 		_draw_centered_text(_overlay, _popup_text, Vector2(size.x / 2, size.y * 0.35), 96, Color(1, 0.9, 0.3, _popup_alpha))
-	if game.is_over and not _busy:
+	if _finished and not _busy:
 		_overlay.draw_rect(Rect2(Vector2.ZERO, size), Color(0, 0, 0, 0.45))
-		_draw_centered_text(_overlay, "GAME OVER", Vector2(size.x / 2, size.y * 0.45), 96, TEXT)
-		_draw_centered_text(_overlay, "tap or press R to restart", Vector2(size.x / 2, size.y * 0.45 + 80), 40, TEXT_DIM)
+		_draw_centered_text(_overlay, _end_title, Vector2(size.x / 2, size.y * 0.45), 96, TEXT)
+		_draw_centered_text(_overlay, "tap or press R to play again", Vector2(size.x / 2, size.y * 0.45 + 80), 40, TEXT_DIM)
 
 
 func _draw_ghost() -> void:

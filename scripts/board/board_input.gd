@@ -75,7 +75,7 @@ func _on_drag(event: InputEventScreenDrag) -> void:
 
 
 func _on_tap(screen_pos: Vector2) -> void:
-	if view.game.is_over:
+	if view.is_finished():
 		view.new_game()
 	elif view.hold_rect().has_point(view.to_local(screen_pos)):
 		view.try_hold()

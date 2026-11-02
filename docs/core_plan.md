@@ -35,7 +35,7 @@ Mục tiêu giai đoạn này: **một trận đánh quái chơi được và vu
 
 **Thua**: chỉ khi máu hiệp sĩ về 0 (bảng luôn đầy nên không có thua vì đầy bảng).
 
-**Điều khiển**: chạm hoặc chuột để nối. Phím R chơi lại, T đổi bộ gạch (để thử).
+**Điều khiển**: chạm hoặc chuột để nối. Phím R chơi lại, T đổi bộ gạch (để thử), M tắt/bật tiếng.
 
 ---
 
@@ -78,10 +78,14 @@ scripts/
     battle_view.gd     nền, thanh máu, khiên, đồng hồ, gợi ý, số bay lên; dựng cảnh mỗi lượt
     character_rig.gd   một nhân vật: mức tơi tả theo máu, cảm xúc chớp nhoáng, cảnh kết trận, hiệu ứng
                        (quy cách ảnh: issue #5)
-    battle_manager.gd  nối bảng chơi với trận đánh, kết thúc trận
-  autoload/
+    battle_manager.gd  nối bảng chơi với trận đánh, phản ứng của gạch quái, kết thúc trận
+  feel/            # cảm giác "đã tay"
+    screen_feel.gd   camera: rung màn hình theo lực va chạm, ngừng hình, rung điện thoại
+    sfx.gd           Sfx.play(&"tên"): phát âm thanh từ bất cứ đâu, M tắt tiếng
+    sfx_bank.gd      âm thanh tổng hợp bằng code, dùng tạm tới khi có file thật
+  autoload/        (dùng sau)
     events.gd        kênh tín hiệu chung
-    game_state.gd    vàng, nâng cấp (dùng sau)
+    game_state.gd    vàng, nâng cấp
 data/
   balance.tres     mọi con số cân bằng
   monsters/*.tres  mỗi quái một file Resource
@@ -89,17 +93,19 @@ scenes/
   main.tscn, battle.tscn, board.tscn
   forge.tscn, map.tscn  (để trống)
 assets/
-  tiles/ characters/ monsters/ fx/ ui/ bg/
+  tiles/ characters/ monsters/ fx/ ui/ bg/ audio/
 tests/
   run_tests.gd       chạy tất cả bài kiểm tra
-  test_resolver.gd, test_link_game.gd, test_tile_art.gd, test_battle_state.gd
+  test_resolver.gd, test_link_game.gd, test_tile_art.gd, test_battle_state.gd, test_feel.gd
 ```
 
-Chạy kiểm tra (đường dẫn Godot trên máy hiện tại):
+Chạy kiểm tra (đường dẫn Godot trên máy Windows hiện tại):
 
 ```bash
-~/Downloads/Godot.app/Contents/MacOS/Godot --headless --path . -s res://tests/run_tests.gd
+~/Downloads/Godot_v4.7.2-stable_win64.exe/Godot_v4.7.2-stable_win64_console.exe --headless --path . -s res://tests/run_tests.gd
 ```
+
+**Âm thanh**: mỗi âm có một tên. Đặt file `assets/audio/<tên>.wav` (hoặc `.ogg`) thì game tự dùng file đó thay cho âm tổng hợp, không cần sửa code. Danh sách tên nằm trong `RECIPES` của `scripts/feel/sfx_bank.gd`: `tick` (mỗi ô nối thêm), `untick`, `charge` (nối đủ dài để ra ô đặc biệt), `pop` (một vòng nổ), `land`, `boom` (sét/bom nổ), `special` (ô đặc biệt xuất hiện), `shuffle`, `hit` (hiệp sĩ đánh trúng), `clang` (đánh vào khiên), `shatter` (vỡ một lớp khiên), `heal`, `coin`, `thud` (quái đánh trúng), `warn` (quái sắp đánh), `win`, `lose`.
 
 Quái và bùa sau này là file Resource (`.tres`), nên thêm quái mới chủ yếu là thêm dữ liệu và ảnh, ít phải sửa code.
 
@@ -113,8 +119,15 @@ Quái và bùa sau này là file Resource (`.tres`), nên thêm quái mới ch�
 | **B2** | Bảng chơi được + ghép ảnh gạch Training/Orc | Xong (PR #2, làm lại sang nối ô ở PR #7) |
 | **B4** | Trận đánh: hiệp sĩ, quái, máu, khiên, đồng hồ, thắng/thua | Xong (PR #4, #6). Ảnh nhân vật, nền, hiệu ứng thật ở PR #8 |
 | **Nối ô** | Bảng luôn đầy, vuốt nối, hàng 3 tự nổ, ô đặc biệt theo độ dài nối | Xong (PR #7) |
-| **B3** | Cảm giác "đã tay": rung màn hình, âm thanh, chữ nảy | Chưa làm |
-| **B5** | Chơi thử và chỉnh số liệu | Chưa làm. Tự thấy muốn chơi thêm trận nữa thì mới làm bùa. |
+| **B3** | Cảm giác "đã tay": rung màn hình, âm thanh, chữ nảy | Xong (nhánh `core/juice`). Âm thanh đang là âm tổng hợp, chờ file thật |
+| **B5** | Chơi thử và chỉnh số liệu | Chưa làm. Tự thấy muốn chơi thêm trận nữa thì mới làm bùa. Khi chạy thử B3 có lần một nước nối 3 ô tự nổ dây chuyền gây 80 sát thương, giết Orc ngay lượt đầu: cần đo xem dây chuyền tự nổ có quá mạnh không. |
+
+B3 gồm:
+- Rung màn hình theo lực: nối dài, dây chuyền, ô đặc biệt nổ, hiệp sĩ đánh trúng, quái đánh trả. Ngừng hình vài khung khi vỡ khiên, kích ô đặc biệt và đòn kết liễu. Rung điện thoại khi va chạm mạnh (bản Android cần quyền VIBRATE khi tạo cấu hình xuất).
+- Âm thanh cho mọi sự kiện. Mỗi ô nối thêm phát một nốt cao dần theo thang ngũ cung.
+- Chữ "CHUỖI xN" và "NỐI N!" nảy vào kèm viền, dây chuyền càng dài chữ càng to. Số sát thương nảy lên, đòn càng mạnh số càng to.
+- Thanh máu tụt có vệt nhạt chạy theo sau. Đồng hồ của quái đập nhịp khi quái sắp đánh.
+- Gạch Orc chế giễu khi lượt không gây sát thương, toát mồ hôi thoát chết khi Orc còn dưới 15% máu (`near_miss`), cười đắc thắng khi hiệp sĩ sắp thua.
 
 ---
 

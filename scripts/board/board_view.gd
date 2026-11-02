@@ -7,6 +7,8 @@ extends Node2D
 
 signal move_finished(result: MoveResult)
 signal restarted
+## Something hit hard enough to feel: `strength` 0..1 of screen shake, `freeze` seconds of hit-stop.
+signal impact(strength: float, freeze: float)
 
 const CELL := 140
 const LINK_WIDTH := 26.0
@@ -15,6 +17,12 @@ const REPLAY_SPEED := 2.0
 const FLASH_TIME := 0.22
 const FALL_TIME := 0.2
 const POPUP_TIME := 0.9
+const POPUP_SIZE := 110
+## How long the newest square of a link stays puffed up after it's taken.
+const LINK_POP_TIME := 0.15
+## Semitones above the first note for each square of a link: a major pentatonic run, so any
+## length sounds like a tune rising instead of a siren.
+const LINK_NOTES := [0, 2, 4, 7, 9, 12, 14, 16, 19, 21, 24]
 
 const BLOCK_COLORS := {
 	Cell.BlockColor.RED: Color(0.9, 0.28, 0.3),
@@ -67,8 +75,13 @@ var _end_subtitle := ""
 ## Bumped on restart so a replay still waiting on a timer knows to stop.
 var _generation := 0
 var _popup_text := ""
+var _popup_size := POPUP_SIZE
 var _popup_alpha := 0.0
+var _popup_scale := 1.0
 var _popup_tween: Tween
+## 1 just after a square joins the link, easing to 0.
+var _link_pop := 0.0
+var _link_pop_tween: Tween
 var _sprite_layer: Node2D
 ## Drawn above the sprites: the link being traced, popups and the end screen.
 var _overlay: Node2D
@@ -171,6 +184,7 @@ func begin_link(p: Vector2i) -> void:
 	path.clear()
 	if can_act() and game.can_extend(path, p):
 		path.append(p)
+		_on_link_grew()
 	_overlay.queue_redraw()
 
 
@@ -180,8 +194,33 @@ func extend_link(p: Vector2i) -> void:
 		return
 	if path.size() >= 2 and p == path[-2]:
 		path.pop_back()
+		Sfx.play(&"untick", _link_pitch(path.size()), 0.0, true)
 	elif game.can_extend(path, p):
 		path.append(p)
+		_on_link_grew()
+	_overlay.queue_redraw()
+
+
+## Each new square plays the next note up and puffs up; reaching a special adds a chime.
+func _on_link_grew() -> void:
+	var count := path.size()
+	Sfx.play(&"tick", _link_pitch(count), 0.0, true)
+	if count in [game.rules.lightning_link, game.rules.bomb_link, game.rules.star_link]:
+		Sfx.play(&"charge", 1.0, -2.0)
+	_link_pop = 1.0
+	if _link_pop_tween:
+		_link_pop_tween.kill()
+	_link_pop_tween = create_tween()
+	_link_pop_tween.tween_method(_set_link_pop, 1.0, 0.0, LINK_POP_TIME).set_ease(Tween.EASE_OUT)
+
+
+func _link_pitch(count: int) -> float:
+	var note: int = LINK_NOTES[clampi(count - 1, 0, LINK_NOTES.size() - 1)]
+	return pow(2.0, note / 12.0)
+
+
+func _set_link_pop(t: float) -> void:
+	_link_pop = t
 	_overlay.queue_redraw()
 
 
@@ -208,7 +247,8 @@ func _replay(result: MoveResult, before: Dictionary) -> void:
 
 	for step in result.steps:
 		if step.chain >= 2:
-			_show_popup("CHUỖI x%d" % step.chain)
+			# Each round further down the chain shouts a little louder.
+			_show_popup("CHUỖI x%d" % step.chain, mini(POPUP_SIZE + 16 * (step.chain - 2), 170))
 		# Every square in the round bursts at once; the round waits for the longest burst.
 		var burst := 0.0
 		for i in step.cleared.size():
@@ -218,6 +258,7 @@ func _replay(result: MoveResult, before: Dictionary) -> void:
 			else:
 				_flashing[step.cleared[i]] = true
 		_redraw()
+		_feel_step(step, result.path.size())
 		await get_tree().create_timer(burst if burst > 0.0 else FLASH_TIME).timeout
 		if generation != _generation:
 			return
@@ -228,6 +269,8 @@ func _replay(result: MoveResult, before: Dictionary) -> void:
 			_free_sprite(p)
 		for s in step.spawned:
 			_shown[s["at"]] = Cell.new(s["color"], s["special"])
+		if not step.spawned.is_empty():
+			Sfx.play(&"special")
 		# Lift every falling square first: a square's landing spot can be another's start.
 		var carried: Array[Cell] = []
 		for fall in step.falls:
@@ -244,13 +287,34 @@ func _replay(result: MoveResult, before: Dictionary) -> void:
 			return
 		for fall in step.falls:
 			_play_clip(fall["to"], &"land")
+		if not step.falls.is_empty():
+			Sfx.play(&"land", 1.0, -6.0)
 
 	if result.reshuffled:
 		_show_popup("XÁO BẢNG")
+		Sfx.play(&"shuffle")
 	_shown = _snapshot()
 	_busy = false
 	_redraw()
 	move_finished.emit(result)
+
+
+## Sound and shake for one round going off: stronger for longer links, later rounds of a
+## chain, and most of all for specials and fusions, which also freeze the frame for a moment.
+func _feel_step(step: ClearStep, link_length: int) -> void:
+	Sfx.play(&"pop", pow(2.0, (step.chain - 1) * 2 / 12.0))
+	var strength := 0.15 + 0.04 * (link_length - game.rules.min_link)
+	if step.chain >= 2:
+		strength = 0.15 + 0.08 * step.chain
+	var freeze := 0.0
+	if not step.triggered.is_empty():
+		Sfx.play(&"boom")
+		strength += 0.25 + 0.08 * step.triggered.size()
+		freeze = 0.05
+	if not step.fusions.is_empty():
+		strength += 0.3
+		freeze = 0.09
+	impact.emit(minf(strength, 1.0), freeze)
 
 
 func _animate_falls(seconds: float, generation: int) -> void:
@@ -315,16 +379,25 @@ func _play_on_every_square(clip: StringName) -> void:
 		_play_clip(p, clip, null, false, 1.0)
 
 
-func _show_popup(text: String) -> void:
+## Slams in oversized, settles with a little overshoot, holds, then fades.
+func _show_popup(text: String, font_size := POPUP_SIZE) -> void:
 	_popup_text = text
+	_popup_size = font_size
+	_popup_alpha = 1.0
 	if _popup_tween:
 		_popup_tween.kill()
-	_popup_tween = create_tween()
-	_popup_tween.tween_method(_set_popup_alpha, 1.0, 0.0, POPUP_TIME).set_ease(Tween.EASE_IN)
+	_popup_tween = create_tween().set_parallel()
+	_popup_tween.tween_method(_set_popup_scale, 1.8, 1.0, 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	_popup_tween.tween_method(_set_popup_alpha, 1.0, 0.0, POPUP_TIME * 0.5).set_delay(POPUP_TIME * 0.5).set_ease(Tween.EASE_IN)
 
 
 func _set_popup_alpha(a: float) -> void:
 	_popup_alpha = a
+	_overlay.queue_redraw()
+
+
+func _set_popup_scale(s: float) -> void:
+	_popup_scale = s
 	_overlay.queue_redraw()
 
 
@@ -376,7 +449,11 @@ func _draw_overlay() -> void:
 	if not path.is_empty():
 		_draw_link()
 	if _popup_alpha > 0.0:
-		_draw_centered_text(_popup_text, Vector2(size.x / 2, size.y * 0.35), 110, Color(1, 0.9, 0.3, _popup_alpha))
+		# Scaled around the middle of the letters rather than their baseline.
+		var lift := _popup_size * 0.35
+		_overlay.draw_set_transform(Vector2(size.x / 2, size.y * 0.35 - lift), 0.0, Vector2.ONE * _popup_scale)
+		_draw_centered_text(_popup_text, Vector2(0, lift), _popup_size, Color(1, 0.9, 0.3, _popup_alpha), 14)
+		_overlay.draw_set_transform(Vector2.ZERO)
 	if _finished and not _busy:
 		_overlay.draw_rect(Rect2(Vector2.ZERO, size), Color(0, 0, 0, 0.45))
 		_draw_centered_text(_end_title, Vector2(size.x / 2, size.y * 0.45), 110, TEXT)
@@ -390,12 +467,14 @@ func _draw_link() -> void:
 	for p in path:
 		var center := (Vector2(p) + Vector2(0.5, 0.5)) * CELL
 		points.append(center)
-		_overlay.draw_rect(Rect2(Vector2(p) * CELL, Vector2(CELL, CELL)).grow(-4), Color(1, 1, 1, 0.9), false, 6)
+		var puff := _link_pop * 10.0 if p == path[-1] else 0.0
+		_overlay.draw_rect(Rect2(Vector2(p) * CELL, Vector2(CELL, CELL)).grow(-4 + puff), Color(1, 1, 1, 0.9), false, 6)
 	if points.size() >= 2:
 		_overlay.draw_polyline(points, Color(0, 0, 0, 0.35), LINK_WIDTH + 10, true)
 		_overlay.draw_polyline(points, color.lightened(0.2), LINK_WIDTH, true)
-	for point in points:
-		_overlay.draw_circle(point, LINK_WIDTH * 0.75, color.lightened(0.2))
+	for i in points.size():
+		var puff := 1.0 + 0.6 * _link_pop if i == points.size() - 1 else 1.0
+		_overlay.draw_circle(points[i], LINK_WIDTH * 0.75 * puff, color.lightened(0.2))
 
 	# Length so far and what the link will leave behind, under the board.
 	var count := path.size()
@@ -470,7 +549,10 @@ func _style_for(color: int) -> StyleBoxFlat:
 	return _styles[color]
 
 
-func _draw_centered_text(text: String, center: Vector2, font_size: int, color: Color) -> void:
+func _draw_centered_text(text: String, center: Vector2, font_size: int, color: Color, outline := 0) -> void:
 	var font := ThemeDB.fallback_font
 	var width := font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
-	_overlay.draw_string(font, center - Vector2(width / 2, 0), text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, color)
+	var at := center - Vector2(width / 2, 0)
+	if outline > 0:
+		_overlay.draw_string_outline(font, at, text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, outline, Color(0, 0, 0, color.a * 0.8))
+	_overlay.draw_string(font, at, text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, color)

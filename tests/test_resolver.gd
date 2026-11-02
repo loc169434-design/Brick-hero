@@ -7,16 +7,22 @@ const P := Cell.BlockColor.PURPLE
 const EMPTY := -2
 
 
-func _board(lines: Array) -> BoardModel:
-	var board := BoardModel.new(8, 12)
+func _board(columns: int, lines: Array) -> BoardModel:
+	var board := BoardModel.new(columns, lines.size())
 	board.fill_from_pattern(lines)
 	return board
 
 
-func _resolve(board: BoardModel, focus: Array = []) -> Array[ClearStep]:
-	var moved: Array[Vector2i] = []
-	moved.assign(focus)
-	return Resolver.resolve(board, BoardRules.new(), moved)
+func _link(board: BoardModel, cells: Array, refill := Callable()) -> Array[ClearStep]:
+	var path: Array[Vector2i] = []
+	path.assign(cells)
+	return Resolver.resolve_link(board, BoardRules.new(), path, refill)
+
+
+## Hands out new squares in a fixed order, so refills are predictable.
+func _refill_from(colors: Array) -> Callable:
+	var queue := colors.duplicate()
+	return func() -> Cell: return Cell.new(queue.pop_front())
 
 
 func _color(board: BoardModel, x: int, y: int) -> int:
@@ -29,151 +35,122 @@ func _special(board: BoardModel, x: int, y: int) -> int:
 	return cell.special if cell else EMPTY
 
 
-func test_full_row_clears() -> void:
-	var board := _board([
-		"G . . . . . . .",
-		"R G Y P R G Y P",
+func test_link_clears_and_squares_above_fall() -> void:
+	var board := _board(4, [
+		"Y G P Y",
+		"G P Y G",
+		"R R R P",
 	])
-	var steps := _resolve(board)
+	var steps := _link(board, [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)])
 	assert_eq(steps.size(), 1)
-	assert_eq(steps[0].full_rows.size(), 1)
-	assert_eq(steps[0].full_rows[0], 11)
-	assert_eq(_color(board, 0, 11), G, "loose square falls into the cleared row")
-	assert_eq(board.count(), 1)
+	assert_eq(steps[0].count_by_color().get(R, 0), 3)
+	assert_eq(_color(board, 0, 2), G, "column 0 dropped one row")
+	assert_eq(_color(board, 0, 1), Y)
+	assert_eq(_color(board, 0, 0), EMPTY, "no refill given")
 
 
-func test_four_of_a_color_clear_but_three_do_not() -> void:
-	var board := _board(["R R R . G G G G"])
-	var steps := _resolve(board)
-	assert_eq(steps.size(), 1)
-	assert_eq(board.count(), 3)
-	assert_eq(_color(board, 2, 11), R)
-	assert_eq(_color(board, 4, 11), EMPTY)
-
-
-func test_squares_fall_one_by_one() -> void:
-	var board := _board([
-		"Y . . . . . . .",
-		"G P . . . . . .",
-		"R R R R . . . .",
+func test_refill_drops_new_squares_from_above() -> void:
+	var board := _board(4, [
+		"Y G P Y",
+		"G P Y G",
+		"R R R P",
 	])
-	_resolve(board)
-	assert_eq(_color(board, 0, 11), G)
-	assert_eq(_color(board, 0, 10), Y)
-	assert_eq(_color(board, 1, 11), P)
+	var steps := _link(board, [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)], _refill_from([P, Y, G]))
+	assert_eq(board.count(), 12, "the board is full again")
+	var dropped_in := steps[0].falls.filter(func(f: Dictionary) -> bool: return f.has("cell"))
+	assert_eq(dropped_in.size(), 3)
+	assert_eq(dropped_in[0]["from"].y, -1, "new squares start above the board")
+	assert_eq(_color(board, 0, 0), P)
 
 
-func test_falling_squares_set_off_a_chain() -> void:
-	var board := _board([
-		"R R . . . . . .",
-		"G G G G . . . .",
-		"R R Y P . . . .",
+func test_falling_squares_that_line_up_clear_as_a_chain() -> void:
+	var board := _board(4, [
+		"G Y P Y",
+		"R R R P",
+		"G P Y G",
+		"G Y P Y",
 	])
-	var steps := _resolve(board, [Vector2i(3, 10)])
-	assert_eq(steps.size(), 2, "green clears, then the reds fall together and clear")
+	var steps := _link(board, [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)])
+	assert_eq(steps.size(), 2, "the G falls onto two Gs and makes a column of three")
 	assert_eq(steps[1].chain, 2)
-	assert_eq(steps[1].count_by_color().get(R, 0), 4)
-	assert_eq(board.count(), 2)
-	assert_eq(_color(board, 2, 11), Y)
+	assert_eq(steps[1].count_by_color().get(G, 0), 3)
 
 
-func test_cluster_of_five_leaves_lightning_where_the_piece_landed() -> void:
-	var board := _board(["R R R R R . . ."])
-	var steps := _resolve(board, [Vector2i(4, 11)])
-	assert_eq(steps[0].spawned.size(), 1)
-	assert_eq(board.count(), 1)
-	assert_eq(_special(board, 4, 11), Cell.Special.LIGHTNING)
-	assert_eq(_color(board, 4, 11), R)
-
-
-func test_cluster_of_six_leaves_a_bomb_at_the_lowest_square() -> void:
-	var board := _board([
-		"R R R . . . . .",
-		"R R R . . . . .",
+func test_bent_links_work() -> void:
+	var board := _board(3, [
+		"R R Y",
+		"G R Y",
+		"G R R",
 	])
-	_resolve(board)
-	assert_eq(board.count(), 1)
-	assert_eq(_special(board, 0, 11), Cell.Special.BOMB)
+	var steps := _link(board, [Vector2i(0, 0), Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2), Vector2i(2, 2)])
+	assert_eq(steps[0].count_by_color().get(R, 0), 5)
 
 
-func test_lightning_clears_its_row_and_column() -> void:
-	var board := _board([
-		"Y . . . . . . .",
-		"G . . . . . . G",
-		"R R R R . . P .",
+func test_long_links_leave_a_special_where_the_finger_let_go() -> void:
+	var cases := {5: Cell.Special.LIGHTNING, 6: Cell.Special.BOMB, 7: Cell.Special.RAINBOW}
+	for length: int in cases:
+		# The rest of the row alternates, so nothing lines up with the new special afterwards.
+		var row := "R".repeat(length) + "GY".repeat(4)
+		var board := _board(8, [row.substr(0, 8)])
+		var path := []
+		for x in length:
+			path.append(Vector2i(x, 0))
+		_link(board, path)
+		assert_eq(_special(board, length - 1, 0), cases[length], "link of %d" % length)
+
+
+func test_star_takes_no_color_but_lightning_keeps_the_link_color() -> void:
+	var board := _board(8, ["P P P P P G Y G"])
+	_link(board, [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0)])
+	assert_eq(_color(board, 4, 0), P)
+	board = _board(8, ["P P P P P P P G"])
+	_link(board, [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0)])
+	assert_eq(_color(board, 6, 0), Cell.NO_COLOR)
+
+
+func test_link_through_lightning_clears_its_row_and_column() -> void:
+	var board := _board(4, [
+		"Y G Y G",
+		"P Y P Y",
+		"R R R G",
 	])
-	board.set_cell(Vector2i(0, 11), Cell.new(R, Cell.Special.LIGHTNING))
-	var steps := _resolve(board)
-	assert_true(steps[0].triggered.has(Vector2i(0, 11)))
-	assert_eq(board.count(), 1)
-	assert_eq(_color(board, 7, 11), G)
+	board.set_cell(Vector2i(1, 2), Cell.new(R, Cell.Special.LIGHTNING))
+	var steps := _link(board, [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)])
+	assert_true(steps[0].triggered.has(Vector2i(1, 2)))
+	assert_eq(steps[0].cleared.size(), 3 + 1 + 2, "the link, the rest of row 2, and column 1")
 
 
-func test_bomb_clears_three_by_three() -> void:
-	var board := _board([
-		". . P . . . . .",
-		". . . G G G G .",
-		". R Y . . . . .",
+func test_stars_wait_for_the_player_instead_of_completing_lines() -> void:
+	var board := _board(4, [
+		"Y G Y G",
+		"G R * R",
 	])
-	board.set_cell(Vector2i(3, 10), Cell.new(G, Cell.Special.BOMB))
-	_resolve(board)
-	assert_eq(board.count(), 1)
-	assert_eq(_color(board, 1, 11), R)
+	assert_true(Resolver.find_lines(board, BoardRules.new()).is_empty(), "R * R is not a line")
+	board = _board(3, ["* * *"])
+	assert_true(Resolver.find_lines(board, BoardRules.new()).is_empty())
 
 
-func test_rainbow_is_wild_and_clears_its_cluster_color() -> void:
-	var board := _board(["R R * R . . . G"])
-	board.set_cell(Vector2i(7, 5), Cell.new(R))
-	var steps := _resolve(board)
-	assert_true(steps[0].triggered.has(Vector2i(2, 11)))
-	assert_eq(board.count(), 1, "the far red is gone too")
-	assert_eq(_color(board, 7, 11), G)
-
-
-func test_two_full_rows_leave_a_rainbow() -> void:
-	var board := _board([
-		"G Y P R G Y P R",
-		"R G Y P R G Y P",
+func test_falling_lightning_in_a_line_goes_off() -> void:
+	var board := _board(4, [
+		"Y G Y G",
+		"G R R R",
 	])
-	_resolve(board, [Vector2i(5, 10)])
-	assert_eq(board.count(), 1)
-	assert_eq(_special(board, 5, 11), Cell.Special.RAINBOW)
+	board.set_cell(Vector2i(2, 1), Cell.new(R, Cell.Special.LIGHTNING))
+	var step := Resolver.find_lines(board, BoardRules.new())
+	assert_true(step.triggered.has(Vector2i(2, 1)))
+	assert_eq(step.cleared.size(), 4 + 1, "row 1 and column 2")
 
 
 func test_lightning_next_to_bomb_fuses_into_a_wide_cross() -> void:
-	var board := _board([". R R R R . . ."])
-	board.set_cell(Vector2i(2, 11), Cell.new(R, Cell.Special.LIGHTNING))
-	board.set_cell(Vector2i(3, 11), Cell.new(R, Cell.Special.BOMB))
-	board.set_cell(Vector2i(0, 10), Cell.new(Y))
-	board.set_cell(Vector2i(2, 5), Cell.new(G))
-	board.set_cell(Vector2i(7, 8), Cell.new(P))
-	var steps := _resolve(board)
-	assert_eq(steps[0].fusions.size(), 1)
-	assert_eq(board.count(), 1, "row 10 and column 2 go too; only the far purple is left")
-	assert_eq(_color(board, 7, 11), P)
-
-
-func test_two_bombs_fuse_into_five_by_five() -> void:
-	var board := _board([
-		"Y . . . . . . .",
-		". . . . . . . Y",
-		". . R R R R . .",
+	var board := _board(5, [
+		"Y G Y G Y",
+		"G Y G Y G",
+		"Y R R R P",
+		"G Y G Y G",
+		"Y G Y G Y",
 	])
-	board.set_cell(Vector2i(3, 11), Cell.new(R, Cell.Special.BOMB))
-	board.set_cell(Vector2i(4, 11), Cell.new(R, Cell.Special.BOMB))
-	var steps := _resolve(board)
+	board.set_cell(Vector2i(1, 2), Cell.new(R, Cell.Special.LIGHTNING))
+	board.set_cell(Vector2i(2, 2), Cell.new(R, Cell.Special.BOMB))
+	var steps := _link(board, [Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)])
 	assert_eq(steps[0].fusions.size(), 1)
-	assert_eq(board.count(), 2, "only squares more than two away survive")
-
-
-func test_rainbow_next_to_lightning_strikes_every_square_of_that_color() -> void:
-	var board := _board([
-		". . . . . . P .",
-		". . . . . . Y .",
-		"G G * G . . . .",
-	])
-	board.set_cell(Vector2i(3, 11), Cell.new(G, Cell.Special.LIGHTNING))
-	board.set_cell(Vector2i(6, 3), Cell.new(G))
-	var steps := _resolve(board)
-	assert_eq(steps[0].fusions.size(), 1)
-	assert_eq(board.count(), 0, "the far green strikes column 6, taking the purple and yellow")
+	assert_eq(steps[0].cleared.size(), 5 * 3 + 2 * 3, "rows 1-3 and columns 0-2 (or 1-3)")

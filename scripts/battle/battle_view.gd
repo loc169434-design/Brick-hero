@@ -2,7 +2,7 @@ class_name BattleView
 extends Node2D
 ## The fight above the board: backdrop, hero and monster (CharacterRig), health bars, shield
 ## layers, the monster's countdown, tutorial hints and floating numbers.
-## play_report() turns one drop's TurnReport into a short scene: the hero strikes, the monster
+## play_report() turns one move's TurnReport into a short scene: the hero strikes, the monster
 ## flinches or panics, the monster strikes back and gloats, and so on.
 
 const SIZE := Vector2(1080, 660)
@@ -68,7 +68,7 @@ func show_hint(text: String) -> void:
 
 func play_report(report: TurnReport) -> void:
 	var fight := _fight
-	var big_play := report.chain >= 3 or report.combo >= 3
+	var big_play := report.chain >= 3 or report.link_length >= 6
 
 	if report.damage > 0 or report.shield_damage > 0:
 		await _hero.attack()
@@ -78,14 +78,14 @@ func play_report(report: TurnReport) -> void:
 		_monster.set_health(_state.monster_health())
 		_monster.set_shield_layers(_state.shield_layers())
 		if report.shield_damage > 0:
-			_float("KHIÊN -%d" % report.shield_damage, MONSTER_FEET + Vector2(0, -360), SHIELD)
+			_float("KHIÊN -%d" % report.shield_damage, MONSTER_FEET + Vector2(0, -260), SHIELD)
 		if report.damage > 0:
-			_float("-%d" % report.damage, MONSTER_FEET + Vector2(0, -300), HP_MONSTER.lightened(0.3))
+			_float("-%d" % report.damage, MONSTER_FEET + Vector2(0, -190), HP_MONSTER.lightened(0.3))
 	if report.heal > 0:
-		_float("+%d" % report.heal, HERO_FEET + Vector2(0, -300), HP_HERO.lightened(0.3))
+		_float("+%d" % report.heal, HERO_FEET + Vector2(0, -230), HP_HERO.lightened(0.3))
 		_hero.set_health(_state.hero_health())
 	if report.gold > 0:
-		_float("+%d VÀNG" % report.gold, Vector2(170, 120), GOLD)
+		_float("+%d VÀNG" % report.gold, Vector2(190, 230), GOLD)
 	_redraw()
 
 	match report.outcome:
@@ -108,7 +108,8 @@ func play_report(report: TurnReport) -> void:
 		_monster.react(&"scared", 1.2)
 	elif report.damage > 0 and _state.monster_health() <= 0.3:
 		_monster.react(&"scared", 1.2)
-	elif report.chain == 0 and _state.monster.counterattacks:
+	elif report.damage == 0 and report.shield_damage == 0 and _state.monster.counterattacks:
+		# Nothing that hurts it: green and yellow only.
 		_monster.react(&"cheer")
 
 	if report.monster_attack > 0:
@@ -119,7 +120,7 @@ func play_report(report: TurnReport) -> void:
 		if fight != _fight:
 			return
 		_monster.react(&"cheer")
-	elif _state.attacks_next_drop() and _state.hero_health() <= 0.3:
+	elif _state.attacks_next_move() and _state.hero_health() <= 0.3:
 		_hero.react(&"scared", 0.0)
 
 
@@ -129,7 +130,7 @@ func _monster_strikes(report: TurnReport, fight: int) -> void:
 		return
 	_hero.react(&"hurt")
 	_hero.set_health(_state.hero_health())
-	_float("-%d" % report.monster_attack, HERO_FEET + Vector2(0, -300), WARN)
+	_float("-%d" % report.monster_attack, HERO_FEET + Vector2(0, -230), WARN)
 	_redraw()
 
 
@@ -172,12 +173,11 @@ func _draw_overlay() -> void:
 	_draw_shield_layers(monster_bar + Vector2(0, BAR_SIZE.y + 50))
 	if _state.outcome == BattleState.Outcome.ONGOING and _state.monster.counterattacks:
 		_draw_countdown(MONSTER_FEET + Vector2(170, -360))
-	_draw_text("VÀNG %d" % _state.gold, Vector2(40, 130), 40, GOLD)
+	_draw_text("VÀNG %d" % _state.gold, Vector2(40, 160), 40, GOLD)
 	if _hint:
-		var font := ThemeDB.fallback_font
-		var box := Rect2(30, 20, SIZE.x - 60, 70)
+		var box := Rect2(30, 20, SIZE.x - 60, 96)
 		_overlay.draw_rect(box, Color(0, 0, 0, 0.55))
-		_overlay.draw_string(font, box.position + Vector2(20, 47), _hint, HORIZONTAL_ALIGNMENT_LEFT, box.size.x - 40, 34, TEXT)
+		_overlay.draw_multiline_string(ThemeDB.fallback_font, box.position + Vector2(20, 40), _hint, HORIZONTAL_ALIGNMENT_LEFT, box.size.x - 40, 32, 2, TEXT)
 	for floater in _floaters:
 		var t: float = floater["t"]
 		var color: Color = floater["color"]
@@ -206,9 +206,9 @@ func _draw_shield_layers(at: Vector2) -> void:
 		_overlay.draw_rect(box, SHIELD.lightened(0.3), false, 2)
 
 
-## Drops left until the monster attacks; turns red one drop ahead.
+## Moves left until the monster attacks; turns red one move ahead.
 func _draw_countdown(center: Vector2) -> void:
-	var warn := _state.attacks_next_drop()
+	var warn := _state.attacks_next_move()
 	_overlay.draw_circle(center, 40, WARN if warn else Color(0, 0, 0, 0.5))
 	_overlay.draw_arc(center, 40, 0, TAU, 32, TEXT, 3)
 	_draw_text_centered(str(_state.countdown), center + Vector2(0, 16), 48, TEXT)

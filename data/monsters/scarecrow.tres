@@ -13,4 +13,4 @@ attack = 0
 countdown = 0
 tile_theme = "training"
 background = "training_field"
-hints = PackedStringArray("Kéo ngang để di chuyển, chạm để xoay, vuốt xuống để thả.", "Lấp kín một hàng để xóa nó.", "4 ô cùng màu chạm nhau cũng nổ!", "Đỏ đánh, xanh hồi máu, vàng ra tiền, tím phá khiên.", "Ô rơi xuống tạo cụm mới thì nổ tiếp: dây chuyền nhân sát thương.", "Cụm 5 ô tạo sét, cụm 6 ô tạo bom. Thử xem!", "Thả liên tiếp lượt nào cũng xóa được ô thì combo tăng.")
+hints = PackedStringArray("Vuốt nối từ 3 ô cùng màu nằm cạnh nhau (ngang hoặc dọc), rồi thả tay.", "Đỏ đánh, xanh hồi máu, vàng ra tiền, tím phá khiên.", "Ô mới rơi xuống thành hàng 3 thì tự nổ: dây chuyền nhân sát thương!", "Nối 5 ô ra SÉT, 6 ô ra BOM, 7 ô ra SAO.", "Nối đi qua ô đặc biệt để kích nổ nó.", "SAO ghép được với mọi màu: dùng nó để nối dài hơn.", "Hai ô đặc biệt nằm cạnh nhau nổ cùng lúc thành đòn cực mạnh.")

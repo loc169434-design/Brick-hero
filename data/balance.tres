@@ -10,7 +10,6 @@ green_heal = 1.0
 yellow_gold = 1.0
 purple_shield = 2.0
 chain_step = 1.0
-combo_bonus = 0.25
 shield_layer_size = 10
 shielded_damage_factor = 0.5
 layer_break_chain = 3

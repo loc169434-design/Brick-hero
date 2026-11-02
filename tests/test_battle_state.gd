@@ -19,10 +19,9 @@ func _battle(monster: MonsterData) -> BattleState:
 	return BattleState.new(BattleRules.new(), monster)
 
 
-## Builds a drop whose chain rounds clear the given colors, e.g. [[R, R, R, R], [G, G, G, G]].
-func _drop(rounds: Array = [], combo := 1) -> DropResult:
-	var result := DropResult.new()
-	result.combo = combo if not rounds.is_empty() else 0
+## Builds a move whose chain rounds clear the given colors, e.g. [[R, R, R, R], [G, G, G, G]].
+func _move(rounds: Array = []) -> MoveResult:
+	var result := MoveResult.new()
 	for i in rounds.size():
 		var step := ClearStep.new()
 		step.chain = i + 1
@@ -35,19 +34,19 @@ func _drop(rounds: Array = [], combo := 1) -> DropResult:
 
 func test_red_squares_hit_the_monster() -> void:
 	var battle := _battle(_monster())
-	var report := battle.apply_drop(_drop([[R, R, R, R]]))
+	var report := battle.apply_move(_move([[R, R, R, R]]))
 	assert_eq(report.damage, 8)
 	assert_eq(battle.monster_hp, 72)
 
 
 func test_shield_halves_red_damage() -> void:
 	var battle := _battle(_monster(80, 3))
-	assert_eq(battle.apply_drop(_drop([[R, R, R, R]])).damage, 4)
+	assert_eq(battle.apply_move(_move([[R, R, R, R]])).damage, 4)
 
 
 func test_purple_strips_the_shield_before_red_lands() -> void:
 	var battle := _battle(_monster(80, 1))
-	var report := battle.apply_drop(_drop([[P, P, P, P, P, R, R, R, R]]))
+	var report := battle.apply_move(_move([[P, P, P, P, P, R, R, R, R]]))
 	assert_eq(report.shield_damage, 10)
 	assert_eq(report.layers_broken, 1)
 	assert_eq(battle.shield, 0)
@@ -56,17 +55,12 @@ func test_purple_strips_the_shield_before_red_lands() -> void:
 
 func test_each_chain_round_counts_more() -> void:
 	var battle := _battle(_monster())
-	assert_eq(battle.apply_drop(_drop([[R, R, R, R], [R, R, R, R]])).damage, 8 + 16)
-
-
-func test_combo_adds_a_quarter_per_drop_in_a_row() -> void:
-	var battle := _battle(_monster())
-	assert_eq(battle.apply_drop(_drop([[R, R, R, R]], 3)).damage, 12)
+	assert_eq(battle.apply_move(_move([[R, R, R, R], [R, R, R, R]])).damage, 8 + 16)
 
 
 func test_chain_of_three_smashes_a_shield_layer() -> void:
 	var battle := _battle(_monster(80, 3))
-	var report := battle.apply_drop(_drop([[Y, Y, Y, Y], [Y, Y, Y, Y], [Y, Y, Y, Y]]))
+	var report := battle.apply_move(_move([[Y, Y, Y, Y], [Y, Y, Y, Y], [Y, Y, Y, Y]]))
 	assert_eq(report.layers_broken, 1)
 	assert_eq(battle.shield_layers(), 2)
 
@@ -74,32 +68,32 @@ func test_chain_of_three_smashes_a_shield_layer() -> void:
 func test_green_heals_up_to_full() -> void:
 	var battle := _battle(_monster())
 	battle.hero_hp = 95
-	var report := battle.apply_drop(_drop([[G, G, G, G, G, G, G, G]]))
+	var report := battle.apply_move(_move([[G, G, G, G, G, G, G, G]]))
 	assert_eq(report.heal, 5)
 	assert_eq(battle.hero_hp, 100)
 
 
 func test_yellow_earns_gold() -> void:
 	var battle := _battle(_monster())
-	battle.apply_drop(_drop([[Y, Y, Y, Y]]))
+	battle.apply_move(_move([[Y, Y, Y, Y]]))
 	assert_eq(battle.gold, 4)
 
 
 func test_monster_warns_then_attacks_when_countdown_runs_out() -> void:
 	var battle := _battle(_monster(80, 0, 12, 4))
 	for i in 3:
-		assert_eq(battle.apply_drop(_drop()).monster_attack, 0)
-	assert_true(battle.attacks_next_drop())
-	var report := battle.apply_drop(_drop())
+		assert_eq(battle.apply_move(_move()).monster_attack, 0)
+	assert_true(battle.attacks_next_move())
+	var report := battle.apply_move(_move())
 	assert_eq(report.monster_attack, 12)
 	assert_eq(battle.hero_hp, 88)
 	assert_eq(battle.countdown, 4, "countdown restarts")
-	assert_true(not battle.attacks_next_drop())
+	assert_true(not battle.attacks_next_move())
 
 
 func test_killing_blow_wins_before_the_monster_strikes() -> void:
 	var battle := _battle(_monster(8, 0, 12, 1))
-	var report := battle.apply_drop(_drop([[R, R, R, R, R, R]]))
+	var report := battle.apply_move(_move([[R, R, R, R, R, R]]))
 	assert_eq(report.damage, 8, "damage stops at the monster's last hit point")
 	assert_eq(report.outcome, BattleState.Outcome.WON)
 	assert_eq(report.monster_attack, 0)
@@ -109,9 +103,9 @@ func test_killing_blow_wins_before_the_monster_strikes() -> void:
 func test_hero_falling_loses_and_ends_the_fight() -> void:
 	var battle := _battle(_monster(80, 0, 12, 1))
 	battle.hero_hp = 10
-	assert_eq(battle.apply_drop(_drop()).outcome, BattleState.Outcome.LOST)
+	assert_eq(battle.apply_move(_move()).outcome, BattleState.Outcome.LOST)
 	assert_eq(battle.hero_hp, 0)
-	assert_eq(battle.apply_drop(_drop([[R, R, R, R]])).damage, 0, "nothing happens after the fight ends")
+	assert_eq(battle.apply_move(_move([[R, R, R, R]])).damage, 0, "nothing happens after the fight ends")
 
 
 func test_full_board_loses() -> void:
@@ -125,10 +119,10 @@ func test_training_dummy_never_hits_back() -> void:
 	dummy.counterattacks = false
 	var battle := _battle(dummy)
 	for i in 10:
-		assert_true(not battle.attacks_next_drop())
-		assert_eq(battle.apply_drop(_drop()).monster_attack, 0)
+		assert_true(not battle.attacks_next_move())
+		assert_eq(battle.apply_move(_move()).monster_attack, 0)
 	assert_eq(battle.hero_hp, 100)
-	assert_eq(battle.drops, 10)
+	assert_eq(battle.moves, 10)
 
 
 func test_scarecrow_data_loads() -> void:

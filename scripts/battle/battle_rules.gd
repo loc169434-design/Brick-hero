@@ -17,8 +17,6 @@ extends Resource
 @export_group("Multipliers")
 ## Round n of a chain counts 1 + chain_step × (n - 1) times: x1, x2, x3…
 @export var chain_step := 1.0
-## Each clearing drop in a row after the first adds this much: x1, x1.25, x1.5…
-@export var combo_bonus := 0.25
 
 @export_group("Shield")
 ## Shield points per layer.

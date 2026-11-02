@@ -1,5 +1,7 @@
 # Training + Orc: sprite, animation và FX
 
+**Claude bắt đầu tích hợp tại [bàn giao ghép vào game](claude_integration_handoff.md).** Doc đó đối chiếu trực tiếp với `BoardView` trên nhánh `board/playable`, có thứ tự replay, trigger hiện có và tiêu chí nghiệm thu.
+
 Nhánh `art/tiles`. Phong cách được người dùng chốt: bản khung gỗ có nẹp sắt; Orc có mũ vá/băng trán. Tất cả thay đổi nằm ở ảnh, tài nguyên ảnh và tài liệu xem thử; chưa nối vào logic game.
 
 ## Mở xem

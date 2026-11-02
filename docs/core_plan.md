@@ -65,11 +65,14 @@ Nguyên tắc: **phần luật tách khỏi phần hiển thị**. Phần luật
 scripts/
   core/            # luật bảng chơi, không dùng Node
     cell.gd          ô: màu, loại đặc biệt, hình phủ (cóc/băng… dùng sau)
+    board_rules.gd   mọi con số của bảng: kích thước, ngưỡng cụm, ngưỡng khối đặc biệt
     piece.gd         khối rơi: hình dạng, màu, xoay
     piece_bag.gd     túi khối + hàng chờ 3 khối
     board_model.gd   lưới ô, đặt khối, va chạm
     resolver.gd      tìm hàng đầy + cụm màu, sinh khối đặc biệt, trọng lực, dây chuyền
-    clear_event.gd   kết quả mỗi vòng nổ, gửi sang trận đánh và phần hiển thị
+    clear_step.gd    kết quả mỗi vòng nổ, gửi sang trận đánh và phần hiển thị
+    drop_result.gd   tổng kết một lần thả: các vòng nổ + combo
+    board_game.gd    một ván: khối trên tay, giữ khối, xoay, thả, combo
   board/           # hiển thị + điều khiển
     board_view.gd    vẽ ô, hoạt ảnh nổ/rơi
     board_input.gd   chạm, vuốt, bàn phím
@@ -88,7 +91,14 @@ scenes/
 assets/
   tiles/ characters/ monsters/ fx/ ui/ bg/
 tests/
-  test_resolver.gd   chạy bằng lệnh godot --headless
+  run_tests.gd       chạy tất cả bài kiểm tra
+  test_resolver.gd, test_board_game.gd
+```
+
+Chạy kiểm tra (đường dẫn Godot trên máy hiện tại):
+
+```bash
+~/Downloads/Godot.app/Contents/MacOS/Godot --headless --path . -s res://tests/run_tests.gd
 ```
 
 Quái và bùa sau này là file Resource (`.tres`), nên thêm quái mới chủ yếu là thêm dữ liệu và ảnh, ít phải sửa code.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/board.tscn" id="1_board"]
 [ext_resource type="Script" path="res://scripts/battle/battle_view.gd" id="2_view"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" path="res://data/monsters/orc_shield.tres" id="5_orc"]
 [ext_resource type="Resource" path="res://data/balance.tres" id="6_balance"]
 [ext_resource type="Script" path="res://scripts/battle/monster_data.gd" id="7_monster_data"]
+[ext_resource type="Script" path="res://scripts/feel/screen_feel.gd" id="8_feel"]
 
 [node name="Main" type="Node2D"]
 
@@ -22,9 +23,13 @@ script = ExtResource("2_view")
 [node name="Board" parent="." instance=ExtResource("1_board")]
 position = Vector2(50, 690)
 
-[node name="BattleManager" type="Node" parent="." node_paths=PackedStringArray("board", "battle_view")]
+[node name="Feel" type="Camera2D" parent="."]
+script = ExtResource("8_feel")
+
+[node name="BattleManager" type="Node" parent="." node_paths=PackedStringArray("board", "battle_view", "feel")]
 script = ExtResource("3_manager")
 board = NodePath("../Board")
 battle_view = NodePath("../Battle")
+feel = NodePath("../Feel")
 encounters = Array[ExtResource("7_monster_data")]([ExtResource("4_scarecrow"), ExtResource("5_orc")])
 rules = ExtResource("6_balance")

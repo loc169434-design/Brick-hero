@@ -2,7 +2,7 @@ class_name BoardInput
 extends Node
 ## Touch (or mouse): press on a square to start a link, drag through neighbors of the same color,
 ## drag back to undo the last square, release to play it. Tap after a fight to go on.
-## Keys: R restarts, T switches tile theme (debug until encounters pick it).
+## Keys: R restarts, T switches tile theme (debug until encounters pick it), M mutes sound.
 
 ## How close (as a fraction of a square) a finger must come to a square's center to take it.
 const PICK_REACH := 0.42
@@ -20,6 +20,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				view.new_game()
 			KEY_T:
 				view.next_tile_theme()
+			KEY_M:
+				Sfx.muted = not Sfx.muted
 	elif event is InputEventScreenTouch:
 		_on_touch(event)
 	elif event is InputEventScreenDrag and _pressed:

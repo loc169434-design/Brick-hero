@@ -3,7 +3,11 @@ extends Node2D
 ## The fight above the board: backdrop, hero and monster (CharacterRig), health bars, shield
 ## layers, the monster's countdown, tutorial hints and floating numbers.
 ## play_report() turns one move's TurnReport into a short scene: the hero strikes, the monster
-## flinches or panics, the monster strikes back and gloats, and so on.
+## flinches or panics, the monster strikes back and gloats, and so on. Each blow plays a sound
+## and asks for screen shake (impact); health bars drain behind a pale trail.
+
+## A blow landed: `strength` 0..1 of screen shake, `freeze` seconds of hit-stop.
+signal impact(strength: float, freeze: float)
 
 const SIZE := Vector2(1080, 660)
 ## Where each fighter's feet touch the ground.
@@ -11,6 +15,10 @@ const HERO_FEET := Vector2(270, 470)
 const MONSTER_FEET := Vector2(810, 470)
 const BAR_SIZE := Vector2(400, 26)
 const FLOAT_TIME := 1.1
+const FLOAT_SIZE := 64
+## A health bar's pale trail waits this long after a hit, then catches up over TRAIL_TIME.
+const TRAIL_DELAY := 0.35
+const TRAIL_TIME := 0.4
 const HERO_ID := "hero_rookie"
 
 const BG := Color(0.13, 0.16, 0.22)
@@ -33,10 +41,14 @@ var _monster: CharacterRig
 ## Drawn above the fighters.
 var _overlay: Node2D
 var _hint := ""
-## { "text", "at", "color", "t" }
+## { "text", "at", "color", "size", "t" }
 var _floaters: Array[Dictionary] = []
 ## Bumped per fight so a scene still playing from the last fight stops.
 var _fight := 0
+## Health the bars' trails still show, lagging behind the real values after a hit.
+var _hero_trail := 0.0
+var _monster_trail := 0.0
+var _trail_tween: Tween
 
 
 func _ready() -> void:
@@ -60,6 +72,10 @@ func show_state(state: BattleState) -> void:
 	_background = load(bg_path) if state.monster.background and ResourceLoader.exists(bg_path) else null
 	_hero.setup(HERO_ID, 1)
 	_monster.setup(state.monster.id, -1, state.shield_layers() if state.monster.shield_layers > 0 else -1)
+	if _trail_tween:
+		_trail_tween.kill()
+	_hero_trail = state.hero_hp
+	_monster_trail = state.monster_hp
 	_redraw()
 
 
@@ -79,16 +95,20 @@ func play_report(report: TurnReport) -> void:
 		_monster.react(&"hurt")
 		_monster.set_health(_state.monster_health())
 		_monster.set_shield_layers(_state.shield_layers())
+		_hero_strike_feel(report)
 		if report.shield_damage > 0:
-			_float("KHIÊN -%d" % report.shield_damage, MONSTER_FEET + Vector2(0, -260), SHIELD)
+			_float("KHIÊN -%d" % report.shield_damage, MONSTER_FEET + Vector2(0, -300), SHIELD)
 		if report.damage > 0:
-			_float("-%d" % report.damage, MONSTER_FEET + Vector2(0, -190), HP_MONSTER.lightened(0.3))
+			# Bigger hits get bigger numbers.
+			_float("-%d" % report.damage, MONSTER_FEET + Vector2(0, -190), HP_MONSTER.lightened(0.3), FLOAT_SIZE + mini(report.damage * 2, 56))
 	if report.heal > 0:
 		_float("+%d" % report.heal, HERO_FEET + Vector2(0, -230), HP_HERO.lightened(0.3))
 		_hero.set_health(_state.hero_health())
+		Sfx.play(&"heal")
 	if report.gold > 0:
-		_float("+%d VÀNG" % report.gold, Vector2(190, 230), GOLD)
-	_redraw()
+		_float("+%d VÀNG" % report.gold, Vector2(190, 310), GOLD)
+		Sfx.play(&"coin", 1.0, -4.0)
+	_drain_trails()
 
 	match report.outcome:
 		BattleState.Outcome.WON:
@@ -96,6 +116,7 @@ func play_report(report: TurnReport) -> void:
 			if fight == _fight:
 				_monster.finish(false)
 				_hero.finish(true)
+				Sfx.play(&"win")
 			return
 		BattleState.Outcome.LOST:
 			if report.monster_attack > 0:
@@ -103,6 +124,7 @@ func play_report(report: TurnReport) -> void:
 			if fight == _fight:
 				_hero.finish(false)
 				_monster.finish(true)
+				Sfx.play(&"lose")
 			return
 
 	if big_play:
@@ -124,6 +146,14 @@ func play_report(report: TurnReport) -> void:
 		_monster.react(&"cheer")
 	elif _state.attacks_next_move() and _state.hero_health() <= 0.3:
 		_hero.react(&"scared", 0.0)
+	if _state.attacks_next_move():
+		Sfx.play(&"warn")
+
+
+func _process(_delta: float) -> void:
+	# The countdown pulses while the monster is winding up.
+	if _state and _state.attacks_next_move():
+		_overlay.queue_redraw()
 
 
 func _monster_strikes(report: TurnReport, fight: int) -> void:
@@ -132,12 +162,57 @@ func _monster_strikes(report: TurnReport, fight: int) -> void:
 		return
 	_hero.react(&"hurt")
 	_hero.set_health(_state.hero_health())
-	_float("-%d" % report.monster_attack, HERO_FEET + Vector2(0, -230), WARN)
+	_float("-%d" % report.monster_attack, HERO_FEET + Vector2(0, -230), WARN, FLOAT_SIZE + 16)
+	Sfx.play(&"thud")
+	impact.emit(0.35 + minf(report.monster_attack / 40.0, 0.4), 0.06)
+	_drain_trails()
+
+
+## The hero's blow landing: heavier for bigger hits, a freeze-frame when a shield layer breaks,
+## and the longest one on the killing blow.
+func _hero_strike_feel(report: TurnReport) -> void:
+	var strength := 0.25 + minf(report.damage / 40.0, 0.5)
+	var freeze := 0.04
+	if report.damage > 0:
+		# Bigger hits sound lower and heavier.
+		Sfx.play(&"hit", clampf(1.2 - report.damage / 60.0, 0.8, 1.2))
+	if report.shield_damage > 0:
+		Sfx.play(&"clang")
+	if report.layers_broken > 0:
+		Sfx.play(&"shatter")
+		strength += 0.2
+		freeze = 0.08
+	if report.outcome == BattleState.Outcome.WON:
+		strength = 1.0
+		freeze = 0.18
+	impact.emit(minf(strength, 1.0), freeze)
+
+
+## Redraws the bars now, then lets their trails catch up after a beat.
+func _drain_trails() -> void:
 	_redraw()
+	if _trail_tween:
+		_trail_tween.kill()
+	_trail_tween = create_tween().set_parallel()
+	_trail_tween.tween_method(_set_hero_trail, _hero_trail, float(_state.hero_hp), TRAIL_TIME).set_delay(TRAIL_DELAY)
+	_trail_tween.tween_method(_set_monster_trail, _monster_trail, float(_state.monster_hp), TRAIL_TIME).set_delay(TRAIL_DELAY)
 
 
-func _float(text: String, at: Vector2, color: Color) -> void:
-	var floater := {"text": text, "at": at, "color": color, "t": 0.0}
+func _set_hero_trail(value: float) -> void:
+	_hero_trail = value
+	_overlay.queue_redraw()
+
+
+func _set_monster_trail(value: float) -> void:
+	_monster_trail = value
+	_overlay.queue_redraw()
+
+
+## Rises from where it pops up, popping in oversized and settling before it fades.
+## A little sideways scatter keeps numbers from the same move from stacking.
+func _float(text: String, at: Vector2, color: Color, font_size := FLOAT_SIZE) -> void:
+	at.x += randf_range(-30.0, 30.0)
+	var floater := {"text": text, "at": at, "color": color, "size": font_size, "t": 0.0}
 	_floaters.append(floater)
 	var tween := create_tween()
 	tween.tween_method(_set_floater_t.bind(floater), 0.0, 1.0, FLOAT_TIME)
@@ -169,9 +244,9 @@ func _draw_overlay() -> void:
 	if not _state:
 		return
 	var bar_y := SIZE.y - 110
-	_draw_bar(Vector2(40, bar_y), _state.hero_hp, _state.rules.hero_max_hp, HP_HERO, "HIỆP SĨ")
+	_draw_bar(Vector2(40, bar_y), _state.hero_hp, _hero_trail, _state.rules.hero_max_hp, HP_HERO, "HIỆP SĨ")
 	var monster_bar := Vector2(SIZE.x - 40 - BAR_SIZE.x, bar_y)
-	_draw_bar(monster_bar, _state.monster_hp, _state.monster.max_hp, HP_MONSTER, _state.monster.display_name.to_upper())
+	_draw_bar(monster_bar, _state.monster_hp, _monster_trail, _state.monster.max_hp, HP_MONSTER, _state.monster.display_name.to_upper())
 	_draw_shield_layers(monster_bar + Vector2(0, BAR_SIZE.y + 50))
 	if _state.outcome == BattleState.Outcome.ONGOING and _state.monster.counterattacks:
 		_draw_countdown(MONSTER_FEET + Vector2(170, -360))
@@ -183,11 +258,26 @@ func _draw_overlay() -> void:
 	for floater in _floaters:
 		var t: float = floater["t"]
 		var color: Color = floater["color"]
-		_draw_text_centered(floater["text"], floater["at"] + Vector2(0, -90 * t), 64, Color(color, 1.0 - t * t))
+		var at: Vector2 = floater["at"] + Vector2(0, -90 * t)
+		_overlay.draw_set_transform(at, 0.0, Vector2.ONE * _pop_scale(t))
+		_draw_text_centered(floater["text"], Vector2.ZERO, floater["size"], Color(color, 1.0 - t * t))
+		_overlay.draw_set_transform(Vector2.ZERO)
 
 
-func _draw_bar(at: Vector2, value: int, max_value: int, color: Color, label: String) -> void:
+## Popping text: grows past full size in the first moments, then settles back to it.
+static func _pop_scale(t: float) -> float:
+	if t < 0.1:
+		return lerpf(0.4, 1.35, t / 0.1)
+	if t < 0.2:
+		return lerpf(1.35, 1.0, (t - 0.1) / 0.1)
+	return 1.0
+
+
+## `trail` is the health the bar showed a moment ago, drawn pale behind the real fill.
+func _draw_bar(at: Vector2, value: int, trail: float, max_value: int, color: Color, label: String) -> void:
 	_overlay.draw_rect(Rect2(at, BAR_SIZE), BAR_BACK)
+	var trail_fill := clampf(trail / max_value, 0.0, 1.0)
+	_overlay.draw_rect(Rect2(at, Vector2(BAR_SIZE.x * trail_fill, BAR_SIZE.y)), Color(1, 0.95, 0.85, 0.85))
 	var fill := clampf(float(value) / max_value, 0.0, 1.0)
 	_overlay.draw_rect(Rect2(at, Vector2(BAR_SIZE.x * fill, BAR_SIZE.y)), color)
 	_draw_text("%s  %d/%d" % [label, value, max_value], at + Vector2(0, -10), 32, TEXT)
@@ -211,8 +301,11 @@ func _draw_shield_layers(at: Vector2) -> void:
 ## Moves left until the monster attacks; turns red one move ahead.
 func _draw_countdown(center: Vector2) -> void:
 	var warn := _state.attacks_next_move()
-	_overlay.draw_circle(center, 40, WARN if warn else Color(0, 0, 0, 0.5))
-	_overlay.draw_arc(center, 40, 0, TAU, 32, TEXT, 3)
+	var radius := 40.0
+	if warn:
+		radius += 7.0 * absf(sin(Time.get_ticks_msec() / 1000.0 * 6.0))
+	_overlay.draw_circle(center, radius, WARN if warn else Color(0, 0, 0, 0.5))
+	_overlay.draw_arc(center, radius, 0, TAU, 32, TEXT, 3)
 	_draw_text_centered(str(_state.countdown), center + Vector2(0, 16), 48, TEXT)
 	if warn:
 		_draw_text_centered("SẮP ĐÁNH %d!" % _state.monster.attack, center + Vector2(-50, -55), 34, WARN.lightened(0.3))

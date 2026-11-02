@@ -4,8 +4,15 @@ extends Node
 ## above the board, makes the board's tiles react, and ends the board when a fight is decided.
 ## Winning moves on to the next encounter; losing retries the same one.
 
+## Below this much health after a hit, the monster's tiles sweat out a close call (near_miss).
+const NEAR_MISS_HEALTH := 0.15
+## Below this much health, the hero is close enough to losing for the tiles to gloat.
+const GLOAT_HEALTH := 0.3
+
 @export var board: BoardView
 @export var battle_view: BattleView
+## Shakes the screen when the board or the fight reports an impact. Optional.
+@export var feel: ScreenFeel
 ## Fought in order: the training scarecrow, then the Shield Orc, and so on.
 @export var encounters: Array[MonsterData] = []
 @export var rules: BattleRules
@@ -18,11 +25,29 @@ var _advance_on_restart := false
 func _ready() -> void:
 	board.move_finished.connect(_on_move_finished)
 	board.restarted.connect(_start)
+	if feel:
+		board.impact.connect(feel.impact)
+		battle_view.impact.connect(feel.impact)
 	_start()
 
 
 func monster() -> MonsterData:
 	return encounters[encounter_index]
+
+
+## How the monster's faces on the board answer a move that left the fight going, as
+## [clip, how many tiles], or [&"", 0] for none. Themes without the clip just skip it.
+static func board_reaction(report: TurnReport, state: BattleState) -> Array:
+	if report.monster_attack > 0 and state.hero_health() < GLOAT_HEALTH:
+		return [&"gloat", 1]
+	if report.damage > 0:
+		if state.monster_health() <= NEAR_MISS_HEALTH:
+			return [&"near_miss", 2]
+		return [&"hurt", 2]
+	if report.shield_damage == 0 and state.monster.counterattacks:
+		# Only green and yellow: nothing that hurts it, so it laughs.
+		return [&"taunt", 2]
+	return [&"", 0]
 
 
 func _start() -> void:
@@ -47,10 +72,9 @@ func _on_move_finished(result: MoveResult) -> void:
 		BattleState.Outcome.LOST:
 			board.finish(false, "chạm để đánh lại")
 		_:
-			if report.damage > 0:
-				board.play_reaction(&"hurt", 2)
-			elif report.monster_attack > 0 and state.hero_health() < 0.3:
-				board.play_reaction(&"gloat", 1)
+			var reaction := board_reaction(report, state)
+			if reaction[1] > 0:
+				board.play_reaction(reaction[0], reaction[1])
 
 
 func _show_hint() -> void:

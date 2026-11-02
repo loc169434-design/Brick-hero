@@ -61,7 +61,7 @@
     ctx.restore();
     if (fx) {
       if (animation === 'drop' && t > .65) { const p = (t - .65) / .35; effect(ctx, p < .45 ? 0 : 1, 96, 147, 80 + p * 70, 1 - p); }
-      if (animation === 'land') effect(ctx, t < .4 ? 0 : 1, 96, 147, 70 + t * 75, 1 - t);
+      if (animation === 'land' && t > 0) effect(ctx, t < .4 ? 0 : 1, 96, 147, 70 + t * 75, 1 - t);
       if (animation === 'hurt' && t < .6) effect(ctx, 2, 138, 56, 56, 1 - t / .6);
       if (animation === 'combo' && t > .3) {
         const p = (t - .3) / .7;

@@ -5,13 +5,20 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import http from 'node:http';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
+import os from 'node:os';
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repo = path.resolve(here, '../../..');
 const artifacts = process.env.ARTIFACT_DIR || path.resolve(repo, '../artifacts/brickbound-training-orc');
 fs.mkdirSync(artifacts, {recursive:true});
+const scratch=fs.mkdtempSync(path.join(os.tmpdir(),'brick-atlas-'));
+let changedAtlases=0,unchangedAtlases=0;
+function writeIfDifferent(file, data) {
+  const bytes=Buffer.isBuffer(data)?data:Buffer.from(data);
+  if(!fs.existsSync(file)||!fs.readFileSync(file).equals(bytes))fs.writeFileSync(file,bytes);
+}
 const server = http.createServer((req, res) => {
   const rel = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
   const target = path.resolve(repo, '.' + rel);
@@ -43,9 +50,17 @@ try {
           return canvas.toDataURL('image/png').split(',')[1];
         },{family,color,animation,count,columns,cell,rows});
         const file='assets/tiles/'+family+'/animations/'+color+'_'+animation+'.png';
-        fs.writeFileSync(path.join(repo,file),Buffer.from(data,'base64'));
-        // Lossless PNG recompression; no palette or pixel changes.
-        execFileSync('magick', [path.join(repo,file), '-define', 'png:compression-level=9', '-define', 'png:compression-filter=5', path.join(repo,file)]);
+        const destination=path.join(repo,file),candidate=path.join(scratch,'candidate.png');
+        fs.writeFileSync(candidate,Buffer.from(data,'base64'));
+        // Lossless, deterministic PNG encoding; never add a new blob for identical pixels.
+        execFileSync('magick', [candidate, '-strip', '-define', 'png:exclude-chunk=date,time', '-define', 'png:compression-level=9', '-define', 'png:compression-filter=5', candidate]);
+        let equal=false;
+        if(fs.existsSync(destination)){
+          const comparison=spawnSync('magick',['compare','-metric','AE',destination,candidate,'null:'],{encoding:'utf8'});
+          if(comparison.error||comparison.status>1)throw new Error('Pixel comparison failed for '+file+': '+comparison.stderr);
+          equal=comparison.status===0;
+        }
+        if(equal)unchangedAtlases++;else{writeIfDifferent(destination,fs.readFileSync(candidate));changedAtlases++;}
         const spec=config.animations[animation];
         manifest.atlases.push({family,color,animation,file,width:columns*cell,height:rows*cell,cell,columns,frames:count,fps:count/spec.seconds,seconds:spec.seconds,loop:!!spec.loop});
       }
@@ -56,10 +71,10 @@ try {
       text+='\n';
       names.forEach((name,i)=>{for(let n=0;n<count;n++)text+='[sub_resource type="AtlasTexture" id="Atlas_'+i+'_'+n+'"]\natlas = ExtResource("'+(i+1)+'")\nregion = Rect2('+n%columns*cell+', '+Math.floor(n/columns)*cell+', '+cell+', '+cell+')\n\n'});
       text+='[resource]\nanimations = [\n'+names.map((name,i)=>'{\n"frames": ['+Array.from({length:count},(_,n)=>'{"duration": 1.0, "texture": SubResource("Atlas_'+i+'_'+n+'")}').join(',\n')+'],\n"loop": '+!!config.animations[name].loop+',\n"name": &"'+name+'",\n"speed": '+(count/config.animations[name].seconds)+'\n}').join(',\n')+'\n]\n';
-      fs.writeFileSync(path.join(repo,'assets/tiles',family,'sprite_frames_'+color+'.tres'),text);
+      writeIfDifferent(path.join(repo,'assets/tiles',family,'sprite_frames_'+color+'.tres'),text);
     }
   }
-  fs.writeFileSync(path.join(repo,'assets/tiles/animation_pack.json'),JSON.stringify(manifest,null,2)+'\n');
+  writeIfDifferent(path.join(repo,'assets/tiles/animation_pack.json'),JSON.stringify(manifest,null,2)+'\n');
   // Portable HTML embeds every PNG and resource used by the viewer.
   const embedded={};
   const include=(rel,mime)=>embedded[rel]='data:'+mime+';base64,'+fs.readFileSync(path.join(repo,rel)).toString('base64');
@@ -83,4 +98,5 @@ try {
   fs.writeFileSync(path.join(artifacts,'preview_training_orc.html'),html);
   console.log('Portable HTML: '+path.join(artifacts,'preview_training_orc.html'));
   console.log('Exported '+manifest.atlases.length+' animation atlases, 8 SpriteFrames resources, manifest and portable HTML.');
-} finally { await browser.close(); await new Promise(resolve=>server.close(resolve)); }
+  console.log('Pixel changes: '+changedAtlases+' updated, '+unchangedAtlases+' preserved unchanged.');
+} finally { await browser.close(); await new Promise(resolve=>server.close(resolve)); fs.rmSync(scratch,{recursive:true,force:true}); }

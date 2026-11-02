@@ -2,7 +2,9 @@
 
 **Claude bắt đầu tích hợp tại [bàn giao ghép vào game](claude_integration_handoff.md).** Doc đó đối chiếu trực tiếp với `BoardView` trên nhánh `board/playable`, có thứ tự replay, trigger hiện có và tiêu chí nghiệm thu.
 
-Nhánh `art/tiles`. Phong cách được người dùng chốt: bản khung gỗ có nẹp sắt; Orc có mũ vá/băng trán. Tất cả thay đổi nằm ở ảnh, tài nguyên ảnh và tài liệu xem thử; chưa nối vào logic game.
+Nhánh `art/tiles`. Cập nhật theo issue #3: Training giữ khung gỗ/nẹp sắt; Orc dùng viền sơn màu rộng, khăn đỏ/kiếm, mũ lá/lá, mũ sắt vàng/đồng xu, mũ trùm tím/pha lê. Orc xanh dùng da xám xanh. [Báo cáo sửa issue #3](issue3_feedback.md) và [ảnh kiểm tra 46 px, ảnh xám](issue3_review/index.html) thay thế các mô tả concept cũ.
+
+Asset đã được Claude tích hợp ở nhánh `board/playable` theo issue #3; trong nhánh ảnh này vẫn chỉ sửa ảnh và tài liệu, không sửa code game.
 
 ## Mở xem
 
@@ -27,7 +29,9 @@ Chọn Training/Orc, chọn màu, chọn tình huống hoặc chạy cảnh liê
 
 `family`: `training` hoặc `orc_shield`. `color`: `red`, `green`, `yellow`, `purple`. Các frame đọc từ trái qua phải, trên xuống dưới, không có khoảng cách ngoài ô. PNG trong suốt; FX đã được ghép trong sheet chuyển động. Không ghép thêm FX lần nữa nếu không muốn hiệu ứng dày hơn.
 
-Ô chuyển động có đệm để hình rung, nhảy và FX không bị cắt; gạch gốc nằm giữa, có canvas logic 128 px trong ô 192 px. Gốc Sprite2D đặt giữa ô (96,96). Khi game muốn canvas gạch 110 px, dùng scale `110/128` cho node (cả vùng đệm khi ấy rộng 165 px); không co cả ô 192 px về 110 px. Hình vẽ gốc có đệm trong suốt bên trong 128 px.
+Ô chuyển động có đệm để hình rung, nhảy và FX không bị cắt; gạch gốc nằm giữa, có canvas logic 128 px trong ô 192 px. Gốc Sprite2D đặt giữa ô (96,96). Theo issue #3, hình thật mọi ô tĩnh nay là 120×120 tại (4,4) trong canvas 128. Frame đầu `idle` và `land` khớp hình tĩnh ở vùng giữa (32,32,128,128), bounds hình thật (36,36,120,120). Khi game muốn canvas gạch 100 px, dùng scale `100/128`; không co cả ô 192 px về 100 px. Chỉ dùng `110/128` nếu cấu hình ô thực tế là 110 px.
+
+Đã có ba PNG đặc biệt ở `assets/tiles/special_lightning.png`, `special_bomb.png`, `special_rainbow.png`: hai file đầu là lớp phủ trong suốt; cầu vồng là cả ô thay thế, không có màu gameplay riêng. Xem ảnh chồng trên 8 ô nền trong báo cáo issue #3. Chưa có animation đặc biệt mới.
 
 ## Animation
 

@@ -2,7 +2,7 @@
 window.TILE_PACK = {
   version: 1,
   colors: ['red', 'green', 'yellow', 'purple'],
-  colorLabels: ['Đỏ · Tóc dựng', 'Xanh · Băng trán', 'Vàng · Mũ vá', 'Tím · Tai gập'],
+  colorLabels: ['Đỏ · Khăn đỏ', 'Xanh · Mũ lá', 'Vàng · Mũ sắt', 'Tím · Mũ trùm'],
   expressions: ['idle', 'blink', 'chuckle', 'laugh', 'fear', 'relief', 'scream', 'gloat', 'hurt'],
   expressionLabels: ['Bình thường', 'Chớp mắt', 'Cười khúc khích', 'Cười lớn', 'Hoảng sợ', 'Thoát chết', 'Hét', 'Cười hiểm', 'Bị đau'],
   families: {
@@ -12,7 +12,7 @@ window.TILE_PACK = {
   animations: {
     idle: { label: 'Chờ / chớp mắt', seconds: 2.4, loop: true, motion: 'idle', poses: [[0, 0], [.73, 1], [.79, 0]] },
     drop: { label: 'Rơi → chạm đất', seconds: .85, motion: 'drop', poses: [[0, 4], [.64, 8], [.86, 0]] },
-    land: { label: 'Chạm đất / nảy', seconds: .65, motion: 'land', poses: [[0, 8], [.55, 0]] },
+    land: { label: 'Chạm đất / nảy', seconds: .65, motion: 'land', poses: [[0, 0], [.04, 8], [.55, 0]] },
     combo: { label: 'Nổ combo', seconds: 1.2, motion: 'burst', poses: [[0, 4], [.22, 6]] },
     hurt: { label: 'Trúng đòn', seconds: .75, motion: 'hurt', poses: [[0, 8], [.7, 0]] },
     taunt: { label: 'Cười chọc sau lượt hụt', seconds: 1.7, motion: 'laugh', poses: [[0, 2], [.17, 3], [.34, 2], [.51, 3], [.68, 2], [.85, 0]] },

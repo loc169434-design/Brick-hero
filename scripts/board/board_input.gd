@@ -2,7 +2,8 @@ class_name BoardInput
 extends Node
 ## Turns touches and keys into board commands.
 ## Touch: drag sideways to slide the piece, tap to turn it, swipe down to drop, tap HOLD to hold.
-## Keys: Left/Right move, Up or X turns, Z turns back, Space or Down drops, C holds, R restarts.
+## Keys: Left/Right move, Up or X turns, Z turns back, Space or Down drops, C holds, R restarts,
+## T switches tile theme (debug until encounters pick it).
 
 const TAP_DISTANCE := 24.0
 const DROP_SWIPE := 140.0
@@ -45,6 +46,8 @@ func _on_key(event: InputEventKey) -> void:
 			view.try_hold()
 		KEY_R:
 			view.new_game()
+		KEY_T:
+			view.next_tile_theme()
 
 
 func _on_touch(event: InputEventScreenTouch) -> void:

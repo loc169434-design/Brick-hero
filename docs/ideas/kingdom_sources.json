@@ -1,0 +1,120 @@
+{
+  "base_commit": "b4c61d7",
+  "style": "Original adult hero, warm brown outlines, angular cel shading",
+  "sheets": [
+    {
+      "id": "hero_iron",
+      "file": "exec-9d1bcd00-f977-4c94-8db6-9ad1f61a2f79.png",
+      "cols": 3,
+      "rows": 2,
+      "poses": [
+        "fresh_idle",
+        null,
+        "fresh_hurt",
+        "fresh_scared",
+        "fresh_cheer"
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "file": "exec-9ec302df-9fe5-4ae1-8b53-7c8fc2075e05.png",
+      "cols": 3,
+      "rows": 2,
+      "poses": [
+        "bruised_idle",
+        null,
+        "bruised_hurt",
+        "bruised_scared",
+        "bruised_cheer"
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "file": "exec-79fec9bf-9fd8-41b8-8a60-b5ba7289a966.png",
+      "cols": 3,
+      "rows": 2,
+      "poses": [
+        "battered_idle",
+        null,
+        "battered_hurt",
+        "battered_scared",
+        "battered_cheer"
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "file": "exec-037c6b45-73d5-4678-bc0a-18d5bf029380.png",
+      "cols": 2,
+      "rows": 1,
+      "poses": [
+        "victory",
+        "defeat"
+      ],
+      "shared_end_scale": true
+    },
+    {
+      "id": "king",
+      "file": "exec-6c730548-2be2-4687-a881-5722c349e330.png",
+      "cols": 2,
+      "rows": 2,
+      "poses": [
+        "idle",
+        "talk",
+        "cheer",
+        "worried"
+      ]
+    },
+    {
+      "id": "princess",
+      "file": "exec-90e11ed3-7d0f-49b9-b0c4-6131e0316290.png",
+      "cols": 2,
+      "rows": 2,
+      "poses": [
+        "idle",
+        "talk",
+        "cheer",
+        "scared"
+      ]
+    },
+    {
+      "id": "blacksmith",
+      "file": "exec-c889bf63-2805-4368-9f5b-b468e7b1b00e.png",
+      "cols": 2,
+      "rows": 2,
+      "poses": [
+        "idle",
+        "talk",
+        "hammer",
+        "cheer"
+      ]
+    },
+    {
+      "id": "hero_iron",
+      "file": "exec-4909e3ad-24bd-49b7-8e41-84da5a93248b.png",
+      "cols": 3,
+      "rows": 1,
+      "poses": [
+        "fresh_attack",
+        "bruised_attack",
+        "battered_attack"
+      ]
+    }
+  ],
+  "backgrounds": [
+    {
+      "name": "king_hall",
+      "file": "exec-f12916f0-95a6-45d7-ab0f-09b416760b1b.png",
+      "dark_y": 1278
+    },
+    {
+      "name": "forge",
+      "file": "exec-df45296b-ff2f-438a-89d9-d0aae29b8746.png",
+      "dark_y": 1248
+    },
+    {
+      "name": "world_map",
+      "file": "exec-ced9e32c-db4c-4d1d-9847-d6ffc6917e81.png"
+    }
+  ],
+  "icons": "exec-d7a9eb1c-cc96-4e23-af86-23f4e93e517c.png"
+}

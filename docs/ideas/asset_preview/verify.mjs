@@ -7,12 +7,13 @@ import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 const require=createRequire(import.meta.url),{chromium}=require('playwright');
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
+const siteRoot=process.env.SITE_ROOT||repo;
 const artifacts=process.env.ARTIFACT_DIR||path.resolve(repo,'../artifacts/brickbound-training-orc');
 const server=http.createServer((req,res)=>{
   try{
     const url=new URL(req.url,'http://localhost');
-    const file=url.pathname==='/portable.html'?path.join(artifacts,'preview_training_orc.html'):path.resolve(repo,'.'+decodeURIComponent(url.pathname));
-    if(url.pathname!=='/portable.html'&&!file.startsWith(repo+path.sep)){res.writeHead(403).end();return}
+    const file=url.pathname==='/portable.html'?path.join(artifacts,'preview_training_orc.html'):path.resolve(siteRoot,'.'+decodeURIComponent(url.pathname));
+    if(url.pathname!=='/portable.html'&&!file.startsWith(siteRoot+path.sep)){res.writeHead(403).end();return}
     const body=fs.readFileSync(file),mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.png':'image/png','.json':'application/json'}[path.extname(file)]||'text/plain';
     res.writeHead(200,{'Content-Type':mime});res.end(body);
   }catch{res.writeHead(404).end()}

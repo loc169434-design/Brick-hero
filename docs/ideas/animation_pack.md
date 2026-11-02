@@ -57,6 +57,16 @@ Trong Godot 4.7.2, gán `sprite_frames_<color>.tres` vào `AnimatedSprite2D.spri
 
 ## Xuất lại
 
+### Bản web
+
+Chạy `node docs/ideas/asset_preview/publish.mjs` sau khi đã có ZIP. Lệnh tạo `/workspace/artifacts/brickbound-training-orc/site/` (hoặc `ARTIFACT_DIR/site/`), chứa website tĩnh, ảnh tải theo nhu cầu và nút tải ZIP. Website không tải HTML nhúng ảnh dung lượng lớn khi mở trang. Lệnh từ chối ghi đè một thư mục `site/` đã tồn tại.
+
+Kiểm tra bản web trước khi đẩy: `SITE_ROOT=/workspace/artifacts/brickbound-training-orc/site node docs/ideas/asset_preview/verify.mjs`.
+
+GitHub Pages của repo dùng nhánh `gh-pages`, thư mục `/(root)`. Sau khi nội dung được đẩy lên nhánh, bật **Settings → Pages → Deploy from a branch → gh-pages → /(root) → Save** nếu Pages chưa được kích hoạt. Chỉ xác nhận website đang hoạt động sau khi deployment hoàn tất; việc push nhánh không tự chứng minh Pages đã bật. Không cần đổi nhánh `main` hay file game để xuất bản trang asset.
+
+### Xuất lại sprite và HTML offline
+
 Chạy `node docs/ideas/asset_preview/export.mjs` từ root repo. Cần Node.js, module `playwright`, ImageMagick và Chromium; biến `CHROMIUM_PATH` chọn binary khác nếu cần. Trên máy hiện tại các công cụ đã có. Script đọc các PNG gốc và dùng Canvas ghép chuyển động xác định, xuất sheet, tài nguyên Godot, manifest và HTML nhúng ảnh; không gọi lại công cụ tạo ảnh. ImageMagick chỉ nén lại PNG không mất dữ liệu. Có thể đổi thư mục bản xuất HTML bằng `ARTIFACT_DIR`.
 
 Sau khi xuất xong, tạo ZIP với cấu trúc root gồm `assets/`, `docs/ideas/asset_preview/`, `docs/ideas/animation_pack.md`, và `preview_training_orc.html`. Chỉ cần đưa `assets/tiles/training/`, `assets/tiles/orc_shield/`, `assets/tiles/animation_pack.json`, `assets/fx/tile_reactions/` vào phần asset; bỏ `.godot/` và các file import được Godot sinh lại. Bản HTML độc lập có sẵn ảnh nên cũng có thể tải riêng.

@@ -1,5 +1,7 @@
 # Bộ ô gạch theo quái — Orc Khiên
 
+> Cập nhật sau khi người dùng chốt concept: bộ gỗ/nẹp sắt được dùng cho **Training**; bộ **Orc** dùng mặt quái với mũ vá/băng trán và animation. Xem [bàn giao animation](animation_pack.md) và [trang xem thử](asset_preview/index.html). Các ghi chú ý tưởng ban đầu bên dưới được thay bằng quy ước mới tại đây.
+
 Theo mục 5 của `docs/core_plan.md`. Nhánh: `art/tiles`.
 
 | File trong `assets/tiles/` | Màu | Biểu tượng | Ý nghĩa |
@@ -21,9 +23,9 @@ Bộ Orc Khiên: khung gỗ vuông, nẹp sắt và đinh tán lớn, bảng mà
 
 ## Mỗi quái một bộ gạch
 
-- Bộ đầu tiên: `assets/tiles/orc_shield/tile_<color>.png`, với `color` là `red`, `green`, `yellow`, `purple`.
-- Bốn file ở gốc `assets/tiles/` là bản sao của bộ Orc Khiên để giữ đúng các đường dẫn đã ghi trong core plan. Khi chỉnh bộ Orc, cập nhật cả bản sao này cho đến khi code có cơ chế chọn bộ theo quái.
-- Các quái tiếp theo dùng thư mục `assets/tiles/<monster_id>/` và cùng bốn tên file. Mỗi bộ thay khung, chất liệu và họa tiết theo quái, nhưng giữ ý nghĩa màu và biểu tượng để người chơi không phải học lại luật.
+- Bộ Training: `assets/tiles/training/tile_<color>.png`; bộ Orc: `assets/tiles/orc_shield/tile_<color>.png`, với `color` là `red`, `green`, `yellow`, `purple`.
+- Bốn file ở gốc `assets/tiles/` giữ bộ biểu tượng gỗ cũ làm dự phòng theo core plan. Chúng cùng hình với Training, không còn là bản sao mặt Orc. Không đồng bộ mặt Orc ngược lên bộ gốc.
+- Các quái tiếp theo dùng thư mục `assets/tiles/<monster_id>/` và cùng bốn tên file. Theo yêu cầu mới, biểu tượng đổi thành mặt quái của từng loài, giữ ý nghĩa màu. Dáng đầu/tóc/phụ kiện khác nhau giúp nhận diện ngoài màu sắc.
 - Mọi bộ giữ PNG RGBA 128×128, cùng kích thước hình bên trong và khoảng đệm trong suốt. Không thêm chi tiết tràn sang ô kế bên.
 - Doc hiện chỉ xác định Orc Khiên; chưa tạo bộ cho quái chưa có thiết kế.
 

@@ -11,11 +11,11 @@ extends Resource
 @export var counterattacks := true
 ## Damage to the hero when the countdown runs out.
 @export var attack := 10
-## Drops between attacks.
+## Moves between attacks.
 @export var countdown := 4
 ## Which tile set the board uses during this fight (assets/tiles/<theme>/).
 @export var tile_theme := "training"
 ## Battle backdrop: assets/bg/<background>.png.
 @export var background := ""
-## Shown one per drop, in order, above the fight. For the tutorial.
+## Shown one per move, in order, above the fight. For the tutorial.
 @export var hints: PackedStringArray = []

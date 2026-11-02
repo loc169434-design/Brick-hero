@@ -20,7 +20,7 @@ color = Color(0.06, 0.06, 0.09, 1)
 script = ExtResource("2_view")
 
 [node name="Board" parent="." instance=ExtResource("1_board")]
-position = Vector2(40, 680)
+position = Vector2(50, 690)
 
 [node name="BattleManager" type="Node" parent="." node_paths=PackedStringArray("board", "battle_view")]
 script = ExtResource("3_manager")

@@ -1,83 +1,50 @@
 class_name BoardInput
 extends Node
-## Turns touches and keys into board commands.
-## Touch: drag sideways to slide the piece, tap to turn it, swipe down to drop, tap HOLD to hold.
-## Keys: Left/Right move, Up or X turns, Z turns back, Space or Down drops, C holds, R restarts,
-## T switches tile theme (debug until encounters pick it).
+## Touch (or mouse): press on a square to start a link, drag through neighbors of the same color,
+## drag back to undo the last square, release to play it. Tap after a fight to go on.
+## Keys: R restarts, T switches tile theme (debug until encounters pick it).
 
-const TAP_DISTANCE := 24.0
-const DROP_SWIPE := 140.0
+## How close (as a fraction of a square) a finger must come to a square's center to take it.
+const PICK_REACH := 0.42
 
 @export var view: BoardView
 
+var _last_pos := Vector2.ZERO
 var _pressed := false
-var _start := Vector2.ZERO
-var _start_column := 0
-var _slid := false
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		_on_key(event)
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_R:
+				view.new_game()
+			KEY_T:
+				view.next_tile_theme()
 	elif event is InputEventScreenTouch:
 		_on_touch(event)
 	elif event is InputEventScreenDrag and _pressed:
 		_on_drag(event)
 
 
-func _on_key(event: InputEventKey) -> void:
-	if not event.pressed:
-		return
-	var repeatable := event.keycode == KEY_LEFT or event.keycode == KEY_RIGHT
-	if event.echo and not repeatable:
-		return
-	match event.keycode:
-		KEY_LEFT:
-			view.try_move(-1)
-		KEY_RIGHT:
-			view.try_move(1)
-		KEY_UP, KEY_X:
-			view.try_rotate(true)
-		KEY_Z:
-			view.try_rotate(false)
-		KEY_SPACE, KEY_DOWN:
-			view.try_drop()
-		KEY_C:
-			view.try_hold()
-		KEY_R:
-			view.new_game()
-		KEY_T:
-			view.next_tile_theme()
-
-
 func _on_touch(event: InputEventScreenTouch) -> void:
 	if event.pressed:
+		if view.is_finished():
+			view.new_game()
+			return
 		_pressed = true
-		_slid = false
-		_start = event.position
-		_start_column = view.game.origin.x
-		return
-	if not _pressed:
-		return
-	_pressed = false
-	var delta := event.position - _start
-	if delta.y > DROP_SWIPE and delta.y > absf(delta.x):
-		view.try_drop()
-	elif not _slid and delta.length() < TAP_DISTANCE:
-		_on_tap(event.position)
+		_last_pos = view.to_local(event.position)
+		view.begin_link(view.cell_at(_last_pos, PICK_REACH))
+	elif _pressed:
+		_pressed = false
+		view.end_link()
 
 
+## A fast swipe can skip past squares between two drag events, so walk the gap in small steps.
 func _on_drag(event: InputEventScreenDrag) -> void:
-	var dx := event.position.x - _start.x
-	if absf(dx) > TAP_DISTANCE:
-		_slid = true
-	view.try_slide_to(_start_column + roundi(dx / BoardView.CELL))
-
-
-func _on_tap(screen_pos: Vector2) -> void:
-	if view.is_finished():
-		view.new_game()
-	elif view.hold_rect().has_point(view.to_local(screen_pos)):
-		view.try_hold()
-	else:
-		view.try_rotate(true)
+	var to := view.to_local(event.position)
+	var steps := maxi(1, ceili(_last_pos.distance_to(to) / (BoardView.CELL * 0.25)))
+	for i in range(1, steps + 1):
+		var p := view.cell_at(_last_pos.lerp(to, float(i) / steps), PICK_REACH)
+		if p.x >= 0:
+			view.extend_link(p)
+	_last_pos = to

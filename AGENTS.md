@@ -2,7 +2,7 @@
 
 Dự án có hai AI làm cùng nhau. Đọc kỹ để không sửa đè lên nhau.
 
-Game: **Brickbound Hero**, xếp gạch lai ghép màu kiểu Candy Crush để đánh quái và cứu công chúa.
+Game: **Brickbound Hero**, vuốt nối ô cùng màu (kiểu Two Dots) để đánh quái theo lượt và cứu công chúa.
 Engine: Godot 4.7.2 (GDScript), renderer Mobile, màn hình dọc 1080×1920.
 Kế hoạch chi tiết: [docs/core_plan.md](docs/core_plan.md).
 

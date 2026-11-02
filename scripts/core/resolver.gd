@@ -1,63 +1,85 @@
 class_name Resolver
 extends RefCounted
-## After a piece locks: find clears, set off specials, drop what's left, and repeat
-## until nothing clears. Each repeat is one link of the chain.
+## Clears a link, then lets the board settle: specials go off, squares fall, new ones drop in
+## from the top, and any straight line that forms clears too. Each clear is one round of the chain.
 
 const NEIGHBORS := [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
-const NO_POS := Vector2i(-1, -1)
 
 
-## `focus` holds the squares that just moved (the dropped piece, then whatever fell);
-## new specials appear there when they can, so they land where the player was looking.
-static func resolve(board: BoardModel, rules: BoardRules, focus: Array[Vector2i]) -> Array[ClearStep]:
+## Plays `path` (already checked by LinkGame) and every round it sets off.
+## `refill` returns a new Cell for each square emptied at the top; without it the gaps stay empty.
+static func resolve_link(board: BoardModel, rules: BoardRules, path: Array[Vector2i], refill := Callable()) -> Array[ClearStep]:
 	var steps: Array[ClearStep] = []
-	var moved: Array[Vector2i] = focus.duplicate()
-	while true:
-		var step := find_clears(board, rules, moved)
-		if step.is_empty():
-			break
+	var step := link_step(board, rules, path)
+	while not step.is_empty():
 		step.chain = steps.size() + 1
 		for p in step.cleared:
 			board.set_cell(p, null)
 		for s in step.spawned:
 			board.set_cell(s["at"], Cell.new(s["color"], s["special"]))
-		step.falls = apply_gravity(board)
+		step.falls = apply_gravity(board, refill)
 		steps.append(step)
-		moved.clear()
-		for fall in step.falls:
-			moved.append(fall["to"])
+		step = find_lines(board, rules)
 	return steps
 
 
-## Works out one round without touching the board.
-static func find_clears(board: BoardModel, rules: BoardRules, focus: Array[Vector2i]) -> ClearStep:
+## The link's own round, worked out without touching the board. A long link leaves a special
+## where the finger let go.
+static func link_step(board: BoardModel, rules: BoardRules, path: Array[Vector2i]) -> ClearStep:
 	var step := ClearStep.new()
-	var marked := {}
-
-	for y in board.rows:
-		if _row_full(board, y):
-			step.full_rows.append(y)
-			for x in board.columns:
-				marked[Vector2i(x, y)] = true
-
-	for cluster in _find_clusters(board, rules.min_cluster):
-		step.clusters.append(cluster)
-		for p in cluster["cells"]:
-			marked[p] = true
-
-	if marked.is_empty():
+	if path.is_empty():
 		return step
-
-	_plan_spawns(board, rules, step, focus)
+	var color := link_color(board, path)
+	step.clusters.append({"color": color, "cells": path.duplicate()})
+	var kind := special_for_link(rules, path.size())
+	if kind != Cell.Special.NONE:
+		var spawn_color := Cell.NO_COLOR if kind == Cell.Special.RAINBOW else color
+		step.spawned.append({"at": path[-1], "special": kind, "color": spawn_color})
+	var marked := {}
+	for p in path:
+		marked[p] = true
 	_trigger_specials(board, step, marked)
-	for p in marked:
-		step.cleared.append(p)
-		step.cleared_cells.append(board.get_cell(p))
+	_collect(board, step, marked)
 	return step
 
 
-## Every square falls on its own, so a cleared gap can pull loose squares into new clusters.
-static func apply_gravity(board: BoardModel) -> Array[Dictionary]:
+## The color of the first non-star square, or NO_COLOR for a link of stars only.
+static func link_color(board: BoardModel, path: Array[Vector2i]) -> int:
+	for p in path:
+		var cell := board.get_cell(p)
+		if cell and cell.special != Cell.Special.RAINBOW:
+			return cell.color
+	return Cell.NO_COLOR
+
+
+static func special_for_link(rules: BoardRules, length: int) -> Cell.Special:
+	if length >= rules.star_link:
+		return Cell.Special.RAINBOW
+	if length >= rules.bomb_link:
+		return Cell.Special.BOMB
+	if length >= rules.lightning_link:
+		return Cell.Special.LIGHTNING
+	return Cell.Special.NONE
+
+
+## Straight lines of rules.min_line or more, worked out without touching the board.
+static func find_lines(board: BoardModel, rules: BoardRules) -> ClearStep:
+	var step := ClearStep.new()
+	var marked := {}
+	for run in _runs(board, rules.min_line):
+		step.clusters.append(run)
+		for p in run["cells"]:
+			marked[p] = true
+	if marked.is_empty():
+		return step
+	_trigger_specials(board, step, marked)
+	_collect(board, step, marked)
+	return step
+
+
+## Every square falls on its own to the lowest free spot. With `refill`, new squares then drop
+## in from above; their falls start above the board (negative y) and carry the new "cell".
+static func apply_gravity(board: BoardModel, refill := Callable()) -> Array[Dictionary]:
 	var falls: Array[Dictionary] = []
 	for x in board.columns:
 		var write := board.rows - 1
@@ -72,85 +94,41 @@ static func apply_gravity(board: BoardModel) -> Array[Dictionary]:
 				board.set_cell(from, null)
 				falls.append({"from": from, "to": to})
 			write -= 1
+		if refill.is_valid():
+			var missing := write + 1
+			for y in range(write, -1, -1):
+				var fresh: Cell = refill.call()
+				board.set_cell(Vector2i(x, y), fresh)
+				falls.append({"from": Vector2i(x, y - missing), "to": Vector2i(x, y), "cell": fresh})
 	return falls
 
 
-static func _row_full(board: BoardModel, y: int) -> bool:
-	for x in board.columns:
-		if board.get_cell(Vector2i(x, y)) == null:
-			return false
-	return true
-
-
-static func _find_clusters(board: BoardModel, min_size: int) -> Array[Dictionary]:
-	var found: Array[Dictionary] = []
+## Runs per color along rows and columns. Stars don't count here: a star is the player's to
+## link, so it never clears just because squares fell next to it.
+static func _runs(board: BoardModel, min_length: int) -> Array[Dictionary]:
+	var runs: Array[Dictionary] = []
 	for color in Cell.COLOR_COUNT:
-		# Per color, because a rainbow can belong to clusters of several colors at once.
-		var seen := {}
-		for y in board.rows:
-			for x in board.columns:
-				var start := Vector2i(x, y)
-				var cell := board.get_cell(start)
-				if cell == null or cell.color != color or seen.has(start):
-					continue
-				var cells := _flood(board, start, color, seen)
-				if cells.size() >= min_size:
-					found.append({"color": color, "cells": cells})
-	return found
+		for horizontal in [true, false]:
+			var lanes: int = board.rows if horizontal else board.columns
+			var length: int = board.columns if horizontal else board.rows
+			for lane in lanes:
+				var run: Array[Vector2i] = []
+				for i in length + 1:
+					var p := Vector2i(i, lane) if horizontal else Vector2i(lane, i)
+					var cell := board.get_cell(p) if i < length else null
+					if cell and cell.color == color:
+						run.append(p)
+						continue
+					if run.size() >= min_length:
+						runs.append({"color": color, "cells": run.duplicate()})
+					run.clear()
+	return runs
 
 
-static func _flood(board: BoardModel, start: Vector2i, color: int, seen: Dictionary) -> Array[Vector2i]:
-	var cells: Array[Vector2i] = []
-	var stack: Array[Vector2i] = [start]
-	seen[start] = true
-	while not stack.is_empty():
-		var p: Vector2i = stack.pop_back()
-		cells.append(p)
-		for d in NEIGHBORS:
-			var q: Vector2i = p + d
-			var cell := board.get_cell(q)
-			if cell != null and not seen.has(q) and cell.matches(color):
-				seen[q] = true
-				stack.append(q)
-	return cells
-
-
-static func _plan_spawns(board: BoardModel, rules: BoardRules, step: ClearStep, focus: Array[Vector2i]) -> void:
-	var used := {}
-	for cluster in step.clusters:
-		var cells: Array[Vector2i] = cluster["cells"]
-		var kind := Cell.Special.NONE
-		if cells.size() >= rules.bomb_cluster:
-			kind = Cell.Special.BOMB
-		elif cells.size() >= rules.lightning_cluster:
-			kind = Cell.Special.LIGHTNING
-		else:
-			continue
-		var at := _pick_spawn(board, cells, focus, used)
-		if at != NO_POS:
-			used[at] = true
-			step.spawned.append({"at": at, "special": kind, "color": cluster["color"]})
-
-	if step.full_rows.size() >= rules.rainbow_rows:
-		var y: int = step.full_rows.max()
-		var x := focus[0].x if not focus.is_empty() else floori(board.columns / 2.0)
-		while used.has(Vector2i(x, y)):
-			x = (x + 1) % board.columns
-		step.spawned.append({"at": Vector2i(x, y), "special": Cell.Special.RAINBOW, "color": Cell.NO_COLOR})
-
-
-## Prefers a square that just moved, then the lowest, leftmost one. Skips squares that already
-## hold a special, since those are about to go off.
-static func _pick_spawn(board: BoardModel, cells: Array[Vector2i], focus: Array[Vector2i], used: Dictionary) -> Vector2i:
-	var best := NO_POS
-	for p in cells:
-		if used.has(p) or board.get_cell(p).is_special():
-			continue
-		if focus.has(p):
-			return p
-		if best == NO_POS or p.y > best.y or (p.y == best.y and p.x < best.x):
-			best = p
-	return best
+static func _collect(board: BoardModel, step: ClearStep, marked: Dictionary) -> void:
+	for p in marked:
+		step.cleared.append(p)
+		step.cleared_cells.append(board.get_cell(p))
 
 
 static func _trigger_specials(board: BoardModel, step: ClearStep, marked: Dictionary) -> void:
@@ -225,8 +203,8 @@ static func _area(board: BoardModel, step: ClearStep, p: Vector2i, kind: Cell.Sp
 	return []
 
 
-## The color of the biggest cluster the rainbow joined, or the board's most common color
-## if a full row took it instead.
+## The color of the longest link or line the star was part of, or the board's most common color
+## if something else set it off (a blast, or a link of stars only).
 static func _rainbow_target(board: BoardModel, step: ClearStep, p: Vector2i) -> int:
 	var best_size := 0
 	var target := Cell.NO_COLOR

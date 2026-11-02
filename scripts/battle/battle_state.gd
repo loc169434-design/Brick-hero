@@ -1,7 +1,7 @@
 class_name BattleState
 extends RefCounted
 ## One fight, the hero against one monster. Pure rules with no nodes, so tests run headless.
-## Each drop, the cleared squares act by color, then the monster's countdown ticks.
+## Each move, the cleared squares act by color, then the monster's countdown ticks.
 
 enum Outcome { ONGOING, WON, LOST }
 
@@ -11,12 +11,12 @@ var hero_hp: int
 var monster_hp: int
 ## Shield points; every rules.shield_layer_size points is one layer.
 var shield: int
-## Drops left until the monster attacks.
+## Moves left until the monster attacks.
 var countdown: int
 var gold := 0
 var outcome := Outcome.ONGOING
-## Drops played this fight.
-var drops := 0
+## Moves played this fight.
+var moves := 0
 
 
 func _init(p_rules: BattleRules, p_monster: MonsterData) -> void:
@@ -32,27 +32,26 @@ func shield_layers() -> int:
 	return ceili(float(shield) / rules.shield_layer_size)
 
 
-## Shown above the monster one drop ahead, so the player can react.
-func attacks_next_drop() -> bool:
+## Shown above the monster one move ahead, so the player can react.
+func attacks_next_move() -> bool:
 	return monster.counterattacks and outcome == Outcome.ONGOING and countdown == 1
 
 
-func apply_drop(result: DropResult) -> TurnReport:
+func apply_move(result: MoveResult) -> TurnReport:
 	var report := TurnReport.new()
 	if outcome != Outcome.ONGOING:
 		report.outcome = outcome
 		return report
 	report.chain = result.chain_length()
-	report.combo = result.combo
+	report.link_length = result.path.size()
 
 	var red := 0.0
 	var green := 0.0
 	var yellow := 0.0
 	var purple := 0.0
 	var smashes := 0
-	var combo_mult := 1.0 + rules.combo_bonus * maxi(result.combo - 1, 0)
 	for step in result.steps:
-		var mult := (1.0 + rules.chain_step * (step.chain - 1)) * combo_mult
+		var mult := 1.0 + rules.chain_step * (step.chain - 1)
 		var counts := step.count_by_color()
 		red += counts.get(Cell.BlockColor.RED, 0) * rules.red_damage * mult
 		green += counts.get(Cell.BlockColor.GREEN, 0) * rules.green_heal * mult
@@ -61,7 +60,7 @@ func apply_drop(result: DropResult) -> TurnReport:
 		if step.chain >= rules.layer_break_chain:
 			smashes += 1
 
-	# The shield goes first, so purple and long chains open the way for the red in the same drop.
+	# The shield goes first, so purple and long chains open the way for the red in the same move.
 	var shield_before := shield
 	var layers_before := shield_layers()
 	shield = maxi(shield - roundi(purple), 0)
@@ -89,7 +88,7 @@ func apply_drop(result: DropResult) -> TurnReport:
 			if hero_hp == 0:
 				outcome = Outcome.LOST
 	report.outcome = outcome
-	drops += 1
+	moves += 1
 	return report
 
 

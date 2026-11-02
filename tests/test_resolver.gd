@@ -69,11 +69,20 @@ func test_falling_squares_that_line_up_clear_as_a_chain() -> void:
 		"R R R P",
 		"G P Y G",
 		"G Y P Y",
+		"G P Y G",
 	])
 	var steps := _link(board, [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)])
-	assert_eq(steps.size(), 2, "the G falls onto two Gs and makes a column of three")
+	assert_eq(steps.size(), 2, "the G falls onto three Gs and makes a column of four")
 	assert_eq(steps[1].chain, 2)
-	assert_eq(steps[1].count_by_color().get(G, 0), 3)
+	assert_eq(steps[1].count_by_color().get(G, 0), 4)
+
+
+func test_three_in_a_row_is_not_a_line() -> void:
+	var board := _board(4, [
+		"Y G Y G",
+		"G R R R",
+	])
+	assert_true(Resolver.find_lines(board, BoardRules.new()).is_empty())
 
 
 func test_bent_links_work() -> void:
@@ -121,24 +130,24 @@ func test_link_through_lightning_clears_its_row_and_column() -> void:
 
 
 func test_stars_wait_for_the_player_instead_of_completing_lines() -> void:
-	var board := _board(4, [
-		"Y G Y G",
-		"G R * R",
+	var board := _board(5, [
+		"Y G Y G Y",
+		"G R R * R",
 	])
-	assert_true(Resolver.find_lines(board, BoardRules.new()).is_empty(), "R * R is not a line")
-	board = _board(3, ["* * *"])
+	assert_true(Resolver.find_lines(board, BoardRules.new()).is_empty(), "R R * R is not a line")
+	board = _board(4, ["* * * *"])
 	assert_true(Resolver.find_lines(board, BoardRules.new()).is_empty())
 
 
 func test_falling_lightning_in_a_line_goes_off() -> void:
-	var board := _board(4, [
-		"Y G Y G",
-		"G R R R",
+	var board := _board(5, [
+		"Y G Y G Y",
+		"G R R R R",
 	])
 	board.set_cell(Vector2i(2, 1), Cell.new(R, Cell.Special.LIGHTNING))
 	var step := Resolver.find_lines(board, BoardRules.new())
 	assert_true(step.triggered.has(Vector2i(2, 1)))
-	assert_eq(step.cleared.size(), 4 + 1, "row 1 and column 2")
+	assert_eq(step.cleared.size(), 5 + 1, "row 1 and column 2")
 
 
 func test_lightning_next_to_bomb_fuses_into_a_wide_cross() -> void:

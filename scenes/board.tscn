@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/board/board_view.gd" id="1_view"]
+[ext_resource type="Script" path="res://scripts/board/board_input.gd" id="2_input"]
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_view")
+
+[node name="BoardInput" type="Node" parent="." node_paths=PackedStringArray("view")]
+script = ExtResource("2_input")
+view = NodePath("..")

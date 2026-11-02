@@ -1,0 +1,453 @@
+{
+  "issue": 3,
+  "checks": 87,
+  "manifestCompatibility": "All 76 atlas records unchanged, including required fields and values; same families and event map.",
+  "normalization": "All eight family tiles visible bounds exactly 120×120 at (4,4); first idle/land bounds exactly match static placement.",
+  "colorMetric": "HSV hue-range mask, saturation >= 0.4 and value >= 0.22; alpha-weighted area / full canvas area. This measures color coverage, not human recognition speed.",
+  "visualReview": "Contact sheets are provided for human inspection at 46px, 100px and grayscale; no claim of a user study.",
+  "staticTiles": [
+    {
+      "family": "training",
+      "color": "red",
+      "canvas": [
+        128,
+        128
+      ],
+      "bounds": {
+        "x": 4,
+        "y": 4,
+        "width": 120,
+        "height": 120
+      }
+    },
+    {
+      "family": "training",
+      "color": "green",
+      "canvas": [
+        128,
+        128
+      ],
+      "bounds": {
+        "x": 4,
+        "y": 4,
+        "width": 120,
+        "height": 120
+      }
+    },
+    {
+      "family": "training",
+      "color": "yellow",
+      "canvas": [
+        128,
+        128
+      ],
+      "bounds": {
+        "x": 4,
+        "y": 4,
+        "width": 120,
+        "height": 120
+      }
+    },
+    {
+      "family": "training",
+      "color": "purple",
+      "canvas": [
+        128,
+        128
+      ],
+      "bounds": {
+        "x": 4,
+        "y": 4,
+        "width": 120,
+        "height": 120
+      }
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "canvas": [
+        128,
+        128
+      ],
+      "bounds": {
+        "x": 4,
+        "y": 4,
+        "width": 120,
+        "height": 120
+      }
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "canvas": [
+        128,
+        128
+      ],
+      "bounds": {
+        "x": 4,
+        "y": 4,
+        "width": 120,
+        "height": 120
+      }
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "canvas": [
+        128,
+        128
+      ],
+      "bounds": {
+        "x": 4,
+        "y": 4,
+        "width": 120,
+        "height": 120
+      }
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "canvas": [
+        128,
+        128
+      ],
+      "bounds": {
+        "x": 4,
+        "y": 4,
+        "width": 120,
+        "height": 120
+      }
+    }
+  ],
+  "orcCoverage": [
+    {
+      "color": "red",
+      "size": 46,
+      "coloredFraction": 0.5346195188850631,
+      "outerBandColoredFraction": 0.4512657993254049
+    },
+    {
+      "color": "red",
+      "size": 100,
+      "coloredFraction": 0.5091635294117686,
+      "outerBandColoredFraction": 0.4194168627451012
+    },
+    {
+      "color": "red",
+      "size": 128,
+      "coloredFraction": 0.4796415441176504,
+      "outerBandColoredFraction": 0.39366909849877724
+    },
+    {
+      "color": "green",
+      "size": 46,
+      "coloredFraction": 0.43839097075503497,
+      "outerBandColoredFraction": 0.37288817228214804
+    },
+    {
+      "color": "green",
+      "size": 100,
+      "coloredFraction": 0.41418745098039544,
+      "outerBandColoredFraction": 0.3412596078431399
+    },
+    {
+      "color": "green",
+      "size": 128,
+      "coloredFraction": 0.40578996246936583,
+      "outerBandColoredFraction": 0.3336724973192427
+    },
+    {
+      "color": "yellow",
+      "size": 46,
+      "coloredFraction": 0.552044182512329,
+      "outerBandColoredFraction": 0.4429445123985359
+    },
+    {
+      "color": "yellow",
+      "size": 100,
+      "coloredFraction": 0.49855607843137634,
+      "outerBandColoredFraction": 0.39354627450980695
+    },
+    {
+      "color": "yellow",
+      "size": 128,
+      "coloredFraction": 0.4750248927696112,
+      "outerBandColoredFraction": 0.3791166417738997
+    },
+    {
+      "color": "purple",
+      "size": 46,
+      "coloredFraction": 0.46282478965121365,
+      "outerBandColoredFraction": 0.393973090181255
+    },
+    {
+      "color": "purple",
+      "size": 100,
+      "coloredFraction": 0.42727333333333656,
+      "outerBandColoredFraction": 0.3499274509803948
+    },
+    {
+      "color": "purple",
+      "size": 128,
+      "coloredFraction": 0.4072148341758608,
+      "outerBandColoredFraction": 0.33062385110294357
+    }
+  ],
+  "firstFrames": [
+    {
+      "family": "training",
+      "color": "red",
+      "animation": "idle",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "training",
+      "color": "red",
+      "animation": "land",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "training",
+      "color": "green",
+      "animation": "idle",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "training",
+      "color": "green",
+      "animation": "land",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "training",
+      "color": "yellow",
+      "animation": "idle",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "training",
+      "color": "yellow",
+      "animation": "land",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "training",
+      "color": "purple",
+      "animation": "idle",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "training",
+      "color": "purple",
+      "animation": "land",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "animation": "idle",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "animation": "land",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "animation": "idle",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "animation": "land",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "animation": "idle",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "animation": "land",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "animation": "idle",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "animation": "land",
+      "bounds": {
+        "x": 36,
+        "y": 36,
+        "width": 120,
+        "height": 120
+      },
+      "differingChannels": 0,
+      "maxChannelDelta": 0
+    }
+  ],
+  "specials": [
+    {
+      "name": "lightning",
+      "canvas": [
+        128,
+        128
+      ],
+      "bounds": {
+        "x": 6,
+        "y": 4,
+        "width": 115,
+        "height": 120
+      },
+      "transparentFraction": 0.64501953125,
+      "centerAlpha": 253
+    },
+    {
+      "name": "bomb",
+      "canvas": [
+        128,
+        128
+      ],
+      "bounds": {
+        "x": 13,
+        "y": 4,
+        "width": 102,
+        "height": 120
+      },
+      "transparentFraction": 0.5709228515625,
+      "centerAlpha": 252
+    },
+    {
+      "name": "rainbow",
+      "canvas": [
+        128,
+        128
+      ],
+      "bounds": {
+        "x": 4,
+        "y": 4,
+        "width": 120,
+        "height": 120
+      },
+      "transparentFraction": 0.14324951171875,
+      "centerAlpha": 253
+    }
+  ]
+}

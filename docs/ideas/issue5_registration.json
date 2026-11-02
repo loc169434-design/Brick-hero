@@ -1,0 +1,1948 @@
+{
+  "base": "0d24119f2dbd84ed024c46fd460f728549a68599",
+  "style": "Approved original adult hero: square jaw, broad grin, chestnut hair, slate tunic, red scarf, leather shoulder strap; no chibi variants.",
+  "records": [
+    {
+      "id": "hero_rookie",
+      "pose": "fresh_idle",
+      "file": "assets/characters/hero_rookie/fresh_idle.png",
+      "source": "exec-4ef6438b-bdaa-44e1-aa58-7e8f5b0505be.png",
+      "sourceSHA256": "bb78cfa1cb47c3caf8de6cdffb2d464c3fc16228c83899ae5e43962914c0915a",
+      "sourceBounds": {
+        "x": 50,
+        "y": 16,
+        "w": 1168,
+        "h": 1173
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 1168,
+        "h": 1173,
+        "x": 50,
+        "y": 16,
+        "cx": 561.6,
+        "cy": 634.5,
+        "area": 689408
+      },
+      "scale": 0.34044368600682595,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 71,
+        "y": 101,
+        "w": 398,
+        "h": 400,
+        "n": 81791,
+        "cx": 245.63652480101723,
+        "cy": 311.45751977601446
+      },
+      "hand": null,
+      "head": [
+        265,
+        165
+      ],
+      "mouth": [
+        271,
+        201
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "fresh_attack",
+      "file": "assets/characters/hero_rookie/fresh_attack.png",
+      "source": "exec-3c31ee66-7986-495c-83fb-010e6eaf0058.png",
+      "sourceSHA256": "834196d2bd18811f13d7564fe3f1608ef2dbd3af956b8cd45021279f32aadfab",
+      "sourceBounds": {
+        "x": 66,
+        "y": 39,
+        "w": 567,
+        "h": 542
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 567,
+        "h": 542,
+        "x": 66,
+        "y": 39,
+        "cx": 320.9,
+        "cy": 310,
+        "area": 143962
+      },
+      "scale": 0.7316341829085458,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 84,
+        "y": 103,
+        "w": 416,
+        "h": 398,
+        "n": 78526,
+        "cx": 271.33400402414486,
+        "cy": 301.7378957288032
+      },
+      "hand": null,
+      "head": [
+        307,
+        167
+      ],
+      "mouth": [
+        315,
+        207
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "fresh_hurt",
+      "file": "assets/characters/hero_rookie/fresh_hurt.png",
+      "source": "exec-3c31ee66-7986-495c-83fb-010e6eaf0058.png",
+      "sourceSHA256": "834196d2bd18811f13d7564fe3f1608ef2dbd3af956b8cd45021279f32aadfab",
+      "sourceBounds": {
+        "x": 751,
+        "y": 32,
+        "w": 522,
+        "h": 548
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 522,
+        "h": 548,
+        "x": 751,
+        "y": 32,
+        "cx": 982.1,
+        "cy": 321.1,
+        "area": 144201
+      },
+      "scale": 0.7294332723948812,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 51,
+        "y": 100,
+        "w": 382,
+        "h": 401,
+        "n": 78245,
+        "cx": 220.4325132596332,
+        "cy": 311.3866956355039
+      },
+      "hand": null,
+      "head": [
+        180,
+        159
+      ],
+      "mouth": [
+        189,
+        191
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "fresh_scared",
+      "file": "assets/characters/hero_rookie/fresh_scared.png",
+      "source": "exec-3c31ee66-7986-495c-83fb-010e6eaf0058.png",
+      "sourceSHA256": "834196d2bd18811f13d7564fe3f1608ef2dbd3af956b8cd45021279f32aadfab",
+      "sourceBounds": {
+        "x": 119,
+        "y": 626,
+        "w": 398,
+        "h": 539
+      },
+      "mainBounds": {
+        "id": 6,
+        "w": 398,
+        "h": 539,
+        "x": 119,
+        "y": 626,
+        "cx": 331,
+        "cy": 902.8,
+        "area": 134715
+      },
+      "scale": 0.741635687732342,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 103,
+        "y": 100,
+        "w": 296,
+        "h": 401,
+        "n": 75524,
+        "cx": 260.05555849796093,
+        "cy": 305.9504528361845
+      },
+      "hand": null,
+      "head": [
+        277,
+        165
+      ],
+      "mouth": [
+        287,
+        200
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "fresh_cheer",
+      "file": "assets/characters/hero_rookie/fresh_cheer.png",
+      "source": "exec-3c31ee66-7986-495c-83fb-010e6eaf0058.png",
+      "sourceSHA256": "834196d2bd18811f13d7564fe3f1608ef2dbd3af956b8cd45021279f32aadfab",
+      "sourceBounds": {
+        "x": 735,
+        "y": 617,
+        "w": 510,
+        "h": 549
+      },
+      "mainBounds": {
+        "id": 5,
+        "w": 510,
+        "h": 549,
+        "x": 735,
+        "y": 617,
+        "cx": 973.6,
+        "cy": 895.9,
+        "area": 149128
+      },
+      "scale": 0.7281021897810219,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 58,
+        "y": 100,
+        "w": 373,
+        "h": 401,
+        "n": 80685,
+        "cx": 232.82197434467372,
+        "cy": 303.4165582202392
+      },
+      "hand": null,
+      "head": [
+        240,
+        163
+      ],
+      "mouth": [
+        247,
+        200
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "bruised_idle",
+      "file": "assets/characters/hero_rookie/bruised_idle.png",
+      "source": "exec-3e7f26d5-8c6e-483e-8d20-6fc3189b9106.png",
+      "sourceSHA256": "5c320fe889710e7214700f554fb5b09d7a1582f7422565dd0f1a524f53435ae6",
+      "sourceBounds": {
+        "x": 23,
+        "y": 22,
+        "w": 488,
+        "h": 497
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 488,
+        "h": 497,
+        "x": 23,
+        "y": 22,
+        "cx": 246.4,
+        "cy": 286.1,
+        "area": 132495
+      },
+      "scale": 0.8044354838709677,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 60,
+        "y": 100,
+        "w": 394,
+        "h": 401,
+        "n": 87692,
+        "cx": 240.80326597637185,
+        "cy": 312.9624937280482
+      },
+      "hand": null,
+      "head": [
+        260,
+        165
+      ],
+      "mouth": [
+        272,
+        211
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "bruised_attack",
+      "file": "assets/characters/hero_rookie/bruised_attack.png",
+      "source": "exec-3e7f26d5-8c6e-483e-8d20-6fc3189b9106.png",
+      "sourceSHA256": "5c320fe889710e7214700f554fb5b09d7a1582f7422565dd0f1a524f53435ae6",
+      "sourceBounds": {
+        "x": 541,
+        "y": 8,
+        "w": 490,
+        "h": 510
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 490,
+        "h": 510,
+        "x": 541,
+        "y": 8,
+        "cx": 767.2,
+        "cy": 285.1,
+        "area": 113772
+      },
+      "scale": 0.8652482269503546,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 74,
+        "y": 58,
+        "w": 426,
+        "h": 443,
+        "n": 87083,
+        "cx": 271.1228598004203,
+        "cy": 298.29142312506457
+      },
+      "hand": null,
+      "head": [
+        307,
+        178
+      ],
+      "mouth": [
+        316,
+        226
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "bruised_hurt",
+      "file": "assets/characters/hero_rookie/bruised_hurt.png",
+      "source": "exec-3e7f26d5-8c6e-483e-8d20-6fc3189b9106.png",
+      "sourceSHA256": "5c320fe889710e7214700f554fb5b09d7a1582f7422565dd0f1a524f53435ae6",
+      "sourceBounds": {
+        "x": 1063,
+        "y": 49,
+        "w": 451,
+        "h": 471
+      },
+      "mainBounds": {
+        "id": 3,
+        "w": 451,
+        "h": 471,
+        "x": 1063,
+        "y": 49,
+        "cx": 1271.9,
+        "cy": 299.9,
+        "area": 115152
+      },
+      "scale": 0.8489361702127659,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 42,
+        "y": 99,
+        "w": 385,
+        "h": 402,
+        "n": 85060,
+        "cx": 220.80735951093345,
+        "cy": 313.00335057606395
+      },
+      "hand": null,
+      "head": [
+        190,
+        164
+      ],
+      "mouth": [
+        200,
+        200
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "bruised_scared",
+      "file": "assets/characters/hero_rookie/bruised_scared.png",
+      "source": "exec-3e7f26d5-8c6e-483e-8d20-6fc3189b9106.png",
+      "sourceSHA256": "5c320fe889710e7214700f554fb5b09d7a1582f7422565dd0f1a524f53435ae6",
+      "sourceBounds": {
+        "x": 56,
+        "y": 524,
+        "w": 406,
+        "h": 485
+      },
+      "mainBounds": {
+        "id": 12,
+        "w": 406,
+        "h": 485,
+        "x": 56,
+        "y": 524,
+        "cx": 274,
+        "cy": 778.3,
+        "area": 119910
+      },
+      "scale": 0.8243801652892562,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 81,
+        "y": 100,
+        "w": 335,
+        "h": 401,
+        "n": 82842,
+        "cx": 261.2904806740542,
+        "cy": 310.14236739817966
+      },
+      "hand": null,
+      "head": [
+        272,
+        165
+      ],
+      "mouth": [
+        284,
+        216
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "bruised_cheer",
+      "file": "assets/characters/hero_rookie/bruised_cheer.png",
+      "source": "exec-3e7f26d5-8c6e-483e-8d20-6fc3189b9106.png",
+      "sourceSHA256": "5c320fe889710e7214700f554fb5b09d7a1582f7422565dd0f1a524f53435ae6",
+      "sourceBounds": {
+        "x": 551,
+        "y": 529,
+        "w": 469,
+        "h": 480
+      },
+      "mainBounds": {
+        "id": 13,
+        "w": 469,
+        "h": 480,
+        "x": 551,
+        "y": 529,
+        "cx": 781.5,
+        "cy": 776.4,
+        "area": 135985
+      },
+      "scale": 0.8329853862212944,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 43,
+        "y": 100,
+        "w": 392,
+        "h": 401,
+        "n": 96482,
+        "cx": 235.97847266847702,
+        "cy": 306.3469248149914
+      },
+      "hand": null,
+      "head": [
+        257,
+        165
+      ],
+      "mouth": [
+        267,
+        210
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "battered_idle",
+      "file": "assets/characters/hero_rookie/battered_idle.png",
+      "source": "exec-cd6a9a7e-77f3-4d90-aa1d-a9bd6f38296a.png",
+      "sourceSHA256": "7da8db118654dbe20ffacc5248a55be99b67f40f65c1fbd0aff6653d17b04418",
+      "sourceBounds": {
+        "x": 25,
+        "y": 8,
+        "w": 487,
+        "h": 503
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 487,
+        "h": 503,
+        "x": 25,
+        "y": 8,
+        "cx": 246.9,
+        "cy": 273.8,
+        "area": 138642
+      },
+      "scale": 0.7948207171314741,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 79,
+        "y": 101,
+        "w": 389,
+        "h": 400,
+        "n": 89367,
+        "cx": 256.844159477212,
+        "cy": 311.6570098582251
+      },
+      "hand": null,
+      "head": [
+        283,
+        166
+      ],
+      "mouth": [
+        295,
+        218
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "battered_attack",
+      "file": "assets/characters/hero_rookie/battered_attack.png",
+      "source": "exec-cd6a9a7e-77f3-4d90-aa1d-a9bd6f38296a.png",
+      "sourceSHA256": "7da8db118654dbe20ffacc5248a55be99b67f40f65c1fbd0aff6653d17b04418",
+      "sourceBounds": {
+        "x": 523,
+        "y": 8,
+        "w": 503,
+        "h": 504
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 503,
+        "h": 504,
+        "x": 523,
+        "y": 8,
+        "cx": 750.4,
+        "cy": 261.1,
+        "area": 141393
+      },
+      "scale": 0.7932405566600398,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 74,
+        "y": 102,
+        "w": 401,
+        "h": 399,
+        "n": 90754,
+        "cx": 255.84942812438018,
+        "cy": 302.1441479163453
+      },
+      "hand": null,
+      "head": [
+        287,
+        166
+      ],
+      "mouth": [
+        298,
+        221
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "battered_hurt",
+      "file": "assets/characters/hero_rookie/battered_hurt.png",
+      "source": "exec-cd6a9a7e-77f3-4d90-aa1d-a9bd6f38296a.png",
+      "sourceSHA256": "7da8db118654dbe20ffacc5248a55be99b67f40f65c1fbd0aff6653d17b04418",
+      "sourceBounds": {
+        "x": 1045,
+        "y": 16,
+        "w": 477,
+        "h": 495
+      },
+      "mainBounds": {
+        "id": 3,
+        "w": 477,
+        "h": 495,
+        "x": 1045,
+        "y": 16,
+        "cx": 1274.4,
+        "cy": 283.2,
+        "area": 134173
+      },
+      "scale": 0.8076923076923077,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 44,
+        "y": 100,
+        "w": 386,
+        "h": 401,
+        "n": 89212,
+        "cx": 229.39273864502533,
+        "cy": 316.2985696991436
+      },
+      "hand": null,
+      "head": [
+        213,
+        165
+      ],
+      "mouth": [
+        222,
+        203
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "battered_scared",
+      "file": "assets/characters/hero_rookie/battered_scared.png",
+      "source": "exec-cd6a9a7e-77f3-4d90-aa1d-a9bd6f38296a.png",
+      "sourceSHA256": "7da8db118654dbe20ffacc5248a55be99b67f40f65c1fbd0aff6653d17b04418",
+      "sourceBounds": {
+        "x": 41,
+        "y": 516,
+        "w": 436,
+        "h": 497
+      },
+      "mainBounds": {
+        "id": 12,
+        "w": 436,
+        "h": 497,
+        "x": 41,
+        "y": 516,
+        "cx": 264.9,
+        "cy": 777.6,
+        "area": 132341
+      },
+      "scale": 0.8044354838709677,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 79,
+        "y": 102,
+        "w": 352,
+        "h": 399,
+        "n": 87162,
+        "cx": 259.5167389458709,
+        "cy": 311.95857139579175
+      },
+      "hand": null,
+      "head": [
+        269,
+        166
+      ],
+      "mouth": [
+        281,
+        218
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "battered_cheer",
+      "file": "assets/characters/hero_rookie/battered_cheer.png",
+      "source": "exec-cd6a9a7e-77f3-4d90-aa1d-a9bd6f38296a.png",
+      "sourceSHA256": "7da8db118654dbe20ffacc5248a55be99b67f40f65c1fbd0aff6653d17b04418",
+      "sourceBounds": {
+        "x": 532,
+        "y": 513,
+        "w": 490,
+        "h": 500
+      },
+      "mainBounds": {
+        "id": 11,
+        "w": 490,
+        "h": 500,
+        "x": 532,
+        "y": 513,
+        "cx": 773.6,
+        "cy": 765.9,
+        "area": 146397
+      },
+      "scale": 0.7995991983967936,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 52,
+        "y": 100,
+        "w": 392,
+        "h": 401,
+        "n": 95208,
+        "cx": 246.09443534156793,
+        "cy": 302.51567095202086
+      },
+      "hand": null,
+      "head": [
+        259,
+        165
+      ],
+      "mouth": [
+        272,
+        216
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "victory",
+      "file": "assets/characters/hero_rookie/victory.png",
+      "source": "exec-e365eb71-75e6-404f-83e8-9d2d4dffb84f.png",
+      "sourceSHA256": "3d9fb3a6d6d44af2b403887d9ecb2b79aaff2fa8ff29708e0d44d7be05ccf935",
+      "sourceBounds": {
+        "x": 43,
+        "y": 8,
+        "w": 814,
+        "h": 863
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 814,
+        "h": 863,
+        "x": 43,
+        "y": 8,
+        "cx": 414,
+        "cy": 468.6,
+        "area": 352959
+      },
+      "scale": 0.5260798481092769,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 39,
+        "y": 46,
+        "w": 429,
+        "h": 455,
+        "n": 99440,
+        "cx": 234.7831757843926,
+        "cy": 288.4028861625101
+      },
+      "hand": null,
+      "head": [
+        256,
+        151
+      ],
+      "mouth": [
+        259,
+        175
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "pose": "defeat",
+      "file": "assets/characters/hero_rookie/defeat.png",
+      "source": "exec-e365eb71-75e6-404f-83e8-9d2d4dffb84f.png",
+      "sourceSHA256": "3d9fb3a6d6d44af2b403887d9ecb2b79aaff2fa8ff29708e0d44d7be05ccf935",
+      "sourceBounds": {
+        "x": 923,
+        "y": 294,
+        "w": 815,
+        "h": 582
+      },
+      "mainBounds": {
+        "id": 3,
+        "w": 815,
+        "h": 582,
+        "x": 923,
+        "y": 294,
+        "cx": 1328.3,
+        "cy": 634.9,
+        "area": 286778
+      },
+      "scale": 0.5260798481092769,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 31,
+        "y": 194,
+        "w": 430,
+        "h": 307,
+        "n": 80553,
+        "cx": 245.111442156096,
+        "cy": 373.20232641863123
+      },
+      "hand": null,
+      "head": [
+        258,
+        261
+      ],
+      "mouth": [
+        264,
+        302
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "fresh_idle",
+      "file": "assets/characters/orc_shield/fresh_idle.png",
+      "source": "exec-23ca1924-e640-422a-97f9-0f817a7bd390.png",
+      "sourceSHA256": "61f09decf71003f35644e326ffa7ac0afa517469df822d69d960c14ac5660cf0",
+      "sourceBounds": {
+        "x": 104,
+        "y": 43,
+        "w": 1131,
+        "h": 1180
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 1131,
+        "h": 1180,
+        "x": 104,
+        "y": 43,
+        "cx": 719.1,
+        "cy": 662.8,
+        "area": 696147
+      },
+      "scale": 0.3384223918575064,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 47,
+        "y": 101,
+        "w": 383,
+        "h": 400,
+        "n": 81022,
+        "cx": 254.81824689590482,
+        "cy": 311.23891041939225
+      },
+      "hand": [
+        107,
+        310
+      ],
+      "head": [
+        235,
+        166
+      ],
+      "mouth": [
+        223,
+        211
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "fresh_attack",
+      "file": "assets/characters/orc_shield/fresh_attack.png",
+      "source": "exec-0a90760b-f0c4-4259-b183-656a9a6c425c.png",
+      "sourceSHA256": "ff336253aca0243d41094e354c8c545b8d1a493fde485bcafc7cbfe541971719",
+      "sourceBounds": {
+        "x": 33,
+        "y": 16,
+        "w": 631,
+        "h": 568
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 631,
+        "h": 568,
+        "x": 33,
+        "y": 16,
+        "cx": 361.3,
+        "cy": 315.3,
+        "area": 179057
+      },
+      "scale": 0.6594594594594595,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 12,
+        "y": 125,
+        "w": 417,
+        "h": 376,
+        "n": 79078,
+        "cx": 228.78125395179444,
+        "cy": 323.2806975391386
+      },
+      "hand": [
+        91,
+        319
+      ],
+      "head": [
+        204,
+        186
+      ],
+      "mouth": [
+        192,
+        229
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "fresh_hurt",
+      "file": "assets/characters/orc_shield/fresh_hurt.png",
+      "source": "exec-0a90760b-f0c4-4259-b183-656a9a6c425c.png",
+      "sourceSHA256": "ff336253aca0243d41094e354c8c545b8d1a493fde485bcafc7cbfe541971719",
+      "sourceBounds": {
+        "x": 702,
+        "y": 13,
+        "w": 576,
+        "h": 571
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 576,
+        "h": 571,
+        "x": 702,
+        "y": 13,
+        "cx": 1015,
+        "cy": 319.8,
+        "area": 174656
+      },
+      "scale": 0.7,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 35,
+        "y": 100,
+        "w": 405,
+        "h": 401,
+        "n": 86990,
+        "cx": 254.78671111622026,
+        "cy": 315.66480055178755
+      },
+      "hand": [
+        102,
+        318
+      ],
+      "head": [
+        270,
+        165
+      ],
+      "mouth": [
+        246,
+        205
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "fresh_scared",
+      "file": "assets/characters/orc_shield/fresh_scared.png",
+      "source": "exec-0a90760b-f0c4-4259-b183-656a9a6c425c.png",
+      "sourceSHA256": "ff336253aca0243d41094e354c8c545b8d1a493fde485bcafc7cbfe541971719",
+      "sourceBounds": {
+        "x": 36,
+        "y": 593,
+        "w": 598,
+        "h": 587
+      },
+      "mainBounds": {
+        "id": 3,
+        "w": 598,
+        "h": 587,
+        "x": 36,
+        "y": 593,
+        "cx": 350,
+        "cy": 910.3,
+        "area": 169155
+      },
+      "scale": 0.6808873720136519,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 17,
+        "y": 100,
+        "w": 409,
+        "h": 401,
+        "n": 79790,
+        "cx": 231.44476751472615,
+        "cy": 316.94827672640685
+      },
+      "hand": [
+        94,
+        312
+      ],
+      "head": [
+        234,
+        165
+      ],
+      "mouth": [
+        222,
+        210
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "fresh_cheer",
+      "file": "assets/characters/orc_shield/fresh_cheer.png",
+      "source": "exec-0a90760b-f0c4-4259-b183-656a9a6c425c.png",
+      "sourceSHA256": "ff336253aca0243d41094e354c8c545b8d1a493fde485bcafc7cbfe541971719",
+      "sourceBounds": {
+        "x": 690,
+        "y": 593,
+        "w": 600,
+        "h": 589
+      },
+      "mainBounds": {
+        "id": 4,
+        "w": 600,
+        "h": 589,
+        "x": 690,
+        "y": 593,
+        "cx": 1016.6,
+        "cy": 910,
+        "area": 187029
+      },
+      "scale": 0.6785714285714286,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 21,
+        "y": 100,
+        "w": 409,
+        "h": 401,
+        "n": 87586,
+        "cx": 243.31122553832805,
+        "cy": 315.9794259356518
+      },
+      "hand": [
+        95,
+        311
+      ],
+      "head": [
+        229,
+        165
+      ],
+      "mouth": [
+        217,
+        209
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "bruised_idle",
+      "file": "assets/characters/orc_shield/bruised_idle.png",
+      "source": "exec-5792a66e-a60d-4153-888f-a52c58461c79.png",
+      "sourceSHA256": "0a23e93a00e51b0fee2a95da136449bf66411832104e8d91a06fd382368ba25b",
+      "sourceBounds": {
+        "x": 16,
+        "y": 11,
+        "w": 510,
+        "h": 504
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 510,
+        "h": 504,
+        "x": 16,
+        "y": 11,
+        "cx": 303.5,
+        "cy": 282.2,
+        "area": 136317
+      },
+      "scale": 0.7932405566600398,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 25,
+        "y": 100,
+        "w": 405,
+        "h": 401,
+        "n": 87047,
+        "cx": 253.4988569393546,
+        "cy": 315.9616529001574
+      },
+      "hand": [
+        97,
+        318
+      ],
+      "head": [
+        224,
+        158
+      ],
+      "mouth": [
+        212,
+        203
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "bruised_attack",
+      "file": "assets/characters/orc_shield/bruised_attack.png",
+      "source": "exec-5792a66e-a60d-4153-888f-a52c58461c79.png",
+      "sourceSHA256": "0a23e93a00e51b0fee2a95da136449bf66411832104e8d91a06fd382368ba25b",
+      "sourceBounds": {
+        "x": 526,
+        "y": 13,
+        "w": 529,
+        "h": 502
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 529,
+        "h": 502,
+        "x": 526,
+        "y": 13,
+        "cx": 808.8,
+        "cy": 278.7,
+        "area": 137921
+      },
+      "scale": 0.7896440129449838,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 12,
+        "y": 103,
+        "w": 419,
+        "h": 398,
+        "n": 87345,
+        "cx": 235.83901768847673,
+        "cy": 313.93644742114606
+      },
+      "hand": [
+        89,
+        316
+      ],
+      "head": [
+        185,
+        161
+      ],
+      "mouth": [
+        173,
+        205
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "bruised_hurt",
+      "file": "assets/characters/orc_shield/bruised_hurt.png",
+      "source": "exec-5792a66e-a60d-4153-888f-a52c58461c79.png",
+      "sourceSHA256": "0a23e93a00e51b0fee2a95da136449bf66411832104e8d91a06fd382368ba25b",
+      "sourceBounds": {
+        "x": 1056,
+        "y": 15,
+        "w": 478,
+        "h": 500
+      },
+      "mainBounds": {
+        "id": 3,
+        "w": 478,
+        "h": 500,
+        "x": 1056,
+        "y": 15,
+        "cx": 1333.1,
+        "cy": 284,
+        "area": 130097
+      },
+      "scale": 0.7995991983967936,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 32,
+        "y": 100,
+        "w": 384,
+        "h": 401,
+        "n": 84495,
+        "cx": 254.27951949819516,
+        "cy": 315.9914906207468
+      },
+      "hand": [
+        98,
+        320
+      ],
+      "head": [
+        236,
+        165
+      ],
+      "mouth": [
+        244,
+        215
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "bruised_scared",
+      "file": "assets/characters/orc_shield/bruised_scared.png",
+      "source": "exec-5792a66e-a60d-4153-888f-a52c58461c79.png",
+      "sourceSHA256": "0a23e93a00e51b0fee2a95da136449bf66411832104e8d91a06fd382368ba25b",
+      "sourceBounds": {
+        "x": 21,
+        "y": 514,
+        "w": 505,
+        "h": 499
+      },
+      "mainBounds": {
+        "id": 6,
+        "w": 505,
+        "h": 499,
+        "x": 21,
+        "y": 514,
+        "cx": 303.9,
+        "cy": 785.5,
+        "area": 130503
+      },
+      "scale": 0.8012048192771084,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 19,
+        "y": 100,
+        "w": 405,
+        "h": 401,
+        "n": 85023,
+        "cx": 246.14879503193254,
+        "cy": 318.32854639332885
+      },
+      "hand": [
+        95,
+        318
+      ],
+      "head": [
+        268,
+        165
+      ],
+      "mouth": [
+        274,
+        205
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "bruised_cheer",
+      "file": "assets/characters/orc_shield/bruised_cheer.png",
+      "source": "exec-5792a66e-a60d-4153-888f-a52c58461c79.png",
+      "sourceSHA256": "0a23e93a00e51b0fee2a95da136449bf66411832104e8d91a06fd382368ba25b",
+      "sourceBounds": {
+        "x": 526,
+        "y": 513,
+        "w": 542,
+        "h": 501
+      },
+      "mainBounds": {
+        "id": 5,
+        "w": 542,
+        "h": 501,
+        "x": 526,
+        "y": 513,
+        "cx": 833.3,
+        "cy": 784.8,
+        "area": 142060
+      },
+      "scale": 0.768503937007874,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 12,
+        "y": 114,
+        "w": 418,
+        "h": 387,
+        "n": 85391,
+        "cx": 248.63338056703867,
+        "cy": 324.098265625183
+      },
+      "hand": [
+        95,
+        319
+      ],
+      "head": [
+        255,
+        176
+      ],
+      "mouth": [
+        243,
+        221
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "battered_idle",
+      "file": "assets/characters/orc_shield/battered_idle.png",
+      "source": "exec-67aabfe0-acef-4288-ae77-b067d357cf5b.png",
+      "sourceSHA256": "a6ba1dc4a28fd2b430cf02384b47c589874115253db7751c5be5b2da74285a10",
+      "sourceBounds": {
+        "x": 16,
+        "y": 6,
+        "w": 502,
+        "h": 509
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 502,
+        "h": 509,
+        "x": 16,
+        "y": 6,
+        "cx": 308.3,
+        "cy": 284,
+        "area": 141603
+      },
+      "scale": 0.7854330708661418,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 23,
+        "y": 100,
+        "w": 396,
+        "h": 401,
+        "n": 88631,
+        "cx": 253.08679807290903,
+        "cy": 319.1446897812278
+      },
+      "hand": [
+        96,
+        321
+      ],
+      "head": [
+        264,
+        165
+      ],
+      "mouth": [
+        252,
+        213
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "battered_attack",
+      "file": "assets/characters/orc_shield/battered_attack.png",
+      "source": "exec-67aabfe0-acef-4288-ae77-b067d357cf5b.png",
+      "sourceSHA256": "a6ba1dc4a28fd2b430cf02384b47c589874115253db7751c5be5b2da74285a10",
+      "sourceBounds": {
+        "x": 527,
+        "y": 6,
+        "w": 530,
+        "h": 509
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 530,
+        "h": 509,
+        "x": 527,
+        "y": 6,
+        "cx": 811.8,
+        "cy": 275.9,
+        "area": 140957
+      },
+      "scale": 0.782051282051282,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 13,
+        "y": 101,
+        "w": 415,
+        "h": 400,
+        "n": 87718,
+        "cx": 235.33167650881234,
+        "cy": 313.3377527987414
+      },
+      "hand": [
+        88,
+        319
+      ],
+      "head": [
+        226,
+        166
+      ],
+      "mouth": [
+        214,
+        214
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "battered_hurt",
+      "file": "assets/characters/orc_shield/battered_hurt.png",
+      "source": "exec-67aabfe0-acef-4288-ae77-b067d357cf5b.png",
+      "sourceSHA256": "a6ba1dc4a28fd2b430cf02384b47c589874115253db7751c5be5b2da74285a10",
+      "sourceBounds": {
+        "x": 1058,
+        "y": 6,
+        "w": 476,
+        "h": 509
+      },
+      "mainBounds": {
+        "id": 3,
+        "w": 476,
+        "h": 509,
+        "x": 1058,
+        "y": 6,
+        "cx": 1338.5,
+        "cy": 278.5,
+        "area": 132623
+      },
+      "scale": 0.7854330708661418,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 34,
+        "y": 100,
+        "w": 375,
+        "h": 401,
+        "n": 82985,
+        "cx": 254.53169849972886,
+        "cy": 314.8806169789721
+      },
+      "hand": [
+        101,
+        323
+      ],
+      "head": [
+        273,
+        165
+      ],
+      "mouth": [
+        246,
+        218
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "battered_scared",
+      "file": "assets/characters/orc_shield/battered_scared.png",
+      "source": "exec-67aabfe0-acef-4288-ae77-b067d357cf5b.png",
+      "sourceSHA256": "a6ba1dc4a28fd2b430cf02384b47c589874115253db7751c5be5b2da74285a10",
+      "sourceBounds": {
+        "x": 21,
+        "y": 513,
+        "w": 507,
+        "h": 501
+      },
+      "mainBounds": {
+        "id": 5,
+        "w": 507,
+        "h": 501,
+        "x": 21,
+        "y": 513,
+        "cx": 305.7,
+        "cy": 787.1,
+        "area": 133224
+      },
+      "scale": 0.798,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 19,
+        "y": 100,
+        "w": 405,
+        "h": 401,
+        "n": 86100,
+        "cx": 246.6268176538908,
+        "cy": 319.5453193960511
+      },
+      "hand": [
+        95,
+        322
+      ],
+      "head": [
+        270,
+        165
+      ],
+      "mouth": [
+        275,
+        210
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "battered_cheer",
+      "file": "assets/characters/orc_shield/battered_cheer.png",
+      "source": "exec-67aabfe0-acef-4288-ae77-b067d357cf5b.png",
+      "sourceSHA256": "a6ba1dc4a28fd2b430cf02384b47c589874115253db7751c5be5b2da74285a10",
+      "sourceBounds": {
+        "x": 526,
+        "y": 512,
+        "w": 537,
+        "h": 502
+      },
+      "mainBounds": {
+        "id": 4,
+        "w": 537,
+        "h": 502,
+        "x": 526,
+        "y": 512,
+        "cx": 830,
+        "cy": 785,
+        "area": 143998
+      },
+      "scale": 0.7625,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 12,
+        "y": 117,
+        "w": 411,
+        "h": 384,
+        "n": 84995,
+        "cx": 244.31543031943056,
+        "cy": 326.00400023530796
+      },
+      "hand": [
+        94,
+        325
+      ],
+      "head": [
+        276,
+        179
+      ],
+      "mouth": [
+        264,
+        226
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "victory",
+      "file": "assets/characters/orc_shield/victory.png",
+      "source": "exec-584112ef-0916-4394-8d0c-1cb1cffa8221.png",
+      "sourceSHA256": "a46c6ae24e8db3c5f9184ed90b8f536d8e010899a990dcc4ee3dfe5052d402f8",
+      "sourceBounds": {
+        "x": 50,
+        "y": 7,
+        "w": 836,
+        "h": 849
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 836,
+        "h": 849,
+        "x": 50,
+        "y": 7,
+        "cx": 518,
+        "cy": 459.9,
+        "area": 370295
+      },
+      "scale": 0.4705188679245283,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 30,
+        "y": 101,
+        "w": 394,
+        "h": 400,
+        "n": 83164,
+        "cx": 250.09481265932374,
+        "cy": 314.4952743975759
+      },
+      "hand": [
+        99,
+        312
+      ],
+      "head": [
+        248,
+        166
+      ],
+      "mouth": [
+        236,
+        211
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "pose": "defeat",
+      "file": "assets/characters/orc_shield/defeat.png",
+      "source": "exec-584112ef-0916-4394-8d0c-1cb1cffa8221.png",
+      "sourceSHA256": "a46c6ae24e8db3c5f9184ed90b8f536d8e010899a990dcc4ee3dfe5052d402f8",
+      "sourceBounds": {
+        "x": 898,
+        "y": 183,
+        "w": 847,
+        "h": 696
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 632,
+        "h": 696,
+        "x": 1113,
+        "y": 183,
+        "cx": 1372.6,
+        "cy": 566.8,
+        "area": 262870
+      },
+      "scale": 0.46387832699619774,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 12,
+        "y": 177,
+        "w": 394,
+        "h": 324,
+        "n": 63370,
+        "cx": 218.19108410919995,
+        "cy": 365.08259428751774
+      },
+      "hand": null,
+      "head": [
+        213,
+        249
+      ],
+      "mouth": [
+        201,
+        301
+      ]
+    },
+    {
+      "id": "scarecrow",
+      "pose": "fresh_idle",
+      "file": "assets/characters/scarecrow/fresh_idle.png",
+      "source": "exec-7451fea6-668c-4d4c-a239-80168f71ad59.png",
+      "sourceSHA256": "54bdc1fca9b13ffdba6d5749ae37433688b056755df6b7591f09b67321b99c39",
+      "sourceBounds": {
+        "x": 54,
+        "y": 11,
+        "w": 348,
+        "h": 424
+      },
+      "mainBounds": {
+        "id": 1,
+        "w": 348,
+        "h": 424,
+        "x": 54,
+        "y": 11,
+        "cx": 232.9,
+        "cy": 182.4,
+        "area": 55475
+      },
+      "scale": 1.037825059101655,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 74,
+        "y": 59,
+        "w": 363,
+        "h": 442,
+        "n": 61555,
+        "cx": 260.6924539030136,
+        "cy": 238.2396718381935
+      },
+      "hand": null,
+      "head": [
+        263,
+        143
+      ],
+      "mouth": [
+        249,
+        174
+      ]
+    },
+    {
+      "id": "scarecrow",
+      "pose": "fresh_hurt",
+      "file": "assets/characters/scarecrow/fresh_hurt.png",
+      "source": "exec-7451fea6-668c-4d4c-a239-80168f71ad59.png",
+      "sourceSHA256": "54bdc1fca9b13ffdba6d5749ae37433688b056755df6b7591f09b67321b99c39",
+      "sourceBounds": {
+        "x": 530,
+        "y": 16,
+        "w": 342,
+        "h": 419
+      },
+      "mainBounds": {
+        "id": 4,
+        "w": 326,
+        "h": 419,
+        "x": 530,
+        "y": 16,
+        "cx": 696.5,
+        "cy": 188,
+        "area": 54801
+      },
+      "scale": 1.037825059101655,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 123,
+        "y": 64,
+        "w": 357,
+        "h": 437,
+        "n": 62428,
+        "cx": 299.4323540718908,
+        "cy": 245.1212757096175
+      },
+      "hand": null,
+      "head": [
+        309,
+        147
+      ],
+      "mouth": [
+        285,
+        178
+      ]
+    },
+    {
+      "id": "scarecrow",
+      "pose": "bruised_idle",
+      "file": "assets/characters/scarecrow/bruised_idle.png",
+      "source": "exec-7451fea6-668c-4d4c-a239-80168f71ad59.png",
+      "sourceSHA256": "54bdc1fca9b13ffdba6d5749ae37433688b056755df6b7591f09b67321b99c39",
+      "sourceBounds": {
+        "x": 945,
+        "y": 11,
+        "w": 346,
+        "h": 424
+      },
+      "mainBounds": {
+        "id": 2,
+        "w": 346,
+        "h": 424,
+        "x": 945,
+        "y": 11,
+        "cx": 1121.3,
+        "cy": 186.2,
+        "area": 55193
+      },
+      "scale": 1.037825059101655,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 77,
+        "y": 59,
+        "w": 361,
+        "h": 442,
+        "n": 61300,
+        "cx": 261.00460032626427,
+        "cy": 242.42665579119085
+      },
+      "hand": null,
+      "head": [
+        265,
+        143
+      ],
+      "mouth": [
+        251,
+        174
+      ]
+    },
+    {
+      "id": "scarecrow",
+      "pose": "bruised_hurt",
+      "file": "assets/characters/scarecrow/bruised_hurt.png",
+      "source": "exec-7451fea6-668c-4d4c-a239-80168f71ad59.png",
+      "sourceSHA256": "54bdc1fca9b13ffdba6d5749ae37433688b056755df6b7591f09b67321b99c39",
+      "sourceBounds": {
+        "x": 1421,
+        "y": 13,
+        "w": 332,
+        "h": 422
+      },
+      "mainBounds": {
+        "id": 3,
+        "w": 315,
+        "h": 422,
+        "x": 1421,
+        "y": 13,
+        "cx": 1581,
+        "cy": 188.3,
+        "area": 53711
+      },
+      "scale": 1.037825059101655,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 127,
+        "y": 61,
+        "w": 347,
+        "h": 440,
+        "n": 61774,
+        "cx": 297.02782724123415,
+        "cy": 246.21033120730405
+      },
+      "hand": null,
+      "head": [
+        307,
+        145
+      ],
+      "mouth": [
+        283,
+        175
+      ]
+    },
+    {
+      "id": "scarecrow",
+      "pose": "battered_idle",
+      "file": "assets/characters/scarecrow/battered_idle.png",
+      "source": "exec-7451fea6-668c-4d4c-a239-80168f71ad59.png",
+      "sourceSHA256": "54bdc1fca9b13ffdba6d5749ae37433688b056755df6b7591f09b67321b99c39",
+      "sourceBounds": {
+        "x": 54,
+        "y": 453,
+        "w": 308,
+        "h": 424
+      },
+      "mainBounds": {
+        "id": 17,
+        "w": 308,
+        "h": 424,
+        "x": 54,
+        "y": 453,
+        "cx": 222,
+        "cy": 626.2,
+        "area": 53971
+      },
+      "scale": 1.037825059101655,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 74,
+        "y": 59,
+        "w": 322,
+        "h": 442,
+        "n": 60012,
+        "cx": 249.47673798573618,
+        "cy": 240.1510531227088
+      },
+      "hand": null,
+      "head": [
+        241,
+        143
+      ],
+      "mouth": [
+        227,
+        174
+      ]
+    },
+    {
+      "id": "scarecrow",
+      "pose": "battered_hurt",
+      "file": "assets/characters/scarecrow/battered_hurt.png",
+      "source": "exec-7451fea6-668c-4d4c-a239-80168f71ad59.png",
+      "sourceSHA256": "54bdc1fca9b13ffdba6d5749ae37433688b056755df6b7591f09b67321b99c39",
+      "sourceBounds": {
+        "x": 530,
+        "y": 463,
+        "w": 308,
+        "h": 414
+      },
+      "mainBounds": {
+        "id": 18,
+        "w": 294,
+        "h": 414,
+        "x": 530,
+        "y": 463,
+        "cx": 686.4,
+        "cy": 628.5,
+        "area": 52353
+      },
+      "scale": 1.037825059101655,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 123,
+        "y": 69,
+        "w": 322,
+        "h": 432,
+        "n": 60146,
+        "cx": 290.0468194061118,
+        "cy": 244.9726665114887
+      },
+      "hand": null,
+      "head": [
+        290,
+        151
+      ],
+      "mouth": [
+        266,
+        181
+      ]
+    },
+    {
+      "id": "scarecrow",
+      "pose": "defeat",
+      "file": "assets/characters/scarecrow/defeat.png",
+      "source": "exec-7451fea6-668c-4d4c-a239-80168f71ad59.png",
+      "sourceSHA256": "54bdc1fca9b13ffdba6d5749ae37433688b056755df6b7591f09b67321b99c39",
+      "sourceBounds": {
+        "x": 898,
+        "y": 702,
+        "w": 419,
+        "h": 171
+      },
+      "mainBounds": {
+        "id": 22,
+        "w": 419,
+        "h": 171,
+        "x": 898,
+        "y": 702,
+        "cx": 1093.7,
+        "cy": 805.8,
+        "area": 42268
+      },
+      "scale": 1.037825059101655,
+      "footProjection": [
+        256,
+        500
+      ],
+      "visibleBounds": {
+        "x": 31,
+        "y": 321,
+        "w": 437,
+        "h": 180,
+        "n": 47316,
+        "cx": 235.76682306196636,
+        "cy": 429.7942767774114
+      },
+      "hand": null,
+      "head": [
+        140,
+        420
+      ],
+      "mouth": [
+        132,
+        440
+      ]
+    }
+  ],
+  "shield": [
+    95,
+    319
+  ],
+  "shieldSize": [
+    154,
+    196
+  ]
+}

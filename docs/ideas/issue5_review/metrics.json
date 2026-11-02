@@ -1,0 +1,973 @@
+{
+  "checks": 454,
+  "base": "0d24119f2dbd84ed024c46fd460f728549a68599",
+  "characterPoseCount": 41,
+  "shieldCount": 4,
+  "backgroundCount": 2,
+  "fxCount": 5,
+  "gameDisplayCanvas": 360,
+  "feet": [
+    256,
+    500
+  ],
+  "shield": [
+    95,
+    319
+  ],
+  "poses": [
+    {
+      "id": "hero_rookie",
+      "stem": "fresh_idle",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 81791,
+      "bounds": [
+        71,
+        101,
+        398,
+        400
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "fresh_attack",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 78526,
+      "bounds": [
+        84,
+        103,
+        416,
+        398
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "fresh_hurt",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 78245,
+      "bounds": [
+        51,
+        100,
+        382,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "fresh_scared",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 75524,
+      "bounds": [
+        103,
+        100,
+        296,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "fresh_cheer",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 80685,
+      "bounds": [
+        58,
+        100,
+        373,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "bruised_idle",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 87692,
+      "bounds": [
+        60,
+        100,
+        394,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "bruised_attack",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 87083,
+      "bounds": [
+        74,
+        58,
+        426,
+        443
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "bruised_hurt",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 85060,
+      "bounds": [
+        42,
+        99,
+        385,
+        402
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "bruised_scared",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 82842,
+      "bounds": [
+        81,
+        100,
+        335,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "bruised_cheer",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 96482,
+      "bounds": [
+        43,
+        100,
+        392,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "battered_idle",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 89367,
+      "bounds": [
+        79,
+        101,
+        389,
+        400
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "battered_attack",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 90754,
+      "bounds": [
+        74,
+        102,
+        401,
+        399
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "battered_hurt",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 89212,
+      "bounds": [
+        44,
+        100,
+        386,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "battered_scared",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 87162,
+      "bounds": [
+        79,
+        102,
+        352,
+        399
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "battered_cheer",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 95208,
+      "bounds": [
+        52,
+        100,
+        392,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "victory",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 99440,
+      "bounds": [
+        39,
+        46,
+        429,
+        455
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hero_rookie",
+      "stem": "defeat",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 80553,
+      "bounds": [
+        31,
+        194,
+        430,
+        307
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "fresh_idle",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 81022,
+      "bounds": [
+        47,
+        101,
+        383,
+        400
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "fresh_attack",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 79078,
+      "bounds": [
+        12,
+        125,
+        417,
+        376
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "fresh_hurt",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 86990,
+      "bounds": [
+        35,
+        100,
+        405,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "fresh_scared",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 79790,
+      "bounds": [
+        17,
+        100,
+        409,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "fresh_cheer",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 87586,
+      "bounds": [
+        21,
+        100,
+        409,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "bruised_idle",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 87047,
+      "bounds": [
+        25,
+        100,
+        405,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "bruised_attack",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 87345,
+      "bounds": [
+        12,
+        103,
+        419,
+        398
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "bruised_hurt",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 84495,
+      "bounds": [
+        32,
+        100,
+        384,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "bruised_scared",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 85023,
+      "bounds": [
+        19,
+        100,
+        405,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "bruised_cheer",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 85391,
+      "bounds": [
+        12,
+        114,
+        418,
+        387
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "battered_idle",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 88631,
+      "bounds": [
+        23,
+        100,
+        396,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "battered_attack",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 87718,
+      "bounds": [
+        13,
+        101,
+        415,
+        400
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "battered_hurt",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 82985,
+      "bounds": [
+        34,
+        100,
+        375,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "battered_scared",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 86100,
+      "bounds": [
+        19,
+        100,
+        405,
+        401
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "battered_cheer",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 84995,
+      "bounds": [
+        12,
+        117,
+        411,
+        384
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "victory",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 83164,
+      "bounds": [
+        30,
+        101,
+        394,
+        400
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "orc_shield",
+      "stem": "defeat",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 63370,
+      "bounds": [
+        12,
+        177,
+        394,
+        324
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "scarecrow",
+      "stem": "fresh_idle",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 61555,
+      "bounds": [
+        74,
+        59,
+        363,
+        442
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "scarecrow",
+      "stem": "fresh_hurt",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 62428,
+      "bounds": [
+        123,
+        64,
+        357,
+        437
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "scarecrow",
+      "stem": "bruised_idle",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 61300,
+      "bounds": [
+        77,
+        59,
+        361,
+        442
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "scarecrow",
+      "stem": "bruised_hurt",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 61774,
+      "bounds": [
+        127,
+        61,
+        347,
+        440
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "scarecrow",
+      "stem": "battered_idle",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 60012,
+      "bounds": [
+        74,
+        59,
+        322,
+        442
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "scarecrow",
+      "stem": "battered_hurt",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 60146,
+      "bounds": [
+        123,
+        69,
+        322,
+        432
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "scarecrow",
+      "stem": "defeat",
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 47316,
+      "bounds": [
+        31,
+        321,
+        437,
+        180
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "shields": [
+    {
+      "layer": 3,
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 24958,
+      "bounds": [
+        18,
+        221,
+        154,
+        196
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "layer": 2,
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 24941,
+      "bounds": [
+        18,
+        221,
+        154,
+        196
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "layer": 1,
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 21478,
+      "bounds": [
+        18,
+        221,
+        154,
+        196
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "layer": 0,
+      "width": 512,
+      "height": 512,
+      "alphaPixels": 0,
+      "bounds": null,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "backgrounds": [
+    {
+      "name": "training_field",
+      "width": 1080,
+      "height": 660,
+      "bottom90LumaStdDev": 2.035609158952972
+    },
+    {
+      "name": "orc_camp",
+      "width": 1080,
+      "height": 660,
+      "bottom90LumaStdDev": 2.266935543230798
+    }
+  ],
+  "fx": [
+    {
+      "name": "sweat",
+      "width": 128,
+      "height": 128,
+      "alphaPixels": 2994,
+      "bounds": [
+        6,
+        12,
+        116,
+        95
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "stars",
+      "width": 192,
+      "height": 96,
+      "alphaPixels": 1618,
+      "bounds": [
+        56,
+        8,
+        83,
+        71
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "sparkle",
+      "width": 128,
+      "height": 128,
+      "alphaPixels": 2002,
+      "bounds": [
+        6,
+        10,
+        112,
+        109
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "splinters",
+      "width": 256,
+      "height": 256,
+      "alphaPixels": 18604,
+      "bounds": [
+        6,
+        26,
+        241,
+        198
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "straw",
+      "width": 256,
+      "height": 256,
+      "alphaPixels": 15891,
+      "bounds": [
+        7,
+        6,
+        243,
+        222
+      ],
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

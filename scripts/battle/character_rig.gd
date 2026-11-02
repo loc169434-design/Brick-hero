@@ -257,15 +257,17 @@ func _draw_body() -> void:
 	else:
 		_draw_placeholder()
 	if shield_layers >= 0 and end_pose != &"defeat":
-		_draw_shield()
+		_draw_shield(texture == null)
 
 
-func _draw_shield() -> void:
+## `placeholder_body`: the stand-in plate only goes next to stand-in shapes. A drawn character
+## without shield art (the scarecrow) shows its shield in the health panel only.
+func _draw_shield(placeholder_body: bool) -> void:
 	var texture := _texture("shield_%d" % shield_layers)
 	if texture:
 		_body.draw_texture_rect(texture, Rect2(-_feet() * _scale(), Vector2(CANVAS, CANVAS) * _scale()), false)
 		return
-	if shield_layers == 0:
+	if shield_layers == 0 or not placeholder_body:
 		return
 	var center := _shield_point()
 	var plate := Rect2(center - Vector2(35, 80), Vector2(70, 160))

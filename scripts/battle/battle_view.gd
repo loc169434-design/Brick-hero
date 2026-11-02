@@ -23,6 +23,8 @@ const BAR_BACK := Color(0, 0, 0, 0.5)
 const SHIELD := Color(0.62, 0.42, 0.85)
 const GOLD := Color(0.98, 0.8, 0.25)
 const WARN := Color(0.95, 0.3, 0.25)
+const OUTLINE := Color(0.1, 0.07, 0.05)
+const OUTLINE_SIZE := 8
 
 var _state: BattleState
 var _background: Texture2D
@@ -216,11 +218,13 @@ func _draw_countdown(center: Vector2) -> void:
 		_draw_text_centered("SẮP ĐÁNH %d!" % _state.monster.attack, center + Vector2(-50, -55), 34, WARN.lightened(0.3))
 
 
+## Text sits on painted backgrounds, so it gets a dark outline to stay readable.
 func _draw_text(text: String, at: Vector2, font_size: int, color: Color) -> void:
-	_overlay.draw_string(ThemeDB.fallback_font, at, text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, color)
+	var font := ThemeDB.fallback_font
+	_overlay.draw_string_outline(font, at, text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, OUTLINE_SIZE, Color(OUTLINE, color.a))
+	_overlay.draw_string(font, at, text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, color)
 
 
 func _draw_text_centered(text: String, at: Vector2, font_size: int, color: Color) -> void:
-	var font := ThemeDB.fallback_font
-	var width := font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
-	_overlay.draw_string(font, at - Vector2(width / 2, 0), text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, color)
+	var width := ThemeDB.fallback_font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+	_draw_text(text, at - Vector2(width / 2, 0), font_size, color)

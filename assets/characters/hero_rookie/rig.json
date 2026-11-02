@@ -1,0 +1,183 @@
+{
+  "id": "hero_rookie",
+  "canvas": [
+    512,
+    512
+  ],
+  "feet": [
+    256,
+    500
+  ],
+  "anchors": {
+    "fresh_idle": {
+      "head": [
+        265,
+        165
+      ],
+      "mouth": [
+        271,
+        201
+      ]
+    },
+    "fresh_attack": {
+      "head": [
+        307,
+        167
+      ],
+      "mouth": [
+        315,
+        207
+      ]
+    },
+    "fresh_hurt": {
+      "head": [
+        180,
+        159
+      ],
+      "mouth": [
+        189,
+        191
+      ]
+    },
+    "fresh_scared": {
+      "head": [
+        277,
+        165
+      ],
+      "mouth": [
+        287,
+        200
+      ]
+    },
+    "fresh_cheer": {
+      "head": [
+        240,
+        163
+      ],
+      "mouth": [
+        247,
+        200
+      ]
+    },
+    "bruised_idle": {
+      "head": [
+        260,
+        165
+      ],
+      "mouth": [
+        272,
+        211
+      ]
+    },
+    "bruised_attack": {
+      "head": [
+        307,
+        178
+      ],
+      "mouth": [
+        316,
+        226
+      ]
+    },
+    "bruised_hurt": {
+      "head": [
+        190,
+        164
+      ],
+      "mouth": [
+        200,
+        200
+      ]
+    },
+    "bruised_scared": {
+      "head": [
+        272,
+        165
+      ],
+      "mouth": [
+        284,
+        216
+      ]
+    },
+    "bruised_cheer": {
+      "head": [
+        257,
+        165
+      ],
+      "mouth": [
+        267,
+        210
+      ]
+    },
+    "battered_idle": {
+      "head": [
+        283,
+        166
+      ],
+      "mouth": [
+        295,
+        218
+      ]
+    },
+    "battered_attack": {
+      "head": [
+        287,
+        166
+      ],
+      "mouth": [
+        298,
+        221
+      ]
+    },
+    "battered_hurt": {
+      "head": [
+        213,
+        165
+      ],
+      "mouth": [
+        222,
+        203
+      ]
+    },
+    "battered_scared": {
+      "head": [
+        269,
+        166
+      ],
+      "mouth": [
+        281,
+        218
+      ]
+    },
+    "battered_cheer": {
+      "head": [
+        259,
+        165
+      ],
+      "mouth": [
+        272,
+        216
+      ]
+    },
+    "victory": {
+      "head": [
+        256,
+        151
+      ],
+      "mouth": [
+        259,
+        175
+      ]
+    },
+    "defeat": {
+      "head": [
+        258,
+        261
+      ],
+      "mouth": [
+        264,
+        302
+      ]
+    }
+  }
+}

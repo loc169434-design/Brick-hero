@@ -1,0 +1,1471 @@
+{
+  "version": 1,
+  "colors": [
+    "red",
+    "green",
+    "yellow",
+    "purple"
+  ],
+  "colorLabels": [
+    "Đỏ · Tóc dựng",
+    "Xanh · Băng trán",
+    "Vàng · Mũ vá",
+    "Tím · Tai gập"
+  ],
+  "expressions": [
+    {
+      "name": "idle",
+      "x": 0,
+      "y": 0,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "blink",
+      "x": 128,
+      "y": 0,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "chuckle",
+      "x": 256,
+      "y": 0,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "laugh",
+      "x": 0,
+      "y": 128,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "fear",
+      "x": 128,
+      "y": 128,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "relief",
+      "x": 256,
+      "y": 128,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "scream",
+      "x": 0,
+      "y": 256,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "gloat",
+      "x": 128,
+      "y": 256,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hurt",
+      "x": 256,
+      "y": 256,
+      "width": 128,
+      "height": 128
+    }
+  ],
+  "expressionLabels": [
+    "Bình thường",
+    "Chớp mắt",
+    "Cười khúc khích",
+    "Cười lớn",
+    "Hoảng sợ",
+    "Thoát chết",
+    "Hét",
+    "Cười hiểm",
+    "Bị đau"
+  ],
+  "families": {
+    "training": {
+      "label": "Thao trường",
+      "animations": [
+        "idle",
+        "drop",
+        "land",
+        "combo",
+        "hurt",
+        "win",
+        "lose"
+      ]
+    },
+    "orc_shield": {
+      "label": "Orc đầu game",
+      "animations": [
+        "idle",
+        "drop",
+        "land",
+        "combo",
+        "hurt",
+        "taunt",
+        "fear",
+        "near_miss",
+        "gloat",
+        "death",
+        "win",
+        "lose"
+      ]
+    }
+  },
+  "animations": {
+    "idle": {
+      "label": "Chờ / chớp mắt",
+      "seconds": 2.4,
+      "loop": true,
+      "motion": "idle",
+      "poses": [
+        [
+          0,
+          0
+        ],
+        [
+          0.73,
+          1
+        ],
+        [
+          0.79,
+          0
+        ]
+      ]
+    },
+    "drop": {
+      "label": "Rơi → chạm đất",
+      "seconds": 0.85,
+      "motion": "drop",
+      "poses": [
+        [
+          0,
+          4
+        ],
+        [
+          0.64,
+          8
+        ],
+        [
+          0.86,
+          0
+        ]
+      ]
+    },
+    "land": {
+      "label": "Chạm đất / nảy",
+      "seconds": 0.65,
+      "motion": "land",
+      "poses": [
+        [
+          0,
+          8
+        ],
+        [
+          0.55,
+          0
+        ]
+      ]
+    },
+    "combo": {
+      "label": "Nổ combo",
+      "seconds": 1.2,
+      "motion": "burst",
+      "poses": [
+        [
+          0,
+          4
+        ],
+        [
+          0.22,
+          6
+        ]
+      ]
+    },
+    "hurt": {
+      "label": "Trúng đòn",
+      "seconds": 0.75,
+      "motion": "hurt",
+      "poses": [
+        [
+          0,
+          8
+        ],
+        [
+          0.7,
+          0
+        ]
+      ]
+    },
+    "taunt": {
+      "label": "Cười chọc sau lượt hụt",
+      "seconds": 1.7,
+      "motion": "laugh",
+      "poses": [
+        [
+          0,
+          2
+        ],
+        [
+          0.17,
+          3
+        ],
+        [
+          0.34,
+          2
+        ],
+        [
+          0.51,
+          3
+        ],
+        [
+          0.68,
+          2
+        ],
+        [
+          0.85,
+          0
+        ]
+      ]
+    },
+    "fear": {
+      "label": "Sợ combo / sắp chết",
+      "seconds": 1.2,
+      "motion": "fear",
+      "poses": [
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    "near_miss": {
+      "label": "Sợ → thoát chết → cười",
+      "seconds": 2.8,
+      "motion": "near_miss",
+      "poses": [
+        [
+          0,
+          4
+        ],
+        [
+          0.38,
+          5
+        ],
+        [
+          0.6,
+          2
+        ],
+        [
+          0.71,
+          3
+        ],
+        [
+          0.82,
+          2
+        ],
+        [
+          0.91,
+          3
+        ]
+      ]
+    },
+    "gloat": {
+      "label": "Người chơi sắp thua",
+      "seconds": 1.7,
+      "motion": "gloat",
+      "poses": [
+        [
+          0,
+          7
+        ],
+        [
+          0.55,
+          2
+        ],
+        [
+          0.7,
+          7
+        ]
+      ]
+    },
+    "death": {
+      "label": "Bị hạ / hét",
+      "seconds": 1.5,
+      "motion": "death",
+      "poses": [
+        [
+          0,
+          4
+        ],
+        [
+          0.14,
+          6
+        ]
+      ]
+    },
+    "win": {
+      "label": "Người chơi thắng",
+      "seconds": 1.8,
+      "motion": "win",
+      "poses": [
+        [
+          0,
+          4
+        ],
+        [
+          0.14,
+          6
+        ]
+      ]
+    },
+    "lose": {
+      "label": "Người chơi thua",
+      "seconds": 2,
+      "motion": "lose",
+      "poses": [
+        [
+          0,
+          7
+        ],
+        [
+          0.35,
+          3
+        ],
+        [
+          0.52,
+          2
+        ],
+        [
+          0.68,
+          3
+        ],
+        [
+          0.84,
+          7
+        ]
+      ]
+    }
+  },
+  "export": {
+    "cell": 192,
+    "columns": 8,
+    "defaultFrames": 24,
+    "sourceCell": 128,
+    "sourceColumns": 3
+  },
+  "eventMap": {
+    "piece_spawn": "drop",
+    "piece_landed": "land",
+    "cells_cleared": "combo",
+    "enemy_damaged": "hurt",
+    "no_clear_turn": "taunt",
+    "predicted_lethal_combo": "fear",
+    "enemy_survives_predicted_lethal": "near_miss",
+    "player_low_health": "gloat",
+    "enemy_defeated": "death",
+    "player_won": "win",
+    "player_lost": "lose"
+  },
+  "priority": [
+    "win",
+    "lose",
+    "death",
+    "combo",
+    "near_miss",
+    "fear",
+    "hurt",
+    "gloat",
+    "taunt",
+    "drop",
+    "land",
+    "idle"
+  ],
+  "notes": "Visual asset pack only. Event names are an integration contract, not implemented game logic. No recorded voice or music.",
+  "assetRoot": "res://",
+  "atlases": [
+    {
+      "family": "training",
+      "color": "red",
+      "animation": "idle",
+      "file": "assets/tiles/training/animations/red_idle.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 10,
+      "seconds": 2.4,
+      "loop": true
+    },
+    {
+      "family": "training",
+      "color": "red",
+      "animation": "drop",
+      "file": "assets/tiles/training/animations/red_drop.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 28.235294117647058,
+      "seconds": 0.85,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "red",
+      "animation": "land",
+      "file": "assets/tiles/training/animations/red_land.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 36.92307692307692,
+      "seconds": 0.65,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "red",
+      "animation": "combo",
+      "file": "assets/tiles/training/animations/red_combo.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 20,
+      "seconds": 1.2,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "red",
+      "animation": "hurt",
+      "file": "assets/tiles/training/animations/red_hurt.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 32,
+      "seconds": 0.75,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "red",
+      "animation": "win",
+      "file": "assets/tiles/training/animations/red_win.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 13.333333333333332,
+      "seconds": 1.8,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "red",
+      "animation": "lose",
+      "file": "assets/tiles/training/animations/red_lose.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 12,
+      "seconds": 2,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "green",
+      "animation": "idle",
+      "file": "assets/tiles/training/animations/green_idle.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 10,
+      "seconds": 2.4,
+      "loop": true
+    },
+    {
+      "family": "training",
+      "color": "green",
+      "animation": "drop",
+      "file": "assets/tiles/training/animations/green_drop.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 28.235294117647058,
+      "seconds": 0.85,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "green",
+      "animation": "land",
+      "file": "assets/tiles/training/animations/green_land.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 36.92307692307692,
+      "seconds": 0.65,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "green",
+      "animation": "combo",
+      "file": "assets/tiles/training/animations/green_combo.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 20,
+      "seconds": 1.2,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "green",
+      "animation": "hurt",
+      "file": "assets/tiles/training/animations/green_hurt.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 32,
+      "seconds": 0.75,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "green",
+      "animation": "win",
+      "file": "assets/tiles/training/animations/green_win.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 13.333333333333332,
+      "seconds": 1.8,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "green",
+      "animation": "lose",
+      "file": "assets/tiles/training/animations/green_lose.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 12,
+      "seconds": 2,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "yellow",
+      "animation": "idle",
+      "file": "assets/tiles/training/animations/yellow_idle.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 10,
+      "seconds": 2.4,
+      "loop": true
+    },
+    {
+      "family": "training",
+      "color": "yellow",
+      "animation": "drop",
+      "file": "assets/tiles/training/animations/yellow_drop.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 28.235294117647058,
+      "seconds": 0.85,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "yellow",
+      "animation": "land",
+      "file": "assets/tiles/training/animations/yellow_land.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 36.92307692307692,
+      "seconds": 0.65,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "yellow",
+      "animation": "combo",
+      "file": "assets/tiles/training/animations/yellow_combo.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 20,
+      "seconds": 1.2,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "yellow",
+      "animation": "hurt",
+      "file": "assets/tiles/training/animations/yellow_hurt.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 32,
+      "seconds": 0.75,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "yellow",
+      "animation": "win",
+      "file": "assets/tiles/training/animations/yellow_win.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 13.333333333333332,
+      "seconds": 1.8,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "yellow",
+      "animation": "lose",
+      "file": "assets/tiles/training/animations/yellow_lose.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 12,
+      "seconds": 2,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "purple",
+      "animation": "idle",
+      "file": "assets/tiles/training/animations/purple_idle.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 10,
+      "seconds": 2.4,
+      "loop": true
+    },
+    {
+      "family": "training",
+      "color": "purple",
+      "animation": "drop",
+      "file": "assets/tiles/training/animations/purple_drop.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 28.235294117647058,
+      "seconds": 0.85,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "purple",
+      "animation": "land",
+      "file": "assets/tiles/training/animations/purple_land.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 36.92307692307692,
+      "seconds": 0.65,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "purple",
+      "animation": "combo",
+      "file": "assets/tiles/training/animations/purple_combo.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 20,
+      "seconds": 1.2,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "purple",
+      "animation": "hurt",
+      "file": "assets/tiles/training/animations/purple_hurt.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 32,
+      "seconds": 0.75,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "purple",
+      "animation": "win",
+      "file": "assets/tiles/training/animations/purple_win.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 13.333333333333332,
+      "seconds": 1.8,
+      "loop": false
+    },
+    {
+      "family": "training",
+      "color": "purple",
+      "animation": "lose",
+      "file": "assets/tiles/training/animations/purple_lose.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 12,
+      "seconds": 2,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "animation": "idle",
+      "file": "assets/tiles/orc_shield/animations/red_idle.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 10,
+      "seconds": 2.4,
+      "loop": true
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "animation": "drop",
+      "file": "assets/tiles/orc_shield/animations/red_drop.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 28.235294117647058,
+      "seconds": 0.85,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "animation": "land",
+      "file": "assets/tiles/orc_shield/animations/red_land.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 36.92307692307692,
+      "seconds": 0.65,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "animation": "combo",
+      "file": "assets/tiles/orc_shield/animations/red_combo.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 20,
+      "seconds": 1.2,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "animation": "hurt",
+      "file": "assets/tiles/orc_shield/animations/red_hurt.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 32,
+      "seconds": 0.75,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "animation": "taunt",
+      "file": "assets/tiles/orc_shield/animations/red_taunt.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 14.117647058823529,
+      "seconds": 1.7,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "animation": "fear",
+      "file": "assets/tiles/orc_shield/animations/red_fear.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 20,
+      "seconds": 1.2,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "animation": "near_miss",
+      "file": "assets/tiles/orc_shield/animations/red_near_miss.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 8.571428571428571,
+      "seconds": 2.8,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "animation": "gloat",
+      "file": "assets/tiles/orc_shield/animations/red_gloat.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 14.117647058823529,
+      "seconds": 1.7,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "animation": "death",
+      "file": "assets/tiles/orc_shield/animations/red_death.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 16,
+      "seconds": 1.5,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "animation": "win",
+      "file": "assets/tiles/orc_shield/animations/red_win.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 13.333333333333332,
+      "seconds": 1.8,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "red",
+      "animation": "lose",
+      "file": "assets/tiles/orc_shield/animations/red_lose.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 12,
+      "seconds": 2,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "animation": "idle",
+      "file": "assets/tiles/orc_shield/animations/green_idle.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 10,
+      "seconds": 2.4,
+      "loop": true
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "animation": "drop",
+      "file": "assets/tiles/orc_shield/animations/green_drop.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 28.235294117647058,
+      "seconds": 0.85,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "animation": "land",
+      "file": "assets/tiles/orc_shield/animations/green_land.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 36.92307692307692,
+      "seconds": 0.65,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "animation": "combo",
+      "file": "assets/tiles/orc_shield/animations/green_combo.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 20,
+      "seconds": 1.2,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "animation": "hurt",
+      "file": "assets/tiles/orc_shield/animations/green_hurt.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 32,
+      "seconds": 0.75,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "animation": "taunt",
+      "file": "assets/tiles/orc_shield/animations/green_taunt.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 14.117647058823529,
+      "seconds": 1.7,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "animation": "fear",
+      "file": "assets/tiles/orc_shield/animations/green_fear.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 20,
+      "seconds": 1.2,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "animation": "near_miss",
+      "file": "assets/tiles/orc_shield/animations/green_near_miss.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 8.571428571428571,
+      "seconds": 2.8,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "animation": "gloat",
+      "file": "assets/tiles/orc_shield/animations/green_gloat.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 14.117647058823529,
+      "seconds": 1.7,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "animation": "death",
+      "file": "assets/tiles/orc_shield/animations/green_death.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 16,
+      "seconds": 1.5,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "animation": "win",
+      "file": "assets/tiles/orc_shield/animations/green_win.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 13.333333333333332,
+      "seconds": 1.8,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "green",
+      "animation": "lose",
+      "file": "assets/tiles/orc_shield/animations/green_lose.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 12,
+      "seconds": 2,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "animation": "idle",
+      "file": "assets/tiles/orc_shield/animations/yellow_idle.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 10,
+      "seconds": 2.4,
+      "loop": true
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "animation": "drop",
+      "file": "assets/tiles/orc_shield/animations/yellow_drop.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 28.235294117647058,
+      "seconds": 0.85,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "animation": "land",
+      "file": "assets/tiles/orc_shield/animations/yellow_land.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 36.92307692307692,
+      "seconds": 0.65,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "animation": "combo",
+      "file": "assets/tiles/orc_shield/animations/yellow_combo.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 20,
+      "seconds": 1.2,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "animation": "hurt",
+      "file": "assets/tiles/orc_shield/animations/yellow_hurt.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 32,
+      "seconds": 0.75,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "animation": "taunt",
+      "file": "assets/tiles/orc_shield/animations/yellow_taunt.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 14.117647058823529,
+      "seconds": 1.7,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "animation": "fear",
+      "file": "assets/tiles/orc_shield/animations/yellow_fear.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 20,
+      "seconds": 1.2,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "animation": "near_miss",
+      "file": "assets/tiles/orc_shield/animations/yellow_near_miss.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 8.571428571428571,
+      "seconds": 2.8,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "animation": "gloat",
+      "file": "assets/tiles/orc_shield/animations/yellow_gloat.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 14.117647058823529,
+      "seconds": 1.7,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "animation": "death",
+      "file": "assets/tiles/orc_shield/animations/yellow_death.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 16,
+      "seconds": 1.5,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "animation": "win",
+      "file": "assets/tiles/orc_shield/animations/yellow_win.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 13.333333333333332,
+      "seconds": 1.8,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "yellow",
+      "animation": "lose",
+      "file": "assets/tiles/orc_shield/animations/yellow_lose.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 12,
+      "seconds": 2,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "animation": "idle",
+      "file": "assets/tiles/orc_shield/animations/purple_idle.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 10,
+      "seconds": 2.4,
+      "loop": true
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "animation": "drop",
+      "file": "assets/tiles/orc_shield/animations/purple_drop.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 28.235294117647058,
+      "seconds": 0.85,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "animation": "land",
+      "file": "assets/tiles/orc_shield/animations/purple_land.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 36.92307692307692,
+      "seconds": 0.65,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "animation": "combo",
+      "file": "assets/tiles/orc_shield/animations/purple_combo.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 20,
+      "seconds": 1.2,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "animation": "hurt",
+      "file": "assets/tiles/orc_shield/animations/purple_hurt.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 32,
+      "seconds": 0.75,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "animation": "taunt",
+      "file": "assets/tiles/orc_shield/animations/purple_taunt.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 14.117647058823529,
+      "seconds": 1.7,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "animation": "fear",
+      "file": "assets/tiles/orc_shield/animations/purple_fear.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 20,
+      "seconds": 1.2,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "animation": "near_miss",
+      "file": "assets/tiles/orc_shield/animations/purple_near_miss.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 8.571428571428571,
+      "seconds": 2.8,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "animation": "gloat",
+      "file": "assets/tiles/orc_shield/animations/purple_gloat.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 14.117647058823529,
+      "seconds": 1.7,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "animation": "death",
+      "file": "assets/tiles/orc_shield/animations/purple_death.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 16,
+      "seconds": 1.5,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "animation": "win",
+      "file": "assets/tiles/orc_shield/animations/purple_win.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 13.333333333333332,
+      "seconds": 1.8,
+      "loop": false
+    },
+    {
+      "family": "orc_shield",
+      "color": "purple",
+      "animation": "lose",
+      "file": "assets/tiles/orc_shield/animations/purple_lose.png",
+      "width": 1536,
+      "height": 576,
+      "cell": 192,
+      "columns": 8,
+      "frames": 24,
+      "fps": 12,
+      "seconds": 2,
+      "loop": false
+    }
+  ],
+  "origin": {
+    "x": 96,
+    "y": 96
+  },
+  "fxAtlas": {
+    "file": "assets/fx/tile_reactions/effects.png",
+    "cell": 128,
+    "columns": 4,
+    "rows": 2
+  },
+  "frameFormat": "RGBA PNG; transparent; row-major; no external padding",
+  "playback": "Non-looping clips hold their final frame. Restart at frame 0 on a new event. Terminal events override taunts. Baked FX included."
+}

@@ -77,8 +77,12 @@ scripts/
     board_view.gd    vẽ ô, hoạt ảnh nổ/rơi
     board_input.gd   chạm, vuốt, bàn phím
   battle/
-    battle_manager.gd  nhận sự kiện xóa ô → tính sát thương, lượt quái
-    monster.gd         máu, khiên, đồng hồ, chiêu
+    battle_rules.gd    mọi con số trận đánh (sửa trong data/balance.tres)
+    monster_data.gd    một loại quái: máu, khiên, đòn đánh, đồng hồ, bộ gạch
+    battle_state.gd    luật trận đánh thuần, không dùng Node: ô xóa → sát thương, lượt quái
+    turn_report.gd     kết quả một lần thả, để hiển thị
+    battle_view.gd     vẽ anh hùng, quái, thanh máu, khiên, đồng hồ, số bay lên
+    battle_manager.gd  nối bảng chơi với trận đánh, kết thúc trận
   autoload/
     events.gd        kênh tín hiệu chung
     game_state.gd    vàng, nâng cấp (dùng sau)

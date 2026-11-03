@@ -18,4 +18,19 @@ Theo [comment duyệt và yêu cầu sửa](https://github.com/loc169434-design/
 
 ## Đăng issue
 
-Đang chờ kết quả gửi comment sau khi push.
+Đã push commit `5644e6b` lên `origin/art/anim-pilot`. Lệnh `gh issue comment 21 --repo loc169434-design/Brick-hero --body-file …` thất bại: `Post "https://api.github.com/graphql": Forbidden`. Comment chưa được đăng. Nội dung sẵn để đăng thủ công ở dưới.
+
+### Nội dung comment
+
+Đã sửa tiếp trên `art/anim-pilot` theo yêu cầu duyệt:
+
+- Chỉ đổi frame 4–5 của `hero_rookie/anim/fresh_attack.png`: bỏ kiếm dựng đứng, đưa lưỡi vào vệt cong từ trên-sau xuống trước; chuôi và tay ở đầu vệt.
+- Mười frame khác giữ nguyên từng pixel; tất cả `anim.json` giữ nguyên từng byte.
+- Đã xuất lại GIF 24 fps (500 ms/vòng), WebP và bản ghép phản ứng.
+
+[Ảnh phóng to frame 3–6](https://github.com/loc169434-design/Brick-hero/blob/art/anim-pilot/docs/ideas/anim_pilot_review/hero_attack_frames_03_06_zoom.png) · [GIF mới](https://github.com/loc169434-design/Brick-hero/blob/art/anim-pilot/docs/ideas/anim_pilot_review/hero_attack.gif) · [Đối chiếu pixel](https://github.com/loc169434-design/Brick-hero/blob/art/anim-pilot/docs/ideas/anim_pilot_review/smear_revision_checks.json)
+
+![Frame 3–6](https://github.com/loc169434-design/Brick-hero/blob/art/anim-pilot/docs/ideas/anim_pilot_review/hero_attack_frames_03_06_zoom.png?raw=true)
+
+![GIF chém mới](https://github.com/loc169434-design/Brick-hero/blob/art/anim-pilot/docs/ideas/anim_pilot_review/hero_attack.gif?raw=true)
+

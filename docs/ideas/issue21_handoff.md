@@ -31,7 +31,7 @@ GIF có palette chung để giảm nhấp nháy màu. Độ trễ được phân
 
 ## Trạng thái bàn giao
 
-GitHub API đọc issue trả Forbidden; quy cách đã được đọc qua trang issue. Sau khi push sẽ thử comment trực tiếp và tạo draft PR. Nếu API tiếp tục bị chặn, file này và thư mục review là bàn giao để người dùng/Claude đọc.
+Đã push bộ pilot lên art/anim-pilot tại commit 4284a10. Lần thử đăng comment vào #21 và tạo draft PR đều nhận lỗi `Post "https://api.github.com/graphql": Forbidden`. **Chưa đăng được comment và chưa tạo được PR.** Quy cách đã được đọc qua trang issue; file này và thư mục review là bàn giao để người dùng/Claude đọc và có thể đăng lại khi API dùng được.
 
 ## Danh sách file
 

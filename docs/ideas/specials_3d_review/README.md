@@ -35,4 +35,15 @@ Chưa kiểm trong Godot hoặc trên thiết bị thật, chưa thay lửa/đi�
 
 ## Trạng thái bàn giao
 
-Đang chuẩn bị commit/push và PR; sẽ cập nhật kết quả thực tế sau khi gửi.
+Đã push `art/specials-3d`, commit ảnh `456c0e8`, từ main `26b8800`. Lệnh `gh pr create` trả `Post "https://api.github.com/graphql": Forbidden`; PR **chưa được tạo**.
+
+[Tạo PR ảnh thủ công](https://github.com/loc169434-design/Brick-hero/compare/main...art/specials-3d?expand=1).
+
+Title: Art: dimensional bomb lightning star and looping idle FX
+
+### Nội dung PR
+
+Adds standalone dimensional bomb, four-way lightning and four-point star sprites with transparent backgrounds, plus registered fuse fire and electric/glint idle atlases. Includes the manifest, GIF, dark/light previews, file list and review page at docs/ideas/specials_3d_review/index.html.
+
+Validated: six RGBA8 PNGs, 128px frames, 8-column atlas layout, transparent frame borders/padding, warm fire at fuse tip (88,28), 12-frame/1000ms GIF and a stable shared palette. No existing assets or game code changed. Godot/device integration is pending; disable the existing procedural fuse when using the new overlay. Fusion and skill artwork waits for approval of the separate docs/hero-skills design.
+

@@ -28,6 +28,7 @@ func _ready() -> void:
 	if feel:
 		board.impact.connect(feel.impact)
 		battle_view.impact.connect(feel.impact)
+	board.orb_targets = battle_view.orb_targets()
 	_start()
 
 

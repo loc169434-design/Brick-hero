@@ -4,6 +4,10 @@ extends Node2D
 ## by round. Tiles come from the chosen theme in assets/tiles/ (see TileArt). Squares playing an
 ## animation are drawn by their sprite instead of by _draw(), so a cleared tile never shows
 ## through its own burst. Without art, each color falls back to a square with its own symbol.
+##
+## The board is never still (issue #17): it sits on a bright panel, idle tiles breathe and a
+## sheen sweeps across them, linked tiles lift and glow while sparks run along the link, and
+## cleared tiles shatter into light that flies up to the fight (orb_targets).
 
 signal move_finished(result: MoveResult)
 signal restarted
@@ -42,6 +46,26 @@ const SPECIAL_NAMES := {
 	Cell.Special.RAINBOW: "SAO",
 }
 const BOARD_BG := Color(0.1, 0.1, 0.15)
+## Where the board's surface art sits, relative to the board, which is placed at (50, 690):
+## the backdrop fills the screen below the fight (from y 660), the panel frames the 7×8 grid.
+const BACKDROP_AT := Vector2(-50, -30)
+const PANEL_AT := Vector2(-30, -30)
+const SURFACE_DIR := "res://assets/ui/"
+const SHINE_PATH := "res://assets/tiles/shine.png"
+const GLOW_OUTLINE_PATH := "res://assets/tiles/glow_outline.png"
+## The glow outline frames a 128 px tile on a 192 px canvas.
+const GLOW_OUTLINE_RATIO := 192.0 / 128.0
+## Idle tiles: how far they bob (pixels) and how fast; neighbors are a little out of step.
+const BREATH_LIFT := 2.5
+const BREATH_SPEED := 2.2
+## A sheen sweeps diagonally across the board once every this many seconds.
+const SHINE_PERIOD := 4.5
+const SHINE_TIME := 0.5
+## Linked tiles lift this far and grow this much.
+const LINK_LIFT := 8.0
+const LINK_GROW := 6.0
+## A round of clears sends at most this many orbs to the fight.
+const MAX_ORBS := 14
 const GRID_LINE := Color(1, 1, 1, 0.05)
 const TEXT := Color(0.92, 0.92, 0.96)
 const TEXT_DIM := Color(0.6, 0.6, 0.7)
@@ -87,14 +111,30 @@ var _sprite_layer: Node2D
 var _special_fx: SpecialFx
 ## Drawn above the sprites: the link being traced, popups and the end screen.
 var _overlay: Node2D
+## Tile shards (normal blend) and sparks, glows and orbs (added light).
+var _shards: TileParticles
+var _lights: TileParticles
+## Backdrop, panel and slot art for the current theme; missing pieces are skipped.
+var _surface := {}
+var _shine: Texture2D
+var _glow_outline: Texture2D
+var _time := 0.0
+## Where light from each tile color flies when cleared, in global coordinates, by
+## Cell.BlockColor. Colors without a target just burst in place.
+var orb_targets := {}
 
 
 func _ready() -> void:
 	_sprite_layer = Node2D.new()
 	add_child(_sprite_layer)
+	_shards = TileParticles.new()
+	add_child(_shards)
 	_special_fx = SpecialFx.new()
 	_special_fx.cell_size = CELL
 	add_child(_special_fx)
+	_lights = TileParticles.new()
+	_lights.additive = true
+	add_child(_lights)
 	_overlay = Node2D.new()
 	add_child(_overlay)
 	_overlay.draw.connect(_draw_overlay)
@@ -102,6 +142,9 @@ func _ready() -> void:
 		if ResourceLoader.exists(SPECIAL_PATHS[key]):
 			_special_textures[key] = load(SPECIAL_PATHS[key])
 	_art = TileArt.new(tile_theme)
+	_shine = load(SHINE_PATH) if ResourceLoader.exists(SHINE_PATH) else null
+	_glow_outline = load(GLOW_OUTLINE_PATH) if ResourceLoader.exists(GLOW_OUTLINE_PATH) else null
+	_load_surface()
 	new_game()
 
 
@@ -109,6 +152,8 @@ func new_game() -> void:
 	_generation += 1
 	_clear_sprites()
 	_special_fx.clear()
+	_shards.clear()
+	_lights.clear()
 	_flashing.clear()
 	_falling.clear()
 	path.clear()
@@ -160,6 +205,7 @@ func set_tile_theme(theme: String) -> void:
 		return
 	tile_theme = theme
 	_art = TileArt.new(theme)
+	_load_surface()
 	_clear_sprites()
 	_redraw()
 
@@ -167,6 +213,14 @@ func set_tile_theme(theme: String) -> void:
 func next_tile_theme() -> void:
 	var themes := TileArt.THEMES
 	set_tile_theme(themes[(themes.find(tile_theme) + 1) % themes.size()])
+
+
+func _load_surface() -> void:
+	_surface.clear()
+	for part in ["backdrop", "panel", "slot"]:
+		var art_path := "%sboard_%s_%s.png" % [SURFACE_DIR, part, tile_theme]
+		if ResourceLoader.exists(art_path):
+			_surface[part] = load(art_path)
 
 
 func board_size() -> Vector2:
@@ -265,6 +319,7 @@ func _replay(result: MoveResult, before: Dictionary) -> void:
 			else:
 				_flashing[step.cleared[i]] = true
 		_redraw()
+		_burst_into_light(step)
 		_feel_step(step, result.path.size())
 		_special_fx.play_step(step)
 		await get_tree().create_timer(burst if burst > 0.0 else FLASH_TIME).timeout
@@ -305,6 +360,20 @@ func _replay(result: MoveResult, before: Dictionary) -> void:
 	_busy = false
 	_redraw()
 	move_finished.emit(result)
+
+
+## Every cleared square shatters and flares in its color; some send an orb up to the fight.
+func _burst_into_light(step: ClearStep) -> void:
+	var orbs := 0
+	for i in step.cleared.size():
+		var cell: Cell = step.cleared_cells[i]
+		var center := (Vector2(step.cleared[i]) + Vector2(0.5, 0.5)) * CELL
+		var color: Color = BLOCK_COLORS.get(cell.color, STAR_LINK_COLOR)
+		_shards.shatter(center, color, 4)
+		_lights.flare(center, color, 0.8)
+		if orb_targets.has(cell.color) and orbs < MAX_ORBS:
+			_lights.orb(center, to_local(orb_targets[cell.color]), color.lightened(0.15), orbs * 0.03)
+			orbs += 1
 
 
 ## Sound and shake for one round going off: stronger for longer links, later rounds of a
@@ -419,6 +488,18 @@ func _snapshot() -> Dictionary:
 	return cells
 
 
+func _process(delta: float) -> void:
+	_time += delta
+	queue_redraw()
+	var points := PackedVector2Array()
+	for p in path:
+		points.append((Vector2(p) + Vector2(0.5, 0.5)) * CELL - Vector2(0, LINK_LIFT))
+	_lights.link_points = points
+	if not path.is_empty():
+		_lights.link_color = BLOCK_COLORS.get(Resolver.link_color(game.board, path), STAR_LINK_COLOR)
+		_overlay.queue_redraw()
+
+
 func _redraw() -> void:
 	queue_redraw()
 	if _overlay:
@@ -428,13 +509,7 @@ func _redraw() -> void:
 # --- drawing ---------------------------------------------------------------
 
 func _draw() -> void:
-	var size := board_size()
-	draw_rect(Rect2(Vector2.ZERO, size), BOARD_BG)
-	for x in range(1, game.board.columns):
-		draw_line(Vector2(x * CELL, 0), Vector2(x * CELL, size.y), GRID_LINE, 2)
-	for y in range(1, game.board.rows):
-		draw_line(Vector2(0, y * CELL), Vector2(size.x, y * CELL), GRID_LINE, 2)
-
+	_draw_surface()
 	for p: Vector2i in _shown:
 		if _sprites.has(p):
 			continue
@@ -446,9 +521,56 @@ func _draw() -> void:
 		var alpha := clampf(rect.end.y / CELL, 0.0, 1.0)
 		if alpha <= 0.0:
 			continue
+		if path.has(p):
+			rect = rect.grow(LINK_GROW)
+			rect.position.y -= LINK_LIFT * (1.0 + _link_pop * (1.0 if p == path[-1] else 0.0))
+		elif not _falling.has(p) and not _flashing.has(p) and not _finished:
+			# Breathing: each tile bobs a little out of step with its neighbors.
+			var breath := sin(_time * BREATH_SPEED + p.x * 0.7 + p.y * 0.45)
+			rect.position.y -= BREATH_LIFT * breath
+			rect = rect.grow(breath * 1.2)
 		_draw_cell(rect, _shown[p], alpha)
 		if _flashing.has(p):
 			draw_rect(rect.grow(-6), Color(1, 1, 1, 0.75))
+		elif not _falling.has(p):
+			_draw_shine(rect.grow(-3), p)
+
+
+## The bright panel the tiles sit in, or a dark grid without the art.
+func _draw_surface() -> void:
+	var size := board_size()
+	if _surface.has("backdrop"):
+		draw_texture(_surface["backdrop"], BACKDROP_AT)
+	if _surface.has("panel"):
+		draw_texture(_surface["panel"], PANEL_AT)
+	else:
+		draw_rect(Rect2(Vector2.ZERO, size), BOARD_BG)
+	if _surface.has("slot"):
+		for y in game.board.rows:
+			for x in game.board.columns:
+				draw_texture_rect(_surface["slot"], Rect2(Vector2(x, y) * CELL, Vector2(CELL, CELL)), false)
+	else:
+		for x in range(1, game.board.columns):
+			draw_line(Vector2(x * CELL, 0), Vector2(x * CELL, size.y), GRID_LINE, 2)
+		for y in range(1, game.board.rows):
+			draw_line(Vector2(0, y * CELL), Vector2(size.x, y * CELL), GRID_LINE, 2)
+
+
+## A glossy streak crossing the tile, part of a diagonal wave over the whole board. The
+## streak is clipped to the tile by drawing only the part of the texture still over it.
+func _draw_shine(rect: Rect2, p: Vector2i) -> void:
+	if not _shine:
+		return
+	var k := (fmod(_time, SHINE_PERIOD) - (p.x + p.y) * 0.06) / SHINE_TIME
+	if k <= 0.0 or k >= 1.0:
+		return
+	var shift := lerpf(-1.0, 1.0, k) * rect.size.x
+	var dest := Rect2(rect.position + Vector2(shift, 0), rect.size).intersection(rect)
+	if dest.size.x <= 0.0:
+		return
+	var texture_scale := _shine.get_width() / rect.size.x
+	var source := Rect2((dest.position - rect.position - Vector2(shift, 0)) * texture_scale, dest.size * texture_scale)
+	draw_texture_rect_region(_shine, dest, source, Color(1, 1, 1, 0.55 * sin(k * PI)))
 
 
 ## Above the tiles: the link being traced, its length and reward, popups, the end screen.
@@ -473,10 +595,15 @@ func _draw_link() -> void:
 	var color: Color = BLOCK_COLORS.get(color_index, STAR_LINK_COLOR)
 	var points := PackedVector2Array()
 	for p in path:
-		var center := (Vector2(p) + Vector2(0.5, 0.5)) * CELL
+		var center := (Vector2(p) + Vector2(0.5, 0.5)) * CELL - Vector2(0, LINK_LIFT)
 		points.append(center)
 		var puff := _link_pop * 10.0 if p == path[-1] else 0.0
-		_overlay.draw_rect(Rect2(Vector2(p) * CELL, Vector2(CELL, CELL)).grow(-4 + puff), Color(1, 1, 1, 0.9), false, 6)
+		if _glow_outline:
+			var glow := (CELL + LINK_GROW * 2 + puff) * GLOW_OUTLINE_RATIO
+			var pulse := 0.8 + 0.2 * sin(_time * 10.0)
+			_overlay.draw_texture_rect(_glow_outline, Rect2(center - Vector2(glow, glow) / 2, Vector2(glow, glow)), false, Color(color.lightened(0.35), pulse))
+		else:
+			_overlay.draw_rect(Rect2(Vector2(p) * CELL, Vector2(CELL, CELL)).grow(-4 + puff), Color(1, 1, 1, 0.9), false, 6)
 	if points.size() >= 2:
 		_overlay.draw_polyline(points, Color(0, 0, 0, 0.35), LINK_WIDTH + 10, true)
 		_overlay.draw_polyline(points, color.lightened(0.2), LINK_WIDTH, true)
@@ -492,7 +619,7 @@ func _draw_link() -> void:
 		label += "  →  %s" % SPECIAL_NAMES[kind]
 	elif count < game.rules.min_link:
 		label += "  (cần %d)" % game.rules.min_link
-	_draw_centered_text(label, Vector2(board_size().x / 2, board_size().y + 70), 52, TEXT if count >= game.rules.min_link else TEXT_DIM)
+	_draw_centered_text(label, Vector2(board_size().x / 2, board_size().y + 75), 52, TEXT if count >= game.rules.min_link else TEXT_DIM, 12)
 
 
 func _draw_cell(rect: Rect2, cell: Cell, alpha := 1.0) -> void:

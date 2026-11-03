@@ -35,7 +35,7 @@ const OUTLINE := Color(0.1, 0.07, 0.05)
 const OUTLINE_SIZE := 8
 
 var _state: BattleState
-var _background: Texture2D
+var _backdrop: ArenaBackdrop
 var _hero: CharacterRig
 var _monster: CharacterRig
 ## Drawn above the fighters.
@@ -52,6 +52,8 @@ var _trail_tween: Tween
 
 
 func _ready() -> void:
+	_backdrop = ArenaBackdrop.new()
+	add_child(_backdrop)
 	_hero = CharacterRig.new()
 	_hero.position = HERO_FEET
 	add_child(_hero)
@@ -68,8 +70,8 @@ func show_state(state: BattleState) -> void:
 	_state = state
 	_floaters.clear()
 	_hint = ""
-	var bg_path := "res://assets/bg/%s.png" % state.monster.background
-	_background = load(bg_path) if state.monster.background and ResourceLoader.exists(bg_path) else null
+	if _backdrop.background != state.monster.background:
+		_backdrop.load_background(state.monster.background)
 	_hero.setup(HERO_ID, 1)
 	_monster.setup(state.monster.id, -1, state.shield_layers() if state.monster.shield_layers > 0 else -1)
 	if _trail_tween:
@@ -77,6 +79,18 @@ func show_state(state: BattleState) -> void:
 	_hero_trail = state.hero_hp
 	_monster_trail = state.monster_hp
 	_redraw()
+
+
+## Where light from cleared tiles flies, by Cell.BlockColor, in global coordinates: red
+## charges the hero's sword, green the health bar, yellow the gold counter, purple the
+## monster's shield.
+func orb_targets() -> Dictionary:
+	return {
+		Cell.BlockColor.RED: to_global(HERO_FEET + Vector2(90, -190)),
+		Cell.BlockColor.GREEN: to_global(Vector2(40 + BAR_SIZE.x / 2, SIZE.y - 110 + BAR_SIZE.y / 2)),
+		Cell.BlockColor.YELLOW: to_global(Vector2(110, 145)),
+		Cell.BlockColor.PURPLE: to_global(MONSTER_FEET + Vector2(-110, -150)),
+	}
 
 
 func show_hint(text: String) -> void:
@@ -231,10 +245,9 @@ func _redraw() -> void:
 
 # --- drawing ---------------------------------------------------------------
 
+## Only shows when the encounter has no background art at all.
 func _draw() -> void:
-	if _background:
-		draw_texture_rect(_background, Rect2(Vector2.ZERO, SIZE), false)
-	else:
+	if not _state or not _state.monster.background:
 		draw_rect(Rect2(Vector2.ZERO, SIZE), BG)
 		draw_rect(Rect2(0, HERO_FEET.y, SIZE.x, SIZE.y - HERO_FEET.y), GROUND)
 

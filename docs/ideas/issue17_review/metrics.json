@@ -1,0 +1,74 @@
+{
+  "assets/ui/board_backdrop_orc_shield.png": {
+    "size": [
+      1080,
+      1260
+    ],
+    "mean_luminance": 0.831,
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  "assets/ui/board_backdrop_training.png": {
+    "size": [
+      1080,
+      1260
+    ],
+    "mean_luminance": 0.89,
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  "assets/ui/board_panel_orc_shield.png": {
+    "size": [
+      1040,
+      1180
+    ],
+    "mean_luminance": 0.902,
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  "assets/ui/board_panel_training.png": {
+    "size": [
+      1040,
+      1180
+    ],
+    "mean_luminance": 0.904,
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  "assets/ui/board_slot_orc_shield.png": {
+    "size": [
+      140,
+      140
+    ],
+    "mean_luminance": 0.89,
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  "assets/ui/board_slot_training.png": {
+    "size": [
+      140,
+      140
+    ],
+    "mean_luminance": 0.902,
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  "training_field": {
+    "exact_reconstruction": true
+  },
+  "orc_camp": {
+    "exact_reconstruction": true
+  }
+}

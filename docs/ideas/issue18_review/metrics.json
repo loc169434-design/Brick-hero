@@ -1,0 +1,854 @@
+{
+  "checked_pngs": 75,
+  "rig_pose_counts": {
+    "hero_rookie": 38,
+    "orc_shield": 30,
+    "scarecrow": 7
+  },
+  "comic_strings": {
+    "pow": "POW!",
+    "bam": "BAM!",
+    "wham": "WHAM!",
+    "bonk": "BONK!",
+    "clang": "CLANG!",
+    "crack": "CRACK!",
+    "zap": "ZAP!",
+    "boom": "BOOM!",
+    "whoosh": "WHOOSH!",
+    "thud": "THUD!",
+    "ouch": "OUCH!",
+    "heh": "HEH HEH!",
+    "combo": "COMBO!",
+    "critical": "CRITICAL!",
+    "ko": "K.O.!"
+  },
+  "crit_unique_frames": 8,
+  "hand_landmarks_to_review": [],
+  "files": [
+    {
+      "path": "assets/characters/hero_rookie/fresh_throw.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/fresh_leap.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/fresh_bash.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/fresh_kick.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/fresh_drink.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/fresh_dizzy.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/fresh_knocked.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/bruised_throw.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/bruised_leap.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/bruised_bash.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/bruised_kick.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/bruised_drink.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/bruised_dizzy.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/bruised_knocked.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/battered_throw.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/battered_leap.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/battered_bash.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/battered_kick.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/battered_drink.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/battered_dizzy.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rookie/battered_knocked.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/orc_shield/fresh_throw.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/orc_shield/fresh_charge.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/orc_shield/fresh_dodge.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/orc_shield/fresh_windup.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/orc_shield/bruised_throw.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/orc_shield/bruised_charge.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/orc_shield/bruised_dodge.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/orc_shield/bruised_windup.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/orc_shield/battered_throw.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/orc_shield/battered_charge.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/orc_shield/battered_dodge.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/orc_shield/battered_windup.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/orc_shield/bald.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/props/sword_fresh.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/props/sword_bruised.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/props/sword_battered.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/props/rock.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/props/club.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/props/orc_hat.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/props/scarecrow_hat.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/props/tooth.png",
+      "canvas": [
+        64,
+        64
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/props/coin.png",
+      "canvas": [
+        64,
+        64
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/injury/bump_human_1.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/injury/bump_human_2.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/injury/bump_human_3.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/injury/bump_orc_1.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/injury/bump_orc_2.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/injury/bump_orc_3.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/combat/slash.png",
+      "canvas": [
+        384,
+        384
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ]
+    },
+    {
+      "path": "assets/fx/combat/slash_crit.png",
+      "canvas": [
+        384,
+        384
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ]
+    },
+    {
+      "path": "assets/fx/combat/shockwave.png",
+      "canvas": [
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        251
+      ]
+    },
+    {
+      "path": "assets/fx/combat/dust_puff.png",
+      "canvas": [
+        256,
+        128
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ]
+    },
+    {
+      "path": "assets/fx/combat/speed_lines.png",
+      "canvas": [
+        1080,
+        660
+      ],
+      "alpha_extrema": [
+        0,
+        250
+      ]
+    },
+    {
+      "path": "assets/fx/combat/comic_burst_1.png",
+      "canvas": [
+        320,
+        240
+      ],
+      "alpha_extrema": [
+        0,
+        254
+      ]
+    },
+    {
+      "path": "assets/fx/combat/comic_burst_2.png",
+      "canvas": [
+        320,
+        240
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ]
+    },
+    {
+      "path": "assets/fx/combat/comic_burst_3.png",
+      "canvas": [
+        320,
+        240
+      ],
+      "alpha_extrema": [
+        0,
+        254
+      ]
+    },
+    {
+      "path": "assets/fx/combat/hero_eye_glint.png",
+      "canvas": [
+        1080,
+        300
+      ],
+      "alpha_extrema": [
+        0,
+        254
+      ]
+    },
+    {
+      "path": "assets/fx/combat/orc_eye_glare.png",
+      "canvas": [
+        1080,
+        300
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/pow.png",
+      "canvas": [
+        512,
+        320
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/bam.png",
+      "canvas": [
+        512,
+        320
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/wham.png",
+      "canvas": [
+        512,
+        320
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/bonk.png",
+      "canvas": [
+        512,
+        320
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/clang.png",
+      "canvas": [
+        512,
+        320
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/crack.png",
+      "canvas": [
+        512,
+        320
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/zap.png",
+      "canvas": [
+        512,
+        320
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/boom.png",
+      "canvas": [
+        512,
+        320
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/whoosh.png",
+      "canvas": [
+        512,
+        320
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/thud.png",
+      "canvas": [
+        512,
+        320
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/ouch.png",
+      "canvas": [
+        512,
+        320
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/heh.png",
+      "canvas": [
+        512,
+        320
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/combo.png",
+      "canvas": [
+        512,
+        320
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/critical.png",
+      "canvas": [
+        900,
+        360
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/fx/comic/ko.png",
+      "canvas": [
+        900,
+        360
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/tiles/crit_spark.png",
+      "canvas": [
+        1536,
+        192
+      ],
+      "alpha_extrema": [
+        0,
+        251
+      ]
+    }
+  ]
+}

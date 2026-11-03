@@ -139,15 +139,31 @@ func test_stars_wait_for_the_player_instead_of_completing_lines() -> void:
 	assert_true(Resolver.find_lines(board, BoardRules.new()).is_empty())
 
 
-func test_falling_lightning_in_a_line_goes_off() -> void:
+## Specials are wild and keep their color hidden, so like stars they wait for the player.
+func test_falling_lightning_does_not_complete_a_line() -> void:
 	var board := _board(5, [
 		"Y G Y G Y",
 		"G R R R R",
 	])
 	board.set_cell(Vector2i(2, 1), Cell.new(R, Cell.Special.LIGHTNING))
 	var step := Resolver.find_lines(board, BoardRules.new())
-	assert_true(step.triggered.has(Vector2i(2, 1)))
-	assert_eq(step.cleared.size(), 5 + 1, "row 1 and column 2")
+	assert_true(step.cleared.is_empty())
+
+
+func test_bomb_and_lightning_join_a_link_of_any_color() -> void:
+	var board := _board(4, [
+		"Y G Y G",
+		"G R P R",
+	])
+	board.set_cell(Vector2i(1, 1), Cell.new(P, Cell.Special.BOMB))
+	board.set_cell(Vector2i(2, 1), Cell.new(G, Cell.Special.LIGHTNING))
+	var game := LinkGame.new(BoardRules.new(), 1)
+	game.board = board
+	var path: Array[Vector2i] = [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)]
+	assert_true(game.is_valid(path), "green, a purple bomb, a green lightning")
+	path = [Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+	assert_true(game.is_valid(path), "two specials of different colors, then red")
+	assert_eq(Resolver.link_color(board, path), R)
 
 
 func test_lightning_next_to_bomb_fuses_into_a_wide_cross() -> void:

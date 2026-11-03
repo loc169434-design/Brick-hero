@@ -12,15 +12,8 @@ signal orb_landed(color: Color, at: Vector2)
 const DIR := "res://assets/fx/particles/"
 const GRAVITY := 1800.0
 const ORB_TIME := Vector2(0.45, 0.65)
-## Sparks that run along the link being traced.
-const LINK_SPARKS := 3
-const LINK_SPARK_SPEED := 1.6
 
 @export var additive := false
-
-## The link being traced, for the sparks running along it. Set by the board.
-var link_points := PackedVector2Array()
-var link_color := Color.WHITE
 
 var _textures := {}
 ## {"tex", "pos", "vel", "t", "life", "color", "size", "spin", "rot", "grow", "fade", "gravity"}
@@ -43,7 +36,6 @@ func _ready() -> void:
 func clear() -> void:
 	_particles.clear()
 	_orbs.clear()
-	link_points = PackedVector2Array()
 	queue_redraw()
 
 
@@ -111,25 +103,6 @@ func _draw() -> void:
 		var at := _orb_position(o)
 		_draw_mask("glow", at, 90, 0.0, o["color"])
 		_draw_mask("spark", at, 56, _time * 8.0, Color(1, 1, 1, 0.9))
-	if link_points.size() >= 2:
-		_draw_link_sparks()
-
-
-## Sparks chase each other along the traced link, start to end.
-func _draw_link_sparks() -> void:
-	var lengths := [0.0]
-	for i in range(1, link_points.size()):
-		lengths.append(lengths[-1] + link_points[i - 1].distance_to(link_points[i]))
-	var total: float = lengths[-1]
-	for s in LINK_SPARKS * (link_points.size() - 1):
-		var d := fmod(_time * LINK_SPARK_SPEED * 140.0 + s * 140.0 / LINK_SPARKS, total)
-		var i := 1
-		while i < lengths.size() - 1 and lengths[i] < d:
-			i += 1
-		var segment: float = lengths[i] - lengths[i - 1]
-		var at := link_points[i - 1].lerp(link_points[i], (d - lengths[i - 1]) / maxf(segment, 0.001))
-		_draw_mask("glow", at, 54, 0.0, Color(link_color, 0.8))
-		_draw_mask("spark", at, 34, _time * 6.0 + s, Color(1, 1, 1, 0.9))
 
 
 func _orb_position(o: Dictionary) -> Vector2:

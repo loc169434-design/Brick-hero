@@ -18,6 +18,8 @@ var family: String
 var _atlases := {}
 var _frames := {}
 var _tiles := {}
+## "red/fear" -> Texture2D or null
+var _expressions := {}
 
 
 func _init(p_family: String) -> void:
@@ -46,6 +48,18 @@ func tile(color: int) -> Texture2D:
 				_tiles[color] = load(path)
 				break
 	return _tiles[color]
+
+
+## A still face the theme's tile pulls (assets/tiles/<theme>/expressions/<color>_<pose>.png:
+## fear, scream, relief...), or null if the theme has none.
+func expression(color: int, pose: String) -> Texture2D:
+	if color < 0 or color >= COLOR_NAMES.size():
+		return null
+	var key := "%s/%s" % [COLOR_NAMES[color], pose]
+	if not _expressions.has(key):
+		var path := "res://assets/tiles/%s/expressions/%s_%s.png" % [family, COLOR_NAMES[color], pose]
+		_expressions[key] = load(path) if ResourceLoader.exists(path) else null
+	return _expressions[key]
 
 
 ## One SpriteFrames per color, shared by every sprite of that color; clips are added by ensure_clip.

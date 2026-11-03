@@ -7,6 +7,9 @@ extends Node2D
 ## Art: assets/fx/specials/<name>.png atlases, 8 frames to a row, listed in specials.json.
 ## Lightning, bomb and fusion art is gray so it can be tinted with the special's color;
 ## the star's is already rainbow. Missing art just plays nothing.
+##
+## Over the art, drawn in added light: the board flashes, shockwave rings spread from each
+## blast, a white-hot core runs down every lightning beam and rays spin out of the star.
 
 const DIR := "res://assets/fx/specials/"
 const MANIFEST := "specials.json"
@@ -20,6 +23,12 @@ var board_size := Vector2(980, 1120)
 var _manifest := {}
 ## name -> Texture2D, loaded on first use: the big atlases are several MiB of texture each.
 var _textures := {}
+## The atlas animations playing.
+var _sheets: Node2D
+## Drawn in added light above the sheets.
+var _light: Node2D
+## {"kind", "at", "t", "life", "color", ...} for each light shape still showing.
+var _shapes: Array[Dictionary] = []
 
 
 func _ready() -> void:
@@ -28,11 +37,73 @@ func _ready() -> void:
 		var json: JSON = load(path)
 		if json.data is Dictionary:
 			_manifest = json.data
+	_sheets = Node2D.new()
+	add_child(_sheets)
+	_light = Node2D.new()
+	var blend := CanvasItemMaterial.new()
+	blend.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+	_light.material = blend
+	_light.draw.connect(_draw_light)
+	add_child(_light)
 
 
 func clear() -> void:
-	for child in get_children():
+	for child in _sheets.get_children():
 		child.queue_free()
+	_shapes.clear()
+	_light.queue_redraw()
+
+
+func _process(delta: float) -> void:
+	if _shapes.is_empty():
+		return
+	for shape in _shapes:
+		shape["t"] += delta
+	_shapes = _shapes.filter(func(s: Dictionary) -> bool: return s["t"] < s["life"])
+	_light.queue_redraw()
+
+
+func _shape(kind: String, at: Vector2, life: float, color: Color, extra := {}) -> void:
+	var shape := {"kind": kind, "at": at, "t": 0.0, "life": life, "color": color}
+	shape.merge(extra)
+	_shapes.append(shape)
+
+
+## The board lights up for a moment, and a ring spreads from `at` with a white flash behind it.
+func _boom(at: Vector2, tint: Color, radius: float) -> void:
+	_shape("board", Vector2.ZERO, 0.16, Color(1, 1, 1, 0.22))
+	_shape("flash", at, 0.22, Color(1, 1, 0.92), {"radius": radius * 0.55})
+	_shape("ring", at, 0.42, tint, {"radius": radius, "width": 34.0})
+	_shape("ring", at, 0.3, Color.WHITE, {"radius": radius * 0.7, "width": 18.0})
+
+
+func _draw_light() -> void:
+	for shape in _shapes:
+		var k: float = shape["t"] / shape["life"]
+		var out := 1.0 - pow(1.0 - k, 3.0)
+		var color: Color = shape["color"]
+		var at: Vector2 = shape["at"]
+		match shape["kind"]:
+			"board":
+				_light.draw_rect(Rect2(Vector2.ZERO, board_size), Color(color, color.a * (1.0 - k)))
+			"flash":
+				_light.draw_circle(at, shape["radius"] * (0.6 + 0.6 * out), Color(color, 0.85 * (1.0 - k) * (1.0 - k)))
+			"ring":
+				var width: float = shape["width"] * (1.0 - k)
+				if width > 0.5:
+					_light.draw_arc(at, shape["radius"] * (0.15 + 0.85 * out), 0, TAU, 64, Color(color, 1.0 - k), width, true)
+			"beam":
+				# A white-hot core inside a wider glow in the beam's color, both thinning away.
+				var to: Vector2 = shape["to"]
+				_light.draw_line(at, to, Color(color, 0.6 * (1.0 - k)), 70.0 * (1.0 - out * 0.7))
+				_light.draw_line(at, to, Color(1, 1, 1, 1.0 - k), 22.0 * (1.0 - k))
+			"rays":
+				var spin: float = shape["spin"] + k * 1.4
+				for i in 12:
+					var direction := Vector2.from_angle(spin + i * TAU / 12)
+					var reach: float = shape["radius"] * out
+					var ray_color := Color(BoardView.BLOCK_COLORS[i % Cell.COLOR_COUNT].lightened(0.4), 1.0 - k)
+					_light.draw_line(at + direction * reach * 0.25, at + direction * reach, ray_color, 16.0 * (1.0 - k))
 
 
 ## Everything `step` set off. Squares that fused play the fusion instead of their own blast.
@@ -51,11 +122,15 @@ func play_step(step: ClearStep) -> void:
 		match cell.special:
 			Cell.Special.LIGHTNING:
 				_beams(p, 0, _tint(cell.color))
+				_boom(_center(p), _tint(cell.color), cell_size * 1.2)
 			Cell.Special.BOMB:
-				_play("bomb_blast", _center(p), _tint(cell.color))
+				_play("bomb_blast", _center(p), _tint(cell.color), 0.0, Vector2.ONE * 1.15)
+				_boom(_center(p), _tint(cell.color), cell_size * 2.2)
 			Cell.Special.RAINBOW:
 				_play("star_burst", _center(p))
 				_sparks(step, p)
+				_boom(_center(p), Color(1, 0.95, 0.7), cell_size * 2.0)
+				_shape("rays", _center(p), 0.5, Color.WHITE, {"radius": cell_size * 4.0, "spin": randf() * TAU})
 
 
 func _play_fusion(step: ClearStep, fusion: Dictionary) -> void:
@@ -69,9 +144,11 @@ func _play_fusion(step: ClearStep, fusion: Dictionary) -> void:
 			color = cell.color
 	var tint := _tint(color)
 	_play("fusion_flash", (_center(at) + _center(with)) / 2.0, tint, 0.0, Vector2.ONE * 1.4)
+	_boom(_center(at), tint, cell_size * 3.2)
 	if Cell.Special.RAINBOW in kinds:
 		_play("star_burst", _center(at))
 		_sparks(step, at)
+		_shape("rays", _center(at), 0.6, Color.WHITE, {"radius": cell_size * 6.0, "spin": randf() * TAU})
 	elif Cell.Special.LIGHTNING in kinds:
 		# Lightning with a bomb: a cross three squares wide.
 		_beams(at, 1, tint)
@@ -90,8 +167,10 @@ func _beams(p: Vector2i, half_width: int, tint: Color) -> void:
 		var column := (p.x + offset + 0.5) * cell_size
 		if row > 0.0 and row < board_size.y:
 			_beam_line(Vector2(0, row), Vector2.RIGHT, board_size.x, frame.x, tint)
+			_shape("beam", Vector2(0, row), 0.3, tint, {"to": Vector2(board_size.x, row)})
 		if column > 0.0 and column < board_size.x:
 			_beam_line(Vector2(column, 0), Vector2.DOWN, board_size.y, frame.x, tint)
+			_shape("beam", Vector2(column, 0), 0.3, tint, {"to": Vector2(column, board_size.y)})
 	_play("lightning_hub", _center(p), tint)
 
 
@@ -126,7 +205,7 @@ func _play(sheet: String, at: Vector2, tint := Color.WHITE, angle := 0.0, size :
 	sprite.rotation = angle
 	sprite.scale = size
 	sprite.modulate = tint
-	add_child(sprite)
+	_sheets.add_child(sprite)
 	var tween := sprite.create_tween()
 	tween.tween_method(func(f: float) -> void: sprite.frame = mini(int(f), frames - 1), 0.0, float(frames), frames / float(entry["fps"]))
 	tween.tween_callback(sprite.queue_free)

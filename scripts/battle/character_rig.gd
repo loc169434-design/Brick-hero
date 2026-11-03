@@ -10,8 +10,8 @@ extends Node2D
 ##
 ## Fight moves (issue #18): extra moods such as throw, leap, bash, kick, drink, dizzy, knocked
 ## (hero) or throw, charge, dodge, windup and the wearless bald (Orc) are just poses; the
-## battle view moves the body with dash_to(), hop_to(), squash() and knockback(). Bumps from
-## blows to the head stay on top of the head (the pose's "crown" anchor) for the whole fight.
+## battle view moves the body with dash_to(), hop_to(), squash() and knockback(). A blow to
+## the head spins stars around it (daze).
 
 enum Wear { FRESH, BRUISED, BATTERED }
 
@@ -22,10 +22,15 @@ const DEFAULT_FEET := Vector2(256, 500)
 const DEFAULT_HEAD := Vector2(256, 150)
 const DEFAULT_MOUTH := Vector2(256, 190)
 const FX_DIR := "res://assets/fx/battle/"
-const INJURY_DIR := "res://assets/fx/injury/"
-## A bump's 128 px canvas sits on the crown at this point.
-const BUMP_BASE := Vector2(64, 120)
-const MAX_BUMPS := 3
+## Mixes the body toward white by `flash`, keeping its outline.
+const FLASH_SHADER := """
+shader_type canvas_item;
+uniform float flash = 0.0;
+void fragment() {
+	vec4 c = texture(TEXTURE, UV) * COLOR;
+	COLOR = vec4(mix(c.rgb, vec3(1.0), flash), c.a);
+}
+"""
 ## Burst played when the character is hit, by character id.
 const HURT_FX := {"scarecrow": "straw"}
 ## Burst played when the character first looks battered: the rookie's wooden sword snaps.
@@ -40,17 +45,14 @@ var mood := &"idle"
 var end_pose := &""
 ## Shield layers left, or -1 for a character without a shield.
 var shield_layers := -1
-## Lumps on the head from blows to it this fight, 0..MAX_BUMPS.
-var bumps := 0
 
 var _rig := {}
 var _textures := {}
-## Bump art, kept loaded: a texture loaded inside a draw call is freed before it reaches the
-## screen and shows as a white box.
-var _bump_textures := {}
 ## Holds the pose drawing so lunges and shakes don't move the FX already in the air.
 var _body: Node2D
 var _motion: Tween
+var _flash_material: ShaderMaterial
+var _flash_tween: Tween
 ## Bumped by every new mood so an older mood's timer doesn't cut a newer one short.
 var _mood_serial := 0
 var _time := 0.0
@@ -62,6 +64,20 @@ func _ready() -> void:
 	_body = Node2D.new()
 	add_child(_body)
 	_body.draw.connect(_draw_body)
+	var shader := Shader.new()
+	shader.code = FLASH_SHADER
+	_flash_material = ShaderMaterial.new()
+	_flash_material.shader = shader
+	_body.material = _flash_material
+
+
+## The body goes solid white for an instant and fades back: the blow landed.
+func flash(seconds := 0.16) -> void:
+	if _flash_tween:
+		_flash_tween.kill()
+	_flash_material.set_shader_parameter("flash", 1.0)
+	_flash_tween = create_tween()
+	_flash_tween.tween_method(func(v: float) -> void: _flash_material.set_shader_parameter("flash", v), 1.0, 0.0, seconds).set_ease(Tween.EASE_IN)
 
 
 func setup(id: String, p_facing: int, layers := -1) -> void:
@@ -71,7 +87,6 @@ func setup(id: String, p_facing: int, layers := -1) -> void:
 	wear = Wear.FRESH
 	mood = &"idle"
 	end_pose = &""
-	bumps = 0
 	squash_scale = Vector2.ONE
 	_mood_serial += 1
 	_textures.clear()
@@ -190,11 +205,9 @@ func point(key: String) -> Vector2:
 	return _body.to_global(_anchor(key))
 
 
-## A new lump on the head, up to MAX_BUMPS.
-func add_bump() -> void:
-	bumps = mini(bumps + 1, MAX_BUMPS)
+## Stars spin around the head after a blow to it.
+func daze() -> void:
 	_spin_stars(0.8)
-	_body.queue_redraw()
 
 
 ## Moves the body to `offset` from the feet over `seconds`. Returns when it gets there.
@@ -338,22 +351,6 @@ func _draw_body() -> void:
 		_draw_placeholder()
 	if shield_layers >= 0 and end_pose != &"defeat" and mood != &"bald":
 		_draw_shield(texture == null)
-	if bumps > 0:
-		_draw_bump()
-
-
-func _draw_bump() -> void:
-	var kind := "orc" if character_id.begins_with("orc") else "human"
-	var path := "%sbump_%s_%d.png" % [INJURY_DIR, kind, bumps]
-	if not _bump_textures.has(path):
-		_bump_textures[path] = load(path) if ResourceLoader.exists(path) else null
-	var texture: Texture2D = _bump_textures[path]
-	var crown := _anchor("crown")
-	if texture:
-		var size := Vector2(128, 128) * _scale()
-		_body.draw_texture_rect(texture, Rect2(crown - BUMP_BASE * _scale(), size), false)
-	else:
-		_body.draw_circle(crown + Vector2(0, -8 - 6 * bumps), 10 + 6 * bumps, Color(0.95, 0.55, 0.55))
 
 
 ## `placeholder_body`: the stand-in plate only goes next to stand-in shapes. A drawn character

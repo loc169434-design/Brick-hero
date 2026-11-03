@@ -85,14 +85,14 @@
       512
     ],
     "frames": 12,
-    "unique_drawings": 7,
+    "unique_drawings": 8,
     "frame_sha256": [
       "1fb7af27bcb59d7192834c74b3aafb2286882a0c3e1ad0953624f398b30f4f6e",
       "1fb7af27bcb59d7192834c74b3aafb2286882a0c3e1ad0953624f398b30f4f6e",
       "6ab9798cbc73c55e8b2f053f9eae203c6210789ca00420a170c30695ebf390c7",
       "6ab9798cbc73c55e8b2f053f9eae203c6210789ca00420a170c30695ebf390c7",
-      "bb098b43f4e6415fa80bd2c67b20b67af5b1cb3b9ac21ee932975ef54d2cb7bf",
-      "bb098b43f4e6415fa80bd2c67b20b67af5b1cb3b9ac21ee932975ef54d2cb7bf",
+      "bfe4a2779bc701af8eec82b5077549cba394c790aa9707e6c51509bc71c33d01",
+      "d7518122ecf7193dcce209e3625cafdf0ac92bdf5ebadccf0c6890de597cfd82",
       "4a7cf1a0e4eac273e4817ba7aac3aea7edea858eaf8a6a2fbe1de0768472596c",
       "e8c640d24b4a662365342fa70f75dd30bde0160aa4e978f7bfedd7f21c5dc45e",
       "9ad708bb1fd99d7436382ec58706edfb2b595e0205d0de4bfc1d1f4abcb29004",
@@ -127,14 +127,14 @@
       ],
       [
         68,
-        84,
-        452,
+        81,
+        453,
         501
       ],
       [
         68,
-        84,
-        452,
+        55,
+        476,
         501
       ],
       [

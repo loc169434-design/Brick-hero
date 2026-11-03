@@ -2,6 +2,12 @@
 
 Bộ thử trên `art/anim-pilot`, từ main `0cd4159`. Chỉ thêm ảnh và tài liệu trong assets/ và docs/ideas/.
 
+## Sửa vệt kiếm ở frame 4–5
+
+Đã bỏ lưỡi kiếm dựng đứng, cho lưỡi kéo thành vệt cong từ trên-sau xuống trước; tay và chuôi nằm ở đầu vệt. Frame 5 có vệt dài hơn frame 4. Mười frame khác và toàn bộ anim.json giữ nguyên.
+
+[Ảnh phóng to frame 3–6](hero_attack_frames_03_06_zoom.png) · [Trước/sau](hero_attack_smear_before_after.png) · [Đối chiếu pixel](smear_revision_checks.json) · [Bàn giao bản sửa](smear_revision_notes.md)
+
 ## GIF để duyệt
 
 | Clip | Frame nguồn / tốc độ | GIF | WebP lossless |
@@ -36,7 +42,7 @@ Các preview dùng nền xanh đậm để soi alpha và đường biên. Atlas 
 
 Các tư thế được dựng offline từ nét vẽ gốc: tái sử dụng cùng một tay cầm kiếm và cùng texture kiếm, vẽ bù vùng áo bị che, biến dạng nhẹ thân/khăn và ghép phần mí mắt/biểu cảm. Mặt, mũ, hoa văn áo, thắt lưng và các chi tiết nguồn được giữ trong cùng một bộ hình; mỗi frame đã được baked vào atlas.
 
-Dùng khung giữ ở các đoạn phù hợp. Hero attack có 7 hình khác nhau trong 12 frame; Orc hurt có 5 hình trong 8 frame. Frame chạm 6 và theo đà 7 là hai hình riêng. Hurt 0–2 giật đầu, 3–5 lảo đảo/hồi tỉnh, 6–7 về đứng.
+Dùng khung giữ ở các đoạn phù hợp. Hero attack có 8 hình khác nhau trong 12 frame; Orc hurt có 5 hình trong 8 frame. Frame chạm 6 và theo đà 7 là hai hình riêng. Hurt 0–2 giật đầu, 3–5 lảo đảo/hồi tỉnh, 6–7 về đứng.
 
 Phần ủng/chân từ y=440 đến đáy canvas được khóa pixel giữa tất cả frame của mỗi nhân vật. Hero attack 10–11 và Orc hurt 6–7 khớp pixel với idle frame 0 của nhân vật tương ứng.
 

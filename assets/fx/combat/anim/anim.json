@@ -1,0 +1,11 @@
+{
+  "slash": {
+    "frames": 8,
+    "fps": 24,
+    "columns": 4,
+    "frame_size": [
+      384,
+      384
+    ]
+  }
+}

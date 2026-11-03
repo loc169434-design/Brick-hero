@@ -1,6 +1,15 @@
 extends "res://tests/test_case.gd"
 
 
+## The crowd is switched off in the game; these tests load it on purpose.
+func _arena(id: String) -> ArenaBackdrop:
+	ArenaBackdrop.crowd_enabled = true
+	var arena := ArenaBackdrop.new()
+	arena.load_background(id)
+	ArenaBackdrop.crowd_enabled = false
+	return arena
+
+
 func _spectators(arena: ArenaBackdrop) -> Array[Sprite2D]:
 	var result: Array[Sprite2D] = []
 	for node in arena.find_children("*", "Sprite2D", true, false):
@@ -11,8 +20,7 @@ func _spectators(arena: ArenaBackdrop) -> Array[Sprite2D]:
 
 func test_both_arenas_load_three_distant_spectators() -> void:
 	for id in ["training_field", "orc_camp"]:
-		var arena := ArenaBackdrop.new()
-		arena.load_background(id)
+		var arena := _arena(id)
 		var spectators := _spectators(arena)
 		assert_eq(spectators.size(), 3, id)
 		for sprite in spectators:
@@ -25,8 +33,7 @@ func test_both_arenas_load_three_distant_spectators() -> void:
 
 func test_reactions_expire_and_new_reactions_replace_them() -> void:
 	for id in ["training_field", "orc_camp"]:
-		var arena := ArenaBackdrop.new()
-		arena.load_background(id)
+		var arena := _arena(id)
 		arena.react_crowd(&"cheer", 0.2)
 		for sprite in _spectators(arena):
 			assert_true(sprite.texture.resource_path.ends_with("_cheer.png"))
@@ -42,3 +49,12 @@ func test_reactions_expire_and_new_reactions_replace_them() -> void:
 		for sprite in _spectators(arena):
 			assert_true(sprite.texture.resource_path.ends_with("_idle.png"))
 		arena.free()
+
+
+func test_crowd_is_off_by_default() -> void:
+	var arena := ArenaBackdrop.new()
+	arena.load_background("training_field")
+	assert_eq(_spectators(arena).size(), 0)
+	arena.react_crowd(&"cheer")
+	arena._process(0.1)
+	arena.free()

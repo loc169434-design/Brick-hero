@@ -20,6 +20,7 @@ func _expect(arena: ArenaBackdrop, folder: String, pose: String) -> void:
 		assert(sprite.scale.is_equal_approx(Vector2.ONE * 0.55))
 
 func _run() -> void:
+	ArenaBackdrop.crowd_enabled = true
 	var game: Node = load("res://scenes/main.tscn").instantiate()
 	root.add_child(game)
 	await process_frame

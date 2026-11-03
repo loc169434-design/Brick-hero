@@ -17,6 +17,9 @@ const FRAME_FPS := 8.0
 ## How far each layer slides at full pan, from layers.json when it says.
 const DEFAULT_PAN := {"sky": 0, "far": -12, "mid": 12, "ground": 20}
 
+## The cheering spectators from crowd.json. Off for now: the arena reads cleaner without them.
+static var crowd_enabled := false
+
 var background := ""
 var zoom := 1.0
 ## -1..1: which way the camera leans.
@@ -72,7 +75,8 @@ func load_background(id: String) -> void:
 				for i in 3:
 					_add_cloud(holder, dir + "cloud_%d.png" % (i + 1), i)
 			"mid":
-				_add_crowd(holder, crowd)
+				if crowd_enabled:
+					_add_crowd(holder, crowd)
 				# Animated scenery belongs to the mid layer so it moves with what it stands on.
 				for kind in ["flag", "smoke", "torch"]:
 					var spots: Variant = info.get(kind)

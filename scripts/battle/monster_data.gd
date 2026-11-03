@@ -13,6 +13,9 @@ extends Resource
 @export var attack := 10
 ## Moves between attacks.
 @export var countdown := 4
+## Every this many attacks is a critical one (BattleRules.monster_crit_multiplier), announced a
+## move ahead. 0: never.
+@export var crit_every := 0
 ## Which tile set the board uses during this fight (assets/tiles/<theme>/).
 @export var tile_theme := "training"
 ## Battle backdrop: assets/bg/<background>.png.

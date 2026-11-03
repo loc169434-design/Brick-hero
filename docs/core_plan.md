@@ -132,6 +132,7 @@ Quái và bùa sau này là file Resource (`.tres`), nên thêm quái mới ch�
 | **B4** | Trận đánh: hiệp sĩ, quái, máu, khiên, đồng hồ, thắng/thua | Xong (PR #4, #6). Ảnh nhân vật, nền, hiệu ứng thật ở PR #8 |
 | **Nối ô** | Bảng luôn đầy, vuốt nối, hàng tự nổ, ô đặc biệt theo độ dài nối | Xong (PR #7) |
 | **B3** | Cảm giác "đã tay": rung màn hình, âm thanh, chữ nảy | Xong (PR #11). Âm thanh đang là âm tổng hợp, chờ file thật |
+| **Đánh nhau có hồn** | Bảng sáng, nền đấu trường chuyển động, ô gạch "thở" và bắn hạt sáng lên trận; thế võ theo đường nối (chém, ném kiếm, nhảy đập, combo, húc khiên), Orc chọi đá/quăng chùy/húc và né cười gian, cục u, chữ truyện tranh tiếng Anh; chí mạng (ô chí mạng, 5% may mắn, Orc chí mạng mỗi 3 đòn có báo trước) | PR này (ảnh: issue #17, #18). Khán giả (#19) làm sau |
 | **B5** | Chơi thử và chỉnh số liệu | Đang làm (nhánh `core/balance-sim`). Bot mô phỏng và số đo ở mục 6. Đã chốt: hàng 4 tự nổ, Orc 60 máu, đánh 12 mỗi 3 lượt. Còn chơi thử trên điện thoại. Tự thấy muốn chơi thêm trận nữa thì mới làm bùa. |
 
 B3 gồm:

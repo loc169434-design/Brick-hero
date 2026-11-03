@@ -18,6 +18,14 @@ extends Resource
 ## Round n of a chain counts 1 + chain_step × (n - 1) times: x1, x2, x3…
 @export var chain_step := 1.0
 
+@export_group("Critical hits")
+## Red damage of a critical hit is multiplied by this.
+@export var crit_multiplier := 2.0
+## Chance of a critical hit on any move that deals red damage, on top of critical tiles.
+@export_range(0.0, 1.0) var crit_chance := 0.0
+## A monster's critical attack (MonsterData.crit_every) hits this many times harder.
+@export var monster_crit_multiplier := 1.5
+
 @export_group("Shield")
 ## Shield points per layer.
 @export var shield_layer_size := 10

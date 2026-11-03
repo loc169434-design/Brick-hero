@@ -53,6 +53,14 @@ const PANEL_AT := Vector2(-30, -30)
 const SURFACE_DIR := "res://assets/ui/"
 const SHINE_PATH := "res://assets/tiles/shine.png"
 const GLOW_OUTLINE_PATH := "res://assets/tiles/glow_outline.png"
+## Sparks around a critical tile: 8 frames of 192 px in a row, the 128 px tile in the middle.
+const CRIT_SPARK_PATH := "res://assets/tiles/crit_spark.png"
+const CRIT_SPARK_FRAMES := 8
+const CRIT_SPARK_FPS := 14.0
+## A link through a critical tile glows this color.
+const CRIT_LINK_COLOR := Color(1.0, 0.45, 0.1)
+## A critical tile's frame: gold, to stand out on its red face.
+const CRIT_FRAME_COLOR := Color(1.0, 0.86, 0.25)
 ## The glow outline frames a 128 px tile on a 192 px canvas.
 const GLOW_OUTLINE_RATIO := 192.0 / 128.0
 ## Idle tiles: how far they bob (pixels) and how fast; neighbors are a little out of step.
@@ -118,6 +126,7 @@ var _lights: TileParticles
 var _surface := {}
 var _shine: Texture2D
 var _glow_outline: Texture2D
+var _crit_spark: Texture2D
 var _time := 0.0
 ## Where light from each tile color flies when cleared, in global coordinates, by
 ## Cell.BlockColor. Colors without a target just burst in place.
@@ -144,6 +153,7 @@ func _ready() -> void:
 	_art = TileArt.new(tile_theme)
 	_shine = load(SHINE_PATH) if ResourceLoader.exists(SHINE_PATH) else null
 	_glow_outline = load(GLOW_OUTLINE_PATH) if ResourceLoader.exists(GLOW_OUTLINE_PATH) else null
+	_crit_spark = load(CRIT_SPARK_PATH) if ResourceLoader.exists(CRIT_SPARK_PATH) else null
 	_load_surface()
 	new_game()
 
@@ -495,8 +505,9 @@ func _process(delta: float) -> void:
 	for p in path:
 		points.append((Vector2(p) + Vector2(0.5, 0.5)) * CELL - Vector2(0, LINK_LIFT))
 	_lights.link_points = points
+	_overlay.queue_redraw()
 	if not path.is_empty():
-		_lights.link_color = BLOCK_COLORS.get(Resolver.link_color(game.board, path), STAR_LINK_COLOR)
+		_lights.link_color = CRIT_LINK_COLOR if _link_has_critical() else BLOCK_COLORS.get(Resolver.link_color(game.board, path), STAR_LINK_COLOR)
 		_overlay.queue_redraw()
 
 
@@ -534,6 +545,37 @@ func _draw() -> void:
 			draw_rect(rect.grow(-6), Color(1, 1, 1, 0.75))
 		elif not _falling.has(p):
 			_draw_shine(rect.grow(-3), p)
+
+
+## Critical tiles, drawn over every tile so neighbors don't hide the glow: a pulsing orange
+## glow and frame, with sparks crackling around them.
+func _draw_crit_tiles() -> void:
+	var pulse := 0.75 + 0.25 * sin(_time * 7.0)
+	for p: Vector2i in _shown:
+		if not _shown[p].critical or _sprites.has(p) or _falling.has(p):
+			continue
+		var rect := Rect2(Vector2(p) * CELL, Vector2(CELL, CELL))
+		if path.has(p):
+			rect = rect.grow(LINK_GROW)
+			rect.position.y -= LINK_LIFT
+		if _glow_outline:
+			var glow := rect.size * GLOW_OUTLINE_RATIO
+			for i in 2:
+				_overlay.draw_texture_rect(_glow_outline, Rect2(rect.get_center() - glow / 2, glow), false, Color(CRIT_FRAME_COLOR, pulse))
+		_overlay.draw_rect(rect.grow(-4), Color(CRIT_FRAME_COLOR, pulse), false, 8)
+		if _crit_spark:
+			var frame := int(_time * CRIT_SPARK_FPS) % CRIT_SPARK_FRAMES
+			var cell_px := _crit_spark.get_width() / CRIT_SPARK_FRAMES
+			var size := rect.size * cell_px / TileArt.TILE_SIZE * 1.3
+			_overlay.draw_texture_rect_region(_crit_spark, Rect2(rect.get_center() - size / 2, size), Rect2(frame * cell_px, 0, cell_px, _crit_spark.get_height()))
+
+
+func _link_has_critical() -> bool:
+	for p in path:
+		var cell := game.board.get_cell(p)
+		if cell and cell.critical:
+			return true
+	return false
 
 
 ## The bright panel the tiles sit in, or a dark grid without the art.
@@ -576,6 +618,8 @@ func _draw_shine(rect: Rect2, p: Vector2i) -> void:
 ## Above the tiles: the link being traced, its length and reward, popups, the end screen.
 func _draw_overlay() -> void:
 	var size := board_size()
+	if not _finished:
+		_draw_crit_tiles()
 	if not path.is_empty():
 		_draw_link()
 	if _popup_alpha > 0.0:
@@ -593,6 +637,9 @@ func _draw_overlay() -> void:
 func _draw_link() -> void:
 	var color_index := Resolver.link_color(game.board, path)
 	var color: Color = BLOCK_COLORS.get(color_index, STAR_LINK_COLOR)
+	var critical := _link_has_critical()
+	if critical:
+		color = CRIT_LINK_COLOR
 	var points := PackedVector2Array()
 	for p in path:
 		var center := (Vector2(p) + Vector2(0.5, 0.5)) * CELL - Vector2(0, LINK_LIFT)
@@ -619,6 +666,8 @@ func _draw_link() -> void:
 		label += "  →  %s" % SPECIAL_NAMES[kind]
 	elif count < game.rules.min_link:
 		label += "  (cần %d)" % game.rules.min_link
+	if critical and count >= game.rules.min_link:
+		label += "  ·  CHÍ MẠNG!"
 	_draw_centered_text(label, Vector2(board_size().x / 2, board_size().y + 75), 52, TEXT if count >= game.rules.min_link else TEXT_DIM, 12)
 
 

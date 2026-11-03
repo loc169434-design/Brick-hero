@@ -13,3 +13,6 @@ chain_step = 1.0
 shield_layer_size = 10
 shielded_damage_factor = 0.5
 layer_break_chain = 3
+crit_multiplier = 2.0
+crit_chance = 0.05
+monster_crit_multiplier = 1.5

@@ -92,8 +92,22 @@ func _can_grow(path: Array[Vector2i]) -> bool:
 	return false
 
 
+## A new square dropping in. Now and then a red one is a critical tile.
 func _random_cell() -> Cell:
-	return Cell.new(_rng.randi_range(0, Cell.COLOR_COUNT - 1))
+	var cell := Cell.new(_rng.randi_range(0, Cell.COLOR_COUNT - 1))
+	if cell.color == Cell.BlockColor.RED and _rng.randf() < rules.crit_tile_chance and critical_tiles() < rules.max_crit_tiles:
+		cell.critical = true
+	return cell
+
+
+func critical_tiles() -> int:
+	var count := 0
+	for y in board.rows:
+		for x in board.columns:
+			var cell := board.get_cell(Vector2i(x, y))
+			if cell and cell.critical:
+				count += 1
+	return count
 
 
 ## A random color that doesn't complete a line with the squares already dealt to the left or above.

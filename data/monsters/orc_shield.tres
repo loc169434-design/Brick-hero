@@ -10,5 +10,6 @@ max_hp = 60
 shield_layers = 3
 attack = 12
 countdown = 3
+crit_every = 3
 tile_theme = "orc_shield"
 background = "orc_camp"

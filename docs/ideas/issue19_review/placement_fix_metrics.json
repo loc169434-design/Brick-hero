@@ -1,0 +1,233 @@
+{
+  "scale": 0.55,
+  "unchanged_sprite_count": 18,
+  "unchanged_sprite_sha256": {
+    "assets/characters/crowd_farmers/1_cheer.png": "8a8f561df1fcc5f696f01a3753f737e3972560c63f0d42c6b356803447c35f7f",
+    "assets/characters/crowd_farmers/3_boo.png": "6ba2a7bd2a8cb23f0312a3f5821f97710d9d971433a6ab32e1d6a9b6d9055a07",
+    "assets/characters/crowd_farmers/1_idle.png": "dc61b02c60dbfe1734e57a9a192996ac38815833c3d54beb1e2761b3ce29a027",
+    "assets/characters/crowd_farmers/2_boo.png": "32693e1383a8871e273bad582db5a0f8061eebf01908a13447724d7ae07af29b",
+    "assets/characters/crowd_farmers/3_cheer.png": "50e9382fe929a25f080d7104cbe748ddea5e6e5a605361ce0d173fb582dd44e2",
+    "assets/characters/crowd_farmers/2_idle.png": "7417c7175c859ebc4b0b1a4afead35804a5a966efde9026a1336e2738238cbc5",
+    "assets/characters/crowd_farmers/3_idle.png": "b8e435c97a537aee63ba3a3f6fb4cb5cd498669202b2de9ae1f08241cd3cb4d0",
+    "assets/characters/crowd_farmers/2_cheer.png": "6fba384836a75ba93e67b26f801a7c67930b745b9adc5494237adea6028f17d6",
+    "assets/characters/crowd_farmers/1_boo.png": "40518a00e477c66da4236d224973a294709dbfb1c7e07a3ef6349a937138a17c",
+    "assets/characters/crowd_orcs/1_cheer.png": "c2992a462cc2b0f0fe33a2a243b90ce3575b55493bd4e1cc9b17535957744a51",
+    "assets/characters/crowd_orcs/3_boo.png": "ac76e733847bda10ca304e023f981b8fab086cebcdc5c2f41b1540d4af1d265b",
+    "assets/characters/crowd_orcs/1_idle.png": "e9094aeade863c9a6f0fbeaa34a4e96c0844efccff54c4b757da2622830af274",
+    "assets/characters/crowd_orcs/2_boo.png": "fc56336915ed9dec2127cac2a7a41c5e4837be0ac1b0bcb10fba9f80140c2a6b",
+    "assets/characters/crowd_orcs/3_cheer.png": "19fbede5794a6c5ebd207fcc2c553de8c3221bddc2b29d853366d7d1c2776e59",
+    "assets/characters/crowd_orcs/2_idle.png": "038d84d67ebbab108053de811c6d805113e9856dacbb71456e90b433acc30138",
+    "assets/characters/crowd_orcs/3_idle.png": "07a24fd72d55713d0c55b94680e4a3ddfe2a23eb2db1956441b8b5cee7899b9c",
+    "assets/characters/crowd_orcs/2_cheer.png": "1415006b3a2ffeac4a34760ff4003138ca80efa4d4c07309b8edaca297185c26",
+    "assets/characters/crowd_orcs/1_boo.png": "adfac129b3afba46d696d5dce8a987d0599061e5fd6c0540252c9a8454f8b365"
+  },
+  "feet_y_range": [
+    330,
+    370
+  ],
+  "excluded_x_ranges": [
+    [
+      170,
+      370
+    ],
+    [
+      710,
+      910
+    ]
+  ],
+  "checked_pose_placements": 18,
+  "all_poses_avoid_fighter_x_ranges": true,
+  "all_poses_on_canvas": true,
+  "foreground_overlay_removed": true,
+  "placement_bounds": [
+    {
+      "arena": "training_field",
+      "sprite": "1_idle",
+      "bounds_at_scale_0_55": [
+        70.15,
+        255.0,
+        121.85,
+        354.0
+      ]
+    },
+    {
+      "arena": "training_field",
+      "sprite": "1_cheer",
+      "bounds_at_scale_0_55": [
+        64.65,
+        255.0,
+        127.9,
+        354.0
+      ]
+    },
+    {
+      "arena": "training_field",
+      "sprite": "1_boo",
+      "bounds_at_scale_0_55": [
+        55.849999999999994,
+        255.0,
+        136.15,
+        354.0
+      ]
+    },
+    {
+      "arena": "training_field",
+      "sprite": "2_idle",
+      "bounds_at_scale_0_55": [
+        507.0,
+        251.0,
+        573.55,
+        350.0
+      ]
+    },
+    {
+      "arena": "training_field",
+      "sprite": "2_cheer",
+      "bounds_at_scale_0_55": [
+        505.9,
+        251.0,
+        574.65,
+        350.0
+      ]
+    },
+    {
+      "arena": "training_field",
+      "sprite": "2_boo",
+      "bounds_at_scale_0_55": [
+        505.9,
+        251.0,
+        574.65,
+        350.0
+      ]
+    },
+    {
+      "arena": "training_field",
+      "sprite": "3_idle",
+      "bounds_at_scale_0_55": [
+        957.6,
+        255.0,
+        1010.4,
+        354.0
+      ]
+    },
+    {
+      "arena": "training_field",
+      "sprite": "3_cheer",
+      "bounds_at_scale_0_55": [
+        952.65,
+        255.0,
+        1015.9,
+        354.0
+      ]
+    },
+    {
+      "arena": "training_field",
+      "sprite": "3_boo",
+      "bounds_at_scale_0_55": [
+        953.75,
+        255.0,
+        1014.8,
+        354.0
+      ]
+    },
+    {
+      "arena": "orc_camp",
+      "sprite": "1_idle",
+      "bounds_at_scale_0_55": [
+        67.55,
+        251.0,
+        132.45,
+        350.0
+      ]
+    },
+    {
+      "arena": "orc_camp",
+      "sprite": "1_cheer",
+      "bounds_at_scale_0_55": [
+        58.199999999999996,
+        251.0,
+        142.35,
+        350.0
+      ]
+    },
+    {
+      "arena": "orc_camp",
+      "sprite": "1_boo",
+      "bounds_at_scale_0_55": [
+        57.099999999999994,
+        251.0,
+        143.45,
+        350.0
+      ]
+    },
+    {
+      "arena": "orc_camp",
+      "sprite": "2_idle",
+      "bounds_at_scale_0_55": [
+        507.55,
+        251.0,
+        573.0,
+        350.0
+      ]
+    },
+    {
+      "arena": "orc_camp",
+      "sprite": "2_cheer",
+      "bounds_at_scale_0_55": [
+        504.25,
+        251.0,
+        576.3,
+        350.0
+      ]
+    },
+    {
+      "arena": "orc_camp",
+      "sprite": "2_boo",
+      "bounds_at_scale_0_55": [
+        497.65,
+        251.0,
+        582.35,
+        350.0
+      ]
+    },
+    {
+      "arena": "orc_camp",
+      "sprite": "3_idle",
+      "bounds_at_scale_0_55": [
+        949.75,
+        251.0,
+        1010.8,
+        350.0
+      ]
+    },
+    {
+      "arena": "orc_camp",
+      "sprite": "3_cheer",
+      "bounds_at_scale_0_55": [
+        940.95,
+        251.0,
+        1019.6,
+        350.0
+      ]
+    },
+    {
+      "arena": "orc_camp",
+      "sprite": "3_boo",
+      "bounds_at_scale_0_55": [
+        937.65,
+        251.0,
+        1022.9,
+        350.0
+      ]
+    }
+  ],
+  "preview_layer_order": [
+    "existing_background",
+    "crowd",
+    "fighters"
+  ],
+  "preview_fighter_canvas": [
+    300,
+    300
+  ]
+}

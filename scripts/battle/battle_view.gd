@@ -467,10 +467,10 @@ func _comic(word: String, at: Vector2, size := 1.0, hold := 0.45) -> void:
 	tween.tween_property(sprite, "scale", full * 1.15, 0.1).set_ease(Tween.EASE_OUT)
 	tween.tween_property(sprite, "scale", full, 0.08)
 	tween.tween_interval(hold)
-	tween.set_parallel()
+	# Only now fade: set_parallel() here would start the fade alongside the hold.
 	tween.tween_property(sprite, "modulate:a", 0.0, 0.2)
-	tween.tween_property(sprite, "scale", full * 1.2, 0.2)
-	tween.chain().tween_callback(sprite.queue_free)
+	tween.parallel().tween_property(sprite, "scale", full * 1.2, 0.2)
+	tween.tween_callback(sprite.queue_free)
 
 
 ## A one-shot effect image that grows from `from_scale` to `to_scale` and fades.

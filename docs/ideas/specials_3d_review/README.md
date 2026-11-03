@@ -46,4 +46,3 @@ Title: Art: dimensional bomb lightning star and looping idle FX
 Adds standalone dimensional bomb, four-way lightning and four-point star sprites with transparent backgrounds, plus registered fuse fire and electric/glint idle atlases. Includes the manifest, GIF, dark/light previews, file list and review page at docs/ideas/specials_3d_review/index.html.
 
 Validated: six RGBA8 PNGs, 128px frames, 8-column atlas layout, transparent frame borders/padding, warm fire at fuse tip (88,28), 12-frame/1000ms GIF and a stable shared palette. No existing assets or game code changed. Godot/device integration is pending; disable the existing procedural fuse when using the new overlay. Fusion and skill artwork waits for approval of the separate docs/hero-skills design.
-

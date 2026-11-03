@@ -96,3 +96,18 @@ func test_board_is_dealt_again_when_no_link_is_left() -> void:
 	game.deal()
 	assert_true(game.has_move())
 	assert_eq(game.board.count(), 7 * 8)
+
+
+func test_critical_tiles_are_red_and_rare_on_the_board() -> void:
+	var game := _game()
+	game.rules.crit_tile_chance = 1.0
+	game.rules.max_crit_tiles = 1
+	var made := 0
+	for i in 40:
+		var cell := game._random_cell()
+		if cell.critical:
+			assert_eq(cell.color, R)
+			made += 1
+			game.board.set_cell(Vector2i(0, 0), cell)
+	assert_eq(made, 1, "no second critical tile while one is on the board")
+	assert_eq(game.critical_tiles(), 1)

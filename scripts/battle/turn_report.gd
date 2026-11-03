@@ -10,6 +10,12 @@ var gold := 0
 ## Rounds in this move's chain and squares in its link, for the fighters' reactions.
 var chain := 0
 var link_length := 0
+## The link's color (Cell.BlockColor), or Cell.NO_COLOR for a link of stars.
+var link_color := Cell.NO_COLOR
+## The red damage was a critical hit: a critical tile was cleared, or luck.
+var critical := false
 ## Damage the monster dealt to the hero this turn; 0 if it didn't attack.
 var monster_attack := 0
+## That attack was the monster's critical one.
+var monster_critical := false
 var outcome := BattleState.Outcome.ONGOING

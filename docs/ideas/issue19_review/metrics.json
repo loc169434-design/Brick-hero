@@ -1,0 +1,329 @@
+{
+  "sprites": [
+    {
+      "file": "assets/characters/crowd_farmers/1_idle.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        81,
+        68,
+        175,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_farmers/1_cheer.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        71,
+        68,
+        186,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_farmers/1_boo.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        55,
+        68,
+        201,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_farmers/2_idle.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        68,
+        68,
+        189,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_farmers/2_cheer.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        66,
+        68,
+        191,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_farmers/2_boo.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        66,
+        68,
+        191,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_farmers/3_idle.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        80,
+        68,
+        176,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_farmers/3_cheer.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        71,
+        68,
+        186,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_farmers/3_boo.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        73,
+        68,
+        184,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_orcs/1_idle.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        69,
+        68,
+        187,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_orcs/1_cheer.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        52,
+        68,
+        205,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_orcs/1_boo.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        50,
+        68,
+        207,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_orcs/2_idle.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        69,
+        68,
+        188,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_orcs/2_cheer.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        63,
+        68,
+        194,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_orcs/2_boo.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        51,
+        68,
+        205,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_orcs/3_idle.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        73,
+        68,
+        184,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_orcs/3_cheer.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        57,
+        68,
+        200,
+        248
+      ],
+      "height": 180
+    },
+    {
+      "file": "assets/characters/crowd_orcs/3_boo.png",
+      "canvas": [
+        256,
+        256
+      ],
+      "feet": [
+        128,
+        248
+      ],
+      "bounds": [
+        51,
+        68,
+        206,
+        248
+      ],
+      "height": 180
+    }
+  ],
+  "count": 18
+}

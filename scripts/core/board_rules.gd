@@ -15,3 +15,9 @@ extends Resource
 @export var bomb_link := 6
 ## The star (Cell.Special.RAINBOW): wild, so it joins a link or line of any color.
 @export var star_link := 7
+
+@export_group("Critical tiles")
+## Chance that a new red square dropping in is a critical tile.
+@export_range(0.0, 1.0) var crit_tile_chance := 0.08
+## No new critical tile drops while this many are already on the board.
+@export var max_crit_tiles := 1

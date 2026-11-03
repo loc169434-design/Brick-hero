@@ -137,3 +137,60 @@ func test_orc_data_loads() -> void:
 	var battle := BattleState.new(load("res://data/balance.tres"), orc)
 	assert_eq(battle.shield_layers(), 3)
 	assert_eq(orc.tile_theme, "orc_shield")
+
+
+func test_clearing_a_critical_tile_doubles_the_red_damage() -> void:
+	var battle := _battle(_monster(80))
+	var move := _move([[R, R, R]])
+	move.steps[0].cleared_cells[1].critical = true
+	var report := battle.apply_move(move)
+	assert_true(report.critical)
+	assert_eq(report.damage, 12, "3 red × 2 × crit 2")
+
+
+func test_no_red_no_critical_hit() -> void:
+	var battle := _battle(_monster(80))
+	battle.rules.crit_chance = 1.0
+	assert_true(not battle.apply_move(_move([[G, G, G]])).critical)
+	assert_true(battle.apply_move(_move([[R, R, R]])).critical, "a sure lucky hit when red lands")
+
+
+func test_monster_critical_comes_every_few_attacks_and_is_announced() -> void:
+	var monster := _monster(80, 0, 12, 1)
+	monster.crit_every = 3
+	var battle := _battle(monster)
+	assert_true(not battle.next_attack_is_critical())
+	assert_eq(battle.apply_move(_move()).monster_attack, 12)
+	assert_eq(battle.apply_move(_move()).monster_attack, 12)
+	assert_true(battle.next_attack_is_critical(), "the third attack is announced as critical")
+	var report := battle.apply_move(_move())
+	assert_true(report.monster_critical)
+	assert_eq(report.monster_attack, 18)
+	assert_true(not battle.next_attack_is_critical())
+
+
+func test_report_names_the_link_color() -> void:
+	var battle := _battle(_monster(80))
+	var move := _move([[P, P, P]])
+	move.steps[0].clusters.append({"color": P, "cells": move.steps[0].cleared.duplicate()})
+	assert_eq(battle.apply_move(move).link_color, P)
+
+
+func test_the_link_picks_the_heros_move() -> void:
+	var report := TurnReport.new()
+	report.link_color = R
+	report.link_length = 3
+	assert_eq(BattleView.pick_move(report), &"slash")
+	report.link_length = 5
+	assert_eq(BattleView.pick_move(report), &"throw")
+	report.link_length = 6
+	assert_eq(BattleView.pick_move(report), &"leap")
+	report.link_length = 7
+	assert_eq(BattleView.pick_move(report), &"combo")
+	report.link_length = 4
+	report.chain = 3
+	assert_eq(BattleView.pick_move(report), &"combo", "a long chain is a combo too")
+	report.chain = 1
+	report.link_color = P
+	report.shield_damage = 6
+	assert_eq(BattleView.pick_move(report), &"bash")

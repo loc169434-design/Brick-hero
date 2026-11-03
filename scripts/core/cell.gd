@@ -10,6 +10,8 @@ const NO_COLOR := -1
 
 var color: int
 var special: Special
+## A critical tile (red only): a move that clears it lands a critical hit. Shown with sparks.
+var critical := false
 
 
 func _init(p_color: int = NO_COLOR, p_special: Special = Special.NONE) -> void:

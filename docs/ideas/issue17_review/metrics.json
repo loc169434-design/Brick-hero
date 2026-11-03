@@ -1,0 +1,115 @@
+{
+  "assets/ui/board_backdrop_orc_shield.png": {
+    "size": [
+      1080,
+      1260
+    ],
+    "mean_luminance": 0.831,
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  "assets/ui/board_backdrop_training.png": {
+    "size": [
+      1080,
+      1260
+    ],
+    "mean_luminance": 0.89,
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  "assets/ui/board_panel_orc_shield.png": {
+    "size": [
+      1040,
+      1180
+    ],
+    "mean_luminance": 0.902,
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  "assets/ui/board_panel_training.png": {
+    "size": [
+      1040,
+      1180
+    ],
+    "mean_luminance": 0.904,
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  "assets/ui/board_slot_orc_shield.png": {
+    "size": [
+      140,
+      140
+    ],
+    "mean_luminance": 0.89,
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  "assets/ui/board_slot_training.png": {
+    "size": [
+      140,
+      140
+    ],
+    "mean_luminance": 0.902,
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  "training_field": {
+    "exact_reconstruction": true,
+    "parallax_alpha_holes": 0,
+    "tested_zooms": [
+      1.1,
+      1.15
+    ],
+    "tested_relative_x_offsets": {
+      "far": [
+        -12,
+        12
+      ],
+      "mid": [
+        -12,
+        12
+      ],
+      "ground": [
+        -20,
+        20
+      ]
+    }
+  },
+  "orc_camp": {
+    "exact_reconstruction": true,
+    "parallax_alpha_holes": 0,
+    "tested_zooms": [
+      1.1,
+      1.15
+    ],
+    "tested_relative_x_offsets": {
+      "far": [
+        -12,
+        12
+      ],
+      "mid": [
+        -12,
+        12
+      ],
+      "ground": [
+        -20,
+        20
+      ]
+    }
+  },
+  "checked_exact_canvas_pngs": 26,
+  "white_tint_masks": 7,
+  "validation": "exact static reconstruction, dimension/alpha/white-RGB checks; 8 shifted composites at 1.10x/1.15x without alpha holes"
+}

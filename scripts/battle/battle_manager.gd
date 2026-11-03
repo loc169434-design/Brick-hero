@@ -28,6 +28,8 @@ func _ready() -> void:
 	if feel:
 		board.impact.connect(feel.impact)
 		battle_view.impact.connect(feel.impact)
+		battle_view.slow_motion.connect(feel.slow_motion)
+	board.orb_targets = battle_view.orb_targets()
 	_start()
 
 
@@ -55,6 +57,7 @@ func _start() -> void:
 		encounter_index = (encounter_index + 1) % encounters.size()
 		_advance_on_restart = false
 	state = BattleState.new(rules, monster())
+	state.rng.randomize()
 	board.set_tile_theme(monster().tile_theme)
 	battle_view.show_state(state)
 	_show_hint()

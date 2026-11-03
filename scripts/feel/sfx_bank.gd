@@ -83,6 +83,26 @@ const RECIPES := {
 		{"wave": "triangle", "from": 311.0, "to": 300.0, "start": 0.28, "length": 0.3, "volume": 0.35},
 		{"wave": "triangle", "from": 262.0, "to": 196.0, "start": 0.56, "length": 0.7, "volume": 0.35},
 	],
+	# Something thrown or swung through the air: a sword, a rock, a dodge.
+	"whoosh": [
+		{"wave": "noise", "length": 0.22, "volume": 0.4, "smooth": 0.55},
+		{"wave": "sine", "from": 300.0, "to": 520.0, "length": 0.2, "volume": 0.15},
+	],
+	# A critical hit winding up, then landing.
+	"crit_charge": [
+		{"wave": "triangle", "from": 220.0, "to": 880.0, "length": 0.4, "volume": 0.3},
+		{"wave": "noise", "length": 0.4, "volume": 0.15, "smooth": 0.3},
+	],
+	"crit": [
+		{"wave": "noise", "length": 0.12, "volume": 0.8, "smooth": 0.1},
+		{"wave": "square", "from": 900.0, "to": 90.0, "length": 0.4, "volume": 0.35},
+		{"wave": "sine", "from": 120.0, "to": 35.0, "length": 0.5, "volume": 0.8},
+	],
+	# The monster dodges and laughs at you.
+	"taunt": [
+		{"wave": "square", "from": 300.0, "to": 380.0, "length": 0.08, "volume": 0.25},
+		{"wave": "square", "from": 300.0, "to": 380.0, "start": 0.12, "length": 0.08, "volume": 0.25},
+	],
 }
 
 

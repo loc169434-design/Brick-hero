@@ -1,0 +1,84 @@
+{
+  "flag": [
+    787,
+    221
+  ],
+  "smoke": [],
+  "torch": [],
+  "grass": [
+    [
+      180,
+      454
+    ],
+    [
+      540,
+      455
+    ],
+    [
+      900,
+      454
+    ]
+  ],
+  "bird_lane_y": [
+    80,
+    200
+  ],
+  "canvas": [
+    1080,
+    660
+  ],
+  "static_order": [
+    "sky",
+    "far",
+    "mid",
+    "ground"
+  ],
+  "static_reconstruction": "pixel-exact; distant cloud banks remain in far; cloud_1..3 are optional additional drift accents",
+  "sprite_origins": {
+    "flag": [
+      64,
+      124
+    ],
+    "smoke": [
+      64,
+      188
+    ],
+    "torch": [
+      32,
+      124
+    ],
+    "grass": [
+      80,
+      92
+    ],
+    "bird": [
+      48,
+      32
+    ]
+  },
+  "atlas_frames": {
+    "flag": 6,
+    "bird": 4,
+    "smoke": 6,
+    "torch": 6
+  },
+  "hidden_pixel_restoration": "far underpainting behind near trees, fences, hay/tents; mid overlaps to canvas bottom beneath ground",
+  "safe_parallax": {
+    "zoom_min_when_panning": 1.1,
+    "zoom_max": 1.15,
+    "x_offsets": {
+      "sky": 0,
+      "far": -12,
+      "mid": 12,
+      "ground": 20
+    },
+    "y_offset": 0
+  },
+  "sprite_scales": {
+    "flag": 0.35,
+    "bird": 0.65,
+    "grass": 0.75,
+    "smoke": 0.6,
+    "torch": 0.7
+  }
+}

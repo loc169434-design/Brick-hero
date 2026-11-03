@@ -7,6 +7,11 @@ extends Node2D
 ## Art contract (issue #5): assets/characters/<id>/<wear>_<mood>.png, victory.png, defeat.png,
 ## shield_<layers>.png and rig.json with feet/head/mouth/shield points on a 512 px canvas.
 ## FX images come from assets/fx/battle/. Anything missing is drawn as a placeholder.
+##
+## Fight moves (issue #18): extra moods such as throw, leap, bash, kick, drink, dizzy, knocked
+## (hero) or throw, charge, dodge, windup and the wearless bald (Orc) are just poses; the
+## battle view moves the body with dash_to(), hop_to(), squash() and knockback(). Bumps from
+## blows to the head stay on top of the head (the pose's "crown" anchor) for the whole fight.
 
 enum Wear { FRESH, BRUISED, BATTERED }
 
@@ -17,6 +22,10 @@ const DEFAULT_FEET := Vector2(256, 500)
 const DEFAULT_HEAD := Vector2(256, 150)
 const DEFAULT_MOUTH := Vector2(256, 190)
 const FX_DIR := "res://assets/fx/battle/"
+const INJURY_DIR := "res://assets/fx/injury/"
+## A bump's 128 px canvas sits on the crown at this point.
+const BUMP_BASE := Vector2(64, 120)
+const MAX_BUMPS := 3
 ## Burst played when the character is hit, by character id.
 const HURT_FX := {"scarecrow": "straw"}
 ## Burst played when the character first looks battered: the rookie's wooden sword snaps.
@@ -31,15 +40,22 @@ var mood := &"idle"
 var end_pose := &""
 ## Shield layers left, or -1 for a character without a shield.
 var shield_layers := -1
+## Lumps on the head from blows to it this fight, 0..MAX_BUMPS.
+var bumps := 0
 
 var _rig := {}
 var _textures := {}
+## Bump art, kept loaded: a texture loaded inside a draw call is freed before it reaches the
+## screen and shows as a white box.
+var _bump_textures := {}
 ## Holds the pose drawing so lunges and shakes don't move the FX already in the air.
 var _body: Node2D
 var _motion: Tween
 ## Bumped by every new mood so an older mood's timer doesn't cut a newer one short.
 var _mood_serial := 0
 var _time := 0.0
+## Squash and stretch on top of breathing, for slams and landings.
+var squash_scale := Vector2.ONE
 
 
 func _ready() -> void:
@@ -55,6 +71,8 @@ func setup(id: String, p_facing: int, layers := -1) -> void:
 	wear = Wear.FRESH
 	mood = &"idle"
 	end_pose = &""
+	bumps = 0
+	squash_scale = Vector2.ONE
 	_mood_serial += 1
 	_textures.clear()
 	_rig = {}
@@ -164,7 +182,56 @@ func _process(delta: float) -> void:
 	# Breathing: a slow squash that keeps still art from looking frozen.
 	_time += delta
 	if not end_pose:
-		_body.scale = Vector2(1.0 - 0.01 * sin(_time * 2.4), 1.0 + 0.015 * sin(_time * 2.4))
+		_body.scale = Vector2(1.0 - 0.01 * sin(_time * 2.4), 1.0 + 0.015 * sin(_time * 2.4)) * squash_scale
+
+
+## Global position of a point on the current pose: "head", "mouth", "crown" or "hand".
+func point(key: String) -> Vector2:
+	return _body.to_global(_anchor(key))
+
+
+## A new lump on the head, up to MAX_BUMPS.
+func add_bump() -> void:
+	bumps = mini(bumps + 1, MAX_BUMPS)
+	_spin_stars(0.8)
+	_body.queue_redraw()
+
+
+## Moves the body to `offset` from the feet over `seconds`. Returns when it gets there.
+func dash_to(offset: Vector2, seconds: float, ease_type := Tween.EASE_IN) -> void:
+	if _motion:
+		_motion.kill()
+	_motion = create_tween()
+	_motion.tween_property(_body, "position", offset, seconds).set_ease(ease_type).set_trans(Tween.TRANS_QUAD)
+	await _motion.finished
+
+
+## Jumps to `offset` along an arc `height` pixels high. Returns on landing.
+func hop_to(offset: Vector2, height: float, seconds: float) -> void:
+	if _motion:
+		_motion.kill()
+	var from := _body.position
+	_motion = create_tween()
+	_motion.tween_method(func(t: float) -> void:
+		_body.position = from.lerp(offset, t) + Vector2(0, -height * 4.0 * t * (1.0 - t)), 0.0, 1.0, seconds)
+	await _motion.finished
+
+
+## Back to standing on its own feet.
+func home(seconds := 0.25) -> void:
+	await dash_to(Vector2.ZERO, seconds, Tween.EASE_OUT)
+
+
+## Flattened by `amount` (0.5 = half height), springing back with a wobble.
+func squash(amount: float, seconds := 0.6) -> void:
+	squash_scale = Vector2(1.0 + amount * 0.8, 1.0 - amount)
+	var tween := create_tween()
+	tween.tween_property(self, "squash_scale", Vector2.ONE, seconds).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+
+
+## Knocked back `distance` pixels, sliding home again after a moment.
+func knockback(distance: float, hold := 0.35) -> void:
+	_move([[Vector2(-facing * distance, 0), 0.1], [Vector2(-facing * distance, 0), hold], [Vector2.ZERO, 0.3]])
 
 
 func _move(steps: Array) -> void:
@@ -201,8 +268,18 @@ func _to_local(canvas_point: Vector2) -> Vector2:
 
 func _anchor(key: String) -> Vector2:
 	var anchors: Dictionary = _rig.get("anchors", {})
-	var pose: Dictionary = anchors.get(_pose_stem(), anchors.get("fresh_idle", {}))
-	var fallback := DEFAULT_MOUTH if key == "mouth" else DEFAULT_HEAD
+	var stem := _pose_stem()
+	if not anchors.has(stem) and anchors.has(String(mood)):
+		stem = String(mood)
+	var pose: Dictionary = anchors.get(stem, anchors.get("fresh_idle", {}))
+	var fallback := DEFAULT_HEAD
+	match key:
+		"mouth":
+			fallback = DEFAULT_MOUTH
+		"crown":
+			fallback = _vec(pose.get("head"), DEFAULT_HEAD) + Vector2(0, -70)
+		"hand":
+			fallback = _vec(pose.get("head"), DEFAULT_HEAD) + Vector2(110, 120)
 	return _to_local(_vec(pose.get(key), fallback))
 
 
@@ -220,6 +297,9 @@ func _pose_stem() -> String:
 func _pose_texture() -> Texture2D:
 	var wear_name: String = WEAR_NAMES[wear]
 	var candidates := [_pose_stem()]
+	if not end_pose:
+		# Poses with no wear stages, like the Orc's bald.png.
+		candidates.append(String(mood))
 	if end_pose == &"victory":
 		candidates.append("%s_cheer" % wear_name)
 	elif end_pose == &"defeat":
@@ -256,8 +336,24 @@ func _draw_body() -> void:
 		_body.draw_texture_rect(texture, Rect2(-_feet() * _scale(), size), false)
 	else:
 		_draw_placeholder()
-	if shield_layers >= 0 and end_pose != &"defeat":
+	if shield_layers >= 0 and end_pose != &"defeat" and mood != &"bald":
 		_draw_shield(texture == null)
+	if bumps > 0:
+		_draw_bump()
+
+
+func _draw_bump() -> void:
+	var kind := "orc" if character_id.begins_with("orc") else "human"
+	var path := "%sbump_%s_%d.png" % [INJURY_DIR, kind, bumps]
+	if not _bump_textures.has(path):
+		_bump_textures[path] = load(path) if ResourceLoader.exists(path) else null
+	var texture: Texture2D = _bump_textures[path]
+	var crown := _anchor("crown")
+	if texture:
+		var size := Vector2(128, 128) * _scale()
+		_body.draw_texture_rect(texture, Rect2(crown - BUMP_BASE * _scale(), size), false)
+	else:
+		_body.draw_circle(crown + Vector2(0, -8 - 6 * bumps), 10 + 6 * bumps, Color(0.95, 0.55, 0.55))
 
 
 ## `placeholder_body`: the stand-in plate only goes next to stand-in shapes. A drawn character

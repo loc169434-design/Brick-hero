@@ -52,6 +52,16 @@ func _process(delta: float) -> void:
 	offset = Vector2(_noise.get_noise_2d(_noise_t, 0.0), _noise.get_noise_2d(0.0, _noise_t)) * amount * 2.0
 
 
+## Runs the game at `time_scale` for `seconds` of real time: the slow-motion of a critical hit.
+func slow_motion(time_scale: float, seconds: float) -> void:
+	_freeze_serial += 1
+	var serial := _freeze_serial
+	Engine.time_scale = time_scale
+	await get_tree().create_timer(seconds, true, false, true).timeout
+	if serial == _freeze_serial:
+		Engine.time_scale = 1.0
+
+
 func _hit_stop(seconds: float) -> void:
 	_freeze_serial += 1
 	var serial := _freeze_serial

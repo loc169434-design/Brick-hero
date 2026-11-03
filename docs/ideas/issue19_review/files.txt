@@ -18,5 +18,3 @@ assets/characters/crowd_orcs/3_cheer.png
 assets/characters/crowd_orcs/3_boo.png
 assets/bg/training_field/crowd.json
 assets/bg/orc_camp/crowd.json
-assets/bg/training_field/crowd_fence.png
-assets/bg/orc_camp/crowd_fence.png

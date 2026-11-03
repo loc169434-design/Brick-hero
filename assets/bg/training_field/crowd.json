@@ -1,28 +1,21 @@
 {
   "folder": "crowd_farmers",
+  "scale": 0.55,
   "spots": [
     [
-      170,
-      390,
+      96,
+      354,
       1
     ],
     [
       540,
-      365,
+      350,
       2
     ],
     [
-      910,
-      390,
+      984,
+      354,
       3
     ]
-  ],
-  "foreground_overlay": "crowd_fence.png",
-  "draw_order": [
-    "mid",
-    "crowd",
-    "crowd_fence",
-    "ground",
-    "fighters"
   ]
 }

@@ -1,32 +1,49 @@
 # Issue #19 — khán giả
 
-Nhánh `art/crowd` tạo độc lập từ main mới nhất `aeefd30e367f3e87c6533d85285d72495aa7068c`; không chứa commit #17/#18.
+Nhánh `art/crowd`, sửa tiếp từ commit `994b677` theo [comment mới của Claude](https://github.com/loc169434-design/Brick-hero/issues/19#issuecomment-6597273522). Bản cập nhật ngày 2026-11-03 này thay thế cách đặt trong bàn giao trước.
 
-GitHub API/GraphQL trả Forbidden; bàn giao tại đây theo yêu cầu. Chưa đăng comment hoặc tạo PR bằng API. Tiêu đề PR đề nghị: “Art: farmer and Orc spectators with arena placement (#19)”.
+GitHub API đọc comment vẫn trả `Forbidden`; đã đọc yêu cầu qua trang issue. Nếu đăng comment tiếp tục bị chặn, dùng file này để bàn giao.
 
-## Xem thử
+## Thay đổi mới
 
-![Farmers, idle/cheer/boo theo cột](issue19_review/crowd_farmers_grid.png)
-![Orc con, idle/cheer/boo theo cột](issue19_review/crowd_orcs_grid.png)
-![Training cheer](issue19_review/training_field_cheer.png)
-![Orc cheer](issue19_review/orc_camp_cheer.png)
-![Training, xem cùng nhân vật chính ở 360 px](issue19_review/training_field_battle_360.png)
-![Orc, xem cùng nhân vật chính ở 360 px](issue19_review/orc_camp_battle_360.png)
+- Hai crowd.json thêm **scale: 0.55**. Ảnh nguồn vẫn 256×256, silhouette cao 180 px; khi hiển thị còn khoảng 99 px.
+- Training: chân ở **(96,354), (540,350), (984,354)**, tương ứng id 1,2,3.
+- Orc: chân ở **(100,350), (540,350), (980,350)**, tương ứng id 1,2,3.
+- Các vị trí đều trên hàng xa y 350–354. Toàn bộ phần hình ở cả idle/cheer/boo tránh hai dải x 170–370 và 710–910, không chỉ kiểm tra tọa độ chân.
+- **Đã xóa** assets/bg/training_field/crowd_fence.png và assets/bg/orc_camp/crowd_fence.png. Bỏ foreground_overlay và draw_order cũ khỏi hai JSON. Không dùng lớp rào riêng; nền đã có rào trong mid.
+- Giữ nguyên byte-for-byte cả **18 PNG** và hai lưới biểu cảm. Không vẽ lại nhân vật.
+
+## Ảnh xem thử mới
+
+Đủ ba khán giả ở dáng cheer, scale 0.55, cùng hai nhân vật chính. Khán giả vẽ sau nền và trước fighters; không thêm bất kỳ lớp rào phụ nào. Canvas fighter của ảnh so sánh giữ nguyên 300×300 như bản cũ để nhìn được khác biệt về cỡ.
+
+![Training ở 360 px](issue19_review/training_field_battle_360.png)
+![Orc ở 360 px](issue19_review/orc_camp_battle_360.png)
+![Training: bản cũ trái, bản sửa phải](issue19_review/training_field_battle_360_before_after.png)
+![Orc: bản cũ trái, bản sửa phải](issue19_review/orc_camp_battle_360_before_after.png)
+
+Có cả bản native 1080×660: [Training](issue19_review/training_field_battle_native.png), [Orc](issue19_review/orc_camp_battle_native.png), và ảnh chỉ nền + khán giả: [Training](issue19_review/training_field_cheer.png), [Orc](issue19_review/orc_camp_cheer.png).
 
 ## Tích hợp
 
-- 3 nông dân: ông già chống gậy, bà bán rau, cậu bé; quay phải. 3 Orc con: béo, gầy cầm cờ, đội nồi; quay trái. Mỗi người đủ idle, cheer, boo. Orc boo là cười/chỉ trỏ khi hero bị đánh.
-- Tất cả canvas 256×256, alpha trong suốt, điểm chân (128,248), silhouette cao 180 px. Không có bóng nền baked. Hai bộ cùng viền nâu và mảng màu của nhân vật hiện có.
-- crowd.json dùng tọa độ chân trong canvas nền 1080×660: (170,390), (540,365), (910,390), lần lượt id 1,2,3. Đặt sprite tại spot trừ (128,248). Người giữa đứng phía sau lối vào, hai người hai bên sau hàng rào.
-- Thứ tự: mid → crowd → crowd_fence → ground → fighters. Khán giả luôn vẽ dưới hai nhân vật chính.
-- **Bổ sung crowd_fence.png:** canvas 1080×660, alpha chỉ giữ các thanh/cọc rào lấy từ đúng ảnh nền gốc. Vẽ tại (0,0) sau crowd để chân không đè lên rào. Đây là overlay bổ sung cần thiết vì mid gốc vẽ trước khán giả; không phải ảnh nền mới. Nếu tích hợp parallax, overlay rào phải dùng cùng transform với hàng rào trong mid. crowd.json có foreground_overlay và draw_order để ghi rõ điều này.
-- Không sửa code, scenes, tests hoặc project.godot. Động tác nhún/nhảy/timing phản ứng do code điều khiển.
+crowd.json chỉ còn folder, scale, spots. spots là tọa độ chân theo khung nền 1080×660. Với scale s, góc trên trái sprite là (x − 128s, y − 248s); hoặc đặt node tại (x,y), giữ offset ảnh (−128,−248) và scale node bằng s. Nhân vật chính luôn vẽ phía trước khán giả. Giữ các lớp rào/cảnh sẵn có trong nền, bỏ mọi tham chiếu đến overlay rào riêng đã xóa.
 
-## Kiểm tra
+Nông dân quay phải; Orc con quay trái. Orc boo là cười/chỉ trỏ. Timing reo hò và nhún/nhảy do phần tích hợp điều khiển.
 
-18/18 PNG nhân vật đúng kích thước 256×256, nền alpha, cao đúng 180, chân baseline 248. Hai overlay đúng 1080×660. Lưới và ảnh ghép đã được xem lại; nhân vật chính được vẽ sau crowd nên không bị crowd che. Godot 4.7.2 import sạch; suite hiện có 49 passed, 0 failed. Chưa gắn trigger reo hò vào trận bằng code.
+## Kiểm tra đợt sửa
 
-## Danh sách file
+- Hai JSON parse đúng, scale là số 0.55, không còn key overlay hoặc draw_order cũ.
+- Cả 18 checksum PNG khớp bản trước.
+- 18/18 vùng hình sau scale nằm trong canvas và không giao hai dải x của fighters; mọi chân ở y 350–354, thuộc khoảng 330–370 yêu cầu.
+- Đã xem lại ảnh ghép hai nền ở cỡ 360 px; không có khúc rào bay và không có crowd chồng lên đầu fighters.
+- Số đo và checksum: [placement_fix_metrics.json](issue19_review/placement_fix_metrics.json). Đây là kiểm tra asset/metadata và ảnh ghép; chưa chạy lại phần tích hợp của Claude trong game.
+
+## Lưới biểu cảm giữ nguyên
+
+![Farmers: idle, cheer, boo](issue19_review/crowd_farmers_grid.png)
+![Orc: idle, cheer, boo](issue19_review/crowd_orcs_grid.png)
+
+## Danh sách asset hiện tại
 
 - `assets/characters/crowd_farmers/1_idle.png`
 - `assets/characters/crowd_farmers/1_cheer.png`
@@ -48,5 +65,3 @@ GitHub API/GraphQL trả Forbidden; bàn giao tại đây theo yêu cầu. Chưa
 - `assets/characters/crowd_orcs/3_boo.png`
 - `assets/bg/training_field/crowd.json`
 - `assets/bg/orc_camp/crowd.json`
-- `assets/bg/training_field/crowd_fence.png`
-- `assets/bg/orc_camp/crowd_fence.png`

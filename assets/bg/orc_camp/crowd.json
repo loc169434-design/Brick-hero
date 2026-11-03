@@ -1,28 +1,21 @@
 {
   "folder": "crowd_orcs",
+  "scale": 0.55,
   "spots": [
     [
-      170,
-      390,
+      100,
+      350,
       1
     ],
     [
       540,
-      365,
+      350,
       2
     ],
     [
-      910,
-      390,
+      980,
+      350,
       3
     ]
-  ],
-  "foreground_overlay": "crowd_fence.png",
-  "draw_order": [
-    "mid",
-    "crowd",
-    "crowd_fence",
-    "ground",
-    "fighters"
   ]
 }

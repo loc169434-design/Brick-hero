@@ -9,7 +9,7 @@ extends Node2D
 ## Fight moves (issue #18): the link picks the hero's move (slash, sword throw, leaping slam,
 ## combo, shield bash), the Orc answers with a thrown rock, a thrown club or a charge, and dodges
 ## turns that can't hurt it. Hits pop up comic lettering (assets/fx/comic/), blows to the head
-## leave bumps, and critical hits get a cinematic: the screen darkens, speed lines, a close-up
+## spin stars, and critical hits get a cinematic: the screen darkens, speed lines, a close-up
 ## of the striker's eyes, the camera leans in and time slows as the blow lands.
 
 ## A blow landed: `strength` 0..1 of screen shake, `freeze` seconds of hit-stop.
@@ -17,11 +17,30 @@ signal impact(strength: float, freeze: float)
 ## Run the game at `time_scale` for `seconds` of real time.
 signal slow_motion(time_scale: float, seconds: float)
 
-const SIZE := Vector2(1080, 660)
+## The fight's strip of screen. The backdrop is painted 660 tall; its top is cut off
+## (BACKDROP_SHIFT) so the board below gets the room.
+const SIZE := Vector2(1080, 500)
+const BACKDROP_SHIFT := Vector2(0, -80)
 ## Where each fighter's feet touch the ground.
-const HERO_FEET := Vector2(270, 470)
-const MONSTER_FEET := Vector2(810, 470)
-const BAR_SIZE := Vector2(400, 26)
+const HERO_FEET := Vector2(270, 405)
+const MONSTER_FEET := Vector2(810, 405)
+## Fighting-game health bars across the top: the hero's half on the left, the monster's on
+## the right, the countdown between them.
+const BAR_SIZE := Vector2(440, 30)
+const BAR_RADIUS := 8
+## The dark frame around each bar and shield pip.
+const BAR_RIM := 4
+const HERO_BAR := Vector2(20, 20)
+const MONSTER_BAR := Vector2(SIZE.x - 20 - BAR_SIZE.x, 20)
+const COUNTDOWN_AT := Vector2(SIZE.x / 2, 38)
+const LABEL_SIZE := 24
+## Name, gold and shield pips sit in a row just under the bars.
+const ROW_Y := HERO_BAR.y + BAR_SIZE.y + BAR_RIM + 8
+## Bars throb at or below this much health.
+const LOW_HEALTH := 0.3
+const COIN_SIZE := 34.0
+## Damage and healing numbers rise this far.
+const FLOAT_RISE := 80.0
 const FLOAT_TIME := 1.1
 const FLOAT_SIZE := 64
 ## A health bar's pale trail waits this long after a hit, then catches up over TRAIL_TIME.
@@ -45,17 +64,28 @@ const TEXT_DIM := Color(0.6, 0.6, 0.7)
 const HP_HERO := Color(0.35, 0.75, 0.4)
 const HP_MONSTER := Color(0.85, 0.3, 0.3)
 const BAR_BACK := Color(0, 0, 0, 0.5)
+const BAR_RIM_COLOR := Color(0.17, 0.1, 0.05)
+const BAR_EMPTY := Color(0.08, 0.05, 0.04, 0.92)
+const BAR_TRAIL := Color(1, 0.93, 0.75)
 const SHIELD := Color(0.62, 0.42, 0.85)
 const GOLD := Color(0.98, 0.8, 0.25)
 const WARN := Color(0.95, 0.3, 0.25)
+const HIT_SPARK := Color(1, 0.85, 0.45)
+const HURT_SPARK := Color(1, 0.45, 0.35)
 const OUTLINE := Color(0.1, 0.07, 0.05)
 const OUTLINE_SIZE := 8
+## Floating numbers: a dark rim, then a ring of their color around a warm white core.
+const FLOAT_RIM := 18
+const FLOAT_RING := 9
+const FLOAT_CORE := Color(1, 0.97, 0.86)
 
 var _state: BattleState
 ## What the camera moves: the backdrop, the fighters and the FX between them.
 var _stage: Node2D
 ## Props in flight and comic lettering, above the fighters.
 var _fx: Node2D
+## Sparks and light bursting from where blows land.
+var _sparks: TileParticles
 ## The critical-hit cinematic: dimming, speed lines, eye close-ups. Not zoomed.
 var _cinema: Node2D
 var _zoom := 1.0
@@ -77,12 +107,16 @@ var _fight := 0
 var _hero_trail := 0.0
 var _monster_trail := 0.0
 var _trail_tween: Tween
+## Reused for every rounded shape of the HUD.
+var _box := StyleBoxFlat.new()
+var _coin: Texture2D
 
 
 func _ready() -> void:
 	_stage = Node2D.new()
 	add_child(_stage)
 	_backdrop = ArenaBackdrop.new()
+	_backdrop.position = BACKDROP_SHIFT
 	_stage.add_child(_backdrop)
 	_hero = CharacterRig.new()
 	_hero.position = HERO_FEET
@@ -92,9 +126,14 @@ func _ready() -> void:
 	_stage.add_child(_monster)
 	_fx = Node2D.new()
 	_stage.add_child(_fx)
+	_sparks = TileParticles.new()
+	_sparks.additive = true
+	_stage.add_child(_sparks)
 	_cinema = Node2D.new()
 	add_child(_cinema)
 	_number_font = load(NUMBER_FONT) if ResourceLoader.exists(NUMBER_FONT) else ThemeDB.fallback_font
+	_coin = load(PROP_DIR + "coin.png") if ResourceLoader.exists(PROP_DIR + "coin.png") else null
+	_box.shadow_color = Color(0, 0, 0, 0.35)
 	_overlay = Node2D.new()
 	add_child(_overlay)
 	_overlay.draw.connect(_draw_overlay)
@@ -108,10 +147,10 @@ func show_state(state: BattleState) -> void:
 	_attack_turn = 0
 	for child in _fx.get_children() + _cinema.get_children():
 		child.queue_free()
+	_sparks.clear()
 	_set_camera(1.0, SIZE / 2)
 	if _backdrop.background != state.monster.background:
 		_backdrop.load_background(state.monster.background)
-	_backdrop.react_crowd(&"idle", 0.0)
 	_hero.setup(HERO_ID, 1)
 	_monster.setup(state.monster.id, -1, state.shield_layers() if state.monster.shield_layers > 0 else -1)
 	if _trail_tween:
@@ -127,8 +166,8 @@ func show_state(state: BattleState) -> void:
 func orb_targets() -> Dictionary:
 	return {
 		Cell.BlockColor.RED: to_global(HERO_FEET + Vector2(90, -190)),
-		Cell.BlockColor.GREEN: to_global(Vector2(40 + BAR_SIZE.x / 2, SIZE.y - 110 + BAR_SIZE.y / 2)),
-		Cell.BlockColor.YELLOW: to_global(Vector2(110, 145)),
+		Cell.BlockColor.GREEN: to_global(HERO_BAR + BAR_SIZE / 2),
+		Cell.BlockColor.YELLOW: to_global(_coin_center()),
 		Cell.BlockColor.PURPLE: to_global(MONSTER_FEET + Vector2(-110, -150)),
 	}
 
@@ -149,18 +188,17 @@ func play_report(report: TurnReport) -> void:
 	elif report.heal > 0:
 		_hero.react(&"drink", 0.9)
 	if report.heal > 0:
-		_float("+%d" % report.heal, HERO_FEET + Vector2(0, -230), HP_HERO.lightened(0.3))
+		_float("+%d" % report.heal, HERO_FEET + Vector2(0, -200), HP_HERO.lightened(0.3))
 		_hero.set_health(_state.hero_health())
 		Sfx.play(&"heal")
 	if report.gold > 0:
-		_float("+%d VÀNG" % report.gold, Vector2(190, 310), GOLD)
+		_float("+%d VÀNG" % report.gold, _coin_center() + Vector2(0, 70), GOLD)
 		Sfx.play(&"coin", 1.0, -4.0)
 	_drain_trails()
 
 	match report.outcome:
 		BattleState.Outcome.WON:
-			_backdrop.react_crowd(&"cheer", 2.4)
-			_comic("ko", Vector2(SIZE.x / 2, 230), 1.25, 1.4)
+			_comic("ko", Vector2(SIZE.x / 2, 210), 1.25, 1.4)
 			await get_tree().create_timer(0.35).timeout
 			if fight == _fight:
 				_camera(1.0, SIZE / 2, 0.4)
@@ -173,13 +211,11 @@ func play_report(report: TurnReport) -> void:
 				await _monster_move(report, fight)
 			if fight == _fight:
 				_hero.finish(false)
-				_backdrop.react_crowd(&"boo", 2.4)
 				_monster.finish(true)
 				Sfx.play(&"lose")
 			return
 
 	if big_play:
-		_backdrop.react_crowd(&"cheer")
 		_hero.react(&"cheer")
 		_monster.react(&"scared", 1.2)
 	elif report.damage > 0 and _state.monster_health() <= 0.3:
@@ -206,8 +242,8 @@ func play_report(report: TurnReport) -> void:
 
 
 func _process(_delta: float) -> void:
-	# The countdown pulses while the monster is winding up.
-	if _state and _state.attacks_next_move():
+	# The countdown pulses while the monster is winding up; low health bars throb.
+	if _state and (_state.attacks_next_move() or _state.hero_health() <= LOW_HEALTH or _state.monster_health() <= LOW_HEALTH):
 		_overlay.queue_redraw()
 
 
@@ -300,39 +336,44 @@ func _move_bash(report: TurnReport) -> void:
 
 
 ## The blow connects. `final` is the hit that shows the numbers; earlier hits of a combo only
-## flinch the monster. `bonk` hits the head and leaves a bump.
+## flinch the monster. `bonk` hits the head and dazes it.
 func _land_hit(report: TurnReport, comic: String, bonk := false, final := true) -> void:
 	var head := _local(_monster.point("head"))
+	var struck := head + Vector2(0, 40)
 	_monster.react(&"hurt")
+	_monster.flash()
 	if bonk:
-		_monster.add_bump()
+		_monster.daze()
 	if not final:
-		_comic(comic, head + Vector2(-60, -90), 0.8)
-		_flash("slash", head + Vector2(0, 40), 0.5, 0.9, 0.2, randf_range(-0.6, 0.6), true)
+		_comic(comic, head + Vector2(-110, -40), 0.8)
+		_flash("slash", struck, 0.5, 0.9, 0.2, randf_range(-0.6, 0.6), true)
+		_sparks.flare(struck, HIT_SPARK, 1.2)
+		_punch(struck, 0.025)
 		Sfx.play(&"hit", 1.2)
-		impact.emit(0.2, 0.03)
+		impact.emit(0.25, 0.04)
 		return
 	_monster.set_health(_state.monster_health())
 	_monster.set_shield_layers(_state.shield_layers())
-	if report.chain >= 3 or report.link_length >= 6 or report.critical:
-		_backdrop.react_crowd(&"cheer")
+	_sparks.flare(struck, SHIELD.lightened(0.4) if report.damage == 0 else HIT_SPARK, 1.4 + minf(report.damage / 20.0, 1.0))
+	_punch(struck, 0.05)
 	if report.critical:
 		_critical_blow(head)
 	else:
-		_comic(comic, head + Vector2(-60, -90))
-		_flash("slash", head + Vector2(0, 40), 0.5, 1.0, 0.22, randf_range(-0.6, 0.6), true)
+		_comic(comic, head + Vector2(-110, -40))
+		_flash("slash", struck, 0.5, 1.0, 0.22, randf_range(-0.6, 0.6), true)
+		_flash("shockwave", struck, 0.12, 0.8, 0.28, 0.0, true)
 	_hero_strike_feel(report)
 	if report.shield_damage > 0:
-		_float("KHIÊN -%d" % report.shield_damage, MONSTER_FEET + Vector2(0, -300), SHIELD)
+		_float("KHIÊN -%d" % report.shield_damage, MONSTER_FEET + Vector2(-170, -180), SHIELD)
 	if report.damage > 0:
 		# Bigger hits get bigger numbers.
-		_float("-%d" % report.damage, MONSTER_FEET + Vector2(0, -190), HP_MONSTER.lightened(0.3), FLOAT_SIZE + mini(report.damage * 2, 56) + (30 if report.critical else 0))
+		_float("-%d" % report.damage, MONSTER_FEET + Vector2(0, -200), HP_MONSTER.lightened(0.3), FLOAT_SIZE + mini(report.damage * 2, 56) + (30 if report.critical else 0))
 
 
 ## A critical blow: a red slash, a shockwave, the CRITICAL! banner, time slowing, and the
 ## monster loses its hat (or a tooth).
 func _critical_blow(head: Vector2) -> void:
-	_comic("critical", Vector2(SIZE.x / 2, 200), 1.0, 0.8)
+	_comic("critical", Vector2(SIZE.x / 2, 190), 1.0, 0.8)
 	_flash("slash_crit", head + Vector2(0, 40), 0.5, 1.2, 0.3, randf_range(-0.5, 0.5))
 	_flash("shockwave", head + Vector2(0, 60), 0.2, 1.6, 0.4, 0.0, true)
 	Sfx.play(&"crit")
@@ -378,7 +419,7 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 			var rock := _prop("rock")
 			await _fly(rock, _local(_monster.point("hand")), _local(_hero.point("crown")), 0.4, 130.0, 2.0)
 			rock.queue_free()
-			_hero.add_bump()
+			_hero.daze()
 			_hero_hit(report, "bonk", &"dizzy")
 		&"club":
 			_monster.react(&"throw", 0.7)
@@ -399,19 +440,21 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 
 
 func _hero_hit(report: TurnReport, comic: String, pose: StringName) -> void:
-	_backdrop.react_crowd(&"boo")
 	_hero.react(pose, 1.0)
+	_hero.flash()
 	_hero.set_health(_state.hero_health())
 	var head := _local(_hero.point("head"))
+	_sparks.flare(head + Vector2(0, 40), HURT_SPARK, 2.0)
+	_punch(head + Vector2(0, 40), 0.05)
 	if report.monster_critical:
-		_comic("critical", Vector2(SIZE.x / 2, 200), 1.0, 0.8)
+		_comic("critical", Vector2(SIZE.x / 2, 190), 1.0, 0.8)
 		_flash("shockwave", head + Vector2(0, 60), 0.2, 1.6, 0.4, 0.0, true)
 		Sfx.play(&"crit")
 		slow_motion.emit(0.3, 0.45)
 	else:
-		_comic(comic, head + Vector2(60, -90))
+		_comic(comic, head + Vector2(110, -40))
 	_comic("ouch", head + Vector2(-30, -10), 0.6)
-	_float("-%d" % report.monster_attack, HERO_FEET + Vector2(0, -230), WARN, FLOAT_SIZE + (40 if report.monster_critical else 16))
+	_float("-%d" % report.monster_attack, HERO_FEET + Vector2(0, -200), WARN, FLOAT_SIZE + (40 if report.monster_critical else 16))
 	Sfx.play(&"thud")
 	impact.emit(0.35 + minf(report.monster_attack / 40.0, 0.4) + (0.3 if report.monster_critical else 0.0), 0.06)
 	_drain_trails()
@@ -527,6 +570,14 @@ func _local(global_point: Vector2) -> Vector2:
 	return _fx.to_local(global_point)
 
 
+## The camera jolts in toward `at` and springs back: a blow landing.
+func _punch(at: Vector2, amount: float) -> void:
+	var zoom := _zoom
+	var focus := _focus
+	_set_camera(zoom + amount, focus.lerp(at, 0.25))
+	_camera(zoom, focus, 0.2)
+
+
 ## Eases the camera to `zoom` around `focus` (stage coordinates).
 func _camera(zoom: float, focus: Vector2, seconds: float) -> void:
 	if _camera_tween:
@@ -590,10 +641,10 @@ func _set_monster_trail(value: float) -> void:
 
 
 ## Rises from where it pops up, popping in oversized and settling before it fades.
-## A little sideways scatter keeps numbers from the same move from stacking.
+## A little sideways scatter and tilt keeps numbers from the same move from stacking.
 func _float(text: String, at: Vector2, color: Color, font_size := FLOAT_SIZE) -> void:
 	at.x += randf_range(-30.0, 30.0)
-	var floater := {"text": text, "at": at, "color": color, "size": font_size, "t": 0.0}
+	var floater := {"text": text, "at": at, "color": color, "size": font_size, "t": 0.0, "tilt": randf_range(-0.14, 0.14)}
 	# Plain numbers use the comic font; words keep the default one, which has Vietnamese.
 	if text.lstrip("+-").is_valid_int():
 		floater["font"] = _number_font
@@ -626,25 +677,37 @@ func _draw() -> void:
 func _draw_overlay() -> void:
 	if not _state:
 		return
-	var bar_y := SIZE.y - 110
-	_draw_bar(Vector2(40, bar_y), _state.hero_hp, _hero_trail, _state.rules.hero_max_hp, HP_HERO, "HIỆP SĨ")
-	var monster_bar := Vector2(SIZE.x - 40 - BAR_SIZE.x, bar_y)
-	_draw_bar(monster_bar, _state.monster_hp, _monster_trail, _state.monster.max_hp, HP_MONSTER, _state.monster.display_name.to_upper())
-	_draw_shield_layers(monster_bar + Vector2(0, BAR_SIZE.y + 50))
+	_draw_bar(HERO_BAR, _state.hero_hp, _hero_trail, _state.rules.hero_max_hp, HP_HERO)
+	_draw_bar(MONSTER_BAR, _state.monster_hp, _monster_trail, _state.monster.max_hp, HP_MONSTER, true)
+	_draw_text("HIỆP SĨ", Vector2(HERO_BAR.x + 4, ROW_Y + LABEL_SIZE), LABEL_SIZE, TEXT)
+	var monster_name := _state.monster.display_name.to_upper()
+	_draw_text(monster_name, Vector2(MONSTER_BAR.x + BAR_SIZE.x - 4 - _text_width(monster_name, LABEL_SIZE), ROW_Y + LABEL_SIZE), LABEL_SIZE, TEXT)
+	_draw_shield_layers()
+	_draw_gold()
 	if _state.outcome == BattleState.Outcome.ONGOING and _state.monster.counterattacks:
-		_draw_countdown(MONSTER_FEET + Vector2(170, -360))
-	_draw_text("VÀNG %d" % _state.gold, Vector2(40, 160), 40, GOLD)
+		_draw_countdown(COUNTDOWN_AT)
 	if _hint:
-		var box := Rect2(30, 20, SIZE.x - 60, 96)
-		_overlay.draw_rect(box, Color(0, 0, 0, 0.55))
+		var box := Rect2(30, 110, SIZE.x - 60, 96)
+		_rounded(box, Color(0, 0, 0, 0.6), 18)
 		_overlay.draw_multiline_string(ThemeDB.fallback_font, box.position + Vector2(20, 40), _hint, HORIZONTAL_ALIGNMENT_LEFT, box.size.x - 40, 32, 2, TEXT)
 	for floater in _floaters:
 		var t: float = floater["t"]
-		var color: Color = floater["color"]
-		var at: Vector2 = floater["at"] + Vector2(0, -90 * t)
-		_overlay.draw_set_transform(at, 0.0, Vector2.ONE * _pop_scale(t))
-		_draw_text_centered(floater["text"], Vector2.ZERO, floater["size"], Color(color, 1.0 - t * t), floater.get("font"))
+		var at: Vector2 = floater["at"] + Vector2(0, -FLOAT_RISE * ease(t, 0.4))
+		_overlay.draw_set_transform(at, floater["tilt"], Vector2.ONE * _pop_scale(t))
+		_draw_sticker(floater["text"], floater["size"], floater["color"], 1.0 - t * t * t, floater.get("font"))
 		_overlay.draw_set_transform(Vector2.ZERO)
+
+
+## A floating number drawn like a sticker, centered on the origin: a drop shadow, a thick
+## dark rim, a ring of `color`, and a warm white core.
+func _draw_sticker(text: String, font_size: int, color: Color, alpha: float, font: Font = null) -> void:
+	if not font:
+		font = ThemeDB.fallback_font
+	var at := Vector2(-font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x / 2, font_size * 0.35)
+	_overlay.draw_string_outline(font, at + Vector2(4, 7), text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, FLOAT_RIM, Color(0, 0, 0, 0.35 * alpha))
+	_overlay.draw_string_outline(font, at, text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, FLOAT_RIM, Color(OUTLINE, alpha))
+	_overlay.draw_string_outline(font, at, text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, FLOAT_RING, Color(color.darkened(0.1), alpha))
+	_overlay.draw_string(font, at, text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, Color(FLOAT_CORE, alpha))
 
 
 ## Popping text: grows past full size in the first moments, then settles back to it.
@@ -656,45 +719,97 @@ static func _pop_scale(t: float) -> float:
 	return 1.0
 
 
-## `trail` is the health the bar showed a moment ago, drawn pale behind the real fill.
-func _draw_bar(at: Vector2, value: int, trail: float, max_value: int, color: Color, label: String) -> void:
-	_overlay.draw_rect(Rect2(at, BAR_SIZE), BAR_BACK)
-	var trail_fill := clampf(trail / max_value, 0.0, 1.0)
-	_overlay.draw_rect(Rect2(at, Vector2(BAR_SIZE.x * trail_fill, BAR_SIZE.y)), Color(1, 0.95, 0.85, 0.85))
+## A framed, rounded bar with the numbers inside. `trail` is the health the bar showed a
+## moment ago, drawn pale behind the real fill. Like a fighting game, each bar is anchored at
+## its screen edge and drains toward the middle (the monster's, on the right: `from_right`).
+## Low health throbs.
+func _draw_bar(at: Vector2, value: int, trail: float, max_value: int, color: Color, from_right := false) -> void:
+	var bar := Rect2(at, BAR_SIZE)
+	_rounded(bar.grow(BAR_RIM), BAR_RIM_COLOR, BAR_RADIUS + BAR_RIM, 6)
+	_rounded(bar, BAR_EMPTY, BAR_RADIUS)
 	var fill := clampf(float(value) / max_value, 0.0, 1.0)
-	_overlay.draw_rect(Rect2(at, Vector2(BAR_SIZE.x * fill, BAR_SIZE.y)), color)
-	_draw_text("%s  %d/%d" % [label, value, max_value], at + Vector2(0, -10), 32, TEXT)
+	if fill > 0.0 and fill <= LOW_HEALTH:
+		color = color.lerp(Color.WHITE, 0.35 * absf(sin(Time.get_ticks_msec() / 1000.0 * 6.0)))
+	_rounded(_bar_part(bar, clampf(trail / max_value, 0.0, 1.0), from_right), BAR_TRAIL, BAR_RADIUS)
+	var filled := _bar_part(bar, fill, from_right)
+	_rounded(filled, color, BAR_RADIUS)
+	_rounded(Rect2(filled.position + Vector2(5, 4), Vector2(filled.size.x - 10, BAR_SIZE.y * 0.3)), Color(1, 1, 1, 0.32), 4)
+	_draw_text_centered("%d/%d" % [value, max_value], bar.get_center() + Vector2(0, 10), 28, TEXT, _number_font)
 
 
-## One box per layer; a damaged layer shows how much of it is left.
-func _draw_shield_layers(at: Vector2) -> void:
+func _text_width(text: String, font_size: int, font: Font = null) -> float:
+	return (font if font else ThemeDB.fallback_font).get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+
+
+## `fraction` of `bar`, from its left edge or its right one.
+static func _bar_part(bar: Rect2, fraction: float, from_right: bool) -> Rect2:
+	var width := bar.size.x * fraction
+	return Rect2(bar.position + Vector2(bar.size.x - width if from_right else 0.0, 0), Vector2(width, bar.size.y))
+
+
+## One pip per layer in the row under the monster's bar, starting at its inner end; a damaged
+## layer shows how much of it is left.
+func _draw_shield_layers() -> void:
 	var size := _state.rules.shield_layer_size
 	var total := _state.monster.shield_layers
 	if total == 0:
 		return
-	_draw_text("KHIÊN", at + Vector2(0, -8), 28, TEXT_DIM)
+	var pip := Vector2(36, 18)
 	for i in total:
-		var box := Rect2(at + Vector2(130 + i * 56, -34), Vector2(46, 34))
+		var box := Rect2(Vector2(MONSTER_BAR.x + i * (pip.x + 10), ROW_Y + 6), pip)
 		var left := clampi(_state.shield - i * size, 0, size)
-		_overlay.draw_rect(box, BAR_BACK)
-		_overlay.draw_rect(Rect2(box.position, Vector2(box.size.x * left / size, box.size.y)), SHIELD)
-		_overlay.draw_rect(box, SHIELD.lightened(0.3), false, 2)
+		_rounded(box.grow(3), BAR_RIM_COLOR, 9, 3)
+		_rounded(box, BAR_EMPTY, 6)
+		var filled := _bar_part(box, float(left) / size, false)
+		_rounded(filled, SHIELD, 6)
+		_rounded(Rect2(filled.position + Vector2(3, 2), Vector2(filled.size.x - 6, pip.y * 0.3)), Color(1, 1, 1, 0.35), 3)
 
 
-## Moves left until the monster attacks; turns red one move ahead.
+## The coin and how much gold the hero has, in the row under the hero's bar, at its inner end.
+func _draw_gold() -> void:
+	var text := str(_state.gold)
+	var right := HERO_BAR.x + BAR_SIZE.x
+	var text_x := right - _text_width(text, 30, _number_font)
+	var coin := _coin_center()
+	coin.x = text_x - 8 - COIN_SIZE / 2
+	if _coin:
+		_overlay.draw_texture_rect(_coin, Rect2(coin - Vector2.ONE * COIN_SIZE / 2, Vector2.ONE * COIN_SIZE), false)
+	else:
+		_overlay.draw_circle(coin, COIN_SIZE * 0.4, GOLD)
+	_draw_text(text, Vector2(text_x, ROW_Y + 28), 30, GOLD, _number_font)
+
+
+## Where the coin sits, give or take the width of the number beside it.
+func _coin_center() -> Vector2:
+	return Vector2(HERO_BAR.x + BAR_SIZE.x - 40 - COIN_SIZE / 2, ROW_Y + COIN_SIZE / 2)
+
+
+func _rounded(rect: Rect2, color: Color, radius: int, shadow := 0) -> void:
+	if rect.size.x < 1.0 or rect.size.y < 1.0:
+		return
+	_box.bg_color = color
+	_box.set_corner_radius_all(radius)
+	_box.shadow_size = shadow
+	_box.shadow_offset = Vector2(0, shadow * 0.6)
+	_box.draw(_overlay.get_canvas_item(), rect)
+
+
+## Moves left until the monster attacks, between the bars like a round timer; turns red one
+## move ahead, with a warning underneath.
 func _draw_countdown(center: Vector2) -> void:
 	var warn := _state.attacks_next_move()
-	var radius := 40.0
+	var radius := 34.0
 	if warn:
-		radius += 7.0 * absf(sin(Time.get_ticks_msec() / 1000.0 * 6.0))
-	_overlay.draw_circle(center, radius, WARN if warn else Color(0, 0, 0, 0.5))
-	_overlay.draw_arc(center, radius, 0, TAU, 32, TEXT, 3)
-	_draw_text_centered(str(_state.countdown), center + Vector2(0, 16), 48, TEXT)
+		radius += 5.0 * absf(sin(Time.get_ticks_msec() / 1000.0 * 6.0))
+	_overlay.draw_circle(center + Vector2(0, 4), radius + BAR_RIM, Color(0, 0, 0, 0.35))
+	_overlay.draw_circle(center, radius + BAR_RIM, BAR_RIM_COLOR)
+	_overlay.draw_circle(center, radius, WARN if warn else BAR_EMPTY)
+	_draw_text_centered(str(_state.countdown), center + Vector2(0, 15), 44, TEXT, _number_font)
 	if warn:
 		if _state.next_attack_is_critical():
-			_draw_text_centered("SẮP CHÍ MẠNG %d!" % roundi(_state.monster.attack * _state.rules.monster_crit_multiplier), center + Vector2(-90, -55), 36, Color(1, 0.85, 0.2))
+			_draw_text_centered("SẮP CHÍ MẠNG %d!" % roundi(_state.monster.attack * _state.rules.monster_crit_multiplier), center + Vector2(0, radius + 44), 30, Color(1, 0.85, 0.2))
 		else:
-			_draw_text_centered("SẮP ĐÁNH %d!" % _state.monster.attack, center + Vector2(-50, -55), 34, WARN.lightened(0.3))
+			_draw_text_centered("SẮP ĐÁNH %d!" % _state.monster.attack, center + Vector2(0, radius + 44), 30, WARN.lightened(0.3))
 
 
 ## Text sits on painted backgrounds, so it gets a dark outline to stay readable.

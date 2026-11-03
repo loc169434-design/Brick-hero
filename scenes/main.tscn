@@ -21,7 +21,7 @@ color = Color(0.06, 0.06, 0.09, 1)
 script = ExtResource("2_view")
 
 [node name="Board" parent="." instance=ExtResource("1_board")]
-position = Vector2(50, 690)
+position = Vector2(50, 530)
 
 [node name="Feel" type="Camera2D" parent="."]
 script = ExtResource("8_feel")

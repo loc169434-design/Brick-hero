@@ -1,0 +1,170 @@
+{
+  "background": "#092b46",
+  "files": [
+    {
+      "path": "assets/bg/training_field/cloud_1.png",
+      "canvas": [
+        320,
+        128
+      ],
+      "frames": 1,
+      "rgb_unchanged": true,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 38590,
+      "soft_edge_pixels": 427
+    },
+    {
+      "path": "assets/bg/training_field/cloud_2.png",
+      "canvas": [
+        320,
+        128
+      ],
+      "frames": 1,
+      "rgb_unchanged": true,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 37570,
+      "soft_edge_pixels": 494
+    },
+    {
+      "path": "assets/bg/training_field/cloud_3.png",
+      "canvas": [
+        320,
+        128
+      ],
+      "frames": 1,
+      "rgb_unchanged": true,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 36511,
+      "soft_edge_pixels": 587
+    },
+    {
+      "path": "assets/bg/training_field/grass.png",
+      "canvas": [
+        160,
+        96
+      ],
+      "frames": 1,
+      "rgb_unchanged": true,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 14401,
+      "soft_edge_pixels": 606
+    },
+    {
+      "path": "assets/bg/training_field/bird.png",
+      "canvas": [
+        384,
+        64
+      ],
+      "frames": 4,
+      "rgb_unchanged": true,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 20735,
+      "soft_edge_pixels": 1082
+    },
+    {
+      "path": "assets/bg/orc_camp/cloud_1.png",
+      "canvas": [
+        320,
+        128
+      ],
+      "frames": 1,
+      "rgb_unchanged": true,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 38590,
+      "soft_edge_pixels": 427
+    },
+    {
+      "path": "assets/bg/orc_camp/cloud_2.png",
+      "canvas": [
+        320,
+        128
+      ],
+      "frames": 1,
+      "rgb_unchanged": true,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 37570,
+      "soft_edge_pixels": 494
+    },
+    {
+      "path": "assets/bg/orc_camp/cloud_3.png",
+      "canvas": [
+        320,
+        128
+      ],
+      "frames": 1,
+      "rgb_unchanged": true,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 36511,
+      "soft_edge_pixels": 587
+    },
+    {
+      "path": "assets/bg/orc_camp/grass.png",
+      "canvas": [
+        160,
+        96
+      ],
+      "frames": 1,
+      "rgb_unchanged": true,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 13963,
+      "soft_edge_pixels": 722
+    },
+    {
+      "path": "assets/bg/orc_camp/bird.png",
+      "canvas": [
+        384,
+        64
+      ],
+      "frames": 4,
+      "rgb_unchanged": true,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 20401,
+      "soft_edge_pixels": 1283
+    },
+    {
+      "path": "assets/bg/orc_camp/torch.png",
+      "canvas": [
+        384,
+        128
+      ],
+      "frames": 6,
+      "rgb_unchanged": true,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 44863,
+      "soft_edge_pixels": 1531
+    }
+  ]
+}

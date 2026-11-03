@@ -1,5 +1,18 @@
 # Issue #17 — nền bảng và lớp đấu trường
 
+## Sửa alpha theo comment mới — 2026-11-03
+
+Theo [comment của Claude](https://github.com/loc169434-design/Brick-hero/issues/17#issuecomment-6597361180), đã sửa đúng 11 PNG: cloud_1..3, grass, bird ở cả hai nền và torch của orc_camp. Bản xuất trước còn giữ matte trắng bên trong phần canvas đệm; kiểm tra nền trắng đã bỏ sót lỗi này.
+
+- **Chỉ thay alpha:** RGB của từng pixel giữ nguyên so với commit f634fb9; canvas, số frame và vị trí nội dung không đổi. Không thay flag, smoke, sky/far/mid/ground, board UI hoặc particles.
+- Lấy lại matte từ atlas nguồn qua công cụ tách nền, khớp lại đúng crop/resize/offset cũ rồi chuyển alpha sang PNG gốc. Loại alpha nhiễu ở nền ngoài và giữ chuyển tiếp mềm tại mép.
+- Đã ghép lại toàn bộ 11 file, gồm đủ 4 frame của từng bird và 6 frame torch, trên **nền xanh đậm #092b46**. Không còn khung trắng/khối vuông. Các pixel trên toàn bộ bốn cạnh của từng frame đều alpha 0; trong hình có vùng alpha 255 và pixel viền alpha trung gian.
+- Chi tiết kích thước, số frame, số pixel trong suốt và kiểm tra RGB không đổi: [alpha_fix_metrics.json](issue17_review/alpha_fix_metrics.json).
+- API đọc comment vẫn trả Forbidden; đã đọc yêu cầu qua trang issue. Bản sửa này được bàn giao trong file hiện tại nếu đăng comment tiếp tục bị chặn.
+
+![Trước và sau, từng file trên nền xanh đậm](issue17_review/alpha_fix_before_after_dark_blue.png)
+
+
 Nhánh: `art/arena-layers`, tạo từ `origin/main` tại `aeefd30e367f3e87c6533d85285d72495aa7068c`.
 
 GitHub API trả `Forbidden` khi đọc issue. Bàn giao tại đây theo yêu cầu; chưa đăng được comment hay tạo PR bằng API.

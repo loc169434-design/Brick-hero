@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="vi"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brickbound Hero — Bom, sét, sao</title>
+<style>
+:root{color-scheme:dark;font:16px/1.5 system-ui;background:#101e2d;color:#f7eddc}body{max-width:1080px;margin:32px auto;padding:0 20px}h1{font-size:28px}button,select,a{color:inherit}button,select{background:#283d50;border:1px solid #6e8598;padding:9px 14px;border-radius:8px}nav{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}.card{border:1px solid #516779;border-radius:16px;padding:20px}canvas{display:block;width:100%;max-width:256px;aspect-ratio:1;background:#17324a;margin:auto;border-radius:12px}p{max-width:85ch}small{color:#b6c6d5}.light canvas{background:#e7e9f0}.checker canvas{background:repeating-conic-gradient(#304356 0% 25%,#223244 0% 50%) 0/20px 20px}a{color:#9ee2ff}#error{color:#ffb09e}img{max-width:100%}
+</style>
+<h1>Bom, sét, sao — bản hình nổi khối</h1>
+<p>Ba vật thể không nền ô, không bóng chân. Lửa là lớp riêng; điện và lấp lánh đã gồm vật thể gốc. 12 khung mỗi vòng, 12 fps, một vòng 1 giây.</p>
+<nav><button id="pause">Tạm dừng</button><label>Nền <select id="bg"><option value="dark">Xanh đậm</option><option value="checker">Ô caro kiểm tra alpha</option><option value="light">Sáng</option></select></label><label>Kích thước <select id="size"><option value="256">Phóng to 2×</option><option value="128">128 px</option><option value="46">46 px trong game</option></select></label></nav>
+<div class="cards"><article class="card"><h2>Bom</h2><canvas id="bomb" width="128" height="128"></canvas><p>Dây chưa cháy trong ảnh tĩnh. Đầu dây: (88,28) px. Gốc khung: (64,64).</p></article><article class="card"><h2>Sét</h2><canvas id="lightning" width="128" height="128"></canvas><p>Chữ thập vàng nổi khối, tia điện cyan chạy quanh. Dáng gốc giữ cố định.</p></article><article class="card"><h2>Sao</h2><canvas id="star" width="128" height="128"></canvas><p>Bốn cánh, highlight và phản quang màu. Nhịp sáng luân phiên, không đổi hình.</p></article></div>
+<p id="status">Đang tải hình…</p><p id="error" role="alert"></p>
+<p><a href="specials_idle.gif">GIF 12 fps</a> · <a href="static_dark_blue.png">Ảnh tĩnh trên xanh đậm</a> · <a href="static_light.png">Ảnh tĩnh trên nền sáng</a> · <a href="all_frames_dark_blue.png">Đủ 12 khung</a> · <a href="README.md">Bàn giao</a> · <a href="files.txt">Danh sách file</a></p>
+<p><small>Trang này chỉ xem ảnh bàn giao, chưa phải bản game đã tích hợp. Bóng và rung vật thể hiện tại của game chưa mô phỏng ở đây. Atlas đọc 8 khung mỗi hàng; 4 ô cuối hàng thứ hai để trống.</small></p>
+<script>
+const dir='../../../assets/tiles/specials/';
+const imgs={}; let paused=false,frame=0,last=performance.now(),elapsed=0;
+const canvases=[...document.querySelectorAll('canvas')];
+function load(name){return new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>{imgs[name]=im;resolve()};im.onerror=()=>reject(new Error('Không tải được '+name));im.src=dir+name+'.png'})}
+function draw(){for(const c of canvases){const ctx=c.getContext('2d');ctx.clearRect(0,0,128,128);if(c.id==='bomb'){ctx.drawImage(imgs.bomb,0,0);ctx.drawImage(imgs.bomb_fuse,(frame%8)*128,Math.floor(frame/8)*128,128,128,0,0,128,128)}else ctx.drawImage(imgs[c.id+'_idle'],(frame%8)*128,Math.floor(frame/8)*128,128,128,0,0,128,128)}document.querySelector('#status').textContent='Khung '+frame+' / 11 · 12 fps · loop 1,00 s'}
+function tick(now){if(!paused){elapsed+=Math.min(now-last,100);frame=Math.floor(elapsed/(1000/12))%12;draw()}last=now;requestAnimationFrame(tick)}
+document.querySelector('#pause').onclick=e=>{paused=!paused;e.target.textContent=paused?'Phát tiếp':'Tạm dừng'};
+document.querySelector('#bg').onchange=e=>document.body.className=e.target.value;
+document.querySelector('#size').onchange=e=>canvases.forEach(c=>c.style.width=e.target.value+'px');
+Promise.all(['bomb','bomb_fuse','lightning_idle','star_idle'].map(load)).then(()=>{draw();requestAnimationFrame(tick)}).catch(e=>document.querySelector('#error').textContent=e.message);
+</script></html>

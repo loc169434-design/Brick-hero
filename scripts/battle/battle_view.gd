@@ -111,6 +111,7 @@ func show_state(state: BattleState) -> void:
 	_set_camera(1.0, SIZE / 2)
 	if _backdrop.background != state.monster.background:
 		_backdrop.load_background(state.monster.background)
+	_backdrop.react_crowd(&"idle", 0.0)
 	_hero.setup(HERO_ID, 1)
 	_monster.setup(state.monster.id, -1, state.shield_layers() if state.monster.shield_layers > 0 else -1)
 	if _trail_tween:
@@ -158,6 +159,7 @@ func play_report(report: TurnReport) -> void:
 
 	match report.outcome:
 		BattleState.Outcome.WON:
+			_backdrop.react_crowd(&"cheer", 2.4)
 			_comic("ko", Vector2(SIZE.x / 2, 230), 1.25, 1.4)
 			await get_tree().create_timer(0.35).timeout
 			if fight == _fight:
@@ -171,11 +173,13 @@ func play_report(report: TurnReport) -> void:
 				await _monster_move(report, fight)
 			if fight == _fight:
 				_hero.finish(false)
+				_backdrop.react_crowd(&"boo", 2.4)
 				_monster.finish(true)
 				Sfx.play(&"lose")
 			return
 
 	if big_play:
+		_backdrop.react_crowd(&"cheer")
 		_hero.react(&"cheer")
 		_monster.react(&"scared", 1.2)
 	elif report.damage > 0 and _state.monster_health() <= 0.3:
@@ -310,6 +314,8 @@ func _land_hit(report: TurnReport, comic: String, bonk := false, final := true) 
 		return
 	_monster.set_health(_state.monster_health())
 	_monster.set_shield_layers(_state.shield_layers())
+	if report.chain >= 3 or report.link_length >= 6 or report.critical:
+		_backdrop.react_crowd(&"cheer")
 	if report.critical:
 		_critical_blow(head)
 	else:
@@ -393,6 +399,7 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 
 
 func _hero_hit(report: TurnReport, comic: String, pose: StringName) -> void:
+	_backdrop.react_crowd(&"boo")
 	_hero.react(pose, 1.0)
 	_hero.set_health(_state.hero_health())
 	var head := _local(_hero.point("head"))

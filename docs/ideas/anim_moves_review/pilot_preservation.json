@@ -1,0 +1,46 @@
+{
+  "hero_rookie": {
+    "pilot_png_unchanged": true,
+    "pilot_clip_metadata_unchanged": true
+  },
+  "orc_shield": {
+    "pilot_png_unchanged": true,
+    "pilot_clip_metadata_unchanged": true
+  },
+  "hero_rookie_fresh_kick.gif": {
+    "decoded_duration_ms": 1000
+  },
+  "hero_rookie_fresh_cheer.gif": {
+    "decoded_duration_ms": 3000
+  },
+  "hero_rookie_fresh_bash.gif": {
+    "decoded_duration_ms": 1250
+  },
+  "hero_rookie_fresh_knocked.gif": {
+    "decoded_duration_ms": 1000
+  },
+  "hero_rookie_fresh_scared.gif": {
+    "decoded_duration_ms": 2000
+  },
+  "hero_rookie_fresh_leap.gif": {
+    "decoded_duration_ms": 2000
+  },
+  "hero_rookie_fresh_dizzy.gif": {
+    "decoded_duration_ms": 3000
+  },
+  "hero_rookie_fresh_hurt.gif": {
+    "decoded_duration_ms": 1000
+  },
+  "hero_rookie_fresh_drink.gif": {
+    "decoded_duration_ms": 3000
+  },
+  "hero_rookie_fresh_victory.gif": {
+    "decoded_duration_ms": 3000
+  },
+  "hero_rookie_fresh_defeat.gif": {
+    "decoded_duration_ms": 3000
+  },
+  "hero_rookie_fresh_throw.gif": {
+    "decoded_duration_ms": 1250
+  }
+}

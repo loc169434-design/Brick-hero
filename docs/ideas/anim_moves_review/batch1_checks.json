@@ -1,0 +1,226 @@
+[
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_throw.png",
+    "frames": 10,
+    "fps": 24,
+    "unique_drawings": 10,
+    "frame_sha256": [
+      "4a874c319fee146f5c8829cc1c6a473fb7ed99e8444095591f67d9df9530e20e",
+      "ed6ed194351f73fa140992b9064a0ba786899e08130bb13fe0e3c3adaae4dc18",
+      "0fd4df1a8e5b76aab849560e14b1bfcce3113b8df1d5460c8433d6b5ce2e9082",
+      "be8bb1d782c3422af8a6892300a411e6e0cee67554d021d1b426cb126757c4c1",
+      "7443e6d235813c9af0b8b57ba49d7ca9f0bf4e171410b060960ecdf24176e394",
+      "bd84fac63fa8e70d14c572c2f1014129ccdc4b07c79621954372fa96509c37bd",
+      "20d87980c704d672adcfc7d6048a13f3317837f19ac947220cd686efcc7a0664",
+      "869cfb0063eed5d3626b8e76e0b0eb5fabbc94c68962747dc17a5e5d43f49f52",
+      "73504b7cc55f27ca1bb0e7004a0a0f631fe369e015b4f64922fc70297d5edf19",
+      "2b4239fcdf2ef9de626273d5d59f97e05183c472681743bf33588b4fff555f5e"
+    ]
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_leap.png",
+    "frames": 16,
+    "fps": 24,
+    "unique_drawings": 16,
+    "frame_sha256": [
+      "e9888d46be3a315b7e7b90e491d1a333d5ab521e082b0827f6b40cfaf24f888f",
+      "f67cd999eb88c7487f9689586f93001a2e27886f1b952219251178e7be99acee",
+      "b1cc080b69849b95f4da0e19db012e853af6f45f70129567ede7e1fc57edb7bc",
+      "7911b85c9fb44800e166861c21f8567806cc80e2a25187e3f5e88a3016d22561",
+      "f5879e841861bcc0be93d84e4b41d0447bd365e9c5eebc9ea708ac43e65708ef",
+      "8bdbf13911160e3f8b1e33644cc2f5a15304414e6d747ec271db33b19d922055",
+      "8241d913aa852b6b547b47ba35ebca4ca8115e6edf54fe6f948df826dc385636",
+      "850cd4002ee3aab174334ace4fdefe0ef631b7220b271cf36f868084b051c3ab",
+      "c99ae7cb7430fd76287f06eb5f56e20bc3d951c8c8be65fcf21cb433c08fc003",
+      "06d93ea8e9a5db151d7e9f8ec41dbd50434eb80991d22aa002afbf48b37ce870",
+      "161153fbbbd3b917653fef035bde3c66531ac1b107716564e2e5d07b4e1c6e05",
+      "5608b39dd0d63c81bb600fd0c07038de1221341038e01fe90d5c89ceaa6ae586",
+      "4a7346120de65058a8881bda4e8741e1c5ae46f7d7afae3f2329e36b414ff2be",
+      "48a5325328c6a7cca8eb1778b2ab517ad7c8743298342594541ebe0ab8e8792c",
+      "5cff5530d4196fa949414ce359e25fe54ad2f050d2db0f4a5205f34a37a1286c",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+    ]
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_kick.png",
+    "frames": 8,
+    "fps": 24,
+    "unique_drawings": 8,
+    "frame_sha256": [
+      "e9888d46be3a315b7e7b90e491d1a333d5ab521e082b0827f6b40cfaf24f888f",
+      "11efdcd87cb9df63061668b64b35d436f826fedf3775db822fc9b1dafdd15184",
+      "e60a4f335dc7f36b6ffed07ada7edec9e5ec7f7515b0c7c53df091897698b50f",
+      "7967233c63121e7ea59baf8fc331db13314a87006dceed3238414278cd23f985",
+      "265886f62bdae5547bee5569cb8185f457cbde5325374e85176cda6b9e0afac9",
+      "766b5620deb5c418e3b2c708e7cd13632acee82f73926c3ea9f4513ba9405b0f",
+      "0b530d2e150681167ef5a2d1008ff070c144aedc60606d9a79804da0246b1974",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+    ]
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_bash.png",
+    "frames": 10,
+    "fps": 24,
+    "unique_drawings": 10,
+    "frame_sha256": [
+      "e9888d46be3a315b7e7b90e491d1a333d5ab521e082b0827f6b40cfaf24f888f",
+      "b8dab5507527ac93a486070d48ffbba3937a2ae9254ddd3d4a5044ca1f48a0ca",
+      "f9091e9c19ddce1e1ec5affec7843b5b86f061ca097ad257905fb5607984b8c4",
+      "24cb40dfe89028eb4cdddcc54b55256dbf985171a159388784816d3b86a58039",
+      "bb05d3a2ee4f37820ed4eb304875cc26223570135a3df3b55fb92902cbd5e2f9",
+      "7a1ce782cacafc18a8d6ced4634d4794dfd556f0dbe3197957e6fc00191a121e",
+      "f560246652154ede592176eb3aec3cc72edb241465e94d354ee02579fc2cb3ee",
+      "aa23f6661935b21711186b200f04c17ea1901db82d2483a8d0347b4aa9939555",
+      "b83addde6ff801167d176cfc38643e07d9483551be614a635bda8e05082b6386",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+    ]
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_drink.png",
+    "frames": 12,
+    "fps": 12,
+    "unique_drawings": 12,
+    "frame_sha256": [
+      "e9888d46be3a315b7e7b90e491d1a333d5ab521e082b0827f6b40cfaf24f888f",
+      "386536d11fd3108eb6ee53a8d578ee13abea0e371e7240bf6ec76a9c51aea238",
+      "105ba87e16d972a01b499bb15ba4cbec2681588e852f864b39661d703148b0b0",
+      "f1cd8a51dc609dd8f6c1784a0dc45b75dfa7fda91f13055c025ae37d526fb1ad",
+      "4e6f6949fb94339c21510597e9e39e32670948b713c95c7305c2d7464f320327",
+      "a1236e9a838f1d91cc06b9372f3b84839924ee8a0111e79bc8a34fec039b0b52",
+      "7b3d4626fd9cd456697d9e08f748459e78fa75f179aa746c8a4a32259d6ea0fe",
+      "e6d556ffa02f962583e7bad686dea040e3dab066c7a15d90795d525eaeea367c",
+      "7b5e049a8204c799106965dce52d0bb1b7e5dbf0ba0d0c4e484b60e1a0d7bb85",
+      "4bcf8036830929902353a4394087457609d4638f0bfae3e9c7a7fca307d8bc53",
+      "b7830e6a1fa7684a44bc7d7feb5bea44bd933247b6a5987919e9fd965c44e24c",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+    ]
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_hurt.png",
+    "frames": 8,
+    "fps": 24,
+    "unique_drawings": 8,
+    "frame_sha256": [
+      "a6c42b055777318135e5c1fe84328fd230df806b02a08e360aafaa5295dc993a",
+      "048bc45801995c6f0d538de2edbf27b1f9ff6bc400f6f534c74593372800669e",
+      "564574504bce73734ec4049ae9a1f6492fd58acdf837c6eb32a5c21d5c787d06",
+      "108b61cd54f1cf763a20f231f56f15c02e767a5b475fe8785195c86b819dcd64",
+      "06b5686b3611e6fef5569a1f5711557bc3be1c573f0696dd881d92b682f1c647",
+      "7dd1769b18c01ae4127d92c26f5a6f4d0741e013d8f394edcd4f521ab6bb667a",
+      "2980a03118487652aa9949643449ff0a58a01f54087c6ca9aaf13473abd08cc1",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+    ]
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_dizzy.png",
+    "frames": 12,
+    "fps": 12,
+    "unique_drawings": 11,
+    "frame_sha256": [
+      "e79379ced300917bde59e7926056035db713271cfad2f917a9269969fddf83d2",
+      "fb5c6a6332f180ab975b02fc82dc0e3f0239d24744f2b1a4446ce14655f733b3",
+      "7ecbb5dd7b18564595d464a2ddcffc8c0be4322af6acabcce39f804ec7e93b98",
+      "79084879cb8cf0ece8ef05199a2327970bbbc2f6d780de60d05635c860b0752b",
+      "37dd95ca61afd1b43833200d092f7c602bd3c61dcd26137d3d5558c27208cda4",
+      "a3e83f8c9c47af1a419a042c6db41589b143dca94d29d21d6a670a47a1250fc4",
+      "b5b47932754b677db26b1ad6354faf76205dcf73e0f12cee2bfaff6d249a93f7",
+      "9dd1eb9751a06674075568632d1ca15c7834aaa27f5019c3121f289d376e3d43",
+      "33957f7627bb92a079af2e57d05a75f0b7b8ce2de2e33e3f7ae0c7c5b9b4784f",
+      "1f22fd380738762248a1c935adac3c1568a89dd6ce011f930bbd900be1004a1b",
+      "6c82e2cf75afee84e64f5c02e55cc6e9bd2fb70fa510b79e7e8b3edf5e69fb0a",
+      "e79379ced300917bde59e7926056035db713271cfad2f917a9269969fddf83d2"
+    ]
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_knocked.png",
+    "frames": 8,
+    "fps": 24,
+    "unique_drawings": 8,
+    "frame_sha256": [
+      "6af0643039363bfa3bb000f4099073f99ce26b3160fd35d2a91572890f0b1a56",
+      "762844b3d0ca43b73577bea6b75e567cf6bd00f12abb6335e8575f85b71bd202",
+      "8e597c0b2ecdad7426ec5734ec33b055a472fb76bb0388b4b216619edf40afd8",
+      "cac03419396466ab5ea3d62c24303e46fb9a87c1341a2ed9f9659c6b3765d0d2",
+      "29ae405692e6e27d1ba1a3193cd5c65cea3cff4be7d19cd03696ce85e8f12622",
+      "7a8da9fec1a30f69cfd733bbce48d666907dd4b659bab3b92d4b2c46792f421c",
+      "ce36a737257541f3ec4bc9459738efd0a2db2262b072cc8acafb2d5be977d515",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+    ]
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_scared.png",
+    "frames": 8,
+    "fps": 12,
+    "unique_drawings": 7,
+    "frame_sha256": [
+      "e3325c39410a8ef7b351ab1aa95fac78be09b09df060c8eb659acb7b8540e665",
+      "9ef1b93616c0ddd523b107ebf41d4ab580f1af9618b3298af622aa0922ed35ea",
+      "6b9ab512e9e2a20fc4ed58c673b071cd35ebb370f2789a1bc1a98ca2f3aa58ed",
+      "cf40de467b5f5fcb45681f63c8d0c4ed8f04fbfdf01d7a215cb9c8bb35cc551b",
+      "b6b7b8d5a1857437df535e45f53fcc6041f8f9693f5f894c1c8f3f2a27d14e51",
+      "c5177be9f20344646575a88daeaa785ea4d1239ad40c17b565ed31ab582fb28e",
+      "ca250119495a35a29af733b8328056d1f0104dbde579d977246a35a8247124a5",
+      "e3325c39410a8ef7b351ab1aa95fac78be09b09df060c8eb659acb7b8540e665"
+    ]
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_cheer.png",
+    "frames": 12,
+    "fps": 12,
+    "unique_drawings": 12,
+    "frame_sha256": [
+      "e9888d46be3a315b7e7b90e491d1a333d5ab521e082b0827f6b40cfaf24f888f",
+      "4f3e2de6df360bb126121ecb9adcbb5ff6eadd285ce212dc4b4b4d4ce0f33504",
+      "ba1a9c5ed190521c8303f4a72189f4e263d8347c78317289e6e0442143ebfdf9",
+      "abdc0f7148a4bfe8000842e01f60ac28d963ef414752cf901e63cb4824273c5a",
+      "6bfee437f50aa60127781c6d6836bbbfe3ea02f6eadefcbbf6dbefe8c584a93c",
+      "999363bb2f7c725551e1e21aa0a33622152573cbbae7de29dc64b19fde9074ff",
+      "97321299fa90a6ef7f8eeacdde4a1e23097fc9ddc3256be7ea7e39c681049ecf",
+      "a0ffd8b5976940779884cf6f6d660144e5c60a08b408cd1c582e294c91ba4f94",
+      "0b4a5931a7cb5c888cff06f35dfb5ec2b1a64163ed1e3d912374f97bf4da330a",
+      "aad5b66688c2053ad10d03424c4da896e44b425c75beeae6b291978266349625",
+      "d6c4ee503cef0a0fea86772d3186ce7c769f3df6b4e0435765e83aef8e286c2c",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+    ]
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_victory.png",
+    "frames": 12,
+    "fps": 12,
+    "unique_drawings": 11,
+    "frame_sha256": [
+      "589ede9266d963fa0ad2576343e0650906eeed6bcea9bf51cf21f8f3ae1a5d3e",
+      "3bb41e9a6b97986a1d4b92a2e61d19ca1f1d758be44c64ffadedb56c15f40528",
+      "6471502e704d1ea0b4c5c0af3efd380ce1f859f6e03e17daf0079549b59a0326",
+      "07807b9ab4ed02f6a8a27ff3df141ee1e8b577ee79319ea4a2df9a3ee9384d4c",
+      "6c10284b4a31135dac2b1f08d3a2bbd280964131f6224556d6986f3dbbfba631",
+      "d9e622c74735cae918162ed6d810f6c7a1afa327690dbe586037705974540c2d",
+      "5a848baf89b4e8c0079535111e14f76ad629cf28d3d66c55cf2a919cfeceda85",
+      "e7a7a08727dd7efc09646b29f18fb4642a4b6cd62ef4e67f09e9aab5154e38ec",
+      "dac0e6b9240539c63c3d57abadc6c3980a9af5fc62cec561aceffe594355013a",
+      "0a75c9bd0e09f420cd0248d0e7a970922727d61455d1813dc9c0f35b4874c9eb",
+      "be6fee882746571595845039677ab8703cf026abd209c32134aaa55b707a6147",
+      "589ede9266d963fa0ad2576343e0650906eeed6bcea9bf51cf21f8f3ae1a5d3e"
+    ]
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_defeat.png",
+    "frames": 12,
+    "fps": 12,
+    "unique_drawings": 10,
+    "frame_sha256": [
+      "e9888d46be3a315b7e7b90e491d1a333d5ab521e082b0827f6b40cfaf24f888f",
+      "2114f340a7ef513e6eb97dac4125d22b878bfd48be4f3e6d9681890eb1c56fe9",
+      "90809ba37fe3a526050904e1a465d77e282c6bdf8fa2e0ac418f456a80d8dc38",
+      "273610fe79c9f5c1dc4fe610a09d04dcfbb0b8061ee8d05c067dc0921ca53270",
+      "e1ac15c71b12c1a708c04cc4ddf7c7ad2d981813549dbd4c4277bfb4ea084e44",
+      "e062882b9aeadf82197ab7627466769df591bd550e242da2ac96109a5d6b6413",
+      "4dbc392d361c47ca9aebff0ff88f209734b95a3edb4248e0dc4ab95f603c9853",
+      "1dca0ca219b17b66ccdc244075d9bb6533182266f8c47c9ee447da4d734aeadc",
+      "6d6476ae31d26202cef411293b2f4972eb0d6a584492b599c2c0114673401a0a",
+      "970a411c8cff43cc7b52ed273cf496cf198919ec1bea92126d303ed0406ac52b",
+      "970a411c8cff43cc7b52ed273cf496cf198919ec1bea92126d303ed0406ac52b",
+      "970a411c8cff43cc7b52ed273cf496cf198919ec1bea92126d303ed0406ac52b"
+    ]
+  }
+]

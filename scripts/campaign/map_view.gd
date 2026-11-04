@@ -6,6 +6,9 @@ extends Node2D
 ## cleared stop has a flag planted in it and the stars won there. The hero is a head on a
 ## badge beside the next stop. Tapping an open or cleared stop asks for that fight
 ## (stop_chosen). A map taller than the screen scrolls with a drag.
+##
+## The painted map lives on through assets/bg/world_map_fx/anim.json: smoke curling from
+## chimneys, glints on the water, gold twinkling in the dragon's hoard.
 
 signal stop_chosen(id: String)
 ## The forge button was pressed.
@@ -13,6 +16,7 @@ signal forge_requested
 
 const SCREEN := Vector2(1080, 1920)
 const BACKGROUND := "res://assets/bg/world_map.png"
+const AMBIENCE := "res://assets/bg/world_map_fx/anim.json"
 const LOCK_ICON := "res://assets/ui/map_node_locked.png"
 const COIN := "res://assets/fx/props/coin.png"
 const FONT := "res://assets/fonts/baloo_2_extra_bold.ttf"
@@ -37,6 +41,9 @@ const MOUND := Color(0.45, 0.3, 0.16)
 var campaign: Campaign
 
 var _background: Texture2D
+## The map's moving touches, as read from AMBIENCE, and their textures by name.
+var _ambience := {}
+var _ambience_art := {}
 var _lock: Texture2D
 var _coin: Texture2D
 var _font: Font
@@ -70,6 +77,7 @@ var _intro_done := false
 func _ready() -> void:
 	_background = load(BACKGROUND) if ResourceLoader.exists(BACKGROUND) else null
 	_lock = load(LOCK_ICON) if ResourceLoader.exists(LOCK_ICON) else null
+	_load_ambience()
 	_coin = load(COIN) if ResourceLoader.exists(COIN) else null
 	_font = load(FONT) if ResourceLoader.exists(FONT) else ThemeDB.fallback_font
 	_camera = Camera2D.new()
@@ -103,6 +111,21 @@ func _ready() -> void:
 			forge_requested.emit())
 	_hud_layer.add_child(forge)
 	visibility_changed.connect(func() -> void: _hud_layer.visible = visible)
+
+
+func _load_ambience() -> void:
+	if not ResourceLoader.exists(AMBIENCE):
+		return
+	var json: JSON = load(AMBIENCE)
+	if not json.data is Dictionary:
+		return
+	_ambience = json.data
+	var dir := AMBIENCE.get_base_dir() + "/"
+	for name: String in _ambience.get("textures", {}):
+		var info: Dictionary = _ambience["textures"][name]
+		var path: String = dir + String(info.get("file", ""))
+		if ResourceLoader.exists(path):
+			_ambience_art[name] = {"texture": load(path), "info": info}
 
 
 func map_size() -> Vector2:
@@ -313,10 +336,65 @@ func _draw() -> void:
 		draw_texture_rect(_background, Rect2(Vector2.ZERO, map_size()), false)
 	else:
 		draw_rect(Rect2(Vector2.ZERO, SCREEN), Color(0.3, 0.5, 0.3))
+	_draw_ambience()
 	if campaign == null:
 		return
 	for i in campaign.stops.size():
 		_draw_stop(i)
+
+
+func _draw_ambience() -> void:
+	if _ambience.is_empty():
+		return
+	var loop := float(_ambience.get("loop_seconds", 4.0))
+	# Smoke puffs rise, drift and fade, one after another from each chimney.
+	var smoke: Dictionary = _ambience.get("smoke_motion", {})
+	for puff: Dictionary in _ambience.get("smoke", []):
+		var t := fposmod(_time / loop + float(puff.get("phase", 0.0)), 1.0)
+		var base := Vector2(puff["position"][0], puff["position"][1])
+		var at := base + Vector2(sin(t * TAU) * float(smoke.get("drift_px", 12)), -t * float(smoke.get("rise_px", 60)))
+		var tint := _tint(smoke.get("tint"), float(smoke.get("opacity", 0.8)) * sin(t * PI))
+		_draw_fx_frame("smoke", at, float(smoke.get("size_px", 96)) * lerpf(0.7, 1.3, t), t, tint)
+	# Glints slide a little down the water and wink out.
+	var water: Dictionary = _ambience.get("water_motion", {})
+	var water_sizes: Array = water.get("size_px", [8, 18])
+	var water_period := float(water.get("period_seconds", 2.0))
+	var glints: Array = _ambience.get("water_glints", [])
+	for i in glints.size():
+		var t := fposmod(_time / water_period + i * 0.37, 1.0)
+		var at := Vector2(glints[i][0], glints[i][1] + t * float(water.get("travel_y_px", 12)))
+		var size := lerpf(float(water_sizes[0]), float(water_sizes[1]), sin(t * PI))
+		_draw_fx_frame("sparkle", at, size * 2.0, 0.0, _tint(water.get("tint"), float(water.get("opacity", 0.45)) * sin(t * PI)))
+	# Gold in the hoard twinkles now and then.
+	var gold: Dictionary = _ambience.get("gold_motion", {})
+	var gold_sizes: Array = gold.get("size_px", [20, 34])
+	var gold_period := float(gold.get("period_seconds", 4.0))
+	var hoard: Array = _ambience.get("gold_glints", [])
+	for i in hoard.size():
+		var wink := pow(maxf(sin(TAU * (_time / gold_period + i * 0.21)), 0.0), 3.0)
+		var at := Vector2(hoard[i][0], hoard[i][1])
+		_draw_fx_frame("glow", at, lerpf(float(gold_sizes[0]), float(gold_sizes[1]), wink) * 2.0, 0.0, Color(1, 0.9, 0.5, float(gold.get("opacity", 0.8)) * wink))
+		_draw_fx_frame("sparkle", at, lerpf(float(gold_sizes[0]), float(gold_sizes[1]), wink), 0.0, Color(1, 1, 0.85, float(gold.get("opacity", 0.8)) * wink))
+
+
+static func _tint(rgb: Variant, alpha: float) -> Color:
+	if rgb is Array and rgb.size() >= 3:
+		return Color8(int(rgb[0]), int(rgb[1]), int(rgb[2]), int(clampf(alpha, 0.0, 1.0) * 255))
+	return Color(1, 1, 1, clampf(alpha, 0.0, 1.0))
+
+
+## One frame of an ambience texture, `size` across, centred on `at`; `t` 0..1 picks the frame.
+func _draw_fx_frame(name: String, at: Vector2, size: float, t: float, tint: Color) -> void:
+	if not _ambience_art.has(name) or tint.a <= 0.0:
+		return
+	var art: Dictionary = _ambience_art[name]
+	var info: Dictionary = art["info"]
+	var frames := int(info.get("frames", 1))
+	var columns := int(info.get("columns", 1))
+	var cell := Vector2(info["frame_size"][0], info["frame_size"][1])
+	var frame := mini(int(t * frames), frames - 1)
+	var source := Rect2(Vector2(frame % columns, frame / columns) * cell, cell)
+	draw_texture_rect_region(art["texture"], Rect2(at - Vector2.ONE * size / 2, Vector2.ONE * size), source, tint)
 
 
 func _draw_stop(index: int) -> void:

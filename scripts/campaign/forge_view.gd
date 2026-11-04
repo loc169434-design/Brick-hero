@@ -260,11 +260,16 @@ func _strike() -> void:
 	_strikes += 1
 	_heat = minf(_heat + 0.25, 1.0)
 	_strike_timer = STRIKE_PATIENCE
-	_smith.react(&"hammer", 0.22)
-	Sfx.play(&"clang", 0.85 + _strikes * 0.15)
-	_shake = 1.0
-	for i in 18:
-		_sparks.append({"at": ANVIL_TOP, "v": Vector2.from_angle(randf_range(-PI * 0.95, -PI * 0.05)) * randf_range(250, 900), "life": randf_range(0.25, 0.6)})
+	_smith.react(&"hammer", 0.32)
+	# Sparks and the clang come as the hammer meets the metal, on the clip's impact frame.
+	var pitch := 0.85 + _strikes * 0.15
+	var tween := create_tween()
+	tween.tween_interval(_smith.impact_seconds(&"hammer"))
+	tween.tween_callback(func() -> void:
+		Sfx.play(&"clang", pitch)
+		_shake = 1.0
+		for i in 18:
+			_sparks.append({"at": ANVIL_TOP, "v": Vector2.from_angle(randf_range(-PI * 0.95, -PI * 0.05)) * randf_range(250, 900), "life": randf_range(0.25, 0.6)}))
 	if _strikes >= STRIKES:
 		_waiting_strike = false
 		_finish_forging()
@@ -563,7 +568,7 @@ func _draw_item(canvas: CanvasItem, id: String, at: Vector2, size: float, angle:
 	canvas.draw_set_transform(Vector2.ZERO)
 
 
-## A plain helmet until the icon is drawn (issue #30): a dome, a brim and rivets.
+## A plain helmet for when the icon is missing: a dome, a brim and rivets.
 func _draw_helmet(canvas: CanvasItem, size: float, iron: bool, tint: Color) -> void:
 	var r := size * 0.34
 	var base := (Color(0.62, 0.66, 0.7) if iron else Color(0.6, 0.38, 0.2)) * tint

@@ -18,4 +18,8 @@ var critical := false
 var monster_attack := 0
 ## That attack was the monster's critical one.
 var monster_critical := false
+## The hero skill this report is for (see BattleState.SKILLS), or "" for a move on the board.
+var skill := ""
+## Rage the move filled; the bar is already updated.
+var rage_gained := 0
 var outcome := BattleState.Outcome.ONGOING

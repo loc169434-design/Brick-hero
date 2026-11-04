@@ -5,6 +5,7 @@ extends Node
 signal fight_over(won: bool, gold: int)
 ## Runs the fights in order: feeds each finished move to the BattleState, shows the result
 ## above the board, makes the board's tiles react, and ends the board when a fight is decided.
+## The skill bar's button spends a full rage bar on the hero skill, between moves.
 ## Winning moves on to the next encounter; losing retries the same one.
 ##
 ## On the campaign map (`return_to_map`), a won fight ends with fight_over instead of moving
@@ -19,6 +20,8 @@ const GLOAT_HEALTH := 0.3
 @export var battle_view: BattleView
 ## Shakes the screen when the board or the fight reports an impact. Optional.
 @export var feel: ScreenFeel
+## The rage bar and skill button. Optional.
+@export var skill_bar: SkillBar
 ## Fought in order: the training scarecrow, then the Shield Orc, and so on.
 @export var encounters: Array[MonsterData] = []
 @export var rules: BattleRules
@@ -40,6 +43,8 @@ func _ready() -> void:
 		battle_view.impact.connect(feel.impact)
 		battle_view.slow_motion.connect(feel.slow_motion)
 	board.orb_targets = battle_view.orb_targets()
+	if skill_bar:
+		skill_bar.pressed.connect(_on_skill_pressed)
 	_start()
 
 
@@ -56,7 +61,7 @@ static func board_reaction(report: TurnReport, state: BattleState) -> Array:
 		if state.monster_health() <= NEAR_MISS_HEALTH:
 			return [&"near_miss", 2]
 		return [&"hurt", 2]
-	if report.shield_damage == 0 and state.monster.counterattacks:
+	if report.shield_damage == 0 and state.monster.counterattacks and not report.skill:
 		# Only green and yellow: nothing that hurts it, so it laughs.
 		return [&"taunt", 2]
 	return [&"", 0]
@@ -77,13 +82,44 @@ func _start() -> void:
 	state.rng.randomize()
 	state.gold = starting_gold
 	board.set_tile_theme(monster().tile_theme)
+	board.locked = false
 	battle_view.show_state(state)
+	if skill_bar:
+		skill_bar.show_state(state)
 	_show_hint()
 
 
 func _on_move_finished(result: MoveResult) -> void:
 	var report := state.apply_move(result)
 	battle_view.play_report(report)
+	if skill_bar:
+		skill_bar.refresh()
+	_settle(report)
+
+
+## The skill goes off only between moves, with the bar full. It waits for the last move to finish
+## playing out above the board, and the board waits for the skill.
+func _on_skill_pressed() -> void:
+	if not state.skill_ready() or not board.can_act() or not board.path.is_empty():
+		skill_bar.refuse()
+		return
+	var fight := state
+	board.locked = true
+	while battle_view.is_playing():
+		await get_tree().process_frame
+	if fight != state or not state.skill_ready():
+		board.locked = false
+		return
+	var report := state.use_skill()
+	skill_bar.refresh()
+	_settle(report)
+	await battle_view.play_report(report)
+	if fight == state:
+		board.locked = false
+
+
+## After a move or a skill: the next hint, and the end of the fight or the tiles' reaction.
+func _settle(report: TurnReport) -> void:
 	_show_hint()
 	match state.outcome:
 		BattleState.Outcome.WON:

@@ -1,9 +1,16 @@
 class_name BattleState
 extends RefCounted
 ## One fight, the hero against one monster. Pure rules with no nodes, so tests run headless.
-## Each move, the cleared squares act by color, then the monster's countdown ticks.
+## Each move, the cleared squares act by color and fill the hero's rage, then the monster's
+## countdown ticks. A full rage bar lets the hero use a skill between moves.
 
 enum Outcome { ONGOING, WON, LOST }
+
+## The hero skills, by BattleRules.skill, and what their button says.
+const SKILLS := {
+	"armor_breaker": "PHÁ GIÁP",
+	"second_wind": "HỒI QUANG",
+}
 
 var rules: BattleRules
 var monster: MonsterData
@@ -14,6 +21,8 @@ var shield: int
 ## Moves left until the monster attacks.
 var countdown: int
 var gold := 0
+## Fills from cleared squares; at rules.rage_max the hero skill is ready. Starts empty each fight.
+var rage := 0
 var outcome := Outcome.ONGOING
 ## Moves played this fight.
 var moves := 0
@@ -82,18 +91,7 @@ func apply_move(result: MoveResult) -> TurnReport:
 	else:
 		report.critical = false
 
-	# The shield goes first, so purple and long chains open the way for the red in the same move.
-	var shield_before := shield
-	var layers_before := shield_layers()
-	shield = maxi(shield - roundi(purple), 0)
-	for i in smashes:
-		shield = maxi((shield_layers() - 1) * rules.shield_layer_size, 0)
-	report.shield_damage = shield_before - shield
-	report.layers_broken = layers_before - shield_layers()
-
-	var damage := red * (rules.shielded_damage_factor if shield > 0 else 1.0)
-	report.damage = mini(roundi(damage), monster_hp)
-	monster_hp -= report.damage
+	_strike(red, purple, smashes, report)
 	report.heal = mini(roundi(green), rules.hero_max_hp - hero_hp)
 	hero_hp += report.heal
 	report.gold = roundi(yellow)
@@ -111,9 +109,69 @@ func apply_move(result: MoveResult) -> TurnReport:
 			countdown = monster.countdown
 			if hero_hp == 0:
 				outcome = Outcome.LOST
+	report.rage_gained = _gain_rage(result)
 	report.outcome = outcome
 	moves += 1
 	return report
+
+
+## Whether the hero skill can be used now: the bar is full, the fight is on, and the skill would
+## do something (Hồi Quang needs the hero hurt).
+func skill_ready() -> bool:
+	if outcome != Outcome.ONGOING or rage < rules.rage_max or not SKILLS.has(rules.skill):
+		return false
+	return rules.skill != "second_wind" or hero_hp < rules.hero_max_hp
+
+
+## Spends the full bar on the hero skill. It isn't a move: the monster's countdown doesn't tick.
+## Its amounts are fixed: no critical hit, no chain.
+func use_skill() -> TurnReport:
+	var report := TurnReport.new()
+	report.outcome = outcome
+	if not skill_ready():
+		return report
+	rage = 0
+	report.skill = rules.skill
+	match rules.skill:
+		"armor_breaker":
+			_strike(rules.armor_breaker_squares * rules.red_damage, rules.armor_breaker_shield, 0, report)
+		"second_wind":
+			report.heal = mini(rules.second_wind_heal, rules.hero_max_hp - hero_hp)
+			hero_hp += report.heal
+	if monster_hp <= 0:
+		outcome = Outcome.WON
+	report.outcome = outcome
+	return report
+
+
+## Shield points come off first, then whole layers for each smash, so purple and long chains open
+## the way for the red in the same blow. Red is halved while any shield is left.
+func _strike(red: float, shield_points: float, smashes: int, report: TurnReport) -> void:
+	var shield_before := shield
+	var layers_before := shield_layers()
+	shield = maxi(shield - roundi(shield_points), 0)
+	for i in smashes:
+		shield = maxi((shield_layers() - 1) * rules.shield_layer_size, 0)
+	report.shield_damage = shield_before - shield
+	report.layers_broken = layers_before - shield_layers()
+	var damage := red * (rules.shielded_damage_factor if shield > 0 else 1.0)
+	report.damage = mini(roundi(damage), monster_hp)
+	monster_hp -= report.damage
+
+
+## Plain squares cleared and fusions set off fill the bar, up to rules.rage_per_move a move.
+func _gain_rage(result: MoveResult) -> int:
+	var squares := 0
+	var fusions := 0
+	for step in result.steps:
+		fusions += step.fusions.size()
+		for cell in step.cleared_cells:
+			if not cell.is_special():
+				squares += 1
+	var gain := mini(roundi(squares * rules.rage_per_square + fusions * rules.rage_per_fusion), rules.rage_per_move)
+	gain = mini(gain, rules.rage_max - rage)
+	rage += gain
+	return gain
 
 
 ## What a monster attack takes off the hero after the helmet and armor.

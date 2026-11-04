@@ -66,6 +66,14 @@ Trước là hàng 3, đổi sang hàng 4 ngày 2026-11-02 sau khi mô phỏng c
 - Quái có máu, khiên và đồng hồ đếm ngược theo số lượt nối. Hết giờ thì quái tung chiêu, và luôn báo trước 1 lượt.
 - Trận đầu là **bù nhìn bãi tập** (không đánh lại, có gợi ý hướng dẫn), sau đó tới **Orc Khiên**.
 
+**Thanh Nộ và tuyệt chiêu** (thiết kế ở `docs/ideas/hero_skills.md`):
+- Mỗi ô thường bị xóa +2 Nộ, mỗi hợp thể +12, mỗi lượt tối đa +40. Ô đặc biệt không tính. Thanh đầy ở 100 và về 0 khi bắt đầu trận mới.
+- Đầy thanh thì nút chiêu dưới bàn chơi sáng lên. Bấm (hoặc phím Space) giữa hai lượt để dùng: **không tốn lượt**, đồng hồ của quái không chạy. Phím K đổi chiêu để thử, sau này chọn ở lò rèn.
+- **Phá Giáp**: bóc 10 điểm khiên (một lớp), rồi đánh như 8 ô đỏ, còn khiên thì giảm nửa như đòn đỏ thường. Mạnh lên theo kiếm.
+- **Hồi Quang**: hồi 25 máu. Chỉ dùng được khi đang mất máu.
+- Bot đo trên Orc Khiên (200 trận): +2 Nộ mỗi ô cho khoảng 1 chiêu mỗi trận, lần đầu ở lượt 6–7, 92–94% số trận có chiêu. Mức +1 của thiết kế gốc chỉ cho 42–53% số trận có chiêu, nên chọn +2.
+- Hoạt cảnh tạm mượn đòn có sẵn (húc khiên, uống thuốc) cho tới khi có ảnh theo `docs/ideas/skills_art_request.md`.
+
 ---
 
 ## 3. Kiến trúc code
@@ -96,7 +104,8 @@ scripts/
     battle_view.gd     nền, thanh máu, khiên, đồng hồ, gợi ý, số bay lên; dựng cảnh mỗi lượt
     character_rig.gd   một nhân vật: mức tơi tả theo máu, cảm xúc chớp nhoáng, cảnh kết trận, hiệu ứng
                        (quy cách ảnh: issue #5)
-    battle_manager.gd  nối bảng chơi với trận đánh, phản ứng của gạch quái, kết thúc trận
+    battle_manager.gd  nối bảng chơi với trận đánh, phản ứng của gạch quái, tuyệt chiêu, kết thúc trận
+    skill_bar.gd       thanh Nộ và nút tuyệt chiêu dưới bàn chơi
   feel/            # cảm giác "đã tay"
     screen_feel.gd   camera: rung màn hình theo lực va chạm, ngừng hình, rung điện thoại
     sfx.gd           Sfx.play(&"tên"): phát âm thanh từ bất cứ đâu, M tắt tiếng

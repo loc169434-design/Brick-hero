@@ -40,3 +40,21 @@ extends Resource
 @export_range(0.0, 1.0) var shielded_damage_factor := 0.5
 ## A chain reaching this round smashes one whole layer on top of the purple.
 @export var layer_break_chain := 3
+
+@export_group("Rage and hero skill")
+## The hero's skill this fight: one of BattleState.SKILLS.
+@export var skill := "armor_breaker"
+## Rage it takes to use the skill; the bar stops filling there.
+@export var rage_max := 100
+## Rage per plain square cleared (specials don't count), whatever the chain round.
+@export var rage_per_square := 2.0
+## Extra rage for each fusion of two specials.
+@export var rage_per_fusion := 12.0
+## At most this much rage from one move.
+@export var rage_per_move := 40
+## Phá Giáp: strips this many shield points, then hits like this many red squares (so a
+## better sword hits harder), halved like red while shield is left.
+@export var armor_breaker_shield := 10
+@export var armor_breaker_squares := 8.0
+## Hồi Quang: health back.
+@export var second_wind_heal := 25

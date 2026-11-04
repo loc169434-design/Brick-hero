@@ -162,9 +162,6 @@ static func _try_fusion(board: BoardModel, step: ClearStep, p: Vector2i, done: D
 		var other := board.get_cell(q)
 		if other == null or not other.is_special() or done.has(q):
 			continue
-		# Two lightnings already make two full crosses; fusing them would add nothing.
-		if kind == Cell.Special.LIGHTNING and other.special == Cell.Special.LIGHTNING:
-			continue
 		done[q] = true
 		marked[q] = true
 		step.triggered.append(q)
@@ -179,15 +176,20 @@ static func _fusion_area(board: BoardModel, step: ClearStep, p: Vector2i, q: Vec
 	if a == Cell.Special.RAINBOW and b == Cell.Special.RAINBOW:
 		return _everything(board)
 	if a == Cell.Special.RAINBOW or b == Cell.Special.RAINBOW:
-		# Every square of the partner's color goes off as the partner would.
-		var partner := q if a == Cell.Special.RAINBOW else p
-		var partner_cell := board.get_cell(partner)
+		# Every square of the star's color goes off as the partner would. The color is one the
+		# player can see (see _rainbow_target), never the partner's own: specials show none.
+		var partner_kind := b if a == Cell.Special.RAINBOW else a
 		var area: Array[Vector2i] = []
-		for target in _all_of_color(board, partner_cell.color):
-			area.append_array(_area(board, step, target, partner_cell.special))
+		for target in _all_of_color(board, _rainbow_target(board, step, [p, q])):
+			area.append_array(_area(board, step, target, partner_kind))
 		return area
 	if a == Cell.Special.BOMB and b == Cell.Special.BOMB:
 		return _square(board, p, 2)
+	if a == Cell.Special.LIGHTNING and b == Cell.Special.LIGHTNING:
+		# Eight ways: the row, the column and both diagonals.
+		var area := _cross(board, p, 0)
+		area.append_array(_diagonals(board, p))
+		return area
 	# Lightning + bomb: a cross three squares wide.
 	return _cross(board, p, 1)
 
@@ -199,29 +201,33 @@ static func _area(board: BoardModel, step: ClearStep, p: Vector2i, kind: Cell.Sp
 		Cell.Special.BOMB:
 			return _square(board, p, 1)
 		Cell.Special.RAINBOW:
-			return _all_of_color(board, _rainbow_target(board, step, p))
+			return _all_of_color(board, _rainbow_target(board, step, [p]))
 	return []
 
 
-## The color of the longest link or line the star was part of, or the board's most common color
-## if something else set it off (a blast, or a link of stars only).
-static func _rainbow_target(board: BoardModel, step: ClearStep, p: Vector2i) -> int:
+## The color a star goes after, one the player can see: that of the longest colored link or
+## line through any of `squares` (the star, and its partner in a fusion), else the board's most
+## common plain color, ties to the first in Cell.BlockColor order. NO_COLOR on a board of
+## specials only.
+static func _rainbow_target(board: BoardModel, step: ClearStep, squares: Array[Vector2i]) -> int:
 	var best_size := 0
 	var target := Cell.NO_COLOR
 	for cluster in step.clusters:
 		var cells: Array[Vector2i] = cluster["cells"]
-		if cells.has(p) and cells.size() > best_size:
+		if cluster["color"] == Cell.NO_COLOR or cells.size() <= best_size:
+			continue
+		if squares.any(func(s: Vector2i) -> bool: return cells.has(s)):
 			best_size = cells.size()
 			target = cluster["color"]
 	if target != Cell.NO_COLOR:
 		return target
 	var counts := {}
 	for q in _everything(board):
-		var c := board.get_cell(q).color
-		if c != Cell.NO_COLOR:
-			counts[c] = counts.get(c, 0) + 1
-	for c in counts:
-		if counts[c] > best_size:
+		var cell := board.get_cell(q)
+		if not cell.is_special():
+			counts[cell.color] = counts.get(cell.color, 0) + 1
+	for c in Cell.COLOR_COUNT:
+		if counts.get(c, 0) > best_size:
 			best_size = counts[c]
 			target = c
 	return target
@@ -239,6 +245,16 @@ static func _cross(board: BoardModel, center: Vector2i, half_width: int) -> Arra
 	return area
 
 
+## Both diagonals through `center`, edge to edge.
+static func _diagonals(board: BoardModel, center: Vector2i) -> Array[Vector2i]:
+	var area: Array[Vector2i] = []
+	var reach := maxi(board.columns, board.rows)
+	for i in range(-reach, reach + 1):
+		area.append(center + Vector2i(i, i))
+		area.append(center + Vector2i(i, -i))
+	return area
+
+
 static func _square(board: BoardModel, center: Vector2i, radius: int) -> Array[Vector2i]:
 	var area: Array[Vector2i] = []
 	for y in range(center.y - radius, center.y + radius + 1):
@@ -247,10 +263,12 @@ static func _square(board: BoardModel, center: Vector2i, radius: int) -> Array[V
 	return area
 
 
+## The plain squares of `color`: specials keep a color but don't show it, so a star passes them by.
 static func _all_of_color(board: BoardModel, color: int) -> Array[Vector2i]:
 	var area: Array[Vector2i] = []
 	for p in _everything(board):
-		if board.get_cell(p).color == color:
+		var cell := board.get_cell(p)
+		if cell.color == color and not cell.is_special():
 			area.append(p)
 	return area
 

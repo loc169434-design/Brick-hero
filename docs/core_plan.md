@@ -31,8 +31,21 @@ Trước là hàng 3, đổi sang hàng 4 ngày 2026-11-02 sau khi mô phỏng c
 | 5 ô | Sét (giữ màu đường nối) | Xóa cả hàng và cả cột |
 | 6 ô | Bom (giữ màu đường nối) | Nổ vùng 3×3 |
 | 7 ô trở lên | Sao | Ghép được với **mọi màu** khi người chơi nối. Khi nổ thì xóa hết ô cùng màu với đường nối. |
-| 2 ô đặc biệt cạnh nhau | Siêu hiệu ứng | Ví dụ sét + bom: xóa 3 hàng và 3 cột |
+| 2 ô đặc biệt cạnh nhau | Hợp thể | Xem bảng dưới |
 
+**Hợp thể**: một ô đặc biệt nổ cạnh (ngang hoặc dọc) một ô đặc biệt khác thì hai ô nổ chung thành một đòn lớn hơn.
+
+| Cặp | Khi nổ |
+|---|---|
+| Bom + bom | Nổ vùng 5×5 |
+| Sét + bom | Chữ thập rộng 3 ô: 3 hàng và 3 cột |
+| Sét + sét | Bắn 8 hướng: hàng, cột và hai đường chéo |
+| Sao + bom | Mọi ô thường màu mục tiêu nổ 3×3 |
+| Sao + sét | Mọi ô thường màu mục tiêu bắn hàng và cột |
+| Sao + sao | Xóa cả bảng |
+
+- Màu mục tiêu của sao là màu người chơi **nhìn thấy**: màu của đường nối hoặc hàng tự nổ đi qua sao (hay qua ô ghép với sao); nếu không có thì là màu có nhiều ô thường nhất trên bảng, hòa thì theo thứ tự đỏ, xanh lá, vàng, tím. Sao không nhắm vào ô đặc biệt, vì ô đặc biệt không hiện màu.
+- Khi đang kéo một đường có ô đặc biệt, các ô sẽ bị nổ thêm có viền cam nhấp nháy, các ô còn lại tối đi.
 - Nối đi qua ô đặc biệt thì kích nổ nó. Hàng tự nổ có chứa sét hoặc bom cũng kích nổ chúng.
 - Sao **không** tự ghép vào hàng tự nổ khi các ô rơi xuống: sao chỉ dành cho người chơi tự nối.
 

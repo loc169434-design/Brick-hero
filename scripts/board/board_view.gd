@@ -24,6 +24,10 @@ const POPUP_TIME := 0.9
 const POPUP_SIZE := 110
 ## How long the newest square of a link stays puffed up after it's taken.
 const LINK_POP_TIME := 0.15
+## While a link would set specials off, the squares it would blow up besides its own get a
+## pulsing rim of this color, and the squares that would stay are dimmed.
+const BLAST_RIM := Color(1.0, 0.55, 0.1)
+const BLAST_DIM := Color(0.05, 0.03, 0.1, 0.4)
 ## Semitones above the first note for each square of a link: a major pentatonic run, so any
 ## length sounds like a tune rising instead of a siren.
 const LINK_NOTES := [0, 2, 4, 7, 9, 12, 14, 16, 19, 21, 24]
@@ -152,6 +156,10 @@ var _xform := Transform2D.IDENTITY
 var _shadow_box := StyleBoxFlat.new()
 ## Square -> time until which a tile let go from the link looks relieved.
 var _relief := {}
+## Squares the link being traced would set its specials off on, besides its own, for the
+## path it was worked out for: a star's targets and a fusion's reach show before letting go.
+var _blast := {}
+var _blast_path: Array[Vector2i] = []
 var _time := 0.0
 ## Where light from each tile color flies when cleared, in global coordinates, by
 ## Cell.BlockColor. Colors without a target just burst in place.
@@ -696,6 +704,7 @@ func _draw_overlay() -> void:
 	if not _finished:
 		_draw_crit_tiles()
 	if not path.is_empty():
+		_draw_blast()
 		_draw_link()
 	if _popup_alpha > 0.0:
 		# Scaled around the middle of the letters rather than their baseline.
@@ -707,6 +716,26 @@ func _draw_overlay() -> void:
 		_overlay.draw_rect(Rect2(Vector2.ZERO, size), Color(0, 0, 0, 0.45))
 		_draw_centered_text(_end_title, Vector2(size.x / 2, size.y * 0.45), 110, TEXT)
 		_draw_centered_text(_end_subtitle, Vector2(size.x / 2, size.y * 0.45 + 90), 44, TEXT_DIM)
+
+
+## Shows what the traced link would blow up besides its own squares: the rest dims.
+func _draw_blast() -> void:
+	if path != _blast_path:
+		_blast_path = path.duplicate()
+		_blast.clear()
+		if path.size() >= game.rules.min_link and path.any(func(p: Vector2i) -> bool: return game.board.get_cell(p).is_special()):
+			for p in Resolver.link_step(game.board, game.rules, path).cleared:
+				if not path.has(p):
+					_blast[p] = true
+	if _blast.is_empty():
+		return
+	for p: Vector2i in _shown:
+		if not _blast.has(p) and not path.has(p):
+			_overlay.draw_rect(Rect2(Vector2(p) * CELL, Vector2(CELL, CELL)), BLAST_DIM)
+	var pulse := 0.5 + 0.5 * sin(_time * 8.0)
+	for p: Vector2i in _blast:
+		var rect := Rect2(Vector2(p) * CELL, Vector2(CELL, CELL)).grow(-7)
+		_overlay.draw_rect(rect, Color(BLAST_RIM, 0.6 + 0.4 * pulse), false, 6.0)
 
 
 ## A short glossy bar with a dark rim and rounded ends bridging two tiles' frames. The newest

@@ -16,6 +16,8 @@ const MANIFEST := "specials.json"
 const SHEET_COLUMNS := 8
 ## Tile art is drawn on a 128 px canvas; the spark's frame adds padding around it.
 const TILE_ART_SIZE := 128.0
+## Two lightnings fire their cross, then their diagonals this much later, so all eight read.
+const DIAGONAL_DELAY := 0.1
 
 var cell_size := 140.0
 var board_size := Vector2(980, 1120)
@@ -29,6 +31,8 @@ var _sheets: Node2D
 var _light: Node2D
 ## {"kind", "at", "t", "life", "color", ...} for each light shape still showing.
 var _shapes: Array[Dictionary] = []
+## Bumped by clear(), so beams still waiting on a timer know the board moved on.
+var _generation := 0
 
 
 func _ready() -> void:
@@ -48,6 +52,7 @@ func _ready() -> void:
 
 
 func clear() -> void:
+	_generation += 1
 	for child in _sheets.get_children():
 		child.queue_free()
 	_shapes.clear()
@@ -149,6 +154,10 @@ func _play_fusion(step: ClearStep, fusion: Dictionary) -> void:
 		_play("star_burst", _center(at))
 		_sparks(step, at)
 		_shape("rays", _center(at), 0.6, Color.WHITE, {"radius": cell_size * 6.0, "spin": randf() * TAU})
+	elif kinds == [Cell.Special.LIGHTNING, Cell.Special.LIGHTNING]:
+		# Two lightnings: eight ways, the cross first and the diagonals a beat later.
+		_beams(at, 0, tint)
+		get_tree().create_timer(DIAGONAL_DELAY).timeout.connect(_diagonal_beams.bind(at, tint, _generation))
 	elif Cell.Special.LIGHTNING in kinds:
 		# Lightning with a bomb: a cross three squares wide.
 		_beams(at, 1, tint)
@@ -172,6 +181,32 @@ func _beams(p: Vector2i, half_width: int, tint: Color) -> void:
 			_beam_line(Vector2(column, 0), Vector2.DOWN, board_size.y, frame.x, tint)
 			_shape("beam", Vector2(column, 0), 0.3, tint, {"to": Vector2(column, board_size.y)})
 	_play("lightning_hub", _center(p), tint)
+
+
+## Beams along both diagonals through `p`, from board edge to board edge.
+func _diagonal_beams(p: Vector2i, tint: Color, generation: int) -> void:
+	if generation != _generation:
+		return
+	var frame := _frame_size("lightning_beam.png")
+	if frame == Vector2.ZERO:
+		return
+	var center := _center(p)
+	for direction: Vector2 in [Vector2(1, 1).normalized(), Vector2(1, -1).normalized()]:
+		var start := center - direction * _reach(center, -direction)
+		var end := center + direction * _reach(center, direction)
+		_beam_line(start, direction, start.distance_to(end), frame.x, tint)
+		_shape("beam", start, 0.3, tint, {"to": end})
+	_play("lightning_hub", center, tint, PI / 4)
+
+
+## How far from `at` along `direction` until the board's edge.
+func _reach(at: Vector2, direction: Vector2) -> float:
+	var reach := INF
+	if direction.x != 0.0:
+		reach = minf(reach, ((board_size.x if direction.x > 0.0 else 0.0) - at.x) / direction.x)
+	if direction.y != 0.0:
+		reach = minf(reach, ((board_size.y if direction.y > 0.0 else 0.0) - at.y) / direction.y)
+	return reach
 
 
 ## The beam art is one seamless stretch; repeat it, squeezed a little, to span exactly `length`.

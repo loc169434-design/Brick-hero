@@ -1,0 +1,1044 @@
+{
+  "idle": {
+    "source_file": "exec-2da56834-af1d-44b2-b9e1-316c6d82009a.png",
+    "source_sha256": "2bb4e8038691d224df8d9e5ac1c124dd439365fed011ab0ce340f54150d98607",
+    "method": "individually redrawn complete figures via image generation; whole-frame packing only",
+    "registration": [
+      {
+        "scale": 1.219512,
+        "whole_frame_offset": [
+          15,
+          84
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.219512,
+        "whole_frame_offset": [
+          16,
+          84
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.219512,
+        "whole_frame_offset": [
+          19,
+          84
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.219512,
+        "whole_frame_offset": [
+          21,
+          84
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.219512,
+        "whole_frame_offset": [
+          16,
+          84
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.219512,
+        "whole_frame_offset": [
+          16,
+          84
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.219512,
+        "whole_frame_offset": [
+          18,
+          84
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.219512,
+        "whole_frame_offset": [
+          18,
+          84
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.219512,
+        "whole_frame_offset": [
+          17,
+          83
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.219512,
+        "whole_frame_offset": [
+          16,
+          83
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.219512,
+        "whole_frame_offset": [
+          17,
+          83
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.219512,
+        "whole_frame_offset": [
+          16,
+          83
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      }
+    ],
+    "shared_idle_boundary_frames": [
+      0,
+      11
+    ],
+    "replacement_complete_cels": []
+  },
+  "talk": {
+    "source_file": "exec-74d38b28-f7a3-4d79-b9bc-bb9c7cf5e122.png",
+    "source_sha256": "cb4c5438b53d009283dbca29e66faf53dd9af408e5f89efb11cfcf4d7b6a4165",
+    "method": "individually redrawn complete figures via image generation; whole-frame packing only",
+    "registration": [
+      {
+        "scale": 0.997506,
+        "whole_frame_offset": [
+          14,
+          84
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 0.997506,
+        "whole_frame_offset": [
+          14,
+          85
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 0.997506,
+        "whole_frame_offset": [
+          13,
+          85
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 0.997506,
+        "whole_frame_offset": [
+          13,
+          85
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 0.997506,
+        "whole_frame_offset": [
+          14,
+          85
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 0.997506,
+        "whole_frame_offset": [
+          14,
+          85
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 0.997506,
+        "whole_frame_offset": [
+          13,
+          85
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 0.997506,
+        "whole_frame_offset": [
+          13,
+          85
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      }
+    ],
+    "shared_idle_boundary_frames": [
+      0,
+      7
+    ],
+    "replacement_complete_cels": []
+  },
+  "hammer": {
+    "source_file": "exec-e6579a89-fdce-4e94-be27-5d27116134e6.png",
+    "source_sha256": "796b60efb50fa49a2d923d6fc87cc5c990ea09b22e16edfca168185cea3b24ae",
+    "method": "individually redrawn complete figures via image generation; whole-frame packing only",
+    "registration": [
+      {
+        "scale": 1.462687,
+        "whole_frame_offset": [
+          2,
+          63
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.462687,
+        "whole_frame_offset": [
+          3,
+          63
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.462687,
+        "whole_frame_offset": [
+          1,
+          63
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.462687,
+        "whole_frame_offset": [
+          36,
+          63
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.462687,
+        "whole_frame_offset": [
+          37,
+          64
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.462687,
+        "whole_frame_offset": [
+          35,
+          64
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.462687,
+        "whole_frame_offset": [
+          36,
+          64
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.462687,
+        "whole_frame_offset": [
+          25,
+          64
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 0.468933,
+        "whole_frame_offset": [
+          50,
+          93
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 0.516129,
+        "whole_frame_offset": [
+          22,
+          65
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.462687,
+        "whole_frame_offset": [
+          -7,
+          63
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.462687,
+        "whole_frame_offset": [
+          -1,
+          63
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.462687,
+        "whole_frame_offset": [
+          -3,
+          63
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.462687,
+        "whole_frame_offset": [
+          -4,
+          63
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.462687,
+        "whole_frame_offset": [
+          8,
+          63
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.462687,
+        "whole_frame_offset": [
+          0,
+          63
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      }
+    ],
+    "shared_idle_boundary_frames": [
+      0,
+      15
+    ],
+    "replacement_complete_cels": [
+      {
+        "frame": 9,
+        "source_file": "exec-4c3550d8-4ffb-4a27-8dbf-939995097679.png",
+        "source_sha256": "2915a43e83a5b9231d293fe7ab8bebff458c4af4c3bf7a95416ec46fd0fc44d6"
+      },
+      {
+        "frame": 8,
+        "source_file": "exec-2ea57511-30f6-4bcb-8102-9b806570fa36.png",
+        "source_sha256": "b9316981f284b5063c6d3066b6673399a95bd331625078371d1464fe86c954cd",
+        "cell": 0
+      }
+    ]
+  },
+  "hammer_final": {
+    "source_file": "exec-7007ce28-5a0c-459f-9b21-de5db2b3c4ad.png",
+    "source_sha256": "a4906e0a6a3386422027cdd399b94c5bb0baf4c13995172cc455ede78b432351",
+    "method": "individually redrawn complete figures via image generation; whole-frame packing only",
+    "registration": [
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          13,
+          68
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          -17,
+          68
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          -42,
+          66
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          -50,
+          68
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          2,
+          66
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          -22,
+          66
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          -46,
+          66
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          -35,
+          66
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          18,
+          68
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          -3,
+          66
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          -19,
+          66
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 0.468933,
+        "whole_frame_offset": [
+          50,
+          93
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 0.516129,
+        "whole_frame_offset": [
+          28,
+          65
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          -18,
+          71
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          -48,
+          71
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          -50,
+          71
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          5,
+          71
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          -16,
+          71
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          -33,
+          71
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.6,
+        "whole_frame_offset": [
+          -28,
+          71
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      }
+    ],
+    "shared_idle_boundary_frames": [
+      0,
+      19
+    ],
+    "replacement_complete_cels": [
+      {
+        "frame": 12,
+        "source_file": "exec-4c3550d8-4ffb-4a27-8dbf-939995097679.png",
+        "source_sha256": "2915a43e83a5b9231d293fe7ab8bebff458c4af4c3bf7a95416ec46fd0fc44d6"
+      },
+      {
+        "frame": 11,
+        "source_file": "exec-2ea57511-30f6-4bcb-8102-9b806570fa36.png",
+        "source_sha256": "b9316981f284b5063c6d3066b6673399a95bd331625078371d1464fe86c954cd",
+        "cell": 1
+      }
+    ]
+  },
+  "cheer": {
+    "source_file": "exec-68af52be-e036-4bfd-a36d-7e86914b374b.png",
+    "source_sha256": "364bdaee8812c76dd0328759205def81ce94862d5a66ca87ffd0f0895c34a52c",
+    "method": "individually redrawn complete figures via image generation; whole-frame packing only",
+    "registration": [
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          44,
+          92
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          38,
+          92
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          35,
+          93
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          31,
+          92
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          33,
+          95
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          33,
+          95
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          33,
+          95
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          31,
+          95
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          34,
+          93
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          33,
+          93
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          33,
+          93
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          31,
+          93
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          33,
+          92
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          33,
+          93
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          33,
+          93
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.365188,
+        "whole_frame_offset": [
+          31,
+          93
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      }
+    ],
+    "shared_idle_boundary_frames": [
+      0,
+      15
+    ],
+    "replacement_complete_cels": []
+  },
+  "grin": {
+    "source_file": "exec-a303089a-cdca-4ae5-809c-26015f5e0653.png",
+    "source_sha256": "a5d4dd93e8b7320367f0cec34cf08984e520d1b0bb0aa58211bdb8f1b2bd06a0",
+    "method": "individually redrawn complete figures via image generation; whole-frame packing only",
+    "registration": [
+      {
+        "scale": 1.369863,
+        "whole_frame_offset": [
+          38,
+          89
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.369863,
+        "whole_frame_offset": [
+          38,
+          89
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.369863,
+        "whole_frame_offset": [
+          40,
+          89
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.369863,
+        "whole_frame_offset": [
+          38,
+          89
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.369863,
+        "whole_frame_offset": [
+          38,
+          95
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.369863,
+        "whole_frame_offset": [
+          38,
+          95
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.369863,
+        "whole_frame_offset": [
+          39,
+          95
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.369863,
+        "whole_frame_offset": [
+          38,
+          95
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.369863,
+        "whole_frame_offset": [
+          38,
+          96
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.369863,
+        "whole_frame_offset": [
+          38,
+          95
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.369863,
+        "whole_frame_offset": [
+          39,
+          95
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.369863,
+        "whole_frame_offset": [
+          38,
+          95
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.369863,
+        "whole_frame_offset": [
+          38,
+          95
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      },
+      {
+        "scale": 1.369863,
+        "whole_frame_offset": [
+          38,
+          95
+        ],
+        "registered_feet": [
+          256,
+          500
+        ]
+      }
+    ],
+    "shared_idle_boundary_frames": [
+      0,
+      13
+    ],
+    "replacement_complete_cels": []
+  }
+}

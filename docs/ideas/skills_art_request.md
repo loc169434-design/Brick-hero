@@ -67,9 +67,9 @@ Atlas **8 cột**, gốc ở tâm khung, kèm `skills.json` cùng kiểu `assets
 
 | File | Cỡ | Nội dung |
 |---|---|---|
-| `assets/ui/rage_bar_frame.png` | khoảng 460×56 | Khung thanh Nộ, hợp với thanh máu kiểu game đối kháng đang có |
-| `assets/ui/rage_bar_fill.png` | cùng cỡ phần lõi | Phần đổ đầy màu lửa, code cắt theo phần trăm |
-| `assets/ui/skill_<id>.png` | 160×160 | Biểu tượng nút của từng chiêu, nền tròn; code làm tối khi chưa đủ Nộ |
+| `assets/ui/rage_bar_frame.png` | 768×42 | Khung thanh Nộ nằm ngang dưới bàn chơi, hợp với thanh máu kiểu game đối kháng đang có; phần lõi 760×34 ở giữa để trống |
+| `assets/ui/rage_bar_fill.png` | 760×34 | Phần đổ đầy màu lửa, code cắt từ trái sang theo phần trăm |
+| `assets/ui/skill_<id>.png` | 160×160 | Biểu tượng nút tròn của từng chiêu, vẽ trong vòng tròn đường kính khoảng 150; code làm tối khi chưa đủ Nộ và tự vẽ viền tiến độ quanh nút |
 | `assets/ui/buff_iron_guard.png` | 96×96 | Biểu tượng lớp bảo vệ Hộ Thể đang chờ |
 
 ## 6. Hợp thể: `assets/fx/fusions/`

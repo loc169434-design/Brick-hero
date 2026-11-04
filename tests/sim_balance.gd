@@ -38,8 +38,8 @@ func _initialize() -> void:
 				var property := key.trim_prefix("monster.")
 				monster.set(property, type_convert(options[key], typeof(monster.get(property))))
 		print("\n## %s (máu %d, khiên %d lớp, đánh %d mỗi %d lượt), %d trận mỗi kiểu chơi\n" % [monster.display_name, monster.max_hp, monster.shield_layers, monster.attack, monster.countdown, fights])
-		print("| Kiểu chơi | Thắng | Lượt (p10 / giữa / p90) | Máu còn | Thắng trong 3 lượt | Đòn đầu | Lượt có tự nổ | Sát thương từ tự nổ | Vòng / lượt | Dài nhất | Ô đặc biệt sinh / kích | Xáo bảng |")
-		print("|---|---|---|---|---|---|---|---|---|---|---|---|")
+		print("| Kiểu chơi | Thắng | Lượt (p10 / giữa / p90) | Máu còn | Thắng trong 3 lượt | Đòn đầu | Lượt có tự nổ | Sát thương từ tự nổ | Vòng / lượt | Dài nhất | Ô đặc biệt sinh / kích | Xáo bảng | Chiêu / trận | Có chiêu | Lượt chiêu đầu |")
+		print("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
 		for strategy in BattleSim.Strategy.values():
 			if options.has("strategy") and int(options["strategy"]) != strategy:
 				continue
@@ -57,8 +57,10 @@ func _row(name: String, runs: Array[Dictionary]) -> String:
 	var moves: Array = wins.map(func(r: Dictionary) -> int: return r["moves"])
 	moves.sort()
 	var all_moves := _sum(runs, "moves")
+	var firsts: Array = runs.map(func(r: Dictionary) -> int: return r["first_skill"]).filter(func(m: int) -> bool: return m >= 0)
+	firsts.sort()
 	var quick := wins.filter(func(r: Dictionary) -> bool: return r["moves"] <= 3).size()
-	return "| %s | %d%% | %s | %s | %d%% | %.1f | %d%% | %d%% | %.2f | %d | %.1f / %.1f | %.2f |" % [
+	return "| %s | %d%% | %s | %s | %d%% | %.1f | %d%% | %d%% | %.2f | %d | %.1f / %.1f | %.2f | %.1f | %d%% | %s |" % [
 		name,
 		roundi(100.0 * wins.size() / runs.size()),
 		"%d / %d / %d" % [_pick(moves, 0.1), _pick(moves, 0.5), _pick(moves, 0.9)] if moves else "-",
@@ -72,6 +74,9 @@ func _row(name: String, runs: Array[Dictionary]) -> String:
 		_sum(runs, "specials_made") / runs.size(),
 		_sum(runs, "specials_fired") / runs.size(),
 		_sum(runs, "reshuffles") / runs.size(),
+		_sum(runs, "skills") / runs.size(),
+		roundi(100.0 * firsts.size() / runs.size()),
+		str(_pick(firsts, 0.5)) if firsts else "-",
 	]
 
 

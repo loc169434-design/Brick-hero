@@ -122,6 +122,8 @@ var _fall_tween: Tween
 ## Squares currently drawn by an animation: position -> AnimatedSprite2D.
 var _sprites := {}
 var _busy := false
+## Set while something off the board is playing out (a hero skill), so no link starts meanwhile.
+var locked := false
 ## Set once the fight is decided, until restart.
 var _finished := false
 var _end_title := ""
@@ -272,7 +274,7 @@ func board_size() -> Vector2:
 
 
 func can_act() -> bool:
-	return not _busy and not _finished
+	return not _busy and not _finished and not locked
 
 
 ## The square under `local_pos`, if it's within `reach` (a fraction of a square) of its center.

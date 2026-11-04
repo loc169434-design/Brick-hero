@@ -11,6 +11,10 @@ extends Node2D
 ## turns that can't hurt it. Hits pop up comic lettering (assets/fx/comic/), blows to the head
 ## spin stars, and critical hits get a cinematic: the screen darkens, speed lines, a close-up
 ## of the striker's eyes, the camera leans in and time slows as the blow lands.
+##
+## Hero skills (BattleState.SKILLS) play the same way from their own report, with their name in
+## comic lettering. Until the skill clips of docs/ideas/skills_art_request.md arrive, they borrow
+## the existing moves: Phá Giáp the shield bash, Hồi Quang the potion.
 
 ## A blow landed: `strength` 0..1 of screen shake, `freeze` seconds of hit-stop.
 signal impact(strength: float, freeze: float)
@@ -57,6 +61,10 @@ const NUMBER_FONT := "res://assets/fonts/Bangers-Regular.ttf"
 ## Comic lettering pops to this scale (of its 512×320 art).
 const COMIC_SCALE := 0.55
 const CRIT_ZOOM := 1.12
+## Comic lettering for each hero skill (assets/fx/comic/<word>.png). Without the art, the
+## skill's name floats up instead.
+const SKILL_COMICS := {"armor_breaker": "armor_break", "second_wind": "second_wind"}
+const SKILL_NAME_AT := Vector2(HERO_FEET.x + 40, 150)
 ## The monster's attacks, taken in turn.
 const MONSTER_ATTACKS := [&"rock", &"club", &"charge"]
 
@@ -114,6 +122,8 @@ var _trail_tween: Tween
 ## Reused for every rounded shape of the HUD.
 var _box := StyleBoxFlat.new()
 var _coin: Texture2D
+## How many reports are still playing out.
+var _playing := 0
 
 
 func _ready() -> void:
@@ -186,10 +196,25 @@ func show_hint(text: String) -> void:
 
 
 func play_report(report: TurnReport) -> void:
+	_playing += 1
+	await _play_report(report)
+	_playing -= 1
+
+
+## Whether a move or a skill is still playing out above the board.
+func is_playing() -> bool:
+	return _playing > 0
+
+
+func _play_report(report: TurnReport) -> void:
 	var fight := _fight
 	var big_play := report.chain >= 3 or report.link_length >= 6 or report.critical
 
-	if report.damage > 0 or report.shield_damage > 0:
+	if report.skill:
+		await _hero_skill(report)
+		if fight != _fight:
+			return
+	elif report.damage > 0 or report.shield_damage > 0:
 		await _hero_move(report)
 		if fight != _fight:
 			return
@@ -228,7 +253,7 @@ func play_report(report: TurnReport) -> void:
 		_monster.react(&"scared", 1.2)
 	elif report.damage > 0 and _state.monster_health() <= 0.3:
 		_monster.react(&"scared", 1.2)
-	elif report.damage == 0 and report.shield_damage == 0 and _state.monster.counterattacks:
+	elif report.damage == 0 and report.shield_damage == 0 and _state.monster.counterattacks and not report.skill:
 		# Nothing that hurts it: green and yellow only. It sidesteps and laughs.
 		_monster_dodges()
 
@@ -341,15 +366,42 @@ func _move_combo(report: TurnReport) -> void:
 	_hero.react(&"idle")
 
 
-## Charges in behind the shield.
-func _move_bash(report: TurnReport) -> void:
+## Charges in behind the shield. `comic` replaces the crack or clang.
+func _move_bash(report: TurnReport, comic := "") -> void:
 	_hero.react(&"bash", 0.0)
 	await _hero.dash_to(Vector2(MONSTER_FEET.x - HERO_FEET.x - 210, 0), _hero.strike_time(&"bash", 0.16))
 	_hero.reach_impact()
 	_monster.knockback(45.0)
-	_land_hit(report, "crack" if report.layers_broken > 0 else "clang")
+	if not comic:
+		comic = "crack" if report.layers_broken > 0 else "clang"
+	_land_hit(report, comic)
 	await _hero.home(0.28)
 	_hero.react(&"idle")
+
+
+## A hero skill: its name over the hero as the screen darkens on the hero's eyes, then the move.
+## Phá Giáp charges in behind the shield and cracks the monster's guard; Hồi Quang drinks deep in
+## a burst of green light. The name stays on the hero's side, clear of the numbers over the monster.
+func _hero_skill(report: TurnReport) -> void:
+	var fight := _fight
+	var comic: String = SKILL_COMICS.get(report.skill, "")
+	if ResourceLoader.exists(COMIC_DIR + comic + ".png"):
+		_comic(comic, SKILL_NAME_AT, 1.0, 1.0)
+	else:
+		_float(BattleState.SKILLS[report.skill] + "!", SKILL_NAME_AT, Color(1.0, 0.6, 0.15), 84)
+	await _cinematic("hero_eye_glint", true, HERO_FEET if report.skill == "second_wind" else MONSTER_FEET)
+	if fight != _fight:
+		return
+	match report.skill:
+		"armor_breaker":
+			await _move_bash(report)
+		"second_wind":
+			_hero.react(&"drink", 1.0)
+			var chest := _local(_hero.point("head")) + Vector2(0, 90)
+			_sparks.flare(chest, HP_HERO.lightened(0.3), 2.5)
+			_flash("shockwave", chest, 0.2, 1.6, 0.5, 0.0, true)
+			await _wait(0.6)
+	_camera(1.0, SIZE / 2, 0.35)
 
 
 ## The blow connects. `final` is the hit that shows the numbers; earlier hits of a combo only

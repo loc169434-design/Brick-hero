@@ -38,8 +38,11 @@ func _init(p_board_rules: BoardRules, p_battle_rules: BattleRules, p_strategy: S
 
 ## Plays one fight to the end and returns what happened:
 ## { outcome, moves, hero_hp, gold, rounds, auto_moves, max_chain, damage, auto_damage,
-##   first_hit, specials_made, specials_fired, reshuffles, link_squares, auto_squares }
+##   first_hit, specials_made, specials_fired, reshuffles, link_squares, auto_squares,
+##   skills, first_skill }
 ## `auto` means the rounds after the link itself: lines that cleared on their own.
+## Every bot uses the hero skill as soon as it's ready (see wants_skill); `first_skill` is the
+## number of moves played before the first one, -1 if it never came.
 func play_fight(monster: MonsterData, seed_value: int) -> Dictionary:
 	_rng.seed = seed_value
 	var game := LinkGame.new(board_rules, seed_value)
@@ -48,9 +51,15 @@ func play_fight(monster: MonsterData, seed_value: int) -> Dictionary:
 		"outcome": BattleState.Outcome.ONGOING, "moves": 0, "hero_hp": 0, "gold": 0,
 		"rounds": 0, "auto_moves": 0, "max_chain": 0, "damage": 0, "auto_damage": 0.0,
 		"first_hit": 0, "specials_made": 0, "specials_fired": 0, "reshuffles": 0,
-		"link_squares": 0, "auto_squares": 0,
+		"link_squares": 0, "auto_squares": 0, "skills": 0, "first_skill": -1,
 	}
 	while state.outcome == BattleState.Outcome.ONGOING and state.moves < MAX_MOVES:
+		if wants_skill(state):
+			if stats["skills"] == 0:
+				stats["first_skill"] = state.moves
+			stats["skills"] += 1
+			stats["damage"] += state.use_skill().damage
+			continue
 		var path := choose(game, state)
 		if path.is_empty():
 			break
@@ -62,6 +71,16 @@ func play_fight(monster: MonsterData, seed_value: int) -> Dictionary:
 	stats["hero_hp"] = state.hero_hp
 	stats["gold"] = state.gold
 	return stats
+
+
+## Whether to use the hero skill now. Hồi Quang waits until it can heal in full; anything else
+## goes as soon as the bar is full, like a player pressing the glowing button.
+func wants_skill(state: BattleState) -> bool:
+	if not state.skill_ready():
+		return false
+	if state.rules.skill == "second_wind":
+		return state.rules.hero_max_hp - state.hero_hp >= state.rules.second_wind_heal
+	return true
 
 
 ## The link this bot plays next, or an empty path if it can't find one.

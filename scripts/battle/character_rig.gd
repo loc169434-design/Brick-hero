@@ -50,6 +50,8 @@ signal clip_impact(clip: StringName)
 const ANIM_FILE := "anim/anim.json"
 
 var facing := 1
+## Drawn acting can opt out of the extra breathing and cheer hops used by still poses.
+var procedural_motion := true
 var character_id := ""
 var wear := Wear.FRESH
 var mood := &"idle"
@@ -171,6 +173,8 @@ func react(new_mood: StringName, seconds := 0.8) -> void:
 	mood = new_mood
 	_mood_serial += 1
 	var serial := _mood_serial
+	# Start now so a caller's duration clock and the clip's wind-up share an origin.
+	_update_clip(0.0)
 	_body.queue_redraw()
 	match new_mood:
 		&"hurt":
@@ -183,7 +187,8 @@ func react(new_mood: StringName, seconds := 0.8) -> void:
 			_tremble(seconds if seconds > 0.0 else 1.2)
 			_drip_sweat()
 		&"cheer":
-			_move([[Vector2(0, -40), 0.12], [Vector2.ZERO, 0.12], [Vector2(0, -25), 0.1], [Vector2.ZERO, 0.1]])
+			if procedural_motion:
+				_move([[Vector2(0, -40), 0.12], [Vector2.ZERO, 0.12], [Vector2(0, -25), 0.1], [Vector2.ZERO, 0.1]])
 	if seconds > 0.0:
 		await get_tree().create_timer(seconds).timeout
 		if serial == _mood_serial and not end_pose:
@@ -236,13 +241,21 @@ func _process(delta: float) -> void:
 	_update_clip(delta)
 	# Breathing: a slow squash that keeps still art from looking frozen. An idle clip breathes
 	# by itself.
-	var breath := 0.0 if _clip == &"idle" or end_pose else sin(_time * 2.4)
+	var breath := 0.0 if not procedural_motion or _clip == &"idle" or end_pose else sin(_time * 2.4)
 	_body.scale = Vector2(1.0 - 0.01 * breath, 1.0 + 0.015 * breath) * squash_scale
 
 
 ## Whether there's a frame-by-frame clip called `clip` for this character.
 func has_clip(clip: StringName) -> bool:
 	return _anim.get("clips", {}).has(String(clip)) and _clip_sheet_for(clip) != null
+
+
+## One complete pass of a drawn clip, or the still pose's caller-supplied hold.
+func clip_seconds(clip: StringName, fallback := 0.0) -> float:
+	if not has_clip(clip):
+		return fallback
+	var info: Dictionary = _anim["clips"][String(clip)]
+	return float(info.get("frames", 1)) / float(info.get("fps", 24))
 
 
 ## Seconds from the start of `clip` to its impact frame; 0 without one.
@@ -324,9 +337,9 @@ func _clip_frame() -> int:
 	return frame % frames if _clip_info.get("loop", false) else mini(frame, frames - 1)
 
 
-## Global position of a point on the current pose: "head", "mouth", "crown" or "hand".
-func point(key: String) -> Vector2:
-	return _body.to_global(_anchor(key))
+## Global position of a point on the current pose, or a named pose before it plays.
+func point(key: String, pose: StringName = &"") -> Vector2:
+	return _body.to_global(_anchor(key, pose))
 
 
 ## Stars spin around the head: knocked silly for `seconds`.
@@ -403,11 +416,12 @@ func _to_local(canvas_point: Vector2) -> Vector2:
 	return (canvas_point - _feet()) * _scale()
 
 
-func _anchor(key: String) -> Vector2:
+func _anchor(key: String, pose_mood: StringName = &"") -> Vector2:
 	var anchors: Dictionary = _rig.get("anchors", {})
-	var stem := _pose_stem()
-	if not anchors.has(stem) and anchors.has(String(mood)):
-		stem = String(mood)
+	var stem := String(pose_mood) if pose_mood else _pose_stem()
+	var anchor_mood := pose_mood if pose_mood else mood
+	if not anchors.has(stem) and anchors.has(String(anchor_mood)):
+		stem = String(anchor_mood)
 	var pose: Dictionary = anchors.get(stem, anchors.get("fresh_idle", {}))
 	var fallback := DEFAULT_HEAD
 	match key:

@@ -1,6 +1,8 @@
 # Thợ rèn vẽ lại — `art/blacksmith`
 
 Từ `main` tại `b34f151`, theo [yêu cầu vẽ lại](blacksmith_art_request.md).
+Đã ráp trực tiếp vào `ForgeView`: ba nhát búa, lau trán, món đồ bay vào bảng
+và cười lóe răng. Nhánh gồm ảnh, code tích hợp và kiểm tra hồi quy.
 Sáu clip, 86 ô hoạt hình, chỉ mức `fresh`. Toàn bộ nhân vật được vẽ lại
 bằng công cụ tạo ảnh theo từng tư thế hoàn chỉnh. Không dựng khớp, xoay tay/chân,
 ghép mặt hoặc kéo các mảnh từ ảnh đứng. Python/Pillow chỉ đọc, đăng ký điểm chân,
@@ -39,33 +41,58 @@ theo khung 7; tâm đầu sắt tại khung chạm của cả hai clip búa là
 `anchors.<clip>.hammer = (128,305)`.
 Trong ảnh kiểm tra cố định chân, tâm đầu búa chiếu ra (694,733,75).
 Để tâm đầu búa trùng điểm đe (650,735) ở tỷ lệ 0,75, điểm chân sẽ là
-(746,881,25). Claude có thể dùng anchor này để căn vị trí lúc đánh.
+(746,881,25). Trong game, `SMITH_SCALE=1.05` nhân với tỷ lệ cơ sở
+360/512 cho tỷ lệ thực 0,73828125: chân lúc đánh ở (744,5;878,96484375).
+Code căn điểm búa vào (650,735) và cho ông bước về vị trí đứng sau khi rèn.
 Không có đe, phòng hay bóng sàn vẽ trong các cel.
 
-## Claude cần chỉnh thời gian phát trước khi ghép
+## Tích hợp vào game
 
-Ở `scripts/campaign/forge_view.gd`, `_strike()` hiện gọi
-`_smith.react(clip, 0.32)`, nhưng khung chạm mới ở 0,375 s và 0,500 s.
-`CharacterRig.react()` trả mood về idle khi timer hết, nên cú đập bị cắt
-trước khi chạm. `_finish_forging()` còn gọi cheer sau 0,2 s, sớm hơn nhát cuối.
+`ForgeView` phát trọn `hammer` (0,667 s) và `hammer_final` (0,833 s),
+khóa bấm/đếm nhát tiếp theo đến hết hồi đòn. Tiếng đe, tia lửa và giọt mồ hôi
+được phát một lần từ `CharacterRig.clip_impact`, đúng khung 9/12.
+Sau khi nhát cuối kết thúc mới chạy cheer, món đồ bay vào ô trang bị và grin.
+Nếu thiếu clip cuối, dùng trọn hammer thường; nếu chỉ có ảnh đứng, vẫn có
+nhịp chạm/hồi đòn và tự đánh sau thời gian chờ.
 
-Giữ hammer ít nhất 16/24 = 0,667 s và hammer_final ít nhất 20/24 = 0,833 s;
-chờ nhát cuối kết thúc rồi mới bắt đầu cheer và chuỗi món đồ bay.
-Tiếp tục dùng `impact_seconds(clip)` cho tiếng đe/tia lửa.
-`cheer` dài 1,333 s, `grin` dài 1,167 s; hai timer 1,4 s hiện tại đủ dài.
-Code đang tự tắt tia lóe khi có clip grin. Không sửa code trong nhánh này.
+`CharacterRig.clip_seconds()` đọc thời lượng từ metadata, `react()` bắt đầu
+clip ngay để đồng bộ đồng hồ, `point(key, pose)` cho phép căn búa trước khi
+phát đòn. Riêng thợ rèn tắt thở co giãn và nhảy ăn mừng bằng code để giữ
+nguyên diễn xuất trong hình vẽ; các nhân vật khác giữ hành vi mặc định.
+Tia răng dùng hình vẽ sẵn, không vẽ thêm tia bằng code.
+
+## Ảnh chụp game chạy thật
+
+[Xem trọn chuỗi rèn — GIF](blacksmith_review/forge_gameplay.gif) (1,42 MB).
+Ảnh chụp từ `Game.open_forge()` thật, bản lưu xem thử riêng trong `/tmp`,
+không ghi đè tiến trình người chơi:
+
+- [Đầu game](blacksmith_review/game_early.png), [sau khi qua Orc](blacksmith_review/game_mid.png).
+- [Chạm nhát 1](blacksmith_review/game_impact_1_hammer.png), [nhát 2](blacksmith_review/game_impact_2_hammer.png), [nhát cuối](blacksmith_review/game_impact_3_hammer_final.png).
+- [Món đồ đang bay](blacksmith_review/game_item_flying.png), [cười lóe răng](blacksmith_review/game_grin.png), [trang bị đã nhận](blacksmith_review/game_equipped.png).
 
 ## Kiểm tra
 
 - Godot thường 4.7.2 import thành công; sáu sheet có `compress/mode=2`.
-- Bộ test hiện tại: **89 passed, 0 failed**, không `SCRIPT ERROR`.
-- Smoke qua `CharacterRig` thật: tải đủ sáu clip, phát sự kiện chạm đúng
-  0,375/0,500 s, clip một lần giữ khung cuối. Đã tái hiện timer 0,32 s
-  cắt mood của code hiện tại; do đó chưa coi gameplay ghép xong.
+- Bộ test hiện tại: **93 passed, 0 failed**, không `SCRIPT ERROR`.
+- `tests/forge_flow_smoke.gd`: **PASS, 0 failures**. Chạy một lần mua thật,
+  đủ ba nhát theo thứ tự, bấm dồn không cắt đòn, chạm đúng khung, đe khớp
+  anchor, cheer sau nhát cuối, món đồ vào bảng, grin rồi idle. Có kiểm tra
+  thiếu clip cuối, thiếu clip búa và tự đánh sau thời gian chờ.
+- Đã chạy và chụp bằng OpenGL Compatibility/llvmpipe trên màn hình X11 ảo.
+  Thử renderer Mobile/Vulkan trong môi trường này thiếu `VK_KHR_surface`,
+  Godot tự chuyển OpenGL. Chưa xác nhận Vulkan trên thiết bị thật.
 - Kiểm tra ảnh: số ô/FPS/impact/alpha/ô trống/khung cuối/GIF đạt;
   xem [validation.json](blacksmith_review/validation.json).
-- Tất cả GIF và ảnh review dưới 2 MB; GIF lớn nhất dưới 700 KB.
+- Tất cả GIF và ảnh review dưới 2 MB; GIF từng clip dưới 700 KB, GIF gameplay 1,42 MB.
 - Chưa kiểm tra trên điện thoại.
+
+Chạy kiểm tra Godot (bản thường 4.7.2):
+
+```sh
+godot --headless --path . -s res://tests/run_tests.gd
+godot --headless --path . -s res://tests/forge_flow_smoke.gd
+```
 
 Chạy lại kiểm tra ảnh:
 
@@ -81,11 +108,12 @@ python docs/ideas/pack_blacksmith_redraw.py /path/to/source_manifest.json
 ```
 
 Thư mục review có `.gdignore`, không đưa GIF/ảnh kiểm tra vào tài nguyên game.
-`project.godot`, code và test giữ nguyên.
+`project.godot` giữ nguyên; không thêm phần `[dotnet]`.
 
 ## Trạng thái bàn giao GitHub
 
-Đã push `art/blacksmith` (commit ảnh `e9d00a8`). Tạo PR, tạo issue vẽ lại và
+Nhánh `art/blacksmith` có cả ảnh (commit ảnh `e9d00a8`) và code tích hợp.
+Tạo PR, tạo issue vẽ lại và
 comment vào issue #30 đều bị GitHub API trả `Forbidden` trong môi trường này,
 nên chưa có PR/issue/comment mới. Có thể mở PR từ nhánh đã push tại
 [đường dẫn so sánh](https://github.com/loc169434-design/Brick-hero/compare/main...art/blacksmith?expand=1).

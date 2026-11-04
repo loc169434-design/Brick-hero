@@ -117,8 +117,8 @@ Mỗi bước là một PR có thể chơi được. Chơi thử xong mới qua 
 
 | Bước | Nội dung | Code (Claude) | Ảnh và chữ (ChatGPT) |
 |---|---|---|---|
-| **W0** | **Chơi thử trên điện thoại** | Bản web trên GitHub Pages | — |
-| **W1** | Khung chiến dịch | Bản đồ bấm được, lưu tiến độ, chuỗi trận, vàng giữ lại sau trận | Bản đồ có sẵn (`world_map.png`); thêm biểu tượng vùng |
+| **W0** | **Chơi thử trên điện thoại** | Hoãn: làm game đầy đủ trước, xuất app sau | — |
+| **W1** | Khung chiến dịch (PR #27) | Bản đồ bấm được, lưu tiến độ, chuỗi trận, vàng giữ lại sau trận | Bản đồ có sẵn (`world_map.png`); thêm biểu tượng vùng |
 | **W2** | Lò rèn | Cảnh lò rèn, 4 ô trang bị, chỉ số đổi theo đồ | Biểu tượng nón; lớp kiếm và nón chồng lên nhân vật |
 | **W3** | Truyện tranh | Trình đọc truyện dọc, bong bóng thoại, chương mở đầu | Khung truyện chương mở đầu (vua, công chúa bị bắt) |
 | **W4** | Vùng 1 đủ quái | Tù Trưởng Orc, Orc Ném Đá | Hai quái mới, đủ hoạt hình |

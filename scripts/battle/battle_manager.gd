@@ -1,8 +1,14 @@
 class_name BattleManager
 extends Node
+
+## The fight is won and the player tapped on: back to the map with `gold` in the purse.
+signal fight_over(won: bool, gold: int)
 ## Runs the fights in order: feeds each finished move to the BattleState, shows the result
 ## above the board, makes the board's tiles react, and ends the board when a fight is decided.
 ## Winning moves on to the next encounter; losing retries the same one.
+##
+## On the campaign map (`return_to_map`), a won fight ends with fight_over instead of moving
+## on, and the hero starts with `starting_gold` in the purse.
 
 ## Below this much health after a hit, the monster's tiles sweat out a close call (near_miss).
 const NEAR_MISS_HEALTH := 0.15
@@ -16,6 +22,10 @@ const GLOAT_HEALTH := 0.3
 ## Fought in order: the training scarecrow, then the Shield Orc, and so on.
 @export var encounters: Array[MonsterData] = []
 @export var rules: BattleRules
+## Tapping after a win sends fight_over instead of starting the next encounter.
+@export var return_to_map := false
+## Gold in the hero's purse when a fight starts.
+@export var starting_gold := 0
 
 var state: BattleState
 var encounter_index := 0
@@ -24,7 +34,7 @@ var _advance_on_restart := false
 
 func _ready() -> void:
 	board.move_finished.connect(_on_move_finished)
-	board.restarted.connect(_start)
+	board.restarted.connect(_on_restarted)
 	if feel:
 		board.impact.connect(feel.impact)
 		battle_view.impact.connect(feel.impact)
@@ -52,12 +62,20 @@ static func board_reaction(report: TurnReport, state: BattleState) -> Array:
 	return [&"", 0]
 
 
+func _on_restarted() -> void:
+	if return_to_map and _advance_on_restart:
+		fight_over.emit(true, state.gold)
+		return
+	_start()
+
+
 func _start() -> void:
 	if _advance_on_restart:
 		encounter_index = (encounter_index + 1) % encounters.size()
 		_advance_on_restart = false
 	state = BattleState.new(rules, monster())
 	state.rng.randomize()
+	state.gold = starting_gold
 	board.set_tile_theme(monster().tile_theme)
 	battle_view.show_state(state)
 	_show_hint()
@@ -71,7 +89,10 @@ func _on_move_finished(result: MoveResult) -> void:
 		BattleState.Outcome.WON:
 			_advance_on_restart = true
 			var last := encounter_index == encounters.size() - 1
-			board.finish(true, "chạm để chơi lại từ đầu" if last else "chạm để gặp đối thủ tiếp theo")
+			if return_to_map:
+				board.finish(true, "chạm để về bản đồ")
+			else:
+				board.finish(true, "chạm để chơi lại từ đầu" if last else "chạm để gặp đối thủ tiếp theo")
 		BattleState.Outcome.LOST:
 			board.finish(false, "chạm để đánh lại")
 		_:

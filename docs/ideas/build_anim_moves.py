@@ -293,6 +293,120 @@ def batch1():
     pairs=[pair_preview('hero_rookie',c,'orc_shield','hurt') for c in ('kick','bash','leap')]
     (REVIEW/'batch1_timing.json').write_text(json.dumps(pairs,indent=2)+'\n')
 
+class Orc:
+    def __init__(self):
+        self.idle=atlas_frames('orc_shield','idle')[0];im=self.idle
+        self.head=part(im,[(156,195),(165,153),(189,127),(189,100),(225,100),(249,109),(284,119),(308,136),(308,163),(332,174),(326,201),(308,226),(284,240),(270,259),(236,266),(207,242),(183,225)])
+        self.left=part(im,[(160,237),(190,249),(187,282),(163,308),(140,321),(121,347),(97,363),(68,361),(47,348),(43,321),(53,303),(82,297),(104,277),(127,273),(145,250)])
+        self.right=part(im,[(347,216),(377,220),(403,240),(426,267),(433,292),(424,325),(397,351),(368,372),(341,361),(346,335),(357,313),(369,287),(351,273)])
+        self.legs=part(im,[(166,392),(229,395),(269,397),(297,390),(353,388),(380,423),(395,465),(412,478),(415,502),(94,502),(95,478),(119,464),(141,435)])
+        body=im
+        for p in (self.head,self.left,self.right,self.legs):body=cut(body,p)
+        self.body=part(body,[(169,220),(214,219),(247,248),(276,243),(310,214),(350,207),(367,241),(350,281),(356,324),(365,350),(353,372),(371,394),(333,409),(295,394),(268,414),(240,400),(208,413),(168,402),(165,380),(185,350),(185,319),(182,284),(168,263)])
+        # Reconstruct tunic area originally hidden by bent right arm.
+        fill=blank();d=ImageDraw.Draw(fill)
+        d.polygon([(315,242),(351,237),(353,315),(343,335),(315,326)],fill='#7c6c47',outline='#382b1a',width=3)
+        self.body=comp(fill,self.body)
+        self.bald=load('orc_shield','bald')
+        self.baldtop=part(self.bald,[(0,0),(512,0),(512,319),(0,319)])
+        self.baldbase=cut(self.bald,self.baldtop)
+    def frame(self,lean=0,bodydy=0,head=0,left=0,right=0,ldx=0,ldy=0,rdx=0,rdy=0,expression=None,stone=False,bald=False):
+        if bald:
+            frame=comp(self.baldbase,xf(self.baldtop,head,(251,285),dy=bodydy))
+            return frame,None
+        hd=xf(self.head,head,(246,235))
+        if expression:hd=self.expression(hd,expression)
+        la=xf(self.left,left,(170,258),ldx,ldy)
+        ra=xf(self.right,right,(361,251),rdx,rdy)
+        bridge=blank();d=ImageDraw.Draw(bridge)
+        d.ellipse((144,236,193,281),fill='#b4c742',outline='#382b19',width=3)
+        d.ellipse((340,219,383,266),fill='#b4c742',outline='#382b19',width=3)
+        if ldx or ldy:
+            d.line((170,258,170+ldx,258+ldy),fill='#382b19',width=43)
+            d.line((170,258,170+ldx,258+ldy),fill='#b4c742',width=35)
+        if rdx or rdy:
+            d.line((361,251,361+rdx,251+rdy),fill='#382b19',width=43)
+            d.line((361,251,361+rdx,251+rdy),fill='#b4c742',width=35)
+        if right < -70 and rdx < 0:
+            # Reuse the same wrapped forearm texture for a fully extended release/punch.
+            t=min(1,(-right-60)/45)
+            dx=160-70*t;dy=-35*t
+            ra=xf(self.left,-10*t,(170,258),dx,dy)
+            d.line((361,251,170+dx,258+dy),fill='#382b19',width=45)
+            d.line((361,251,170+dx,258+dy),fill='#b4c742',width=37)
+        if stone:
+            rock=blank();d=ImageDraw.Draw(rock)
+            d.polygon([(354,330),(360,312),(381,305),(401,315),(408,334),(396,352),(372,358)],fill='#92928b',outline='#34352c',width=3)
+            d.line([(362,319),(380,314),(395,322)],fill='#c5c4b1',width=4)
+            ra=comp(ra,xf(rock,right,(361,251),rdx,rdy))
+        upper=comp(bridge,self.body,hd,ra,la)
+        frame=comp(self.legs,xf(upper,lean,(256,390),dy=bodydy))
+        anchor=pointxf((95,319),left,(170,258),ldx,ldy)
+        anchor=pointxf(anchor,lean,(256,390),dy=bodydy)
+        return frame,anchor
+    def expression(self,im,which):
+        out=im.copy();d=ImageDraw.Draw(out)
+        if which=='red':
+            d.ellipse((190,157,203,170),fill='#ef3f2d',outline='#66291c',width=2)
+            d.ellipse((224,168,237,181),fill='#ef3f2d',outline='#66291c',width=2)
+        elif which=='scared':
+            for x,y in ((196,159),(230,174)):
+                d.ellipse((x-9,y-9,x+8,y+11),fill='#fffae5',outline='#3c321b',width=2)
+                d.ellipse((x-1,y-3,x+3,y+6),fill='#302518')
+            d.ellipse((173,206,233,239),fill='#472b23',outline='#34271a',width=3)
+            d.polygon([(179,208),(186,224),(192,207)],fill='#fff0c5',outline='#34271a')
+            d.polygon([(218,210),(225,225),(231,211)],fill='#fff0c5',outline='#34271a')
+            d.ellipse((289,203,297,218),fill='#8cd6e6',outline='#2f5a61',width=1)
+        elif which=='laugh':
+            d.ellipse((175,204,238,242),fill='#42291f',outline='#342719',width=3)
+            d.ellipse((184,226,224,240),fill='#cb7058')
+            d.polygon([(179,205),(186,224),(194,205)],fill='#fff0c5',outline='#34271a')
+            d.polygon([(220,210),(225,225),(232,211)],fill='#fff0c5',outline='#34271a')
+        return out
+
+ORC_KEYS={
+ 'throw':{0:{'right':35,'stone':True,'lean':-3},2:{'right':105,'stone':True,'head':6,'lean':-6},3:{'right':130,'stone':True,'lean':-7},4:{'right':-105,'rdx':-65,'rdy':45,'lean':9},5:{'right':-110,'rdx':-50,'rdy':35,'lean':8},7:{'right':-45,'rdx':-20,'rdy':10,'lean':3},9:{}},
+ 'charge':{0:{},2:{'lean':-8,'head':15,'left':-8,'bodydy':10},3:{'lean':-12,'head':18,'left':-12,'bodydy':15},4:{'lean':14,'head':18,'left':14,'right':-10,'bodydy':10},5:{'lean':12,'head':12,'left':10,'bodydy':7},7:{'lean':5,'head':5},9:{}},
+ 'dodge':{0:{},2:{'lean':-12,'head':-8,'left':-15,'right':15},4:{'lean':-18,'head':-12,'left':-22,'right':25},6:{'lean':-10,'head':-7,'left':25,'right':-45,'expression':'laugh'},8:{'lean':-5,'head':-4,'left':15,'right':-35,'expression':'laugh'},11:{}},
+ 'windup':{0:{'left':80,'right':-80,'rdy':35,'head':10,'expression':'red'},2:{'left':86,'right':-86,'rdy':35,'head':12,'expression':'red'},4:{'left':78,'right':-76,'rdy':35,'head':8,'expression':'red'},6:{'left':84,'right':-84,'rdy':35,'head':11,'expression':'red'},7:{'left':80,'right':-80,'rdy':35,'head':10,'expression':'red'}},
+ 'scared':{0:{'lean':-5,'head':-3,'left':25,'right':-35,'expression':'scared'},2:{'lean':-7,'head':2,'left':28,'right':-40,'expression':'scared'},4:{'lean':-4,'head':-4,'left':22,'right':-32,'expression':'scared'},6:{'lean':-6,'head':1,'left':27,'right':-38,'expression':'scared'},7:{'lean':-5,'head':-3,'left':25,'right':-35,'expression':'scared'}},
+ 'cheer':{0:{},2:{'right':-65,'rdy':30,'left':55,'head':-10,'expression':'laugh'},4:{'right':-90,'rdy':35,'left':75,'head':-15,'expression':'laugh'},5:{'right':-70,'rdy':25,'left':55,'head':-8,'expression':'laugh'},6:{'right':-90,'rdy':35,'left':75,'head':-15,'expression':'laugh'},8:{'right':-55,'left':35,'head':-8,'expression':'laugh'},11:{}},
+ 'bald':{0:{'bald':True,'head':-2},2:{'bald':True,'head':4,'bodydy':2},4:{'bald':True,'head':-5},6:{'bald':True,'head':2,'bodydy':1},7:{'bald':True,'head':-2}},
+ 'victory':{0:{'left':-85,'right':90,'head':-8,'expression':'laugh'},3:{'left':-100,'right':105,'head':-12,'bodydy':-6,'expression':'laugh'},6:{'left':-80,'right':85,'head':-6,'expression':'laugh'},9:{'left':-100,'right':100,'head':-10,'bodydy':-5,'expression':'laugh'},11:{'left':-85,'right':90,'head':-8,'expression':'laugh'}},
+ 'attack':{0:{},3:{'right':100,'lean':-6,'head':8},5:{'right':110,'lean':-8,'head':10},6:{'right':-105,'rdx':-60,'rdy':30,'lean':10},7:{'right':-90,'rdx':-50,'rdy':25,'lean':8},9:{'right':-35,'rdx':-10,'lean':3},11:{}},
+}
+
+def orc_frames(clip,orc):
+    n=SPECS['orc_shield'][clip][0]
+    if clip=='defeat':
+        frames=[]
+        for i in range(n):
+            t=min(i/9,1)
+            pose,_=orc.frame(left=-15,right=25,expression='scared')
+            f=xf(pose,angle=-80*t,pivot=(256,490),dx=-135*t,dy=-210*t)
+            bbox=f.getbbox();f=xf(f,dy=500-bbox[3]);frames.append(f)
+        frames[0]=orc.idle.copy();return frames,None
+    poses=timeline(ORC_KEYS[clip],n);frames=[];anchors=[]
+    for pose in poses:
+        f,a=orc.frame(**pose);frames.append(f);anchors.append(a)
+    if clip not in ('bald','windup','scared','victory'):
+        frames[-1]=orc.idle.copy();anchors[-1]=[95,319]
+    return frames,anchors if clip!='bald' else None
+
+def batch2():
+    orc=Orc();folder=ASSETS/'orc_shield/anim';meta=json.loads((folder/'anim.json').read_text())
+    for clip,spec in SPECS['orc_shield'].items():
+        n,fps,loop,*impact=spec;info={'frames':n,'fps':fps,'loop':loop}
+        if impact:info['impact']=impact[0]
+        if clip in ('idle','hurt'):raise RuntimeError(f'Refusing to replace pilot {clip}')
+        frames,anchors=orc_frames(clip,orc)
+        if anchors:info['shield']=anchors
+        write_clip('orc_shield',clip,frames,info);meta['clips'][clip]=info
+    (folder/'anim.json').write_text(json.dumps(meta,indent=2)+'\n')
+    timing=pair_preview('orc_shield','charge','hero_rookie','knocked')
+    (REVIEW/'batch2_timing.json').write_text(json.dumps(timing,indent=2)+'\n')
+
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--batch',type=int,required=True);args=parser.parse_args()
     if args.batch==1:batch1()
+    elif args.batch==2:batch2()

@@ -112,6 +112,12 @@
       12,
       12,
       false
+    ],
+    "attack": [
+      12,
+      24,
+      false,
+      6
     ]
   },
   "scarecrow": {

@@ -32,4 +32,20 @@ Mỗi clip có GIF đúng tốc độ trung bình, WebP lossless và ảnh lư�
 
 Đợt 1 hiệp sĩ fresh đã có trên nhánh `art/anim-moves`: 12 clip mới và metadata, giữ nguyên bộ thử #21. Kèm GIF từng clip, ảnh lưới đánh số và GIF ghép kick/bash/leap với Orc hurt đúng impact. [Bàn giao và GIF](https://github.com/loc169434-design/Brick-hero/blob/art/anim-moves/docs/ideas/issue24_handoff.md).
 
-API GitHub đọc issue qua cả GraphQL và REST trả `Forbidden`; trang issue và Git HTTPS vẫn đọc được. Nếu lệnh comment cũng bị chặn, dùng nội dung bàn giao này theo phương án dự phòng trong #24.
+API GitHub đọc issue qua cả GraphQL và REST trả `Forbidden`; trang issue và Git HTTPS vẫn đọc được. Đợt 1 đã push commit `54bd992`; lệnh `gh issue comment 24 --body-file …` sau push trả `Post "https://api.github.com/graphql": Forbidden`. Comment chưa đăng; dùng nội dung bàn giao này theo phương án dự phòng trong #24.
+
+## Đợt 2 — Orc, fresh
+
+Thêm 9 clip được yêu cầu: `throw`, `charge`, `dodge`, `windup`, `scared`, `cheer`, `bald`, `victory`, `defeat`. Thêm luôn `fresh_attack` 12 khung / 24 fps / impact 6 làm bản gốc cho các mức bầm dập của đợt 3 (Orc trước đó mới có idle/hurt động; không thay clip attack nào có sẵn).
+
+- Thân không có khiên baked. Mỗi frame có điểm `shield` tính từ đúng phép biến đổi nắm tay trái, kể cả chuyển động nghiêng thân; `bald` và `defeat` không có trường này.
+- `throw`: đá chỉ có trong tay ở frame 0–3; frame 4 thả, code lo vật bay.
+- `bald`: dùng ảnh gốc không mũ, hai tay ôm đầu; không chồng khiên.
+- `idle` và `hurt` của #21 không đổi. Clip không lặp hồi về đúng pixel idle frame 0, trừ defeat.
+- [Kiểm tra đợt 2](anim_moves_review/batch2_checks.json), [timeline charge/knocked](anim_moves_review/batch2_timing.json), [danh sách atlas](anim_moves_review/batch2_files.txt).
+
+![Orc húc, hiệp sĩ bị đánh văng](anim_moves_review/orc_shield_charge_vs_hero_rookie_knocked.gif)
+
+### Comment đợt 2 để đăng vào #24
+
+Đợt 2 Orc fresh đã có trên `art/anim-moves`: throw/charge/dodge/windup/scared/cheer/bald/victory/defeat, thêm attack làm gốc cho mức bầm dập. Mỗi clip có GIF/WebP và lưới đánh số. Thân không có khiên, tọa độ shield theo tay từng frame; giữ nguyên idle/hurt đã duyệt. [GIF charge canh đúng frame 4 với hiệp sĩ knocked](https://github.com/loc169434-design/Brick-hero/blob/art/anim-moves/docs/ideas/anim_moves_review/orc_shield_charge_vs_hero_rookie_knocked.gif). [Bàn giao](https://github.com/loc169434-design/Brick-hero/blob/art/anim-moves/docs/ideas/issue24_handoff.md).

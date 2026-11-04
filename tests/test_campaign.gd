@@ -42,14 +42,30 @@ func test_winning_keeps_the_purse_and_losing_keeps_the_old_one() -> void:
 	assert_eq(campaign.cleared, ["scarecrow"])
 
 
+func test_stars_follow_the_health_left_and_keep_the_best() -> void:
+	assert_eq(Campaign.stars_for(0.1), 1)
+	assert_eq(Campaign.stars_for(0.4), 2)
+	assert_eq(Campaign.stars_for(0.95), 3)
+	var campaign := Campaign.from_map()
+	assert_eq(campaign.stars_at("scarecrow"), 0)
+	campaign.finish_fight("scarecrow", true, 0, 2)
+	campaign.finish_fight("scarecrow", true, 0, 1)
+	assert_eq(campaign.stars_at("scarecrow"), 2, "a worse replay keeps the best")
+	campaign.finish_fight("scarecrow", true, 0, 3)
+	assert_eq(campaign.stars_at("scarecrow"), 3)
+	campaign.finish_fight("orc_shield", false, 0, 3)
+	assert_eq(campaign.stars_at("orc_shield"), 0, "no stars for a loss")
+
+
 func test_progress_survives_a_save_and_load() -> void:
 	var campaign := Campaign.from_map()
-	campaign.finish_fight("scarecrow", true, 21)
+	campaign.finish_fight("scarecrow", true, 21, 2)
 	campaign.save(SAVE_TEST)
 	var again := Campaign.from_map()
 	again.load_progress(SAVE_TEST)
 	assert_eq(again.cleared, ["scarecrow"])
 	assert_eq(again.gold, 21)
+	assert_eq(again.stars_at("scarecrow"), 2)
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(SAVE_TEST))
 
 

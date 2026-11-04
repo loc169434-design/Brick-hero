@@ -6,18 +6,23 @@ extends RefCounted
 ## Stops come from assets/bg/world_map.json, bottom to top. Each stop is a fight against the
 ## monster with the same id; a stop whose monster has no data in data/monsters/ yet is shown
 ## as coming soon. The next stop opens when every stop before it is cleared, and cleared
-## stops can be fought again for gold.
+## stops can be fought again for gold and for more stars: 1 to 3 by the health the hero has
+## left when the monster falls.
 
 enum Stop { LOCKED, OPEN, DONE, SOON }
 
 const MAP_FILE := "res://assets/bg/world_map.json"
 const MONSTER_DIR := "res://data/monsters/"
 const SAVE_FILE := "user://campaign.json"
+## Hero health left for 2 and 3 stars; any win earns 1.
+const STAR_HEALTH := [0.4, 0.7]
 
 ## [{id, position}], bottom to top, position on the 1080×1920 map.
 var stops: Array[Dictionary] = []
 var cleared: Array[String] = []
 var gold := 0
+## Best stars won at each cleared stop, by id.
+var stars := {}
 
 
 static func from_map(path := MAP_FILE) -> Campaign:
@@ -72,13 +77,27 @@ static func monster(id: String) -> MonsterData:
 	return load(MONSTER_DIR + id + ".tres") if has_monster(id) else null
 
 
-## A fight at `id` ended. Winning clears the stop and the hero keeps `gold_after`, the purse
-## at the end of the fight; losing keeps the purse from before it. Returns whether this win
-## cleared the stop for the first time.
-func finish_fight(id: String, won: bool, gold_after: int) -> bool:
+## Stars for a win with `hero_health` (0..1) left.
+static func stars_for(hero_health: float) -> int:
+	var count := 1
+	for need: float in STAR_HEALTH:
+		if hero_health >= need:
+			count += 1
+	return count
+
+
+func stars_at(id: String) -> int:
+	return int(stars.get(id, 0))
+
+
+## A fight at `id` ended. Winning clears the stop, keeps the best `star_count` and the hero
+## keeps `gold_after`, the purse at the end of the fight; losing keeps the purse from before
+## it. Returns whether this win cleared the stop for the first time.
+func finish_fight(id: String, won: bool, gold_after: int, star_count := 1) -> bool:
 	if not won:
 		return false
 	gold = maxi(gold_after, 0)
+	stars[id] = clampi(maxi(star_count, stars_at(id)), 1, 3)
 	if is_cleared(id):
 		return false
 	cleared.append(id)
@@ -86,7 +105,7 @@ func finish_fight(id: String, won: bool, gold_after: int) -> bool:
 
 
 func to_dict() -> Dictionary:
-	return {"cleared": cleared.duplicate(), "gold": gold}
+	return {"cleared": cleared.duplicate(), "gold": gold, "stars": stars.duplicate()}
 
 
 func apply_dict(data: Dictionary) -> void:
@@ -95,6 +114,12 @@ func apply_dict(data: Dictionary) -> void:
 		if index_of(String(id)) >= 0 and not cleared.has(String(id)):
 			cleared.append(String(id))
 	gold = maxi(int(data.get("gold", 0)), 0)
+	stars.clear()
+	var saved: Variant = data.get("stars", {})
+	if saved is Dictionary:
+		for id in saved:
+			if cleared.has(String(id)):
+				stars[String(id)] = clampi(int(saved[id]), 1, 3)
 
 
 func save(path := SAVE_FILE) -> void:

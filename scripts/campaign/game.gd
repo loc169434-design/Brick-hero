@@ -52,8 +52,9 @@ func start_fight(id: String) -> void:
 func end_fight(won: bool, gold: int) -> void:
 	if battle == null:
 		return
-	var from := campaign.hero_index()
-	var first_clear := campaign.finish_fight(_fighting, won, gold)
+	var stars := Campaign.stars_for(manager.state.hero_health()) if won else 0
+	var won_at := campaign.index_of(_fighting) if won else -1
+	var first_clear := campaign.finish_fight(_fighting, won, gold, stars)
 	campaign.save(save_path)
 	battle.queue_free()
 	battle = null
@@ -61,7 +62,7 @@ func end_fight(won: bool, gold: int) -> void:
 	_fighting = ""
 	_back_layer.hide()
 	map.show()
-	map.show_campaign(campaign, from if first_clear else -1)
+	map.show_campaign(campaign, won_at, first_clear)
 
 
 func _leave_fight() -> void:

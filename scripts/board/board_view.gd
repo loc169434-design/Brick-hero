@@ -35,17 +35,15 @@ const BLOCK_COLORS := {
 	Cell.BlockColor.PURPLE: Color(0.56, 0.31, 0.78),
 }
 const STAR_LINK_COLOR := Color(1, 1, 1)
-## The star is drawn by hand: its art comes on a tile, and specials are drawn bare.
-const SPECIAL_PATHS := {
-	Cell.Special.LIGHTNING: "res://assets/tiles/special_lightning.png",
-	Cell.Special.BOMB: "res://assets/tiles/special_bomb.png",
-}
 const GLOW_PATH := "res://assets/fx/particles/glow.png"
 const SPARK_PATH := "res://assets/fx/particles/spark.png"
-## Where the bomb's fuse burns, on its 128 px art.
-const BOMB_FUSE := Vector2(98, 22)
+## Where the bomb's fuse burns, on its 128 px art (fuse_tip in assets/tiles/specials/specials.json).
+const BOMB_FUSE := Vector2(88, 28)
 ## How big a bare special is drawn, against its square.
 const SPECIAL_SCALE := 0.94
+## How far the star sways either way, in radians. Its art is lit from the top left, so it
+## doesn't spin all the way round.
+const STAR_SWAY := 0.12
 const STAR_GOLD := Color(0.85, 0.55, 0.1)
 const FUSE_FIRE := Color(1.0, 0.6, 0.15)
 const SPECIAL_NAMES := {
@@ -107,7 +105,7 @@ var game: LinkGame
 var path: Array[Vector2i] = []
 
 var _art: TileArt
-var _special_textures := {}
+var _special_art := SpecialArt.new()
 ## Placeholder tile style per color, used only when there's no tile art.
 var _styles := {}
 ## What's on screen. Lags behind the model while a chain is being replayed.
@@ -174,9 +172,6 @@ func _ready() -> void:
 	_overlay = Node2D.new()
 	add_child(_overlay)
 	_overlay.draw.connect(_draw_overlay)
-	for key in SPECIAL_PATHS:
-		if ResourceLoader.exists(SPECIAL_PATHS[key]):
-			_special_textures[key] = load(SPECIAL_PATHS[key])
 	_art = TileArt.new(tile_theme)
 	_shine = load(SHINE_PATH) if ResourceLoader.exists(SHINE_PATH) else null
 	_glow_outline = load(GLOW_OUTLINE_PATH) if ResourceLoader.exists(GLOW_OUTLINE_PATH) else null
@@ -783,8 +778,9 @@ func _draw_cell(rect: Rect2, cell: Cell, alpha := 1.0, phase := 0.0, pose := "")
 		_draw_symbol(cell.color, inner.get_center(), inner.size.x * 0.21, BLOCK_COLORS[cell.color].lightened(0.5))
 
 
-## Specials are drawn bare, with nothing behind them, and never sit still: the bomb's fuse
-## burns, the lightning crackles and the star spins. They're wild, so they show no color.
+## Specials are drawn bare, with nothing behind them, and never sit still: the bomb shivers
+## while its fuse burns, the lightning pulses and the star sways. Their art loops on its own
+## (see SpecialArt); without it they're drawn by hand. They're wild, so they show no color.
 func _draw_special(rect: Rect2, cell: Cell, alpha: float, t: float) -> void:
 	var center := rect.get_center()
 	var size := rect.size.x * SPECIAL_SCALE
@@ -797,17 +793,35 @@ func _draw_special(rect: Rect2, cell: Cell, alpha: float, t: float) -> void:
 			_draw_star(center, size, alpha, t)
 
 
-## Shivers on a quick beat while its fuse burns: a flickering flame, sparks spraying off it,
-## and wisps of smoke curling up.
+## `kind`'s art, `size` across, centered on the current transform's origin: the still under
+## its sheet's frame at `t`, or the sheet alone when it includes the special. False when
+## there's no art, for the caller to draw its own.
+func _draw_special_art(kind: int, size: float, alpha: float, t: float) -> bool:
+	var rect := Rect2(-Vector2(size, size) / 2, Vector2(size, size))
+	var still := _special_art.still(kind)
+	var sheet := _special_art.sheet(kind)
+	if still and (sheet == null or _special_art.sheet_overlays_still(kind)):
+		draw_texture_rect(still, rect, false, Color(1, 1, 1, alpha))
+	if sheet:
+		draw_texture_rect_region(sheet, rect, _special_art.frame_region(kind, t), Color(1, 1, 1, alpha))
+	return still != null or sheet != null
+
+
+## Shivers on a quick beat while its fuse burns.
 func _draw_bomb(center: Vector2, size: float, alpha: float, t: float) -> void:
 	var beat := sin(t * 14.0)
 	_xform = Transform2D(0.06 * sin(t * 7.0), Vector2(1.0 + 0.03 * beat, 1.0 - 0.03 * beat), 0.0, center)
 	draw_set_transform_matrix(_xform)
-	var half := Vector2(size, size) / 2
-	if _special_textures.has(Cell.Special.BOMB):
-		draw_texture_rect(_special_textures[Cell.Special.BOMB], Rect2(-half, half * 2), false, Color(1, 1, 1, alpha))
-	else:
+	if not _draw_special_art(Cell.Special.BOMB, size, alpha, t):
 		draw_circle(Vector2(-size * 0.05, size * 0.08), size * 0.33, Color(0.12, 0.12, 0.14, alpha))
+	if not _special_art.sheet(Cell.Special.BOMB):
+		_draw_fuse_fire(size, alpha, t)
+	_xform = Transform2D.IDENTITY
+	draw_set_transform_matrix(_xform)
+
+
+## Without fuse art: a flickering flame, sparks spraying off it and wisps of smoke curling up.
+func _draw_fuse_fire(size: float, alpha: float, t: float) -> void:
 	var tip := (BOMB_FUSE / TileArt.TILE_SIZE - Vector2(0.5, 0.5)) * size
 	# Smoke rises and drifts behind the flame.
 	for k in 3:
@@ -826,19 +840,18 @@ func _draw_bomb(center: Vector2, size: float, alpha: float, t: float) -> void:
 		var at := tip + direction * age * size * 0.42 + Vector2(0, age * age * size * 0.3)
 		var spark := Color(1, 0.95, 0.6).lerp(FUSE_FIRE, age)
 		_draw_spark(at, size * 0.2 * (1.0 - age * 0.7), t * 9.0 + k, Color(spark, alpha * (1.0 - age)))
-	_xform = Transform2D.IDENTITY
-	draw_set_transform_matrix(_xform)
 
 
-## Pulses, and sparks crackle at the tips of its arrows.
+## Pulses. Its art crackles on its own; without it, sparks crackle at the tips of its arrows.
 func _draw_lightning(center: Vector2, size: float, alpha: float, t: float) -> void:
 	var grow := 1.0 + 0.06 * sin(t * 7.0)
-	var half := Vector2(size, size) * grow / 2
-	if _special_textures.has(Cell.Special.LIGHTNING):
-		draw_texture_rect(_special_textures[Cell.Special.LIGHTNING], Rect2(center - half, half * 2), false, Color(1, 1, 1, alpha))
-	else:
-		draw_line(center - Vector2(half.x, 0), center + Vector2(half.x, 0), Color(1, 1, 1, alpha), size * 0.1)
-		draw_line(center - Vector2(0, half.y), center + Vector2(0, half.y), Color(1, 1, 1, alpha), size * 0.1)
+	draw_set_transform(center, 0.0, Vector2(grow, grow))
+	if not _draw_special_art(Cell.Special.LIGHTNING, size, alpha, t):
+		draw_line(Vector2(-size / 2, 0), Vector2(size / 2, 0), Color(1, 1, 1, alpha), size * 0.1)
+		draw_line(Vector2(0, -size / 2), Vector2(0, size / 2), Color(1, 1, 1, alpha), size * 0.1)
+	draw_set_transform(Vector2.ZERO)
+	if _special_art.sheet(Cell.Special.LIGHTNING):
+		return
 	_draw_glow(center, size * 0.45, Color(1, 1, 0.85, alpha * (0.4 + 0.3 * sin(t * 13.0))))
 	for k in 4:
 		var crackle := sin(t * 23.0 + k * 1.9) * sin(t * 9.0 + k)
@@ -847,8 +860,15 @@ func _draw_lightning(center: Vector2, size: float, alpha: float, t: float) -> vo
 			_draw_spark(at, size * 0.32 * crackle, t * 5.0 + k, Color(1, 1, 0.75, alpha * crackle))
 
 
-## A white four-pointed star with a gold rim that slowly turns, breathes and twinkles.
+## Breathes and sways; its art twinkles on its own. Without art: a white four-pointed star
+## with a gold rim that slowly turns, breathes and twinkles.
 func _draw_star(center: Vector2, size: float, alpha: float, t: float) -> void:
+	var breath := 1.0 + 0.04 * sin(t * 5.0)
+	draw_set_transform(center, STAR_SWAY * sin(t * 1.6), Vector2(breath, breath))
+	var drawn := _draw_special_art(Cell.Special.RAINBOW, size, alpha, t)
+	draw_set_transform(Vector2.ZERO)
+	if drawn:
+		return
 	var outer := size * (0.42 + 0.03 * sin(t * 5.0))
 	var inner := outer * 0.34
 	var turn := t * 1.2

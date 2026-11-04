@@ -73,6 +73,7 @@ scripts/
     board_view.gd    vẽ ô, đường nối đang vuốt, hoạt ảnh nổ/rơi
     board_input.gd   chạm/chuột để nối, phím R/T/M
     tile_art.gd      nạp ảnh gạch và hoạt ảnh theo bộ
+    special_art.gd   nạp ảnh bom, sét, sao nổi khối và vòng hoạt ảnh của chúng
     special_fx.gd    hiệu ứng nổ sét, bom, sao, hai ô đặc biệt nổ chung
   battle/
     battle_rules.gd    mọi con số trận đánh (sửa trong data/balance.tres)
@@ -156,6 +157,7 @@ B3 gồm:
 - Gạch Training/Orc kèm hoạt ảnh, ô đặc biệt (issue #3).
 - Nhân vật, nền, hiệu ứng trận đánh (issue #5, quy cách tên file nằm trong đó; gộp ở PR #8).
 - Hiệu ứng nổ ô đặc biệt và font Baloo 2 (PR #13, quy cách ở `docs/ideas/specials_fx.md`). Đã ghép vào game: `scripts/board/special_fx.gd` phát hiệu ứng, font đặt làm mặc định trong `project.godot`.
+- Bom, sét, sao nổi khối có lửa ngòi và tia điện chạy (nhánh `art/specials-3d`, bàn giao ở `docs/ideas/specials_3d_review/README.md`). Đã ghép: `scripts/board/special_art.gd` nạp ảnh, `board_view.gd` vẽ khung theo thời gian.
 - Thiết kế 4 quái, rồng, lò rèn, lời thoại (nhánh `docs/monsters`) và ảnh vương quốc (nhánh `art/kingdom`). Dùng cho giai đoạn 4–5, chưa ghép.
 
 Việc mới thì tạo nhánh mới từ `main`, xong thì comment trực tiếp vào issue.

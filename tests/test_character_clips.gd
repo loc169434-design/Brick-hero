@@ -76,7 +76,7 @@ func test_a_mood_with_a_still_pose_but_no_clip_shows_the_pose() -> void:
 func test_no_anim_file_no_clips() -> void:
 	var rig := CharacterRig.new()
 	rig._ready()
-	rig.setup("blacksmith", 1)
+	rig.setup("king", 1)
 	assert_true(not rig.has_clip(&"idle"))
 	rig._update_clip(0.5)
 	assert_eq(rig._clip, &"")

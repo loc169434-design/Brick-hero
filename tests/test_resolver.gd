@@ -179,3 +179,66 @@ func test_lightning_next_to_bomb_fuses_into_a_wide_cross() -> void:
 	var steps := _link(board, [Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)])
 	assert_eq(steps[0].fusions.size(), 1)
 	assert_eq(steps[0].cleared.size(), 5 * 3 + 2 * 3, "rows 1-3 and columns 0-2 (or 1-3)")
+
+
+func test_two_lightnings_fuse_into_eight_ways() -> void:
+	var board := _board(7, [
+		"Y G Y G Y G Y",
+		"G Y G Y G Y G",
+		"Y G Y G Y G Y",
+		"G R R R P Y G",
+		"Y G Y G Y G Y",
+		"G Y G Y G Y G",
+		"Y G Y G Y G Y",
+		"G Y G Y G Y G",
+	])
+	board.set_cell(Vector2i(2, 3), Cell.new(R, Cell.Special.LIGHTNING))
+	board.set_cell(Vector2i(3, 3), Cell.new(R, Cell.Special.LIGHTNING))
+	var steps := _link(board, [Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3)])
+	assert_eq(steps[0].fusions.size(), 1)
+	assert_eq(steps[0].fusions[0]["kinds"], [Cell.Special.LIGHTNING, Cell.Special.LIGHTNING])
+	var fused: Vector2i = steps[0].fusions[0]["at"]
+	assert_eq(fused, Vector2i(2, 3), "the first lightning in the link is the one that fuses")
+	var cleared := steps[0].cleared
+	assert_true(cleared.has(Vector2i(0, 1)) and cleared.has(Vector2i(6, 7)), "down-right diagonal, edge to edge")
+	assert_true(cleared.has(Vector2i(5, 0)) and cleared.has(Vector2i(0, 5)), "up-right diagonal, edge to edge")
+	assert_true(not cleared.has(Vector2i(1, 0)), "squares between the rays stay")
+	# Row 7 + column 8 - 1, then 6 more on one diagonal and 5 on the other.
+	assert_eq(cleared.size(), 14 + 6 + 5)
+
+
+func test_star_fusion_goes_after_the_link_color_not_the_partners_hidden_one() -> void:
+	var board := _board(5, [
+		"Y G Y G Y",
+		"G Y G Y G",
+		"Y R R P G",
+		"G Y G Y G",
+		"R G P G R",
+	])
+	board.set_cell(Vector2i(2, 2), Cell.rainbow())
+	# A bomb that keeps purple inside, which the player can't see.
+	board.set_cell(Vector2i(3, 2), Cell.new(P, Cell.Special.BOMB))
+	var steps := _link(board, [Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)])
+	assert_eq(steps[0].fusions.size(), 1)
+	var cleared := steps[0].cleared
+	for corner in [Vector2i(0, 4), Vector2i(4, 4)]:
+		assert_true(cleared.has(corner), "a red square's 3×3 at %s" % corner)
+	assert_true(cleared.has(Vector2i(3, 3)) and cleared.has(Vector2i(1, 3)), "around the red link squares")
+	assert_true(not cleared.has(Vector2i(2, 0)), "nothing near a purple square goes")
+
+
+func test_star_set_off_by_a_blast_takes_the_most_common_plain_color() -> void:
+	var board := _board(5, [
+		"G G G Y R",
+		"Y R G R Y",
+		"R Y R Y Y",
+		"R Y R Y R",
+	])
+	# The bomb ends a green link and its blast reaches the star, which isn't in the link.
+	board.set_cell(Vector2i(2, 1), Cell.new(G, Cell.Special.BOMB))
+	board.set_cell(Vector2i(3, 2), Cell.rainbow())
+	var steps := _link(board, [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(2, 1)])
+	assert_eq(steps[0].fusions.size(), 0, "side by side only on a corner")
+	# Plain squares: 8 red, 7 yellow, 3 green.
+	assert_true(steps[0].cleared.has(Vector2i(4, 3)), "red goes")
+	assert_true(not steps[0].cleared.has(Vector2i(4, 1)), "yellow stays")

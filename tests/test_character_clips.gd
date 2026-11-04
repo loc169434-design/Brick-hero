@@ -47,6 +47,22 @@ func test_a_one_shot_clip_holds_its_last_frame_and_reports_its_impact() -> void:
 	rig.free()
 
 
+func test_landing_a_blow_jumps_the_swing_to_its_impact_frame() -> void:
+	var rig := _rig()
+	rig.mood = &"attack"
+	rig._mood_serial += 1
+	rig._update_clip(0.0)
+	rig._update_clip(0.2)
+	assert_eq(rig._clip_frame(), 4, "still swinging")
+	rig._reach_impact()
+	assert_eq(rig._clip_frame(), 6, "the blow lands")
+	rig._clip_time = 0.4
+	rig._reach_impact()
+	assert_eq(rig._clip_frame(), 9, "never jumps back")
+	rig._body.free()
+	rig.free()
+
+
 func test_a_mood_with_a_still_pose_but_no_clip_shows_the_pose() -> void:
 	var rig := _rig()
 	rig.mood = &"hurt"

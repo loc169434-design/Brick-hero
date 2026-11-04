@@ -43,11 +43,11 @@ static func link_step(board: BoardModel, rules: BoardRules, path: Array[Vector2i
 	return step
 
 
-## The color of the first non-star square, or NO_COLOR for a link of stars only.
+## The color of the first plain square, or NO_COLOR for a link of specials only.
 static func link_color(board: BoardModel, path: Array[Vector2i]) -> int:
 	for p in path:
 		var cell := board.get_cell(p)
-		if cell and cell.special != Cell.Special.RAINBOW:
+		if cell and not cell.is_special():
 			return cell.color
 	return Cell.NO_COLOR
 
@@ -103,8 +103,8 @@ static func apply_gravity(board: BoardModel, refill := Callable()) -> Array[Dict
 	return falls
 
 
-## Runs per color along rows and columns. Stars don't count here: a star is the player's to
-## link, so it never clears just because squares fell next to it.
+## Runs per color along rows and columns. Specials don't count here: they're the player's to
+## link, so one never goes off just because squares fell next to it.
 static func _runs(board: BoardModel, min_length: int) -> Array[Dictionary]:
 	var runs: Array[Dictionary] = []
 	for color in Cell.COLOR_COUNT:
@@ -116,7 +116,7 @@ static func _runs(board: BoardModel, min_length: int) -> Array[Dictionary]:
 				for i in length + 1:
 					var p := Vector2i(i, lane) if horizontal else Vector2i(lane, i)
 					var cell := board.get_cell(p) if i < length else null
-					if cell and cell.color == color:
+					if cell and not cell.is_special() and cell.color == color:
 						run.append(p)
 						continue
 					if run.size() >= min_length:

@@ -17,9 +17,6 @@ const FRAME_FPS := 8.0
 ## How far each layer slides at full pan, from layers.json when it says.
 const DEFAULT_PAN := {"sky": 0, "far": -12, "mid": 12, "ground": 20}
 
-## The cheering spectators from crowd.json. Off for now: the arena reads cleaner without them.
-static var crowd_enabled := false
-
 var background := ""
 var zoom := 1.0
 ## -1..1: which way the camera leans.
@@ -60,7 +57,6 @@ func load_background(id: String) -> void:
 	var origins: Dictionary = info.get("sprite_origins", {})
 	var scales: Dictionary = info.get("sprite_scales", {})
 	var frames: Dictionary = info.get("atlas_frames", {})
-	var crowd := _json(dir + "crowd.json")
 
 	for layer in ["sky", "far", "mid", "ground"]:
 		var holder := Node2D.new()
@@ -75,8 +71,6 @@ func load_background(id: String) -> void:
 				for i in 3:
 					_add_cloud(holder, dir + "cloud_%d.png" % (i + 1), i)
 			"mid":
-				if crowd_enabled:
-					_add_crowd(holder, crowd)
 				# Animated scenery belongs to the mid layer so it moves with what it stands on.
 				for kind in ["flag", "smoke", "torch"]:
 					var spots: Variant = info.get(kind)
@@ -108,19 +102,6 @@ func has_layers() -> bool:
 	return not _layers.is_empty()
 
 
-## Both audiences cheer a big combo; their boo art answers a hit on the hero.
-func react_crowd(pose: StringName, seconds := 1.4) -> void:
-	for prop in _props:
-		if prop["kind"] != "crowd":
-			continue
-		var textures: Dictionary = prop["textures"]
-		var key := String(pose) if textures.has(String(pose)) else "idle"
-		prop["pose"] = key
-		prop["until"] = _time + seconds
-		var sprite: Sprite2D = prop["node"]
-		sprite.texture = textures[key]
-
-
 func _process(delta: float) -> void:
 	if _layers.is_empty():
 		return
@@ -137,13 +118,6 @@ func _process(delta: float) -> void:
 				sprite.frame = int(_time * FRAME_FPS + prop["phase"]) % sprite.hframes
 			"grass":
 				node.rotation = 0.06 * sin(_time * 1.7 + prop["phase"])
-			"crowd":
-				var spectator: Sprite2D = node
-				if prop["pose"] != "idle" and _time >= prop["until"]:
-					prop["pose"] = "idle"
-					spectator.texture = prop["textures"]["idle"]
-				var wave := sin(_time * (9.0 if prop["pose"] == "cheer" else 2.0) + prop["phase"])
-				node.position.y = prop["base"].y + (-absf(wave) * 7.0 if prop["pose"] == "cheer" else wave * 0.7)
 			"bird":
 				node.position.x += prop["speed"] * delta
 				node.position.y = prop["y"] + 10 * sin(_time * 3.0 + prop["phase"])
@@ -181,30 +155,6 @@ func _add_cloud(holder: Node2D, path: String, index: int) -> void:
 	sprite.modulate.a = 0.9
 	holder.add_child(sprite)
 	_props.append({"node": sprite, "kind": "cloud", "speed": randf_range(CLOUD_SPEED.x, CLOUD_SPEED.y), "width": sprite.texture.get_width()})
-
-
-func _add_crowd(holder: Node2D, info: Dictionary) -> void:
-	var folder: String = info.get("folder", "")
-	if folder.is_empty():
-		return
-	var size := float(info.get("scale", 0.55))
-	for spot in info.get("spots", []):
-		var textures := {}
-		for pose in ["idle", "cheer", "boo"]:
-			var path := "res://assets/characters/%s/%d_%s.png" % [folder, int(spot[2]), pose]
-			if ResourceLoader.exists(path):
-				textures[pose] = load(path)
-		if not textures.has("idle"):
-			continue
-		var sprite := Sprite2D.new()
-		sprite.name = "Spectator%d" % int(spot[2])
-		sprite.texture = textures["idle"]
-		sprite.centered = false
-		sprite.offset = -Vector2(128, 248)
-		sprite.position = Vector2(spot[0], spot[1])
-		sprite.scale = Vector2.ONE * size
-		holder.add_child(sprite)
-		_props.append({"node": sprite, "kind": "crowd", "base": sprite.position, "textures": textures, "pose": "idle", "until": 0.0, "phase": randf() * TAU})
 
 
 ## A looping strip of frames in one row, placed by its origin (the foot of the flagpole, the

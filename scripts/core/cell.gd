@@ -23,9 +23,10 @@ static func rainbow() -> Cell:
 	return Cell.new(NO_COLOR, Special.RAINBOW)
 
 
-## Rainbow cells are wild: they join a cluster of any color.
+## Specials are wild: they join a link of any color, and any specials link with each other.
+## A bomb or lightning still keeps the color of the link that made it, for what it sets off.
 func matches(c: int) -> bool:
-	return special == Special.RAINBOW or color == c
+	return special != Special.NONE or color == c
 
 
 func is_special() -> bool:

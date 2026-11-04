@@ -6,8 +6,9 @@ extends Node2D
 ## through its own burst. Without art, each color falls back to a square with its own symbol.
 ##
 ## The board is never still (issue #17): it sits on a bright panel, idle tiles breathe and a
-## sheen sweeps across them, linked tiles lift and glow while sparks run along the link, and
-## cleared tiles shatter into light that flies up to the fight (orb_targets).
+## sheen sweeps across them, linked tiles lift, glow and tremble with scared faces, joined only
+## where their frames meet, and cleared tiles shatter into light that flies up to the fight
+## (orb_targets). Tiles cast shadows so they read as raised blocks.
 
 signal move_finished(result: MoveResult)
 signal restarted
@@ -15,7 +16,6 @@ signal restarted
 signal impact(strength: float, freeze: float)
 
 const CELL := 140
-const LINK_WIDTH := 26.0
 ## The tile clips are paced for a showcase; replays run them faster to keep turns snappy.
 const REPLAY_SPEED := 2.0
 const FLASH_TIME := 0.22
@@ -35,19 +35,27 @@ const BLOCK_COLORS := {
 	Cell.BlockColor.PURPLE: Color(0.56, 0.31, 0.78),
 }
 const STAR_LINK_COLOR := Color(1, 1, 1)
+## The star is drawn by hand: its art comes on a tile, and specials are drawn bare.
 const SPECIAL_PATHS := {
 	Cell.Special.LIGHTNING: "res://assets/tiles/special_lightning.png",
 	Cell.Special.BOMB: "res://assets/tiles/special_bomb.png",
-	Cell.Special.RAINBOW: "res://assets/tiles/special_rainbow.png",
 }
+const GLOW_PATH := "res://assets/fx/particles/glow.png"
+const SPARK_PATH := "res://assets/fx/particles/spark.png"
+## Where the bomb's fuse burns, on its 128 px art.
+const BOMB_FUSE := Vector2(98, 22)
+## How big a bare special is drawn, against its square.
+const SPECIAL_SCALE := 0.94
+const STAR_GOLD := Color(0.85, 0.55, 0.1)
+const FUSE_FIRE := Color(1.0, 0.6, 0.15)
 const SPECIAL_NAMES := {
 	Cell.Special.LIGHTNING: "SÉT",
 	Cell.Special.BOMB: "BOM",
 	Cell.Special.RAINBOW: "SAO",
 }
 const BOARD_BG := Color(0.1, 0.1, 0.15)
-## Where the board's surface art sits, relative to the board, which is placed at (50, 690):
-## the backdrop fills the screen below the fight (from y 660), the panel frames the 7×8 grid.
+## Where the board's surface art sits, relative to the board, which is placed at (50, 530):
+## the backdrop fills the screen below the fight (from y 500), the panel frames the 7×8 grid.
 const BACKDROP_AT := Vector2(-50, -30)
 const PANEL_AT := Vector2(-30, -30)
 const SURFACE_DIR := "res://assets/ui/"
@@ -69,9 +77,21 @@ const BREATH_SPEED := 2.2
 ## A sheen sweeps diagonally across the board once every this many seconds.
 const SHINE_PERIOD := 4.5
 const SHINE_TIME := 0.5
-## Linked tiles lift this far and grow this much.
+## Linked tiles lift this far and grow this much, and tremble this many pixels side to side.
 const LINK_LIFT := 8.0
 const LINK_GROW := 6.0
+const LINK_TREMBLE := 1.8
+## How long a tile let go from the link looks relieved.
+const RELIEF_TIME := 0.7
+## Tiles cast their shadow this far down and right, so they read as raised blocks.
+const SHADOW_DROP := Vector2(3, 8)
+const SHADOW := Color(0.22, 0.12, 0.04, 0.42)
+## The joint between two linked tiles: from this far out of one tile's center to the same
+## distance short of the next, so it covers the frames where they meet and not their faces.
+const JOINT_REACH := 0.3
+const JOINT_WIDTH := 22.0
+## The screen is this tall; the board's backdrop stretches to its bottom.
+const SCREEN_HEIGHT := 1920.0
 ## A round of clears sends at most this many orbs to the fight.
 const MAX_ORBS := 14
 const GRID_LINE := Color(1, 1, 1, 0.05)
@@ -127,6 +147,13 @@ var _surface := {}
 var _shine: Texture2D
 var _glow_outline: Texture2D
 var _crit_spark: Texture2D
+var _glow: Texture2D
+var _spark: Texture2D
+## The transform _draw() is drawing with while it draws a special, for the sparks on top.
+var _xform := Transform2D.IDENTITY
+var _shadow_box := StyleBoxFlat.new()
+## Square -> time until which a tile let go from the link looks relieved.
+var _relief := {}
 var _time := 0.0
 ## Where light from each tile color flies when cleared, in global coordinates, by
 ## Cell.BlockColor. Colors without a target just burst in place.
@@ -154,6 +181,9 @@ func _ready() -> void:
 	_shine = load(SHINE_PATH) if ResourceLoader.exists(SHINE_PATH) else null
 	_glow_outline = load(GLOW_OUTLINE_PATH) if ResourceLoader.exists(GLOW_OUTLINE_PATH) else null
 	_crit_spark = load(CRIT_SPARK_PATH) if ResourceLoader.exists(CRIT_SPARK_PATH) else null
+	_glow = load(GLOW_PATH) if ResourceLoader.exists(GLOW_PATH) else null
+	_spark = load(SPARK_PATH) if ResourceLoader.exists(SPARK_PATH) else null
+	_shadow_box.set_corner_radius_all(22)
 	_load_surface()
 	new_game()
 
@@ -166,6 +196,7 @@ func new_game() -> void:
 	_lights.clear()
 	_flashing.clear()
 	_falling.clear()
+	_relief.clear()
 	path.clear()
 	if _fall_tween:
 		_fall_tween.kill()
@@ -264,7 +295,7 @@ func extend_link(p: Vector2i) -> void:
 	if path.is_empty() or p == path[-1] or not can_act():
 		return
 	if path.size() >= 2 and p == path[-2]:
-		path.pop_back()
+		_let_go([path.pop_back()])
 		Sfx.play(&"untick", _link_pitch(path.size()), 0.0, true)
 	elif game.can_extend(path, p):
 		path.append(p)
@@ -297,11 +328,15 @@ func _set_link_pop(t: float) -> void:
 
 ## Plays the link if it's long enough; a short one is just let go.
 func end_link() -> void:
+	var played := false
 	if can_act() and path.size() >= game.rules.min_link:
 		var before := _snapshot()
 		var result := game.play(path)
 		if result:
+			played = true
 			_replay(result, before)
+	if not played:
+		_let_go(path)
 	path.clear()
 	_overlay.queue_redraw()
 
@@ -311,6 +346,7 @@ func end_link() -> void:
 func _replay(result: MoveResult, before: Dictionary) -> void:
 	var generation := _generation
 	_busy = true
+	_relief.clear()
 	_clear_sprites()
 	_shown = before
 	if result.path.size() >= game.rules.lightning_link:
@@ -323,7 +359,8 @@ func _replay(result: MoveResult, before: Dictionary) -> void:
 		# Every square in the round bursts at once; the round waits for the longest burst.
 		var burst := 0.0
 		for i in step.cleared.size():
-			var seconds := _play_clip(step.cleared[i], &"combo", step.cleared_cells[i], false)
+			# Specials have no tile to burst: they flash, and their blast does the rest.
+			var seconds := 0.0 if step.cleared_cells[i].is_special() else _play_clip(step.cleared[i], &"combo", step.cleared_cells[i], false)
 			if seconds > 0.0:
 				burst = maxf(burst, seconds)
 			else:
@@ -379,8 +416,12 @@ func _burst_into_light(step: ClearStep) -> void:
 		var cell: Cell = step.cleared_cells[i]
 		var center := (Vector2(step.cleared[i]) + Vector2(0.5, 0.5)) * CELL
 		var color: Color = BLOCK_COLORS.get(cell.color, STAR_LINK_COLOR)
-		_shards.shatter(center, color, 4)
-		_lights.flare(center, color, 0.8)
+		if cell.is_special():
+			_shards.shatter(center, color, 12)
+			_lights.flare(center, color, 2.2)
+		else:
+			_shards.shatter(center, color, 5)
+			_lights.flare(center, color, 1.0)
 		if orb_targets.has(cell.color) and orbs < MAX_ORBS:
 			_lights.orb(center, to_local(orb_targets[cell.color]), color.lightened(0.15), orbs * 0.03)
 			orbs += 1
@@ -396,11 +437,11 @@ func _feel_step(step: ClearStep, link_length: int) -> void:
 	var freeze := 0.0
 	if not step.triggered.is_empty():
 		Sfx.play(&"boom")
-		strength += 0.25 + 0.08 * step.triggered.size()
-		freeze = 0.05
+		strength += 0.3 + 0.1 * step.triggered.size()
+		freeze = 0.07
 	if not step.fusions.is_empty():
-		strength += 0.3
-		freeze = 0.09
+		strength += 0.35
+		freeze = 0.12
 	impact.emit(minf(strength, 1.0), freeze)
 
 
@@ -501,14 +542,7 @@ func _snapshot() -> Dictionary:
 func _process(delta: float) -> void:
 	_time += delta
 	queue_redraw()
-	var points := PackedVector2Array()
-	for p in path:
-		points.append((Vector2(p) + Vector2(0.5, 0.5)) * CELL - Vector2(0, LINK_LIFT))
-	_lights.link_points = points
 	_overlay.queue_redraw()
-	if not path.is_empty():
-		_lights.link_color = CRIT_LINK_COLOR if _link_has_critical() else BLOCK_COLORS.get(Resolver.link_color(game.board, path), STAR_LINK_COLOR)
-		_overlay.queue_redraw()
 
 
 func _redraw() -> void:
@@ -521,6 +555,8 @@ func _redraw() -> void:
 
 func _draw() -> void:
 	_draw_surface()
+	## Square -> [rect, alpha] for every square drawn here rather than by a sprite.
+	var placed := {}
 	for p: Vector2i in _shown:
 		if _sprites.has(p):
 			continue
@@ -535,16 +571,58 @@ func _draw() -> void:
 		if path.has(p):
 			rect = rect.grow(LINK_GROW)
 			rect.position.y -= LINK_LIFT * (1.0 + _link_pop * (1.0 if p == path[-1] else 0.0))
+			# Caught in the link, the Orcs tremble.
+			rect.position.x += LINK_TREMBLE * sin(_time * 47.0 + p.x * 3.1 + p.y * 1.7)
 		elif not _falling.has(p) and not _flashing.has(p) and not _finished:
 			# Breathing: each tile bobs a little out of step with its neighbors.
 			var breath := sin(_time * BREATH_SPEED + p.x * 0.7 + p.y * 0.45)
 			rect.position.y -= BREATH_LIFT * breath
 			rect = rect.grow(breath * 1.2)
-		_draw_cell(rect, _shown[p], alpha)
+		placed[p] = [rect, alpha]
+	# Every shadow goes down before any tile, so tiles stand over their neighbors' shadows.
+	for p: Vector2i in _sprites:
+		if _shown.has(p) and _sprites[p].animation != &"combo":
+			_draw_shadow(Rect2(Vector2(p) * CELL, Vector2(CELL, CELL)), _shown[p], 1.0, false)
+	for p: Vector2i in placed:
+		_draw_shadow(placed[p][0], _shown[p], placed[p][1], path.has(p))
+	for p: Vector2i in placed:
+		var rect: Rect2 = placed[p][0]
+		_draw_cell(rect, _shown[p], placed[p][1], p.x * 1.7 + p.y * 2.3, _pose_for(p))
 		if _flashing.has(p):
-			draw_rect(rect.grow(-6), Color(1, 1, 1, 0.75))
-		elif not _falling.has(p):
+			if _shown[p].is_special():
+				_draw_glow(rect.get_center(), CELL * 1.6, Color(1, 1, 1, 0.9))
+			else:
+				draw_rect(rect.grow(-6), Color(1, 1, 1, 0.75))
+		elif not _falling.has(p) and not _shown[p].is_special():
 			_draw_shine(rect.grow(-3), p)
+
+
+## The face an Orc tile pulls (an expression in the tile theme): scared while it's in the
+## link, screaming at its end, relieved for a moment after being let go. "" for its own face.
+func _pose_for(p: Vector2i) -> String:
+	if path.has(p):
+		return "scream" if path.size() > 1 and p == path[-1] else "fear"
+	if _relief.get(p, 0.0) > _time:
+		return "relief"
+	return ""
+
+
+## Tiles cast a soft rounded shadow down and to the right, so the board reads as raised blocks;
+## a lifted tile's shadow falls further off. Specials cast a round one on the slot under them.
+func _draw_shadow(rect: Rect2, cell: Cell, alpha: float, lifted: bool) -> void:
+	if cell.is_special():
+		draw_set_transform(rect.get_center() + Vector2(0, rect.size.y * 0.34), 0.0, Vector2(1.0, 0.32))
+		_draw_glow(Vector2.ZERO, rect.size.x * 0.9, Color(0, 0, 0, alpha * (0.4 if lifted else 0.6)))
+		draw_set_transform(Vector2.ZERO)
+		return
+	var drop := SHADOW_DROP * (2.0 if lifted else 1.0)
+	_shadow_box.bg_color = Color(SHADOW, SHADOW.a * alpha * (0.75 if lifted else 1.0))
+	_shadow_box.draw(get_canvas_item(), Rect2(rect.position + drop, rect.size).grow(-6))
+
+
+func _let_go(squares: Array) -> void:
+	for p in squares:
+		_relief[p] = _time + RELIEF_TIME
 
 
 ## Critical tiles, drawn over every tile so neighbors don't hide the glow: a pulsing orange
@@ -582,7 +660,9 @@ func _link_has_critical() -> bool:
 func _draw_surface() -> void:
 	var size := board_size()
 	if _surface.has("backdrop"):
-		draw_texture(_surface["backdrop"], BACKDROP_AT)
+		# Stretched to reach the bottom of the screen wherever the board sits.
+		var height := SCREEN_HEIGHT - global_position.y - BACKDROP_AT.y
+		draw_texture_rect(_surface["backdrop"], Rect2(BACKDROP_AT, Vector2(_surface["backdrop"].get_width(), height)), false)
 	if _surface.has("panel"):
 		draw_texture(_surface["panel"], PANEL_AT)
 	else:
@@ -634,6 +714,23 @@ func _draw_overlay() -> void:
 		_draw_centered_text(_end_subtitle, Vector2(size.x / 2, size.y * 0.45 + 90), 44, TEXT_DIM)
 
 
+## A short glossy bar with a dark rim and rounded ends bridging two tiles' frames. The newest
+## one swells as the link reaches its square.
+func _draw_joint(from: Vector2, to: Vector2, color: Color, newest: bool) -> void:
+	var width := JOINT_WIDTH * (1.0 + (0.5 * _link_pop if newest else 0.0))
+	var rim := Color(0.16, 0.09, 0.04)
+	for layer in [[width + 10, rim], [width, color.lightened(0.15)]]:
+		_overlay.draw_line(from, to, layer[1], layer[0])
+		_overlay.draw_circle(from, layer[0] / 2, layer[1])
+		_overlay.draw_circle(to, layer[0] / 2, layer[1])
+	var across := (to - from).normalized().orthogonal() * width * 0.18
+	var gloss := Color(1, 1, 1, 0.55)
+	# The gloss sits on the upper side, whichever way the joint runs.
+	if across.y > 0:
+		across = -across
+	_overlay.draw_line(from + across, to + across, gloss, width * 0.25)
+
+
 func _draw_link() -> void:
 	var color_index := Resolver.link_color(game.board, path)
 	var color: Color = BLOCK_COLORS.get(color_index, STAR_LINK_COLOR)
@@ -651,12 +748,10 @@ func _draw_link() -> void:
 			_overlay.draw_texture_rect(_glow_outline, Rect2(center - Vector2(glow, glow) / 2, Vector2(glow, glow)), false, Color(color.lightened(0.35), pulse))
 		else:
 			_overlay.draw_rect(Rect2(Vector2(p) * CELL, Vector2(CELL, CELL)).grow(-4 + puff), Color(1, 1, 1, 0.9), false, 6)
-	if points.size() >= 2:
-		_overlay.draw_polyline(points, Color(0, 0, 0, 0.35), LINK_WIDTH + 10, true)
-		_overlay.draw_polyline(points, color.lightened(0.2), LINK_WIDTH, true)
-	for i in points.size():
-		var puff := 1.0 + 0.6 * _link_pop if i == points.size() - 1 else 1.0
-		_overlay.draw_circle(points[i], LINK_WIDTH * 0.75 * puff, color.lightened(0.2))
+	# Linked tiles are joined only where they meet, so their faces stay in view.
+	for i in range(1, points.size()):
+		var direction := (points[i] - points[i - 1]).normalized()
+		_draw_joint(points[i - 1] + direction * CELL * JOINT_REACH, points[i] - direction * CELL * JOINT_REACH, color, i == points.size() - 1)
 
 	# Length so far and what the link will leave behind, under the board.
 	var count := path.size()
@@ -671,42 +766,122 @@ func _draw_link() -> void:
 	_draw_centered_text(label, Vector2(board_size().x / 2, board_size().y + 75), 52, TEXT if count >= game.rules.min_link else TEXT_DIM, 12)
 
 
-func _draw_cell(rect: Rect2, cell: Cell, alpha := 1.0) -> void:
-	var inner := rect.grow(-3)
-	var center := inner.get_center()
-	var r := inner.size.x / 2
-	var tint := Color(1, 1, 1, alpha)
-
-	if cell.special == Cell.Special.RAINBOW:
-		if _special_textures.has(cell.special):
-			draw_texture_rect(_special_textures[cell.special], inner, false, tint)
-			return
-		var stripe := inner.size.x / Cell.COLOR_COUNT
-		for i in Cell.COLOR_COUNT:
-			draw_rect(Rect2(inner.position + Vector2(i * stripe, 0), Vector2(stripe, inner.size.y)), Color(BLOCK_COLORS[i], alpha))
-		draw_circle(center, r * 0.3, tint)
+## `phase` puts neighboring specials out of step with each other.
+## `pose` is the Orc face to show instead of the plain tile (see _pose_for), if the theme has it.
+func _draw_cell(rect: Rect2, cell: Cell, alpha := 1.0, phase := 0.0, pose := "") -> void:
+	if cell.is_special():
+		_draw_special(rect, cell, alpha, _time + phase)
 		return
-
-	var texture := _art.tile(cell.color)
+	var inner := rect.grow(-3)
+	var texture: Texture2D = _art.expression(cell.color, pose) if pose else null
+	if not texture:
+		texture = _art.tile(cell.color)
 	if texture:
-		draw_texture_rect(texture, inner, false, tint)
+		draw_texture_rect(texture, inner, false, Color(1, 1, 1, alpha))
 	else:
 		_style_for(cell.color).draw(get_canvas_item(), inner.grow(-2))
-		_draw_symbol(cell.color, center, r * 0.42, BLOCK_COLORS[cell.color].lightened(0.5))
+		_draw_symbol(cell.color, inner.get_center(), inner.size.x * 0.21, BLOCK_COLORS[cell.color].lightened(0.5))
 
+
+## Specials are drawn bare, with nothing behind them, and never sit still: the bomb's fuse
+## burns, the lightning crackles and the star spins. They're wild, so they show no color.
+func _draw_special(rect: Rect2, cell: Cell, alpha: float, t: float) -> void:
+	var center := rect.get_center()
+	var size := rect.size.x * SPECIAL_SCALE
 	match cell.special:
-		Cell.Special.LIGHTNING:
-			if _special_textures.has(cell.special):
-				draw_texture_rect(_special_textures[cell.special], inner, false, tint)
-			else:
-				draw_line(center + Vector2(-r * 0.8, 0), center + Vector2(r * 0.8, 0), Color.WHITE, r * 0.18)
-				draw_line(center + Vector2(0, -r * 0.8), center + Vector2(0, r * 0.8), Color.WHITE, r * 0.18)
 		Cell.Special.BOMB:
-			if _special_textures.has(cell.special):
-				draw_texture_rect(_special_textures[cell.special], inner, false, tint)
-			else:
-				draw_circle(center, r * 0.55, Color(0.1, 0.1, 0.12))
-				draw_circle(center + Vector2(r * 0.35, -r * 0.45), r * 0.12, Color(1, 0.6, 0.1))
+			_draw_bomb(center, size, alpha, t)
+		Cell.Special.LIGHTNING:
+			_draw_lightning(center, size, alpha, t)
+		Cell.Special.RAINBOW:
+			_draw_star(center, size, alpha, t)
+
+
+## Shivers on a quick beat while its fuse burns: a flickering flame, sparks spraying off it,
+## and wisps of smoke curling up.
+func _draw_bomb(center: Vector2, size: float, alpha: float, t: float) -> void:
+	var beat := sin(t * 14.0)
+	_xform = Transform2D(0.06 * sin(t * 7.0), Vector2(1.0 + 0.03 * beat, 1.0 - 0.03 * beat), 0.0, center)
+	draw_set_transform_matrix(_xform)
+	var half := Vector2(size, size) / 2
+	if _special_textures.has(Cell.Special.BOMB):
+		draw_texture_rect(_special_textures[Cell.Special.BOMB], Rect2(-half, half * 2), false, Color(1, 1, 1, alpha))
+	else:
+		draw_circle(Vector2(-size * 0.05, size * 0.08), size * 0.33, Color(0.12, 0.12, 0.14, alpha))
+	var tip := (BOMB_FUSE / TileArt.TILE_SIZE - Vector2(0.5, 0.5)) * size
+	# Smoke rises and drifts behind the flame.
+	for k in 3:
+		var age := fmod(t * 0.9 + k / 3.0, 1.0)
+		var at := tip + Vector2(sin(age * 5.0 + k) * size * 0.06, -age * size * 0.4)
+		_draw_glow(at, size * (0.14 + 0.22 * age), Color(0.35, 0.33, 0.32, alpha * 0.45 * (1.0 - age)))
+	# The flame: an orange halo, a yellow body and a white-hot core, all flickering.
+	var flicker := 0.8 + 0.2 * sin(t * 37.0) * sin(t * 13.0)
+	_draw_glow(tip, size * 0.62 * flicker, Color(FUSE_FIRE, alpha * 0.85))
+	_draw_glow(tip + Vector2(0, -size * 0.03), size * 0.34 * flicker, Color(1, 0.85, 0.3, alpha))
+	_draw_glow(tip, size * 0.16 * flicker, Color(1, 1, 0.9, alpha))
+	# Sparks spray up and out from the fuse and arc down as they burn out.
+	for k in 9:
+		var age := fmod(t * 2.6 + k / 9.0, 1.0)
+		var direction := Vector2.from_angle(-PI / 2 + (k - 4.0) * 0.33)
+		var at := tip + direction * age * size * 0.42 + Vector2(0, age * age * size * 0.3)
+		var spark := Color(1, 0.95, 0.6).lerp(FUSE_FIRE, age)
+		_draw_spark(at, size * 0.2 * (1.0 - age * 0.7), t * 9.0 + k, Color(spark, alpha * (1.0 - age)))
+	_xform = Transform2D.IDENTITY
+	draw_set_transform_matrix(_xform)
+
+
+## Pulses, and sparks crackle at the tips of its arrows.
+func _draw_lightning(center: Vector2, size: float, alpha: float, t: float) -> void:
+	var grow := 1.0 + 0.06 * sin(t * 7.0)
+	var half := Vector2(size, size) * grow / 2
+	if _special_textures.has(Cell.Special.LIGHTNING):
+		draw_texture_rect(_special_textures[Cell.Special.LIGHTNING], Rect2(center - half, half * 2), false, Color(1, 1, 1, alpha))
+	else:
+		draw_line(center - Vector2(half.x, 0), center + Vector2(half.x, 0), Color(1, 1, 1, alpha), size * 0.1)
+		draw_line(center - Vector2(0, half.y), center + Vector2(0, half.y), Color(1, 1, 1, alpha), size * 0.1)
+	_draw_glow(center, size * 0.45, Color(1, 1, 0.85, alpha * (0.4 + 0.3 * sin(t * 13.0))))
+	for k in 4:
+		var crackle := sin(t * 23.0 + k * 1.9) * sin(t * 9.0 + k)
+		if crackle > 0.2:
+			var at := center + Vector2.from_angle(k * PI / 2) * size * 0.44
+			_draw_spark(at, size * 0.32 * crackle, t * 5.0 + k, Color(1, 1, 0.75, alpha * crackle))
+
+
+## A white four-pointed star with a gold rim that slowly turns, breathes and twinkles.
+func _draw_star(center: Vector2, size: float, alpha: float, t: float) -> void:
+	var outer := size * (0.42 + 0.03 * sin(t * 5.0))
+	var inner := outer * 0.34
+	var turn := t * 1.2
+	var points := PackedVector2Array()
+	for i in 8:
+		points.append(center + Vector2.from_angle(turn + i * PI / 4 - PI / 2) * (outer if i % 2 == 0 else inner))
+	_draw_glow(center, size * 0.8, Color(1, 1, 0.9, alpha * 0.8))
+	draw_colored_polygon(points, Color(1, 0.98, 0.9, alpha))
+	points.append(points[0])
+	draw_polyline(points, Color(STAR_GOLD, alpha), 5.0, true)
+	draw_circle(center, inner * 0.55, Color(1, 0.9, 0.5, alpha))
+	var tip := int(t * 2.0) % 4
+	var twinkle := sin(fmod(t * 2.0, 1.0) * PI)
+	_draw_spark(center + Vector2.from_angle(turn + tip * PI / 2 - PI / 2) * outer, size * 0.35 * twinkle, 0.0, Color(1, 1, 1, alpha * twinkle))
+
+
+func _draw_glow(at: Vector2, size: float, color: Color) -> void:
+	if _glow:
+		draw_texture_rect(_glow, Rect2(at - Vector2(size, size) / 2, Vector2(size, size)), false, color)
+	else:
+		draw_circle(at, size * 0.3, Color(color, color.a * 0.5))
+
+
+func _draw_spark(at: Vector2, size: float, angle: float, color: Color) -> void:
+	if size <= 0.5:
+		return
+	if not _spark:
+		draw_circle(at, size * 0.25, color)
+		return
+	# On top of the caller's transform: sparks around a bomb wobble with it.
+	draw_set_transform_matrix(_xform * Transform2D(angle, at))
+	draw_texture_rect(_spark, Rect2(-Vector2(size, size) / 2, Vector2(size, size)), false, color)
+	draw_set_transform_matrix(_xform)
 
 
 ## One shape per color: circle, triangle, square, diamond.

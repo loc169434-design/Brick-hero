@@ -10,7 +10,8 @@ extends Node2D
 ##
 ## Fight moves (issue #18): extra moods such as throw, leap, bash, kick, drink, dizzy, knocked
 ## (hero) or throw, charge, dodge, windup and the wearless bald (Orc) are just poses; the
-## battle view moves the body with dash_to(), hop_to(), squash() and knockback().
+## battle view moves the body with dash_to(), hop_to(), squash() and knockback(). A blow to
+## the head spins stars around it (daze).
 ##
 ## Frame-by-frame clips: when assets/characters/<id>/anim/anim.json lists a clip named after
 ## the current mood or end pose (idle, attack, hurt, throw, victory...), that clip plays
@@ -28,7 +29,15 @@ const DEFAULT_FEET := Vector2(256, 500)
 const DEFAULT_HEAD := Vector2(256, 150)
 const DEFAULT_MOUTH := Vector2(256, 190)
 const FX_DIR := "res://assets/fx/battle/"
-
+## Mixes the body toward white by `flash`, keeping its outline.
+const FLASH_SHADER := """
+shader_type canvas_item;
+uniform float flash = 0.0;
+void fragment() {
+	vec4 c = texture(TEXTURE, UV) * COLOR;
+	COLOR = vec4(mix(c.rgb, vec3(1.0), flash), c.a);
+}
+"""
 ## Burst played when the character is hit, by character id.
 const HURT_FX := {"scarecrow": "straw"}
 ## Burst played when the character first looks battered: the rookie's wooden sword snaps.
@@ -51,10 +60,11 @@ var shield_layers := -1
 
 var _rig := {}
 var _textures := {}
-
 ## Holds the pose drawing so lunges and shakes don't move the FX already in the air.
 var _body: Node2D
 var _motion: Tween
+var _flash_material: ShaderMaterial
+var _flash_tween: Tween
 ## Bumped by every new mood so an older mood's timer doesn't cut a newer one short.
 var _mood_serial := 0
 var _time := 0.0
@@ -78,6 +88,20 @@ func _ready() -> void:
 	_body = Node2D.new()
 	add_child(_body)
 	_body.draw.connect(_draw_body)
+	var shader := Shader.new()
+	shader.code = FLASH_SHADER
+	_flash_material = ShaderMaterial.new()
+	_flash_material.shader = shader
+	_body.material = _flash_material
+
+
+## The body goes solid white for an instant and fades back: the blow landed.
+func flash(seconds := 0.16) -> void:
+	if _flash_tween:
+		_flash_tween.kill()
+	_flash_material.set_shader_parameter("flash", 1.0)
+	_flash_tween = create_tween()
+	_flash_tween.tween_method(func(v: float) -> void: _flash_material.set_shader_parameter("flash", v), 1.0, 0.0, seconds).set_ease(Tween.EASE_IN)
 
 
 func setup(id: String, p_facing: int, layers := -1) -> void:
@@ -180,6 +204,7 @@ func attack() -> void:
 	_motion = create_tween()
 	_motion.tween_property(_body, "position", Vector2(facing * 220, -20), reach).set_ease(Tween.EASE_IN)
 	await _motion.finished
+	_reach_impact()
 	_motion = create_tween()
 	_motion.tween_property(_body, "position", Vector2.ZERO, 0.25).set_ease(Tween.EASE_OUT).set_delay(0.08)
 	_motion.tween_callback(func() -> void:
@@ -241,6 +266,15 @@ func _update_clip(delta: float) -> void:
 	if not _clip_impacted and _clip_info.has("impact") and _clip_time * fps >= float(_clip_info["impact"]):
 		_clip_impacted = true
 		clip_impact.emit(_clip)
+	_body.queue_redraw()
+
+
+## Jumps the playing clip forward to its impact frame if it hasn't got there yet, so the
+## hit-stop that follows a landed blow freezes on the blow, not on the swing before it.
+func _reach_impact() -> void:
+	if _clip == &"" or not _clip_info.has("impact"):
+		return
+	_clip_time = maxf(_clip_time, float(_clip_info["impact"]) / float(_clip_info.get("fps", 24)))
 	_body.queue_redraw()
 
 

@@ -84,6 +84,56 @@ func test_no_anim_file_no_clips() -> void:
 	rig.free()
 
 
+func test_clip_duration_uses_a_full_pass_and_falls_back_for_still_art() -> void:
+	var rig := _rig()
+	assert_eq(rig.clip_seconds(&"attack"), 0.5)
+	assert_eq(rig.clip_seconds(&"idle"), 8.0 / 12.0)
+	assert_eq(rig.clip_seconds(&"missing", 0.32), 0.32)
+	rig._body.free()
+	rig.free()
+
+
+func test_reacting_starts_the_clip_before_the_callers_timer_runs() -> void:
+	var rig := _rig()
+	rig.react(&"attack", 0.0)
+	assert_eq(rig._clip, &"attack")
+	assert_eq(rig._clip_time, 0.0)
+	assert_eq(rig._clip_frame(), 0)
+	rig._update_clip(0.2)
+	rig.react(&"attack", 0.0)
+	assert_eq(rig._clip_frame(), 0, "another reaction restarts this same clip immediately")
+	rig._body.free()
+	rig.free()
+
+
+func test_the_smith_can_query_the_striking_pose_without_leaving_idle() -> void:
+	var rig := CharacterRig.new()
+	rig._ready()
+	rig.setup("blacksmith", -1)
+	var expected := (Vector2(128, 305) - Vector2(256, 500)) * (360.0 / 512.0)
+	assert_eq(rig._anchor("hammer", &"hammer"), expected)
+	assert_eq(rig._anchor("hammer", &"hammer_final"), expected)
+	assert_eq(rig.mood, &"idle", "looking ahead must not play the strike")
+	assert_eq(rig.clip_seconds(&"hammer"), 16.0 / 24.0)
+	assert_eq(rig.clip_seconds(&"hammer_final"), 20.0 / 24.0)
+	rig._body.free()
+	rig.free()
+
+
+func test_drawn_blacksmith_acting_can_disable_extra_breathing_and_cheer_hops() -> void:
+	var rig := CharacterRig.new()
+	rig._ready()
+	rig.setup("blacksmith", -1)
+	rig.procedural_motion = false
+	rig.react(&"cheer", 0.0)
+	rig._process(0.2)
+	assert_eq(rig._body.scale, Vector2.ONE)
+	assert_eq(rig._body.position, Vector2.ZERO)
+	assert_true(rig._motion == null, "the drawing already contains the acting")
+	rig._body.free()
+	rig.free()
+
+
 ## Clip sheets are big (2048 px, up to 16 frames): uncompressed, a fighter's clips alone would
 ## take hundreds of MB of video memory on a phone.
 func test_clip_sheets_import_vram_compressed() -> void:

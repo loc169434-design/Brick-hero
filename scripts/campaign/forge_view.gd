@@ -119,6 +119,9 @@ var _piece_at := Vector2.ZERO
 var _piece_scale := 1.0
 var _piece_spin := 0.0
 var _waiting_strike := false
+## No new tap can restart a swing before its recovery has played.
+var _striking := false
+var _strike_landed := false
 var _strike_timer := 0.0
 var _flash := 0.0
 var _shake := 0.0
@@ -146,8 +149,10 @@ func _ready() -> void:
 	_smith = CharacterRig.new()
 	_smith.position = SMITH_FEET
 	_smith.scale = Vector2.ONE * SMITH_SCALE
+	_smith.procedural_motion = false
 	add_child(_smith)
 	_smith.setup("blacksmith", -1)
+	_smith.clip_impact.connect(_on_smith_impact)
 	# The gear board, the purse and the way out stay still while the camera leans on the anvil.
 	_hud_layer = CanvasLayer.new()
 	add_child(_hud_layer)
@@ -290,6 +295,8 @@ func _start_forging(slot: String, id: String) -> void:
 	_forging = id
 	_forge_slot = slot
 	_strikes = 0
+	_striking = false
+	_waiting_strike = false
 	_heat = 0.3
 	_note = {}
 	_hanging[slot] = ""
@@ -298,10 +305,15 @@ func _start_forging(slot: String, id: String) -> void:
 	_piece_at = from
 	_piece_scale = 1.0
 	_piece_spin = 0.0
+	_smith.react(&"idle", 0.0)
 	var tween := create_tween().set_parallel()
 	tween.tween_method(func(t: float) -> void:
 		_piece_at = from.lerp(ANVIL_TOP, t) + Vector2(0, -sin(t * PI) * 160.0), 0.0, 1.0, 0.45).set_trans(Tween.TRANS_SINE)
 	tween.tween_method(_lean, 0.0, 1.0, 0.45).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	# Step beside the anvil while the metal arrives; keep this foot position through each blow.
+	if _smith.has_clip(&"hammer"):
+		var strike_feet := _smith.position + ANVIL_TOP - to_local(_smith.point("hammer", &"hammer"))
+		tween.tween_property(_smith, "position", strike_feet, 0.45).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.chain().tween_callback(func() -> void:
 		Sfx.play(&"land")
 		_waiting_strike = true
@@ -318,36 +330,61 @@ func _lean(t: float) -> void:
 
 
 func _strike() -> void:
-	if not _waiting_strike:
+	if not _waiting_strike or _striking:
 		return
+	_waiting_strike = false
+	_striking = true
+	_strike_landed = false
 	_strikes += 1
 	_heat = minf(_heat + 0.25, 1.0)
-	_strike_timer = STRIKE_PATIENCE
 	var clip := LAST_STRIKE_CLIP if _strikes >= STRIKES and _smith.has_clip(LAST_STRIKE_CLIP) else &"hammer"
-	_smith.react(clip, 0.32)
-	# Sparks, sweat and the clang come as the hammer meets the metal, on the clip's impact frame.
-	var pitch := 0.85 + _strikes * 0.15
+	# This view owns the transition; react's old 0.32-second timer cut the wind-up short.
+	_smith.react(clip, 0.0)
+	if _smith.has_clip(clip):
+		_smith.position += ANVIL_TOP - to_local(_smith.point("hammer"))
+	var duration := _smith.clip_seconds(clip, 0.32)
 	var tween := create_tween()
-	tween.tween_interval(_smith.impact_seconds(clip))
+	if not _smith.has_clip(clip):
+		# A still-art fallback has no clip_impact signal.
+		tween.tween_interval(duration * 0.5)
+		tween.tween_callback(_land_strike)
+		tween.tween_interval(duration * 0.5)
+	else:
+		tween.tween_interval(duration)
 	tween.tween_callback(func() -> void:
-		Sfx.play(&"clang", pitch)
-		_shake = 1.0
-		_sweat(2 + _strikes * 2)
-		for i in 18:
-			_sparks.append({"at": ANVIL_TOP, "v": Vector2.from_angle(randf_range(-PI * 0.95, -PI * 0.05)) * randf_range(250, 900), "life": randf_range(0.25, 0.6)}))
-	if _strikes >= STRIKES:
-		_waiting_strike = false
-		_finish_forging()
+		_striking = false
+		if _strikes >= STRIKES:
+			_finish_forging()
+		else:
+			_smith.react(&"idle", 0.0)
+			_waiting_strike = true
+			_strike_timer = STRIKE_PATIENCE)
+
+
+func _on_smith_impact(clip: StringName) -> void:
+	if clip == &"hammer" or clip == LAST_STRIKE_CLIP:
+		_land_strike()
+
+
+## Called by the actual drawn contact frame, once per swing.
+func _land_strike() -> void:
+	if not _striking or _strike_landed:
+		return
+	_strike_landed = true
+	Sfx.play(&"clang", 0.85 + _strikes * 0.15)
+	_shake = 1.0
+	_sweat(2 + _strikes * 2)
+	for i in 18:
+		_sparks.append({"at": ANVIL_TOP, "v": Vector2.from_angle(randf_range(-PI * 0.95, -PI * 0.05)) * randf_range(250, 900), "life": randf_range(0.25, 0.6)})
 
 
 func _finish_forging() -> void:
 	var slot := _forge_slot
 	var tween := create_tween()
-	tween.tween_interval(0.2)
 	tween.tween_callback(func() -> void:
 		_flash = 1.0
 		Sfx.play(&"special")
-		_smith.react(&"cheer", 1.4)
+		_smith.react(&"cheer", _smith.clip_seconds(&"cheer", 1.4))
 		_say(FORGED[randi() % FORGED.size()]))
 	# It leaps off the anvil, spinning and shining…
 	tween.tween_method(func(t: float) -> void:
@@ -356,6 +393,7 @@ func _finish_forging() -> void:
 		_piece_at = ANVIL_TOP + Vector2(0, -140 * sin(t * PI * 0.5)), 0.0, 1.0, 0.5)
 	tween.tween_interval(0.35)
 	tween.tween_method(_lean, 1.0, 0.0, 0.35).set_trans(Tween.TRANS_SINE)
+	tween.parallel().tween_property(_smith, "position", SMITH_FEET, 0.35).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	# …then drops into its row on the gear board.
 	var start := ANVIL_TOP + Vector2(0, -140)
 	tween.tween_method(func(t: float) -> void:
@@ -365,7 +403,7 @@ func _finish_forging() -> void:
 		Sfx.play(&"coin", 1.3)
 		_hero.react(&"cheer", 1.2)
 		if _smith.has_clip(GRIN_CLIP):
-			_smith.react(GRIN_CLIP, 1.4)
+			_smith.react(GRIN_CLIP, _smith.clip_seconds(GRIN_CLIP))
 		else:
 			_smith.react(&"cheer", 1.4)
 			_glint = 1.0

@@ -6,7 +6,7 @@
   "columns": 4,
   "clips": {
     "idle": {
-      "frames": 8,
+      "frames": 12,
       "fps": 12,
       "loop": true
     },
@@ -16,13 +16,24 @@
       "loop": true
     },
     "hammer": {
-      "frames": 6,
+      "frames": 16,
       "fps": 24,
       "loop": false,
-      "impact": 3
+      "impact": 9
+    },
+    "hammer_final": {
+      "frames": 20,
+      "fps": 24,
+      "loop": false,
+      "impact": 12
     },
     "cheer": {
-      "frames": 12,
+      "frames": 16,
+      "fps": 12,
+      "loop": false
+    },
+    "grin": {
+      "frames": 14,
       "fps": 12,
       "loop": false
     }

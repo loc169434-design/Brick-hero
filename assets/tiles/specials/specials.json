@@ -1,0 +1,55 @@
+{
+  "bomb.png": {
+    "frame_width": 128,
+    "frame_height": 128,
+    "frames": 1,
+    "fps": 1,
+    "loop": false,
+    "fuse_tip": [
+      88,
+      28
+    ]
+  },
+  "bomb_fuse.png": {
+    "frame_width": 128,
+    "frame_height": 128,
+    "frames": 12,
+    "fps": 12,
+    "loop": true,
+    "fuse_tip": [
+      88,
+      28
+    ],
+    "overlay_on": "bomb.png"
+  },
+  "lightning.png": {
+    "frame_width": 128,
+    "frame_height": 128,
+    "frames": 1,
+    "fps": 1,
+    "loop": false
+  },
+  "star.png": {
+    "frame_width": 128,
+    "frame_height": 128,
+    "frames": 1,
+    "fps": 1,
+    "loop": false
+  },
+  "lightning_idle.png": {
+    "frame_width": 128,
+    "frame_height": 128,
+    "frames": 12,
+    "fps": 12,
+    "loop": true,
+    "includes_base": true
+  },
+  "star_idle.png": {
+    "frame_width": 128,
+    "frame_height": 128,
+    "frames": 12,
+    "fps": 12,
+    "loop": true,
+    "includes_base": true
+  }
+}

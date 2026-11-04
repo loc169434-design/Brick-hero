@@ -1,0 +1,46 @@
+{
+  "icons": [
+    {
+      "file": "assets/ui/items/leather_helmet.png",
+      "size": [
+        256,
+        256
+      ],
+      "mode": "RGBA",
+      "bytes": 47743,
+      "sha256": "7b509a1a98a970daf08caa4c720db8ca832beb918947c24d6706697abdd5bcfd"
+    },
+    {
+      "file": "assets/ui/items/iron_helmet.png",
+      "size": [
+        256,
+        256
+      ],
+      "mode": "RGBA",
+      "bytes": 46905,
+      "sha256": "9d3d0f5b1f6a3abbe35727740100ab5b1357684a4eff1bc94a0c5157f859fe84"
+    },
+    {
+      "file": "assets/ui/items/climbing_boots.png",
+      "size": [
+        256,
+        256
+      ],
+      "mode": "RGBA",
+      "bytes": 57927,
+      "sha256": "df402b53fa54175940a5f65ccbac353c58571617e4821d61b935df8465a0f171"
+    },
+    {
+      "file": "assets/ui/items/sword_refine.png",
+      "size": [
+        256,
+        256
+      ],
+      "mode": "RGBA",
+      "bytes": 47714,
+      "sha256": "75751e608c1a47645a9a5a7676031024e89b52b97aa4f9a4a2b483d83b32e24d"
+    }
+  ],
+  "preview_bytes": 88742,
+  "manual_review": "Same dark-brown outline and warm leather/faceted iron style as existing item icons. Readable at 64px. No baked text, numbers or + badges."
+}

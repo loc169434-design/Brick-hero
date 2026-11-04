@@ -1,0 +1,1544 @@
+{
+  "hero_rookie/fresh": [
+    {
+      "file": "assets/characters/hero_rookie/anim/fresh_throw.png",
+      "frames": 10,
+      "fps": 24,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "4a874c319fee146f5c8829cc1c6a473fb7ed99e8444095591f67d9df9530e20e",
+        "ed6ed194351f73fa140992b9064a0ba786899e08130bb13fe0e3c3adaae4dc18",
+        "0fd4df1a8e5b76aab849560e14b1bfcce3113b8df1d5460c8433d6b5ce2e9082",
+        "be8bb1d782c3422af8a6892300a411e6e0cee67554d021d1b426cb126757c4c1",
+        "7443e6d235813c9af0b8b57ba49d7ca9f0bf4e171410b060960ecdf24176e394",
+        "bd84fac63fa8e70d14c572c2f1014129ccdc4b07c79621954372fa96509c37bd",
+        "20d87980c704d672adcfc7d6048a13f3317837f19ac947220cd686efcc7a0664",
+        "869cfb0063eed5d3626b8e76e0b0eb5fabbc94c68962747dc17a5e5d43f49f52",
+        "73504b7cc55f27ca1bb0e7004a0a0f631fe369e015b4f64922fc70297d5edf19",
+        "2b4239fcdf2ef9de626273d5d59f97e05183c472681743bf33588b4fff555f5e"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/fresh_leap.png",
+      "frames": 16,
+      "fps": 24,
+      "unique_drawings": 16,
+      "frame_sha256": [
+        "e9888d46be3a315b7e7b90e491d1a333d5ab521e082b0827f6b40cfaf24f888f",
+        "f67cd999eb88c7487f9689586f93001a2e27886f1b952219251178e7be99acee",
+        "b1cc080b69849b95f4da0e19db012e853af6f45f70129567ede7e1fc57edb7bc",
+        "7911b85c9fb44800e166861c21f8567806cc80e2a25187e3f5e88a3016d22561",
+        "f5879e841861bcc0be93d84e4b41d0447bd365e9c5eebc9ea708ac43e65708ef",
+        "8bdbf13911160e3f8b1e33644cc2f5a15304414e6d747ec271db33b19d922055",
+        "8241d913aa852b6b547b47ba35ebca4ca8115e6edf54fe6f948df826dc385636",
+        "850cd4002ee3aab174334ace4fdefe0ef631b7220b271cf36f868084b051c3ab",
+        "c99ae7cb7430fd76287f06eb5f56e20bc3d951c8c8be65fcf21cb433c08fc003",
+        "06d93ea8e9a5db151d7e9f8ec41dbd50434eb80991d22aa002afbf48b37ce870",
+        "161153fbbbd3b917653fef035bde3c66531ac1b107716564e2e5d07b4e1c6e05",
+        "5608b39dd0d63c81bb600fd0c07038de1221341038e01fe90d5c89ceaa6ae586",
+        "4a7346120de65058a8881bda4e8741e1c5ae46f7d7afae3f2329e36b414ff2be",
+        "48a5325328c6a7cca8eb1778b2ab517ad7c8743298342594541ebe0ab8e8792c",
+        "5cff5530d4196fa949414ce359e25fe54ad2f050d2db0f4a5205f34a37a1286c",
+        "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/fresh_kick.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "e9888d46be3a315b7e7b90e491d1a333d5ab521e082b0827f6b40cfaf24f888f",
+        "11efdcd87cb9df63061668b64b35d436f826fedf3775db822fc9b1dafdd15184",
+        "e60a4f335dc7f36b6ffed07ada7edec9e5ec7f7515b0c7c53df091897698b50f",
+        "7967233c63121e7ea59baf8fc331db13314a87006dceed3238414278cd23f985",
+        "265886f62bdae5547bee5569cb8185f457cbde5325374e85176cda6b9e0afac9",
+        "766b5620deb5c418e3b2c708e7cd13632acee82f73926c3ea9f4513ba9405b0f",
+        "0b530d2e150681167ef5a2d1008ff070c144aedc60606d9a79804da0246b1974",
+        "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/fresh_bash.png",
+      "frames": 10,
+      "fps": 24,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "e9888d46be3a315b7e7b90e491d1a333d5ab521e082b0827f6b40cfaf24f888f",
+        "b8dab5507527ac93a486070d48ffbba3937a2ae9254ddd3d4a5044ca1f48a0ca",
+        "f9091e9c19ddce1e1ec5affec7843b5b86f061ca097ad257905fb5607984b8c4",
+        "24cb40dfe89028eb4cdddcc54b55256dbf985171a159388784816d3b86a58039",
+        "bb05d3a2ee4f37820ed4eb304875cc26223570135a3df3b55fb92902cbd5e2f9",
+        "7a1ce782cacafc18a8d6ced4634d4794dfd556f0dbe3197957e6fc00191a121e",
+        "f560246652154ede592176eb3aec3cc72edb241465e94d354ee02579fc2cb3ee",
+        "aa23f6661935b21711186b200f04c17ea1901db82d2483a8d0347b4aa9939555",
+        "b83addde6ff801167d176cfc38643e07d9483551be614a635bda8e05082b6386",
+        "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/fresh_drink.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 12,
+      "frame_sha256": [
+        "e9888d46be3a315b7e7b90e491d1a333d5ab521e082b0827f6b40cfaf24f888f",
+        "386536d11fd3108eb6ee53a8d578ee13abea0e371e7240bf6ec76a9c51aea238",
+        "105ba87e16d972a01b499bb15ba4cbec2681588e852f864b39661d703148b0b0",
+        "f1cd8a51dc609dd8f6c1784a0dc45b75dfa7fda91f13055c025ae37d526fb1ad",
+        "4e6f6949fb94339c21510597e9e39e32670948b713c95c7305c2d7464f320327",
+        "a1236e9a838f1d91cc06b9372f3b84839924ee8a0111e79bc8a34fec039b0b52",
+        "7b3d4626fd9cd456697d9e08f748459e78fa75f179aa746c8a4a32259d6ea0fe",
+        "e6d556ffa02f962583e7bad686dea040e3dab066c7a15d90795d525eaeea367c",
+        "cca87dc8d3e1c6529b6070f6eb49d1b8297cdd097308d242cda8c700558f32bf",
+        "1af7dcb720c20d7200c2127bae98c6907c697c48f0967ad4ed6a75def5d4d474",
+        "9a0e4a73dfdf2052f00e56ed38cdad634a8d77b5225771da41ca986a2269b4b7",
+        "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/fresh_hurt.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "a6c42b055777318135e5c1fe84328fd230df806b02a08e360aafaa5295dc993a",
+        "048bc45801995c6f0d538de2edbf27b1f9ff6bc400f6f534c74593372800669e",
+        "564574504bce73734ec4049ae9a1f6492fd58acdf837c6eb32a5c21d5c787d06",
+        "108b61cd54f1cf763a20f231f56f15c02e767a5b475fe8785195c86b819dcd64",
+        "06b5686b3611e6fef5569a1f5711557bc3be1c573f0696dd881d92b682f1c647",
+        "7dd1769b18c01ae4127d92c26f5a6f4d0741e013d8f394edcd4f521ab6bb667a",
+        "2980a03118487652aa9949643449ff0a58a01f54087c6ca9aaf13473abd08cc1",
+        "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/fresh_dizzy.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 11,
+      "frame_sha256": [
+        "e79379ced300917bde59e7926056035db713271cfad2f917a9269969fddf83d2",
+        "fb5c6a6332f180ab975b02fc82dc0e3f0239d24744f2b1a4446ce14655f733b3",
+        "7ecbb5dd7b18564595d464a2ddcffc8c0be4322af6acabcce39f804ec7e93b98",
+        "79084879cb8cf0ece8ef05199a2327970bbbc2f6d780de60d05635c860b0752b",
+        "37dd95ca61afd1b43833200d092f7c602bd3c61dcd26137d3d5558c27208cda4",
+        "a3e83f8c9c47af1a419a042c6db41589b143dca94d29d21d6a670a47a1250fc4",
+        "b5b47932754b677db26b1ad6354faf76205dcf73e0f12cee2bfaff6d249a93f7",
+        "9dd1eb9751a06674075568632d1ca15c7834aaa27f5019c3121f289d376e3d43",
+        "33957f7627bb92a079af2e57d05a75f0b7b8ce2de2e33e3f7ae0c7c5b9b4784f",
+        "1f22fd380738762248a1c935adac3c1568a89dd6ce011f930bbd900be1004a1b",
+        "6c82e2cf75afee84e64f5c02e55cc6e9bd2fb70fa510b79e7e8b3edf5e69fb0a",
+        "e79379ced300917bde59e7926056035db713271cfad2f917a9269969fddf83d2"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/fresh_knocked.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "6af0643039363bfa3bb000f4099073f99ce26b3160fd35d2a91572890f0b1a56",
+        "762844b3d0ca43b73577bea6b75e567cf6bd00f12abb6335e8575f85b71bd202",
+        "8e597c0b2ecdad7426ec5734ec33b055a472fb76bb0388b4b216619edf40afd8",
+        "cac03419396466ab5ea3d62c24303e46fb9a87c1341a2ed9f9659c6b3765d0d2",
+        "29ae405692e6e27d1ba1a3193cd5c65cea3cff4be7d19cd03696ce85e8f12622",
+        "7a8da9fec1a30f69cfd733bbce48d666907dd4b659bab3b92d4b2c46792f421c",
+        "ce36a737257541f3ec4bc9459738efd0a2db2262b072cc8acafb2d5be977d515",
+        "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/fresh_scared.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "e3325c39410a8ef7b351ab1aa95fac78be09b09df060c8eb659acb7b8540e665",
+        "9ef1b93616c0ddd523b107ebf41d4ab580f1af9618b3298af622aa0922ed35ea",
+        "6b9ab512e9e2a20fc4ed58c673b071cd35ebb370f2789a1bc1a98ca2f3aa58ed",
+        "cf40de467b5f5fcb45681f63c8d0c4ed8f04fbfdf01d7a215cb9c8bb35cc551b",
+        "b6b7b8d5a1857437df535e45f53fcc6041f8f9693f5f894c1c8f3f2a27d14e51",
+        "c5177be9f20344646575a88daeaa785ea4d1239ad40c17b565ed31ab582fb28e",
+        "ca250119495a35a29af733b8328056d1f0104dbde579d977246a35a8247124a5",
+        "e3325c39410a8ef7b351ab1aa95fac78be09b09df060c8eb659acb7b8540e665"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/fresh_cheer.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 12,
+      "frame_sha256": [
+        "e9888d46be3a315b7e7b90e491d1a333d5ab521e082b0827f6b40cfaf24f888f",
+        "4f3e2de6df360bb126121ecb9adcbb5ff6eadd285ce212dc4b4b4d4ce0f33504",
+        "ba1a9c5ed190521c8303f4a72189f4e263d8347c78317289e6e0442143ebfdf9",
+        "abdc0f7148a4bfe8000842e01f60ac28d963ef414752cf901e63cb4824273c5a",
+        "6bfee437f50aa60127781c6d6836bbbfe3ea02f6eadefcbbf6dbefe8c584a93c",
+        "999363bb2f7c725551e1e21aa0a33622152573cbbae7de29dc64b19fde9074ff",
+        "97321299fa90a6ef7f8eeacdde4a1e23097fc9ddc3256be7ea7e39c681049ecf",
+        "a0ffd8b5976940779884cf6f6d660144e5c60a08b408cd1c582e294c91ba4f94",
+        "0b4a5931a7cb5c888cff06f35dfb5ec2b1a64163ed1e3d912374f97bf4da330a",
+        "aad5b66688c2053ad10d03424c4da896e44b425c75beeae6b291978266349625",
+        "d6c4ee503cef0a0fea86772d3186ce7c769f3df6b4e0435765e83aef8e286c2c",
+        "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/fresh_victory.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 11,
+      "frame_sha256": [
+        "589ede9266d963fa0ad2576343e0650906eeed6bcea9bf51cf21f8f3ae1a5d3e",
+        "3bb41e9a6b97986a1d4b92a2e61d19ca1f1d758be44c64ffadedb56c15f40528",
+        "6471502e704d1ea0b4c5c0af3efd380ce1f859f6e03e17daf0079549b59a0326",
+        "07807b9ab4ed02f6a8a27ff3df141ee1e8b577ee79319ea4a2df9a3ee9384d4c",
+        "6c10284b4a31135dac2b1f08d3a2bbd280964131f6224556d6986f3dbbfba631",
+        "d9e622c74735cae918162ed6d810f6c7a1afa327690dbe586037705974540c2d",
+        "5a848baf89b4e8c0079535111e14f76ad629cf28d3d66c55cf2a919cfeceda85",
+        "e7a7a08727dd7efc09646b29f18fb4642a4b6cd62ef4e67f09e9aab5154e38ec",
+        "dac0e6b9240539c63c3d57abadc6c3980a9af5fc62cec561aceffe594355013a",
+        "0a75c9bd0e09f420cd0248d0e7a970922727d61455d1813dc9c0f35b4874c9eb",
+        "be6fee882746571595845039677ab8703cf026abd209c32134aaa55b707a6147",
+        "589ede9266d963fa0ad2576343e0650906eeed6bcea9bf51cf21f8f3ae1a5d3e"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/fresh_defeat.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "e9888d46be3a315b7e7b90e491d1a333d5ab521e082b0827f6b40cfaf24f888f",
+        "081c9363f766091781ac22fc8a3f642d2f0050d832596d84b8239e46c01b3a53",
+        "4de639ce675b9b33774ecfc12ecc8595cd39674c662b210600fdd73b8e3f0225",
+        "273610fe79c9f5c1dc4fe610a09d04dcfbb0b8061ee8d05c067dc0921ca53270",
+        "e1ac15c71b12c1a708c04cc4ddf7c7ad2d981813549dbd4c4277bfb4ea084e44",
+        "e062882b9aeadf82197ab7627466769df591bd550e242da2ac96109a5d6b6413",
+        "4dbc392d361c47ca9aebff0ff88f209734b95a3edb4248e0dc4ab95f603c9853",
+        "1dca0ca219b17b66ccdc244075d9bb6533182266f8c47c9ee447da4d734aeadc",
+        "6d6476ae31d26202cef411293b2f4972eb0d6a584492b599c2c0114673401a0a",
+        "970a411c8cff43cc7b52ed273cf496cf198919ec1bea92126d303ed0406ac52b",
+        "970a411c8cff43cc7b52ed273cf496cf198919ec1bea92126d303ed0406ac52b",
+        "970a411c8cff43cc7b52ed273cf496cf198919ec1bea92126d303ed0406ac52b"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/fresh_idle.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 4,
+      "frame_sha256": [
+        "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a",
+        "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a",
+        "a959c0ce4a1ab9cdc84aeb5aca579c201aabdb84292b227b5724c7357a7ce365",
+        "a959c0ce4a1ab9cdc84aeb5aca579c201aabdb84292b227b5724c7357a7ce365",
+        "3bebf554c541728cc0220426cf243a53dfc3824dd99b1b315206b408da277301",
+        "3bebf554c541728cc0220426cf243a53dfc3824dd99b1b315206b408da277301",
+        "9bfc405652c474148aa45f4c72fc8bc57a9ef0e9b32377b8f62b695aacc9e22b",
+        "9bfc405652c474148aa45f4c72fc8bc57a9ef0e9b32377b8f62b695aacc9e22b"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/fresh_attack.png",
+      "frames": 12,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "1fb7af27bcb59d7192834c74b3aafb2286882a0c3e1ad0953624f398b30f4f6e",
+        "1fb7af27bcb59d7192834c74b3aafb2286882a0c3e1ad0953624f398b30f4f6e",
+        "6ab9798cbc73c55e8b2f053f9eae203c6210789ca00420a170c30695ebf390c7",
+        "6ab9798cbc73c55e8b2f053f9eae203c6210789ca00420a170c30695ebf390c7",
+        "bfe4a2779bc701af8eec82b5077549cba394c790aa9707e6c51509bc71c33d01",
+        "d7518122ecf7193dcce209e3625cafdf0ac92bdf5ebadccf0c6890de597cfd82",
+        "4a7cf1a0e4eac273e4817ba7aac3aea7edea858eaf8a6a2fbe1de0768472596c",
+        "e8c640d24b4a662365342fa70f75dd30bde0160aa4e978f7bfedd7f21c5dc45e",
+        "9ad708bb1fd99d7436382ec58706edfb2b595e0205d0de4bfc1d1f4abcb29004",
+        "9ad708bb1fd99d7436382ec58706edfb2b595e0205d0de4bfc1d1f4abcb29004",
+        "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a",
+        "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+      ]
+    }
+  ],
+  "hero_rookie/bruised": [
+    {
+      "file": "assets/characters/hero_rookie/anim/bruised_throw.png",
+      "frames": 10,
+      "fps": 24,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "0d30f5d248f8ed4e7e78c3d32c146871eb9c78c979811d094d81a8a6938ca514",
+        "088f9e89cb3a723ed9d651e6c7eee658761281e34088aed8023d1e78a80b4b8e",
+        "9240906f2d036c1601ef48f3c7b6c2922e2f1e5495a66f9d2c94ad8c7372f39a",
+        "5f8c604d2c2e30f7ba9408b0b2ca926e21a96fd40d10ebd175f183c0c129d0c1",
+        "70e97ca86f7b96424fb3ed96060d27474b1bcabcbf37de5d4714436186f7fa0d",
+        "4d5b62e008ea8a3c6dabbd396c1a3262be55bd02480e067741bc1a875f771529",
+        "f78ebd8995956610b881b51f8d7ca9f33cc75e8ef3e0b7b09489db6bab02ac8c",
+        "6c0b5871c31d1f18484eaf6eab7a6d6d113e0323f1832b0755d5504ff92312ab",
+        "60d3b72bf0d76f114a2274bdac2c0da3dad3bfe97c6fa6379537614a77f6ed7e",
+        "ee27071b4c8528546ffbac68f07b6d1b5e5b4bdff9552503624ae9f75b4754fb"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/bruised_leap.png",
+      "frames": 16,
+      "fps": 24,
+      "unique_drawings": 16,
+      "frame_sha256": [
+        "b717bfe996772cb9f4337b7e88fd3f629e703275311145b04118264fced4cad6",
+        "a2cd5cda4aa94e3e76a3cbfcdbd3147e6f5b132830faf22fad6cf883fca7dcce",
+        "85c3166fb3602a105f821f67eaccac615abf455eccbf355a71d6d80db1f29244",
+        "f1795872ec68f2495176cab1c6fd0d78d20f7f43524faef20a2608d5e3f676d3",
+        "41c488b9cb7dc1a668d98834e66aace2403d6ba7498b13f49e61d96f181b3f35",
+        "71844b41544ab03a18a6affc5a9fa8bafb7e8d12e79dcbf1187cb08e5345c429",
+        "5f5795f3358203abd63f539e1363155c0cd56c52d498079eaf7a90c225e1e4b2",
+        "60942a5cfcdaa4d167762a731a6fcf4aa9aa617961b83bc79cc112ff8381c15e",
+        "c991fe928ae5c0d9fe1d0b918857431d8bf515ecab05b6a108eeea4c23fdaa35",
+        "c6d91a12cabbd9645c61d1cb130cdbb45945ef96d912ec8d644713d071abef7b",
+        "0050e113ef747b5e4012e273b0ca99a3c175d4c3622447f56e268142fe2e6d57",
+        "876685d500e13c684a96fa2b42953f60fcd4e54c297c541185bd7fd1b6a7c09e",
+        "852ac47d0c07c875454cf1312e95c771f45bae1c6f2f75c29855e3310b3c13de",
+        "27080847eedec0bfeb5e76b07fa464ea29e37167d43e7511fec5cfd4e91dd8ac",
+        "9265827a46ee98e0de343a75d98e2995b4ac7061afa4895d0680f7f69f14179c",
+        "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/bruised_kick.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "b717bfe996772cb9f4337b7e88fd3f629e703275311145b04118264fced4cad6",
+        "e3edef08241af28acfdeb11eedd17ab52beb890b51865b4e9d6a4b6104847bbf",
+        "f1bef0124d93e9695ca7d8069e0e97a79b0199a23e0621c54baceb41aa994309",
+        "6d66b0a5f00953010cb316fbb7b465e3144c1e2c672e8f73afb9005fbf59f3d2",
+        "5a2c22cbf7ea21de5a8932de561356f8108b0241be045eab17b3317e90138a44",
+        "53b196164253bbddf7da1a7e3a3536417b3c52cb1db39502c8da1eb8d3bac9fd",
+        "6d8e175812d1ac48fee7af1ca9c9b78ddad7b71ca60bea540706651af44e379b",
+        "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/bruised_bash.png",
+      "frames": 10,
+      "fps": 24,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "b717bfe996772cb9f4337b7e88fd3f629e703275311145b04118264fced4cad6",
+        "cf23076c7f219a785d5b152aba543be0cb7806ebd3bf6c5f60d123ee84c06b1f",
+        "9e11a10b0411290c70592eafe17e98157988b367a298bfbf373ed7b38f6866f0",
+        "3c79a852869986911254a330afdfea14bcc886997b9ca4a4cb380e8ec9760f1f",
+        "d20830594c474614572c0b10716ce2e7bcfa618a25f4fd3492aa19253b65292f",
+        "4b97fff5e781aad5ab20ce87df2508bfc21b8f92beaab3704055ec60718b117f",
+        "acac477df2bfdcfd59c4c7f3469cff4a41d32e4de72c4e394f3351063dc07fc1",
+        "cd163863023e1b2a07b67da2610b782a9bba38ba5e26c8c8d99a8fbb8fa6b2f7",
+        "8e15ac745cbedd205542106817ac083bf5a35eaa4ee92a6354c79dabde421ec9",
+        "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/bruised_drink.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 12,
+      "frame_sha256": [
+        "b717bfe996772cb9f4337b7e88fd3f629e703275311145b04118264fced4cad6",
+        "155372a2f626817a32562d7de0bde5ade03f9398dcd2edee09ed59ba4b4c72d5",
+        "00720eec54e15298f0e6b87956ecf011638144c508d556a54aba5155f96fd928",
+        "8b293f125ae5fa5ab2dcd1880752e4dd243fc85544b0f630fe8b1d03584460e8",
+        "9b68b0c28257ed5f57f85117ca75ee4bc7ec471c1be2257dd2ab78031a00ae4f",
+        "1e58afa2fc53aecd1f4f5adc3f833ff57cb69a6ea9c62b1d3b225b431818467f",
+        "f8661a0c7f5ff73ec9ebb8016e0dbd214d28fbd0db83dcd3452fe2e40be9e586",
+        "6b5cb7c32267e47a70d1e795b1150ec426dd3fe28816211a594b17e6683fef60",
+        "f3693ca80fc270267029758a8d91efdb53167120d5655e1625de3c36ce7dae6a",
+        "35009ffce544b2f558fc47d2e32771fafc1bdc83080d7e307fe18bfb365a44a1",
+        "92c68265d716a7a9466c19627e49945efe9d508bc78c282131dfb471fa284b69",
+        "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/bruised_hurt.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "1c41a9509fce4b27fa81e130e91820f476aa831e3aed312dbe28acca0e3f348f",
+        "a615781d0a38a4299eaf128b6738381ae12b21608182e93bb351ef042d34406f",
+        "2de8301d512d35beedacda9cb69eeabc751be3336f1eb30a3b08ee7a4af74329",
+        "f4b388a26a5c0abd2e233ce30534e1633ad7d62380760cef0a6c70c2a6c5cc42",
+        "49e86941a00d0b1b09344f5ebeb37d678c8314efc84f1804bce7e8295fd2d6c8",
+        "be088191b290f948283f7622277ea8d3b336387f491dfd826a5210d0e432283e",
+        "041d67ddd0bc13081fa07c346cfb5cb27ecb18c82008dc0b7f7a1240211e6397",
+        "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/bruised_dizzy.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 11,
+      "frame_sha256": [
+        "039e4ff05e82dd973ee12c75604a54425d1124760c1536b689aa2bc199e21826",
+        "339805cd61d7280bfd039e1958aa62310e431c8e21c7ce142b2db57e4912778d",
+        "f161379af804ec546ca6d65741c88120bc65f0ea9dcf32ec1375dca506632e51",
+        "83ca3c6f953f41b95cd05e36dfc7a83e16060a946729f1c8221e9b6dc596d35d",
+        "228517fbf710257ef87fd795aeb8f7b25b2aae164c9edfd2acbab33d51be8cf4",
+        "26eb411c76acd60ca437e2588f1a1c6371481c6a0ca7ff52dbef082db15c87b8",
+        "8c24e05c12ac48ec58f3f7b35f0eb0c16ba3bc55f60e78ca3b5c1f1788e3c913",
+        "2f8beab6d10d73dd5bdca6a4e35cf55030b10f906898ab42742a8555e0c014b5",
+        "e0d2476f418167e614b35461df235ee0841abce64e7b60ad5303794f2e2e3f9e",
+        "6c4cfe1303b101e7d60c989b610829027ebd75ad459eed035b562d292d5f28e7",
+        "130fb93a3604650a8eb92bfa65505b4a177a452309793f9cf6d9053106e230ea",
+        "039e4ff05e82dd973ee12c75604a54425d1124760c1536b689aa2bc199e21826"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/bruised_knocked.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "37716e41d59d33f007cba404bbc52b40cca222e0d6648a505f674674548887b0",
+        "6a7e9c5c76161ab9591c35a2e8cd5ce1670cb5e6c9370e8ef1a25d2f0b33f471",
+        "7bc0ab5d8f5e52ce3201f5643a83739400852361a7ccd09c04b6af2d7afedb59",
+        "941bc48c9c47109b539a4308e74586694d61b5ccc9b20b7866b274ffe38e00f7",
+        "8beb29722307dce8014f30168e4f916e21b2bc150e289009e583f3d7f5f6fa88",
+        "1b01ff751bc5b39f1a6612d4df91f6de1520b712b3922c849eb994d62051a175",
+        "c66dcab725eba9c76932d11443d33e91f5640c9e0131c80c85e84afb7595f52f",
+        "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/bruised_scared.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "357edf6ae295ffb231394339c2d54a35d00bd10d6817bb990c79b458c57a2245",
+        "b865527df33bed3956a64cb9604e0b50656e21d470d5cc40ccb101fb8e204f00",
+        "628260cc579b27a113d76f3ed9344a54f8efc00e05183e3af92802af1690546a",
+        "5cdb8f77d74af9660bd7e1857b017c91a48b9766366f2a955a3d5e6a81c93e29",
+        "6ecc775db7ff6b474eaedf745dfe819625dbde15b622335f4c7e0385f7566497",
+        "2b12e5c69cd7c5add3584150fb470bdc6a2fc42174b7700092e45d2c7330b045",
+        "1becb388b4221de5c115f5ae635a6a970ae2e64950e7542ddbe602dc0dec144d",
+        "357edf6ae295ffb231394339c2d54a35d00bd10d6817bb990c79b458c57a2245"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/bruised_cheer.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 12,
+      "frame_sha256": [
+        "b717bfe996772cb9f4337b7e88fd3f629e703275311145b04118264fced4cad6",
+        "e374d549e89241587fff48183344dfdcb77d921ba342c5d0f5f3875d70f41c0e",
+        "a9d6d55eacb799cfec84cd881135dda43c4567f02d74255a70c32ecbcc526b21",
+        "e996172ef361c7c11a7d80e2ea26ae666541925099618ed8d252bb0898523821",
+        "b94188005824b8c662cf3f12d8ad552c12f7af78d194ca71faeb804bc60a5a14",
+        "b6a61dc07c94857e2e03fc1ea4d71341b87d47468fbdfb1e9863101981fbbd94",
+        "6cc716e5c3809b8cef9fe19c167cd931182be6f85f8aec44ca7129e300843f54",
+        "654eb79d9f29ed5f311d4c1c5a9a7325d6e8815aa626802440c5658302357d7e",
+        "177fc980f1dfc473af9fd4f211e3a248a5688dabd1442daf078039c22c54fd89",
+        "f79c884030a9e80931a23207f18f4598a2e03c5a37748968bb40657e5ab9780e",
+        "e8eb935fabbd0a1cb90e0d4d27b9d597e54cdb667637e45c3539379624d52c58",
+        "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/bruised_victory.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 11,
+      "frame_sha256": [
+        "6c7ffbc9fa84aeb7deb6f32319a83ca09f9e1a976104aa9ece6e12e17db00043",
+        "cc73cbaf9748abd59049d09861a59b154b171f673e18cbb1bfc7ccd419d2a2a6",
+        "47a4592876c0cb2958549c990f77ec309d8a330bd10aea212815c9e401a266bc",
+        "6db1f73127680fa08b6243662274dd93f96d718889303c6c23cc54021c9d96f2",
+        "fdba777b430e52f0da89169e08b72dc8d6e76fbdf5aa043bc6ea160ae9059a67",
+        "2098181153d4683bbd9755c89998b8da0bc536acca477011b3d42982bfb57a5a",
+        "b744095e67c14c6a9b17b175047b4cf99f5dcf551c8e372aa104cb5d9a6bfa5c",
+        "5b60d1d230639dd10d2483cd05ef284927a16fadc00e37614cf8bcc57cb737e6",
+        "a0d642cc3c0e163662d8aac378bc1a8131f54c46b0367fb2ece67a9ad3f1bb39",
+        "4334d62bff76f5f81be97a7ea8a90f0b88235ec3aa3b8db6e7feee34f9248eb6",
+        "cc5919136018ab86dffb357e54450354c9940f37d518ec8f843cb113174abf15",
+        "6c7ffbc9fa84aeb7deb6f32319a83ca09f9e1a976104aa9ece6e12e17db00043"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/bruised_defeat.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "b717bfe996772cb9f4337b7e88fd3f629e703275311145b04118264fced4cad6",
+        "b3943cb4addb6fd47e2eb6716dde79a090360c6f260423dcf3cdcdf66696ad2b",
+        "81800939e5481b2281150ae79acfd164691ed98a08b6f281765039e3f2a4d8d6",
+        "77a6f1608ab1d7a26d0a3fd99c7956d85f98a99b3dbc366585f651299182094b",
+        "c722c245da12989ddb9bb95c17af22b860801be79bbc55c106de2a83983bdcc7",
+        "3f26dd66f3b1c4f6ffa0058acbdd2cdec855f7a7cf0c383f8fc866882f426e2f",
+        "50ad30073730aa39cf479f462b8dd7c4cbc191ed5d050f85f2dd902796f7fafd",
+        "f5f7e564508abc4c81fa3049b6e6d3d5b305bbd61ba9b7f6d3f29a0ddced1c71",
+        "a6e8113fb78a4efa68fe76e82edcaf2e1aecbfd4b5497992b361afb69e8e80af",
+        "f5dc50b4e76e18342774fb6ddbe6beeafbf250ed265c2c932d63c3e6295439a1",
+        "f5dc50b4e76e18342774fb6ddbe6beeafbf250ed265c2c932d63c3e6295439a1",
+        "f5dc50b4e76e18342774fb6ddbe6beeafbf250ed265c2c932d63c3e6295439a1"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/bruised_idle.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 4,
+      "frame_sha256": [
+        "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d",
+        "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d",
+        "a569d540d13e57fa326269c396d8bb9a2f220bf9b8b36c8246729c6a239cb6d0",
+        "a569d540d13e57fa326269c396d8bb9a2f220bf9b8b36c8246729c6a239cb6d0",
+        "ce0482f371dac038d3147e944dccf6c61a7a1e3b5ab136badd4d58a43da7a059",
+        "ce0482f371dac038d3147e944dccf6c61a7a1e3b5ab136badd4d58a43da7a059",
+        "bbad3c22e971f0211dd1076b01c5beeb49fb8003059a86cccc3a773495305931",
+        "bbad3c22e971f0211dd1076b01c5beeb49fb8003059a86cccc3a773495305931"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/bruised_attack.png",
+      "frames": 12,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "153731a5c1cbe4ca11060f3ae4b5f32cab51a481085fd8040ca150f1c4a2152b",
+        "153731a5c1cbe4ca11060f3ae4b5f32cab51a481085fd8040ca150f1c4a2152b",
+        "5c31382972927efa44d2ed339a408720172b7bfa97439e1b4744852ec7870627",
+        "5c31382972927efa44d2ed339a408720172b7bfa97439e1b4744852ec7870627",
+        "8aa53d46ee10cc85acf98900c6070f51d73b3fece73bd36f4564ae81ffa15ca1",
+        "01d258b300e2fb76932400b84cf06ec8f4023bf4615cfd5ce016b4f3fa646cc7",
+        "141cb6c95baf49f7ae80016d99c0fc74429fd5c0a9e9cd2265e7d4f935e66ddd",
+        "f6ba23d884fdbf3b6c425668ceb1692c7f6bcfb1a59e258ad4fa22642eef6600",
+        "2fe1b6391fa84ce15d507cbaaebe75bfe6fb4fe234a6b91caa21fc9c20ad5d7e",
+        "2fe1b6391fa84ce15d507cbaaebe75bfe6fb4fe234a6b91caa21fc9c20ad5d7e",
+        "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d",
+        "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d"
+      ]
+    }
+  ],
+  "hero_rookie/battered": [
+    {
+      "file": "assets/characters/hero_rookie/anim/battered_throw.png",
+      "frames": 10,
+      "fps": 24,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "ddd49cefab99e54f84a227a5625895e4b929789ed668ef1ddd8d4a128df5da57",
+        "949adae78a2a1c41c7ffa882e676c5511ff574c0654c1e71152df721d6057a08",
+        "d5853f7ff9fc5a8c0718545b4388c73cbabca488f08cf69b29355d75260c80b2",
+        "2e28e520ef23dfb4172b68421b91c76589b2c3238c71bdf7bf26e8931a1fa749",
+        "68e7fda918ff87e4143a4c6db3a567890e697ed937eeb9da778603dce21f2be8",
+        "bb18cfd76cdefb566274c123bdf8bc96e6006736b8649343827eef69fbd81a02",
+        "a14bb20e0deef4c72ad5e1cc36e6635a5f068d2df019da76b57e59a407c8c55a",
+        "55b00a6110c1d6eebe51025189a71de258c72d082e0cabcc3fb254b10a2cf94d",
+        "34cc0214da38bb2a0a838051691ca639b520d646ae8eabb355c8045cffbb469a",
+        "06abdec3b163f03840cb67cb09b19a68747ae2abe8e9001ad602e07ffaeeff85"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/battered_leap.png",
+      "frames": 16,
+      "fps": 24,
+      "unique_drawings": 16,
+      "frame_sha256": [
+        "1aa45ee257356d0afc81488c71265085067c58b21dab6204b1e7ed397be40277",
+        "3fd57343edf2295785eae7162503792e4a542587e9756870c690dc4b5783d365",
+        "ebdf98f5da0c518aa404e93b896267f1f9211bffa30989f9b01b256162f93cad",
+        "e5250d56ad2f3ee0e992de966c4adf70c401f58281d51c1da7389366a3eb1b26",
+        "29f877a5ac768598497aa23f079cd6761a509345c541f1f9ee863777b3f7ff50",
+        "1a7ca523abadb4234df17dc8238917d0cd78faad96bc57ef2bfccacff8e69446",
+        "b8a67a3fe8e35c5c3a85c62c8d29ac8255c3419493b2f9246f81a1095b9c6564",
+        "c85abde6faeff9a7661a2bcd49ec8523eb8fcffd5130c6de1cc838a7be67214e",
+        "9623cd1853cb28c1a1fca59b6e88a522ea08d5d65759ea8e690163a22b5afcfa",
+        "c3534f184e46e599549c78bcfb4d7941eae6f999c5fd7458b8ffc872737b7f4c",
+        "e7cc4a56000136c99c2a586a8a5ec6a1136779b716eaa06820ff66d4019d0023",
+        "23b08946f11a71811bce31f7473f40838b84405ddca32c6e8421edcfd7011a30",
+        "f648d48f01b5152308a1c28354ffaf9937c7828ad23a47512f962540a7510a19",
+        "4224014ace1459a19617b61cd4a5d81a14dbf64b04c79c86252be6036d73c2fa",
+        "19b855f66cb6976d5c3b24da83ca14bb2f0308572461baa265c17aa2a6dfa971",
+        "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/battered_kick.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "1aa45ee257356d0afc81488c71265085067c58b21dab6204b1e7ed397be40277",
+        "a78d805253df03f015bf192b9da144fcf1e71cc07d4115c9b44c442747d1733c",
+        "11b22df4a35d19d8ab8155ae7270d27383bdbd321f806959e605789d5be57547",
+        "f9f28790e4cd72603d3d857e49dcfb53b01f2d53fcf93a0bd172a61b2817029a",
+        "35afaa2714327aa1679e1ac22d0319be1fb9186a5e4580a7dd076c22f7c89dc3",
+        "6d94325786f80903801e6310c7bb2dc44811de7263f88f8dbd0d08d0c2dfdb89",
+        "3c0ed3a92bc58db610b1bb37f39b07a95ed1c32784b661f5ae0249b06612bb95",
+        "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/battered_bash.png",
+      "frames": 10,
+      "fps": 24,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "1aa45ee257356d0afc81488c71265085067c58b21dab6204b1e7ed397be40277",
+        "edbc92be9105902e2913579c25f725e3514a51400cea5a7379be698871e8ff5f",
+        "8a2360302be34f3a64b6502df679f1a1b1c3156630c0cb98d3092a68ffd0748c",
+        "5497926de8b0fa7676cc00916f52ff2d91920088251e69e4b611d15cf3b02bad",
+        "fd64066fcc9f250ea11c339598338c1481cf98ac7bf6424f65acece24da228ad",
+        "0ba3e1765ded6026465887ffb43b8dccab5f6c059aebbbccf017e9bcd29216ed",
+        "1c23024026604d452cefca44e99b139fb8f2586ea34de71f9ed17e4050668c47",
+        "af718dd9d36721a59714604592fe0f0ed7a12612d360204b49fb0677f0cc8cc5",
+        "5e27884daae460353f7cdf17b955247f58b5e4b478b4d72490b2785a8b58c03f",
+        "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/battered_drink.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 12,
+      "frame_sha256": [
+        "1aa45ee257356d0afc81488c71265085067c58b21dab6204b1e7ed397be40277",
+        "7e617a244eae59e9aaeddc49f55684cbdee85063c3e458580dc3ddd520f22e5b",
+        "8f8a58f727c34ff56a148d15728cd1aa7f56d68982e5d22bc130f65ec23777ac",
+        "e3aa6bf862bc2dc194812701eb7fe3d2a4a11d909dae30433cc394573170b1e9",
+        "90a11bab0e8b2f2565ed529e151e2db2ec58984ecf515de5bf7d573a8f780fc9",
+        "b9037386b770b1f02cf9eb72c93c770abf1baba2b2974cb1ca203d8d98cf01eb",
+        "796ba32f2658e4e7ef199ba812cee0b9d221ad3cfa2d651292130dd369a1a4a6",
+        "370a4c7078a9db68f22485e8c341f9d170f3a23ae3a7e1b40f7e04a28f8bc483",
+        "12b54f50da92d942c23ef6784038d6ecc12b60a6042f2bd5597ded112d4156f0",
+        "20a2037f3f7c68f2fbda2efebe67863742362cca31cb8054c9c091549e952a35",
+        "5411d0f774066b1c8611e458ed55a839934c824527995f70753b949267429c03",
+        "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/battered_hurt.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "7c024923bc0baf8d8f1147e3d1831740c1364fa95b617254d0d0eb523409690f",
+        "beea9fb3d16942caeacc227a94080af65e3fff5f78349629c2f61419807cd567",
+        "6ee3b2071f9039baa033ab20f4a9664fb0377aee12514c61fbb3a65937d844d1",
+        "ead0d14c564f5a143d0c2df3b62ee11245986b91ba438d717fb3260ebe9567d4",
+        "4f61a02669ec3909bf973fe52e5826f4a627a872a931a58400fb8e7dc910e061",
+        "66130b260552e5e85bbafcef3882d17811fedab2766e0bb92205792a935bac0e",
+        "47e832758c76a43762ca0db2c20f55443cb8c82ea2e26b7a7bfdf084c4da33d6",
+        "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/battered_dizzy.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 11,
+      "frame_sha256": [
+        "bd37d8097cd68d653666271ade5ddc4c3e90bf8803279f0c34a088859aff075e",
+        "fff27e3f70903c1c7d7bf0f34ed6d2e023feca34285bc49b0284b3b0995c2344",
+        "c3ceea2b4a0e36060a456a81d66bec193f0c0ab32e45d4fd1bd2ca6f0401dd52",
+        "f343b9e22759cb921104e46efb3229fc08d27389b3cce5686ff6c1921a8a6e7a",
+        "9c75c41362117a1936da62edd283e34c928a9d01881be572523ddf49513512b4",
+        "3dee8fd115a654fcc5c6cf7674619f0cbd676f35b647fe754e9af0bcac64c69b",
+        "37f72fdad15e317f0f80401944e2ad9406b444428d327787b9b2f094434e9c40",
+        "64d6beae9b2366469ebe1a7c93fd09d45e1cdb5f611c5a00bdd1c33be844b48d",
+        "37f59794761ccca9839377bf5f0565aec407e4b2d66881e6f07055cc254d7b60",
+        "542c79eb2f1449116a0754b62e470661c4d1933ec3434219e2f401382062fcc7",
+        "326e6d5c50722814d6423cf923045bd90daaaca3985948c6f68f4596517d5d53",
+        "bd37d8097cd68d653666271ade5ddc4c3e90bf8803279f0c34a088859aff075e"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/battered_knocked.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "5d1b72fde978d91eef66ffbe5773d44f9199815233e2fdf2d999f9d6a27d8a7c",
+        "90d6300a95bd484168e3803f1fdcafef4ec8ed97f533b5535b79daa8abe0f91a",
+        "e64da1ee0535ea683cf2ebfb944fa8462ce2b10e544eda65395f550dcf625ec6",
+        "7bb885f31fc52533c9ee4d43a4b2ba3e1c6ebef1ec8dca5498c3e74f5fc175a0",
+        "e35be135d0318955f87aec5b5a17fc77b648cc5c9c3756d33f7fefc22bd487a6",
+        "cd1ce8281875c94c6c05e893d04c508c7ee865660773dce5de8bf9435cff3b8a",
+        "157527b2279fc7e902c4f1d5f528362cae1a556f80e4e5515fd38088d05ba311",
+        "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/battered_scared.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "24b13eeefac8d05ab02d0e5402a84811567758783e0ad8f9516276ca724944d0",
+        "d5f6c090822887366cfc4a040ffbffe7ef71380bd5ab2490223ae5b84bff2b7b",
+        "99d0fbf6699514ffcbbb8b800e6b8184b8f0893a41ba39864b52255b390a439c",
+        "e3b5a766d726a11f5ab959d3f5b3e8ccb1745046566f110bc2dea5a80aacffc9",
+        "9ec1f132619f91e52d2c4e39dffb952be5f32b961b15ddfbc8443e690f127c80",
+        "c2da5a1bc3e96797212c9d22f3ae06e197609b467fc8602ae67d2e932640044b",
+        "90f29132aa9aafaf4ab71f2fe3d1f79ec21df5010d8336df7261dea142c10bb2",
+        "24b13eeefac8d05ab02d0e5402a84811567758783e0ad8f9516276ca724944d0"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/battered_cheer.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 12,
+      "frame_sha256": [
+        "1aa45ee257356d0afc81488c71265085067c58b21dab6204b1e7ed397be40277",
+        "e5a252fc52f5367973f093017dc38a488ab4733e187817947c5981dfef35ff2b",
+        "5860c10c28959da1c05eb8e09bb0845181744987895407a8cadf90206a5876cb",
+        "1a4c7294fd6501a032b372da383aa8e271d9cc3206a9ce27d8149a819263c93d",
+        "172dd77812cba0542eca589f1e115ad87d8e78664d181ce90e57512f6f720c43",
+        "d0193d96f9ae778763228eee131351593ab51832b3d4b9a84336c65fab64ab40",
+        "ad6345a41e34d34267e265d7b87ba3cdab46369b21892580b669c535ba052c3b",
+        "50d55d2718dc4f5b25db575279c2690e6d711cae6833e71ac1fef90252d7a12f",
+        "3c3b6bec175fe482e3162f5fdca9f0734c35f26940824480f13f2d8db86bfad4",
+        "6b976f9073bfc95333900b3ac83c264339767f0e8e663b203807e7a1c93e2d98",
+        "a85943b6d04f182da0c1bf4e546e0c7a347048c8cb0493c6f9e9689e57b3c94e",
+        "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/battered_victory.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 11,
+      "frame_sha256": [
+        "6a79e207abe8a532bb09991123076978cb412b0a7c8e5b6956eeb8f644d8c143",
+        "8f259c3e73aa473989ebc44fbf29db1c16b6f7354dc6e43357c3298872893857",
+        "60d9270c77a1d4984d5a7e5e90e1a444507e7b1b1f1d4b046654956a3c29735e",
+        "a57a90e5da7dd342f1e82637d5064da681e991535a70eea4d760d29bee2d962c",
+        "4b1243651754e992e9306148434eca772ccd549b8edb9eca1f633614e2837a1f",
+        "ed61d1998060db55475ddab6d856cc0eb84acdabb1af0ea130cfbde1bfe9dc23",
+        "4de187991b1728841ad24008c0190052dd2a48db7d176194c5c7bff878fd9f28",
+        "efe7d9011e286ad696ebc0d8861b085a897f3ffaffbe93cfd405a467597a054c",
+        "da8ecf8d2cc33c840fb77387a5873b6449df489750ddda6cf49a0414b2654c5a",
+        "480e75dd9bc8caf7e753d57822d1896642d08064f963294c758f8162b06fa5cc",
+        "81585c017fb9c066cae993ac7ae61fc5a85420dcc61e145defca8ab1fc72a520",
+        "6a79e207abe8a532bb09991123076978cb412b0a7c8e5b6956eeb8f644d8c143"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/battered_defeat.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "1aa45ee257356d0afc81488c71265085067c58b21dab6204b1e7ed397be40277",
+        "c236e08425b08bd875edb6f38e6bd3557b4803ecf3fa746a2016537d7a3c2cc2",
+        "3ef06718d98a3eefcb266d3fabf238bb7ae79688e8093b358a65b474e30d8a2b",
+        "2128d5ab1f7b9c14528e97bbe130ba2a9e3e208e9fa27fe976a81dcb934ab2e8",
+        "4bda2cbbf95c2ea009dfe4cd0338d59b135266cd5b96569af22da4c30d5c3d99",
+        "ad304c042e3cc37ac590646b13158ad4a38a8f53b0411cdbb5fce7588fddd835",
+        "cf532beb8d869b0164e14b8a022392f35694f01d8d7bbc7b80e68619e2a91911",
+        "f49a21eb3d27ec41321a5456001e6289c8fdea4f509de93057a0045b73c94e34",
+        "974a68c9dd99f3d0c1e23e63c25517a88a8ab677807cd3558845c2587820b0cd",
+        "8d2d68ad47bb0448943a3984277a12a25d8cd6189a17520828b85e264b79134d",
+        "8d2d68ad47bb0448943a3984277a12a25d8cd6189a17520828b85e264b79134d",
+        "8d2d68ad47bb0448943a3984277a12a25d8cd6189a17520828b85e264b79134d"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/battered_idle.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 4,
+      "frame_sha256": [
+        "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068",
+        "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068",
+        "7e697fcb804d2c1ad043986d6928d6f350fbd5b516b4d7a2a6aeb89d2a057fef",
+        "7e697fcb804d2c1ad043986d6928d6f350fbd5b516b4d7a2a6aeb89d2a057fef",
+        "eaf8b0b15cded8fcf97edc20d664894abd9ec42ed56f6401100294a5bdda38a6",
+        "eaf8b0b15cded8fcf97edc20d664894abd9ec42ed56f6401100294a5bdda38a6",
+        "0fe451279033769d553650efe24d07bfd6062f743f9183527a863bdaaf68e282",
+        "0fe451279033769d553650efe24d07bfd6062f743f9183527a863bdaaf68e282"
+      ]
+    },
+    {
+      "file": "assets/characters/hero_rookie/anim/battered_attack.png",
+      "frames": 12,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "e5483ca8c0c21dabbc98da18baf85931ef20e809ac0652cb7b4e305ba6ccf235",
+        "e5483ca8c0c21dabbc98da18baf85931ef20e809ac0652cb7b4e305ba6ccf235",
+        "e46f4bb28234e17e60f117fea496974dfa0b1e71b13f57f25e2bfa5418f36343",
+        "e46f4bb28234e17e60f117fea496974dfa0b1e71b13f57f25e2bfa5418f36343",
+        "89d75ed2542b8537540f985b2d4a571406a7fe122d3fed7714fc498aa4f8851e",
+        "dfdf1dafee11b8cb9b9baa166986d7680343128ca05033cc976a5a80eab73bcd",
+        "60e3aba9db03b6f04704501c0c44450f0d1e65eb22c5ce5b833dd5d2a1d8d499",
+        "34114dec4f758c6d413b5e820aff5559777740c8023d4af50acbf4cd1bb47a3b",
+        "54f346a52950d043c8002bc1603b1deac96b13c14fb31b67e447883a9bdc50a1",
+        "54f346a52950d043c8002bc1603b1deac96b13c14fb31b67e447883a9bdc50a1",
+        "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068",
+        "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068"
+      ]
+    }
+  ],
+  "orc_shield/fresh": [
+    {
+      "file": "assets/characters/orc_shield/anim/fresh_throw.png",
+      "frames": 10,
+      "fps": 24,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "a050a35e43308dd524a474ed40751bf50330598a21b08a6f900d5b2f8c331f01",
+        "7ea3f16c291a8bbbcf8641a0035d5934e61c0afe55aecc3dbfc00492df0f2a18",
+        "ed3718157988262a2d9651659cce539f5aa90d7daa130950e61f6dc8d8f38962",
+        "1ab6fd368f080c669bc0a6fd25faa9df94a7f92918c92e9b92805ddbffb55183",
+        "38fa064201a93f37f5c793f24ba148c0e4411d3cbbad54865d11f4ecbc440e8e",
+        "8d3acd1f067b130484869b0f26d957f42ffdd34ee82efa98e3e2e92fd4ccd575",
+        "f92bf58a36f41b0e165f12b21eb66ac848b8336c33f0943b271a526557ebecc2",
+        "3dabb73a4f6dd022ede59f10f77b2eeb87a2a2850bbf76c5532ec82565866b21",
+        "26de9755381c6023b4f4bf25a4e0c4d01dd4580028cce2621dd294233c20faac",
+        "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/fresh_charge.png",
+      "frames": 10,
+      "fps": 24,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "9e9f904e75c7ce46614a2a03165d95ab6173568cb3686f6d42cca5cb09cdee76",
+        "19c58a7378cc9b5cb5643dc030a0479cda810d89291f8d46f76d81e9d8386b34",
+        "70db6dd85bc4a212e6ab946220da272a8634501dd4f4d9947210639e8e2a7a83",
+        "fcd665e43cdf15e7327015038dcec76411a8014e85b658ab6660e5cc526f8feb",
+        "ff25f1207a389ef78be7ad3140f88ca807eff0e993af741f2e17377826a17b30",
+        "acfe16d7443a163661093728699ba4584942be4f22801f8f07a3412b5a509171",
+        "574c1e2e7b64846ff65935defb4c614672c4ae23a323052660bd8aef236e6847",
+        "dd61efdc8de6f063e9e5689a25af43ba479406118af06c4184e39f64b16d7e40",
+        "e5e62c58baa480ebf6b131b3abbf52e1d36bad983606a65a10116d35e0b8f89e",
+        "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/fresh_dodge.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 12,
+      "frame_sha256": [
+        "9e9f904e75c7ce46614a2a03165d95ab6173568cb3686f6d42cca5cb09cdee76",
+        "69401bbf0a691ad5090fbf4ad094d6989110fe714209b6fc20725910e1c44d50",
+        "823a2276bcfc5581ee0bc68036ef8bc72fe2bef888e54006b75968871f672690",
+        "1b5342ba1f23d276181169a8d284dbe0495ac0b6bd6b1b1e2538052e6d07aaa9",
+        "d25fe897de3b41692771aa083a27328dfecee23378ff8bfa44c075f38435b6f9",
+        "16f925e7c72a7e82140fc3742d3b48488252af00f7f98d5c202673793df02e7a",
+        "9a9601b1a27e6ce723012d1af5e615c6568542558709029e21bf385665db1d77",
+        "6df5c5b88c83641cd78e80ac9fdaa99ac93d73a8acba7918540f107d6942f019",
+        "c39f87d1d382dfd9f0166d3e568d06268df3e7e46945a9c82fb9ab3a095baf26",
+        "9a891d3719f71db06026dbd5593b16c28f0325342a22d1ce6ade88231cae5f92",
+        "86bd5f876142e4b369823c9d4820216386b8625dfb9e7217b5756ee113eabe80",
+        "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/fresh_windup.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "d08c709c512d243aa685de4050aedcfabb52799656a3fe03c7ec2584501ca441",
+        "406a8c9c94dca1c9ed05635141555bf9964ba5834a5f9038ddccdceef1e4594a",
+        "887000497844ae0f7bbc09b73dee0742b8915f2cf9fad18ec3c97914a6528b77",
+        "95ff6269762f50b8f6a6ded74c07d5fe33f6f5019c5904f5dc7f1f2589928da1",
+        "cccb1f7a6c1a09f178d85040b017da46c8b30cead44381c787c164d1a3452cd7",
+        "51cb7073e07c46072023f113db7612ab63537f8e7c5b6e5e1309476d7d517b5d",
+        "14e766ad56e3c8e60c39729fb98c10440325e432f09c056280b57607cda34ff9",
+        "d08c709c512d243aa685de4050aedcfabb52799656a3fe03c7ec2584501ca441"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/fresh_scared.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "252778c70b2776679adbaeb7d33ed81dc38b02a2f255877909482275624db155",
+        "a31787dfdb30dd2428764f3819f8e6b82fe11ee073756e55f800ec480cb13891",
+        "8803984bd022b84d2d3e461fa28a0ffe71d5290655c06acd52db27f63c2c10e3",
+        "033ce9cbe521277dbe7403b90f83f78e812ccfa9be2174845cc8866be997cb03",
+        "a1fd99d9a29263b5eade3446141b5bcb81b740acad7f9c4b6ff3d5cc4dbe07e1",
+        "7f06af7c3a58fd4d96f8c6169e990e5ed4f66575f9a276c338f7ac5b51b0ac0a",
+        "71bc72185cc78fa0d1b7435ca72cfbbf4f928df697c5b9cc2525eb59c03b4ede",
+        "252778c70b2776679adbaeb7d33ed81dc38b02a2f255877909482275624db155"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/fresh_cheer.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 11,
+      "frame_sha256": [
+        "9e9f904e75c7ce46614a2a03165d95ab6173568cb3686f6d42cca5cb09cdee76",
+        "85b42e0339ce23197d74aa4e51d2ede0bb5dc49c69a743e036ba354df16371df",
+        "7b86c422749a06426e7d348b236306db13897ecaa57bec6705d67ce5f60b65d3",
+        "d92b3a511506cf83316adad3cc3ff90e0c5bc1df01c762732e41cec616b52376",
+        "9e0379bc307e5e740ef29e4418cf4f5fd8c6464f28bf1fb71906b843bb9eeb66",
+        "ec4055bbe98f2b08a8ba539a9922adb20b84b6dae2d7950c4c41dbd7c3e26f56",
+        "9e0379bc307e5e740ef29e4418cf4f5fd8c6464f28bf1fb71906b843bb9eeb66",
+        "0d13fa1e591c5c30ce7106135095fff06fb8c141ffa06ada3b0928db59bc9473",
+        "3a575a000f59cb0ae5d458aada43c390843394f012e39355433e2c8bd42b2506",
+        "b6cfd4876f9f490e7534f916853bd770120a13803680b4b028c7a3b34f924d33",
+        "b54f8cf9058f18d65fc42f4364f7f2b14327b0962c94c3fc0c50c933b793915b",
+        "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/fresh_bald.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "6440f1b3f6aaf1afbacbb9dc64a3284040d7e3321ac42982cbe826243a959a87",
+        "58f5c4ebebf4920df38b612c08a3c1bd0df346700ce3b621431dc96ede47f418",
+        "dbc42172998dfa278090ef21967fc31de105a7b0ea72168fca7f2445e0efe2c9",
+        "a75e401c220a099b568e26013538736675ec247079a01426298f6e5a12106d75",
+        "ea45a24ef6166090b5117208225231a37c8a54d15acf3f2af3eb678bd4dd600b",
+        "0baf66a3578b72c32a864f74b92d9e44d6ecd3fc9a86199b80f0381ce6d05877",
+        "089f3ce769a2706b2d6ab2d97f25ebf8213bf31efc4d66c2b245ecc9d9e056f4",
+        "6440f1b3f6aaf1afbacbb9dc64a3284040d7e3321ac42982cbe826243a959a87"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/fresh_victory.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 11,
+      "frame_sha256": [
+        "fe173b2151de82fb0ec38b0f0c1bfd08938735efb0430c82cf55da34d79855d7",
+        "bcdd707e6aed763ae3c42170188520c0eb7b0755b26200093f543941188de457",
+        "6384340831a66487f9068cc7b8ab91894bee45ae072c35b1a5e082524c79ebb8",
+        "2ab328d3a57db22ae51142b74dfdfff74397a9230ffa8db4789be5d81d339498",
+        "2c9022d1326e8fbcfdaec99f8ff78c170f67af0d814f2cb0839ef37fc8feea46",
+        "67e8e832b15006e0018fdf3204041efd320f8ef19660e616ff3b96cab4b086d3",
+        "00f02f84156595cc4aee4272ab0ab5f78b866c1c0ed2b4c01678981ba7d59afa",
+        "6229bcd6fe2bfb367f921cd8f940b7c4a8108bfe974331aa78539f09859592ca",
+        "d766642d9e4590e434a1acbab57b64b9964640cf1928a501d0a2b1fc92523823",
+        "1905190c95bb518f9a05f41a6b058489cbfa9d6f925c1792bbb997d5060d4134",
+        "a20e67ea094641f59b0b07245f93060307cdb68762512fb3095fda753d918c42",
+        "fe173b2151de82fb0ec38b0f0c1bfd08938735efb0430c82cf55da34d79855d7"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/fresh_defeat.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd",
+        "3f12f2235294bd5ddf4a0a2df9a9aebcd662ec2616aa1833e7e3ae1cb4322c35",
+        "146db4c31886dcb8c49195e0f3a044827200e4eb4bd7c0ef97974a5ab1c646b9",
+        "25da8222c50817b7e9337f8368c36082a1d91a8172dc6c2d5c3edcb4501c819a",
+        "38efd5a9df3c93670c8f3349ba5613d694e8812f725a467c4cb16a408de7bb50",
+        "11c4665e3c4609f0172c71ce28918b86153ec86a51ce1c11b4dc47c54554ff52",
+        "b31a12de3edfb42c37be3b9f65abfeb79481d233f098c4fce821d02bcd512dec",
+        "950b7759281fea0b659a239a810dc517fd362093530be4d51f546533714e2240",
+        "52ca9c40f56a47c1e832ad292244c234c039963860a69b836784f9896096d8ef",
+        "869d816a9624327902020811c48df1521b3304fd0feae61a7c9def237eeddaa0",
+        "869d816a9624327902020811c48df1521b3304fd0feae61a7c9def237eeddaa0",
+        "869d816a9624327902020811c48df1521b3304fd0feae61a7c9def237eeddaa0"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/fresh_attack.png",
+      "frames": 12,
+      "fps": 24,
+      "unique_drawings": 12,
+      "frame_sha256": [
+        "9e9f904e75c7ce46614a2a03165d95ab6173568cb3686f6d42cca5cb09cdee76",
+        "95e1d1d0b65895bf2d760f0c44ca2492d896b0b98ef6bbf96582f9ca97bfb6dc",
+        "cd8cc184ec8f56c2bb88b65b4bdcd2726dbefec16fd02ba7d49bc03b7f0ba017",
+        "6d5e271224e2b0e17e4fda2364db9d0d71dbd5eec624003e897be8f77aa4385e",
+        "44cfdda801d3df0c5a372791e404ead8c7f63cac7214ca0c99156bf4780ff47c",
+        "6a515628f7778d1ceb0576cdbec05a26eda4de191cee53ea7d2fc753fdcb526e",
+        "fac30b139c22f0e2d94d06ab7e0b33eed98c3ea4b0e1bdf4bfaeccb86b89b292",
+        "13a0e235bfaaada05eff92f61369d291f861f7e72999f28f6a745f69a20938e9",
+        "dc4d1410ed7b8cbae2bf2937fb7938fbbfe3a4d5b51a416233940f7fc42692b9",
+        "cd1c0879bdc2f018af4a0a78263ec0aec1556c6215bbe7218839b825c59be7d1",
+        "9119ccc253d230285c6ce141aab6e4a888824a3712bb584870f2d3d14e50e2b3",
+        "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/fresh_idle.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 3,
+      "frame_sha256": [
+        "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd",
+        "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd",
+        "571a5f2c8336cced44bd5a7463d0d67e6e0c7de44099d397a99e0066027ab74b",
+        "571a5f2c8336cced44bd5a7463d0d67e6e0c7de44099d397a99e0066027ab74b",
+        "615686e9d14bcf812cfe9f6948a97b8a4b5f318f8fd624358ff93485678d33e0",
+        "615686e9d14bcf812cfe9f6948a97b8a4b5f318f8fd624358ff93485678d33e0",
+        "571a5f2c8336cced44bd5a7463d0d67e6e0c7de44099d397a99e0066027ab74b",
+        "571a5f2c8336cced44bd5a7463d0d67e6e0c7de44099d397a99e0066027ab74b"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/fresh_hurt.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 5,
+      "frame_sha256": [
+        "71b0bc9c504b028dd47f4a6dd50bfd4c0d8ced04c5176364a384243e1982c71d",
+        "71b0bc9c504b028dd47f4a6dd50bfd4c0d8ced04c5176364a384243e1982c71d",
+        "83901b96213a44e8870e5df4d0d1fd7aa0799bb42c42f1971b82b9aa5ef0b505",
+        "056e57e96490fd3a34224902cafcab37a90ef10aa5436c12ae5c8c2af0f220e0",
+        "056e57e96490fd3a34224902cafcab37a90ef10aa5436c12ae5c8c2af0f220e0",
+        "f5c6a26c240d526a2cd1da420e88ed84c6118cf360054c0b110e000f7d41d9c5",
+        "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd",
+        "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd"
+      ]
+    }
+  ],
+  "orc_shield/bruised": [
+    {
+      "file": "assets/characters/orc_shield/anim/bruised_throw.png",
+      "frames": 10,
+      "fps": 24,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "824bb6282284e3763ce8fdeb30d4bafdea8617844205101faa18966a0ba6eee2",
+        "5ef6de39881d3d81a2ee5298ab1abb368bfe8820e5ea0d8b9beee9357a6efc60",
+        "696648e078647f98234d1e94cac0caa05c92a44515eb8443cdaf0c4de95d82c1",
+        "29d21ca2d1885d62fa1c3cfb49f1469605b9ecb1eaf8b1a6a6b875c61bec886f",
+        "1c95d8216404982a350617d09ffad6419acc0be58189553d062e25a05bbc924f",
+        "4e2632f575ee6ae391c48d555427aef259bd48dea1ebe5c37685178d08f2eca1",
+        "830f38bbf627869b53213c87d5b8c88b566ffccbd5039d2efb80579dd9c44152",
+        "d21315617bf1a7b84d5aa2d60c175fc76467a206dda154ee118242d23f248124",
+        "af6862f9c2a846b17a3d60fa4e4d1db27abd9599e6393e1224996ee78a35a602",
+        "2384b88298f22ca105f58d373a7502b7a3cc23c7ee3bd95b4bf69bb1501efb95"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/bruised_charge.png",
+      "frames": 10,
+      "fps": 24,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "8afbfe1d973d70c874db9f907a59fff6bd2d646c98c977ece00f32a6a45f051b",
+        "42afc2687c9b97fa83c6fe374f8f7115906c640dedc52ef83d21d96d7334e7db",
+        "61f8a9a0824da9f87929b6b9895de57359b11d508dceca4fad29bc4ef944b0c0",
+        "52ac1369b03e8247cd7979b1236dd3625ecde79049fdc86039ea9ef20b4272ed",
+        "d5323f945214bebc153e50c577dec483891be7f6abbde33e2ac1e8d4ffe0451a",
+        "c6a39f7f684bf43ae16af29acb8cd7615c31d9ae74a627eaf39c56375b0c2526",
+        "ba546098df8c2533166e297b17b7c7202aeac60ab67e6c092089e236c2af5ce8",
+        "a8932854f60fe1339b42c81dbd0a4288265375ad5bc65654c20c7ef3d447868b",
+        "19fca9edebb945f73e4d270bca673ddde36d9b0666243c4faff08930cfb83ae1",
+        "2384b88298f22ca105f58d373a7502b7a3cc23c7ee3bd95b4bf69bb1501efb95"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/bruised_dodge.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 12,
+      "frame_sha256": [
+        "8afbfe1d973d70c874db9f907a59fff6bd2d646c98c977ece00f32a6a45f051b",
+        "c5b5bd59f14ec954db9413a509bb15c29f5f5b7ebc5c3dd8e2ca0d3efa043798",
+        "e8a2aa05b94430b40d0665a0f0a0c1a1bb294ce6d482e4dfa24ce89e50fab656",
+        "bbc3b1a0cb767d7fc4f949658a57b33cff45c258dc3caa10200a0390548b6fb5",
+        "361225163ccc525c2b93d5857bb8efffcbdcc86d5e5e2adf9342e1e24cb2e056",
+        "fc7bb0c90ba4f63cd86dfbb2cf5151321a84055c9a90d4779788648fe9a0f5af",
+        "cc4f7e34b469f99d26fd375c4fe3835d8111802c5c91f725ff6ae75b6a30684d",
+        "8aa00e1e5432dd26a62dc31dbbaa048dfadf08dc2e48a5d4594d802d4b3295a9",
+        "76a9f55a8d22f339c536292f3adf045e3b7870fc4ee7db13ae6eb30bbad3d5b7",
+        "0a2435a694de1ff700868c366f1bc6f4a81f89c57d1f878753edbe090c0df187",
+        "28f8f242603b010edeb8e4fa49a43087b416433da29fcc753122db3a7fedec1b",
+        "2384b88298f22ca105f58d373a7502b7a3cc23c7ee3bd95b4bf69bb1501efb95"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/bruised_windup.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "43a566e3b9c87c3503b673671edb23f5e1a5612f48be58452b6c46ab910fc6d2",
+        "e4f5f3e0c6ed4a156febeed34a7e06b1e645537b1e954969b9aeafb7d2b9758b",
+        "1f090c9691265b833c28364f943a80a2cadeadd757e08391e842ca6e531f6989",
+        "29a186f8ec6756022b5bedcfce5855259ead12d00c590a19fcaede5a708eae7b",
+        "d4d58e75648c28a55be9db2b5ab8ab51d8b2563f6d880d69eaeef93c9ee6b711",
+        "f397b2a870876ea7fee9012acf1a4b522b72526ffd2228d71c4be405d7413b82",
+        "875287a227edd81a7f02546fe39505a7f0fe27b97c58fd51527e60ddabf34cb4",
+        "43a566e3b9c87c3503b673671edb23f5e1a5612f48be58452b6c46ab910fc6d2"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/bruised_scared.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "bb13e57842141b5abec70f234cabdd9f408e6426e8c588c804b7edcb319823a4",
+        "6b970278bb132d7c044e654071a7af5bd489301bfa86d3afd5ee380ede307986",
+        "5c5dce1e483079c5902e187e9c89f6b3f37f4b3c4189c0d7d12246f061d8d09d",
+        "a7782342654fa8cd1f2dd96be176978ba1117544a195090130328a74ca95d860",
+        "1f6f2bb5ebe91f3408abc33618d1cd6c1d7f5fddef88f44cf6e34b535b773b3f",
+        "fd1b03ef92c0719bc7db5194f38f4fefbd946a9ced44840749821b2da6072e1f",
+        "6e6ba20cb12a55e4c4efa2e4803e4e6b3afdaaf220207ea92597e14a5489b6bc",
+        "bb13e57842141b5abec70f234cabdd9f408e6426e8c588c804b7edcb319823a4"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/bruised_cheer.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 11,
+      "frame_sha256": [
+        "8afbfe1d973d70c874db9f907a59fff6bd2d646c98c977ece00f32a6a45f051b",
+        "debae125b5bca765a021fbb0b4a2914217938d97eb4207a6856f6804245ce368",
+        "4afeb85852916f7d45826bd1a191447fc879c84ada6b04ae6e75c9e56ea56c21",
+        "e0303e1b7b6dd37bdcc56d73eea4e49d6d26b62eb9fa8b067d01fb8137efc0a6",
+        "05b7fdd5ee1f1f92d783efa71f859669a9c0f69a1df579a01fb23edb72a7fcb4",
+        "28ebea84e71c1b5a44cb42deda7f5e60a276a9f40a27f8ba1ec8df37a83e42f9",
+        "05b7fdd5ee1f1f92d783efa71f859669a9c0f69a1df579a01fb23edb72a7fcb4",
+        "0b4f39ab3542c1d28ad9a0e09cf472a4c3ec35138471339d3068253d03ecb601",
+        "1312056e279ef09ff8e787a249767b3ff03a8812993faae087271427c94b1452",
+        "908fbbb79e82e169818d9ab84285c0b689d096ac5ce80f95bb07cd524d80c532",
+        "6e9c9000280394ff9e5a7e888e79330380bac9970bb05d3aabd2d5f26deb668b",
+        "2384b88298f22ca105f58d373a7502b7a3cc23c7ee3bd95b4bf69bb1501efb95"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/bruised_bald.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "f36c63c7dafd98f2cc590b2668aea408c611dd8870072bb594b79a9fd6cba33a",
+        "4923542b8614acdd3d790209994a416a0c6db0afce9d5735ed0d0fe265c3e0a6",
+        "430f75d249571c00672e83489e22265d979a79cd88ad725d41a982bce7724753",
+        "d2c523c339b75a83c436e6ebb1b08ee58dabeae52d0fb55526c7d06280445c0c",
+        "19d52e886e27daac51e906b171d4d94e2821cad9463dfa09cfaf73c7bfb0c56f",
+        "1354d0d281e07c678423ab3e25008efde049ebd6eaecf0e31c8ca330b70022b6",
+        "d2083ebe3eff912f8e3e7fe17c7e450530a26ba2261704b8b810591883f21a2a",
+        "f36c63c7dafd98f2cc590b2668aea408c611dd8870072bb594b79a9fd6cba33a"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/bruised_victory.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 11,
+      "frame_sha256": [
+        "7949ff0d0e135b5fad6b290be4f01dd4ccad53d1a6ae8e91f204445ab028bce8",
+        "e7cb39bfbdde9f1f875b7f3098a06b2d1b49871eb814d85ca7a71edd9d75efb3",
+        "b48588355077f121ac7ac921fef46224686d87d4dc13709cec8b89f1a838f648",
+        "ef10cb48fb1fa6e7e979ebfbf01a568788c3e2065d0b0e70f53faae09fae9def",
+        "50a8fa3c1ec7e5d9fb8da28d8282bd2276dfbc9cfb114cf0a011785ea8e28a99",
+        "0e38e0378995727083e944f51a9afb74b27fb47856e93ccbd4bce9227389aacb",
+        "8c20af88ecea0cebad7d69e8828135ec4fc5e1089fae2b4b9512e99061a75bf6",
+        "36e9e3c669cf9eccf6b69fc0876f38a2af278df29b8882469d63a33890b456ff",
+        "0e0789b0c581be80ae665f3bf5f0e8833fd59bf3d540bb68dbdd6e5c7ebd0298",
+        "b79b5edf12982a2890af0ec679f4ee3be0348ff33bfcbd5d3f508efa14dfd9d8",
+        "1b095140d96c058c1c76c6a678a73991db51d9e71dfb1c7ebaee0b47dff4e864",
+        "7949ff0d0e135b5fad6b290be4f01dd4ccad53d1a6ae8e91f204445ab028bce8"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/bruised_defeat.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "2384b88298f22ca105f58d373a7502b7a3cc23c7ee3bd95b4bf69bb1501efb95",
+        "01dc279e190a8298471b6e7967c20c671fa2717fd4a7958462f17743e88210cf",
+        "247cfbb13eb8f42cfe8fef0729e0361d13558ff3252cc1f6e5ff413569cff524",
+        "f3d5bc6f84292c17711e9cad7df2db54c9e4b5ad466e28edfe5b4708bfb8989e",
+        "36fcb96a0144d04d4fce9be0f1dead1396c4aa070f9e72092e9bc093cd99d665",
+        "1ee9e70afd9583d6339353d6082329fa7dafd28c9180d664be0662d8fe3757c1",
+        "0a3ce0d215bd1ba491bc244681e5923100989d95388de69822198313ac966e24",
+        "2e80fc728854b7f3c891551c8a34455dfd970b90372f786f9d978be630837c64",
+        "2b95ad7c96cb332307918971245ebfeb7b76597fd14d4feae3bae01ebfcccaa7",
+        "db137941a49e8083a11c86dd636ea7c37ad01bd49aa72459f29096393425513b",
+        "db137941a49e8083a11c86dd636ea7c37ad01bd49aa72459f29096393425513b",
+        "db137941a49e8083a11c86dd636ea7c37ad01bd49aa72459f29096393425513b"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/bruised_attack.png",
+      "frames": 12,
+      "fps": 24,
+      "unique_drawings": 12,
+      "frame_sha256": [
+        "8afbfe1d973d70c874db9f907a59fff6bd2d646c98c977ece00f32a6a45f051b",
+        "c80411806a0dbfd5915df9255f05e1ee38e07af2d233e35ccfd1311ce3fc30c3",
+        "2c56e768e1d1928e43507d98722fe4de94613fa9f0c1d3c11cb24b1e3edb19bb",
+        "b3bfab05b91cad2b8c518074dc383e0e2b87ea8e4037f506b9b626496d293ade",
+        "3678e1092456471106eafd2083be8c3770997e767055f1b2226348b53932e299",
+        "395014b5b1c636be9a6ae296349e8c53fe289a32e8cd19b60761902b8a2cb75a",
+        "c35ec5e44827df2115a453d5826ca942de0e9d306d520bfaa851a18b5e1e3966",
+        "6b4ec7f1c0cad65ab39fd9a82fc4194b31a4d2479c61fca2f855ebd06b0e1f8a",
+        "bd80036448d516888743223724e48acbdfb8640ce74fd7914575f63ec2908de8",
+        "a4e146d74e54a090c236b5034db6c1bfe34e58e8d6f56a820fd2850f2e7c94f1",
+        "d00abc49f430423d88fa6086dd03d5f22c0149a0c16c7cde90b82d377a8f1cce",
+        "2384b88298f22ca105f58d373a7502b7a3cc23c7ee3bd95b4bf69bb1501efb95"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/bruised_idle.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 3,
+      "frame_sha256": [
+        "2384b88298f22ca105f58d373a7502b7a3cc23c7ee3bd95b4bf69bb1501efb95",
+        "2384b88298f22ca105f58d373a7502b7a3cc23c7ee3bd95b4bf69bb1501efb95",
+        "a8b180a609d8f96c6362524c5d3081dc240a2325e60e3820add290faddb803a8",
+        "a8b180a609d8f96c6362524c5d3081dc240a2325e60e3820add290faddb803a8",
+        "530f769ff78c5750f906af540eb8a4bb15baebfe6da9ba62b51759cab8486611",
+        "530f769ff78c5750f906af540eb8a4bb15baebfe6da9ba62b51759cab8486611",
+        "a8b180a609d8f96c6362524c5d3081dc240a2325e60e3820add290faddb803a8",
+        "a8b180a609d8f96c6362524c5d3081dc240a2325e60e3820add290faddb803a8"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/bruised_hurt.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 5,
+      "frame_sha256": [
+        "dd5c964f41c65e91102ef582f4a74457e2384bfefe03eae3149e893f175fa766",
+        "dd5c964f41c65e91102ef582f4a74457e2384bfefe03eae3149e893f175fa766",
+        "416f016516babb6cd32bb7eca7e4e7beef998b7c8e6acb6a78966bfbb64dbc63",
+        "f037a2d5a047c1e620ea68934b4bb94548ec5e267ced4dc3d1e17265d1512fbf",
+        "f037a2d5a047c1e620ea68934b4bb94548ec5e267ced4dc3d1e17265d1512fbf",
+        "186e394b3db7d3b35038d21efc86f14788d756c9c8f27118138892f6a5d9de16",
+        "2384b88298f22ca105f58d373a7502b7a3cc23c7ee3bd95b4bf69bb1501efb95",
+        "2384b88298f22ca105f58d373a7502b7a3cc23c7ee3bd95b4bf69bb1501efb95"
+      ]
+    }
+  ],
+  "orc_shield/battered": [
+    {
+      "file": "assets/characters/orc_shield/anim/battered_throw.png",
+      "frames": 10,
+      "fps": 24,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "a74263470192f44b4901266b7a1dab3f88c0792ce93b7b5d541574d9cb5c0e32",
+        "82cb4983ee699d15a869c27c681632f1760e2af8d5a1e53b86b5898e32a29770",
+        "40a0f171037678df1534494d29ad1dce37c30fffcfd4667352a6ce833b1b7b63",
+        "25b37f87825af30b62f59ebc0fb437f74d87740d7745c864ee4c3bf6112ae01c",
+        "efed5d02765e977b3b85a841df892282417150747819c1710da9ea7b33e9cd13",
+        "f657b0f6f450855b94e32dd86486a01da18c50fb2fda2286a3edabe85157a831",
+        "5726a811a90a017b35fb80a784569ac55abf067407f36aeb121379833ec3042e",
+        "6c6ff7db177c015743efa24d0a0a74219498f7caf1782d63015129d45bc9c110",
+        "8696e4c24d81ab79a62268a1b51f56b8cd0b9758969c6d9d399a3cebf254a893",
+        "b01527601fde1d34bdd149feaa0b8770eb063d6f197573d36d80708f2a6fe29a"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/battered_charge.png",
+      "frames": 10,
+      "fps": 24,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "4907fe177839b914afa6a0821638d368894b95269ef0bda83386be609fe7096b",
+        "20b6fa0f17302210d41411fd89e297a0623392d46b3890b24e53d0495b1bb2b0",
+        "24716426a37f3bd25cb9008742f5898e8b6d75e7f1254e8ce0cdffa0b7ee4552",
+        "e92a0c34c6d98e58eb45aca05af756da4347f73fb27ce59ccb6e303fcf5925fe",
+        "b3073ef72b18e6259d3a257dfa25ebaf3a8109c37f7eb22bf32fa749385d8b04",
+        "e2ecb0be32b1180d5c76c30da043b4718bec5a424bde1f48123ee60565063412",
+        "a837c554735e3fd4db7b74ee7f58eba0c61adc0cd5b00a9874e4d383e0e6b3be",
+        "23e73723b38395c71a20567df38fe47307c080d2fe05586431ead7e406ca3f47",
+        "321035e66b70bcadee78ddaf55fd447deb7a1589df065b4e1241f3d2c3e5b99d",
+        "b01527601fde1d34bdd149feaa0b8770eb063d6f197573d36d80708f2a6fe29a"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/battered_dodge.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 12,
+      "frame_sha256": [
+        "4907fe177839b914afa6a0821638d368894b95269ef0bda83386be609fe7096b",
+        "aadd08594fd2599a731727a46c8f63a11a9c8992a5399e795d8ed8ec628d07cd",
+        "81e19b282598dae5f9e98223e7ef839cd1fa1bee4c49689b8b1556ef2601c6e9",
+        "e8f53043bb9913214a0b0cc5dd57d765e31237527a979ac16cfe3a3f2c03c554",
+        "bbb40fc2039ccb7a0bfb61ccd26006e50be9bb4ae8ab7e08e812ec12460da5d9",
+        "84729313e02f213ea1f82bb341d15e0e64a11db0e220a2db1a97cde339058c8b",
+        "0c1dd276d734bec77b2c95f940c17a5c4bf8e9c40cffaa6510e547a044a6fdba",
+        "60e9275e125511bd7229c4cc0b56b58afee69b9acec97915b1e42aa8460ab53e",
+        "08438670bfa71f1100751dcc9b61f9c50ebac22667570995134ca1b73e20b1c5",
+        "e05233b9d8e1507ca3601c957f8dad5b196b715550a35baefc870da2e2d43ee2",
+        "bb7516bdc1bf84b889b018650d28077376e03d61f1415a6dd10736a2ab9954e2",
+        "b01527601fde1d34bdd149feaa0b8770eb063d6f197573d36d80708f2a6fe29a"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/battered_windup.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "781525e14789d6a30be6df0d7855ad373bd00dbeff3e1d9134a91dd05a115d68",
+        "49709e3dc0151ee24b1fc03e2358abd28bff330cb7fa390174b814cb2544c4eb",
+        "8c3a0c1b96cb5ebf84406caf275cac2f0cc74ccb0a4e0971aed33a3ddcf3f827",
+        "e83a3d2d07ee406097ebc867f44ff0890c6cd83e204c49dff3378b19421f3feb",
+        "79c742e6e5228684b6cfe7767e0e27ed2d66301b99a63a222d424efe65904478",
+        "b637fc48773bbef04decfe76eb09be12240b76d13c4765bac510bdca5fe25a15",
+        "2d8a8e5f814e16613e3e0b4a33f6e37ccf139fdbc0af824554a7249ad62881bd",
+        "781525e14789d6a30be6df0d7855ad373bd00dbeff3e1d9134a91dd05a115d68"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/battered_scared.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "f9f44565e8348337885d1ff39723aa186f1e8d60dd3b02aa01a5dc7093a786ef",
+        "24fd6319247720f964266b15ce2a3dd66455f71a923ed45f098ad51151ac25c7",
+        "0797e3ad3f1bca8b3722ec7e8f3ccf4b6429ab38f375c8874d0b21112d48b2ba",
+        "de992558db7bcdc4164c4540fa6390a764f2361abe0744bc24c2609d90a7635b",
+        "0ab33658104c7a3c5b05d1143ba547e63cebaed33a07246dcb9c7acd8e354c79",
+        "8a040b6770936fb9ee17916ae7e08bb2648692a29d479c9b4282851631cf67d7",
+        "e9a350cbe0f413843b875f184ddac5c31cee80193752cdc9c3b87309cfc2c0a4",
+        "f9f44565e8348337885d1ff39723aa186f1e8d60dd3b02aa01a5dc7093a786ef"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/battered_cheer.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 11,
+      "frame_sha256": [
+        "4907fe177839b914afa6a0821638d368894b95269ef0bda83386be609fe7096b",
+        "8be51d300f5949af1ef0f736ef18564e05e4fa297ec65b086c8b8a9b98c5de44",
+        "3189dbe3017487f4c00e237ad03632cd2be8b6ab6670c30fd4b5342450ee1cc3",
+        "05a46e3130f38c0c9522a61c077ac09748fc019d83d2402db70a27a343167f25",
+        "7756a0c285de87127cfb857c4cb853d46effc40c615aedaa0bc1d7dc998330b3",
+        "b7c57a981979408d5cda19ab2cbdb0cf98a3efd31fa834d40f4816c80020fd94",
+        "7756a0c285de87127cfb857c4cb853d46effc40c615aedaa0bc1d7dc998330b3",
+        "2971c141a1ce4b5548afb6dcce39a9fe97b616e14254371025cfab8a3d096b27",
+        "fc8b346eb1db49f687c0f45549c168f40942d3f92260db036a2a2a8d74bf5457",
+        "9634333a8eaaaf3db7c0f7e59b6fe71aa64985fb647c7ce181c6bb74d723b5da",
+        "9ac00a2fa720e2db5faf9fa7e5c9e3bae621c64f05bc19270bcc008cc14a03fd",
+        "b01527601fde1d34bdd149feaa0b8770eb063d6f197573d36d80708f2a6fe29a"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/battered_bald.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "2ef1858367760236e3704ca4434b4790d6008dc1958d517227c11b5a6d0304de",
+        "ca7fbb44aa6c38a65588f86407d7687e7db0f90e0dedf632b67c5876f8253ebf",
+        "1ca923ad76fdcd9fb85f81e8ea15c73a8a7bb5e7951ce8a0f8ed15c9489ab798",
+        "3cc49b5967399a4e6de6afc86f3a8cf53db19989054a6e44304513bc1cc80e38",
+        "ec49e15ba66b0c15abeade136459306e26fa4f29b1b718892431d6c39eb214de",
+        "cd8dfca446ebc0aea0012d976d1a8263dc03380af2f1917ffe855a41ba2d22f5",
+        "c2831fbb8065348c3f6b3e3622337c2175293c4fd6b405db970a74d386782982",
+        "2ef1858367760236e3704ca4434b4790d6008dc1958d517227c11b5a6d0304de"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/battered_victory.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 11,
+      "frame_sha256": [
+        "087203a8a61ee6d48d9f9c79bae3b10ae3ce5421d0e1476e9aef4ff652827e0a",
+        "01b58caacdc5e3971279f9d5719f5e1d242eceaf5a1c80ebb6343caab637c6e9",
+        "5367f8393c852654454fc256cf1a50e5920bb47d9e28582c7709f94bbd1ccec4",
+        "5eab4dc2981045a77e1db01154c87188f9ff194e372732e7ffe0a03c508700a3",
+        "c3670557a59fed59df224edebb338e25baa2f610c04f8b64364bb9e668501b33",
+        "5421db03c512569d5ccaca9fad245ab30b5af0dfb5dda1227607bb75bdfa8c75",
+        "31af314b7369facca6d8bbe4e7094b36a8bccbf4a97f8a17ab8fd461e86fe53a",
+        "4ea1426a8efeebbef2020c646f84dfd6abdcfd4431628c4c2ced02f1e7089f09",
+        "a8eb7a72722b5b3813ec8c25ded9f7dc4541651e587c18a3c8ae51a03c9a4e53",
+        "71b7e6ccbfdb194ce3abec7fac23195dff73fdfac8be18d6fc280a260747d00e",
+        "b666a4b2c984783b56b615811cbd83b618d297b8b5e93c842b64582371ca2f69",
+        "087203a8a61ee6d48d9f9c79bae3b10ae3ce5421d0e1476e9aef4ff652827e0a"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/battered_defeat.png",
+      "frames": 12,
+      "fps": 12,
+      "unique_drawings": 10,
+      "frame_sha256": [
+        "b01527601fde1d34bdd149feaa0b8770eb063d6f197573d36d80708f2a6fe29a",
+        "70baa2925a780b65c2e364006553b81ee1ccd43f7c411b5fde1f5a39159e20df",
+        "f23c6b2412e644242eb09f647932b7b96dab6e1c9a19939a7bd7282df7541dc3",
+        "66245dcd38092b06ab6d6e3cfdb2f2a9a7ad8fc7037009ce869709da1c0e3ca2",
+        "08d2bc814e48c9899c59c0a81d608521579723476b632ee0a2a76fd79e867407",
+        "9a9dc590fd257f10ae901435c3186f43dcb26c1f64e6931d2afff0cce4b15a8f",
+        "0c2304cd5fcf085d0202cd77ca45738bafd8d4c504f0b14b6d575bcc346a226c",
+        "dc59cdbc12c1e68c81e449a4dec101272a41a0fed2bc65465bb8ef659ea98d3f",
+        "963dbcb8f2b2386c9e82a4a41eafb9074c6dff8ec75f6b36c3e423f21cadcefb",
+        "89b0e8962bdfdc3d0f6c0b5c6a46d9276af1456301e6ab4e4e09f62da84948a2",
+        "89b0e8962bdfdc3d0f6c0b5c6a46d9276af1456301e6ab4e4e09f62da84948a2",
+        "89b0e8962bdfdc3d0f6c0b5c6a46d9276af1456301e6ab4e4e09f62da84948a2"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/battered_attack.png",
+      "frames": 12,
+      "fps": 24,
+      "unique_drawings": 12,
+      "frame_sha256": [
+        "4907fe177839b914afa6a0821638d368894b95269ef0bda83386be609fe7096b",
+        "b821e190440c0aa5a791edad6cd9ee4260369fa57adb501084aff488a09dbd64",
+        "c31a083612be81fd6fed4020092f2ecf1a7107af96b08def9e0da74fe6b44f68",
+        "0722cf0d346ec7a6b41a993264e44170efd0c412199904613c70fb043973532e",
+        "36cff78c4cbf2eeb38c8f687ed4b2b9faec80bfdcd71723bb88e4e7e91a11fb2",
+        "38e33cf6c6c3f70f457db3bddf1ead9bc07a317dc2afaa59b5ac8c2f5370a501",
+        "6b33232c1d352cfda8c9b895bb49715eb97c5a6282da8fc5c9e208830948d1a0",
+        "b7897a044880c9912bd3ba9fadbd3b90cadee4accf0e2cf1bb1c10564fd2bae6",
+        "57fe790ccb28de78f9fb5572419890766a9259a43700a83e8fae2ed36c839085",
+        "7ecf6d343f7564926b670be45474cbef9b6963fed619255cc2537cff905ba1bd",
+        "0e1c9a22d5fb69183052c853f76adbc6568bb843b141e3abbfb7667180cf1f45",
+        "b01527601fde1d34bdd149feaa0b8770eb063d6f197573d36d80708f2a6fe29a"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/battered_idle.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 3,
+      "frame_sha256": [
+        "b01527601fde1d34bdd149feaa0b8770eb063d6f197573d36d80708f2a6fe29a",
+        "b01527601fde1d34bdd149feaa0b8770eb063d6f197573d36d80708f2a6fe29a",
+        "cd42374b08482a4850c71faaf4af7249cc9b1a6cec46b3f97826e0afa3beebf9",
+        "cd42374b08482a4850c71faaf4af7249cc9b1a6cec46b3f97826e0afa3beebf9",
+        "07be118bf9465e9f35707d89233812d754e8adac673c28207d99ff8772ceda6d",
+        "07be118bf9465e9f35707d89233812d754e8adac673c28207d99ff8772ceda6d",
+        "cd42374b08482a4850c71faaf4af7249cc9b1a6cec46b3f97826e0afa3beebf9",
+        "cd42374b08482a4850c71faaf4af7249cc9b1a6cec46b3f97826e0afa3beebf9"
+      ]
+    },
+    {
+      "file": "assets/characters/orc_shield/anim/battered_hurt.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 5,
+      "frame_sha256": [
+        "c5c93f36d3cd81e9dbb0a08eb1b4f0225e9d83d8387b8fd2c0967378f3d9b724",
+        "c5c93f36d3cd81e9dbb0a08eb1b4f0225e9d83d8387b8fd2c0967378f3d9b724",
+        "93c577cbb97d2b159d662443c354a781db0e609f63c136d074ad3e21778c20f6",
+        "9fef987bc12ff8aa18a5fc7747e392077bf8143f633559fab643a500cb25955b",
+        "9fef987bc12ff8aa18a5fc7747e392077bf8143f633559fab643a500cb25955b",
+        "f40c781738130a51a9110218885c205f44bf1a37e1e550488e8be192dc0e8261",
+        "b01527601fde1d34bdd149feaa0b8770eb063d6f197573d36d80708f2a6fe29a",
+        "b01527601fde1d34bdd149feaa0b8770eb063d6f197573d36d80708f2a6fe29a"
+      ]
+    }
+  ],
+  "scarecrow/fresh": [
+    {
+      "file": "assets/characters/scarecrow/anim/fresh_idle.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "59920b2725e14a45b1c3d8875b84cdde37f0fed602dc55a84fdb3ec9ac746550",
+        "4cb89c2a28708b84aea1852b9a8cddf992692642d43b8af8c1423a6097be72ea",
+        "419cc1b4db56ef7ef0bfa16c53ed74b82a3c38d35c2f86e030c82d716f4f0baf",
+        "9312ef23ff76cdce4107b967782b4dd7cfc70c9e3232e29945f28d500f7a26ad",
+        "b910f9b0db9e4cdddd8ae2c7c9e8bc17656abc8337a6c711bc0ef29300b4825c",
+        "fe3eaa8374545cb5788100bd1a5568958af395a2fb8614507911b8c2cdff53c5",
+        "8a5f271b9dbb2ecfdabe4c9bcce15bd9a91e667e165b8a09aeba05342070e72c",
+        "59920b2725e14a45b1c3d8875b84cdde37f0fed602dc55a84fdb3ec9ac746550"
+      ]
+    },
+    {
+      "file": "assets/characters/scarecrow/anim/fresh_hurt.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "25e5284940616a5d5d42d5f39577640b1f38f7809e891ceff1a37ddb1b45a8a9",
+        "4ce64e181bc41819c58aacee69ba43494280c680c77f07da1e210bc9d2f9f273",
+        "85177ab9ef167e56ba69d6ec29b54065ef3c46bd687990206e09b2eb0347a1e9",
+        "cdc30f616d6f244cb2dd24311c4b7f3436e2d6a28d6ffb05b406dcf8937748f3",
+        "387ac14efbf47645cf742e54b21c1a71e2135ec720c2dd090958df81ce2faf58",
+        "29d649a291dcc90ab4f02769d1f45d8f87c5c7e3592e528c0ea96d939d25075a",
+        "91334d8cc992cc930e701ff61a3e0e9b81413d09617e918b7631fc002617f11f",
+        "59920b2725e14a45b1c3d8875b84cdde37f0fed602dc55a84fdb3ec9ac746550"
+      ]
+    }
+  ],
+  "scarecrow/bruised": [
+    {
+      "file": "assets/characters/scarecrow/anim/bruised_idle.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "885545d78e2b00e56e2e384af4d109421cc9a1c9f6408ab853131e4a89de2da7",
+        "e60a349848d0894cfa283432246d6b14d0426ff80fa06c33f764396e18260e8d",
+        "cd7d882fe62af889061bb8501f9335664d6044c00b33f6c5aece9d738e2bc3df",
+        "255d55b5ad16605ec7ae54ec1d9e0a5fd740074568b6a5dd6aad6589d3332e72",
+        "d22aba9578db05a19a9a61e0fffd7f62b0f7f119732823ca0c9a399a1ebcb7a5",
+        "7776825c77a18d459ee930e1abea757ddfb1825e4ed7e0bd7acdd88696c7e93d",
+        "ae2c1bb82af6695f5ea63757b95e82c036e832d9dde731d9c7b283fb8c11cb8b",
+        "885545d78e2b00e56e2e384af4d109421cc9a1c9f6408ab853131e4a89de2da7"
+      ]
+    },
+    {
+      "file": "assets/characters/scarecrow/anim/bruised_hurt.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "4f67e89b66942361f04ead7caf9c6f191acd6432ae8c239a76592884fc3c146b",
+        "92fb7efc9577880af143ef13dfe58d6316c7df5d43f948e66e7bc3cc87fb9464",
+        "3cddf28575f329fdbce6f63e3f1893ef409eff50996402fd6318fd7af71fc388",
+        "346504581657653e2988f2948cccd22cbe0894332f3fdb195e27aa88f34ae7dc",
+        "049fed0f3cce7bba2ea6b159ab4e1f8018d8611685591ede34dd0d65dea8f216",
+        "4fc69e5a69ba15a27dbfbee7d96494141282453c6e88fe5a08e2204ab6370f06",
+        "5013c1bb679af61a4b18b839dc2f9b4192899b6691ed8ddd6806803c2b9d5f44",
+        "885545d78e2b00e56e2e384af4d109421cc9a1c9f6408ab853131e4a89de2da7"
+      ]
+    }
+  ],
+  "scarecrow/battered": [
+    {
+      "file": "assets/characters/scarecrow/anim/battered_idle.png",
+      "frames": 8,
+      "fps": 12,
+      "unique_drawings": 7,
+      "frame_sha256": [
+        "1fdb1a9405a39c331531deca22d4c5662cb741c56d6681b812b36936f1350d38",
+        "b931d2130a15237c416c8b6450b8c0e1c7be7e726728bd48a32ceed5ae516156",
+        "c77063bae135d316622e7a2f83f783b0cecc3836b9128933f59354b0eae154c3",
+        "bd0d6ecb87a6fc6672a094d8c003afff6822be3924713c1124225be935de6322",
+        "531edef71797511e937088f26f8176faf51efded520206fd5a50c4d52f38b591",
+        "32d7be7c7eaf78b57deb7b928b529efb135a04df46b2dd1cc3cdf300693a8175",
+        "a34dd68e5b3ed120c29722c1d66790aa24d8660442c43a58f135317e9aae929a",
+        "1fdb1a9405a39c331531deca22d4c5662cb741c56d6681b812b36936f1350d38"
+      ]
+    },
+    {
+      "file": "assets/characters/scarecrow/anim/battered_hurt.png",
+      "frames": 8,
+      "fps": 24,
+      "unique_drawings": 8,
+      "frame_sha256": [
+        "f926d63d0e7f6301bbaa479bf8c4ba7d979d422d67ca465db72ae54b42f98e95",
+        "78531166af40958a0a7e3f676f5967ffa7f4f468ad2b44e748f94738b075610b",
+        "d98dbe9b9db5a0acc28ca43eef97ec83753dbf9824b2574cba052a16dff9d292",
+        "270cf334eb13594de5654cf1c902f19fc2f329162388d882df9d5f0e6f15ec57",
+        "b8c550bcf4324cbe05bf8def5e740689328a4f1b64b9a6f397fbb28653fd1b5c",
+        "5332edcd12e73d3942b14caec68c36f6000f4262e9eb88689bfdeda7cfb06d20",
+        "07c8c4a55ac8a964bd4163fb07bfd2738e674df6a61d5e58d39e0f5d075636d6",
+        "1fdb1a9405a39c331531deca22d4c5662cb741c56d6681b812b36936f1350d38"
+      ]
+    }
+  ]
+}

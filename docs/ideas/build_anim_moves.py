@@ -48,8 +48,9 @@ def atlas_frames(c,clip,wear='fresh'):
     return [im.crop((i%4*512,i//4*512,i%4*512+512,i//4*512+512)) for i in range(meta['frames'])]
 
 class Hero:
-    def __init__(self):
-        self.idle=atlas_frames('hero_rookie','idle')[0]
+    def __init__(self,wear="fresh"):
+        self.wear=wear
+        self.idle=damage("hero_rookie",atlas_frames('hero_rookie','idle')[0],wear)
         im=self.idle
         self.sword=part(im,[(347,389),(337,367),(364,309),(361,282),(372,258),(385,263),(430,158),(468,138),(476,177),(417,277),(437,285),(432,313),(408,310),(379,382)])
         # Keep knuckles in the arm layer, never on the sword.
@@ -176,7 +177,7 @@ def bottle(angle=0,dx=0,dy=0):
 def hero_frames(clip,hero):
     n=SPECS['hero_rookie'][clip][0]
     if clip=='drink':
-        keys={0:{},1:{'empty':True,'arm':-12},3:{'empty':True,'arm':45,'head':-5},5:{'empty':True,'arm':110,'head':-15},7:{'empty':True,'arm':110,'head':-18},8:{'empty':True,'arm':35,'head':5},9:{'empty':True,'arm':20,'expression':'smile'},11:{}}
+        keys={0:{},1:{'empty':True,'arm':-12},3:{'empty':True,'arm':45,'head':-5},5:{'empty':True,'arm':110,'head':-15},7:{'empty':True,'arm':110,'head':-18},8:{'empty':True,'arm':115,'head':5},9:{'empty':True,'arm':60,'expression':'smile'},11:{}}
         frames=[]
         for i,p in enumerate(timeline(keys,n)):
             prop=None
@@ -186,7 +187,7 @@ def hero_frames(clip,hero):
                 prop=bottle(-85*t,dx=-69*t,dy=-85*t)
             p['prop']=prop;frames.append(hero.frame(**p))
     elif clip=='defeat':
-        keys={0:{},2:{'lean':-8,'head':14,'bodydy':12,'arm':-10,'expression':'hurt'},4:{'lean':-18,'head':20,'bodydy':35,'arm':-25,'leg':30,'knee':60,'expression':'hurt'},6:{'lean':-35,'bodydy':45,'arm':-30,'leg':45,'knee':50,'expression':'dizzy'},8:{'lean':-45,'bodydy':30,'arm':-30,'leg':45,'knee':50,'expression':'dizzy'},11:{'lean':-45,'bodydy':30,'arm':-30,'leg':45,'knee':50,'expression':'dizzy'}}
+        keys={0:{},2:{'lean':-8,'head':14,'bodydy':12,'arm':25,'expression':'hurt'},4:{'lean':-18,'head':20,'bodydy':35,'arm':-25,'leg':30,'knee':60,'expression':'hurt'},6:{'lean':-35,'bodydy':45,'arm':-30,'leg':45,'knee':50,'expression':'dizzy'},8:{'lean':-45,'bodydy':30,'arm':-30,'leg':45,'knee':50,'expression':'dizzy'},11:{'lean':-45,'bodydy':30,'arm':-30,'leg':45,'knee':50,'expression':'dizzy'}}
         frames=[hero.frame(**p) for p in timeline(keys,n)]
         for i in range(3,n):
             t=min((i-2)/7,1)
@@ -212,7 +213,7 @@ def hero_frames(clip,hero):
             p0=hand;p1=(487,230);p2=(460,70);p3=(270,65)
             pts=[]
             for j in range(81):
-                t=j/80;u=1-t
+                t=j/80*(.65 if hero.wear=="battered" else 1);u=1-t
                 pts.append((u*u*u*p0[0]+3*u*u*t*p1[0]+3*u*t*t*p2[0]+t*t*t*p3[0],u*u*u*p0[1]+3*u*u*t*p1[1]+3*u*t*t*p2[1]+t*t*t*p3[1]))
             d.line(pts,fill='#fff3c7',width=24,joint='curve')
             d.line(pts,fill='#754626',width=16,joint='curve')
@@ -241,11 +242,11 @@ def preview(c,clip,frames,info,wear):
         d.text((x+8,y+7),f'{i:02}'+(' IMPACT' if info.get('impact')==i else ''),fill='#ffe5a5')
     grid.save(REVIEW/f'{stem}_numbered.png')
     # Three cycles eliminate GIF's 10ms quantisation drift for 8-frame clips.
-    cycle=frames*3
     gif=[]
-    for f in cycle:
+    for f in frames:
         bg=Image.new('RGBA',SIZE,BG);bg.alpha_composite(f);gif.append(bg.resize((320,320),Image.Resampling.LANCZOS).convert('RGB').quantize(colors=240))
-    gif[0].save(REVIEW/f'{stem}.gif',save_all=True,append_images=gif[1:],duration=[x*10 for x in durations(len(cycle),info['fps'])],loop=0,disposal=2,optimize=False)
+    gif=gif*3
+    gif[0].save(REVIEW/f'{stem}.gif',save_all=True,append_images=gif[1:],duration=[x*10 for x in durations(len(gif),info['fps'])],loop=0,disposal=2,optimize=False)
     frames[0].save(REVIEW/f'{stem}.webp',save_all=True,append_images=frames[1:],duration=durations(len(frames),info['fps'],1000),loop=0,lossless=True)
 
 def pair_preview(attacker,clip,defender,reaction):
@@ -294,8 +295,9 @@ def batch1():
     (REVIEW/'batch1_timing.json').write_text(json.dumps(pairs,indent=2)+'\n')
 
 class Orc:
-    def __init__(self):
-        self.idle=atlas_frames('orc_shield','idle')[0];im=self.idle
+    def __init__(self,wear="fresh"):
+        self.wear=wear
+        self.idle=damage("orc_shield",atlas_frames('orc_shield','idle')[0],wear);im=self.idle
         self.head=part(im,[(156,195),(165,153),(189,127),(189,100),(225,100),(249,109),(284,119),(308,136),(308,163),(332,174),(326,201),(308,226),(284,240),(270,259),(236,266),(207,242),(183,225)])
         self.left=part(im,[(160,237),(190,249),(187,282),(163,308),(140,321),(121,347),(97,363),(68,361),(47,348),(43,321),(53,303),(82,297),(104,277),(127,273),(145,250)])
         self.right=part(im,[(347,216),(377,220),(403,240),(426,267),(433,292),(424,325),(397,351),(368,372),(341,361),(346,335),(357,313),(369,287),(351,273)])
@@ -307,10 +309,10 @@ class Orc:
         fill=blank();d=ImageDraw.Draw(fill)
         d.polygon([(315,242),(351,237),(353,315),(343,335),(315,326)],fill='#7c6c47',outline='#382b1a',width=3)
         self.body=comp(fill,self.body)
-        self.bald=load('orc_shield','bald')
+        self.bald=damage('orc_shield',load('orc_shield','bald'),wear,weapon=False)
         self.baldtop=part(self.bald,[(0,0),(512,0),(512,319),(0,319)])
         self.baldbase=cut(self.bald,self.baldtop)
-    def frame(self,lean=0,bodydy=0,head=0,left=0,right=0,ldx=0,ldy=0,rdx=0,rdy=0,expression=None,stone=False,bald=False):
+    def frame(self,lean=0,bodydy=0,head=0,left=0,right=0,ldx=0,ldy=0,rdx=0,rdy=0,expression=None,stone=False,bald=False,step=0):
         if bald:
             frame=comp(self.baldbase,xf(self.baldtop,head,(251,285),dy=bodydy))
             return frame,None
@@ -340,7 +342,10 @@ class Orc:
             d.line([(362,319),(380,314),(395,322)],fill='#c5c4b1',width=4)
             ra=comp(ra,xf(rock,right,(361,251),rdx,rdy))
         upper=comp(bridge,self.body,hd,ra,la)
-        frame=comp(self.legs,xf(upper,lean,(256,390),dy=bodydy))
+        leftboot=part(self.legs,[(0,390),(256,390),(256,512),(0,512)])
+        rightboot=cut(self.legs,leftboot)
+        legs=comp(xf(leftboot,min(0,step),(205,395)),xf(rightboot,max(0,step),(300,395))) if step else self.legs
+        frame=comp(legs,xf(upper,lean,(256,390),dy=bodydy))
         anchor=pointxf((95,319),left,(170,258),ldx,ldy)
         anchor=pointxf(anchor,lean,(256,390),dy=bodydy)
         return frame,anchor
@@ -372,7 +377,7 @@ ORC_KEYS={
  'scared':{0:{'lean':-5,'head':-3,'left':25,'right':-35,'expression':'scared'},2:{'lean':-7,'head':2,'left':28,'right':-40,'expression':'scared'},4:{'lean':-4,'head':-4,'left':22,'right':-32,'expression':'scared'},6:{'lean':-6,'head':1,'left':27,'right':-38,'expression':'scared'},7:{'lean':-5,'head':-3,'left':25,'right':-35,'expression':'scared'}},
  'cheer':{0:{},2:{'right':-65,'rdy':30,'left':55,'head':-10,'expression':'laugh'},4:{'right':-90,'rdy':35,'left':75,'head':-15,'expression':'laugh'},5:{'right':-70,'rdy':25,'left':55,'head':-8,'expression':'laugh'},6:{'right':-90,'rdy':35,'left':75,'head':-15,'expression':'laugh'},8:{'right':-55,'left':35,'head':-8,'expression':'laugh'},11:{}},
  'bald':{0:{'bald':True,'head':-2},2:{'bald':True,'head':4,'bodydy':2},4:{'bald':True,'head':-5},6:{'bald':True,'head':2,'bodydy':1},7:{'bald':True,'head':-2}},
- 'victory':{0:{'left':-85,'right':90,'head':-8,'expression':'laugh'},3:{'left':-100,'right':105,'head':-12,'bodydy':-6,'expression':'laugh'},6:{'left':-80,'right':85,'head':-6,'expression':'laugh'},9:{'left':-100,'right':100,'head':-10,'bodydy':-5,'expression':'laugh'},11:{'left':-85,'right':90,'head':-8,'expression':'laugh'}},
+ 'victory':{0:{'left':-85,'right':90,'head':-8,'expression':'laugh'},3:{'left':-100,'right':105,'head':-12,'bodydy':-6,'expression':'laugh','step':8},6:{'left':-80,'right':85,'head':-6,'expression':'laugh'},9:{'left':-100,'right':100,'head':-10,'bodydy':-5,'expression':'laugh','step':-8},11:{'left':-85,'right':90,'head':-8,'expression':'laugh'}},
  'attack':{0:{},3:{'right':100,'lean':-6,'head':8},5:{'right':110,'lean':-8,'head':10},6:{'right':-105,'rdx':-60,'rdy':30,'lean':10},7:{'right':-90,'rdx':-50,'rdy':25,'lean':8},9:{'right':-35,'rdx':-10,'lean':3},11:{}},
 }
 
@@ -406,7 +411,169 @@ def batch2():
     timing=pair_preview('orc_shield','charge','hero_rookie','knocked')
     (REVIEW/'batch2_timing.json').write_text(json.dumps(timing,indent=2)+'\n')
 
+# Damage is painted into the original parts before their pose transforms. No
+# independently generated wear poses: fresh/bruised/battered share every joint.
+def ragged(draw,cx,cy,rx,ry,fill,seed=0):
+    points=[]
+    for i in range(12):
+        a=i*math.pi/6;r=1 if i%2==0 else .55
+        points.append((cx+math.cos(a)*rx*r,cy+math.sin(a)*ry*r))
+    draw.polygon(points,fill=fill,outline='#37241b',width=2)
+    return points
+
+def break_blade(im,base,tip,amount=.52):
+    import numpy as np
+    arr=np.array(im);yy,xx=np.mgrid[:512,:512]
+    vx=tip[0]-base[0];vy=tip[1]-base[1];length=math.hypot(vx,vy)
+    vx/=length;vy/=length
+    along=(xx-base[0])*vx+(yy-base[1])*vy
+    across=(xx-base[0])*(-vy)+(yy-base[1])*vx
+    teeth=(np.floor((across+30)/7)%2)*10-5
+    remove=(along>length*amount+teeth)&(along<length+20)&(abs(across)<25)
+    arr[remove]=0
+    return Image.fromarray(arr)
+
+def damage(c,im,wear,weapon=True):
+    if wear=='fresh':return im.copy()
+    severe=wear=='battered';over=blank();d=ImageDraw.Draw(over)
+    if c=='hero_rookie':
+        # Same bandage, black eye, tunic tears and chipped wood as still-pose set.
+        d.polygon([(241,150),(274,145),(279,156),(246,163)],fill='#f1d7af',outline='#7c6046',width=1)
+        d.line([(254,151),(262,158)],fill='#bba27f',width=2)
+        d.ellipse((275,185,293,196),fill='#bc8196')
+        d.line([(252,207),(260,210)],fill='#9d634d',width=2)
+        d.line([(226,306),(235,300),(232,317)],fill='#e0bc90',width=2)
+        if severe:
+            d.ellipse((272,176,293,197),fill='#865b87')
+            d.arc((275,179,290,191),0,180,fill='#4a2a44',width=2)
+            ragged(d,235,294,10,18,'#dda370')
+            ragged(d,281,366,14,14,'#dda370')
+            ragged(d,185,415,14,10,'#dda370')
+            ragged(d,315,413,13,10,'#dda370')
+            d.line([(119,338),(132,355),(124,371),(142,389)],fill='#46301e',width=3)
+        elif weapon:
+            d.line([(415,239),(423,226),(434,224)],fill='#57351e',width=3)
+    elif c=='orc_shield':
+        d.polygon([(199,119),(271,144),(267,154),(195,130)],fill='#e9d8b1',outline='#7e6844',width=1)
+        d.polygon([(260,209),(270,201),(279,218),(268,225)],fill='#efd4a5',outline='#80683e',width=1)
+        d.line([(267,209),(273,216)],fill='#bd9c71',width=2)
+        if severe:
+            d.ellipse((216,163,239,185),fill='#74506e')
+            d.arc((220,165,236,178),0,180,fill='#43293e',width=2)
+            ragged(d,233,307,12,10,'#b0ba43')
+            ragged(d,306,279,9,12,'#b0ba43')
+            ragged(d,317,409,16,10,'#b0ba43')
+        else: d.line([(304,287),(311,282),(309,294)],fill='#b3ba57',width=2)
+    else:
+        # Straw bursts and stitched cheek from the existing bruised/battered stills.
+        d.ellipse((286,160,310,184),outline='#4c3019',width=2)
+        for i in range(6):
+            x=287+i*4;d.line([(x,162),(x-3,158)],fill='#4c3019',width=1)
+            d.line([(x,181),(x+2,186)],fill='#4c3019',width=1)
+        ragged(d,264,293,24 if severe else 17,30 if severe else 22,'#634021')
+        for i in range(15 if severe else 9):
+            x=249+(i*11)%30;y=274+(i*7)%42
+            d.line([(x,y),(x+10,y+12)],fill='#e6b449',width=3)
+            d.line([(x+2,y),(x+11,y+9)],fill='#f8d16b',width=1)
+        if severe:
+            ragged(d,285,326,33,21,'#684423')
+            for i in range(12):
+                x=264+(i*7)%43;y=315+(i*5)%20
+                d.line([(x,y),(x+12,y+10)],fill='#dfab42',width=3)
+    over.putalpha(ImageChops.multiply(over.getchannel('A'),im.getchannel('A')))
+    out=comp(im,over)
+    if c=='scarecrow' and severe:
+        # The original battered still has lost the right straw hand.
+        a=out.getchannel('A');ImageDraw.Draw(a).rectangle((413,219,511,282),fill=0);out.putalpha(a)
+        stub=blank();sd=ImageDraw.Draw(stub)
+        sd.polygon([(387,235),(408,235),(412,243),(406,250),(412,258),(405,265),(386,263)],fill='#82542d',outline='#462b17',width=2)
+        sd.line([(390,243),(405,245)],fill='#b17c3f',width=2)
+        stub.putalpha(ImageChops.multiply(stub.getchannel('A'),out.getchannel('A')));out=comp(out,stub)
+    if c=='hero_rookie' and severe and weapon:
+        out=break_blade(out,(395,274),(464,148))
+    return out
+
+class Scarecrow:
+    def __init__(self,wear='fresh'):
+        self.idle=damage('scarecrow',load('scarecrow','fresh_idle'),wear)
+        self.post=part(self.idle,[(231,350),(281,350),(281,512),(231,512)])
+        self.head=part(self.idle,[(127,60),(330,42),(416,178),(347,224),(264,230),(199,201),(191,154)])
+        self.upper=cut(cut(self.idle,self.post),self.head)
+    def frames(self,clip):
+        n=8;frames=[]
+        sway=[0,1,2,1,0,-1,-2,0] if clip=='idle' else [-10,-14,-9,9,5,-3,1,0]
+        for i,a in enumerate(sway):
+            upper=xf(self.upper,a,(256,364));head=xf(self.head,a*1.4,(256,364))
+            f=comp(self.post,upper,head)
+            if clip=='hurt' and i<6:
+                straw=blank();d=ImageDraw.Draw(straw)
+                for j in range(6):
+                    x=137-j*12-i*8;y=232+j*13-i*9
+                    d.polygon([(x,y),(x+13,y-7),(x+18,y-5),(x+4,y+2)],fill='#e7b44d',outline='#5c3b1c')
+                f=comp(f,straw)
+            if clip=='idle' and 1<=i<=6:
+                loose=blank();ld=ImageDraw.Draw(loose)
+                x=290+i*9;y=355-i*8
+                ld.line([(x,y),(x+10,y-4)],fill='#f2c65c',width=2)
+                f=comp(f,loose)
+            frames.append(f)
+        frames[0]=self.idle.copy() if clip=='idle' else frames[0]
+        frames[-1]=self.idle.copy()
+        return frames
+
+def pilot_wear(c,clip,wear):
+    fresh=atlas_frames(c,clip);result=[]
+    for i,f in enumerate(fresh):
+        out=damage(c,f,wear,weapon=(c=='hero_rookie' and (clip=='idle' or (clip=='attack' and i>=10))))
+        if c=='hero_rookie' and wear=='battered':
+            if clip=='idle' or i>=10:
+                out=break_blade(out,(395,274),(464,148))
+            elif clip=='attack':
+                axes={0:((397,250),(397,110)),1:((397,250),(397,110)),2:((348,176),(257,66)),3:((348,176),(257,66)),6:((383,285),(488,187)),7:((385,345),(501,320)),8:((352,354),(493,378)),9:((352,354),(493,378))}
+                if i in axes:out=break_blade(out,*axes[i])
+        if c=='hero_rookie' and wear=='bruised' and clip=='attack' and i in (0,1,2,3,6,7,8,9):
+            axes={0:((397,250),(397,110)),1:((397,250),(397,110)),2:((348,176),(257,66)),3:((348,176),(257,66)),6:((383,285),(488,187)),7:((385,345),(501,320)),8:((352,354),(493,378)),9:((352,354),(493,378))}
+            base,tip=axes[i];vx=tip[0]-base[0];vy=tip[1]-base[1];length=math.hypot(vx,vy);vx/=length;vy/=length
+            cx=base[0]+vx*length*.7;cy=base[1]+vy*length*.7
+            crack=blank();d=ImageDraw.Draw(crack)
+            d.line([(cx-vy*14,cy+vx*14),(cx+vx*5,cy+vy*5),(cx+vy*14,cy-vx*14)],fill='#57351e',width=3)
+            crack.putalpha(ImageChops.multiply(crack.getchannel('A'),out.getchannel('A')));out=comp(out,crack)
+        result.append(out)
+    return result
+
+def batch3():
+    import shutil
+    pilot=ROOT/'docs/ideas/anim_pilot_review'
+    for target,source in [('hero_rookie_fresh_idle','hero_idle'),('hero_rookie_fresh_attack','hero_attack'),('orc_shield_fresh_idle','orc_idle'),('orc_shield_fresh_hurt','orc_hurt')]:
+        for suffix in ('.gif','.webp','_numbered.png'):
+            shutil.copyfile(pilot/(source+suffix),REVIEW/(target+suffix))
+    # Priority: all idle/attack/hurt variants before the remaining moves.
+    scare=ASSETS/'scarecrow/anim';scare.mkdir(exist_ok=True)
+    sm={'frame_size':[512,512],'columns':4,'clips':{}}
+    for clip,spec in SPECS['scarecrow'].items():
+        info={'frames':spec[0],'fps':spec[1],'loop':spec[2]};sm['clips'][clip]=info
+        write_clip('scarecrow',clip,Scarecrow().frames(clip),info)
+    (scare/'anim.json').write_text(json.dumps(sm,indent=2)+'\n')
+    for wear in ('bruised','battered'):
+        for c,clips in [('hero_rookie',['idle','attack','hurt']),('orc_shield',['idle','attack','hurt']),('scarecrow',['idle','hurt'])]:
+            meta=json.loads((ASSETS/c/'anim/anim.json').read_text())
+            for clip in clips:
+                if c=='scarecrow':frames=Scarecrow(wear).frames(clip)
+                elif c=='hero_rookie':frames=hero_frames(clip,Hero(wear)) if clip=='hurt' else pilot_wear(c,clip,wear)
+                else:frames=pilot_wear(c,clip,wear) if clip in ('idle','hurt') else orc_frames(clip,Orc(wear))[0]
+                write_clip(c,clip,frames,meta['clips'][clip],wear)
+                print(c,wear,clip,flush=True)
+    for wear in ('bruised','battered'):
+        for c,rig in [('hero_rookie',Hero(wear)),('orc_shield',Orc(wear))]:
+            meta=json.loads((ASSETS/c/'anim/anim.json').read_text())
+            for clip in meta['clips']:
+                if clip in ('idle','attack','hurt'):continue
+                frames=hero_frames(clip,rig) if c=='hero_rookie' else orc_frames(clip,rig)[0]
+                write_clip(c,clip,frames,meta['clips'][clip],wear)
+                print(c,wear,clip,flush=True)
+
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--batch',type=int,required=True);args=parser.parse_args()
     if args.batch==1:batch1()
     elif args.batch==2:batch2()
+    elif args.batch==3:batch3()

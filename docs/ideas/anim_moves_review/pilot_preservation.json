@@ -1,46 +1,18 @@
 {
   "hero_rookie": {
     "pilot_png_unchanged": true,
-    "pilot_clip_metadata_unchanged": true
+    "pilot_clip_metadata_unchanged": true,
+    "sha256": {
+      "fresh_attack.png": "603f1aeb1e788b1a57444be5aaefa450e8db14328b32b459f28066728a260f89",
+      "fresh_idle.png": "5962cde8d303a874dc8d65373202447797e71641fbb1091594e190860b51b326"
+    }
   },
   "orc_shield": {
     "pilot_png_unchanged": true,
-    "pilot_clip_metadata_unchanged": true
-  },
-  "hero_rookie_fresh_kick.gif": {
-    "decoded_duration_ms": 1000
-  },
-  "hero_rookie_fresh_cheer.gif": {
-    "decoded_duration_ms": 3000
-  },
-  "hero_rookie_fresh_bash.gif": {
-    "decoded_duration_ms": 1250
-  },
-  "hero_rookie_fresh_knocked.gif": {
-    "decoded_duration_ms": 1000
-  },
-  "hero_rookie_fresh_scared.gif": {
-    "decoded_duration_ms": 2000
-  },
-  "hero_rookie_fresh_leap.gif": {
-    "decoded_duration_ms": 2000
-  },
-  "hero_rookie_fresh_dizzy.gif": {
-    "decoded_duration_ms": 3000
-  },
-  "hero_rookie_fresh_hurt.gif": {
-    "decoded_duration_ms": 1000
-  },
-  "hero_rookie_fresh_drink.gif": {
-    "decoded_duration_ms": 3000
-  },
-  "hero_rookie_fresh_victory.gif": {
-    "decoded_duration_ms": 3000
-  },
-  "hero_rookie_fresh_defeat.gif": {
-    "decoded_duration_ms": 3000
-  },
-  "hero_rookie_fresh_throw.gif": {
-    "decoded_duration_ms": 1250
+    "pilot_clip_metadata_unchanged": true,
+    "sha256": {
+      "fresh_hurt.png": "1550a3394db88345efcf78b3312c8de0d69ec61bbe898e648d6b67df87b697cd",
+      "fresh_idle.png": "f9e04e0622753fbc9c66f17b1b827d0cb68fa6243a4ec6d4382b996e8bf021f1"
+    }
   }
 }

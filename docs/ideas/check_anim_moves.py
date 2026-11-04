@@ -16,7 +16,11 @@ def check(character, wear="fresh"):
     assert metadata["frame_size"] == [512, 512]
     assert metadata["columns"] == 4
     results = []
-    for clip, spec in SPECS[character].items():
+    expected=dict(SPECS[character])
+    for name, info in metadata["clips"].items():
+        if name not in expected:
+            expected[name]=[info["frames"],info["fps"],info.get("loop",False)]+([info["impact"]] if "impact" in info else [])
+    for clip, spec in expected.items():
         count, fps, loop, *impact = spec
         info = metadata["clips"][clip]
         assert (info["frames"], info["fps"], info.get("loop", False)) == (count, fps, loop), clip
@@ -28,6 +32,10 @@ def check(character, wear="fresh"):
             assert image.size == (2048, 512 * math.ceil(count / 4)), path
             frames = [image.crop(((i % 4) * 512, (i // 4) * 512, (i % 4 + 1) * 512, (i // 4 + 1) * 512)) for i in range(count)]
             assert all(frame.getbbox() for frame in frames), path
+            for i, frame in enumerate(frames):
+                alpha=frame.getchannel("A")
+                for box in [(0,0,1,512),(511,0,512,512),(0,0,512,1),(0,511,512,512)]:
+                    assert not alpha.crop(box).getbbox(), f"Clipped frame {i}: {path}"
             assert all(frame.getchannel("A").getextrema() == (0, 255) for frame in frames), path
             hashes = [hashlib.sha256(frame.tobytes()).hexdigest() for frame in frames]
             assert len(set(hashes)) >= 3, f"Not enough distinct drawings: {path}"

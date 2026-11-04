@@ -1,0 +1,25 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "asset_import": {
+    "exit_code": 0,
+    "script_errors": false
+  },
+  "asset_smoke": {
+    "exit_code": 0,
+    "variants_loaded": 84,
+    "wear_fallback_to_fresh": false,
+    "last_frame_address_valid": true,
+    "method": "CharacterRig.setup, has_clip, _start_clip, resource_path and _clip_frame in a temporary SceneTree script outside the checkout"
+  },
+  "main_scene": {
+    "headless_frames": 120,
+    "script_or_resource_errors": false
+  },
+  "existing_suite": {
+    "exit_code": 1,
+    "passed": 60,
+    "failed": 1,
+    "failed_test": "test_character_clips.gd::test_no_anim_file_no_clips",
+    "reason": "Existing test assumes scarecrow has no idle animation; issue 24 adds it. Source/tests left unchanged."
+  }
+}

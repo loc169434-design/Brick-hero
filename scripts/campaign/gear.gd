@@ -18,6 +18,10 @@ const SLOT_NAMES := {
 	"boots": "Ủng",
 }
 const STARTING := ["wood_sword"]
+## The hero skills the forge lets the player pick (BattleState.SKILLS), each with the stop that
+## must be cleared before it can be picked ("" for none). The hero takes one into every fight.
+const SKILL_AFTER := {"armor_breaker": "", "second_wind": "orc_shield"}
+const STARTING_SKILL := "armor_breaker"
 
 ## Each item: slot, name, price, `after` (the stop that must be cleared first, "" for none)
 ## and its effect: `red` damage per red square, `refine` extra red damage, `armor` taken off
@@ -36,6 +40,14 @@ const ITEMS := {
 	"reinforced_boots": {"slot": "boots", "name": "Ủng gia cố", "price": 35, "after": "orc_shield", "armor": 1},
 	"climbing_boots": {"slot": "boots", "name": "Ủng leo núi", "price": 55, "after": "witch_house", "armor": 2},
 }
+
+
+## Whether skill `id` can be picked once the stops in `cleared` are behind the hero.
+static func skill_unlocked(id: String, cleared: Array) -> bool:
+	if not SKILL_AFTER.has(id):
+		return false
+	var after: String = SKILL_AFTER[id]
+	return after.is_empty() or cleared.has(after)
 
 
 ## The items of `slot`, cheapest rung first.

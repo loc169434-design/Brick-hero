@@ -43,6 +43,7 @@ func start_fight(id: String) -> void:
 	var encounters: Array[MonsterData] = [data]
 	manager.encounters = encounters
 	manager.rules = Gear.apply(manager.rules, campaign.owned)
+	manager.rules.skill = campaign.skill
 	manager.return_to_map = true
 	manager.starting_gold = campaign.gold
 	manager.fight_over.connect(end_fight)
@@ -58,6 +59,7 @@ func open_forge() -> void:
 	add_child(forge)
 	forge.closed.connect(close_forge)
 	forge.bought.connect(func(_id: String) -> void: campaign.save(save_path))
+	forge.skill_picked.connect(func(_id: String) -> void: campaign.save(save_path))
 	map.hide()
 	forge.show_campaign(campaign)
 

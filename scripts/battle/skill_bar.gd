@@ -3,7 +3,7 @@ extends Node2D
 ## The hero's rage bar and skill button, in the strip under the board where a thumb rests.
 ## The bar fills as squares clear; full, the button lights up and a tap (or Space) asks for the
 ## skill with `pressed`. The BattleManager decides whether it goes off.
-## K switches the skill (to try them until the forge picks one).
+## K switches the skill for this fight, to try them; on the campaign the forge picks it.
 ##
 ## Art, if present: assets/ui/rage_bar_frame.png and rage_bar_fill.png for the bar,
 ## assets/ui/skill_<id>.png for the button. Without it both are drawn.
@@ -41,8 +41,6 @@ var _nudge := 0.0
 var _box := StyleBoxFlat.new()
 var _frame: Texture2D
 var _fill: Texture2D
-## Skill id -> its button art, or null.
-var _icons := {}
 
 
 func _ready() -> void:
@@ -136,33 +134,29 @@ func _draw_button(fraction: float, charged: bool, pulse: float) -> void:
 	elif fraction > 0.0:
 		draw_arc(center, radius + RING_WIDTH / 2, -PI / 2, -PI / 2 + TAU * fraction, 64, RAGE, RING_WIDTH, true)
 	draw_circle(center, radius, Color(0.32, 0.12, 0.05) if charged else EMPTY)
-	var icon := _icon(state.rules.skill)
-	var tint := Color.WHITE if charged else Color(0.45, 0.45, 0.5)
-	if icon:
-		var size := Vector2.ONE * radius * 1.8
-		draw_texture_rect(icon, Rect2(center - size / 2, size), false, tint)
-	else:
-		_draw_emblem(state.rules.skill, center, radius * 0.55, RAGE_HOT if charged else TEXT_DIM)
+	draw_icon(self, state.rules.skill, center, radius, RAGE_HOT if charged else TEXT_DIM, Color.WHITE if charged else Color(0.45, 0.45, 0.5))
 	var label: String = BattleState.SKILLS.get(state.rules.skill, "")
 	_text(label, center + Vector2(-_width(label, LABEL_SIZE) / 2, -radius - RING_WIDTH - 12), LABEL_SIZE, RAGE_HOT if charged else TEXT_DIM)
 
 
-## Stands in for the button art: a cracked shield for Phá Giáp, a cross for Hồi Quang.
-func _draw_emblem(skill: String, center: Vector2, size: float, color: Color) -> void:
+## `skill`'s button art on `canvas`, filling a circle of `radius` at `center`, shaded by `tint`.
+## Without the art it draws an emblem in `color`: a cracked shield for Phá Giáp, a cross for
+## Hồi Quang. The forge uses it too.
+static func draw_icon(canvas: CanvasItem, skill: String, center: Vector2, radius: float, color: Color, tint := Color.WHITE) -> void:
+	var icon := _load("%sskill_%s.png" % [UI_DIR, skill])
+	if icon:
+		var size := Vector2.ONE * radius * 1.8
+		canvas.draw_texture_rect(icon, Rect2(center - size / 2, size), false, tint)
+		return
+	var size := radius * 0.55
 	match skill:
 		"armor_breaker":
 			var shield := PackedVector2Array([center + Vector2(-size, -size * 0.8), center + Vector2(size, -size * 0.8), center + Vector2(size * 0.85, size * 0.3), center + Vector2(0, size), center + Vector2(-size * 0.85, size * 0.3)])
-			draw_colored_polygon(shield, color)
-			draw_polyline(PackedVector2Array([center + Vector2(0.1 * size, -size * 0.8), center + Vector2(-0.2 * size, -0.1 * size), center + Vector2(0.2 * size, 0.2 * size), center + Vector2(-0.05 * size, size * 0.9)]), RIM, 7.0)
+			canvas.draw_colored_polygon(shield, color)
+			canvas.draw_polyline(PackedVector2Array([center + Vector2(0.1 * size, -size * 0.8), center + Vector2(-0.2 * size, -0.1 * size), center + Vector2(0.2 * size, 0.2 * size), center + Vector2(-0.05 * size, size * 0.9)]), RIM, maxf(size * 0.15, 2.0))
 		"second_wind":
-			draw_rect(Rect2(center - Vector2(size * 0.3, size), Vector2(size * 0.6, size * 2)), color)
-			draw_rect(Rect2(center - Vector2(size, size * 0.3), Vector2(size * 2, size * 0.6)), color)
-
-
-func _icon(skill: String) -> Texture2D:
-	if not _icons.has(skill):
-		_icons[skill] = _load("%sskill_%s.png" % [UI_DIR, skill])
-	return _icons[skill]
+			canvas.draw_rect(Rect2(center - Vector2(size * 0.3, size), Vector2(size * 0.6, size * 2)), color)
+			canvas.draw_rect(Rect2(center - Vector2(size, size * 0.3), Vector2(size * 2, size * 0.6)), color)
 
 
 func _rounded(rect: Rect2, color: Color, radius: int, shadow := 0) -> void:

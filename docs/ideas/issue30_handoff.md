@@ -57,3 +57,19 @@ Phần 3 thợ rèn fresh đã có trên `art/gear`: idle/talk/hammer/cheer, t�
 Godot 4.7.2 import được cả bốn icon và bốn atlas. Smoke qua chính `CharacterRig` xác nhận chọn đúng cả bốn clip fresh; hammer không phát impact trước 0,125 giây, phát đúng **một** impact khi tới frame 3, và giữ frame 5 khi clip kết thúc. Các atlas mới có VRAM compression theo kiểm tra của repo.
 
 Suite cuối: **68 passed, 1 failed**. `tests/test_character_clips.gd:76`, `test_no_anim_file_no_clips`, dùng `rig.setup("blacksmith", 1)` rồi đòi `has_clip("idle") == false`. Phần 3 của #30 yêu cầu thợ rèn có idle nên giả định này không còn đúng. Không sửa/tắt/né test; phần tích hợp code nên dùng fixture giả không có thư mục anim thay cho một nhân vật thật có thể được bổ sung clip sau này. [Kết quả runtime](gear_review/runtime_validation.json).
+
+## Trạng thái gửi bàn giao
+
+Đã push phần 1 tại `51e44ac`, phần 3 tại `2eb7072` lên `origin/art/gear`. Cả hai lần comment #30 sau push và lệnh mở PR đều trả `Post "https://api.github.com/graphql": Forbidden`. **Chưa đăng được comment và chưa tạo PR**. Nội dung comment từng phần đã lưu trong file này theo phương án dự phòng của issue. Không merge; phần 2 vẫn chờ duyệt.
+
+### Comment phần 3 đầy đủ kèm GIF
+
+Phần 3 đã push trên `art/gear`: thợ rèn fresh idle/talk/hammer/cheer, tổng 34 khung, lưới 4 cột, ô 512×512, giữ nguyên chân (256,500). Dựng bằng công cụ #24 từ cùng các bộ phận ảnh gốc, búa vẫn cùng tay.
+
+Hammer chạm frame 3 = 0,125s; đầu búa nằm trong vệt nhòe frame 2. Godot xác nhận impact phát một lần đúng frame, rồi giữ frame cuối. Mỗi GIF dưới 2 MB.
+
+![Hammer và khung chạm](https://github.com/loc169434-design/Brick-hero/blob/art/gear/docs/ideas/gear_review/blacksmith_hammer_contact.gif?raw=true)
+
+[Toàn bộ GIF, bốn icon phần 1 và kiểm tra](https://github.com/loc169434-design/Brick-hero/blob/art/gear/docs/ideas/issue30_handoff.md)
+
+Suite: 68 đạt, 1 lỗi vì test_no_anim_file_no_clips dùng blacksmith làm fixture không có anim. Không sửa code/test. Phần 2 chưa làm, chờ duyệt phần 1 theo issue.

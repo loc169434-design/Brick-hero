@@ -1,0 +1,788 @@
+[
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_hurt.png",
+    "changed_frames": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "untouched_frames_pixel_identical": [
+      5,
+      6,
+      7
+    ],
+    "frames": 8,
+    "fps": 24,
+    "impact": null,
+    "before_frame_sha256": [
+      "a6c42b055777318135e5c1fe84328fd230df806b02a08e360aafaa5295dc993a",
+      "048bc45801995c6f0d538de2edbf27b1f9ff6bc400f6f534c74593372800669e",
+      "564574504bce73734ec4049ae9a1f6492fd58acdf837c6eb32a5c21d5c787d06",
+      "108b61cd54f1cf763a20f231f56f15c02e767a5b475fe8785195c86b819dcd64",
+      "06b5686b3611e6fef5569a1f5711557bc3be1c573f0696dd881d92b682f1c647",
+      "7dd1769b18c01ae4127d92c26f5a6f4d0741e013d8f394edcd4f521ab6bb667a",
+      "2980a03118487652aa9949643449ff0a58a01f54087c6ca9aaf13473abd08cc1",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+    ],
+    "after_frame_sha256": [
+      "a31856694152684b745987aa190695570fe402a77e89c6f0578980216c82b128",
+      "0c563af68a5a6d6980af2e6c117c0fb7814b06e5f22b61833208e4a93fd5d999",
+      "e0014b99ed993ed9d5c14a5caaace69efe1aa207dfa4c7bb49979181d8a3e741",
+      "afb1f7ca4255b4446a8258969cf3e705c0b52d9a0efee41ee97b6b1977da6e60",
+      "e3ac249672fb68abfd8e32c82656921169dbba9763fb97a137e1cff295211135",
+      "7dd1769b18c01ae4127d92c26f5a6f4d0741e013d8f394edcd4f521ab6bb667a",
+      "2980a03118487652aa9949643449ff0a58a01f54087c6ca9aaf13473abd08cc1",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+    ],
+    "decoded_gif_duration_ms": 1000
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_knocked.png",
+    "changed_frames": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "untouched_frames_pixel_identical": [
+      5,
+      6,
+      7
+    ],
+    "frames": 8,
+    "fps": 24,
+    "impact": null,
+    "before_frame_sha256": [
+      "6af0643039363bfa3bb000f4099073f99ce26b3160fd35d2a91572890f0b1a56",
+      "762844b3d0ca43b73577bea6b75e567cf6bd00f12abb6335e8575f85b71bd202",
+      "8e597c0b2ecdad7426ec5734ec33b055a472fb76bb0388b4b216619edf40afd8",
+      "cac03419396466ab5ea3d62c24303e46fb9a87c1341a2ed9f9659c6b3765d0d2",
+      "29ae405692e6e27d1ba1a3193cd5c65cea3cff4be7d19cd03696ce85e8f12622",
+      "7a8da9fec1a30f69cfd733bbce48d666907dd4b659bab3b92d4b2c46792f421c",
+      "ce36a737257541f3ec4bc9459738efd0a2db2262b072cc8acafb2d5be977d515",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+    ],
+    "after_frame_sha256": [
+      "143e7ca894eaff2aa7d69230c10d7213deda55ce2842f8b13a93ff411fed1c1b",
+      "e31dd48ce1042b77f92b01ffbf76e2f34b7b82d306a971a524c690c8ee511489",
+      "27b6ffa14d61c5a8a42961a283656e5c56789a2f31b431a4f312e1ca3a90c415",
+      "718e156d24ba2baecfb0051e31996f9ac4f0e0152bfab3abc17c552b14b4022f",
+      "d4046a1bfbf07a3955aec902bf6f8488b62fae03e37c48509d08c433dc91d52c",
+      "7a8da9fec1a30f69cfd733bbce48d666907dd4b659bab3b92d4b2c46792f421c",
+      "ce36a737257541f3ec4bc9459738efd0a2db2262b072cc8acafb2d5be977d515",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+    ],
+    "decoded_gif_duration_ms": 1000
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_scared.png",
+    "changed_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "untouched_frames_pixel_identical": [],
+    "frames": 8,
+    "fps": 12,
+    "impact": null,
+    "before_frame_sha256": [
+      "e3325c39410a8ef7b351ab1aa95fac78be09b09df060c8eb659acb7b8540e665",
+      "9ef1b93616c0ddd523b107ebf41d4ab580f1af9618b3298af622aa0922ed35ea",
+      "6b9ab512e9e2a20fc4ed58c673b071cd35ebb370f2789a1bc1a98ca2f3aa58ed",
+      "cf40de467b5f5fcb45681f63c8d0c4ed8f04fbfdf01d7a215cb9c8bb35cc551b",
+      "b6b7b8d5a1857437df535e45f53fcc6041f8f9693f5f894c1c8f3f2a27d14e51",
+      "c5177be9f20344646575a88daeaa785ea4d1239ad40c17b565ed31ab582fb28e",
+      "ca250119495a35a29af733b8328056d1f0104dbde579d977246a35a8247124a5",
+      "e3325c39410a8ef7b351ab1aa95fac78be09b09df060c8eb659acb7b8540e665"
+    ],
+    "after_frame_sha256": [
+      "cc8c8d59006d92a79783d4a3918f3589991928a6be891afd17db241c1dcfe5c7",
+      "df37d9a0c51d942ea2b0b0d08ccd423517a661a6a02d4a06075f30cdece5e055",
+      "9a06c2549a37a071bc5d3c6eb580bb1385b0eac4c3335f5f39de98ea2a98427c",
+      "2d795120f0d88327948038b29a3488ca9fa098f9e2b17fdade0606ae22012565",
+      "d1ce8681273a9be23f8e2b03519359b08a1f87765bc4e37903e89591a13c5b56",
+      "b1c30bb3fcfee8e7feb3aa0521c6402034c262217ed740ecd45b2c119674c5da",
+      "af70f44bf184dc62f6aa21a2cd31315fdace141cd96c6ea663d1012929e9af04",
+      "cc8c8d59006d92a79783d4a3918f3589991928a6be891afd17db241c1dcfe5c7"
+    ],
+    "decoded_gif_duration_ms": 2000
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_dizzy.png",
+    "changed_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "untouched_frames_pixel_identical": [],
+    "frames": 12,
+    "fps": 12,
+    "impact": null,
+    "before_frame_sha256": [
+      "e79379ced300917bde59e7926056035db713271cfad2f917a9269969fddf83d2",
+      "fb5c6a6332f180ab975b02fc82dc0e3f0239d24744f2b1a4446ce14655f733b3",
+      "7ecbb5dd7b18564595d464a2ddcffc8c0be4322af6acabcce39f804ec7e93b98",
+      "79084879cb8cf0ece8ef05199a2327970bbbc2f6d780de60d05635c860b0752b",
+      "37dd95ca61afd1b43833200d092f7c602bd3c61dcd26137d3d5558c27208cda4",
+      "a3e83f8c9c47af1a419a042c6db41589b143dca94d29d21d6a670a47a1250fc4",
+      "b5b47932754b677db26b1ad6354faf76205dcf73e0f12cee2bfaff6d249a93f7",
+      "9dd1eb9751a06674075568632d1ca15c7834aaa27f5019c3121f289d376e3d43",
+      "33957f7627bb92a079af2e57d05a75f0b7b8ce2de2e33e3f7ae0c7c5b9b4784f",
+      "1f22fd380738762248a1c935adac3c1568a89dd6ce011f930bbd900be1004a1b",
+      "6c82e2cf75afee84e64f5c02e55cc6e9bd2fb70fa510b79e7e8b3edf5e69fb0a",
+      "e79379ced300917bde59e7926056035db713271cfad2f917a9269969fddf83d2"
+    ],
+    "after_frame_sha256": [
+      "52c6899a8c74054e8cc02398ac95937735cd1c6a4d166e511c7866864d5141c2",
+      "d5c7e462072bc449dbc082ebc4a92d08c6a51e9ff491ac10536eb804e9433ac6",
+      "adc852097c36de6d75941733bdff12151f9ba484d94541ae9f9a6455233113ed",
+      "c3f7a16bc541ce78a7a7470082f205d8fc17aab69f87d28e18634f89227fb3b9",
+      "cb7fb10df282f1eb2c68cd00a9154549f7853a09144a2a25d1c278868edadff8",
+      "f77c389338a8e2d21ee702aa754e407a1b9e3fdf63b8e3e034d8e1e471e75998",
+      "36dc1d323a2072e2512eff80db7a67dc12bd6e31f17db322f65cee50a2c28dd7",
+      "e170622f5cec1abb641ec99271d241b2c6e8906909da699292c9b2c50c5b1b71",
+      "6857a0c1e6705b33cd98f6bb872873f65194f7637ef0d5ea770241e45cebf58d",
+      "d065a4bcb9fad769f9eb785addd4762b5d6e2a0a94be46d518fc03721de55b55",
+      "22782e4a1c2d7e801b9950c6809516b170706b016d2d5e8ec5fd95c90d3a3bbf",
+      "52c6899a8c74054e8cc02398ac95937735cd1c6a4d166e511c7866864d5141c2"
+    ],
+    "decoded_gif_duration_ms": 3000
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/fresh_drink.png",
+    "changed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "untouched_frames_pixel_identical": [
+      0,
+      10,
+      11
+    ],
+    "frames": 12,
+    "fps": 12,
+    "impact": null,
+    "before_frame_sha256": [
+      "e9888d46be3a315b7e7b90e491d1a333d5ab521e082b0827f6b40cfaf24f888f",
+      "386536d11fd3108eb6ee53a8d578ee13abea0e371e7240bf6ec76a9c51aea238",
+      "105ba87e16d972a01b499bb15ba4cbec2681588e852f864b39661d703148b0b0",
+      "f1cd8a51dc609dd8f6c1784a0dc45b75dfa7fda91f13055c025ae37d526fb1ad",
+      "4e6f6949fb94339c21510597e9e39e32670948b713c95c7305c2d7464f320327",
+      "a1236e9a838f1d91cc06b9372f3b84839924ee8a0111e79bc8a34fec039b0b52",
+      "7b3d4626fd9cd456697d9e08f748459e78fa75f179aa746c8a4a32259d6ea0fe",
+      "e6d556ffa02f962583e7bad686dea040e3dab066c7a15d90795d525eaeea367c",
+      "cca87dc8d3e1c6529b6070f6eb49d1b8297cdd097308d242cda8c700558f32bf",
+      "1af7dcb720c20d7200c2127bae98c6907c697c48f0967ad4ed6a75def5d4d474",
+      "9a0e4a73dfdf2052f00e56ed38cdad634a8d77b5225771da41ca986a2269b4b7",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+    ],
+    "after_frame_sha256": [
+      "e9888d46be3a315b7e7b90e491d1a333d5ab521e082b0827f6b40cfaf24f888f",
+      "a6f963deeafe541135ddb43dfb108712c6e6b0f16daf6a27fffbe313435e77e2",
+      "f8e28de21ebfc7d3ae5623bda7779a17b74607d717c062a80743da172fe8daf7",
+      "8df682d0114b93b795665db1a48962ad169f69ad16120b6fda0dc51e7c24a564",
+      "5e1108220710c778b47f6c10a8f67691d4708e6a563910a8c9b9803a61e3572d",
+      "1627d33e3e1f98be54edaebc9c5888c4f3325e2e76e357ac932b7ce85850882b",
+      "645d8c6c140596ecc622878bb321280f930ba094e8920258db38e09ce66b8230",
+      "645d8c6c140596ecc622878bb321280f930ba094e8920258db38e09ce66b8230",
+      "71f082fa80ce1aa75095043959d79d8ef74ab454fe0430a73131d59e8c482a02",
+      "461c18460634d07a5efd7f8e253848fbbd24f04b931dfb3bc856d97714ce39d5",
+      "9a0e4a73dfdf2052f00e56ed38cdad634a8d77b5225771da41ca986a2269b4b7",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+    ],
+    "decoded_gif_duration_ms": 3000
+  },
+  {
+    "file": "assets/characters/orc_shield/anim/fresh_throw.png",
+    "changed_frames": [
+      4,
+      5
+    ],
+    "untouched_frames_pixel_identical": [
+      0,
+      1,
+      2,
+      3,
+      6,
+      7,
+      8,
+      9
+    ],
+    "frames": 10,
+    "fps": 24,
+    "impact": 4,
+    "before_frame_sha256": [
+      "a050a35e43308dd524a474ed40751bf50330598a21b08a6f900d5b2f8c331f01",
+      "7ea3f16c291a8bbbcf8641a0035d5934e61c0afe55aecc3dbfc00492df0f2a18",
+      "ed3718157988262a2d9651659cce539f5aa90d7daa130950e61f6dc8d8f38962",
+      "1ab6fd368f080c669bc0a6fd25faa9df94a7f92918c92e9b92805ddbffb55183",
+      "38fa064201a93f37f5c793f24ba148c0e4411d3cbbad54865d11f4ecbc440e8e",
+      "8d3acd1f067b130484869b0f26d957f42ffdd34ee82efa98e3e2e92fd4ccd575",
+      "f92bf58a36f41b0e165f12b21eb66ac848b8336c33f0943b271a526557ebecc2",
+      "3dabb73a4f6dd022ede59f10f77b2eeb87a2a2850bbf76c5532ec82565866b21",
+      "26de9755381c6023b4f4bf25a4e0c4d01dd4580028cce2621dd294233c20faac",
+      "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd"
+    ],
+    "after_frame_sha256": [
+      "a050a35e43308dd524a474ed40751bf50330598a21b08a6f900d5b2f8c331f01",
+      "7ea3f16c291a8bbbcf8641a0035d5934e61c0afe55aecc3dbfc00492df0f2a18",
+      "ed3718157988262a2d9651659cce539f5aa90d7daa130950e61f6dc8d8f38962",
+      "1ab6fd368f080c669bc0a6fd25faa9df94a7f92918c92e9b92805ddbffb55183",
+      "46e421889ae9878e5aab93d79ed6b49328bc54deb394a9689a7c2d5628472cdb",
+      "ab97a882ac146fd012b195df2429f07ab60acdd3f93de6f6388329b303b33cf2",
+      "f92bf58a36f41b0e165f12b21eb66ac848b8336c33f0943b271a526557ebecc2",
+      "3dabb73a4f6dd022ede59f10f77b2eeb87a2a2850bbf76c5532ec82565866b21",
+      "26de9755381c6023b4f4bf25a4e0c4d01dd4580028cce2621dd294233c20faac",
+      "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd"
+    ],
+    "decoded_gif_duration_ms": 1250
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/bruised_hurt.png",
+    "changed_frames": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "untouched_frames_pixel_identical": [
+      5,
+      6,
+      7
+    ],
+    "frames": 8,
+    "fps": 24,
+    "impact": null,
+    "before_frame_sha256": [
+      "1c41a9509fce4b27fa81e130e91820f476aa831e3aed312dbe28acca0e3f348f",
+      "a615781d0a38a4299eaf128b6738381ae12b21608182e93bb351ef042d34406f",
+      "2de8301d512d35beedacda9cb69eeabc751be3336f1eb30a3b08ee7a4af74329",
+      "f4b388a26a5c0abd2e233ce30534e1633ad7d62380760cef0a6c70c2a6c5cc42",
+      "49e86941a00d0b1b09344f5ebeb37d678c8314efc84f1804bce7e8295fd2d6c8",
+      "be088191b290f948283f7622277ea8d3b336387f491dfd826a5210d0e432283e",
+      "041d67ddd0bc13081fa07c346cfb5cb27ecb18c82008dc0b7f7a1240211e6397",
+      "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d"
+    ],
+    "after_frame_sha256": [
+      "e75acdff71e92da89339662e963efef7ef31215ca7384f986b4d2d506e36e784",
+      "0a3795af2dcfb84d0f272e9e34ac7e0a8fba2c67a4aea501960761c6f361ef88",
+      "bda84d8177cb4c1bfb340edc7bddea0e02ccacaccd9a0af0745ab424b6b93d8d",
+      "5aad01cd32f99bc35ad6ca81b4c8b939c3e8120e427a0d2880a76c4e8f982b38",
+      "666bd6aa3ed27d48e649667485d2afff75c30c87ba940412e12f7b83484be713",
+      "be088191b290f948283f7622277ea8d3b336387f491dfd826a5210d0e432283e",
+      "041d67ddd0bc13081fa07c346cfb5cb27ecb18c82008dc0b7f7a1240211e6397",
+      "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d"
+    ],
+    "decoded_gif_duration_ms": 1000
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/bruised_knocked.png",
+    "changed_frames": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "untouched_frames_pixel_identical": [
+      5,
+      6,
+      7
+    ],
+    "frames": 8,
+    "fps": 24,
+    "impact": null,
+    "before_frame_sha256": [
+      "37716e41d59d33f007cba404bbc52b40cca222e0d6648a505f674674548887b0",
+      "6a7e9c5c76161ab9591c35a2e8cd5ce1670cb5e6c9370e8ef1a25d2f0b33f471",
+      "7bc0ab5d8f5e52ce3201f5643a83739400852361a7ccd09c04b6af2d7afedb59",
+      "941bc48c9c47109b539a4308e74586694d61b5ccc9b20b7866b274ffe38e00f7",
+      "8beb29722307dce8014f30168e4f916e21b2bc150e289009e583f3d7f5f6fa88",
+      "1b01ff751bc5b39f1a6612d4df91f6de1520b712b3922c849eb994d62051a175",
+      "c66dcab725eba9c76932d11443d33e91f5640c9e0131c80c85e84afb7595f52f",
+      "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d"
+    ],
+    "after_frame_sha256": [
+      "91db434b561e595d5f8f094145d43887b2be18e171023dca0129f95953d23eca",
+      "b6678619b22e8f0cf50979b226c71c590fc4c3a048001462936ae713ba9effe5",
+      "4a510b191499acac25a871a9ed5229725e04470e860d65de2e41724889dc5d5c",
+      "58a2d9692045a6be48907c3b646dd6e9c45a83f7979621be9527d5f2d51fd2e3",
+      "9eb3c6162bd614c11f93867421fe165c9e6866855f271a28e6ad1070df324310",
+      "1b01ff751bc5b39f1a6612d4df91f6de1520b712b3922c849eb994d62051a175",
+      "c66dcab725eba9c76932d11443d33e91f5640c9e0131c80c85e84afb7595f52f",
+      "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d"
+    ],
+    "decoded_gif_duration_ms": 1000
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/bruised_scared.png",
+    "changed_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "untouched_frames_pixel_identical": [],
+    "frames": 8,
+    "fps": 12,
+    "impact": null,
+    "before_frame_sha256": [
+      "357edf6ae295ffb231394339c2d54a35d00bd10d6817bb990c79b458c57a2245",
+      "b865527df33bed3956a64cb9604e0b50656e21d470d5cc40ccb101fb8e204f00",
+      "628260cc579b27a113d76f3ed9344a54f8efc00e05183e3af92802af1690546a",
+      "5cdb8f77d74af9660bd7e1857b017c91a48b9766366f2a955a3d5e6a81c93e29",
+      "6ecc775db7ff6b474eaedf745dfe819625dbde15b622335f4c7e0385f7566497",
+      "2b12e5c69cd7c5add3584150fb470bdc6a2fc42174b7700092e45d2c7330b045",
+      "1becb388b4221de5c115f5ae635a6a970ae2e64950e7542ddbe602dc0dec144d",
+      "357edf6ae295ffb231394339c2d54a35d00bd10d6817bb990c79b458c57a2245"
+    ],
+    "after_frame_sha256": [
+      "ec4b8f5ca55d9827e37efa04d0119a84f55457f2c3c7507aac7e4195b4cf28d8",
+      "8b3b33d55ef31c11fb0d1da0878cbaa7f1dfc9439828b884475e5315dddb77ad",
+      "ad24da5529a1799beaf430002ae913da13fa04bdd4d724fea6fa54980f6476b4",
+      "17ceb9ac690a7ecb4f0feab24bf2b17312d2c88729a718ba450056680c92b9ed",
+      "235c78317ff556166567f423184faffcfb50198512c6f881096589af53f8e40c",
+      "e0a45c551f90c51a7022c1d32b91fd384a289de8bd934be53580937e8a4b0405",
+      "83afcdf21cf167f444578938dc38828e826f694650ad425d77f260d61755062f",
+      "ec4b8f5ca55d9827e37efa04d0119a84f55457f2c3c7507aac7e4195b4cf28d8"
+    ],
+    "decoded_gif_duration_ms": 2000
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/bruised_dizzy.png",
+    "changed_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "untouched_frames_pixel_identical": [],
+    "frames": 12,
+    "fps": 12,
+    "impact": null,
+    "before_frame_sha256": [
+      "039e4ff05e82dd973ee12c75604a54425d1124760c1536b689aa2bc199e21826",
+      "339805cd61d7280bfd039e1958aa62310e431c8e21c7ce142b2db57e4912778d",
+      "f161379af804ec546ca6d65741c88120bc65f0ea9dcf32ec1375dca506632e51",
+      "83ca3c6f953f41b95cd05e36dfc7a83e16060a946729f1c8221e9b6dc596d35d",
+      "228517fbf710257ef87fd795aeb8f7b25b2aae164c9edfd2acbab33d51be8cf4",
+      "26eb411c76acd60ca437e2588f1a1c6371481c6a0ca7ff52dbef082db15c87b8",
+      "8c24e05c12ac48ec58f3f7b35f0eb0c16ba3bc55f60e78ca3b5c1f1788e3c913",
+      "2f8beab6d10d73dd5bdca6a4e35cf55030b10f906898ab42742a8555e0c014b5",
+      "e0d2476f418167e614b35461df235ee0841abce64e7b60ad5303794f2e2e3f9e",
+      "6c4cfe1303b101e7d60c989b610829027ebd75ad459eed035b562d292d5f28e7",
+      "130fb93a3604650a8eb92bfa65505b4a177a452309793f9cf6d9053106e230ea",
+      "039e4ff05e82dd973ee12c75604a54425d1124760c1536b689aa2bc199e21826"
+    ],
+    "after_frame_sha256": [
+      "917797fb45832707acdd4d4238bb96370da7843734367b70c88f88f862005209",
+      "8c8dee0e1e7f8d7d72788b079a729c4ec06e2af62ba0e500cd0c22f4125f6863",
+      "477525d9631ca9b9a110361669c5f2a521ffc19698a5cb89f3d0c50ef4fe2cab",
+      "6176972f9d855749ac1896ec5c85f8678baa9520c9ac12043c2d1114fd66c1bd",
+      "1e00bbfbac12d318c528f79cb80c727550bdd4c07571b67477630411bf3593a8",
+      "5b75c8262a10be378e091a6df81f5afaf3b6b877b37e86c94ca0037960aeff30",
+      "497bccf555b1db9ecf5b53a0dabc7667859952ae2880daa9c32d73860bd2d951",
+      "7d5656ade7b7278a8bdaaa3c47b29f0d36a1f9b89cdc518567c1e9bc901b51d1",
+      "7fcd4cd8cee64d123e34b5993ecb6318c83afe846ca4154159561a4db4f0eeda",
+      "c15726fdc96d859c1abf86ab3c41a3c62825114b6da3fc4ba1a9dda1d7fce545",
+      "e4976421fc55afc5ce99eaad3abef62a78cdbd3becb26f5acdad43fffbddfe00",
+      "917797fb45832707acdd4d4238bb96370da7843734367b70c88f88f862005209"
+    ],
+    "decoded_gif_duration_ms": 3000
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/bruised_drink.png",
+    "changed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "untouched_frames_pixel_identical": [
+      0,
+      10,
+      11
+    ],
+    "frames": 12,
+    "fps": 12,
+    "impact": null,
+    "before_frame_sha256": [
+      "b717bfe996772cb9f4337b7e88fd3f629e703275311145b04118264fced4cad6",
+      "155372a2f626817a32562d7de0bde5ade03f9398dcd2edee09ed59ba4b4c72d5",
+      "00720eec54e15298f0e6b87956ecf011638144c508d556a54aba5155f96fd928",
+      "8b293f125ae5fa5ab2dcd1880752e4dd243fc85544b0f630fe8b1d03584460e8",
+      "9b68b0c28257ed5f57f85117ca75ee4bc7ec471c1be2257dd2ab78031a00ae4f",
+      "1e58afa2fc53aecd1f4f5adc3f833ff57cb69a6ea9c62b1d3b225b431818467f",
+      "f8661a0c7f5ff73ec9ebb8016e0dbd214d28fbd0db83dcd3452fe2e40be9e586",
+      "6b5cb7c32267e47a70d1e795b1150ec426dd3fe28816211a594b17e6683fef60",
+      "f3693ca80fc270267029758a8d91efdb53167120d5655e1625de3c36ce7dae6a",
+      "35009ffce544b2f558fc47d2e32771fafc1bdc83080d7e307fe18bfb365a44a1",
+      "92c68265d716a7a9466c19627e49945efe9d508bc78c282131dfb471fa284b69",
+      "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d"
+    ],
+    "after_frame_sha256": [
+      "b717bfe996772cb9f4337b7e88fd3f629e703275311145b04118264fced4cad6",
+      "329b302cf09439beb312dbdbcee65a2c578260f3da77d56519b5fbaf70117636",
+      "187863b01b8336ca378226376c6213a3c35a906fd2b3973b5b8da93bf7a6a404",
+      "352d509f9296e963eda6e538e617442f5e06480584dd058d93362110f524baa2",
+      "8668b7df0acd794269ab2ef879ebed16d6327ebcaaf27d07ba6511f37f4b094d",
+      "91ca5f97a3c9b466c5ca546bac9152289da52b4be453efe6ed0f8717ddf0da3d",
+      "b080a5b0290c83d1500b598706d06d6718ba4ffdc36900f9dec8b923eb7eb52d",
+      "b080a5b0290c83d1500b598706d06d6718ba4ffdc36900f9dec8b923eb7eb52d",
+      "f7a2a177b7a827f8133a628a1da833c91ea3c3ae1d646f7f337dfd3d64135be9",
+      "0601011eaa2dc6fac6657705600dfd7f899cccab588e0659a5cb694ebb922079",
+      "92c68265d716a7a9466c19627e49945efe9d508bc78c282131dfb471fa284b69",
+      "fd062bded68d05756dff0b005e746e1ba34e2304cfe78e944fedd66ed726955d"
+    ],
+    "decoded_gif_duration_ms": 3000
+  },
+  {
+    "file": "assets/characters/orc_shield/anim/bruised_throw.png",
+    "changed_frames": [
+      4,
+      5
+    ],
+    "untouched_frames_pixel_identical": [
+      0,
+      1,
+      2,
+      3,
+      6,
+      7,
+      8,
+      9
+    ],
+    "frames": 10,
+    "fps": 24,
+    "impact": 4,
+    "before_frame_sha256": [
+      "824bb6282284e3763ce8fdeb30d4bafdea8617844205101faa18966a0ba6eee2",
+      "5ef6de39881d3d81a2ee5298ab1abb368bfe8820e5ea0d8b9beee9357a6efc60",
+      "696648e078647f98234d1e94cac0caa05c92a44515eb8443cdaf0c4de95d82c1",
+      "29d21ca2d1885d62fa1c3cfb49f1469605b9ecb1eaf8b1a6a6b875c61bec886f",
+      "1c95d8216404982a350617d09ffad6419acc0be58189553d062e25a05bbc924f",
+      "4e2632f575ee6ae391c48d555427aef259bd48dea1ebe5c37685178d08f2eca1",
+      "830f38bbf627869b53213c87d5b8c88b566ffccbd5039d2efb80579dd9c44152",
+      "d21315617bf1a7b84d5aa2d60c175fc76467a206dda154ee118242d23f248124",
+      "af6862f9c2a846b17a3d60fa4e4d1db27abd9599e6393e1224996ee78a35a602",
+      "2384b88298f22ca105f58d373a7502b7a3cc23c7ee3bd95b4bf69bb1501efb95"
+    ],
+    "after_frame_sha256": [
+      "824bb6282284e3763ce8fdeb30d4bafdea8617844205101faa18966a0ba6eee2",
+      "5ef6de39881d3d81a2ee5298ab1abb368bfe8820e5ea0d8b9beee9357a6efc60",
+      "696648e078647f98234d1e94cac0caa05c92a44515eb8443cdaf0c4de95d82c1",
+      "29d21ca2d1885d62fa1c3cfb49f1469605b9ecb1eaf8b1a6a6b875c61bec886f",
+      "ac8f4c97c2e4b67cc626912e2f73a07e1041ca94d2e0f86db0453b225bb1994a",
+      "99dd2f6e474459fac3bda05f8bbdfe04b8bc2dc950856021acf143953fa84f9b",
+      "830f38bbf627869b53213c87d5b8c88b566ffccbd5039d2efb80579dd9c44152",
+      "d21315617bf1a7b84d5aa2d60c175fc76467a206dda154ee118242d23f248124",
+      "af6862f9c2a846b17a3d60fa4e4d1db27abd9599e6393e1224996ee78a35a602",
+      "2384b88298f22ca105f58d373a7502b7a3cc23c7ee3bd95b4bf69bb1501efb95"
+    ],
+    "decoded_gif_duration_ms": 1250
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/battered_hurt.png",
+    "changed_frames": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "untouched_frames_pixel_identical": [
+      5,
+      6,
+      7
+    ],
+    "frames": 8,
+    "fps": 24,
+    "impact": null,
+    "before_frame_sha256": [
+      "7c024923bc0baf8d8f1147e3d1831740c1364fa95b617254d0d0eb523409690f",
+      "beea9fb3d16942caeacc227a94080af65e3fff5f78349629c2f61419807cd567",
+      "6ee3b2071f9039baa033ab20f4a9664fb0377aee12514c61fbb3a65937d844d1",
+      "ead0d14c564f5a143d0c2df3b62ee11245986b91ba438d717fb3260ebe9567d4",
+      "4f61a02669ec3909bf973fe52e5826f4a627a872a931a58400fb8e7dc910e061",
+      "66130b260552e5e85bbafcef3882d17811fedab2766e0bb92205792a935bac0e",
+      "47e832758c76a43762ca0db2c20f55443cb8c82ea2e26b7a7bfdf084c4da33d6",
+      "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068"
+    ],
+    "after_frame_sha256": [
+      "529d33171622ffae4f38914746a3df4e2bb22f22e6db434eabd490fca22d749f",
+      "f3256f95b4c41e345fd10904ea7b11dc9dd6f1bc06335b8e18cfdb4c0e5ab03e",
+      "d9a4fe2b4def5614b0750f80d55f70b0a0689bb8a0ae563de95733b7842bdde5",
+      "14ec4588c3e0245e1cf08c800cf1e31d9d98253b1ec308ea245373964e2ace9b",
+      "311a797eca0d6507c0b6fe85dbb9672b6dbdb65795c6fd686be6e44d1200e48f",
+      "66130b260552e5e85bbafcef3882d17811fedab2766e0bb92205792a935bac0e",
+      "47e832758c76a43762ca0db2c20f55443cb8c82ea2e26b7a7bfdf084c4da33d6",
+      "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068"
+    ],
+    "decoded_gif_duration_ms": 1000
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/battered_knocked.png",
+    "changed_frames": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "untouched_frames_pixel_identical": [
+      5,
+      6,
+      7
+    ],
+    "frames": 8,
+    "fps": 24,
+    "impact": null,
+    "before_frame_sha256": [
+      "5d1b72fde978d91eef66ffbe5773d44f9199815233e2fdf2d999f9d6a27d8a7c",
+      "90d6300a95bd484168e3803f1fdcafef4ec8ed97f533b5535b79daa8abe0f91a",
+      "e64da1ee0535ea683cf2ebfb944fa8462ce2b10e544eda65395f550dcf625ec6",
+      "7bb885f31fc52533c9ee4d43a4b2ba3e1c6ebef1ec8dca5498c3e74f5fc175a0",
+      "e35be135d0318955f87aec5b5a17fc77b648cc5c9c3756d33f7fefc22bd487a6",
+      "cd1ce8281875c94c6c05e893d04c508c7ee865660773dce5de8bf9435cff3b8a",
+      "157527b2279fc7e902c4f1d5f528362cae1a556f80e4e5515fd38088d05ba311",
+      "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068"
+    ],
+    "after_frame_sha256": [
+      "4f7f10a53e3aaa2f8ef68151582e96c0dfe1647715b388b643a3e14461ea9ab9",
+      "ba6dc0a2c71bf72dfb88df9527dfd9c9f246f146d6fcf4660b9f62a7a628c8e4",
+      "40bf6beda5af38f423fa187baa99c67b87e9ccf20e3a39cde885ddcbf6223fcc",
+      "166ca94e9836f12309df3bfffac19c6b7b8609182e9a6f87b305f4643b101a42",
+      "e65841f394f913cecce776ddaf3451ddf143dd78f471f591dc3b1879c2a8ffa3",
+      "cd1ce8281875c94c6c05e893d04c508c7ee865660773dce5de8bf9435cff3b8a",
+      "157527b2279fc7e902c4f1d5f528362cae1a556f80e4e5515fd38088d05ba311",
+      "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068"
+    ],
+    "decoded_gif_duration_ms": 1000
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/battered_scared.png",
+    "changed_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "untouched_frames_pixel_identical": [],
+    "frames": 8,
+    "fps": 12,
+    "impact": null,
+    "before_frame_sha256": [
+      "24b13eeefac8d05ab02d0e5402a84811567758783e0ad8f9516276ca724944d0",
+      "d5f6c090822887366cfc4a040ffbffe7ef71380bd5ab2490223ae5b84bff2b7b",
+      "99d0fbf6699514ffcbbb8b800e6b8184b8f0893a41ba39864b52255b390a439c",
+      "e3b5a766d726a11f5ab959d3f5b3e8ccb1745046566f110bc2dea5a80aacffc9",
+      "9ec1f132619f91e52d2c4e39dffb952be5f32b961b15ddfbc8443e690f127c80",
+      "c2da5a1bc3e96797212c9d22f3ae06e197609b467fc8602ae67d2e932640044b",
+      "90f29132aa9aafaf4ab71f2fe3d1f79ec21df5010d8336df7261dea142c10bb2",
+      "24b13eeefac8d05ab02d0e5402a84811567758783e0ad8f9516276ca724944d0"
+    ],
+    "after_frame_sha256": [
+      "c9eb750ef549f4874b0938abcd3d9967dbf00b4c008428adb606930e1081f3a5",
+      "ade9454083d939dc1f5b10ad9fb26c9ef70e35b89615b535aa2c97c77a08bdca",
+      "28c779799a0b166c9aa0200acdc8c06329948e1ef047eb9d04a224b8e1fde920",
+      "ddd8e6ff7f5f69a4d43ea9d655ceaf2a1c9f34e3f11d2cd3e5a83b1da29c0deb",
+      "0abef85547b6fa0730ab6ca6a806d89ca18460be5d8a214be5adfb8fca7f756c",
+      "221ec003acf4f47740d8bfd04127333ced941a421ca0d3552dde65f4996c0651",
+      "c032398d0a56eaa819a6a89b28ec2db2fa1f62f1ef7203067e29a462c42a6063",
+      "c9eb750ef549f4874b0938abcd3d9967dbf00b4c008428adb606930e1081f3a5"
+    ],
+    "decoded_gif_duration_ms": 2000
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/battered_dizzy.png",
+    "changed_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "untouched_frames_pixel_identical": [],
+    "frames": 12,
+    "fps": 12,
+    "impact": null,
+    "before_frame_sha256": [
+      "bd37d8097cd68d653666271ade5ddc4c3e90bf8803279f0c34a088859aff075e",
+      "fff27e3f70903c1c7d7bf0f34ed6d2e023feca34285bc49b0284b3b0995c2344",
+      "c3ceea2b4a0e36060a456a81d66bec193f0c0ab32e45d4fd1bd2ca6f0401dd52",
+      "f343b9e22759cb921104e46efb3229fc08d27389b3cce5686ff6c1921a8a6e7a",
+      "9c75c41362117a1936da62edd283e34c928a9d01881be572523ddf49513512b4",
+      "3dee8fd115a654fcc5c6cf7674619f0cbd676f35b647fe754e9af0bcac64c69b",
+      "37f72fdad15e317f0f80401944e2ad9406b444428d327787b9b2f094434e9c40",
+      "64d6beae9b2366469ebe1a7c93fd09d45e1cdb5f611c5a00bdd1c33be844b48d",
+      "37f59794761ccca9839377bf5f0565aec407e4b2d66881e6f07055cc254d7b60",
+      "542c79eb2f1449116a0754b62e470661c4d1933ec3434219e2f401382062fcc7",
+      "326e6d5c50722814d6423cf923045bd90daaaca3985948c6f68f4596517d5d53",
+      "bd37d8097cd68d653666271ade5ddc4c3e90bf8803279f0c34a088859aff075e"
+    ],
+    "after_frame_sha256": [
+      "3e16f3769f63e5bdf57cba7972d0fb0116e5aaf263b838038cedc7635ef6b267",
+      "55c7bc978b60206168b2e40c8d930271c965eaaef9d0696ef6c33d147ccaf3c5",
+      "fcb4e065cd428094cab17ad78e4b3d78a955249df76f295a2b3d5f26937f6e8d",
+      "493e64cf9a290e3089ea2e70c77f0dda7266a6f61f6a8e2c53ef8b5b1a94c015",
+      "4d660de49b163b9310be840f9ea4be9420dd809da24a6de67c70aa4d76a9836e",
+      "3f954496df849b96052f2510977bade5009a6f09b02a6dd410ad500aa9193d4c",
+      "24a5e934edb38368b23491f32ecfdbd503ed5bd4b381168c096430fa3e714487",
+      "ee8bd5fc50e70751e77b43f56061140243bccfeee751a956777d9f6b7cf26247",
+      "6d38ec06a8277e6add60aac9dec962fc5bb015a98095f3c35d5908296b7c0ea4",
+      "dac1758672eab424a3718e3a0210a1a0878c48647af5fd0005e052fb682fcb75",
+      "5fb85ecdeb4c494358501f69ce0f1688f2b2a7a5c6ee3be2f39bcef6730d0377",
+      "3e16f3769f63e5bdf57cba7972d0fb0116e5aaf263b838038cedc7635ef6b267"
+    ],
+    "decoded_gif_duration_ms": 3000
+  },
+  {
+    "file": "assets/characters/hero_rookie/anim/battered_drink.png",
+    "changed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "untouched_frames_pixel_identical": [
+      0,
+      10,
+      11
+    ],
+    "frames": 12,
+    "fps": 12,
+    "impact": null,
+    "before_frame_sha256": [
+      "1aa45ee257356d0afc81488c71265085067c58b21dab6204b1e7ed397be40277",
+      "7e617a244eae59e9aaeddc49f55684cbdee85063c3e458580dc3ddd520f22e5b",
+      "8f8a58f727c34ff56a148d15728cd1aa7f56d68982e5d22bc130f65ec23777ac",
+      "e3aa6bf862bc2dc194812701eb7fe3d2a4a11d909dae30433cc394573170b1e9",
+      "90a11bab0e8b2f2565ed529e151e2db2ec58984ecf515de5bf7d573a8f780fc9",
+      "b9037386b770b1f02cf9eb72c93c770abf1baba2b2974cb1ca203d8d98cf01eb",
+      "796ba32f2658e4e7ef199ba812cee0b9d221ad3cfa2d651292130dd369a1a4a6",
+      "370a4c7078a9db68f22485e8c341f9d170f3a23ae3a7e1b40f7e04a28f8bc483",
+      "12b54f50da92d942c23ef6784038d6ecc12b60a6042f2bd5597ded112d4156f0",
+      "20a2037f3f7c68f2fbda2efebe67863742362cca31cb8054c9c091549e952a35",
+      "5411d0f774066b1c8611e458ed55a839934c824527995f70753b949267429c03",
+      "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068"
+    ],
+    "after_frame_sha256": [
+      "1aa45ee257356d0afc81488c71265085067c58b21dab6204b1e7ed397be40277",
+      "074015d9c7ab79f601e74d5fb24557ffcf05e7f3f53eee859bcbfa684b56cc23",
+      "26ae8488bd242baa1f745cb38dd6a89c3f851441d1f17e01b61303589e383e06",
+      "88131859f0b17a398123400131ed3e0b10fc9153ebb1f79e694d27031cc9f8a1",
+      "3dcdcf15533ce0095a3ecf5b7c0aa2a4b11c2d02bbbba220f898eef0a212d256",
+      "c11c76ca601695b2f70c10835efc9f63b2d8c2e32d54278433597479e695ecaf",
+      "6873ba90cb63c760f7b92ac670c31a33d1f5498659d8bb65e98328cb1cd7824d",
+      "6873ba90cb63c760f7b92ac670c31a33d1f5498659d8bb65e98328cb1cd7824d",
+      "ce26decc7bb1bab732c685fee962ece461ec5e831c52a0663fd232225eee9128",
+      "987ba18167681e3f2cb12ab9182337d061cf6b850c81f7fb90b8f70ff5bfa75e",
+      "5411d0f774066b1c8611e458ed55a839934c824527995f70753b949267429c03",
+      "e1d503e0ae9ffe885a6e032e90469829cf36ee856ccda1b7828544ecb6c4b068"
+    ],
+    "decoded_gif_duration_ms": 3000
+  },
+  {
+    "file": "assets/characters/orc_shield/anim/battered_throw.png",
+    "changed_frames": [
+      4,
+      5
+    ],
+    "untouched_frames_pixel_identical": [
+      0,
+      1,
+      2,
+      3,
+      6,
+      7,
+      8,
+      9
+    ],
+    "frames": 10,
+    "fps": 24,
+    "impact": 4,
+    "before_frame_sha256": [
+      "a74263470192f44b4901266b7a1dab3f88c0792ce93b7b5d541574d9cb5c0e32",
+      "82cb4983ee699d15a869c27c681632f1760e2af8d5a1e53b86b5898e32a29770",
+      "40a0f171037678df1534494d29ad1dce37c30fffcfd4667352a6ce833b1b7b63",
+      "25b37f87825af30b62f59ebc0fb437f74d87740d7745c864ee4c3bf6112ae01c",
+      "efed5d02765e977b3b85a841df892282417150747819c1710da9ea7b33e9cd13",
+      "f657b0f6f450855b94e32dd86486a01da18c50fb2fda2286a3edabe85157a831",
+      "5726a811a90a017b35fb80a784569ac55abf067407f36aeb121379833ec3042e",
+      "6c6ff7db177c015743efa24d0a0a74219498f7caf1782d63015129d45bc9c110",
+      "8696e4c24d81ab79a62268a1b51f56b8cd0b9758969c6d9d399a3cebf254a893",
+      "b01527601fde1d34bdd149feaa0b8770eb063d6f197573d36d80708f2a6fe29a"
+    ],
+    "after_frame_sha256": [
+      "a74263470192f44b4901266b7a1dab3f88c0792ce93b7b5d541574d9cb5c0e32",
+      "82cb4983ee699d15a869c27c681632f1760e2af8d5a1e53b86b5898e32a29770",
+      "40a0f171037678df1534494d29ad1dce37c30fffcfd4667352a6ce833b1b7b63",
+      "25b37f87825af30b62f59ebc0fb437f74d87740d7745c864ee4c3bf6112ae01c",
+      "14b5819afe592498bfd4d1069163ad6645992ca08a7ea3a05c48f2db630de253",
+      "0b8bf8fe6bbcffc4d79bdd95598bc4b22a860de8c39c58889a4b2f141cccb725",
+      "5726a811a90a017b35fb80a784569ac55abf067407f36aeb121379833ec3042e",
+      "6c6ff7db177c015743efa24d0a0a74219498f7caf1782d63015129d45bc9c110",
+      "8696e4c24d81ab79a62268a1b51f56b8cd0b9758969c6d9d399a3cebf254a893",
+      "b01527601fde1d34bdd149feaa0b8770eb063d6f197573d36d80708f2a6fe29a"
+    ],
+    "decoded_gif_duration_ms": 1250
+  }
+]

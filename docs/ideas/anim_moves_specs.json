@@ -1,0 +1,135 @@
+{
+  "hero_rookie": {
+    "throw": [
+      10,
+      24,
+      false,
+      4
+    ],
+    "leap": [
+      16,
+      24,
+      false,
+      10
+    ],
+    "kick": [
+      8,
+      24,
+      false,
+      3
+    ],
+    "bash": [
+      10,
+      24,
+      false,
+      4
+    ],
+    "drink": [
+      12,
+      12,
+      false
+    ],
+    "hurt": [
+      8,
+      24,
+      false
+    ],
+    "dizzy": [
+      12,
+      12,
+      true
+    ],
+    "knocked": [
+      8,
+      24,
+      false
+    ],
+    "scared": [
+      8,
+      12,
+      true
+    ],
+    "cheer": [
+      12,
+      12,
+      false
+    ],
+    "victory": [
+      12,
+      12,
+      true
+    ],
+    "defeat": [
+      12,
+      12,
+      false
+    ]
+  },
+  "orc_shield": {
+    "throw": [
+      10,
+      24,
+      false,
+      4
+    ],
+    "charge": [
+      10,
+      24,
+      false,
+      4
+    ],
+    "dodge": [
+      12,
+      12,
+      false
+    ],
+    "windup": [
+      8,
+      12,
+      true
+    ],
+    "scared": [
+      8,
+      12,
+      true
+    ],
+    "cheer": [
+      12,
+      12,
+      false
+    ],
+    "bald": [
+      8,
+      12,
+      true
+    ],
+    "victory": [
+      12,
+      12,
+      true
+    ],
+    "defeat": [
+      12,
+      12,
+      false
+    ],
+    "attack": [
+      12,
+      24,
+      false,
+      6
+    ]
+  },
+  "scarecrow": {
+    "idle": [
+      8,
+      12,
+      true
+    ],
+    "hurt": [
+      8,
+      24,
+      false
+    ]
+  }
+}

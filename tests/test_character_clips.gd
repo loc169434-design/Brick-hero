@@ -54,10 +54,10 @@ func test_landing_a_blow_jumps_the_swing_to_its_impact_frame() -> void:
 	rig._update_clip(0.0)
 	rig._update_clip(0.2)
 	assert_eq(rig._clip_frame(), 4, "still swinging")
-	rig._reach_impact()
+	rig.reach_impact()
 	assert_eq(rig._clip_frame(), 6, "the blow lands")
 	rig._clip_time = 0.4
-	rig._reach_impact()
+	rig.reach_impact()
 	assert_eq(rig._clip_frame(), 9, "never jumps back")
 	rig._body.free()
 	rig.free()
@@ -76,9 +76,29 @@ func test_a_mood_with_a_still_pose_but_no_clip_shows_the_pose() -> void:
 func test_no_anim_file_no_clips() -> void:
 	var rig := CharacterRig.new()
 	rig._ready()
-	rig.setup("scarecrow", 1)
+	rig.setup("blacksmith", 1)
 	assert_true(not rig.has_clip(&"idle"))
 	rig._update_clip(0.5)
 	assert_eq(rig._clip, &"")
 	rig._body.free()
 	rig.free()
+
+
+## Clip sheets are big (2048 px, up to 16 frames): uncompressed, a fighter's clips alone would
+## take hundreds of MB of video memory on a phone.
+func test_clip_sheets_import_vram_compressed() -> void:
+	var folders := ["res://assets/fx/combat/anim/"]
+	for id in DirAccess.get_directories_at("res://assets/characters/"):
+		folders.append("res://assets/characters/%s/anim/" % id)
+	var checked := 0
+	for folder: String in folders:
+		if not DirAccess.dir_exists_absolute(folder):
+			continue
+		for file in DirAccess.get_files_at(folder):
+			if not file.ends_with(".png.import"):
+				continue
+			var config := ConfigFile.new()
+			config.load(folder + file)
+			assert_eq(config.get_value("params", "compress/mode"), 2, folder + file)
+			checked += 1
+	assert_true(checked > 80, "found the clip sheets")

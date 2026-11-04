@@ -1,0 +1,69 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "import_passed": true,
+  "smoke": {
+    "exit_code": 0,
+    "icons_loaded": 4,
+    "clips_selected": 4,
+    "hammer_impact_frame": 3,
+    "hammer_impact_seconds": 0.125,
+    "impact_events_per_play": 1,
+    "last_frame_held": 5
+  },
+  "atlas_compress_mode": 2,
+  "existing_suite": {
+    "passed": 68,
+    "failed": 1,
+    "exit_code": 1,
+    "failed_test": "test_character_clips.gd::test_no_anim_file_no_clips",
+    "reason": "The fixture uses blacksmith and assumes it has no idle clip. Issue 30 adds idle. Application/test code left unchanged."
+  },
+  "preview_files": [
+    {
+      "file": "blacksmith_idle.gif",
+      "bytes": 516936
+    },
+    {
+      "file": "blacksmith_talk_numbered.gif",
+      "bytes": 128715
+    },
+    {
+      "file": "blacksmith_hammer.gif",
+      "bytes": 387224
+    },
+    {
+      "file": "items.png",
+      "bytes": 88742
+    },
+    {
+      "file": "blacksmith_talk.gif",
+      "bytes": 523827
+    },
+    {
+      "file": "blacksmith_hammer_numbered.gif",
+      "bytes": 108852
+    },
+    {
+      "file": "blacksmith_idle_numbered.gif",
+      "bytes": 131675
+    },
+    {
+      "file": "blacksmith_cheer_numbered.gif",
+      "bytes": 182407
+    },
+    {
+      "file": "blacksmith_cheer.gif",
+      "bytes": 790828
+    },
+    {
+      "file": "blacksmith_hammer_contact.gif",
+      "bytes": 527109
+    }
+  ],
+  "base_commit": "fb87b63",
+  "parts_delivered": [
+    1,
+    3
+  ],
+  "part2_implemented": false
+}

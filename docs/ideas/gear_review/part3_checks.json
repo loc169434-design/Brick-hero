@@ -1,0 +1,101 @@
+[
+  {
+    "clip": "idle",
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "dimensions": [
+      2048,
+      1024
+    ],
+    "unique_drawings": 7,
+    "feet_locked": true,
+    "first_and_last_equal_idle": true,
+    "gif_duration_ms": 2000,
+    "frame_sha256": [
+      "9ec4cbbacbf8ac92022a1021b38b5a0cc8ea541b738a3761b2750813df5d6f33",
+      "d027b007177c8855ac0bfb417a322e89b8035cdbeff9ab0c9483bc271e504f91",
+      "a889b9c6e96ef2a6b7a090a24ca9ae6def57944d3b55b4bf8410d7925e1b7eff",
+      "c92217b6a375e199b810e3c421710fdb922ad216d3321894261449a103570726",
+      "31d451b1b127c694d5c6b50eb6e6615bfed25bcad45bb97744355c6b1579a9df",
+      "0e885b213ce1913594b7191ee42033005055506daa39f17f8b097f4bbc6f5001",
+      "5797a18b7367ef5ee07a6e8dd0d2e11063b975ff97c19a7af556cead74fdf1ab",
+      "9ec4cbbacbf8ac92022a1021b38b5a0cc8ea541b738a3761b2750813df5d6f33"
+    ]
+  },
+  {
+    "clip": "talk",
+    "frames": 8,
+    "fps": 12,
+    "loop": true,
+    "dimensions": [
+      2048,
+      1024
+    ],
+    "unique_drawings": 7,
+    "feet_locked": true,
+    "first_and_last_equal_idle": true,
+    "gif_duration_ms": 2000,
+    "frame_sha256": [
+      "9ec4cbbacbf8ac92022a1021b38b5a0cc8ea541b738a3761b2750813df5d6f33",
+      "87e303f9aa12436e6abbb1ee5472551d5644334f6bf265363fe3fa93dfa417a8",
+      "b37b7884b61a25b6be883784079be13828aedee0642434a978aba0be7879339b",
+      "7951025cfaa568e132d9832e73d476f0ec17b6c35f43c5b5dd54717681ada0a0",
+      "fafc1f031858d46e11369ac04b8579bf86fd83cec1a7bb0ba52017ca15bed1e2",
+      "2dffde7dd84fa3448e7068e9a4c85b51a2ddd1f89b7fb86b53d2c01bf9c88173",
+      "e15e36ee3683a757d257100a5c103362a00a2a321ba1fbe0afe8429d640807c2",
+      "9ec4cbbacbf8ac92022a1021b38b5a0cc8ea541b738a3761b2750813df5d6f33"
+    ]
+  },
+  {
+    "clip": "hammer",
+    "frames": 6,
+    "fps": 24,
+    "loop": false,
+    "impact": 3,
+    "dimensions": [
+      2048,
+      1024
+    ],
+    "unique_drawings": 5,
+    "feet_locked": true,
+    "first_and_last_equal_idle": true,
+    "gif_duration_ms": 750,
+    "frame_sha256": [
+      "9ec4cbbacbf8ac92022a1021b38b5a0cc8ea541b738a3761b2750813df5d6f33",
+      "450e0245b22d658fb8bb35d6ef7753657ab5dbe5b8cb8d3688ea859cf6991bad",
+      "dbde53088cea2a365d8847f4232484c60ef2141da5e468371886c50d69851de5",
+      "c974c7136f3949d2c06a8116d23fbe5f4708032c14566f5f5b879610b9aa83d6",
+      "ee4631178bff9304dbbf69fc8097eaf35d58a7b57cb026b3fbcaee8902874ad4",
+      "9ec4cbbacbf8ac92022a1021b38b5a0cc8ea541b738a3761b2750813df5d6f33"
+    ]
+  },
+  {
+    "clip": "cheer",
+    "frames": 12,
+    "fps": 12,
+    "loop": false,
+    "dimensions": [
+      2048,
+      1536
+    ],
+    "unique_drawings": 10,
+    "feet_locked": true,
+    "first_and_last_equal_idle": true,
+    "gif_duration_ms": 3000,
+    "frame_sha256": [
+      "9ec4cbbacbf8ac92022a1021b38b5a0cc8ea541b738a3761b2750813df5d6f33",
+      "0808732f10b42fc79d5a5a7ab5b786b75bbf9a46a74424b79da2dc39110841e5",
+      "e4c3f17d99eda57e78b1a727328987fbf8efce5fba4c901d10d2994055b3039c",
+      "b7fa539e2c84b2dce640a0375ac2c904b3b8a65bbc33e0735bf3959abc3e2c77",
+      "39e121306b2154009209d15926f267acb40bdbdc4bc0803c5a1b4bf115e5b38e",
+      "2d4761a0ffb02f789413aef0b385392074fe0544dd56081a2d1a71035e9c89e4",
+      "39e121306b2154009209d15926f267acb40bdbdc4bc0803c5a1b4bf115e5b38e",
+      "286473464fa882797c7f90835e3863cb7238521fff537497085b6143ce51f233",
+      "03ef4669112c4aeaabe3bc94a8999342fc50df6ccc3888651ddfa2dd0a3412a2",
+      "de129ef7dff034146e17793d5ad68b9476990f8fbc4c0735e7e7d6815bc2f1ea",
+      "37a7a0a747109246e8ec5aa889a1bea6151f4d4cc236124af4d82a5b98db8792",
+      "9ec4cbbacbf8ac92022a1021b38b5a0cc8ea541b738a3761b2750813df5d6f33"
+    ]
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "frame_size": [
+    512,
+    512
+  ],
+  "columns": 4,
+  "clips": {
+    "idle": {
+      "frames": 8,
+      "fps": 12,
+      "loop": true
+    },
+    "talk": {
+      "frames": 8,
+      "fps": 12,
+      "loop": true
+    },
+    "hammer": {
+      "frames": 6,
+      "fps": 24,
+      "loop": false,
+      "impact": 3
+    },
+    "cheer": {
+      "frames": 12,
+      "fps": 12,
+      "loop": false
+    }
+  }
+}

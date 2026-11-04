@@ -49,6 +49,9 @@ const TRAIL_TIME := 0.4
 const HERO_ID := "hero_rookie"
 const COMIC_DIR := "res://assets/fx/comic/"
 const COMBAT_DIR := "res://assets/fx/combat/"
+## Frame-by-frame versions of the combat effects: anim/<effect>.png, listed in anim/anim.json
+## as {"<effect>": {"frames", "fps", "columns", "frame_size"}}. They win over the still image.
+const COMBAT_ANIM := "res://assets/fx/combat/anim/anim.json"
 const PROP_DIR := "res://assets/fx/props/"
 const NUMBER_FONT := "res://assets/fonts/Bangers-Regular.ttf"
 ## Comic lettering pops to this scale (of its 512×320 art).
@@ -93,6 +96,7 @@ var _focus := SIZE / 2
 var _camera_tween: Tween
 var _attack_turn := 0
 var _number_font: Font
+var _combat_anim := {}
 var _backdrop: ArenaBackdrop
 var _hero: CharacterRig
 var _monster: CharacterRig
@@ -132,6 +136,10 @@ func _ready() -> void:
 	_cinema = Node2D.new()
 	add_child(_cinema)
 	_number_font = load(NUMBER_FONT) if ResourceLoader.exists(NUMBER_FONT) else ThemeDB.fallback_font
+	if ResourceLoader.exists(COMBAT_ANIM):
+		var json: JSON = load(COMBAT_ANIM)
+		if json.data is Dictionary:
+			_combat_anim = json.data
 	_coin = load(PROP_DIR + "coin.png") if ResourceLoader.exists(PROP_DIR + "coin.png") else null
 	_box.shadow_color = Color(0, 0, 0, 0.35)
 	_overlay = Node2D.new()
@@ -186,7 +194,7 @@ func play_report(report: TurnReport) -> void:
 		if fight != _fight:
 			return
 	elif report.heal > 0:
-		_hero.react(&"drink", 0.9)
+		_hero.react(&"drink", 1.0)
 	if report.heal > 0:
 		_float("+%d" % report.heal, HERO_FEET + Vector2(0, -200), HP_HERO.lightened(0.3))
 		_hero.set_health(_state.hero_health())
@@ -284,7 +292,9 @@ func _hero_move(report: TurnReport) -> void:
 
 ## The sword spins across, bonks the monster on the head and flies back to the hero's hand.
 func _move_throw(report: TurnReport) -> void:
-	_hero.react(&"throw", 0.8)
+	_hero.react(&"throw", 0.0)
+	# The sword leaves the hand on the clip's release frame.
+	await _wait(_hero.strike_time(&"throw", 0.0))
 	Sfx.play(&"whoosh")
 	var sword := _prop("sword_%s" % CharacterRig.WEAR_NAMES[_hero.wear])
 	await _fly(sword, _local(_hero.point("hand")), _local(_monster.point("crown")), 0.32, 70.0, 3.0)
@@ -292,6 +302,7 @@ func _move_throw(report: TurnReport) -> void:
 	Sfx.play(&"whoosh", 0.8)
 	await _fly(sword, sword.position, _local(_hero.point("hand")), 0.3, 90.0, -2.0)
 	sword.queue_free()
+	_hero.react(&"idle")
 
 
 ## Leaps high and slams down on the monster, flattening it.
@@ -299,7 +310,8 @@ func _move_leap(report: TurnReport) -> void:
 	_hero.react(&"leap", 0.0)
 	Sfx.play(&"whoosh")
 	_camera(1.06, (HERO_FEET + MONSTER_FEET) / 2 + Vector2(0, -150), 0.3)
-	await _hero.hop_to(Vector2(MONSTER_FEET.x - HERO_FEET.x - 120, -40), 190.0, 0.42)
+	await _hero.hop_to(Vector2(MONSTER_FEET.x - HERO_FEET.x - 120, -40), 190.0, _hero.strike_time(&"leap", 0.42))
+	_hero.reach_impact()
 	_monster.squash(0.45)
 	_flash("dust_puff", MONSTER_FEET + Vector2(0, -10), 0.6, 1.4, 0.45)
 	_land_hit(report, "wham", true)
@@ -310,15 +322,19 @@ func _move_leap(report: TurnReport) -> void:
 ## Two quick slashes and a flying kick that knocks the monster back.
 func _move_combo(report: TurnReport) -> void:
 	_hero.react(&"attack", 0.0)
-	await _hero.dash_to(Vector2(MONSTER_FEET.x - HERO_FEET.x - 190, -10), 0.15)
+	await _hero.dash_to(Vector2(MONSTER_FEET.x - HERO_FEET.x - 190, -10), _hero.strike_time(&"attack", 0.15))
+	_hero.reach_impact()
 	_land_hit(report, "pow", false, false)
 	await get_tree().create_timer(0.16).timeout
 	_hero.react(&"attack", 0.0)
+	await _wait(_hero.strike_time(&"attack", 0.0))
+	_hero.reach_impact()
 	_hero.squash(-0.15, 0.2)
 	_land_hit(report, "bam", false, false)
 	await get_tree().create_timer(0.16).timeout
 	_hero.react(&"kick", 0.0)
-	await _hero.dash_to(Vector2(MONSTER_FEET.x - HERO_FEET.x - 160, -30), 0.08)
+	await _hero.dash_to(Vector2(MONSTER_FEET.x - HERO_FEET.x - 160, -30), _hero.strike_time(&"kick", 0.08))
+	_hero.reach_impact()
 	_monster.knockback(90.0)
 	_land_hit(report, "combo")
 	await _hero.home(0.3)
@@ -328,7 +344,8 @@ func _move_combo(report: TurnReport) -> void:
 ## Charges in behind the shield.
 func _move_bash(report: TurnReport) -> void:
 	_hero.react(&"bash", 0.0)
-	await _hero.dash_to(Vector2(MONSTER_FEET.x - HERO_FEET.x - 210, 0), 0.16)
+	await _hero.dash_to(Vector2(MONSTER_FEET.x - HERO_FEET.x - 210, 0), _hero.strike_time(&"bash", 0.16))
+	_hero.reach_impact()
 	_monster.knockback(45.0)
 	_land_hit(report, "crack" if report.layers_broken > 0 else "clang")
 	await _hero.home(0.28)
@@ -415,6 +432,7 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 	match kind:
 		&"rock":
 			_monster.react(&"throw", 0.7)
+			await _wait(_monster.strike_time(&"throw", 0.0))
 			Sfx.play(&"whoosh")
 			var rock := _prop("rock")
 			await _fly(rock, _local(_monster.point("hand")), _local(_hero.point("crown")), 0.4, 130.0, 2.0)
@@ -423,6 +441,7 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 			_hero_hit(report, "bonk", &"dizzy")
 		&"club":
 			_monster.react(&"throw", 0.7)
+			await _wait(_monster.strike_time(&"throw", 0.0))
 			Sfx.play(&"whoosh", 0.7)
 			var club := _prop("club")
 			await _fly(club, _local(_monster.point("hand")), _local(_hero.point("head")) + Vector2(0, 60), 0.32, 50.0, -3.0)
@@ -431,7 +450,8 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 			_hero_hit(report, "thud", &"knocked")
 		_:
 			_monster.react(&"charge", 0.0)
-			await _monster.dash_to(Vector2(HERO_FEET.x - MONSTER_FEET.x + 200, 0), 0.18)
+			await _monster.dash_to(Vector2(HERO_FEET.x - MONSTER_FEET.x + 200, 0), _monster.strike_time(&"charge", 0.18))
+			_monster.reach_impact()
 			_hero.knockback(90.0, 0.5)
 			_hero_hit(report, "bam", &"knocked")
 			await _monster.home(0.3)
@@ -518,6 +538,8 @@ func _comic(word: String, at: Vector2, size := 1.0, hold := 0.45) -> void:
 
 ## A one-shot effect image that grows from `from_scale` to `to_scale` and fades.
 func _flash(effect: String, at: Vector2, from_scale: float, to_scale: float, seconds: float, angle := 0.0, additive := false) -> void:
+	if _play_effect_clip(effect, at, (from_scale + to_scale) / 2, angle, additive):
+		return
 	var sprite := _sprite(COMBAT_DIR + effect + ".png", at, _fx)
 	if not sprite:
 		return
@@ -533,6 +555,29 @@ func _flash(effect: String, at: Vector2, from_scale: float, to_scale: float, sec
 	tween.chain().tween_callback(sprite.queue_free)
 
 
+## Plays the frame-by-frame version of `effect` once, if there is one.
+func _play_effect_clip(effect: String, at: Vector2, size: float, angle: float, additive: bool) -> bool:
+	var path := COMBAT_DIR + "anim/" + effect + ".png"
+	if not _combat_anim.has(effect) or not ResourceLoader.exists(path):
+		return false
+	var info: Dictionary = _combat_anim[effect]
+	var sprite := _sprite(path, at, _fx)
+	var frames := int(info.get("frames", 8))
+	var columns := int(info.get("columns", 4))
+	sprite.hframes = columns
+	sprite.vframes = ceili(float(frames) / columns)
+	sprite.rotation = angle
+	sprite.scale = Vector2.ONE * size
+	if additive:
+		var blend := CanvasItemMaterial.new()
+		blend.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+		sprite.material = blend
+	var tween := create_tween()
+	tween.tween_method(func(f: float) -> void: sprite.frame = mini(int(f), frames - 1), 0.0, float(frames), frames / float(info.get("fps", 24)))
+	tween.tween_callback(sprite.queue_free)
+	return true
+
+
 ## A prop from assets/fx/props/, shown at 70% (the fighters' scale), or a placeholder dot.
 func _prop(prop_name: String) -> Node2D:
 	var sprite := _sprite(PROP_DIR + prop_name + ".png", Vector2.ZERO, _fx)
@@ -543,6 +588,12 @@ func _prop(prop_name: String) -> Node2D:
 	dot.draw.connect(func() -> void: dot.draw_circle(Vector2.ZERO, 18, Color(0.6, 0.5, 0.4)))
 	_fx.add_child(dot)
 	return dot
+
+
+## Waits `seconds`, or not at all when there is nothing to wait for.
+func _wait(seconds: float) -> void:
+	if seconds > 0.0:
+		await get_tree().create_timer(seconds).timeout
 
 
 ## Flies `node` from `from` to `to` along an arc `height` high, turning `spins` times.

@@ -1,0 +1,412 @@
+{
+  "hero_idle": {
+    "file": "assets/characters/hero_rookie/anim/fresh_idle.png",
+    "canvas": [
+      2048,
+      1024
+    ],
+    "frame_size": [
+      512,
+      512
+    ],
+    "frames": 8,
+    "unique_drawings": 4,
+    "frame_sha256": [
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a",
+      "a959c0ce4a1ab9cdc84aeb5aca579c201aabdb84292b227b5724c7357a7ce365",
+      "a959c0ce4a1ab9cdc84aeb5aca579c201aabdb84292b227b5724c7357a7ce365",
+      "3bebf554c541728cc0220426cf243a53dfc3824dd99b1b315206b408da277301",
+      "3bebf554c541728cc0220426cf243a53dfc3824dd99b1b315206b408da277301",
+      "9bfc405652c474148aa45f4c72fc8bc57a9ef0e9b32377b8f62b695aacc9e22b",
+      "9bfc405652c474148aa45f4c72fc8bc57a9ef0e9b32377b8f62b695aacc9e22b"
+    ],
+    "bounds": [
+      [
+        71,
+        101,
+        469,
+        501
+      ],
+      [
+        71,
+        101,
+        469,
+        501
+      ],
+      [
+        71,
+        100,
+        469,
+        501
+      ],
+      [
+        71,
+        100,
+        469,
+        501
+      ],
+      [
+        71,
+        100,
+        469,
+        501
+      ],
+      [
+        71,
+        100,
+        469,
+        501
+      ],
+      [
+        71,
+        100,
+        469,
+        501
+      ],
+      [
+        71,
+        100,
+        469,
+        501
+      ]
+    ],
+    "all_frame_borders_alpha_zero": true,
+    "boots_pixel_identical_to_original": true
+  },
+  "hero_attack": {
+    "file": "assets/characters/hero_rookie/anim/fresh_attack.png",
+    "canvas": [
+      2048,
+      1536
+    ],
+    "frame_size": [
+      512,
+      512
+    ],
+    "frames": 12,
+    "unique_drawings": 8,
+    "frame_sha256": [
+      "1fb7af27bcb59d7192834c74b3aafb2286882a0c3e1ad0953624f398b30f4f6e",
+      "1fb7af27bcb59d7192834c74b3aafb2286882a0c3e1ad0953624f398b30f4f6e",
+      "6ab9798cbc73c55e8b2f053f9eae203c6210789ca00420a170c30695ebf390c7",
+      "6ab9798cbc73c55e8b2f053f9eae203c6210789ca00420a170c30695ebf390c7",
+      "bfe4a2779bc701af8eec82b5077549cba394c790aa9707e6c51509bc71c33d01",
+      "d7518122ecf7193dcce209e3625cafdf0ac92bdf5ebadccf0c6890de597cfd82",
+      "4a7cf1a0e4eac273e4817ba7aac3aea7edea858eaf8a6a2fbe1de0768472596c",
+      "e8c640d24b4a662365342fa70f75dd30bde0160aa4e978f7bfedd7f21c5dc45e",
+      "9ad708bb1fd99d7436382ec58706edfb2b595e0205d0de4bfc1d1f4abcb29004",
+      "9ad708bb1fd99d7436382ec58706edfb2b595e0205d0de4bfc1d1f4abcb29004",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a",
+      "6ca3c534e363af09cbcb492e0b7ade5b583d841d3fce614267ce532bad84fd9a"
+    ],
+    "bounds": [
+      [
+        71,
+        101,
+        428,
+        501
+      ],
+      [
+        71,
+        101,
+        428,
+        501
+      ],
+      [
+        69,
+        64,
+        428,
+        501
+      ],
+      [
+        69,
+        64,
+        428,
+        501
+      ],
+      [
+        68,
+        81,
+        453,
+        501
+      ],
+      [
+        68,
+        55,
+        476,
+        501
+      ],
+      [
+        67,
+        97,
+        498,
+        501
+      ],
+      [
+        68,
+        101,
+        502,
+        501
+      ],
+      [
+        67,
+        105,
+        498,
+        501
+      ],
+      [
+        67,
+        105,
+        498,
+        501
+      ],
+      [
+        71,
+        101,
+        469,
+        501
+      ],
+      [
+        71,
+        101,
+        469,
+        501
+      ]
+    ],
+    "all_frame_borders_alpha_zero": true,
+    "boots_pixel_identical_to_original": true
+  },
+  "orc_idle": {
+    "file": "assets/characters/orc_shield/anim/fresh_idle.png",
+    "canvas": [
+      2048,
+      1024
+    ],
+    "frame_size": [
+      512,
+      512
+    ],
+    "frames": 8,
+    "unique_drawings": 3,
+    "frame_sha256": [
+      "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd",
+      "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd",
+      "571a5f2c8336cced44bd5a7463d0d67e6e0c7de44099d397a99e0066027ab74b",
+      "571a5f2c8336cced44bd5a7463d0d67e6e0c7de44099d397a99e0066027ab74b",
+      "615686e9d14bcf812cfe9f6948a97b8a4b5f318f8fd624358ff93485678d33e0",
+      "615686e9d14bcf812cfe9f6948a97b8a4b5f318f8fd624358ff93485678d33e0",
+      "571a5f2c8336cced44bd5a7463d0d67e6e0c7de44099d397a99e0066027ab74b",
+      "571a5f2c8336cced44bd5a7463d0d67e6e0c7de44099d397a99e0066027ab74b"
+    ],
+    "bounds": [
+      [
+        47,
+        101,
+        430,
+        501
+      ],
+      [
+        47,
+        101,
+        430,
+        501
+      ],
+      [
+        46,
+        100,
+        430,
+        501
+      ],
+      [
+        46,
+        100,
+        430,
+        501
+      ],
+      [
+        46,
+        100,
+        431,
+        501
+      ],
+      [
+        46,
+        100,
+        431,
+        501
+      ],
+      [
+        46,
+        100,
+        430,
+        501
+      ],
+      [
+        46,
+        100,
+        430,
+        501
+      ]
+    ],
+    "all_frame_borders_alpha_zero": true,
+    "boots_pixel_identical_to_original": true
+  },
+  "orc_hurt": {
+    "file": "assets/characters/orc_shield/anim/fresh_hurt.png",
+    "canvas": [
+      2048,
+      1024
+    ],
+    "frame_size": [
+      512,
+      512
+    ],
+    "frames": 8,
+    "unique_drawings": 5,
+    "frame_sha256": [
+      "71b0bc9c504b028dd47f4a6dd50bfd4c0d8ced04c5176364a384243e1982c71d",
+      "71b0bc9c504b028dd47f4a6dd50bfd4c0d8ced04c5176364a384243e1982c71d",
+      "83901b96213a44e8870e5df4d0d1fd7aa0799bb42c42f1971b82b9aa5ef0b505",
+      "056e57e96490fd3a34224902cafcab37a90ef10aa5436c12ae5c8c2af0f220e0",
+      "056e57e96490fd3a34224902cafcab37a90ef10aa5436c12ae5c8c2af0f220e0",
+      "f5c6a26c240d526a2cd1da420e88ed84c6118cf360054c0b110e000f7d41d9c5",
+      "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd",
+      "5b4975fbe18abd44ee7db29305b757efa906832ab76fc060d33a90db83af0ecd"
+    ],
+    "bounds": [
+      [
+        43,
+        87,
+        435,
+        501
+      ],
+      [
+        43,
+        87,
+        435,
+        501
+      ],
+      [
+        42,
+        83,
+        442,
+        501
+      ],
+      [
+        46,
+        105,
+        435,
+        501
+      ],
+      [
+        46,
+        105,
+        435,
+        501
+      ],
+      [
+        47,
+        103,
+        432,
+        501
+      ],
+      [
+        47,
+        101,
+        430,
+        501
+      ],
+      [
+        47,
+        101,
+        430,
+        501
+      ]
+    ],
+    "all_frame_borders_alpha_zero": true,
+    "boots_pixel_identical_to_original": true
+  },
+  "slash": {
+    "file": "assets/fx/combat/anim/slash.png",
+    "canvas": [
+      1536,
+      768
+    ],
+    "frame_size": [
+      384,
+      384
+    ],
+    "frames": 8,
+    "unique_drawings": 8,
+    "frame_sha256": [
+      "b88d1b05365acb20fd2977b52d23cd2cb89d7a52e008413c0a8d5699408133da",
+      "740f59c7205a9c37ece2a44d24a9ac3893dbe364d9ce5e474dffaeda7cef4cab",
+      "66cf7b3cdbf1832173f9c3ff88a4bad2ce71c643835ce9913b0d4df3ffd92e3e",
+      "c5196da41d38a8b886b914d94993beb1a08884f4890a664b2dabbfa8743716fc",
+      "7ed7d03d04db2d97252110888fcd6d903638bf3b566f7c7957b34f70da95edc0",
+      "6844ba2ca54e189aab258c82f5d7ee5777d93a964d871e1bfa24e2f9a1919f31",
+      "c1f76e6046638a268338a382b64d12aac51ffe9765bb4f0cc7d00a3f5aaa9e27",
+      "250480ecefa3655c774b6a4e5d4eb16675ee4f181c2285c25020fac6e3aaf3b5"
+    ],
+    "bounds": [
+      [
+        51,
+        287,
+        143,
+        326
+      ],
+      [
+        49,
+        164,
+        310,
+        325
+      ],
+      [
+        31,
+        110,
+        331,
+        324
+      ],
+      [
+        27,
+        62,
+        359,
+        334
+      ],
+      [
+        43,
+        66,
+        347,
+        330
+      ],
+      [
+        49,
+        78,
+        323,
+        315
+      ],
+      [
+        78,
+        266,
+        161,
+        300
+      ],
+      null
+    ],
+    "all_frame_borders_alpha_zero": true,
+    "boots_pixel_identical_to_original": false
+  },
+  "_summary": {
+    "total_source_frames": 44,
+    "format": "8-bit RGBA PNG",
+    "columns": 4,
+    "hero_impact_frame": 6,
+    "recovery_matches_idle": true,
+    "feet": [
+      256,
+      500
+    ],
+    "no_game_code_changes": true
+  }
+}

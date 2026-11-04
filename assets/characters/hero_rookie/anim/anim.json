@@ -1,0 +1,84 @@
+{
+  "frame_size": [
+    512,
+    512
+  ],
+  "columns": 4,
+  "clips": {
+    "idle": {
+      "frames": 8,
+      "fps": 12,
+      "loop": true
+    },
+    "attack": {
+      "frames": 12,
+      "fps": 24,
+      "loop": false,
+      "impact": 6
+    },
+    "throw": {
+      "frames": 10,
+      "fps": 24,
+      "loop": false,
+      "impact": 4
+    },
+    "leap": {
+      "frames": 16,
+      "fps": 24,
+      "loop": false,
+      "impact": 10
+    },
+    "kick": {
+      "frames": 8,
+      "fps": 24,
+      "loop": false,
+      "impact": 3
+    },
+    "bash": {
+      "frames": 10,
+      "fps": 24,
+      "loop": false,
+      "impact": 4
+    },
+    "drink": {
+      "frames": 12,
+      "fps": 12,
+      "loop": false
+    },
+    "hurt": {
+      "frames": 8,
+      "fps": 24,
+      "loop": false
+    },
+    "dizzy": {
+      "frames": 12,
+      "fps": 12,
+      "loop": true
+    },
+    "knocked": {
+      "frames": 8,
+      "fps": 24,
+      "loop": false
+    },
+    "scared": {
+      "frames": 8,
+      "fps": 12,
+      "loop": true
+    },
+    "cheer": {
+      "frames": 12,
+      "fps": 12,
+      "loop": false
+    },
+    "victory": {
+      "frames": 12,
+      "fps": 12,
+      "loop": true
+    },
+    "defeat": {
+      "frames": 12,
+      "fps": 12,
+      "loop": false
+    }
+  }
+}

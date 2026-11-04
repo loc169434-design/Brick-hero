@@ -64,3 +64,22 @@ Nhánh `art/long-map`, tạo từ `main` mới nhất tại `5842c49`. Chỉ tha
 ### Quy ước chuyển động cho phần tích hợp
 
 Các vị trí trong `anim.json` đều tính trên ảnh 1080×3840, không phải viewport. Đọc 4 frame khói từ trái qua phải trên atlas; mỗi emitter có pha riêng. Trong một vòng, khói đi lên 65 px, trôi ngang 12 px, alpha theo `sin(pi*phase)^1.5`; tint tím nhạt và alpha tối đa 0,8 nhân alpha gốc. Khói fade về 0 trước khi bắt đầu vòng mới. Glint nước đi xuống 12 px/vòng 2 giây, alpha theo `sin(pi*phase)^2`. Vàng pulse theo nửa sóng sin lũy thừa 4, vòng 4 giây; các điểm lệch pha. Đường đi và quái/UI nằm yên theo tọa độ map trong lúc các lớp nhỏ này chuyển động. Không cần vẽ lại bản đồ nền.
+
+## Trạng thái bàn giao
+
+Đã push bản đồ tại `da9d634` và phần chuyển động nhẹ tại `e644824` lên `origin/art/long-map`. Lệnh comment #28 sau push và lệnh mở PR đều trả `Post "https://api.github.com/graphql": Forbidden`. **Chưa đăng được comment và chưa tạo PR**. Git push thành công; không merge. Dùng bàn giao này theo phương án dự phòng được #28 cho phép.
+
+### Comment đầy đủ, bao gồm bổ sung chuyển động
+
+Đã push lên `art/long-map`:
+
+- Bản đồ 1080×3840, đúng 15 điểm qua 7 vùng; `world_map.json` có đúng `{id,x,y,region}`. Không chữ/khóa/cờ/UI trên ảnh production.
+- Khoảng cách tâm nhỏ nhất 328,525 px; lề ngang nhỏ nhất 286 px.
+- Ảnh review có số theo JSON, crop đáy 1080×1920 và bản đặt thử nhân vật; mỗi file dưới 0,42 MB.
+- Theo yêu cầu bổ sung, có chuyển động nhẹ: khói nhà bánh gừng, nước và vàng lấp lánh. WebP 540 px ngang ~0,58 MB; GIF ~0,22 MB, vòng 4 giây / 12 fps. Đã tách lớp FX và metadata; để chạy trong game cần phần code ghép các lớp, chưa sửa code theo phạm vi công việc. PNG nền và tọa độ không thay đổi khi thêm FX.
+
+[Bàn giao, tọa độ và kiểm tra](https://github.com/loc169434-design/Brick-hero/blob/art/long-map/docs/ideas/issue28_handoff.md) · [WebP động lớn](https://github.com/loc169434-design/Brick-hero/blob/art/long-map/docs/ideas/long_map_review/world_map_motion.webp)
+
+![Bản đồ có chuyển động nhẹ](https://github.com/loc169434-design/Brick-hero/blob/art/long-map/docs/ideas/long_map_review/world_map_motion.gif?raw=true)
+
+![15 điểm theo JSON](https://github.com/loc169434-design/Brick-hero/blob/art/long-map/docs/ideas/long_map_review/world_map_nodes.jpg?raw=true)

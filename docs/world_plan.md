@@ -119,7 +119,7 @@ Mỗi bước là một PR có thể chơi được. Chơi thử xong mới qua 
 |---|---|---|---|
 | **W0** | **Chơi thử trên điện thoại** | Hoãn: làm game đầy đủ trước, xuất app sau | — |
 | **W1** | Khung chiến dịch (PR #27) | Bản đồ bấm được, lưu tiến độ, chuỗi trận, vàng giữ lại sau trận | Bản đồ có sẵn (`world_map.png`); thêm biểu tượng vùng |
-| **W2** | Lò rèn | Cảnh lò rèn, 4 ô trang bị, chỉ số đổi theo đồ | Biểu tượng nón; lớp kiếm và nón chồng lên nhân vật |
+| **W2** | Lò rèn (PR #29) | Cảnh lò rèn, 4 ô trang bị, chỉ số đổi theo đồ | Biểu tượng nón; lớp kiếm và nón chồng lên nhân vật |
 | **W3** | Truyện tranh | Trình đọc truyện dọc, bong bóng thoại, chương mở đầu | Khung truyện chương mở đầu (vua, công chúa bị bắt) |
 | **W4** | Vùng 1 đủ quái | Tù Trưởng Orc, Orc Ném Đá | Hai quái mới, đủ hoạt hình |
 | **W5** | Rừng Goblin | Trạng thái **độc**, quái cung, đánh dấu ô vàng | Goblin Cung Độc, Goblin Móc Túi, Goblin Đầu Đảng, nền rừng, bộ gạch goblin |

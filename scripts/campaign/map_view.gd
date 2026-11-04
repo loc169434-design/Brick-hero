@@ -8,6 +8,8 @@ extends Node2D
 ## (stop_chosen). A map taller than the screen scrolls with a drag.
 
 signal stop_chosen(id: String)
+## The forge button was pressed.
+signal forge_requested
 
 const SCREEN := Vector2(1080, 1920)
 const BACKGROUND := "res://assets/bg/world_map.png"
@@ -61,6 +63,8 @@ var _press_at := Vector2.ZERO
 var _press_camera := Vector2.ZERO
 var _pressed := false
 var _dragged := false
+## The first stop pops up only the first time the map is shown.
+var _intro_done := false
 
 
 func _ready() -> void:
@@ -80,6 +84,24 @@ func _ready() -> void:
 	_hud = Node2D.new()
 	_hud.draw.connect(_draw_hud)
 	_hud_layer.add_child(_hud)
+	var forge := Button.new()
+	forge.text = "⚒ LÒ RÈN"
+	forge.position = Vector2(36, 1790)
+	forge.size = Vector2(300, 96)
+	forge.focus_mode = Control.FOCUS_NONE
+	forge.add_theme_font_size_override("font_size", 40)
+	forge.add_theme_color_override("font_color", PAPER)
+	for state in ["normal", "hover", "pressed"]:
+		var style := StyleBoxFlat.new()
+		style.bg_color = Color(INK, 1.0 if state == "pressed" else 0.85)
+		style.border_color = GOLD
+		style.set_border_width_all(4)
+		style.set_corner_radius_all(48)
+		forge.add_theme_stylebox_override(state, style)
+	forge.pressed.connect(func() -> void:
+		if not _busy:
+			forge_requested.emit())
+	_hud_layer.add_child(forge)
 	visibility_changed.connect(func() -> void: _hud_layer.visible = visible)
 
 
@@ -107,9 +129,10 @@ func show_campaign(p_campaign: Campaign, won_at := -1, first_clear := false) -> 
 		_celebrate(won_at, target)
 	elif won_at >= 0:
 		_pop_stars(won_at)
-	elif campaign.cleared.is_empty() and target == 0:
+	elif campaign.cleared.is_empty() and target == 0 and not _intro_done:
 		_reveal(0)
 		show_toast("Chạm vào quái để vào trận")
+	_intro_done = true
 	queue_redraw()
 
 
@@ -421,4 +444,4 @@ func _draw_hud() -> void:
 	_hud.draw_string_outline(_font, box.position + Vector2(80, 57), text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, 8, INK)
 	_hud.draw_string(_font, box.position + Vector2(80, 57), text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, GOLD)
 	if _toast_alpha > 0.0:
-		_draw_pill(_toast, Vector2(SCREEN.x / 2, 1800), 38, _toast_alpha, _hud)
+		_draw_pill(_toast, Vector2(SCREEN.x / 2, 1690), 38, _toast_alpha, _hud)

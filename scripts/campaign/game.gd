@@ -11,6 +11,7 @@ const BACK_BUTTON_RECT := Rect2(36, 1790, 300, 96)
 
 var campaign: Campaign
 var map: MapView
+var forge: ForgeView
 var battle: Node
 var manager: BattleManager
 
@@ -24,6 +25,7 @@ func _ready() -> void:
 	map = MapView.new()
 	add_child(map)
 	map.stop_chosen.connect(start_fight)
+	map.forge_requested.connect(open_forge)
 	map.show_campaign(campaign)
 	_back_layer = CanvasLayer.new()
 	add_child(_back_layer)
@@ -40,12 +42,34 @@ func start_fight(id: String) -> void:
 	manager = battle.get_node("BattleManager")
 	var encounters: Array[MonsterData] = [data]
 	manager.encounters = encounters
+	manager.rules = Gear.apply(manager.rules, campaign.owned)
 	manager.return_to_map = true
 	manager.starting_gold = campaign.gold
 	manager.fight_over.connect(end_fight)
 	map.hide()
 	add_child(battle)
 	_back_layer.show()
+
+
+func open_forge() -> void:
+	if forge or battle:
+		return
+	forge = ForgeView.new()
+	add_child(forge)
+	forge.closed.connect(close_forge)
+	forge.bought.connect(func(_id: String) -> void: campaign.save(save_path))
+	map.hide()
+	forge.show_campaign(campaign)
+
+
+func close_forge() -> void:
+	if forge == null:
+		return
+	campaign.save(save_path)
+	forge.queue_free()
+	forge = null
+	map.show()
+	map.show_campaign(campaign)
 
 
 ## Leaves the fight for the map. A fight left before it was won counts as lost.

@@ -68,7 +68,7 @@ Trước là hàng 3, đổi sang hàng 4 ngày 2026-11-02 sau khi mô phỏng c
 
 **Thanh Nộ và tuyệt chiêu** (thiết kế ở `docs/ideas/hero_skills.md`):
 - Mỗi ô thường bị xóa +2 Nộ, mỗi hợp thể +12, mỗi lượt tối đa +40. Ô đặc biệt không tính. Thanh đầy ở 100 và về 0 khi bắt đầu trận mới.
-- Đầy thanh thì nút chiêu dưới bàn chơi sáng lên. Bấm (hoặc phím Space) giữa hai lượt để dùng: **không tốn lượt**, đồng hồ của quái không chạy. Phím K đổi chiêu để thử, sau này chọn ở lò rèn.
+- Đầy thanh thì nút chiêu dưới bàn chơi sáng lên. Bấm (hoặc phím Space) giữa hai lượt để dùng: **không tốn lượt**, đồng hồ của quái không chạy. Trên bản đồ, người chơi chọn chiêu ở lò rèn (bảng TRANG BỊ, phía trên hiệp sĩ) và lựa chọn được lưu lại. Phá Giáp có từ đầu, Hồi Quang mở sau khi thắng Orc Khiên. Phím K đổi chiêu trong trận để thử.
 - **Phá Giáp**: bóc 10 điểm khiên (một lớp), rồi đánh như 8 ô đỏ, còn khiên thì giảm nửa như đòn đỏ thường. Mạnh lên theo kiếm.
 - **Hồi Quang**: hồi 25 máu. Chỉ dùng được khi đang mất máu.
 - Bot đo trên Orc Khiên (200 trận): +2 Nộ mỗi ô cho khoảng 1 chiêu mỗi trận, lần đầu ở lượt 6–7, 92–94% số trận có chiêu. Mức +1 của thiết kế gốc chỉ cho 42–53% số trận có chiêu, nên chọn +2.

@@ -9,11 +9,14 @@ extends Node2D
 ## player strikes it three times (each tap a hammer blow, sparks and a clang, the metal
 ## glowing hotter); on the third it flashes, and flies down to its row on the gear board at
 ## the bottom, where the hero stands beside what he wears and what each piece does. Tapping one that can't be bought shows why on a small tag.
-## `closed` asks to go back to the map.
+## Above the hero, two buttons pick the skill he takes into fights; a locked one says which
+## fight teaches it. `closed` asks to go back to the map.
 
 signal closed
 ## Something was bought: the campaign changed and should be saved.
 signal bought(id: String)
+## Another skill was picked: the campaign changed and should be saved.
+signal skill_picked(id: String)
 
 const SCREEN := Vector2(1080, 1920)
 const BACKGROUND := "res://assets/bg/forge.png"
@@ -43,11 +46,19 @@ const TAP_REACH := 95.0
 ## standing on the left, one row per slot on the right.
 const BOARD := Rect2(24, 1374, 1032, 518)
 const HERO_FEET := Vector2(190, 1850)
-const HERO_SCALE := 0.95
+const HERO_SCALE := 0.74
 const ROW_ICON := 78.0
 const ROW_X := 370.0
 const ROW_Y0 := 1462.0
 const ROW_STEP := 86.0
+## The skill buttons over the hero, one under the other.
+const SKILL_PILL := Rect2(66, 1500, 270, 60)
+const SKILL_STEP := 70.0
+## What the smith says about each skill when it's picked.
+const SKILL_LINES := {
+	"armor_breaker": "Phá Giáp: bóc khiên rồi chém mạnh!",
+	"second_wind": "Hồi Quang: hồi máu giữa trận!",
+}
 
 const STRIKES := 3
 ## The smith's clips (assets/characters/blacksmith/anim/): the last blow has its own when there is
@@ -114,6 +125,8 @@ var _shake := 0.0
 ## Slot whose strip icon just landed, and how fresh that is (1 → 0).
 var _landed := ""
 var _landed_t := 0.0
+## How fresh the last skill pick is (1 → 0), for its button's pop.
+var _picked_t := 0.0
 var _sparks: Array[Dictionary] = []
 ## Drops of sweat in flight: {"at", "v", "life"}.
 var _drops: Array[Dictionary] = []
@@ -209,6 +222,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if not _forging.is_empty():
 		return
+	for id: String in Gear.SKILL_AFTER:
+		if _skill_pill(id).has_point(event.position):
+			_on_skill_tapped(id)
+			return
 	for slot: String in Gear.SLOTS:
 		var at := _hang_point(slot)
 		if event.position.distance_to(at) < TAP_REACH or event.position.distance_to(Vector2(at.x, TAG_Y)) < 60:
@@ -229,6 +246,27 @@ func _on_piece_tapped(slot: String) -> void:
 			_show_note(slot, _locked_reason(id))
 		Gear.Offer.TOP:
 			_show_note(slot, "Tốt nhất rồi!")
+
+
+## A learned skill is picked (and explained); a locked one says which fight teaches it.
+func _on_skill_tapped(id: String) -> void:
+	var title: String = BattleState.SKILLS[id]
+	if not campaign.pick_skill(id):
+		Sfx.play(&"untick")
+		var monster := Campaign.monster(Gear.SKILL_AFTER[id])
+		_say("Thắng %s để học %s!" % [monster.display_name if monster else "trận sau", title])
+		return
+	if _picked_t <= 0.0 or campaign.skill != id:
+		Sfx.play(&"charge")
+		_hero.react(&"cheer", 1.0)
+	_picked_t = 1.0
+	skill_picked.emit(id)
+	_say(SKILL_LINES.get(id, title))
+
+
+func _skill_pill(id: String) -> Rect2:
+	var i := Gear.SKILL_AFTER.keys().find(id)
+	return Rect2(SKILL_PILL.position + Vector2(0, i * SKILL_STEP), SKILL_PILL.size)
 
 
 func _locked_reason(id: String) -> String:
@@ -363,6 +401,7 @@ func _process(delta: float) -> void:
 	_flash = maxf(_flash - delta * 2.5, 0.0)
 	_shake = maxf(_shake - delta * 6.0, 0.0)
 	_landed_t = maxf(_landed_t - delta * 1.5, 0.0)
+	_picked_t = maxf(_picked_t - delta * 2.0, 0.0)
 	_glint = maxf(_glint - delta * 1.4, 0.0)
 	for drop in _drops:
 		drop["v"] += Vector2(0, 1400) * delta
@@ -580,9 +619,13 @@ func _draw_tag(slot: String, id: String, offer: Gear.Offer, center: Vector2) -> 
 
 
 func _draw_padlock(at: Vector2, color := PAPER) -> void:
-	draw_arc(at + Vector2(0, -8), 9, PI, TAU, 16, color, 5.0, true)
-	draw_rect(Rect2(at + Vector2(-13, -8), Vector2(26, 20)), color)
-	draw_circle(at + Vector2(0, 2), 3.5, WOOD_DARK)
+	_draw_padlock_on(self, at, color)
+
+
+func _draw_padlock_on(canvas: CanvasItem, at: Vector2, color: Color) -> void:
+	canvas.draw_arc(at + Vector2(0, -8), 9, PI, TAU, 16, color, 5.0, true)
+	canvas.draw_rect(Rect2(at + Vector2(-13, -8), Vector2(26, 20)), color)
+	canvas.draw_circle(at + Vector2(0, 2), 3.5, WOOD_DARK)
 
 
 ## A rounded box filled with `color` on `canvas`.
@@ -635,6 +678,7 @@ func _draw_hud() -> void:
 			var ladder := Gear.ladder(slot)
 			best = ladder[ladder.find(_forging) - 1] if ladder.find(_forging) > 0 else ""
 		_draw_row(slot, best)
+	_draw_skills()
 	if flying and _camera.zoom.x <= 1.001:
 		_draw_item(_hud, _forging, _piece_at, ICON_SIZE * _piece_scale, 0.0, Color.WHITE)
 	if _flash > 0.0:
@@ -671,6 +715,31 @@ func _draw_board() -> void:
 	_box(_hud, band, RIBBON, 10)
 	_box(_hud, Rect2(band.position + Vector2(8, 6), Vector2(band.size.x - 16, 8)), Color(1, 1, 1, 0.22), 4)
 	_text(_hud, "TRANG BỊ", center + Vector2(0, 14), 40, PAPER)
+
+
+## The skill buttons over the hero: the one he takes glows red and gold, a learned one is plain
+## wood, a locked one is dim with a padlock.
+func _draw_skills() -> void:
+	_text(_hud, "TUYỆT CHIÊU", Vector2(SKILL_PILL.get_center().x, SKILL_PILL.position.y - 12), 24, WOOD_DARK)
+	for id: String in Gear.SKILL_AFTER:
+		var pill := _skill_pill(id)
+		var picked := campaign.skill == id
+		var learned := Gear.skill_unlocked(id, campaign.cleared)
+		if picked:
+			pill = pill.grow(4.0 * sin(_picked_t * PI))
+		_box(_hud, pill.grow(4), GOLD if picked else INK, 22)
+		_box(_hud, pill, RIBBON if picked else (WOOD if learned else Color(WOOD_DARK, 0.55)), 18)
+		if learned:
+			_box(_hud, Rect2(pill.position + Vector2(6, 5), Vector2(pill.size.x - 12, 8)), Color(1, 1, 1, 0.2), 4)
+		var icon_at := Vector2(pill.position.x + 34, pill.get_center().y)
+		_hud.draw_circle(icon_at, 24, INK)
+		_hud.draw_circle(icon_at, 21, Color(0.32, 0.12, 0.05) if picked else WOOD_DARK)
+		SkillBar.draw_icon(_hud, id, icon_at, 21, GOLD if picked else (PAPER if learned else Color(PAPER, 0.35)), Color.WHITE if learned else LOCKED_TINT)
+		var title: String = BattleState.SKILLS[id]
+		var color := PAPER if learned else Color(PAPER, 0.5)
+		_hud.draw_string(_font, Vector2(pill.position.x + 68, pill.get_center().y + 10), title, HORIZONTAL_ALIGNMENT_LEFT, -1, 28, color)
+		if not learned:
+			_draw_padlock_on(_hud, Vector2(pill.end.x - 26, pill.get_center().y + 2), Color(PAPER, 0.7))
 
 
 ## One row of the board: the piece in a round frame, its name, and what it does. An empty slot

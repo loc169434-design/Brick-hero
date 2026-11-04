@@ -72,6 +72,27 @@ func test_owned_gear_is_saved() -> void:
 	assert_eq(again.owned, ["wood_sword"], "unknown items are dropped, the wooden sword stays")
 
 
+func test_armor_breaker_comes_first_and_second_wind_after_the_orc() -> void:
+	var campaign := _campaign(0, ["scarecrow"])
+	assert_eq(campaign.skill, "armor_breaker")
+	assert_true(not campaign.pick_skill("second_wind"), "locked until the Shield Orc falls")
+	assert_eq(campaign.skill, "armor_breaker")
+	campaign.cleared.append("orc_shield")
+	assert_true(campaign.pick_skill("second_wind"))
+	assert_true(not campaign.pick_skill("nonsense"))
+	assert_eq(campaign.skill, "second_wind")
+
+
+func test_the_picked_skill_is_saved_and_a_locked_one_is_not_restored() -> void:
+	var campaign := _campaign(0, ["scarecrow", "orc_shield"])
+	campaign.pick_skill("second_wind")
+	var again := Campaign.from_map()
+	again.apply_dict(campaign.to_dict())
+	assert_eq(again.skill, "second_wind")
+	again.apply_dict({"cleared": ["scarecrow"], "skill": "second_wind"})
+	assert_eq(again.skill, "armor_breaker", "a save can't skip the fight that teaches it")
+
+
 ## Every game script compiles, including scenes no other test opens (the map, the forge).
 func test_every_script_compiles() -> void:
 	var folders := ["res://scripts/"]

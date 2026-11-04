@@ -25,6 +25,8 @@ var gold := 0
 var stars := {}
 ## Gear bought at the forge (Gear.ITEMS ids); the hero uses the best of each slot.
 var owned: Array[String] = []
+## The hero skill taken into every fight, picked at the forge.
+var skill := Gear.STARTING_SKILL
 
 
 func _init() -> void:
@@ -119,8 +121,16 @@ func buy(id: String) -> bool:
 	return true
 
 
+## Takes skill `id` into the next fights if it's been learned. Returns whether it was picked.
+func pick_skill(id: String) -> bool:
+	if not Gear.skill_unlocked(id, cleared):
+		return false
+	skill = id
+	return true
+
+
 func to_dict() -> Dictionary:
-	return {"cleared": cleared.duplicate(), "gold": gold, "stars": stars.duplicate(), "owned": owned.duplicate()}
+	return {"cleared": cleared.duplicate(), "gold": gold, "stars": stars.duplicate(), "owned": owned.duplicate(), "skill": skill}
 
 
 func apply_dict(data: Dictionary) -> void:
@@ -133,6 +143,8 @@ func apply_dict(data: Dictionary) -> void:
 	for id in data.get("owned", []):
 		if Gear.ITEMS.has(String(id)) and not owned.has(String(id)):
 			owned.append(String(id))
+	skill = Gear.STARTING_SKILL
+	pick_skill(String(data.get("skill", "")))
 	stars.clear()
 	var saved: Variant = data.get("stars", {})
 	if saved is Dictionary:

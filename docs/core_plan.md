@@ -1,5 +1,7 @@
 # Kế hoạch dựng lõi – Brickbound Hero
 
+> Phần lõi trận đánh đã xong. Kế hoạch tiếp theo (bản đồ, các vùng đất, trùm, lò rèn, truyện tranh, giải đố) nằm ở [world_plan.md](world_plan.md).
+
 Godot 4.7.2, renderer Mobile, khung hình dọc 1080×1920.
 Mục tiêu giai đoạn này: **một trận đánh quái chơi được và vui**, chưa có bùa, bản đồ hay lò rèn.
 

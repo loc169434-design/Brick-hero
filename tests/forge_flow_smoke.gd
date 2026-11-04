@@ -52,7 +52,7 @@ func run() -> void:
 		check(view._strikes == strike, "rapid taps do not restart strike %d" % strike)
 		check(not view._waiting_strike, "prompt and auto-strike stop during swing")
 		check(view._smith.mood == clip, "correct clip for strike %d" % strike)
-		check(view.to_local(view._smith.point("hammer")).distance_to(ForgeView.ANVIL_TOP) < 0.01, "head meets anvil")
+		check(view.to_local(view._smith.point("hammer")).distance_to(ForgeView.HAMMER_REST) < 0.01, "hammer comes down on the piece on the anvil")
 		await create_timer(0.33).timeout
 		check(view._smith.mood == clip, "wind-up survives the old 0.32-second cutoff")
 		check(hits.size() == previous_hits, "no impact before its frame")

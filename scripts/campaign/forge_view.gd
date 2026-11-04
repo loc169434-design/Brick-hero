@@ -25,6 +25,18 @@ const COMIC_FONT := "res://assets/fonts/Bangers-Regular.ttf"
 
 ## Where things are on the painted room.
 const ANVIL_TOP := Vector2(650, 735)
+## The anvil's outline on the painted room, ink and all. It is drawn again over the smith, so he
+## stands behind it to strike rather than in front of it.
+const ANVIL_OUTLINE := [
+	Vector2(606, 737), Vector2(720, 738), Vector2(722, 750), Vector2(715, 760), Vector2(692, 771),
+	Vector2(688, 782), Vector2(690, 795), Vector2(700, 807), Vector2(712, 812), Vector2(712, 853),
+	Vector2(589, 854), Vector2(587, 816), Vector2(594, 809), Vector2(604, 805), Vector2(615, 787),
+	Vector2(612, 777), Vector2(600, 771), Vector2(580, 760), Vector2(571, 750), Vector2(575, 742),
+]
+## Where the centre of the hammer's head comes down: on the metal lying on the anvil's face.
+const HAMMER_REST := ANVIL_TOP + Vector2(0, -28)
+## The piece on the anvil, against its size hanging on the rack.
+const ON_ANVIL_SCALE := 0.7
 const FIRE := Vector2(860, 700)
 const TORCH := Vector2(60, 470)
 const SMITH_FEET := Vector2(790, 880)
@@ -96,6 +108,8 @@ var _font: Font
 var _comic_font: Font
 var _camera: Camera2D
 var _smith: CharacterRig
+## Drawn over the smith: the anvil, the piece on it, sparks, sweat and his words.
+var _front: Node2D
 var _hero: CharacterRig
 var _hud_layer: CanvasLayer
 var _hud: Node2D
@@ -153,6 +167,9 @@ func _ready() -> void:
 	add_child(_smith)
 	_smith.setup("blacksmith", -1)
 	_smith.clip_impact.connect(_on_smith_impact)
+	_front = Node2D.new()
+	_front.draw.connect(_draw_front)
+	add_child(_front)
 	# The gear board, the purse and the way out stay still while the camera leans on the anvil.
 	_hud_layer = CanvasLayer.new()
 	add_child(_hud_layer)
@@ -306,13 +323,17 @@ func _start_forging(slot: String, id: String) -> void:
 	_piece_scale = 1.0
 	_piece_spin = 0.0
 	_smith.react(&"idle", 0.0)
+	# The greeting would hang over the close-up.
+	if _line_tween:
+		_line_tween.kill()
+	_line_alpha = 0.0
 	var tween := create_tween().set_parallel()
 	tween.tween_method(func(t: float) -> void:
 		_piece_at = from.lerp(ANVIL_TOP, t) + Vector2(0, -sin(t * PI) * 160.0), 0.0, 1.0, 0.45).set_trans(Tween.TRANS_SINE)
 	tween.tween_method(_lean, 0.0, 1.0, 0.45).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	# Step beside the anvil while the metal arrives; keep this foot position through each blow.
 	if _smith.has_clip(&"hammer"):
-		var strike_feet := _smith.position + ANVIL_TOP - to_local(_smith.point("hammer", &"hammer"))
+		var strike_feet := _smith.position + HAMMER_REST - to_local(_smith.point("hammer", &"hammer"))
 		tween.tween_property(_smith, "position", strike_feet, 0.45).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.chain().tween_callback(func() -> void:
 		Sfx.play(&"land")
@@ -341,7 +362,7 @@ func _strike() -> void:
 	# This view owns the transition; react's old 0.32-second timer cut the wind-up short.
 	_smith.react(clip, 0.0)
 	if _smith.has_clip(clip):
-		_smith.position += ANVIL_TOP - to_local(_smith.point("hammer"))
+		_smith.position += HAMMER_REST - to_local(_smith.point("hammer"))
 	var duration := _smith.clip_seconds(clip, 0.32)
 	var tween := create_tween()
 	if not _smith.has_clip(clip):
@@ -373,7 +394,9 @@ func _land_strike() -> void:
 	_strike_landed = true
 	Sfx.play(&"clang", 0.85 + _strikes * 0.15)
 	_shake = 1.0
-	_sweat(2 + _strikes * 2)
+	# The drawn swings sweat by themselves; the still pose gets drops from here.
+	if not _smith.has_clip(&"hammer"):
+		_sweat(2 + _strikes * 2)
 	for i in 18:
 		_sparks.append({"at": ANVIL_TOP, "v": Vector2.from_angle(randf_range(-PI * 0.95, -PI * 0.05)) * randf_range(250, 900), "life": randf_range(0.25, 0.6)})
 
@@ -460,6 +483,7 @@ func _process(delta: float) -> void:
 		ember["life"] -= delta
 	_embers = _embers.filter(func(e: Dictionary) -> bool: return e["life"] > 0.0)
 	queue_redraw()
+	_front.queue_redraw()
 	_hud.queue_redraw()
 
 
@@ -475,14 +499,34 @@ func _draw() -> void:
 	for ember in _embers:
 		draw_circle(ember["at"], 3.5, Color(1, 0.7, 0.25, clampf(ember["life"], 0.0, 1.0)))
 	_draw_rack()
+
+
+## Over the smith: the anvil again, cut from the room, so he stands behind it; then the piece
+## being forged, sparks, sweat, the glint off his grin and what he says.
+func _draw_front() -> void:
+	if campaign == null:
+		return
+	if _background:
+		var outline := PackedVector2Array(ANVIL_OUTLINE)
+		var uvs := PackedVector2Array()
+		for p in outline:
+			uvs.append(p / SCREEN)
+		_front.draw_colored_polygon(outline, Color.WHITE, uvs, _background)
 	if not _forging.is_empty() and _camera.zoom.x > 1.001:
-		_draw_glow(ANVIL_TOP, 120.0, Color(1, 0.5, 0.1), 0.25 + 0.45 * _heat)
-		_draw_item(self, _forging, _piece_at, ICON_SIZE * _piece_scale, _piece_spin, Color(1, 1 - _heat * 0.45, 1 - _heat * 0.8).lerp(Color.WHITE, _flash))
+		_draw_glow(ANVIL_TOP, 120.0, Color(1, 0.5, 0.1), 0.25 + 0.45 * _heat, _front)
+		var tint := Color(1, 1 - _heat * 0.45, 1 - _heat * 0.8).lerp(Color.WHITE, _flash)
+		if _piece_at.is_equal_approx(ANVIL_TOP):
+			# On the anvil it lies low and flat (blades on their side) so the hammer is seen coming down on it.
+			var flat: bool = Gear.ITEMS[_forging]["slot"] in ["weapon", "refine"]
+			var size := ICON_SIZE * ON_ANVIL_SCALE
+			_draw_item(_front, _forging, ANVIL_TOP + Vector2(0, -10.0 if flat else -size * 0.3), size, -PI / 2 if flat else 0.0, tint)
+		else:
+			_draw_item(_front, _forging, _piece_at, ICON_SIZE * _piece_scale, _piece_spin, tint)
 		if _waiting_strike:
 			_draw_strike_prompt()
 	for spark in _sparks:
 		var tail: Vector2 = spark["v"] * 0.02
-		draw_line(spark["at"], spark["at"] - tail, Color(1, 0.85, 0.4, clampf(spark["life"] * 2.5, 0.0, 1.0)), 4.0)
+		_front.draw_line(spark["at"], spark["at"] - tail, Color(1, 0.85, 0.4, clampf(spark["life"] * 2.5, 0.0, 1.0)), 4.0)
 	for drop in _drops:
 		_draw_drop(drop["at"], drop["v"], clampf(drop["life"] * 3.0, 0.0, 1.0))
 	if _glint > 0.0:
@@ -495,28 +539,30 @@ func _draw() -> void:
 func _draw_drop(at: Vector2, velocity: Vector2, alpha: float) -> void:
 	var back := -velocity.normalized() * 16.0
 	var side := back.orthogonal().normalized() * 7.0
-	draw_colored_polygon(PackedVector2Array([at + back * 1.2, at + side * 1.25, at - side * 1.25]), Color(INK, alpha))
-	draw_circle(at, 9.5, Color(INK, alpha))
-	draw_colored_polygon(PackedVector2Array([at + back, at + side, at - side]), Color(SWEAT, alpha))
-	draw_circle(at, 7, Color(SWEAT, alpha))
-	draw_circle(at + Vector2(-2.5, -2.5), 2.2, Color(1, 1, 1, alpha))
+	_front.draw_colored_polygon(PackedVector2Array([at + back * 1.2, at + side * 1.25, at - side * 1.25]), Color(INK, alpha))
+	_front.draw_circle(at, 9.5, Color(INK, alpha))
+	_front.draw_colored_polygon(PackedVector2Array([at + back, at + side, at - side]), Color(SWEAT, alpha))
+	_front.draw_circle(at, 7, Color(SWEAT, alpha))
+	_front.draw_circle(at + Vector2(-2.5, -2.5), 2.2, Color(1, 1, 1, alpha))
 
 
 ## A four-pointed glint off the smith's grin: it pops, turns a little and fades.
 func _draw_glint(at: Vector2, t: float) -> void:
 	var k := 1.0 - t
 	var size := 46.0 * sin(minf(k * 3.0, 1.0) * PI * 0.5) * (0.6 + 0.4 * t)
-	_draw_glow(at, size * 1.2, Color(1, 0.95, 0.7), 0.5 * t)
+	_draw_glow(at, size * 1.2, Color(1, 0.95, 0.7), 0.5 * t, _front)
 	var turn := k * 0.8
 	var points := PackedVector2Array()
 	for i in 8:
 		points.append(at + Vector2.from_angle(turn + i * PI / 4) * (size if i % 2 == 0 else size * 0.18))
-	draw_colored_polygon(points, Color(1, 1, 1, t))
+	_front.draw_colored_polygon(points, Color(1, 1, 1, t))
 
 
-func _draw_glow(at: Vector2, radius: float, color: Color, alpha: float) -> void:
+## Soft light: rings of `color` on `canvas`, the room's own layer unless another is given.
+func _draw_glow(at: Vector2, radius: float, color: Color, alpha: float, canvas: CanvasItem = null) -> void:
+	var on := canvas if canvas else self
 	for i in 6:
-		draw_circle(at, radius * (1.0 - i * 0.14), Color(color, alpha * 0.18))
+		on.draw_circle(at, radius * (1.0 - i * 0.14), Color(color, alpha * 0.18))
 
 
 ## A sturdy rack standing on the floor: two posts on feet, a beam with iron brackets and an iron
@@ -611,13 +657,13 @@ func _draw_lock_badge(at: Vector2) -> void:
 
 func _draw_strike_prompt() -> void:
 	var ring := 90.0 + 18.0 * sin(_time * 10.0)
-	draw_arc(ANVIL_TOP, ring, 0, TAU, 48, Color(GOLD, 0.8), 6.0, true)
+	_front.draw_arc(ANVIL_TOP, ring, 0, TAU, 48, Color(GOLD, 0.8), 6.0, true)
 	var word := "GÕ!" if _strikes == 0 else "%d/%d" % [_strikes, STRIKES]
 	var size := 64
 	var width := _comic_font.get_string_size(word, HORIZONTAL_ALIGNMENT_LEFT, -1, size).x
 	var at := ANVIL_TOP + Vector2(-width / 2, -150)
-	draw_string_outline(_comic_font, at, word, HORIZONTAL_ALIGNMENT_LEFT, -1, size, 12, INK)
-	draw_string(_comic_font, at, word, HORIZONTAL_ALIGNMENT_LEFT, -1, size, GOLD)
+	_front.draw_string_outline(_comic_font, at, word, HORIZONTAL_ALIGNMENT_LEFT, -1, size, 12, INK)
+	_front.draw_string(_comic_font, at, word, HORIZONTAL_ALIGNMENT_LEFT, -1, size, GOLD)
 
 
 ## The wooden plaque under a peg: the piece's name over its price, a padlock and the price when it
@@ -691,10 +737,10 @@ func _draw_bubble(text: String, alpha: float) -> void:
 	style.border_color = Color(INK, alpha)
 	style.set_border_width_all(5)
 	style.set_corner_radius_all(30)
-	draw_colored_polygon(PackedVector2Array([tip, tip + Vector2(-24, -34), tip + Vector2(20, -34)]), Color(INK, alpha))
-	draw_style_box(style, box)
-	draw_colored_polygon(PackedVector2Array([tip + Vector2(0, -10), tip + Vector2(-16, -30), tip + Vector2(14, -30)]), Color(PAPER, alpha))
-	draw_string(_font, box.position + Vector2(28, 49), text, HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(INK, alpha))
+	_front.draw_colored_polygon(PackedVector2Array([tip, tip + Vector2(-24, -34), tip + Vector2(20, -34)]), Color(INK, alpha))
+	_front.draw_style_box(style, box)
+	_front.draw_colored_polygon(PackedVector2Array([tip + Vector2(0, -10), tip + Vector2(-16, -30), tip + Vector2(14, -30)]), Color(PAPER, alpha))
+	_front.draw_string(_font, box.position + Vector2(28, 49), text, HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(INK, alpha))
 
 
 # --- drawing: the gear board and the purse ---------------------------------------

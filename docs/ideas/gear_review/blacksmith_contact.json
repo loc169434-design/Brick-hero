@@ -1,0 +1,10 @@
+{
+  "clip": "hammer",
+  "impact_frame": 3,
+  "impact_seconds": 0.125,
+  "contact_on_canvas": [
+    61.53,
+    397.26
+  ],
+  "note": "Approximate lower hammer-head contact; anvil is provided by the forge scene, not baked into character atlas."
+}

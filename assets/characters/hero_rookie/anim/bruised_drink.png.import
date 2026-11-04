@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sblps7m77hl0"
-path="res://.godot/imported/bruised_drink.png-34d115df71a6ea5b4bf59ac4f937f235.ctex"
+path.s3tc="res://.godot/imported/bruised_drink.png-34d115df71a6ea5b4bf59ac4f937f235.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/characters/hero_rookie/anim/bruised_drink.png"
-dest_files=["res://.godot/imported/bruised_drink.png-34d115df71a6ea5b4bf59ac4f937f235.ctex"]
+dest_files=["res://.godot/imported/bruised_drink.png-34d115df71a6ea5b4bf59ac4f937f235.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -1,0 +1,42 @@
+[
+  {
+    "file": "assets/characters/blacksmith/hammer.png",
+    "sha256": "92275c95f99874acc25473a72d666f8bc0dcecf5823b25d0231b373c3f441e3d"
+  },
+  {
+    "file": "assets/characters/blacksmith/idle.png",
+    "sha256": "12e0810eb77b1dac4929977bbaf455ff6363281f33dafe4c3e2453f6084c3b22"
+  },
+  {
+    "file": "assets/characters/blacksmith/cheer.png",
+    "sha256": "3be40f51e930837155dd2989587a9a21a2c5092a68869b91c8b98e5c46d668ec"
+  },
+  {
+    "file": "assets/characters/blacksmith/talk.png",
+    "sha256": "f01d3277b67c307ab40c995f3d62f2b218c854c794821203454bf8bd7445efab"
+  },
+  {
+    "file": "assets/ui/items/wood_sword.png",
+    "sha256": "bbe5c6c51410c02a47b30c595e468067c98218162497e12a8e3536774e13a93d"
+  },
+  {
+    "file": "assets/ui/items/iron_sword.png",
+    "sha256": "507cff246c3fad856d58682350588ad9a8ddcc948b2277ccc0cf4885f0e94499"
+  },
+  {
+    "file": "assets/ui/items/tempered_sword.png",
+    "sha256": "3dc43b10adf9b787e2b00037c06cf17b375b02162316e0175edbc96f8537124f"
+  },
+  {
+    "file": "assets/ui/items/leather_armor.png",
+    "sha256": "fd50c6cf04c0defe89794407f4ffc8d9019195c4f2b258c43d393d33c47d0907"
+  },
+  {
+    "file": "assets/ui/items/iron_armor.png",
+    "sha256": "87094b2fccdfef8397016d83955bc9b0923c07fae8dfef99c11b4b717304e27e"
+  },
+  {
+    "file": "assets/ui/items/reinforced_boots.png",
+    "sha256": "5f8df9b9ea9d21b90fdf8fade359764bb02aa55f96eb444801702f87e37af1be"
+  }
+]

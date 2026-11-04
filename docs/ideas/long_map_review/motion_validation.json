@@ -1,0 +1,36 @@
+{
+  "loop_seconds": 4,
+  "fps": 12,
+  "source_frames": 48,
+  "production_map_unchanged": true,
+  "coordinates_unchanged": true,
+  "effects": [
+    "three gentle chimney smoke plumes",
+    "blue-river glints",
+    "gold-hoard glints"
+  ],
+  "webp": {
+    "bytes": 581986,
+    "size": [
+      540,
+      1920
+    ]
+  },
+  "gif": {
+    "bytes": 223164,
+    "size": [
+      270,
+      960
+    ]
+  },
+  "integration_required": true,
+  "gif_decoded_duration_ms": 4000,
+  "webp_decoded_duration_ms": 4000,
+  "gif_decoded_frames": 48,
+  "webp_decoded_frames": 48,
+  "changed_pixel_samples": 13893,
+  "changed_pixels_outside_effect_zones": 0,
+  "map_sha256_unchanged": true,
+  "node_json_unchanged_since_static_delivery": true,
+  "render_at_zero_matches_render_at_four_seconds": true
+}

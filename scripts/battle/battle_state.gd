@@ -105,7 +105,7 @@ func apply_move(result: MoveResult) -> TurnReport:
 		countdown -= 1
 		if countdown <= 0:
 			report.monster_critical = next_attack_is_critical()
-			report.monster_attack = roundi(monster.attack * (rules.monster_crit_multiplier if report.monster_critical else 1.0))
+			report.monster_attack = monster_hit(report.monster_critical)
 			hero_hp = maxi(hero_hp - report.monster_attack, 0)
 			attacks_made += 1
 			countdown = monster.countdown
@@ -114,6 +114,12 @@ func apply_move(result: MoveResult) -> TurnReport:
 	report.outcome = outcome
 	moves += 1
 	return report
+
+
+## What a monster attack takes off the hero after the helmet and armor.
+func monster_hit(critical: bool) -> int:
+	var crit_bonus := (rules.monster_crit_multiplier - 1.0) * (1.0 - rules.crit_guard) if critical else 0.0
+	return maxi(roundi(monster.attack * (1.0 + crit_bonus)) - rules.armor, 1)
 
 
 func hero_health() -> float:

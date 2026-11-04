@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c41bnov1cmw53"
-path="res://.godot/imported/fresh_knocked.png-9d77fa3fab16482bffaab14ba1cbea85.ctex"
+path.s3tc="res://.godot/imported/fresh_knocked.png-9d77fa3fab16482bffaab14ba1cbea85.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/characters/hero_rookie/anim/fresh_knocked.png"
-dest_files=["res://.godot/imported/fresh_knocked.png-9d77fa3fab16482bffaab14ba1cbea85.ctex"]
+dest_files=["res://.godot/imported/fresh_knocked.png-9d77fa3fab16482bffaab14ba1cbea85.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

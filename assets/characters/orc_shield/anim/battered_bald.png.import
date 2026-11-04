@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bh6oq3g5ntdbc"
-path="res://.godot/imported/battered_bald.png-52360d639a951d78395a248a4603469e.ctex"
+path.s3tc="res://.godot/imported/battered_bald.png-52360d639a951d78395a248a4603469e.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/characters/orc_shield/anim/battered_bald.png"
-dest_files=["res://.godot/imported/battered_bald.png-52360d639a951d78395a248a4603469e.ctex"]
+dest_files=["res://.godot/imported/battered_bald.png-52360d639a951d78395a248a4603469e.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

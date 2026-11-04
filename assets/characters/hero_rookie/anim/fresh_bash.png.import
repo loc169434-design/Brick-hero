@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://w1jusly2w5fl"
-path="res://.godot/imported/fresh_bash.png-0d6149e3ff1537059a2117e1e6f4a600.ctex"
+path.s3tc="res://.godot/imported/fresh_bash.png-0d6149e3ff1537059a2117e1e6f4a600.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/characters/hero_rookie/anim/fresh_bash.png"
-dest_files=["res://.godot/imported/fresh_bash.png-0d6149e3ff1537059a2117e1e6f4a600.ctex"]
+dest_files=["res://.godot/imported/fresh_bash.png-0d6149e3ff1537059a2117e1e6f4a600.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

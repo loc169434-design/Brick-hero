@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dj04ybr5qa1i0"
-path="res://.godot/imported/battered_charge.png-9b656f632d17e0531997ea2c23741e27.ctex"
+path.s3tc="res://.godot/imported/battered_charge.png-9b656f632d17e0531997ea2c23741e27.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/characters/orc_shield/anim/battered_charge.png"
-dest_files=["res://.godot/imported/battered_charge.png-9b656f632d17e0531997ea2c23741e27.ctex"]
+dest_files=["res://.godot/imported/battered_charge.png-9b656f632d17e0531997ea2c23741e27.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

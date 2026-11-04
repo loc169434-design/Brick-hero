@@ -1,0 +1,493 @@
+{
+  "bomb.png": {
+    "canvas": [
+      128,
+      128
+    ],
+    "mode": "RGBA",
+    "depth": 8,
+    "frames": 1,
+    "unique_frames": 1,
+    "transparent_frame_borders": true,
+    "unused_cells_transparent": true,
+    "frame_data": [
+      {
+        "frame": 0,
+        "bbox": [
+          26,
+          22,
+          98,
+          110
+        ],
+        "sha256": "5bfb3faade02b456a6c6586fe1a9ee46a4f0fb25db6586467cf0d0d476232939"
+      }
+    ]
+  },
+  "bomb_fuse.png": {
+    "canvas": [
+      1024,
+      256
+    ],
+    "mode": "RGBA",
+    "depth": 8,
+    "frames": 12,
+    "unique_frames": 12,
+    "transparent_frame_borders": true,
+    "unused_cells_transparent": true,
+    "frame_data": [
+      {
+        "frame": 0,
+        "bbox": [
+          78,
+          3,
+          93,
+          29
+        ],
+        "sha256": "6128be14bce3c0a3f49b3700a0274ae65d2d6d7515aa60e663be11e4235b8808"
+      },
+      {
+        "frame": 1,
+        "bbox": [
+          80,
+          3,
+          95,
+          29
+        ],
+        "sha256": "0c3de3525a1a46c5839be9075a3e94f86dafc08be2b3a47a54a1bc43278d4e3c"
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          79,
+          3,
+          95,
+          29
+        ],
+        "sha256": "c7d6310c04901514e3e2293bbf7bafd41fee70307a418d82f94bbc680859ed0d"
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          80,
+          3,
+          96,
+          29
+        ],
+        "sha256": "1f73aa1a1564065081185ab5bff04be7121083bc161aa0ea92ba48f1537deb71"
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          81,
+          3,
+          95,
+          29
+        ],
+        "sha256": "d8dbcd8cab0efba784c89a517808468937d95469b6118b463f97e15f6713cee7"
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          82,
+          3,
+          96,
+          29
+        ],
+        "sha256": "c311b87a39328d8233a7594d2509288ec634534f29caadcfe6e79663a90e4807"
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          83,
+          3,
+          98,
+          29
+        ],
+        "sha256": "67d5d88c56c0c7e106f75d7fb14e676378823d64c21129b84382a05fdd91c479"
+      },
+      {
+        "frame": 7,
+        "bbox": [
+          82,
+          3,
+          99,
+          29
+        ],
+        "sha256": "bca3d63adc3edd98a3ec9a22b743c60ea0235c1ad2a22d6999ca477beb23617d"
+      },
+      {
+        "frame": 8,
+        "bbox": [
+          83,
+          3,
+          98,
+          29
+        ],
+        "sha256": "fee5b3e581693495e0d2972fe31d99820d5729670fc034c0b03e8c3ee66a7947"
+      },
+      {
+        "frame": 9,
+        "bbox": [
+          81,
+          3,
+          97,
+          29
+        ],
+        "sha256": "5bff2844a4f80aa1ad336ffe6ce67efe3835d310de8d3de2b7059bb2016bcda4"
+      },
+      {
+        "frame": 10,
+        "bbox": [
+          78,
+          3,
+          95,
+          29
+        ],
+        "sha256": "9ff6cdbf7fc3a8eb0e99b51bdbe9dff4078d1c6bd9a11aa9dec4b167a1776edb"
+      },
+      {
+        "frame": 11,
+        "bbox": [
+          77,
+          3,
+          94,
+          29
+        ],
+        "sha256": "1cce7571d787713b557e3e86df50759a97b2fa3027abe1ab472bf0bd02364d8f"
+      }
+    ]
+  },
+  "lightning.png": {
+    "canvas": [
+      128,
+      128
+    ],
+    "mode": "RGBA",
+    "depth": 8,
+    "frames": 1,
+    "unique_frames": 1,
+    "transparent_frame_borders": true,
+    "unused_cells_transparent": true,
+    "frame_data": [
+      {
+        "frame": 0,
+        "bbox": [
+          15,
+          14,
+          112,
+          113
+        ],
+        "sha256": "1781273617bda14119f68926befc14ca52dc2f8b15d567bca92ceffc39a4e98b"
+      }
+    ]
+  },
+  "star.png": {
+    "canvas": [
+      128,
+      128
+    ],
+    "mode": "RGBA",
+    "depth": 8,
+    "frames": 1,
+    "unique_frames": 1,
+    "transparent_frame_borders": true,
+    "unused_cells_transparent": true,
+    "frame_data": [
+      {
+        "frame": 0,
+        "bbox": [
+          21,
+          10,
+          115,
+          114
+        ],
+        "sha256": "0e286857e811ddb0f5e5ff543c8abf003f99b77e34db09b116d0dc08790f8123"
+      }
+    ]
+  },
+  "lightning_idle.png": {
+    "canvas": [
+      1024,
+      256
+    ],
+    "mode": "RGBA",
+    "depth": 8,
+    "frames": 12,
+    "unique_frames": 12,
+    "transparent_frame_borders": true,
+    "unused_cells_transparent": true,
+    "frame_data": [
+      {
+        "frame": 0,
+        "bbox": [
+          15,
+          14,
+          112,
+          113
+        ],
+        "sha256": "4f8f6acab37558d473cb5c5872d6cec7cc137bc8be77b9263dd140dcd9f6ffc9"
+      },
+      {
+        "frame": 1,
+        "bbox": [
+          15,
+          14,
+          112,
+          113
+        ],
+        "sha256": "c803bfa63b6a57e15c032034ab9c343283a68e4abae4aa35efe84bdfba4df086"
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          15,
+          14,
+          112,
+          113
+        ],
+        "sha256": "aed0200fff68dd1b9c5e28409af11a6f20afd1af4880b138c1967d42db0c9293"
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          15,
+          14,
+          112,
+          113
+        ],
+        "sha256": "33185e85e6a7741b98deb1f71d28c16808d98e6248f57990c7fe35d3abe82a6d"
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          15,
+          14,
+          112,
+          113
+        ],
+        "sha256": "9f45bab1edba9a66e5a1a6832e1a631583463285f6386abcce1f90d81a4a119e"
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          15,
+          14,
+          112,
+          113
+        ],
+        "sha256": "afe38a7edb760688bb43d47b98faf1c3bd2dbd5d73a3d94a63b4d8106736875a"
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          15,
+          14,
+          112,
+          113
+        ],
+        "sha256": "eaa4e05abed6b8befb5b8a623fb2d6f174d70121f7a433827f0bf680401db0aa"
+      },
+      {
+        "frame": 7,
+        "bbox": [
+          15,
+          14,
+          112,
+          113
+        ],
+        "sha256": "bd852c605a2eb73ba897039042952aabf11d79fd9e34a02f198bc76affab7aaf"
+      },
+      {
+        "frame": 8,
+        "bbox": [
+          15,
+          14,
+          112,
+          113
+        ],
+        "sha256": "811bdd9644ee6ef60a1b2dd5cfdedff08b8c439932fcb77f9b60a35e85c2deb4"
+      },
+      {
+        "frame": 9,
+        "bbox": [
+          15,
+          14,
+          112,
+          113
+        ],
+        "sha256": "776d8e6041ebdf80412d5fd6b024cc5ef07c9a8184d1e6d3e0863f9ca2278c3b"
+      },
+      {
+        "frame": 10,
+        "bbox": [
+          15,
+          14,
+          112,
+          113
+        ],
+        "sha256": "2acbe23885bac5fc18b303d10c4af8db1bd34eb63fe06873ce52dc76bbd91201"
+      },
+      {
+        "frame": 11,
+        "bbox": [
+          15,
+          14,
+          112,
+          113
+        ],
+        "sha256": "3d7a3819d0d1f3a4858865d09407919d2ba6a50e519ec933d4ec905210b94a23"
+      }
+    ]
+  },
+  "star_idle.png": {
+    "canvas": [
+      1024,
+      256
+    ],
+    "mode": "RGBA",
+    "depth": 8,
+    "frames": 12,
+    "unique_frames": 7,
+    "transparent_frame_borders": true,
+    "unused_cells_transparent": true,
+    "frame_data": [
+      {
+        "frame": 0,
+        "bbox": [
+          21,
+          10,
+          115,
+          114
+        ],
+        "sha256": "0e286857e811ddb0f5e5ff543c8abf003f99b77e34db09b116d0dc08790f8123"
+      },
+      {
+        "frame": 1,
+        "bbox": [
+          21,
+          10,
+          115,
+          114
+        ],
+        "sha256": "564b49aeeb339a5177f32fda5bd9a55ead9abdae51476b1d2399867451bec4b7"
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          21,
+          10,
+          115,
+          114
+        ],
+        "sha256": "1675b037c1ec2fcbe1c2d0328c8d5949a8a2d4a12bae10047c9ced67ae548a05"
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          21,
+          10,
+          115,
+          114
+        ],
+        "sha256": "a6d89af1566c30cb80bdcadf207a4d1a01208f7c809f399d7d14370c415cac70"
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          21,
+          10,
+          115,
+          114
+        ],
+        "sha256": "1675b037c1ec2fcbe1c2d0328c8d5949a8a2d4a12bae10047c9ced67ae548a05"
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          21,
+          10,
+          115,
+          114
+        ],
+        "sha256": "564b49aeeb339a5177f32fda5bd9a55ead9abdae51476b1d2399867451bec4b7"
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          21,
+          10,
+          115,
+          114
+        ],
+        "sha256": "0e286857e811ddb0f5e5ff543c8abf003f99b77e34db09b116d0dc08790f8123"
+      },
+      {
+        "frame": 7,
+        "bbox": [
+          21,
+          10,
+          115,
+          114
+        ],
+        "sha256": "3c161a1ef79c9dc625cfa1dffbcdbe1f59ed6c54f8464ddf6ff6fbd379af9c1c"
+      },
+      {
+        "frame": 8,
+        "bbox": [
+          21,
+          10,
+          115,
+          114
+        ],
+        "sha256": "26273c3e10515ce49f0f9a1315de6a954770f5deac0b448d56696a2b1ec52166"
+      },
+      {
+        "frame": 9,
+        "bbox": [
+          21,
+          10,
+          115,
+          114
+        ],
+        "sha256": "9c125b70b80081fe369ca2301f53ca16854b317181d3221c8229e027afb8aa0b"
+      },
+      {
+        "frame": 10,
+        "bbox": [
+          21,
+          10,
+          115,
+          114
+        ],
+        "sha256": "26273c3e10515ce49f0f9a1315de6a954770f5deac0b448d56696a2b1ec52166"
+      },
+      {
+        "frame": 11,
+        "bbox": [
+          21,
+          10,
+          115,
+          114
+        ],
+        "sha256": "3c161a1ef79c9dc625cfa1dffbcdbe1f59ed6c54f8464ddf6ff6fbd379af9c1c"
+      }
+    ]
+  },
+  "gif": {
+    "frames": 12,
+    "duration_ms": 1000,
+    "fps": 12,
+    "canvas": [
+      384,
+      160
+    ],
+    "fixed_bomb_body_colors_stable": true
+  },
+  "scope": "Only new assets/tiles/specials and docs/ideas/specials_3d_review files; no game code edited",
+  "not_tested": [
+    "Godot integration",
+    "device gameplay",
+    "automated browser review",
+    "fusion and skill artwork pending design approval"
+  ]
+}

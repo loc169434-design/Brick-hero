@@ -1,0 +1,649 @@
+{
+  "image": {
+    "file": "assets/bg/world_map.png",
+    "dimensions": [
+      1080,
+      3840
+    ],
+    "mode": "RGB",
+    "bytes": 5954184,
+    "sha256": "8bffed07694f07d031814b30a7069a797802e99454dcfbbbd50e6dd4c5f22d47"
+  },
+  "node_count": 15,
+  "ids_order_and_regions_match_issue": true,
+  "region_counts": [
+    1,
+    3,
+    3,
+    3,
+    1,
+    3,
+    1
+  ],
+  "strict_bottom_to_top_order": true,
+  "minimum_center_distance_px": 328.525,
+  "minimum_horizontal_edge_margin_px": 286,
+  "all_pair_distances": [
+    {
+      "a": "scarecrow",
+      "b": "orc_shield",
+      "distance_px": 335.932
+    },
+    {
+      "a": "scarecrow",
+      "b": "orc_rock",
+      "distance_px": 530.872
+    },
+    {
+      "a": "scarecrow",
+      "b": "orc_chief",
+      "distance_px": 756.979
+    },
+    {
+      "a": "scarecrow",
+      "b": "goblin_thief",
+      "distance_px": 943.021
+    },
+    {
+      "a": "scarecrow",
+      "b": "goblin_archer",
+      "distance_px": 1180.865
+    },
+    {
+      "a": "scarecrow",
+      "b": "goblin_boss",
+      "distance_px": 1373.989
+    },
+    {
+      "a": "scarecrow",
+      "b": "toad_hopper",
+      "distance_px": 1602.59
+    },
+    {
+      "a": "scarecrow",
+      "b": "frost_slime",
+      "distance_px": 1751.117
+    },
+    {
+      "a": "scarecrow",
+      "b": "toad_witch",
+      "distance_px": 1951.956
+    },
+    {
+      "a": "scarecrow",
+      "b": "witch_house",
+      "distance_px": 2216.16
+    },
+    {
+      "a": "scarecrow",
+      "b": "stone_golem",
+      "distance_px": 2474.153
+    },
+    {
+      "a": "scarecrow",
+      "b": "cave_bat",
+      "distance_px": 2620.34
+    },
+    {
+      "a": "scarecrow",
+      "b": "mountain_gate",
+      "distance_px": 2795.508
+    },
+    {
+      "a": "scarecrow",
+      "b": "royal_dragon",
+      "distance_px": 3023.479
+    },
+    {
+      "a": "orc_shield",
+      "b": "orc_rock",
+      "distance_px": 490.026
+    },
+    {
+      "a": "orc_shield",
+      "b": "orc_chief",
+      "distance_px": 471.0
+    },
+    {
+      "a": "orc_shield",
+      "b": "goblin_thief",
+      "distance_px": 789.381
+    },
+    {
+      "a": "orc_shield",
+      "b": "goblin_archer",
+      "distance_px": 907.0
+    },
+    {
+      "a": "orc_shield",
+      "b": "goblin_boss",
+      "distance_px": 1185.717
+    },
+    {
+      "a": "orc_shield",
+      "b": "toad_hopper",
+      "distance_px": 1333.03
+    },
+    {
+      "a": "orc_shield",
+      "b": "frost_slime",
+      "distance_px": 1544.634
+    },
+    {
+      "a": "orc_shield",
+      "b": "toad_witch",
+      "distance_px": 1685.043
+    },
+    {
+      "a": "orc_shield",
+      "b": "witch_house",
+      "distance_px": 1996.281
+    },
+    {
+      "a": "orc_shield",
+      "b": "stone_golem",
+      "distance_px": 2214.246
+    },
+    {
+      "a": "orc_shield",
+      "b": "cave_bat",
+      "distance_px": 2402.426
+    },
+    {
+      "a": "orc_shield",
+      "b": "mountain_gate",
+      "distance_px": 2540.292
+    },
+    {
+      "a": "orc_shield",
+      "b": "royal_dragon",
+      "distance_px": 2791.101
+    },
+    {
+      "a": "orc_rock",
+      "b": "orc_chief",
+      "distance_px": 490.506
+    },
+    {
+      "a": "orc_rock",
+      "b": "goblin_thief",
+      "distance_px": 434.139
+    },
+    {
+      "a": "orc_rock",
+      "b": "goblin_archer",
+      "distance_px": 797.799
+    },
+    {
+      "a": "orc_rock",
+      "b": "goblin_boss",
+      "distance_px": 870.0
+    },
+    {
+      "a": "orc_rock",
+      "b": "toad_hopper",
+      "distance_px": 1182.508
+    },
+    {
+      "a": "orc_rock",
+      "b": "frost_slime",
+      "distance_px": 1252.058
+    },
+    {
+      "a": "orc_rock",
+      "b": "toad_witch",
+      "distance_px": 1515.871
+    },
+    {
+      "a": "orc_rock",
+      "b": "witch_house",
+      "distance_px": 1721.279
+    },
+    {
+      "a": "orc_rock",
+      "b": "stone_golem",
+      "distance_px": 2018.428
+    },
+    {
+      "a": "orc_rock",
+      "b": "cave_bat",
+      "distance_px": 2120.478
+    },
+    {
+      "a": "orc_rock",
+      "b": "mountain_gate",
+      "distance_px": 2330.283
+    },
+    {
+      "a": "orc_rock",
+      "b": "royal_dragon",
+      "distance_px": 2532.809
+    },
+    {
+      "a": "orc_chief",
+      "b": "goblin_thief",
+      "distance_px": 463.427
+    },
+    {
+      "a": "orc_chief",
+      "b": "goblin_archer",
+      "distance_px": 436.0
+    },
+    {
+      "a": "orc_chief",
+      "b": "goblin_boss",
+      "distance_px": 766.065
+    },
+    {
+      "a": "orc_chief",
+      "b": "toad_hopper",
+      "distance_px": 862.047
+    },
+    {
+      "a": "orc_chief",
+      "b": "frost_slime",
+      "distance_px": 1098.626
+    },
+    {
+      "a": "orc_chief",
+      "b": "toad_witch",
+      "distance_px": 1214.059
+    },
+    {
+      "a": "orc_chief",
+      "b": "witch_house",
+      "distance_px": 1537.669
+    },
+    {
+      "a": "orc_chief",
+      "b": "stone_golem",
+      "distance_px": 1743.312
+    },
+    {
+      "a": "orc_chief",
+      "b": "cave_bat",
+      "distance_px": 1942.957
+    },
+    {
+      "a": "orc_chief",
+      "b": "mountain_gate",
+      "distance_px": 2069.586
+    },
+    {
+      "a": "orc_chief",
+      "b": "royal_dragon",
+      "distance_px": 2324.989
+    },
+    {
+      "a": "goblin_thief",
+      "b": "goblin_archer",
+      "distance_px": 481.877
+    },
+    {
+      "a": "goblin_thief",
+      "b": "goblin_boss",
+      "distance_px": 436.139
+    },
+    {
+      "a": "goblin_thief",
+      "b": "toad_hopper",
+      "distance_px": 789.987
+    },
+    {
+      "a": "goblin_thief",
+      "b": "frost_slime",
+      "distance_px": 818.001
+    },
+    {
+      "a": "goblin_thief",
+      "b": "toad_witch",
+      "distance_px": 1103.638
+    },
+    {
+      "a": "goblin_thief",
+      "b": "witch_house",
+      "distance_px": 1287.155
+    },
+    {
+      "a": "goblin_thief",
+      "b": "stone_golem",
+      "distance_px": 1592.489
+    },
+    {
+      "a": "goblin_thief",
+      "b": "cave_bat",
+      "distance_px": 1686.93
+    },
+    {
+      "a": "goblin_thief",
+      "b": "mountain_gate",
+      "distance_px": 1900.301
+    },
+    {
+      "a": "goblin_thief",
+      "b": "royal_dragon",
+      "distance_px": 2098.669
+    },
+    {
+      "a": "goblin_archer",
+      "b": "goblin_boss",
+      "distance_px": 473.396
+    },
+    {
+      "a": "goblin_archer",
+      "b": "toad_hopper",
+      "distance_px": 426.095
+    },
+    {
+      "a": "goblin_archer",
+      "b": "frost_slime",
+      "distance_px": 714.929
+    },
+    {
+      "a": "goblin_archer",
+      "b": "toad_witch",
+      "distance_px": 778.093
+    },
+    {
+      "a": "goblin_archer",
+      "b": "witch_house",
+      "distance_px": 1122.32
+    },
+    {
+      "a": "goblin_archer",
+      "b": "stone_golem",
+      "distance_px": 1307.417
+    },
+    {
+      "a": "goblin_archer",
+      "b": "cave_bat",
+      "distance_px": 1523.919
+    },
+    {
+      "a": "goblin_archer",
+      "b": "mountain_gate",
+      "distance_px": 1634.009
+    },
+    {
+      "a": "goblin_archer",
+      "b": "royal_dragon",
+      "distance_px": 1895.668
+    },
+    {
+      "a": "goblin_boss",
+      "b": "toad_hopper",
+      "distance_px": 494.677
+    },
+    {
+      "a": "goblin_boss",
+      "b": "frost_slime",
+      "distance_px": 382.188
+    },
+    {
+      "a": "goblin_boss",
+      "b": "toad_witch",
+      "distance_px": 729.222
+    },
+    {
+      "a": "goblin_boss",
+      "b": "witch_house",
+      "distance_px": 851.564
+    },
+    {
+      "a": "goblin_boss",
+      "b": "stone_golem",
+      "distance_px": 1177.918
+    },
+    {
+      "a": "goblin_boss",
+      "b": "cave_bat",
+      "distance_px": 1250.81
+    },
+    {
+      "a": "goblin_boss",
+      "b": "mountain_gate",
+      "distance_px": 1475.858
+    },
+    {
+      "a": "goblin_boss",
+      "b": "royal_dragon",
+      "distance_px": 1663.232
+    },
+    {
+      "a": "toad_hopper",
+      "b": "frost_slime",
+      "distance_px": 453.922
+    },
+    {
+      "a": "toad_hopper",
+      "b": "toad_witch",
+      "distance_px": 352.013
+    },
+    {
+      "a": "toad_hopper",
+      "b": "witch_house",
+      "distance_px": 744.71
+    },
+    {
+      "a": "toad_hopper",
+      "b": "stone_golem",
+      "distance_px": 882.001
+    },
+    {
+      "a": "toad_hopper",
+      "b": "cave_bat",
+      "distance_px": 1130.814
+    },
+    {
+      "a": "toad_hopper",
+      "b": "mountain_gate",
+      "distance_px": 1209.354
+    },
+    {
+      "a": "toad_hopper",
+      "b": "royal_dragon",
+      "distance_px": 1482.222
+    },
+    {
+      "a": "frost_slime",
+      "b": "toad_witch",
+      "distance_px": 473.396
+    },
+    {
+      "a": "frost_slime",
+      "b": "witch_house",
+      "distance_px": 469.385
+    },
+    {
+      "a": "frost_slime",
+      "b": "stone_golem",
+      "distance_px": 822.651
+    },
+    {
+      "a": "frost_slime",
+      "b": "cave_bat",
+      "distance_px": 869.87
+    },
+    {
+      "a": "frost_slime",
+      "b": "mountain_gate",
+      "distance_px": 1104.66
+    },
+    {
+      "a": "frost_slime",
+      "b": "royal_dragon",
+      "distance_px": 1281.056
+    },
+    {
+      "a": "toad_witch",
+      "b": "witch_house",
+      "distance_px": 492.303
+    },
+    {
+      "a": "toad_witch",
+      "b": "stone_golem",
+      "distance_px": 530.911
+    },
+    {
+      "a": "toad_witch",
+      "b": "cave_bat",
+      "distance_px": 828.293
+    },
+    {
+      "a": "toad_witch",
+      "b": "mountain_gate",
+      "distance_px": 859.049
+    },
+    {
+      "a": "toad_witch",
+      "b": "royal_dragon",
+      "distance_px": 1146.127
+    },
+    {
+      "a": "witch_house",
+      "b": "stone_golem",
+      "distance_px": 447.795
+    },
+    {
+      "a": "witch_house",
+      "b": "cave_bat",
+      "distance_px": 406.174
+    },
+    {
+      "a": "witch_house",
+      "b": "mountain_gate",
+      "distance_px": 664.088
+    },
+    {
+      "a": "witch_house",
+      "b": "royal_dragon",
+      "distance_px": 811.671
+    },
+    {
+      "a": "stone_golem",
+      "b": "cave_bat",
+      "distance_px": 463.945
+    },
+    {
+      "a": "stone_golem",
+      "b": "mountain_gate",
+      "distance_px": 328.525
+    },
+    {
+      "a": "stone_golem",
+      "b": "royal_dragon",
+      "distance_px": 645.521
+    },
+    {
+      "a": "cave_bat",
+      "b": "mountain_gate",
+      "distance_px": 434.847
+    },
+    {
+      "a": "cave_bat",
+      "b": "royal_dragon",
+      "distance_px": 426.175
+    },
+    {
+      "a": "mountain_gate",
+      "b": "royal_dragon",
+      "distance_px": 364.978
+    }
+  ],
+  "center_ground_pixel_checks": [
+    {
+      "id": "scarecrow",
+      "gold_ground_center_fraction": 1.0
+    },
+    {
+      "id": "orc_shield",
+      "gold_ground_center_fraction": 1.0
+    },
+    {
+      "id": "orc_rock",
+      "gold_ground_center_fraction": 1.0
+    },
+    {
+      "id": "orc_chief",
+      "gold_ground_center_fraction": 1.0
+    },
+    {
+      "id": "goblin_thief",
+      "gold_ground_center_fraction": 1.0
+    },
+    {
+      "id": "goblin_archer",
+      "gold_ground_center_fraction": 1.0
+    },
+    {
+      "id": "goblin_boss",
+      "gold_ground_center_fraction": 1.0
+    },
+    {
+      "id": "toad_hopper",
+      "gold_ground_center_fraction": 1.0
+    },
+    {
+      "id": "frost_slime",
+      "gold_ground_center_fraction": 1.0
+    },
+    {
+      "id": "toad_witch",
+      "gold_ground_center_fraction": 1.0
+    },
+    {
+      "id": "witch_house",
+      "gold_ground_center_fraction": 1.0
+    },
+    {
+      "id": "stone_golem",
+      "gold_ground_center_fraction": 1.0
+    },
+    {
+      "id": "cave_bat",
+      "gold_ground_center_fraction": 1.0
+    },
+    {
+      "id": "mountain_gate",
+      "gold_ground_center_fraction": 1.0
+    },
+    {
+      "id": "royal_dragon",
+      "gold_ground_center_fraction": 1.0
+    }
+  ],
+  "previews": [
+    {
+      "file": "world_map_nodes.jpg",
+      "dimensions": [
+        540,
+        1920
+      ],
+      "bytes": 331405
+    },
+    {
+      "file": "bottom_map_crop.jpg",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "bytes": 411256
+    },
+    {
+      "file": "bottom_screen_characters.jpg",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "bytes": 414874
+    }
+  ],
+  "manual_visual_review": [
+    "15 blank earth clearings, one unbranched route",
+    "Seven regions and three-chimney gingerbread house visible",
+    "No text, numbers, locks, flags or baked character UI in production PNG"
+  ],
+  "preview_only_overlays": "Numbered red circles on overview; two existing 240px character illustrations on bottom crop. These overlays are not in the production PNG.",
+  "production_changes": "assets/bg/world_map.png and assets/bg/world_map.json only",
+  "base_commit": "5842c4912dee78ae2b7161c32816059c6310c009"
+}

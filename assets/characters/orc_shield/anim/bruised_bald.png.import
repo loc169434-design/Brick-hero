@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mkt3lkaotg2l"
-path="res://.godot/imported/bruised_bald.png-6b6f79c349cbb3f99df0e58a098ec69b.ctex"
+path.s3tc="res://.godot/imported/bruised_bald.png-6b6f79c349cbb3f99df0e58a098ec69b.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/characters/orc_shield/anim/bruised_bald.png"
-dest_files=["res://.godot/imported/bruised_bald.png-6b6f79c349cbb3f99df0e58a098ec69b.ctex"]
+dest_files=["res://.godot/imported/bruised_bald.png-6b6f79c349cbb3f99df0e58a098ec69b.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

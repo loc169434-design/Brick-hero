@@ -152,6 +152,8 @@ func set_health(fraction: float) -> void:
 	if new_wear == Wear.BATTERED and BREAK_FX.has(character_id):
 		_burst(BREAK_FX[character_id], _anchor("head") + Vector2(facing * 70, 120))
 	wear = new_wear
+	# Clips of the old wear are no longer drawn; free their sheets.
+	_sheets.clear()
 	_body.queue_redraw()
 
 
@@ -204,7 +206,7 @@ func attack() -> void:
 	_motion = create_tween()
 	_motion.tween_property(_body, "position", Vector2(facing * 220, -20), reach).set_ease(Tween.EASE_IN)
 	await _motion.finished
-	_reach_impact()
+	reach_impact()
 	_motion = create_tween()
 	_motion.tween_property(_body, "position", Vector2.ZERO, 0.25).set_ease(Tween.EASE_OUT).set_delay(0.08)
 	_motion.tween_callback(func() -> void:
@@ -251,6 +253,13 @@ func impact_seconds(clip: StringName) -> float:
 	return float(info.get("impact", 0)) / float(info.get("fps", 24))
 
 
+## How long a move's wind-up takes: up to the clip's impact frame, or `fallback` seconds when
+## the character has no clip for it.
+func strike_time(clip: StringName, fallback: float) -> float:
+	var seconds := impact_seconds(clip)
+	return seconds if seconds > 0.0 else fallback
+
+
 func _update_clip(delta: float) -> void:
 	var wanted := end_pose if end_pose else mood
 	if not has_clip(wanted) and not end_pose and has_clip(&"idle") and not _has_still(wanted):
@@ -271,7 +280,8 @@ func _update_clip(delta: float) -> void:
 
 ## Jumps the playing clip forward to its impact frame if it hasn't got there yet, so the
 ## hit-stop that follows a landed blow freezes on the blow, not on the swing before it.
-func _reach_impact() -> void:
+## Call it the moment a blow lands.
+func reach_impact() -> void:
 	if _clip == &"" or not _clip_info.has("impact"):
 		return
 	_clip_time = maxf(_clip_time, float(_clip_info["impact"]) / float(_clip_info.get("fps", 24)))

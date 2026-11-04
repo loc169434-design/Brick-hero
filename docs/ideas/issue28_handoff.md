@@ -52,3 +52,15 @@ Nhánh `art/long-map`, tạo từ `main` mới nhất tại `5842c49`. Chỉ tha
 ## Nội dung comment để đăng vào #28
 
 Đã làm bản đồ dài 1080×3840 trên `art/long-map`, đủ 15 điểm qua 7 vùng, kèm world_map.json đúng ID/region. Không vẽ chữ, khóa, cờ hoặc UI lên ảnh. Tâm điểm cách nhau tối thiểu 328,525 px; lề ngang nhỏ nhất 286 px. Mỗi ảnh review dưới 0,42 MB. [Bản đồ đánh số](https://github.com/loc169434-design/Brick-hero/blob/art/long-map/docs/ideas/long_map_review/world_map_nodes.jpg) · [Crop đáy có nhân vật đứng thử](https://github.com/loc169434-design/Brick-hero/blob/art/long-map/docs/ideas/long_map_review/bottom_screen_characters.jpg) · [Bàn giao, tọa độ và kiểm tra](https://github.com/loc169434-design/Brick-hero/blob/art/long-map/docs/ideas/issue28_handoff.md).
+
+## Bổ sung theo yêu cầu: chuyển động nhẹ
+
+- [WebP động 540×1920](long_map_review/world_map_motion.webp), khoảng 0,58 MB; [GIF động 270×960](long_map_review/world_map_motion.gif), khoảng 0,22 MB. Vòng 4 giây / 12 fps. Cả hai dưới 2 MB.
+- Khói ba ống khói nhà bánh gừng trôi nhẹ lên; nước sông lấp lánh; kho vàng trong hang rồng nhấp nháy nhỏ. Không cho bản đồ rung, zoom hoặc các điểm dừng dịch chuyển.
+- `assets/bg/world_map_fx/`: ba texture RGBA tái sử dụng từ bộ ảnh hiện có và `anim.json` mô tả kích thước map, tọa độ map-local, pha, thời gian vòng, cỡ và biên độ hiệu ứng.
+- Dựng offline bằng [build_long_map_motion.py](build_long_map_motion.py), theo cách dựng từ ảnh gốc bằng Python/Pillow đã chọn; không sửa code game. [Kiểm tra hiệu ứng và thời lượng giải mã](long_map_review/motion_validation.json): vòng 4.000 ms, chỉ vùng hiệu ứng thay đổi; PNG nền và JSON 15 điểm giữ nguyên.
+- **Chưa tự chạy trong game:** loader bản đồ hiện tại không tự đọc `world_map_fx/anim.json`. Phần code tích hợp cần chồng các emitter lên ảnh map, cho chúng cuộn cùng map. PNG production vẫn là ảnh tĩnh; không biến texture nền thành GIF để thay đường dẫn đang dùng.
+
+### Quy ước chuyển động cho phần tích hợp
+
+Các vị trí trong `anim.json` đều tính trên ảnh 1080×3840, không phải viewport. Đọc 4 frame khói từ trái qua phải trên atlas; mỗi emitter có pha riêng. Trong một vòng, khói đi lên 65 px, trôi ngang 12 px, alpha theo `sin(pi*phase)^1.5`; tint tím nhạt và alpha tối đa 0,8 nhân alpha gốc. Khói fade về 0 trước khi bắt đầu vòng mới. Glint nước đi xuống 12 px/vòng 2 giây, alpha theo `sin(pi*phase)^2`. Vàng pulse theo nửa sóng sin lũy thừa 4, vòng 4 giây; các điểm lệch pha. Đường đi và quái/UI nằm yên theo tọa độ map trong lúc các lớp nhỏ này chuyển động. Không cần vẽ lại bản đồ nền.

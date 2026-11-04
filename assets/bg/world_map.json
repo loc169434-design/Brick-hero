@@ -1,37 +1,92 @@
 [
   {
     "id": "scarecrow",
-    "x": 531,
-    "y": 1577
+    "x": 540,
+    "y": 3402,
+    "region": 0
   },
   {
     "id": "orc_shield",
-    "x": 326,
-    "y": 1368
+    "x": 319,
+    "y": 3149,
+    "region": 1
   },
   {
-    "id": "frost_slime",
+    "id": "orc_rock",
     "x": 749,
-    "y": 1148
+    "y": 2914,
+    "region": 1
+  },
+  {
+    "id": "orc_chief",
+    "x": 319,
+    "y": 2678,
+    "region": 1
   },
   {
     "id": "goblin_thief",
-    "x": 321,
-    "y": 919
+    "x": 738,
+    "y": 2480,
+    "region": 2
+  },
+  {
+    "id": "goblin_archer",
+    "x": 319,
+    "y": 2242,
+    "region": 2
+  },
+  {
+    "id": "goblin_boss",
+    "x": 749,
+    "y": 2044,
+    "region": 2
+  },
+  {
+    "id": "toad_hopper",
+    "x": 310,
+    "y": 1816,
+    "region": 3
+  },
+  {
+    "id": "frost_slime",
+    "x": 737,
+    "y": 1662,
+    "region": 3
+  },
+  {
+    "id": "toad_witch",
+    "x": 307,
+    "y": 1464,
+    "region": 3
+  },
+  {
+    "id": "witch_house",
+    "x": 718,
+    "y": 1193,
+    "region": 4
   },
   {
     "id": "stone_golem",
-    "x": 735,
-    "y": 769
+    "x": 352,
+    "y": 935,
+    "region": 5
   },
   {
-    "id": "rune_witch",
-    "x": 366,
-    "y": 602
+    "id": "cave_bat",
+    "x": 794,
+    "y": 794,
+    "region": 5
+  },
+  {
+    "id": "mountain_gate",
+    "x": 400,
+    "y": 610,
+    "region": 5
   },
   {
     "id": "royal_dragon",
-    "x": 632,
-    "y": 310
+    "x": 685,
+    "y": 382,
+    "region": 6
   }
 ]

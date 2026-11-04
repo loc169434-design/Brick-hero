@@ -23,6 +23,12 @@ var cleared: Array[String] = []
 var gold := 0
 ## Best stars won at each cleared stop, by id.
 var stars := {}
+## Gear bought at the forge (Gear.ITEMS ids); the hero uses the best of each slot.
+var owned: Array[String] = []
+
+
+func _init() -> void:
+	owned.assign(Gear.STARTING)
 
 
 static func from_map(path := MAP_FILE) -> Campaign:
@@ -104,8 +110,17 @@ func finish_fight(id: String, won: bool, gold_after: int, star_count := 1) -> bo
 	return true
 
 
+## Buys `id` at the forge if Gear.offer allows it. Returns whether it was bought.
+func buy(id: String) -> bool:
+	if Gear.offer(id, owned, cleared, gold) != Gear.Offer.BUY:
+		return false
+	gold -= int(Gear.ITEMS[id]["price"])
+	owned.append(id)
+	return true
+
+
 func to_dict() -> Dictionary:
-	return {"cleared": cleared.duplicate(), "gold": gold, "stars": stars.duplicate()}
+	return {"cleared": cleared.duplicate(), "gold": gold, "stars": stars.duplicate(), "owned": owned.duplicate()}
 
 
 func apply_dict(data: Dictionary) -> void:
@@ -114,6 +129,10 @@ func apply_dict(data: Dictionary) -> void:
 		if index_of(String(id)) >= 0 and not cleared.has(String(id)):
 			cleared.append(String(id))
 	gold = maxi(int(data.get("gold", 0)), 0)
+	owned.assign(Gear.STARTING)
+	for id in data.get("owned", []):
+		if Gear.ITEMS.has(String(id)) and not owned.has(String(id)):
+			owned.append(String(id))
 	stars.clear()
 	var saved: Variant = data.get("stars", {})
 	if saved is Dictionary:

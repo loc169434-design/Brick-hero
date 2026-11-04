@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "map_size": [
+    1080,
+    3840
+  ],
+  "loop_seconds": 4,
+  "preview_fps": 12,
+  "textures": {
+    "smoke": {
+      "file": "smoke.png",
+      "frame_size": [
+        192,
+        192
+      ],
+      "columns": 4,
+      "frames": 4
+    },
+    "sparkle": {
+      "file": "sparkle.png",
+      "frame_size": [
+        128,
+        128
+      ],
+      "columns": 1,
+      "frames": 1
+    },
+    "glow": {
+      "file": "glow.png",
+      "frame_size": [
+        128,
+        128
+      ],
+      "columns": 1,
+      "frames": 1
+    }
+  },
+  "smoke": [
+    {
+      "position": [
+        200,
+        1156
+      ],
+      "phase": 0.0
+    },
+    {
+      "position": [
+        261,
+        1123
+      ],
+      "phase": 0.33
+    },
+    {
+      "position": [
+        319,
+        1153
+      ],
+      "phase": 0.66
+    }
+  ],
+  "water_glints": [
+    [
+      141,
+      958
+    ],
+    [
+      160,
+      991
+    ],
+    [
+      154,
+      1030
+    ],
+    [
+      110,
+      1059
+    ],
+    [
+      682,
+      2179
+    ],
+    [
+      618,
+      2243
+    ],
+    [
+      557,
+      2343
+    ],
+    [
+      531,
+      2429
+    ]
+  ],
+  "gold_glints": [
+    [
+      578,
+      286
+    ],
+    [
+      626,
+      304
+    ],
+    [
+      675,
+      275
+    ],
+    [
+      729,
+      302
+    ],
+    [
+      770,
+      279
+    ]
+  ],
+  "smoke_motion": {
+    "size_px": 96,
+    "rise_px": 65,
+    "drift_px": 12,
+    "opacity": 0.8,
+    "tint": [
+      216,
+      160,
+      245
+    ]
+  },
+  "water_motion": {
+    "size_px": [
+      8,
+      18
+    ],
+    "travel_y_px": 12,
+    "period_seconds": 2,
+    "opacity": 0.45,
+    "tint": [
+      190,
+      239,
+      255
+    ]
+  },
+  "gold_motion": {
+    "size_px": [
+      20,
+      34
+    ],
+    "opacity": 0.8,
+    "period_seconds": 4
+  },
+  "integration": "Additive asset specification only. No existing game code automatically loads this file. Keep the map texture and its 15 node coordinates fixed; position FX in map-local coordinates so they scroll with the map.",
+  "sources": {
+    "smoke": "assets/bg/orc_camp/smoke.png",
+    "sparkle": "assets/fx/battle/sparkle.png",
+    "glow": "assets/fx/particles/glow.png"
+  }
+}

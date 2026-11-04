@@ -32,3 +32,23 @@ Mỗi ô có GIF động và lưới GIF đánh số, cạnh ảnh đứng yên 
 ## Comment bàn giao để đăng vào #24
 
 Đã sửa đủ ba điểm Claude yêu cầu trên `art/anim-moves`, sau khi kéo main mới: Orc throw 4–5 duỗi tay mở; mặt hurt/knocked/scared/dizzy đúng trạng thái; drink có lọ đỏ rõ ở môi và động tác cất/lau miệng. Có cả ba mức. Số khung/fps/impact và các khung không nhắc tới giữ nguyên. 36 GIF động/lưới cạnh ảnh nguồn tổng khoảng 8 MB, từng file <2 MB, không WebP. Godot: 78 đạt, 0 lỗi. [Bàn giao và GIF](https://github.com/loc169434-design/Brick-hero/blob/art/anim-moves/docs/ideas/issue24_fix_handoff.md).
+
+## Trạng thái gửi
+
+Đã push commit sửa `d92442f` lên `origin/art/anim-moves`. Comment #24 và lệnh mở PR sau push đều trả `Post "https://api.github.com/graphql": Forbidden`; chưa đăng comment hoặc tạo PR. Nội dung bàn giao đầy đủ được lưu ở đây theo phương án dự phòng trong yêu cầu.
+
+### Comment đầy đủ kèm GIF
+
+Đã sửa đủ 3 điểm phản hồi trên `art/anim-moves` sau khi merge main mới:
+
+- Orc throw: chỉ frame 4–5 duỗi tay phải về trái, bàn tay mở.
+- Hiệp sĩ hurt/knocked/scared/dizzy: bỏ nụ cười, đổi miệng và mắt đúng trạng thái.
+- Drink: lọ đỏ rõ ở môi, nâng/ngửa đầu uống rồi cất lọ, lau miệng.
+
+Áp dụng fresh/bruised/battered. Số khung, fps, impact, anim.json và các khung không nhắc tới giữ nguyên, có hash pixel đối chiếu main. 36 GIF tổng khoảng 8 MB, từng file <2 MB, không WebP; lưới cạnh ảnh nguồn tương ứng. Godot: 78 passed, 0 failed.
+
+[Bàn giao và tất cả GIF](https://github.com/loc169434-design/Brick-hero/blob/art/anim-moves/docs/ideas/issue24_fix_handoff.md)
+
+![Tay ném Orc](https://github.com/loc169434-design/Brick-hero/blob/art/anim-moves/docs/ideas/anim_fix_review/orc_shield_fresh_throw.gif?raw=true)
+
+![Lọ thuốc](https://github.com/loc169434-design/Brick-hero/blob/art/anim-moves/docs/ideas/anim_fix_review/hero_rookie_fresh_drink.gif?raw=true)

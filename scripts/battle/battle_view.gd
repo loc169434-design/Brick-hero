@@ -49,6 +49,9 @@ const TRAIL_TIME := 0.4
 const HERO_ID := "hero_rookie"
 const COMIC_DIR := "res://assets/fx/comic/"
 const COMBAT_DIR := "res://assets/fx/combat/"
+## Frame-by-frame versions of the combat effects: anim/<effect>.png, listed in anim/anim.json
+## as {"<effect>": {"frames", "fps", "columns", "frame_size"}}. They win over the still image.
+const COMBAT_ANIM := "res://assets/fx/combat/anim/anim.json"
 const PROP_DIR := "res://assets/fx/props/"
 const NUMBER_FONT := "res://assets/fonts/Bangers-Regular.ttf"
 ## Comic lettering pops to this scale (of its 512×320 art).
@@ -93,6 +96,7 @@ var _focus := SIZE / 2
 var _camera_tween: Tween
 var _attack_turn := 0
 var _number_font: Font
+var _combat_anim := {}
 var _backdrop: ArenaBackdrop
 var _hero: CharacterRig
 var _monster: CharacterRig
@@ -132,6 +136,10 @@ func _ready() -> void:
 	_cinema = Node2D.new()
 	add_child(_cinema)
 	_number_font = load(NUMBER_FONT) if ResourceLoader.exists(NUMBER_FONT) else ThemeDB.fallback_font
+	if ResourceLoader.exists(COMBAT_ANIM):
+		var json: JSON = load(COMBAT_ANIM)
+		if json.data is Dictionary:
+			_combat_anim = json.data
 	_coin = load(PROP_DIR + "coin.png") if ResourceLoader.exists(PROP_DIR + "coin.png") else null
 	_box.shadow_color = Color(0, 0, 0, 0.35)
 	_overlay = Node2D.new()
@@ -518,6 +526,8 @@ func _comic(word: String, at: Vector2, size := 1.0, hold := 0.45) -> void:
 
 ## A one-shot effect image that grows from `from_scale` to `to_scale` and fades.
 func _flash(effect: String, at: Vector2, from_scale: float, to_scale: float, seconds: float, angle := 0.0, additive := false) -> void:
+	if _play_effect_clip(effect, at, (from_scale + to_scale) / 2, angle, additive):
+		return
 	var sprite := _sprite(COMBAT_DIR + effect + ".png", at, _fx)
 	if not sprite:
 		return
@@ -531,6 +541,29 @@ func _flash(effect: String, at: Vector2, from_scale: float, to_scale: float, sec
 	tween.tween_property(sprite, "scale", Vector2.ONE * to_scale, seconds).set_ease(Tween.EASE_OUT)
 	tween.tween_property(sprite, "modulate:a", 0.0, seconds).set_ease(Tween.EASE_IN)
 	tween.chain().tween_callback(sprite.queue_free)
+
+
+## Plays the frame-by-frame version of `effect` once, if there is one.
+func _play_effect_clip(effect: String, at: Vector2, size: float, angle: float, additive: bool) -> bool:
+	var path := COMBAT_DIR + "anim/" + effect + ".png"
+	if not _combat_anim.has(effect) or not ResourceLoader.exists(path):
+		return false
+	var info: Dictionary = _combat_anim[effect]
+	var sprite := _sprite(path, at, _fx)
+	var frames := int(info.get("frames", 8))
+	var columns := int(info.get("columns", 4))
+	sprite.hframes = columns
+	sprite.vframes = ceili(float(frames) / columns)
+	sprite.rotation = angle
+	sprite.scale = Vector2.ONE * size
+	if additive:
+		var blend := CanvasItemMaterial.new()
+		blend.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+		sprite.material = blend
+	var tween := create_tween()
+	tween.tween_method(func(f: float) -> void: sprite.frame = mini(int(f), frames - 1), 0.0, float(frames), frames / float(info.get("fps", 24)))
+	tween.tween_callback(sprite.queue_free)
+	return true
 
 
 ## A prop from assets/fx/props/, shown at 70% (the fighters' scale), or a placeholder dot.

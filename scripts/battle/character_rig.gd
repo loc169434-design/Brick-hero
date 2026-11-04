@@ -12,6 +12,13 @@ extends Node2D
 ## (hero) or throw, charge, dodge, windup and the wearless bald (Orc) are just poses; the
 ## battle view moves the body with dash_to(), hop_to(), squash() and knockback(). A blow to
 ## the head spins stars around it (daze).
+##
+## Frame-by-frame clips: when assets/characters/<id>/anim/anim.json lists a clip named after
+## the current mood or end pose (idle, attack, hurt, throw, victory...), that clip plays
+## instead of the still pose: <wear>_<clip>.png (or fresh_<clip>.png, or <clip>.png), a grid
+## of `columns` frames of `frame_size`, feet at the usual point. Looping clips repeat; others
+## hold their last frame. A clip's "impact" frame is when the blow lands (clip_impact), and an
+## optional per-frame "shield" track moves the Orc's shield with its hand.
 
 enum Wear { FRESH, BRUISED, BATTERED }
 
@@ -37,6 +44,11 @@ const HURT_FX := {"scarecrow": "straw"}
 const BREAK_FX := {"hero_rookie": "splinters"}
 
 ## Faces right for 1 (the hero), left for -1 (monsters). Attacks lunge this way.
+## The current clip reached its impact frame.
+signal clip_impact(clip: StringName)
+
+const ANIM_FILE := "anim/anim.json"
+
 var facing := 1
 var character_id := ""
 var wear := Wear.FRESH
@@ -58,6 +70,18 @@ var _mood_serial := 0
 var _time := 0.0
 ## Squash and stretch on top of breathing, for slams and landings.
 var squash_scale := Vector2.ONE
+## anim.json, or empty without clips.
+var _anim := {}
+## Loaded clip sheets by path; null for a missing one.
+var _sheets := {}
+## The clip playing: its name, sheet, settings, and seconds since it started. Empty name: none.
+var _clip := &""
+var _clip_sheet: Texture2D
+var _clip_info := {}
+var _clip_time := 0.0
+var _clip_impacted := false
+## What the clip was chosen for, so a new mood (or the same one again) restarts it.
+var _clip_key := ""
 
 
 func _ready() -> void:
@@ -90,12 +114,21 @@ func setup(id: String, p_facing: int, layers := -1) -> void:
 	squash_scale = Vector2.ONE
 	_mood_serial += 1
 	_textures.clear()
+	_sheets.clear()
+	_clip = &""
+	_clip_key = ""
 	_rig = {}
 	var rig_path := "res://assets/characters/%s/rig.json" % id
 	if ResourceLoader.exists(rig_path):
 		var json: JSON = load(rig_path)
 		if json.data is Dictionary:
 			_rig = json.data
+	_anim = {}
+	var anim_path := "res://assets/characters/%s/%s" % [id, ANIM_FILE]
+	if ResourceLoader.exists(anim_path):
+		var anim_json: JSON = load(anim_path)
+		if anim_json.data is Dictionary:
+			_anim = anim_json.data
 	if _motion:
 		_motion.kill()
 	_body.position = Vector2.ZERO
@@ -166,9 +199,12 @@ func attack() -> void:
 	_body.queue_redraw()
 	if _motion:
 		_motion.kill()
+	# With an attack clip, arrive just as its impact frame comes up.
+	var reach := maxf(impact_seconds(&"attack"), 0.16)
 	_motion = create_tween()
-	_motion.tween_property(_body, "position", Vector2(facing * 220, -20), 0.16).set_ease(Tween.EASE_IN)
+	_motion.tween_property(_body, "position", Vector2(facing * 220, -20), reach).set_ease(Tween.EASE_IN)
 	await _motion.finished
+	_reach_impact()
 	_motion = create_tween()
 	_motion.tween_property(_body, "position", Vector2.ZERO, 0.25).set_ease(Tween.EASE_OUT).set_delay(0.08)
 	_motion.tween_callback(func() -> void:
@@ -194,10 +230,88 @@ func finish(won: bool) -> void:
 
 
 func _process(delta: float) -> void:
-	# Breathing: a slow squash that keeps still art from looking frozen.
 	_time += delta
-	if not end_pose:
-		_body.scale = Vector2(1.0 - 0.01 * sin(_time * 2.4), 1.0 + 0.015 * sin(_time * 2.4)) * squash_scale
+	_update_clip(delta)
+	# Breathing: a slow squash that keeps still art from looking frozen. An idle clip breathes
+	# by itself.
+	var breath := 0.0 if _clip == &"idle" or end_pose else sin(_time * 2.4)
+	_body.scale = Vector2(1.0 - 0.01 * breath, 1.0 + 0.015 * breath) * squash_scale
+
+
+## Whether there's a frame-by-frame clip called `clip` for this character.
+func has_clip(clip: StringName) -> bool:
+	return _anim.get("clips", {}).has(String(clip)) and _clip_sheet_for(clip) != null
+
+
+## Seconds from the start of `clip` to its impact frame; 0 without one.
+func impact_seconds(clip: StringName) -> float:
+	if not has_clip(clip):
+		return 0.0
+	var info: Dictionary = _anim["clips"][String(clip)]
+	return float(info.get("impact", 0)) / float(info.get("fps", 24))
+
+
+func _update_clip(delta: float) -> void:
+	var wanted := end_pose if end_pose else mood
+	if not has_clip(wanted) and not end_pose and has_clip(&"idle") and not _has_still(wanted):
+		wanted = &"idle"
+	var key := "%s/%d/%d" % [wanted, wear, _mood_serial if wanted != &"idle" else 0]
+	if key != _clip_key:
+		_clip_key = key
+		_start_clip(wanted if has_clip(wanted) else &"")
+	if _clip == &"":
+		return
+	_clip_time += delta
+	var fps := float(_clip_info.get("fps", 24))
+	if not _clip_impacted and _clip_info.has("impact") and _clip_time * fps >= float(_clip_info["impact"]):
+		_clip_impacted = true
+		clip_impact.emit(_clip)
+	_body.queue_redraw()
+
+
+## Jumps the playing clip forward to its impact frame if it hasn't got there yet, so the
+## hit-stop that follows a landed blow freezes on the blow, not on the swing before it.
+func _reach_impact() -> void:
+	if _clip == &"" or not _clip_info.has("impact"):
+		return
+	_clip_time = maxf(_clip_time, float(_clip_info["impact"]) / float(_clip_info.get("fps", 24)))
+	_body.queue_redraw()
+
+
+func _start_clip(clip: StringName) -> void:
+	_clip = clip
+	_clip_time = 0.0
+	_clip_impacted = false
+	if clip == &"":
+		_clip_sheet = null
+		_clip_info = {}
+	else:
+		_clip_sheet = _clip_sheet_for(clip)
+		_clip_info = _anim["clips"][String(clip)]
+	_body.queue_redraw()
+
+
+## Whether there's a still pose for `pose_mood`: then a missing clip falls back to that pose
+## rather than to the idle clip.
+func _has_still(pose_mood: StringName) -> bool:
+	return pose_mood != &"idle" and (_texture("%s_%s" % [WEAR_NAMES[wear], pose_mood]) != null or _texture(String(pose_mood)) != null)
+
+
+func _clip_sheet_for(clip: StringName) -> Texture2D:
+	for stem in ["%s_%s" % [WEAR_NAMES[wear], clip], "fresh_%s" % clip, String(clip)]:
+		var path := "res://assets/characters/%s/anim/%s.png" % [character_id, stem]
+		if not _sheets.has(path):
+			_sheets[path] = load(path) if ResourceLoader.exists(path) else null
+		if _sheets[path]:
+			return _sheets[path]
+	return null
+
+
+## The frame showing now: looping clips wrap, others hold their last frame.
+func _clip_frame() -> int:
+	var frames := int(_clip_info.get("frames", 1))
+	var frame := int(_clip_time * float(_clip_info.get("fps", 24)))
+	return frame % frames if _clip_info.get("loop", false) else mini(frame, frames - 1)
 
 
 ## Global position of a point on the current pose: "head", "mouth", "crown" or "hand".
@@ -205,9 +319,9 @@ func point(key: String) -> Vector2:
 	return _body.to_global(_anchor(key))
 
 
-## Stars spin around the head after a blow to it.
-func daze() -> void:
-	_spin_stars(0.8)
+## Stars spin around the head: knocked silly for `seconds`.
+func daze(seconds := 0.8) -> void:
+	_spin_stars(seconds)
 
 
 ## Moves the body to `offset` from the feet over `seconds`. Returns when it gets there.
@@ -343,6 +457,11 @@ static func _vec(value: Variant, fallback: Vector2) -> Vector2:
 # --- drawing ---------------------------------------------------------------
 
 func _draw_body() -> void:
+	if _clip != &"":
+		_draw_clip_frame()
+		if shield_layers >= 0 and end_pose != &"defeat" and mood != &"bald":
+			_draw_shield(false, _clip_shield_offset())
+		return
 	var texture := _pose_texture()
 	if texture:
 		var size := Vector2(CANVAS, CANVAS) * _scale()
@@ -353,12 +472,30 @@ func _draw_body() -> void:
 		_draw_shield(texture == null)
 
 
+func _draw_clip_frame() -> void:
+	var cell: Array = _anim.get("frame_size", [CANVAS, CANVAS])
+	var cell_size := Vector2(cell[0], cell[1])
+	var columns := int(_anim.get("columns", 4))
+	var frame := _clip_frame()
+	var source := Rect2(Vector2(frame % columns, frame / columns) * cell_size, cell_size)
+	_body.draw_texture_rect_region(_clip_sheet, Rect2(-_feet() * _scale(), cell_size * _scale()), source)
+
+
+## How far this frame's shield has moved from the rig's shield point, in canvas pixels.
+func _clip_shield_offset() -> Vector2:
+	var track: Array = _clip_info.get("shield", [])
+	if track.is_empty():
+		return Vector2.ZERO
+	var point: Array = track[mini(_clip_frame(), track.size() - 1)]
+	return Vector2(point[0], point[1]) - _vec(_rig.get("shield"), Vector2(140, 330))
+
+
 ## `placeholder_body`: the stand-in plate only goes next to stand-in shapes. A drawn character
 ## without shield art (the scarecrow) shows its shield in the health panel only.
-func _draw_shield(placeholder_body: bool) -> void:
+func _draw_shield(placeholder_body: bool, offset := Vector2.ZERO) -> void:
 	var texture := _texture("shield_%d" % shield_layers)
 	if texture:
-		_body.draw_texture_rect(texture, Rect2(-_feet() * _scale(), Vector2(CANVAS, CANVAS) * _scale()), false)
+		_body.draw_texture_rect(texture, Rect2((offset - _feet()) * _scale(), Vector2(CANVAS, CANVAS) * _scale()), false)
 		return
 	if shield_layers == 0 or not placeholder_body:
 		return

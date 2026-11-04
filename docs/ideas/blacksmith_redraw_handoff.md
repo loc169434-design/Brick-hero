@@ -82,3 +82,11 @@ python docs/ideas/pack_blacksmith_redraw.py /path/to/source_manifest.json
 
 Thư mục review có `.gdignore`, không đưa GIF/ảnh kiểm tra vào tài nguyên game.
 `project.godot`, code và test giữ nguyên.
+
+## Trạng thái bàn giao GitHub
+
+Đã push `art/blacksmith` (commit ảnh `e9d00a8`). Tạo PR, tạo issue vẽ lại và
+comment vào issue #30 đều bị GitHub API trả `Forbidden` trong môi trường này,
+nên chưa có PR/issue/comment mới. Có thể mở PR từ nhánh đã push tại
+[đường dẫn so sánh](https://github.com/loc169434-design/Brick-hero/compare/main...art/blacksmith?expand=1).
+Nội dung và GIF cần bàn giao nằm đầy đủ ở tài liệu này.

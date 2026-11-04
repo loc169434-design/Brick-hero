@@ -13,7 +13,9 @@ docs/ideas/anim_pilot_review/attack_vs_hurt.webp
 docs/ideas/anim_pilot_review/frame_checks.json
 docs/ideas/anim_pilot_review/hero_attack.gif
 docs/ideas/anim_pilot_review/hero_attack.webp
+docs/ideas/anim_pilot_review/hero_attack_frames_03_06_zoom.png
 docs/ideas/anim_pilot_review/hero_attack_numbered.png
+docs/ideas/anim_pilot_review/hero_attack_smear_before_after.png
 docs/ideas/anim_pilot_review/hero_idle.gif
 docs/ideas/anim_pilot_review/hero_idle.webp
 docs/ideas/anim_pilot_review/hero_idle_numbered.png
@@ -27,6 +29,8 @@ docs/ideas/anim_pilot_review/orc_idle_numbered.png
 docs/ideas/anim_pilot_review/slash.gif
 docs/ideas/anim_pilot_review/slash.webp
 docs/ideas/anim_pilot_review/slash_numbered.png
+docs/ideas/anim_pilot_review/smear_revision_checks.json
+docs/ideas/anim_pilot_review/smear_revision_notes.md
 docs/ideas/anim_pilot_review/timing.json
 docs/ideas/anim_pilot_review/files.txt
 docs/ideas/issue21_handoff.md

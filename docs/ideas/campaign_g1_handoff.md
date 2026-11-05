@@ -70,3 +70,7 @@ Dùng Godot **4.7.2**, không dùng binary 4.6.3 mặc định của máy onboar
 - [Suite hiện có](campaign_g1_review/godot_tests.log): **93 passed, 0 failed**.
 - Atlas hoạt hình dùng `compress/mode=2` theo test của repo.
 - Chưa tích hợp/chụp gameplay quái mới, chưa chạy bot campaign 100 màn, chưa kiểm thử điện thoại. Đó là các bước tích hợp code và nghiệm thu tiếp theo, không phải kết quả của kiểm ảnh.
+
+## Trạng thái GitHub
+
+Đã push commit ảnh `4b3270c` lên `origin/art/campaign-100-g1`. Lệnh mở draft PR trả `Post "https://api.github.com/graphql": Forbidden`, nên **chưa tạo được PR**, chưa merge. Claude có thể fetch trực tiếp nhánh hoặc mở PR tại [trang so sánh](https://github.com/loc169434-design/Brick-hero/compare/main...art/campaign-100-g1?expand=1).

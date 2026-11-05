@@ -9,5 +9,16 @@
     "panel_05.png",
     "panel_06.png"
   ],
-  "text_baked": false
+  "text_baked": false,
+  "style_review": "pending_user_approval_issue_41",
+  "panel_heights": [
+    540,
+    720,
+    1350,
+    540,
+    1440,
+    1461
+  ],
+  "layout": "vertical_variable_heights",
+  "gutter_px": 36
 }

@@ -8,7 +8,7 @@ func _initialize() -> void:
 	call_deferred("run")
 
 func run() -> void:
-	for id in ["orc_rock", "orc_drummer", "orc_boar", "orc_chief", "orc_chief_enraged", "scarecrow_wood", "scarecrow_straw_shield"]:
+	for id in ["orc_rock", "orc_drummer", "orc_boar", "orc_chief", "orc_chief_enraged", "scarecrow_wood", "scarecrow_straw_shield", "fairy_beggar"]:
 		var rig := CharacterRig.new()
 		root.add_child(rig)
 		rig.setup(id, -1)

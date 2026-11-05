@@ -1,0 +1,45 @@
+{
+  "baseline": "f83b5fc",
+  "sources": {
+    "41victory": {
+      "path": "/workspace/generated_images/exec-04aab376-56ab-4b7e-ba79-b0f4db3ae33c.png",
+      "sha256": "2f1bcb836483ebf936d80808c6cbd1970530ec85d2c0f832f5513bb03fae306f"
+    },
+    "41map_clean": {
+      "path": "/workspace/generated_images/exec-430e15bc-adfe-45a2-b820-b2d028f9cc80.png",
+      "sha256": "7cf616f86d2dc406e8d671ada16d15b22d2abf61f72d534c84cfc3970f5d3da3"
+    },
+    "41boar": {
+      "path": "/workspace/generated_images/exec-70c522dc-08ee-4e6c-844f-5da99aeb547f.png",
+      "sha256": "948f8ff1264cb92e35be0cc3772048c29ab40db7d32618aab4f81ef8a42cfd39"
+    },
+    "41beggar": {
+      "path": "/workspace/generated_images/exec-4a142264-6906-4f54-9119-5753d2596051.png",
+      "sha256": "b47889df11447697b46d81e0c2149438187a3951c27fbe11c075aae9c8b7ce62"
+    },
+    "41panel1": {
+      "path": "/workspace/generated_images/exec-5a069c3c-3650-4ae5-b55b-96ae370571e8.png",
+      "sha256": "e271a009252018e0241ca4dbc3bc9ed950d58f38495c34ebb5af93cff2bb0d94"
+    },
+    "41panel2": {
+      "path": "/workspace/generated_images/exec-f9e1415e-6bf3-448a-879d-ed3bb9e919e1.png",
+      "sha256": "a2473ecee6c16f71424c35a5e47f6dace3951076ec93a20d07db3f7f20c1f075"
+    },
+    "41panel3": {
+      "path": "/workspace/generated_images/exec-458a1f2e-259f-43a5-9aea-8bea87a5f299.png",
+      "sha256": "2b13238d34b169badb697202c8f7e6b680f02d1cdc589afc47b72c5df8db0677"
+    },
+    "41panel4": {
+      "path": "/workspace/generated_images/exec-70b752e7-ecce-4d41-bb05-4e26caafdc3f.png",
+      "sha256": "0d4a58a5a197219d70a417dd3a67fc6ce6e533bb344c2307d1d907229a735df2"
+    },
+    "41panel5": {
+      "path": "/workspace/generated_images/exec-103e6db1-0f40-44c3-b3fb-bb7140d1e9ea.png",
+      "sha256": "adbf201ecde613859e44d089f709ca572667258addc95273d2f907d1d725230d"
+    },
+    "41panel6": {
+      "path": "/workspace/generated_images/exec-fed63aa8-2a5e-497f-a79e-3183675b7f80.png",
+      "sha256": "6de2ac54a248ea05cf10834bb838cf4f6771f206fa8887899736f871a09620ee"
+    }
+  }
+}

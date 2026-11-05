@@ -140,6 +140,10 @@ def main():
         write(dest/'chapter.json',{'chapter':ch,'after_level':5 if ch==1 else 18,'panels':panels,'text_baked':False})
         Image.open(paths['chapter'+str(ch)]).convert('RGB').resize((720,1080)).save(REVIEW/f'chapter_{ch:02}.jpg',quality=90)
     write(REVIEW/'packing_report.json',REPORT)
+    # Preserve approved follow-up redraws when rebuilding the original G1 batch.
+    if (DOC/'issue41_part0_sources.json').exists():
+        from pack_issue41_part0 import main as pack_part0
+        pack_part0()
 
 def export_icons(path):
     names=['node_hard','node_boss','node_bonus','node_petal','golden_petal','orc_flag','rescue_cage','brass_key']

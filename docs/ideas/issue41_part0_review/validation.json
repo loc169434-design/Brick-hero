@@ -1,0 +1,99 @@
+{
+  "passed": 92,
+  "overlap_pixels": [
+    1080,
+    200
+  ],
+  "overlap_sha256": "02af1da3cd3de6d8f02a41a7fc68fc3b95dfe93995a5272aa927342ee83c3486",
+  "panel_heights": [
+    540,
+    720,
+    1350,
+    540,
+    1440,
+    1461
+  ],
+  "previews": [
+    {
+      "file": "chief_victory_before.gif",
+      "bytes": 116159
+    },
+    {
+      "file": "chapter1_panel_01_after.jpg",
+      "bytes": 69816
+    },
+    {
+      "file": "boar_idle_after.gif",
+      "bytes": 63158
+    },
+    {
+      "file": "fairy_beggar_reveal.gif",
+      "bytes": 117679
+    },
+    {
+      "file": "chapter1_panel_05_after.jpg",
+      "bytes": 169040
+    },
+    {
+      "file": "boar_attack_after.gif",
+      "bytes": 101004
+    },
+    {
+      "file": "chapter1_sprite_comparison.jpg",
+      "bytes": 137118
+    },
+    {
+      "file": "chief_victory_after.jpg",
+      "bytes": 45423
+    },
+    {
+      "file": "chapter1_panel_06_after.jpg",
+      "bytes": 131005
+    },
+    {
+      "file": "fairy_beggar_beg.gif",
+      "bytes": 115242
+    },
+    {
+      "file": "chapter1_panel_04_after.jpg",
+      "bytes": 80598
+    },
+    {
+      "file": "map_combined.jpg",
+      "bytes": 428773
+    },
+    {
+      "file": "chief_victory_after.gif",
+      "bytes": 110431
+    },
+    {
+      "file": "chapter1_after_webtoon.jpg",
+      "bytes": 445728
+    },
+    {
+      "file": "chapter1_panel_02_after.jpg",
+      "bytes": 92058
+    },
+    {
+      "file": "fairy_beggar_idle.gif",
+      "bytes": 113533
+    },
+    {
+      "file": "chapter1_before_after.jpg",
+      "bytes": 786985
+    },
+    {
+      "file": "boar_defeat_after.gif",
+      "bytes": 105782
+    },
+    {
+      "file": "map_join_before_after.jpg",
+      "bytes": 303660
+    },
+    {
+      "file": "chapter1_panel_03_after.jpg",
+      "bytes": 178263
+    }
+  ],
+  "comic_style_approval": "pending_user"
+}

@@ -1,5 +1,7 @@
 # Campaign 100 — đợt ảnh G1, màn 1–18
 
+**Cập nhật theo issue #41:** [bàn giao Phần 0](issue41_part0_handoff.md) thay thế ghi chú cũ về mép map, victory, Kỵ Lợn và nét truyện chương 1; thêm NPC bà lão. Dùng layout overlap 200 px mới. Chương 1 mới đang chờ duyệt nét; chương 2 giữ bản trước khi duyệt.
+
 Theo [kế hoạch Claude, bản e7839d7](https://github.com/loc169434-design/Brick-hero/blob/e7839d73bab727bea10494f56c8569e4819d48d5/docs/campaign_100.md), mục 8 và 11. Nhánh `art/campaign-100-g1`, từ `main` tại `36db7f9`. Đây là đợt G1; G2–G6 chưa sản xuất trong đợt này. Không đổi code, scene, test, balance hay dữ liệu màn của Claude.
 
 ## Xem ảnh

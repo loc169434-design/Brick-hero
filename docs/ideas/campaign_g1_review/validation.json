@@ -1,0 +1,14 @@
+{
+  "checks": 560,
+  "passed": 560,
+  "frames": {
+    "orc_rock": 32,
+    "orc_drummer": 32,
+    "orc_boar": 32,
+    "orc_chief": 32,
+    "orc_chief_enraged": 16,
+    "scarecrow_wood": 8,
+    "scarecrow_straw_shield": 8
+  },
+  "total_character_frames": 160
+}

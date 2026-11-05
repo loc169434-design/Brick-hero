@@ -1,0 +1,223 @@
+{
+  "characters": {
+    "orc_rock": {
+      "idle": {
+        "frames": 4,
+        "unique": 3
+      },
+      "attack": {
+        "frames": 6,
+        "unique": 5
+      },
+      "hurt": {
+        "frames": 4,
+        "unique": 3
+      },
+      "special": {
+        "frames": 8,
+        "unique": 7
+      },
+      "defeat": {
+        "frames": 6,
+        "unique": 6
+      },
+      "victory": {
+        "frames": 4,
+        "unique": 4
+      }
+    },
+    "orc_drummer": {
+      "idle": {
+        "frames": 4,
+        "unique": 3
+      },
+      "attack": {
+        "frames": 6,
+        "unique": 5
+      },
+      "hurt": {
+        "frames": 4,
+        "unique": 3
+      },
+      "special": {
+        "frames": 8,
+        "unique": 7
+      },
+      "defeat": {
+        "frames": 6,
+        "unique": 6
+      },
+      "victory": {
+        "frames": 4,
+        "unique": 4
+      }
+    },
+    "orc_boar": {
+      "idle": {
+        "frames": 4,
+        "unique": 3
+      },
+      "attack": {
+        "frames": 6,
+        "unique": 5
+      },
+      "hurt": {
+        "frames": 4,
+        "unique": 3
+      },
+      "special": {
+        "frames": 8,
+        "unique": 7
+      },
+      "defeat": {
+        "frames": 6,
+        "unique": 6
+      },
+      "victory": {
+        "frames": 4,
+        "unique": 4
+      }
+    },
+    "orc_chief": {
+      "idle": {
+        "frames": 4,
+        "unique": 3
+      },
+      "attack": {
+        "frames": 6,
+        "unique": 5
+      },
+      "hurt": {
+        "frames": 4,
+        "unique": 3
+      },
+      "special": {
+        "frames": 8,
+        "unique": 7
+      },
+      "defeat": {
+        "frames": 6,
+        "unique": 6
+      },
+      "victory": {
+        "frames": 4,
+        "unique": 4
+      }
+    },
+    "orc_chief_enraged": {
+      "idle": {
+        "frames": 4,
+        "unique": 3
+      },
+      "attack": {
+        "frames": 8,
+        "unique": 7
+      },
+      "special": {
+        "frames": 4,
+        "unique": 3
+      }
+    },
+    "scarecrow_wood": {
+      "idle": {
+        "frames": 4,
+        "unique": 3
+      },
+      "attack": {
+        "frames": 4,
+        "unique": 3
+      }
+    },
+    "scarecrow_straw_shield": {
+      "idle": {
+        "frames": 4,
+        "unique": 3
+      },
+      "hurt": {
+        "frames": 4,
+        "unique": 3
+      }
+    }
+  },
+  "sources": {
+    "rock": {
+      "sha256": "296bfa2cbc5f46495960790018c52e9992528ca705ac005d5e92080bd8d2487a",
+      "size": [
+        887,
+        1774
+      ]
+    },
+    "drummer": {
+      "sha256": "1a0859ef13f63b448e626ef34cd31bafe926897597d15547e182cac093e3ce01",
+      "size": [
+        1086,
+        1448
+      ]
+    },
+    "boar": {
+      "sha256": "5e81f03744d5eb3cd2261f8ec5d42e20c1a016051f9900ebbf947f543bb91651",
+      "size": [
+        1086,
+        1448
+      ]
+    },
+    "chief": {
+      "sha256": "40905b56fc9429dad58db53767d9a77802881e05d31f30ec0a4f79a3cda1df39",
+      "size": [
+        887,
+        1774
+      ]
+    },
+    "obstacles": {
+      "sha256": "533d5e302bf3d7de5b35b00b566f4b6ac9a779d35587f30007d05454d360ab8f",
+      "size": [
+        1292,
+        1218
+      ]
+    },
+    "map1": {
+      "sha256": "7433dbc2d5fa74351562081f9f227b76ac7ac7313ea2657c553a67e122aa2b1e",
+      "size": [
+        941,
+        1672
+      ]
+    },
+    "map2": {
+      "sha256": "fd1055620285fd800902dcbf3291b05ce2300ff8dff707a8ecb27c72620cbc82",
+      "size": [
+        941,
+        1672
+      ]
+    },
+    "chief_rage": {
+      "sha256": "e001f3c66db6503636226192497764d9ca2dad9f160687b4d926400bde7cefc1",
+      "size": [
+        1261,
+        1247
+      ]
+    },
+    "scarecrows": {
+      "sha256": "16815d837a0efa13b968c26cb5a57ce4f7f80bc00e42dcd9a195e7fae0ecaee1",
+      "size": [
+        1247,
+        1261
+      ]
+    },
+    "chapter1": {
+      "sha256": "0db2bf66ec9499d5f6aca5a1de45724a9c9adc7fe1d1b2472a96bc4390488895",
+      "size": [
+        1024,
+        1536
+      ]
+    },
+    "chapter2": {
+      "sha256": "20a34bf67f6455477550153adf72e3bd8f4a7c4ef56ba6d73ae304d1ebc2e50e",
+      "size": [
+        1199,
+        1312
+      ]
+    }
+  },
+  "maps": [],
+  "chapters": []
+}

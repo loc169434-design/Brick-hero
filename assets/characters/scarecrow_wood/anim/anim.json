@@ -1,0 +1,20 @@
+{
+  "frame_size": [
+    512,
+    512
+  ],
+  "columns": 4,
+  "clips": {
+    "idle": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true
+    },
+    "attack": {
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "impact": 2
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "rock": "campaign_g1_sources/rock.png",
+  "drummer": "campaign_g1_sources/drummer.png",
+  "boar": "campaign_g1_sources/boar.png",
+  "chief": "campaign_g1_sources/chief.png",
+  "obstacles": "campaign_g1_sources/obstacles.png",
+  "map1": "campaign_g1_sources/map1.png",
+  "map2": "campaign_g1_sources/map2.png",
+  "chief_rage": "campaign_g1_sources/chief_rage.png",
+  "scarecrows": "campaign_g1_sources/scarecrows.png",
+  "chapter1": "campaign_g1_sources/chapter1.png",
+  "chapter2": "campaign_g1_sources/chapter2.png",
+  "icons": "campaign_g1_sources/icons.png"
+}

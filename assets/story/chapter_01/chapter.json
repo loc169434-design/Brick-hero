@@ -1,0 +1,13 @@
+{
+  "chapter": 1,
+  "after_level": 5,
+  "panels": [
+    "panel_01.png",
+    "panel_02.png",
+    "panel_03.png",
+    "panel_04.png",
+    "panel_05.png",
+    "panel_06.png"
+  ],
+  "text_baked": false
+}

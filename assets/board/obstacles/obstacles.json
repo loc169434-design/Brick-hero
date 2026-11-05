@@ -1,0 +1,28 @@
+{
+  "layers": {
+    "crate": [
+      "crate_1.png",
+      "crate_2.png",
+      "crate_3.png"
+    ],
+    "rock": [
+      "rock.png"
+    ]
+  },
+  "clips": {
+    "crate_break": {
+      "frame_width": 512,
+      "frame_height": 512,
+      "frames": 4,
+      "fps": 12,
+      "loop": false
+    },
+    "rock_break": {
+      "frame_width": 512,
+      "frame_height": 512,
+      "frames": 4,
+      "fps": 12,
+      "loop": false
+    }
+  }
+}

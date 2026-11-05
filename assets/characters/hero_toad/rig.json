@@ -1,0 +1,66 @@
+{
+  "id": "hero_toad",
+  "canvas": [
+    512,
+    512
+  ],
+  "feet": [
+    256,
+    500
+  ],
+  "anchors": {
+    "fresh_transform_in": {
+      "head": [
+        256,
+        345
+      ],
+      "mouth": [
+        350,
+        395
+      ]
+    },
+    "fresh_idle": {
+      "head": [
+        256,
+        345
+      ],
+      "mouth": [
+        350,
+        395
+      ]
+    },
+    "fresh_attack": {
+      "head": [
+        256,
+        345
+      ],
+      "mouth": [
+        350,
+        395
+      ]
+    },
+    "fresh_hurt": {
+      "head": [
+        256,
+        345
+      ],
+      "mouth": [
+        350,
+        395
+      ]
+    },
+    "fresh_transform_out": {
+      "head": [
+        256,
+        345
+      ],
+      "mouth": [
+        350,
+        395
+      ]
+    }
+  },
+  "facing": 1,
+  "source_identity": "hero_rookie",
+  "notes": "Brown hair and red scarf identify the hero; only fresh art, wear uses fallback."
+}

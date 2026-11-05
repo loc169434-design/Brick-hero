@@ -208,5 +208,10 @@ def main():
     elif args.group=='tiles':tiles()
     elif args.group=='npcs':npcs()
     else:world()
+    # Rebuilding G2 must not drop the subsequently delivered spell metadata or
+    # potion entries when character()/world() recreates their original manifests.
+    if (DOC/'toad_witch_spells_sources.json').exists() and args.group in ['characters','world']:
+        from pack_toad_witch_spells import main as pack_spells
+        pack_spells('actors' if args.group=='characters' else 'world')
 
 if __name__=='__main__':main()

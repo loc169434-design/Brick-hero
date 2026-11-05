@@ -1,5 +1,5 @@
 {
-  "passed": 1163,
+  "passed": 1287,
   "actor_frames": {
     "toad_spitter": 32,
     "goblin_archer": 32,
@@ -9,19 +9,19 @@
     "swamp_spider": 32,
     "frost_slime": 32,
     "crocodile": 32,
-    "toad_witch": 32,
-    "toad_witch_giant": 32,
+    "toad_witch": 100,
+    "toad_witch_giant": 50,
     "fairy_fickle": 12,
     "fairy_crow": 8
   },
-  "total_actor_frames": 340,
+  "total_actor_frames": 426,
   "tile_atlases": 48,
   "levels": [
     19,
     36
   ],
   "previews": 168,
-  "contiguity_cells": 340,
+  "contiguity_cells": 584,
   "unapproved_large_islands": 0,
   "chapter_2": "delivered_on_art/campaign-100-g1_at_5725afb",
   "chapter_3": {

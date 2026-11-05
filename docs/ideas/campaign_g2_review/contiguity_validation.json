@@ -2,8 +2,8 @@
   "alpha_threshold": 32,
   "connectivity": 8,
   "max_small_particle_pixels": 200,
-  "actor_cells_checked": 340,
-  "reviewed_fx_components": 174,
+  "actor_cells_checked": 584,
+  "reviewed_fx_components": 461,
   "unapproved_large_islands": [],
   "baseline": "10ccc4c",
   "old_broken_crocodile_cells_rejected": [

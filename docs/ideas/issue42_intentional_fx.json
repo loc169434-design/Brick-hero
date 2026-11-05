@@ -1,0 +1,3250 @@
+{
+  "review": "Visual review of new issue42 hand-drawn cels. Each exception is an exact area/bounds/mask digest for intentional VFX; no actor/clip/frame is exempted wholesale. Existing #41 exemptions stay immutable.",
+  "frames": {
+    "toad_witch/cast_toads/4": {
+      "reason": "Green staff sweep circle/rays and three deliberately launched purple baby toads with flight strokes.",
+      "components": [
+        {
+          "area": 1115,
+          "box": [
+            105,
+            118,
+            218,
+            172
+          ],
+          "sha256": "270f0f3f8508ce6823e7900bc468d6869557867fff860a98b7beb3d062a5e13c"
+        },
+        {
+          "area": 1701,
+          "box": [
+            79,
+            139,
+            206,
+            244
+          ],
+          "sha256": "c0bb2b0d864684f5a2f3cac34e6a661f7652b8b2de61d76d14bd463826f781ba"
+        }
+      ]
+    },
+    "toad_witch/cast_toads/5": {
+      "reason": "Green staff sweep circle/rays and three deliberately launched purple baby toads with flight strokes.",
+      "components": [
+        {
+          "area": 516,
+          "box": [
+            83,
+            223,
+            114,
+            259
+          ],
+          "sha256": "10a2886044382a505eadf959667516ed6d18f8f7a9b59b327aad637133e36778"
+        },
+        {
+          "area": 487,
+          "box": [
+            58,
+            243,
+            96,
+            270
+          ],
+          "sha256": "82705363df935ee85d53648e6631fcfe00d48ab29bff26efee811cd871143d39"
+        },
+        {
+          "area": 309,
+          "box": [
+            60,
+            279,
+            86,
+            294
+          ],
+          "sha256": "69369091162a396db10ec0dabfce443f1cecc7ea85bdec1ed4d5551bcee0781c"
+        }
+      ]
+    },
+    "toad_witch/cast_toads/6": {
+      "reason": "Green staff sweep circle/rays and three deliberately launched purple baby toads with flight strokes.",
+      "components": [
+        {
+          "area": 353,
+          "box": [
+            90,
+            197,
+            109,
+            228
+          ],
+          "sha256": "9364a642d4a5454a4109a241607f8e3d80b5cb60b759ff23a3688e33830e9509"
+        },
+        {
+          "area": 241,
+          "box": [
+            68,
+            214,
+            89,
+            237
+          ],
+          "sha256": "e971323661adb1067d8466a13ca63a14d6717b653819ff5d2e1467ea95324835"
+        },
+        {
+          "area": 279,
+          "box": [
+            65,
+            369,
+            86,
+            395
+          ],
+          "sha256": "33f60de5339febbc829cfe28a526eb24335bfe03082d991b5aaad6b832b5df7d"
+        },
+        {
+          "area": 276,
+          "box": [
+            90,
+            376,
+            105,
+            402
+          ],
+          "sha256": "6df012573a76855fa5b4782dce1a5f9d733784726b69bfea988d146cd3fafb39"
+        }
+      ]
+    },
+    "toad_witch/cast_toads/7": {
+      "reason": "Green staff sweep circle/rays and three deliberately launched purple baby toads with flight strokes.",
+      "components": [
+        {
+          "area": 3380,
+          "box": [
+            82,
+            216,
+            167,
+            277
+          ],
+          "sha256": "28881ad6baf1dd8440336c4a40d40920ea6aa8d5240987e23f2fec48e58606da"
+        },
+        {
+          "area": 425,
+          "box": [
+            154,
+            231,
+            206,
+            264
+          ],
+          "sha256": "78e7142e1a0ed3ca97ffadd25bc5a302f8bc5b3c3481ce1fc73c58f6b6d02eea"
+        },
+        {
+          "area": 3380,
+          "box": [
+            41,
+            286,
+            130,
+            350
+          ],
+          "sha256": "e7598dc421118d65596bfc989932a4acaa27ae7ef4b6e45395b43fcab90b6579"
+        },
+        {
+          "area": 354,
+          "box": [
+            112,
+            297,
+            161,
+            309
+          ],
+          "sha256": "19d7e095b233ac5d9fc313b3de37c5341e5db63ff031e999caac48cbf0df6133"
+        },
+        {
+          "area": 315,
+          "box": [
+            137,
+            368,
+            175,
+            394
+          ],
+          "sha256": "176a11ff04303e305cedc33dd382b7acfe100146550bfbd10b3a295d742a474c"
+        },
+        {
+          "area": 348,
+          "box": [
+            155,
+            370,
+            196,
+            408
+          ],
+          "sha256": "75285c3326514fcb8f434bee0cacc6f93ff7a2ca430ea727f14f40eb25bece02"
+        },
+        {
+          "area": 3480,
+          "box": [
+            67,
+            374,
+            154,
+            439
+          ],
+          "sha256": "f764f4a2c482ce76d97c971a719ede36e9ce0ec6e3d234195a5a3a613006d5be"
+        }
+      ]
+    },
+    "toad_witch/cast_toads/8": {
+      "reason": "Green staff sweep circle/rays and three deliberately launched purple baby toads with flight strokes.",
+      "components": [
+        {
+          "area": 4145,
+          "box": [
+            52,
+            215,
+            144,
+            284
+          ],
+          "sha256": "cea761e4708ff0b992910ad7ec10e1c83df806b7e1982f6379921894c881c08a"
+        },
+        {
+          "area": 540,
+          "box": [
+            148,
+            246,
+            208,
+            270
+          ],
+          "sha256": "a51e3cb5d6cbaada370037451d39d2fdd8e1ce36dbd081f5a9689dbf2601e31d"
+        },
+        {
+          "area": 581,
+          "box": [
+            113,
+            310,
+            180,
+            334
+          ],
+          "sha256": "a0d2f2fd3b7421aeac7387fa32d8095052e72e73120c2d4a999fa0a5ed6b7a51"
+        },
+        {
+          "area": 4033,
+          "box": [
+            36,
+            314,
+            133,
+            384
+          ],
+          "sha256": "e970f9c5fb511d887970d0792b6d8653c7de9aeb735fbf935fcb4af6f2d48d31"
+        },
+        {
+          "area": 426,
+          "box": [
+            139,
+            390,
+            183,
+            424
+          ],
+          "sha256": "5d92002ec65b886b55aa2b68e71db555f63fc406bf9ff560f2d41fe4975d938b"
+        },
+        {
+          "area": 4563,
+          "box": [
+            61,
+            413,
+            163,
+            486
+          ],
+          "sha256": "140720419c8aa47f5022eacb95a41863a1dd25c6fd8722716e26d7aba4ff1180"
+        }
+      ]
+    },
+    "toad_witch/cast_broom/3": {
+      "reason": "Brown anticipation rays or detached purple corkscrew spell projectile.",
+      "components": [
+        {
+          "area": 481,
+          "box": [
+            97,
+            107,
+            124,
+            140
+          ],
+          "sha256": "58250b653cb104200a049edfb4c71374b1ebba35d310c529190044ad48b43bee"
+        },
+        {
+          "area": 516,
+          "box": [
+            76,
+            129,
+            111,
+            155
+          ],
+          "sha256": "724222c4f3c15c70b4a1b190738a8e4ad78db0fbfa2ef65cbdb18c2ec1055c28"
+        },
+        {
+          "area": 428,
+          "box": [
+            75,
+            161,
+            108,
+            181
+          ],
+          "sha256": "2475bf78af1312eda4023c5518f96b41ab0a01cab220159b308012fa39dd3575"
+        }
+      ]
+    },
+    "toad_witch/cast_broom/6": {
+      "reason": "Brown anticipation rays or detached purple corkscrew spell projectile.",
+      "components": [
+        {
+          "area": 322,
+          "box": [
+            117,
+            208,
+            131,
+            239
+          ],
+          "sha256": "80cb8fdf3e82fb905dbf956c25bcb94f9b051050c1e3668992be106e6f44622b"
+        },
+        {
+          "area": 270,
+          "box": [
+            93,
+            215,
+            117,
+            240
+          ],
+          "sha256": "da9f422b2fb53996c4dc0907aceb62216ff36068f0728aec920a04d477e29895"
+        }
+      ]
+    },
+    "toad_witch/cast_broom/7": {
+      "reason": "Brown anticipation rays or detached purple corkscrew spell projectile.",
+      "components": [
+        {
+          "area": 287,
+          "box": [
+            110,
+            245,
+            149,
+            256
+          ],
+          "sha256": "829ef404c447debbdaad78e308988ac65b54b91836a53e997a7123883a8e8ab2"
+        },
+        {
+          "area": 4271,
+          "box": [
+            47,
+            249,
+            147,
+            311
+          ],
+          "sha256": "b3239f4acab745b407075d94915066b58cdfaa959ccaf683874f0db0357227ec"
+        },
+        {
+          "area": 235,
+          "box": [
+            108,
+            297,
+            142,
+            306
+          ],
+          "sha256": "7788f298546fed377651b07c3086a0bb5a7f551106e204fb721d5da33a351b43"
+        }
+      ]
+    },
+    "toad_witch/throw_potion/3": {
+      "reason": "Brown shake/throw strokes, lime bubbles or released green vial.",
+      "components": [
+        {
+          "area": 244,
+          "box": [
+            97,
+            359,
+            115,
+            399
+          ],
+          "sha256": "4cfccda56386ee723eb7c5e718b41b63911e05be55a2fef485e5ab324636cf70"
+        },
+        {
+          "area": 252,
+          "box": [
+            82,
+            364,
+            101,
+            404
+          ],
+          "sha256": "b7fdacf4b0457679ddcce710142fdb4bab41c8641347e696676230c8f675fe47"
+        },
+        {
+          "area": 210,
+          "box": [
+            135,
+            410,
+            171,
+            422
+          ],
+          "sha256": "df333dcf19b2b0e6f658962e7516ca106a024df5556841b9aaf3c2b05c3405aa"
+        },
+        {
+          "area": 231,
+          "box": [
+            129,
+            421,
+            167,
+            435
+          ],
+          "sha256": "ee66bcf6d8d6edfef78ab0fbe42939f5f8032bfe904bc0c340527b121a46aba2"
+        }
+      ]
+    },
+    "toad_witch/throw_potion/4": {
+      "reason": "Brown shake/throw strokes, lime bubbles or released green vial.",
+      "components": [
+        {
+          "area": 423,
+          "box": [
+            124,
+            114,
+            147,
+            136
+          ],
+          "sha256": "54914c84a0d3e375e2e8d93ebec7e93bda84e2071af4a1d935d88675c4cf1afc"
+        },
+        {
+          "area": 510,
+          "box": [
+            92,
+            123,
+            117,
+            149
+          ],
+          "sha256": "f7c03dbf0c585a18d18c08cb9b149aed27e3de72b2944f9915ab747356a4658f"
+        },
+        {
+          "area": 344,
+          "box": [
+            80,
+            156,
+            101,
+            177
+          ],
+          "sha256": "13cf3b2a6700a056db5a71efbb66026f7f24cd4f09c598484cc2f2b7295e8a50"
+        }
+      ]
+    },
+    "toad_witch/throw_potion/5": {
+      "reason": "Brown shake/throw strokes, lime bubbles or released green vial.",
+      "components": [
+        {
+          "area": 363,
+          "box": [
+            102,
+            192,
+            129,
+            240
+          ],
+          "sha256": "835be84f0f6ab8b300296e12335858238fb7ccc8475248f5a87460eb7911de98"
+        },
+        {
+          "area": 353,
+          "box": [
+            120,
+            194,
+            152,
+            237
+          ],
+          "sha256": "812a17ad4d5dc8cd84667e0c22eacd84370bd473a2592dafdebc3707f4ceb1e6"
+        },
+        {
+          "area": 374,
+          "box": [
+            98,
+            312,
+            125,
+            362
+          ],
+          "sha256": "ffedb809ce073b364f1c11721cbb6bf46434ae9d8c8082be7261569f2e629360"
+        },
+        {
+          "area": 400,
+          "box": [
+            77,
+            315,
+            105,
+            366
+          ],
+          "sha256": "b2cbc454f6b1e6722859d5053e6c097012294c02caf263406c74cffd67a50826"
+        }
+      ]
+    },
+    "toad_witch/throw_potion/6": {
+      "reason": "Brown shake/throw strokes, lime bubbles or released green vial.",
+      "components": [
+        {
+          "area": 277,
+          "box": [
+            94,
+            208,
+            119,
+            239
+          ],
+          "sha256": "3d2ad220e1eb6c7fb719471bba0aaf96e94f6bd668de2f2aa7f3ec0513066841"
+        },
+        {
+          "area": 4396,
+          "box": [
+            35,
+            232,
+            108,
+            315
+          ],
+          "sha256": "25e229686312c2d1fe4dd59a9efeba5c61f763b13a3ded19b620168e8304f6ec"
+        }
+      ]
+    },
+    "toad_witch/throw_potion/7": {
+      "reason": "Brown shake/throw strokes, lime bubbles or released green vial.",
+      "components": [
+        {
+          "area": 4129,
+          "box": [
+            46,
+            115,
+            116,
+            194
+          ],
+          "sha256": "713858ee800d5a58f65c633607b820204572f6c5d9a40548e1f6b8d239096234"
+        },
+        {
+          "area": 256,
+          "box": [
+            124,
+            166,
+            165,
+            195
+          ],
+          "sha256": "2ac40aa038d6ffc6d2049f76f688e3892cc0fb0b0c4001bd5014f6884b8bfb1b"
+        },
+        {
+          "area": 332,
+          "box": [
+            117,
+            182,
+            170,
+            219
+          ],
+          "sha256": "febe737a7ffcbcdee25cb8ac98c2364d345c886e0cae8d900793042d0e31a8fe"
+        }
+      ]
+    },
+    "toad_witch/cackle/4": {
+      "reason": "Brown belly/hat/voice wobble laughter strokes.",
+      "components": [
+        {
+          "area": 317,
+          "box": [
+            314,
+            73,
+            359,
+            91
+          ],
+          "sha256": "35375cb354c7fe87aac5248b4ef369c6ee10dba74c470d2c95111943a9c78675"
+        },
+        {
+          "area": 326,
+          "box": [
+            370,
+            87,
+            406,
+            122
+          ],
+          "sha256": "a38448763f655f2f8ca3fbfe1fc299045432365a194dbc945ccfb00f3eae3a3f"
+        },
+        {
+          "area": 612,
+          "box": [
+            326,
+            97,
+            389,
+            148
+          ],
+          "sha256": "44e17a483dd3b3dfa97cc71858da79220d54b61d042471294853eb8ec357782f"
+        },
+        {
+          "area": 295,
+          "box": [
+            437,
+            337,
+            451,
+            384
+          ],
+          "sha256": "62d2c35fca30bf33c1bcfd33fc362e43d0bd4e0e0df671f00e4c1a3d51a10e84"
+        },
+        {
+          "area": 263,
+          "box": [
+            451,
+            337,
+            465,
+            383
+          ],
+          "sha256": "f5c30c785cdcd43372b5b159ef245bfa8b214cd689a2f4e9e332dbdadd6dce18"
+        },
+        {
+          "area": 307,
+          "box": [
+            111,
+            372,
+            130,
+            420
+          ],
+          "sha256": "7e70c83aeb197291ddf6c37b21be684ccff06636619aedc0dff0bf8e2e24a1d7"
+        },
+        {
+          "area": 286,
+          "box": [
+            98,
+            380,
+            119,
+            424
+          ],
+          "sha256": "a64af2febfd050d140bc0272eb53c3e699d38c8e2c70a2fd2e6aaaaa9674073e"
+        }
+      ]
+    },
+    "toad_witch/stomp_angry/1": {
+      "reason": "Brown angry/impact/recoil rays or cream steam puffs at ears.",
+      "components": [
+        {
+          "area": 524,
+          "box": [
+            390,
+            96,
+            420,
+            140
+          ],
+          "sha256": "72e5d9e34566c1d76537b3e451b4375fbd6ab8d81e7daab9179e3ef52a476592"
+        },
+        {
+          "area": 555,
+          "box": [
+            402,
+            110,
+            446,
+            146
+          ],
+          "sha256": "d3716525d73cb0e0ad67e7f89d647008eb5a2fa6d947f510ebe3018195362080"
+        },
+        {
+          "area": 442,
+          "box": [
+            402,
+            142,
+            441,
+            160
+          ],
+          "sha256": "b2e77767d4d888c39b104a4dd6edcebdf652c9b820b9a939b6c104529c13e6cb"
+        }
+      ]
+    },
+    "toad_witch/stomp_angry/2": {
+      "reason": "Brown angry/impact/recoil rays or cream steam puffs at ears.",
+      "components": [
+        {
+          "area": 419,
+          "box": [
+            98,
+            357,
+            116,
+            416
+          ],
+          "sha256": "f25ff2dfe88ec8f5b62ead77b4b04e721c671168abe59e5cc6baf34380235cb8"
+        },
+        {
+          "area": 353,
+          "box": [
+            118,
+            357,
+            133,
+            410
+          ],
+          "sha256": "172a17abc13c50333fb1776183cd32964a2ba7114630ba21568f2ec7b717ebe9"
+        }
+      ]
+    },
+    "toad_witch/stomp_angry/3": {
+      "reason": "Brown angry/impact/recoil rays or cream steam puffs at ears.",
+      "components": [
+        {
+          "area": 271,
+          "box": [
+            82,
+            363,
+            114,
+            376
+          ],
+          "sha256": "afcc8d820478495223e91ccf4c6f6a2b8b71e2b2b422f71d2b14b957e9cf7a4d"
+        },
+        {
+          "area": 299,
+          "box": [
+            84,
+            379,
+            116,
+            400
+          ],
+          "sha256": "36c15b57b3c18680002a937185298e5cd1768ee924d308378c5f4a3a75b24866"
+        },
+        {
+          "area": 224,
+          "box": [
+            103,
+            389,
+            123,
+            413
+          ],
+          "sha256": "4474cb0f0e420aa8eae49ad1f21ab2857bc343ea0db96cde5efedbaaf908fde0"
+        }
+      ]
+    },
+    "toad_witch/stomp_angry/4": {
+      "reason": "Brown angry/impact/recoil rays or cream steam puffs at ears.",
+      "components": [
+        {
+          "area": 598,
+          "box": [
+            95,
+            411,
+            122,
+            455
+          ],
+          "sha256": "31a1720d83a73a051bdc78bd7df8e4395615a9f06217dd989ad4c3ec3b9eea4e"
+        },
+        {
+          "area": 595,
+          "box": [
+            67,
+            435,
+            107,
+            471
+          ],
+          "sha256": "0599b48a6cdcbd1822d496f6bc1e32e3610ed8e1d422a568f6a6b776f2f7ed76"
+        }
+      ]
+    },
+    "toad_witch/stomp_angry/5": {
+      "reason": "Brown angry/impact/recoil rays or cream steam puffs at ears.",
+      "components": [
+        {
+          "area": 405,
+          "box": [
+            344,
+            70,
+            381,
+            119
+          ],
+          "sha256": "b7051515cd85f66cfb9f220f312d1fce359ea8bf4761840f379a9a9a3e41bffe"
+        },
+        {
+          "area": 269,
+          "box": [
+            370,
+            70,
+            395,
+            106
+          ],
+          "sha256": "61e1f72fde16611bae18075efe999e4357d27a55af50a728fc52a14f0ade6429"
+        },
+        {
+          "area": 387,
+          "box": [
+            89,
+            105,
+            115,
+            159
+          ],
+          "sha256": "02c9a763665d4d614e056b160599f85fc7949d2a8a855a649693aaa808955490"
+        },
+        {
+          "area": 323,
+          "box": [
+            74,
+            107,
+            95,
+            156
+          ],
+          "sha256": "4aae9aa385fddcdc38cf50b60ec76bc8edd6ade514c059c0260b51a0506e5790"
+        },
+        {
+          "area": 289,
+          "box": [
+            419,
+            231,
+            437,
+            273
+          ],
+          "sha256": "6626635621c30abe1b9b25315b5e097e5e567e731e60bb6dce7cf5002839e79a"
+        },
+        {
+          "area": 312,
+          "box": [
+            404,
+            232,
+            423,
+            277
+          ],
+          "sha256": "4f8e56c3f94058c542e90b57090f8868c6946c941445fe66334b06142654356c"
+        },
+        {
+          "area": 343,
+          "box": [
+            115,
+            311,
+            139,
+            356
+          ],
+          "sha256": "5fdb90933e8a8e0a32f2ddb254a77518dc872aea3233a62810b7b9d2484a4858"
+        },
+        {
+          "area": 285,
+          "box": [
+            101,
+            322,
+            123,
+            361
+          ],
+          "sha256": "7fc3a84a61b686d73c207ba8d27bf2b4cf45c5a55a71494f9f367ea7e265ee18"
+        }
+      ]
+    },
+    "toad_witch/drink_transform/2": {
+      "reason": "Brown swelling/squash/landing ticks and detached green transformation-smoke lobes.",
+      "components": [
+        {
+          "area": 278,
+          "box": [
+            203,
+            235,
+            216,
+            266
+          ],
+          "sha256": "88f4f2dfe746ceb38ba4bb4c91a30356abfb04e29702df1a66c4ee3e9e8f09d4"
+        },
+        {
+          "area": 291,
+          "box": [
+            175,
+            236,
+            196,
+            267
+          ],
+          "sha256": "ae8f6d8e4e238fb4f3a207103e7b483b02f75cbf2529df0db8c9500e980289bb"
+        },
+        {
+          "area": 205,
+          "box": [
+            165,
+            257,
+            188,
+            274
+          ],
+          "sha256": "346d426718f86e9dcca1cc1afa570921241b114359e4a3dfcb46553140d56d4e"
+        }
+      ]
+    },
+    "toad_witch/drink_transform/5": {
+      "reason": "Brown swelling/squash/landing ticks and detached green transformation-smoke lobes.",
+      "components": [
+        {
+          "area": 319,
+          "box": [
+            152,
+            135,
+            166,
+            172
+          ],
+          "sha256": "b281f800a08d5265135a4b0d63da5bc1b123bc0b236399efe6daa2e5da382422"
+        },
+        {
+          "area": 412,
+          "box": [
+            121,
+            141,
+            151,
+            179
+          ],
+          "sha256": "850a6fe34f06e78df43ddde55cf62637de00f1e070045dda960d5d98b1e3bf5b"
+        },
+        {
+          "area": 276,
+          "box": [
+            111,
+            172,
+            140,
+            193
+          ],
+          "sha256": "5529c93faaad9a91e7b7ea74d8240113b1f062c90c57de1c97f33374cf8d0182"
+        }
+      ]
+    },
+    "toad_witch/drink_transform/6": {
+      "reason": "Brown swelling/squash/landing ticks and detached green transformation-smoke lobes.",
+      "components": [
+        {
+          "area": 260,
+          "box": [
+            101,
+            198,
+            138,
+            224
+          ],
+          "sha256": "8418e1c7f5c7f9179f5e4c3909495a7b354ba1ad7eb0d62ce0ec12e2e9db468c"
+        },
+        {
+          "area": 445,
+          "box": [
+            102,
+            211,
+            153,
+            250
+          ],
+          "sha256": "16915d152488ab7c7ab26e8c479182e10718abbac2df9885b499af1d5e3693b3"
+        },
+        {
+          "area": 319,
+          "box": [
+            422,
+            316,
+            452,
+            356
+          ],
+          "sha256": "d20c32412e4714750218f7b55da28e875f4495218ba7038358d9332c03b5dbec"
+        },
+        {
+          "area": 428,
+          "box": [
+            408,
+            327,
+            440,
+            378
+          ],
+          "sha256": "7892eea6ab384a39fb7eda2640cefd7dbd974e922618fadba4035596b0d06b5b"
+        },
+        {
+          "area": 416,
+          "box": [
+            59,
+            389,
+            74,
+            445
+          ],
+          "sha256": "d1c47dbe4cf71ce0a825a994e2e049ae3313d1058bbb9cd6b8a19f0f5f5612c2"
+        },
+        {
+          "area": 496,
+          "box": [
+            78,
+            389,
+            97,
+            454
+          ],
+          "sha256": "32d1fb434e56f1bb0121e482dc3e8e0fbc640acaaee55423a57c5dca3cc80800"
+        }
+      ]
+    },
+    "toad_witch/drink_transform/7": {
+      "reason": "Brown swelling/squash/landing ticks and detached green transformation-smoke lobes.",
+      "components": [
+        {
+          "area": 242,
+          "box": [
+            86,
+            243,
+            120,
+            269
+          ],
+          "sha256": "ba74ff92906de83171dfdb1d1f3f90b0035629305b2ef5fbea0076664de8fafa"
+        },
+        {
+          "area": 373,
+          "box": [
+            92,
+            255,
+            136,
+            289
+          ],
+          "sha256": "cfe84030a00250e9c9b9237b38b6fa1093f34bcffa8bb4647f3c6b7835ee6156"
+        },
+        {
+          "area": 260,
+          "box": [
+            418,
+            346,
+            446,
+            386
+          ],
+          "sha256": "e2a4a0f78bc578007485a9e2de650c931c11a0d97b4a81b02b5c26e914267cc2"
+        }
+      ]
+    },
+    "toad_witch/drink_transform/8": {
+      "reason": "Brown swelling/squash/landing ticks and detached green transformation-smoke lobes.",
+      "components": [
+        {
+          "area": 3688,
+          "box": [
+            347,
+            118,
+            423,
+            187
+          ],
+          "sha256": "b704f9c02832765ff699420bdfee25c7cd48f7b26c13a9cfebe6533806ff00fd"
+        },
+        {
+          "area": 2671,
+          "box": [
+            46,
+            338,
+            110,
+            398
+          ],
+          "sha256": "e6cb356e2e01d4bac804a475abc81b48f92a4484262f2bae1030426f167b7b0e"
+        }
+      ]
+    },
+    "toad_witch/drink_transform/9": {
+      "reason": "Brown swelling/squash/landing ticks and detached green transformation-smoke lobes.",
+      "components": [
+        {
+          "area": 3106,
+          "box": [
+            352,
+            121,
+            420,
+            186
+          ],
+          "sha256": "9959ab86ce15318a2102d1f0d4720c161ee0b95e48a74047f02dfa4d1e6a6ad7"
+        },
+        {
+          "area": 3599,
+          "box": [
+            75,
+            148,
+            142,
+            222
+          ],
+          "sha256": "145405eec0d8f0735914a60b7dfb26a655fb6fe2cc5e597d90fe9365bbad02d8"
+        },
+        {
+          "area": 1133,
+          "box": [
+            416,
+            192,
+            455,
+            231
+          ],
+          "sha256": "5f46f812c20adadcc985e3537c673002d9ce6a79a736f49822b368e28cfe9e79"
+        }
+      ]
+    },
+    "toad_witch/drink_transform/10": {
+      "reason": "Brown swelling/squash/landing ticks and detached green transformation-smoke lobes.",
+      "components": [
+        {
+          "area": 2348,
+          "box": [
+            337,
+            135,
+            393,
+            190
+          ],
+          "sha256": "af53c3142cdc8ddd13dcfefebd1be751467aca5bd554083f9555bbeec7d072b2"
+        },
+        {
+          "area": 9123,
+          "box": [
+            82,
+            159,
+            270,
+            272
+          ],
+          "sha256": "4052e2b59ac9a4319706422a73f49539b1382ac0226b6e95cede67cad218fc38"
+        },
+        {
+          "area": 1303,
+          "box": [
+            396,
+            176,
+            439,
+            217
+          ],
+          "sha256": "c7c7e60b6d969d1cf6aff438fab535893d366f635dc3b4ecdf85490d40d28e3f"
+        },
+        {
+          "area": 2434,
+          "box": [
+            65,
+            281,
+            141,
+            329
+          ],
+          "sha256": "68e43478005bf15cc9a81a52663b267b3a52cac19cd4f7d32c7129e30caf2fcd"
+        },
+        {
+          "area": 2503,
+          "box": [
+            48,
+            433,
+            108,
+            488
+          ],
+          "sha256": "1b147c7caebb3856e7aac00ac117a308265542c26b5c2148157a191201ee3384"
+        }
+      ]
+    },
+    "toad_witch/drink_transform/11": {
+      "reason": "Brown swelling/squash/landing ticks and detached green transformation-smoke lobes.",
+      "components": [
+        {
+          "area": 311,
+          "box": [
+            383,
+            274,
+            419,
+            303
+          ],
+          "sha256": "3fac732dbaeb6114999db05fb37d84e8e23a02e9833fb47340920f4bf8d2962d"
+        },
+        {
+          "area": 249,
+          "box": [
+            391,
+            297,
+            424,
+            312
+          ],
+          "sha256": "b9815a137cd109a2469c417b0a57cdb6ffe157f4ae2084bbceca37c56fb07199"
+        },
+        {
+          "area": 320,
+          "box": [
+            87,
+            337,
+            105,
+            386
+          ],
+          "sha256": "70cf10393840385d8f1121705d6b609a496596854f9b4c1b37b028f67a3f3e2a"
+        },
+        {
+          "area": 273,
+          "box": [
+            105,
+            344,
+            119,
+            390
+          ],
+          "sha256": "7f09b8e9c68d7890e884a8057258d6dc0973bb4ee37d80f8c40b06cec49325ec"
+        }
+      ]
+    },
+    "toad_witch/drink_transform/12": {
+      "reason": "Brown swelling/squash/landing ticks and detached green transformation-smoke lobes.",
+      "components": [
+        {
+          "area": 379,
+          "box": [
+            64,
+            269,
+            101,
+            316
+          ],
+          "sha256": "5c87f038f17c9c8f1a530e52df21660f3fdfaa4c1493219fb185f8eb631949de"
+        },
+        {
+          "area": 354,
+          "box": [
+            413,
+            282,
+            448,
+            330
+          ],
+          "sha256": "bd7f3b2b02e055c3d9082b7e9d2240fc24d10f008ff3f3a8a5cb09ddd43646e3"
+        },
+        {
+          "area": 387,
+          "box": [
+            75,
+            288,
+            104,
+            344
+          ],
+          "sha256": "5d09652ac755104cd4c665f5532b02817b755ab207cc29bc9d8039dbbafab28d"
+        },
+        {
+          "area": 540,
+          "box": [
+            398,
+            292,
+            436,
+            363
+          ],
+          "sha256": "bcd5b41307c7d3a3ff4fee238903f1edfaaa81ca43e6436c6e9666f96f59b6ce"
+        }
+      ]
+    },
+    "toad_witch/drink_transform/13": {
+      "reason": "Brown swelling/squash/landing ticks and detached green transformation-smoke lobes.",
+      "components": [
+        {
+          "area": 328,
+          "box": [
+            56,
+            387,
+            83,
+            424
+          ],
+          "sha256": "3197a88731f1f4d48322ed754394bb3eff151b5b0164983bcc253caede5adcdf"
+        },
+        {
+          "area": 327,
+          "box": [
+            432,
+            392,
+            458,
+            430
+          ],
+          "sha256": "8d260570bd91c82e0c8f17a621f4d0895793c7cfd26de1edf2724b68204927c1"
+        },
+        {
+          "area": 420,
+          "box": [
+            38,
+            406,
+            77,
+            437
+          ],
+          "sha256": "213de13f866792bc9bbb62a01f2d50336c84c202abb18b390eda0635852e8669"
+        },
+        {
+          "area": 401,
+          "box": [
+            436,
+            413,
+            476,
+            446
+          ],
+          "sha256": "5efda45239f0b437d1f4fa240e7e9ac672ac673e9f9626d0b00e3ce3c3e57a83"
+        },
+        {
+          "area": 341,
+          "box": [
+            36,
+            439,
+            73,
+            453
+          ],
+          "sha256": "684cf6213dcdeea7f654c55b103dd3f13440f689a8beed93174a8031f3b7013a"
+        },
+        {
+          "area": 284,
+          "box": [
+            443,
+            447,
+            476,
+            460
+          ],
+          "sha256": "d6c3dbd34ac9739e1486a1d6a899c81a3700b6233c2ff5f5f5ab401fe6387949"
+        }
+      ]
+    },
+    "toad_witch_giant/burp_toads/5": {
+      "reason": "Two deliberately emitted baby toads, belch breath puff and brown belch rays.",
+      "components": [
+        {
+          "area": 330,
+          "box": [
+            107,
+            237,
+            132,
+            269
+          ],
+          "sha256": "f579552b2a70a2bf95d79b609ba75ccdf712ffb688f77fc5c5615e592c0b432e"
+        },
+        {
+          "area": 447,
+          "box": [
+            84,
+            254,
+            121,
+            282
+          ],
+          "sha256": "e370204d1aa189bcd79dc8f9cbbafe58be751dafac7a4eeb267f28bcf9153937"
+        },
+        {
+          "area": 292,
+          "box": [
+            82,
+            286,
+            114,
+            301
+          ],
+          "sha256": "f892543681a89aa3338ea466d14af80523b8d93233c56e650197bca9b9f2880a"
+        },
+        {
+          "area": 2124,
+          "box": [
+            43,
+            310,
+            100,
+            361
+          ],
+          "sha256": "32138c156d7137fd042360fa331617254bd50fc05679f66d4a2fc0c013bde28b"
+        },
+        {
+          "area": 4292,
+          "box": [
+            68,
+            374,
+            166,
+            436
+          ],
+          "sha256": "469d8be5fc536f2cbe84b92c0ee9214eaec06177c739d2d463d3576206bea810"
+        }
+      ]
+    },
+    "toad_witch_giant/burp_toads/6": {
+      "reason": "Two deliberately emitted baby toads, belch breath puff and brown belch rays.",
+      "components": [
+        {
+          "area": 238,
+          "box": [
+            119,
+            311,
+            167,
+            336
+          ],
+          "sha256": "b7ddbfbadb6e714136347b48053da55220d29e197b4f597976b3c0df0611e8d6"
+        },
+        {
+          "area": 4584,
+          "box": [
+            35,
+            324,
+            129,
+            394
+          ],
+          "sha256": "7eb67eb5a63e0cf2c9d1da340f2139ad3a54e79692147c86d47d2a0c75a8c8e3"
+        },
+        {
+          "area": 991,
+          "box": [
+            187,
+            338,
+            225,
+            374
+          ],
+          "sha256": "e269c5932b0b01397ab7b2d17a488dbf3deb7a5d0ca63e8bd1f1a2e6426f5501"
+        },
+        {
+          "area": 273,
+          "box": [
+            138,
+            390,
+            183,
+            430
+          ],
+          "sha256": "e35b1f1129e2e606eb7ea5cedf126c9ae40e9c5e23069d7f091d0983fea4efaa"
+        },
+        {
+          "area": 254,
+          "box": [
+            147,
+            397,
+            188,
+            436
+          ],
+          "sha256": "6ddb81d774107a448780347ea628c872e1bd2059f1d81619a13c88eaa95bfa41"
+        },
+        {
+          "area": 4995,
+          "box": [
+            49,
+            421,
+            152,
+            495
+          ],
+          "sha256": "7e07b98759593701f1fb18eb13ff1fb3191dab6256b7397959ea809a3a0fe5de"
+        }
+      ]
+    },
+    "toad_witch_giant/victory/4": {
+      "reason": "Brown belly/hat wobble laughter strokes.",
+      "components": [
+        {
+          "area": 283,
+          "box": [
+            124,
+            102,
+            170,
+            113
+          ],
+          "sha256": "550b7c896f44eebf112d2f43db9ea2e3c9a7ea55015150eda80b54a9e8b6049a"
+        },
+        {
+          "area": 447,
+          "box": [
+            60,
+            126,
+            82,
+            176
+          ],
+          "sha256": "8fcfdd53bcfcbabc1792483c0829405b26b63fc7cb3d34ed8c42d022a6c30183"
+        },
+        {
+          "area": 382,
+          "box": [
+            38,
+            141,
+            56,
+            187
+          ],
+          "sha256": "b23f5bd931e3429627a4762c4df328fa4e58bb5b3bbf2c9f0df4edb3896b73e6"
+        },
+        {
+          "area": 461,
+          "box": [
+            434,
+            173,
+            474,
+            213
+          ],
+          "sha256": "b240c02901ce85b3518712ab091a64e72e546e1e9a3753934536a0c44c79e1db"
+        },
+        {
+          "area": 462,
+          "box": [
+            418,
+            189,
+            462,
+            231
+          ],
+          "sha256": "dec9ad2333a65b119dcac3ee10535c19ee68a248e149e0f410b63c09aa2567f3"
+        },
+        {
+          "area": 523,
+          "box": [
+            37,
+            359,
+            55,
+            422
+          ],
+          "sha256": "1c55a9ff8f0be1cad33fb8561fe8b77ecadb7508520040c74295cf2398d962f7"
+        }
+      ]
+    },
+    "hero_toad/transform_in/1": {
+      "reason": "Green transformation smoke lobes, surprise ticks and frog landing rays; body limbs stay connected.",
+      "components": [
+        {
+          "area": 828,
+          "box": [
+            366,
+            87,
+            399,
+            131
+          ],
+          "sha256": "622d3cfe882327ad23ca564fbfa54f49f28279e44683ac1aba1d0cd319c9db66"
+        },
+        {
+          "area": 556,
+          "box": [
+            377,
+            122,
+            416,
+            144
+          ],
+          "sha256": "adb0e24ec14d7100af66ef5b938c6f5a755df4336ab20b92f5b693c6d49548b0"
+        },
+        {
+          "area": 405,
+          "box": [
+            375,
+            153,
+            407,
+            172
+          ],
+          "sha256": "f239676ed9f8be1371f6c1aa61fdaa2b900b0cd3a87222585fd554d10b937ea9"
+        },
+        {
+          "area": 2023,
+          "box": [
+            81,
+            416,
+            138,
+            471
+          ],
+          "sha256": "5fde9914e361abe6f10af291a550fa54ab89cb0e67e447e8f4309b5610943f20"
+        }
+      ]
+    },
+    "hero_toad/transform_in/2": {
+      "reason": "Green transformation smoke lobes, surprise ticks and frog landing rays; body limbs stay connected.",
+      "components": [
+        {
+          "area": 307,
+          "box": [
+            165,
+            185,
+            193,
+            203
+          ],
+          "sha256": "6c83b0ec902b6e8b0b46226f663d2efc17a49edc3abcf75a5cb43727316714fc"
+        },
+        {
+          "area": 301,
+          "box": [
+            165,
+            211,
+            193,
+            226
+          ],
+          "sha256": "6304d2ed6b20904281011cdcfe4213dd27186706fa48f4e7bf5c284672a456fe"
+        },
+        {
+          "area": 1490,
+          "box": [
+            384,
+            362,
+            437,
+            405
+          ],
+          "sha256": "e0a5ea9be420a2dc685597b66b59ad5547867155a519ac63415717331cdc6963"
+        }
+      ]
+    },
+    "hero_toad/transform_in/3": {
+      "reason": "Green transformation smoke lobes, surprise ticks and frog landing rays; body limbs stay connected.",
+      "components": [
+        {
+          "area": 2997,
+          "box": [
+            345,
+            293,
+            417,
+            372
+          ],
+          "sha256": "313924c1af5481afd5deddd18ad72528d384763a6b351948d9029f9560ffba4c"
+        },
+        {
+          "area": 2122,
+          "box": [
+            94,
+            294,
+            144,
+            360
+          ],
+          "sha256": "869b2fdbd94a96893ea63d696bfef6d1f23482663ffe66a2ced6a97b82856611"
+        },
+        {
+          "area": 1010,
+          "box": [
+            401,
+            355,
+            440,
+            396
+          ],
+          "sha256": "56149a363b62300dc79a845f2f8ce2d03382583584f92549de9748c2c279f7d2"
+        }
+      ]
+    },
+    "hero_toad/transform_in/4": {
+      "reason": "Green transformation smoke lobes, surprise ticks and frog landing rays; body limbs stay connected.",
+      "components": [
+        {
+          "area": 2622,
+          "box": [
+            384,
+            298,
+            439,
+            369
+          ],
+          "sha256": "b6c5310957c9b84ef8a8a31a6ba7341e7af478a2aeec1d7bf8757f56876712b8"
+        },
+        {
+          "area": 1862,
+          "box": [
+            86,
+            325,
+            146,
+            373
+          ],
+          "sha256": "cd96a4c3433331e3c2d51238d141e018c0ccdca634ee02719c92f46eb8beb9b1"
+        }
+      ]
+    },
+    "hero_toad/transform_in/5": {
+      "reason": "Green transformation smoke lobes, surprise ticks and frog landing rays; body limbs stay connected.",
+      "components": [
+        {
+          "area": 1444,
+          "box": [
+            388,
+            291,
+            427,
+            348
+          ],
+          "sha256": "4d38e5573267c3212785e23874986b2591777d058d36a250c65a6c1f0d2b0350"
+        },
+        {
+          "area": 1831,
+          "box": [
+            401,
+            367,
+            451,
+            423
+          ],
+          "sha256": "7f1983079f850dfdf24ac2458367436bb81ccf20f045c15ec3aa17560b501b7f"
+        }
+      ]
+    },
+    "hero_toad/transform_in/6": {
+      "reason": "Green transformation smoke lobes, surprise ticks and frog landing rays; body limbs stay connected.",
+      "components": [
+        {
+          "area": 573,
+          "box": [
+            162,
+            235,
+            187,
+            279
+          ],
+          "sha256": "ba00466544fed76fc8fc4c77808436a6b3a7a95a924b8743de1e4b986d6d14c3"
+        },
+        {
+          "area": 903,
+          "box": [
+            122,
+            252,
+            168,
+            303
+          ],
+          "sha256": "48e0e79952519528119b900c0c3ba33db3f138d8b044b0ce703d6ae50d3bf981"
+        },
+        {
+          "area": 1341,
+          "box": [
+            398,
+            262,
+            446,
+            313
+          ],
+          "sha256": "818358e6cb203cc24b3f8a0c359505a2b3fcc47fbf732c93d1a4a7ab90cf807a"
+        },
+        {
+          "area": 2586,
+          "box": [
+            52,
+            294,
+            142,
+            350
+          ],
+          "sha256": "ec792748a26a71d19f8d19b7e230315067621243503de10a5ed4f1fe42af9803"
+        },
+        {
+          "area": 3007,
+          "box": [
+            410,
+            308,
+            476,
+            398
+          ],
+          "sha256": "e931f8d5e413276253a1da64a22ad04a7b8ae19de2512fd45c444a72f556992c"
+        },
+        {
+          "area": 1008,
+          "box": [
+            44,
+            384,
+            79,
+            427
+          ],
+          "sha256": "c07135ef1a92b2a111915d01645c89a4ccbd3b10ac13d5378f4e4dd93065e78a"
+        },
+        {
+          "area": 696,
+          "box": [
+            423,
+            411,
+            457,
+            441
+          ],
+          "sha256": "71aac517492be1bf154088273807d1e0617c37ece82bb654d1d4bd3e09412f8e"
+        }
+      ]
+    },
+    "hero_toad/transform_in/7": {
+      "reason": "Green transformation smoke lobes, surprise ticks and frog landing rays; body limbs stay connected.",
+      "components": [
+        {
+          "area": 669,
+          "box": [
+            368,
+            119,
+            398,
+            165
+          ],
+          "sha256": "320fd23698b703cd55a73b60def2ef400236c1b2dad508919df5d737108f352e"
+        },
+        {
+          "area": 548,
+          "box": [
+            386,
+            139,
+            423,
+            175
+          ],
+          "sha256": "2a73af23414166b41e5c47b6684d3cac8f832183f8bc30539086d2b93f46ffe5"
+        },
+        {
+          "area": 791,
+          "box": [
+            100,
+            145,
+            139,
+            196
+          ],
+          "sha256": "56e56147c8089f683f64b9efbbaaa9e5be8ca95a763a0a97cd31e4af0a17a921"
+        },
+        {
+          "area": 614,
+          "box": [
+            81,
+            178,
+            122,
+            209
+          ],
+          "sha256": "0871af3a6736b8b5133f9bebacc28166e31492c4b6ca9a93aef7785cac9d616d"
+        },
+        {
+          "area": 410,
+          "box": [
+            432,
+            421,
+            463,
+            439
+          ],
+          "sha256": "3f445ebe438c3264345b65bb9ce0d77d8ad0034d6aa3489bd139b2640e913613"
+        },
+        {
+          "area": 391,
+          "box": [
+            420,
+            449,
+            448,
+            473
+          ],
+          "sha256": "461de00c53fbbd28091e246b86b8ec91934544b25f4f0324c7b62c6418bb4f9f"
+        },
+        {
+          "area": 478,
+          "box": [
+            41,
+            459,
+            74,
+            484
+          ],
+          "sha256": "66ac217040712ca5dc3126a3d55f561f2e3c820cb66a05a78035ddaaff5f9429"
+        },
+        {
+          "area": 397,
+          "box": [
+            66,
+            469,
+            92,
+            500
+          ],
+          "sha256": "d698a662aa48b24024f93dbca4c8f40322b54f0406a955e28a11d308efcf70af"
+        }
+      ]
+    },
+    "hero_toad/transform_in/8": {
+      "reason": "Green transformation smoke lobes, surprise ticks and frog landing rays; body limbs stay connected.",
+      "components": [
+        {
+          "area": 1727,
+          "box": [
+            109,
+            144,
+            166,
+            184
+          ],
+          "sha256": "ddf27453dc6598b183a598e4e33d281b51ae47bfee6d6fa4dd5558669d9b7555"
+        },
+        {
+          "area": 3476,
+          "box": [
+            65,
+            190,
+            142,
+            280
+          ],
+          "sha256": "13c8270d3f1a02420a50a5d565cb9eab7764c0163bd681b88b3965d07e3667d8"
+        },
+        {
+          "area": 2814,
+          "box": [
+            396,
+            213,
+            453,
+            289
+          ],
+          "sha256": "8fb53cab63768e7c29fa718c4ffa36fb66efed2d9e3e7ef9062fdbefc3ef913d"
+        },
+        {
+          "area": 687,
+          "box": [
+            404,
+            318,
+            434,
+            348
+          ],
+          "sha256": "068e2823d19912d6ca00d5cb2fc0af34d5a728f60c6fa98195b2ecd97cfee85f"
+        },
+        {
+          "area": 2033,
+          "box": [
+            59,
+            338,
+            113,
+            396
+          ],
+          "sha256": "3d085a2b2ff06ac72e2f74c5392d56f5897d4f659bc117882ee09664e4f7c296"
+        },
+        {
+          "area": 309,
+          "box": [
+            121,
+            426,
+            153,
+            447
+          ],
+          "sha256": "43fc0edb6bf13cf412016a4923348c9d23d98e0b342998eebcc98a4055f542d2"
+        },
+        {
+          "area": 392,
+          "box": [
+            262,
+            432,
+            282,
+            480
+          ],
+          "sha256": "471e7a5365486e9848699296d33dcbd8351574a4cc5e0ae5dc482dfaec3d8ae3"
+        },
+        {
+          "area": 424,
+          "box": [
+            211,
+            439,
+            232,
+            492
+          ],
+          "sha256": "c4dbeb8e2d9a7e7affc7d3084dd8216a28d0b8f72ea524ef669cba2f688442fd"
+        },
+        {
+          "area": 474,
+          "box": [
+            237,
+            442,
+            254,
+            499
+          ],
+          "sha256": "88bb81ec84020fdd87d65c75b5a328a8972c049723ac427d3707f971965e9bc5"
+        }
+      ]
+    },
+    "hero_toad/transform_in/9": {
+      "reason": "Green transformation smoke lobes, surprise ticks and frog landing rays; body limbs stay connected.",
+      "components": [
+        {
+          "area": 1054,
+          "box": [
+            413,
+            390,
+            455,
+            440
+          ],
+          "sha256": "a96a5bfb2a81e5c38cbdc726cbc9a394ec72e21e1cc21841c247b029785347a2"
+        },
+        {
+          "area": 789,
+          "box": [
+            58,
+            409,
+            97,
+            449
+          ],
+          "sha256": "0b4dccad98ce293e889192923e83edf55a59f9a9a3c31f4e8b1c56a7582c027d"
+        },
+        {
+          "area": 795,
+          "box": [
+            427,
+            427,
+            469,
+            459
+          ],
+          "sha256": "ba73055017754d50781411bde7e3c9779ebefa94bfaf8170bf0acea19e3b6501"
+        },
+        {
+          "area": 757,
+          "box": [
+            42,
+            445,
+            85,
+            470
+          ],
+          "sha256": "f0d0cada545dad526d4cbde35632a462adf8af92ef6e4966b556eab28fc9df20"
+        }
+      ]
+    },
+    "hero_toad/idle/4": {
+      "reason": "Yellow croak rays beside the mouth.",
+      "components": [
+        {
+          "area": 369,
+          "box": [
+            358,
+            330,
+            387,
+            356
+          ],
+          "sha256": "3aa0025d784bfab52bac6435fab8b24d911d531421d5b434b9ecf35fc04bc2b8"
+        },
+        {
+          "area": 473,
+          "box": [
+            359,
+            351,
+            396,
+            370
+          ],
+          "sha256": "3d1cc94e10dec7dca9c1a1e74d905b06f1a1afe7daabd66e76f290d72d003b42"
+        },
+        {
+          "area": 384,
+          "box": [
+            358,
+            376,
+            390,
+            397
+          ],
+          "sha256": "45516a1bfa276c9b5a68e1ebff4731568dbfd97902390d7484141c15410b0545"
+        }
+      ]
+    },
+    "hero_toad/attack/4": {
+      "reason": "Tongue contact rays or recovery motion strokes.",
+      "components": [
+        {
+          "area": 732,
+          "box": [
+            430,
+            266,
+            462,
+            311
+          ],
+          "sha256": "865699b16a61c919ba2a1de69d9798630883fc462aafa0770d8422b98e17ce16"
+        },
+        {
+          "area": 249,
+          "box": [
+            407,
+            286,
+            422,
+            311
+          ],
+          "sha256": "b76fd7e52432552488d53536cfcef87f59a95c134a4d14de5cc89333e17c4a56"
+        },
+        {
+          "area": 464,
+          "box": [
+            445,
+            293,
+            476,
+            318
+          ],
+          "sha256": "f41646df28744dd9a985ac491efebdbfd37fe4c0a4afd220adf1c68632b07cc7"
+        }
+      ]
+    },
+    "hero_toad/attack/5": {
+      "reason": "Tongue contact rays or recovery motion strokes.",
+      "components": [
+        {
+          "area": 344,
+          "box": [
+            415,
+            299,
+            453,
+            341
+          ],
+          "sha256": "e44a0fbe092b3368d8207ceb88f38683756964141448ef055ab9dfe259ee737f"
+        },
+        {
+          "area": 435,
+          "box": [
+            397,
+            312,
+            442,
+            356
+          ],
+          "sha256": "a5d53ebe7abb10399f637a65c6a8d6fd4266ff5c3584cb0a51758046cc983d70"
+        }
+      ]
+    },
+    "hero_toad/hurt/1": {
+      "reason": "Brown recoil/dizzy ticks beside head.",
+      "components": [
+        {
+          "area": 291,
+          "box": [
+            345,
+            323,
+            369,
+            348
+          ],
+          "sha256": "26242ccee72b822907735b55ca0f64a18d9b03fc9d6099dda41093b05dd2d7b1"
+        },
+        {
+          "area": 305,
+          "box": [
+            354,
+            342,
+            382,
+            359
+          ],
+          "sha256": "2cd963f522adab60af1a782dfbad586b70b0947387e37ce06b54a454b36b2208"
+        },
+        {
+          "area": 208,
+          "box": [
+            355,
+            366,
+            378,
+            380
+          ],
+          "sha256": "2b8eb26cc856212e3432cd0a7f2bd88d7751578ea806ed39a37058df694e5a22"
+        }
+      ]
+    },
+    "hero_toad/transform_out/1": {
+      "reason": "Green restoration smoke lobes, head shake ticks, or cream relief breath puff; all boots/arms remain connected.",
+      "components": [
+        {
+          "area": 849,
+          "box": [
+            386,
+            266,
+            426,
+            307
+          ],
+          "sha256": "957e245b0a7f7c16862654be90640fd855943d43548a38eb47f275da51ebe260"
+        },
+        {
+          "area": 725,
+          "box": [
+            396,
+            296,
+            436,
+            321
+          ],
+          "sha256": "8985703d63e684b0c762d92ca24414b87aa6463d0efeb4a93dc08b4a5d700b85"
+        }
+      ]
+    },
+    "hero_toad/transform_out/3": {
+      "reason": "Green restoration smoke lobes, head shake ticks, or cream relief breath puff; all boots/arms remain connected.",
+      "components": [
+        {
+          "area": 1100,
+          "box": [
+            393,
+            181,
+            440,
+            228
+          ],
+          "sha256": "c0fbddfe75b094c903da13c10476a60951743f8d5ea6a51efa08b8abaceb3a2b"
+        },
+        {
+          "area": 931,
+          "box": [
+            405,
+            217,
+            451,
+            245
+          ],
+          "sha256": "59cb74e240a3acda23486d1f29649ebd721a8da23823f631e43c245eafd69ac1"
+        }
+      ]
+    },
+    "hero_toad/transform_out/4": {
+      "reason": "Green restoration smoke lobes, head shake ticks, or cream relief breath puff; all boots/arms remain connected.",
+      "components": [
+        {
+          "area": 448,
+          "box": [
+            211,
+            119,
+            236,
+            142
+          ],
+          "sha256": "f847d3de393e79dd28a9851d99417f9b2c5f61f94fab3953587577c545d1e4fa"
+        },
+        {
+          "area": 2438,
+          "box": [
+            140,
+            125,
+            205,
+            178
+          ],
+          "sha256": "5fa7b04f9169727de7d117a7d75122969f3144d7f8c8d28e6d7439b691bbd249"
+        },
+        {
+          "area": 1603,
+          "box": [
+            397,
+            210,
+            449,
+            251
+          ],
+          "sha256": "58d07457562389ce30e870e0bf601b5121ae9a9f5108aad1a4ffa6d295fff3a7"
+        },
+        {
+          "area": 1723,
+          "box": [
+            46,
+            422,
+            98,
+            477
+          ],
+          "sha256": "892ef84f5dc7543060915fc222ada4b95a444b90948b3ba79cbb00f8877764f2"
+        },
+        {
+          "area": 912,
+          "box": [
+            421,
+            425,
+            463,
+            453
+          ],
+          "sha256": "b3dce9f55555bab701b03f4fad021ea7d7bc41401c6d2a9e4b4b0efaffdf005f"
+        }
+      ]
+    },
+    "hero_toad/transform_out/5": {
+      "reason": "Green restoration smoke lobes, head shake ticks, or cream relief breath puff; all boots/arms remain connected.",
+      "components": [
+        {
+          "area": 1304,
+          "box": [
+            371,
+            119,
+            414,
+            158
+          ],
+          "sha256": "67d770d8f4f35d71cbeb29c7fa360fd570ebe8042ecdcb7c2659d527efe9c54e"
+        },
+        {
+          "area": 837,
+          "box": [
+            101,
+            160,
+            136,
+            194
+          ],
+          "sha256": "dcccde14053b528889d47f3e46244cb186bb6fb628a23ec011d71eaab231f502"
+        },
+        {
+          "area": 1387,
+          "box": [
+            382,
+            429,
+            427,
+            477
+          ],
+          "sha256": "b964555dc18daab9995c5fb94a82d0b99669b2213bca48d5a6cc55639397d6ac"
+        },
+        {
+          "area": 925,
+          "box": [
+            51,
+            444,
+            92,
+            478
+          ],
+          "sha256": "5de2b33be626fe45d32d687d5841df57d04b889b44d821c1e45a6f09885e84c1"
+        }
+      ]
+    },
+    "hero_toad/transform_out/6": {
+      "reason": "Green restoration smoke lobes, head shake ticks, or cream relief breath puff; all boots/arms remain connected.",
+      "components": [
+        {
+          "area": 2311,
+          "box": [
+            80,
+            181,
+            151,
+            236
+          ],
+          "sha256": "4ac4d49ceae71c9d39ce962f7d2dc03acd65e5f21a88dfb261b7f681f4a99331"
+        },
+        {
+          "area": 460,
+          "box": [
+            60,
+            245,
+            85,
+            269
+          ],
+          "sha256": "85eba1da9b770c630b61158c326102a035506f81ae4924b4c777cf92570c5578"
+        },
+        {
+          "area": 1752,
+          "box": [
+            80,
+            429,
+            146,
+            477
+          ],
+          "sha256": "3f2c53100a89cff3f7e0dd8fd786b959aca6d4bba9d055121621e493a6b2ddb0"
+        }
+      ]
+    },
+    "hero_toad/transform_out/7": {
+      "reason": "Green restoration smoke lobes, head shake ticks, or cream relief breath puff; all boots/arms remain connected.",
+      "components": [
+        {
+          "area": 365,
+          "box": [
+            241,
+            131,
+            265,
+            151
+          ],
+          "sha256": "10f2f2a41bedff24f12919ec4b4a6cde0d073c63c32cbba7f1f90d7ffd830a91"
+        },
+        {
+          "area": 1084,
+          "box": [
+            411,
+            208,
+            454,
+            242
+          ],
+          "sha256": "43b9a79a5eeff33bab76b3b5320cf7709488dabb1b0dea7378c3788684934cb7"
+        },
+        {
+          "area": 861,
+          "box": [
+            104,
+            222,
+            147,
+            253
+          ],
+          "sha256": "276dc06112e705d7c7d16786d85420ae24b0984ec923763cbff4feed68162ca1"
+        },
+        {
+          "area": 979,
+          "box": [
+            413,
+            350,
+            451,
+            390
+          ],
+          "sha256": "a8a43b6a3aeb69ff21b62ddd9a26f060b603c10dacf53043c36f9873a7ffb906"
+        },
+        {
+          "area": 444,
+          "box": [
+            433,
+            402,
+            458,
+            425
+          ],
+          "sha256": "53eb25e4cb17d96b010f96214d6b95926495efdb3338859447fe5a9103af2849"
+        }
+      ]
+    },
+    "hero_toad/transform_out/8": {
+      "reason": "Green restoration smoke lobes, head shake ticks, or cream relief breath puff; all boots/arms remain connected.",
+      "components": [
+        {
+          "area": 3902,
+          "box": [
+            126,
+            153,
+            227,
+            210
+          ],
+          "sha256": "9362fb837dcf487ebc3abc025d296c576d402d9cd3a032f8ea2805cf4da82f7a"
+        },
+        {
+          "area": 3402,
+          "box": [
+            72,
+            206,
+            155,
+            280
+          ],
+          "sha256": "fd48409471362db8fe9ed8c77ff3abd97fc40a9c0ef74996d7c34bbfce70ba09"
+        },
+        {
+          "area": 659,
+          "box": [
+            417,
+            357,
+            447,
+            386
+          ],
+          "sha256": "50705ec3c49af3ca67c61ddca79808dde816dcbb91595035bdd6aacc10ed8738"
+        },
+        {
+          "area": 1512,
+          "box": [
+            60,
+            364,
+            106,
+            416
+          ],
+          "sha256": "e3c9b9f463133cb32cc43f2566a3ce7269f40b6ffd0f00a93a2da01efc8d48c4"
+        },
+        {
+          "area": 1314,
+          "box": [
+            401,
+            421,
+            448,
+            458
+          ],
+          "sha256": "a122475e7736966eaabacdc8c3ea92eb4d60bdbc9a6c5a54bb18f85cc8c9adaf"
+        },
+        {
+          "area": 1106,
+          "box": [
+            196,
+            467,
+            251,
+            495
+          ],
+          "sha256": "be9e0dc6e8fbcecd49c71e638795581307a67df453d70a613d156ba3c434d19e"
+        }
+      ]
+    },
+    "hero_toad/transform_out/9": {
+      "reason": "Green restoration smoke lobes, head shake ticks, or cream relief breath puff; all boots/arms remain connected.",
+      "components": [
+        {
+          "area": 232,
+          "box": [
+            357,
+            405,
+            370,
+            442
+          ],
+          "sha256": "3127fdb1b6e987aaf42d8bb4856ef062bf74bd5678576490ef8e4542b782cde9"
+        },
+        {
+          "area": 227,
+          "box": [
+            344,
+            408,
+            355,
+            445
+          ],
+          "sha256": "1cee343fe839f6ec20f113e056dcb71d4834b1e0bc0af6944503651795fca665"
+        },
+        {
+          "area": 215,
+          "box": [
+            97,
+            421,
+            115,
+            456
+          ],
+          "sha256": "951c968dfd8201f7802695cddaa6e99a20f327a464d92dc121e954e942473183"
+        },
+        {
+          "area": 223,
+          "box": [
+            111,
+            427,
+            128,
+            462
+          ],
+          "sha256": "162c5920667c84694b0439e82adb5dae942c1aeea32a01063a92cc3be3c3e238"
+        }
+      ]
+    },
+    "hero_toad/transform_out/10": {
+      "reason": "Green restoration smoke lobes, head shake ticks, or cream relief breath puff; all boots/arms remain connected.",
+      "components": [
+        {
+          "area": 298,
+          "box": [
+            349,
+            161,
+            377,
+            202
+          ],
+          "sha256": "2c58160a96e7ed660f576dc683ec71cf3623aeb8f71d424c703580f5c15058ea"
+        },
+        {
+          "area": 208,
+          "box": [
+            348,
+            172,
+            363,
+            209
+          ],
+          "sha256": "b47159746a7a3c0dcffe708e7d89f8a877e47281cb37d648fae962b264ea98c2"
+        },
+        {
+          "area": 241,
+          "box": [
+            102,
+            177,
+            123,
+            218
+          ],
+          "sha256": "f02f563613bbce983414ac7165286f57f019ef916b6401fd6351ac9eb4ca532a"
+        },
+        {
+          "area": 265,
+          "box": [
+            117,
+            178,
+            137,
+            221
+          ],
+          "sha256": "be533c5b95903be164d857367bfa279f01e251ba59e33f663ca975ebd78b84a0"
+        }
+      ]
+    },
+    "hero_toad/transform_out/11": {
+      "reason": "Green restoration smoke lobes, head shake ticks, or cream relief breath puff; all boots/arms remain connected.",
+      "components": [
+        {
+          "area": 3427,
+          "box": [
+            309,
+            191,
+            390,
+            260
+          ],
+          "sha256": "ddac9a09ca8dc1b0d1abc280ae65fb6a3fb38cfd3fdb126c7bd7b5382e075c21"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_attack/5": {
+      "reason": "Tan broom sweep trail, dust puffs and loose straw at the brush tip.",
+      "components": [
+        {
+          "area": 437,
+          "box": [
+            379,
+            228,
+            407,
+            308
+          ],
+          "sha256": "4338402745a4705b98fa13066e7ebf3ecef4a2278b7aa4809e023dcd37fd586b"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_attack/6": {
+      "reason": "Tan broom sweep trail, dust puffs and loose straw at the brush tip.",
+      "components": [
+        {
+          "area": 508,
+          "box": [
+            415,
+            326,
+            451,
+            360
+          ],
+          "sha256": "788b319b3a268801e20a0d936846f4abde3277c84ce2036166e8e4f79ce27522"
+        },
+        {
+          "area": 377,
+          "box": [
+            365,
+            360,
+            397,
+            391
+          ],
+          "sha256": "7d0dfc13e82b9b1ad3572f2871becf0a3385e13298bef66312878c96611375f5"
+        },
+        {
+          "area": 526,
+          "box": [
+            433,
+            360,
+            475,
+            390
+          ],
+          "sha256": "5ea4b7bb974e8d2097bf2ebcca4ff04cb3718015be4b1bbd8352411778710e0d"
+        }
+      ]
+    },
+    "hero_rookie/broom/bruised_attack/6": {
+      "reason": "Tan broom sweep trail, dust puffs and loose straw at the brush tip.",
+      "components": [
+        {
+          "area": 559,
+          "box": [
+            404,
+            318,
+            435,
+            355
+          ],
+          "sha256": "24d996084af53b120ec570d3c65616cac68dbd280c71546bc58a75e5bdaab60a"
+        },
+        {
+          "area": 548,
+          "box": [
+            363,
+            328,
+            386,
+            369
+          ],
+          "sha256": "6119b5477b02cdbbd6ac65c0b35444e3ba3834412396fd6c9efc7bcbe20b7c54"
+        },
+        {
+          "area": 565,
+          "box": [
+            400,
+            367,
+            443,
+            386
+          ],
+          "sha256": "62c3b807bc3f9b23c55b11dd16f1c14f18fc7b77e8b8618b476492bedfd12b3e"
+        },
+        {
+          "area": 530,
+          "box": [
+            374,
+            395,
+            402,
+            420
+          ],
+          "sha256": "b9eba5ed681bd1036e6052146eeb58a244352657dbf3c2695a0427a1d890ecb3"
+        }
+      ]
+    },
+    "hero_rookie/broom/battered_attack/6": {
+      "reason": "Tan broom sweep trail, dust puffs and loose straw at the brush tip.",
+      "components": [
+        {
+          "area": 533,
+          "box": [
+            384,
+            321,
+            420,
+            354
+          ],
+          "sha256": "0bdbea84c2eec4fe7ccc087cc7c216c20cc44d675d2d191cb21675a33f1c3bce"
+        },
+        {
+          "area": 590,
+          "box": [
+            417,
+            346,
+            458,
+            378
+          ],
+          "sha256": "5db69cb81ad2265ce9cfb7b72b98f3165dc1aae7fece1f5f960e2af46c01001e"
+        },
+        {
+          "area": 412,
+          "box": [
+            441,
+            387,
+            475,
+            406
+          ],
+          "sha256": "ec62056f3e9c02ce922d1a47ac0820e2a845bde58580f0d667cea92308cf02be"
+        },
+        {
+          "area": 224,
+          "box": [
+            447,
+            419,
+            463,
+            438
+          ],
+          "sha256": "c7a6a823f4219f8d45d6a8492edec019af2048d16ba7447cec373f8342bc89b4"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_in/1": {
+      "reason": "Purple curse coils/ticks and intentionally curling wooden weapon within the transformation.",
+      "components": [
+        {
+          "area": 206,
+          "box": [
+            350,
+            122,
+            368,
+            143
+          ],
+          "sha256": "6a05a5cb165076660d6e5cdebe79777bb9f1cbfeb99f0d567b41eb97a3e5217c"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_in/2": {
+      "reason": "Purple curse coils/ticks and intentionally curling wooden weapon within the transformation.",
+      "components": [
+        {
+          "area": 212,
+          "box": [
+            306,
+            76,
+            325,
+            102
+          ],
+          "sha256": "8d7a8da73d0dcfcc59491f20db974c4d8b057670e0bf56b72bbb5b07e20f5d1a"
+        },
+        {
+          "area": 260,
+          "box": [
+            318,
+            88,
+            347,
+            110
+          ],
+          "sha256": "9e30892420249078750445d0b5dec6b6ffda663a596cb84bea04c4ccc1ac6b5e"
+        },
+        {
+          "area": 614,
+          "box": [
+            404,
+            92,
+            453,
+            144
+          ],
+          "sha256": "d48ff12fde00c0a47f10cc8b572724fdf7d46ccebb12ab8804c4ff5c6134d691"
+        },
+        {
+          "area": 251,
+          "box": [
+            451,
+            117,
+            468,
+            153
+          ],
+          "sha256": "815e379513fd23b62605ca7694e2021e3a71f524723e7cab7cd91236a6522a5a"
+        },
+        {
+          "area": 262,
+          "box": [
+            346,
+            140,
+            381,
+            178
+          ],
+          "sha256": "6a9820297318bb8955ebd3d63591e28fe825d7ffe4989e844032f944d8520aaa"
+        },
+        {
+          "area": 211,
+          "box": [
+            401,
+            206,
+            418,
+            222
+          ],
+          "sha256": "6b4ce08c9d3453e6f9d3833e1271633a9e5f6210834d1f3f931fdf05afa5155d"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_in/3": {
+      "reason": "Purple curse coils/ticks and intentionally curling wooden weapon within the transformation.",
+      "components": [
+        {
+          "area": 247,
+          "box": [
+            394,
+            92,
+            412,
+            109
+          ],
+          "sha256": "bfa27116ed6db1ab89a541ba34cb800de88e6c67aaec7175923c9a4fcaeaf152"
+        },
+        {
+          "area": 242,
+          "box": [
+            423,
+            102,
+            441,
+            119
+          ],
+          "sha256": "73f0201f3e680990c4d7c5d2a3f6380c98b9f4dde9d7bae4944a540a695a275a"
+        },
+        {
+          "area": 987,
+          "box": [
+            332,
+            108,
+            380,
+            190
+          ],
+          "sha256": "d53e4dcdf480e967f0169046e8b7b747354d9e024ad1bf8933a74be0001ffe8a"
+        },
+        {
+          "area": 436,
+          "box": [
+            314,
+            112,
+            341,
+            163
+          ],
+          "sha256": "6889da55eb8da0803302c9ee4b154f451715a44da4cf6cd99edbf006cde6d842"
+        },
+        {
+          "area": 438,
+          "box": [
+            432,
+            173,
+            464,
+            218
+          ],
+          "sha256": "ebee824bdb8a0839c250cb7168a96557b98176c09ff29982c3cbae7bd1378d4c"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_in/4": {
+      "reason": "Purple curse coils/ticks and intentionally curling wooden weapon within the transformation.",
+      "components": [
+        {
+          "area": 513,
+          "box": [
+            377,
+            79,
+            418,
+            122
+          ],
+          "sha256": "43977ba187303a5879ae7b1f70a26c4e5d3ba8f07a117aacce52f7683c4cbb6a"
+        },
+        {
+          "area": 304,
+          "box": [
+            353,
+            137,
+            384,
+            164
+          ],
+          "sha256": "4690df3562330f8edc5140d063edb2691d47157ce5e31a410f99052d8ab3d9a1"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_in/5": {
+      "reason": "Purple curse coils/ticks and intentionally curling wooden weapon within the transformation.",
+      "components": [
+        {
+          "area": 214,
+          "box": [
+            411,
+            71,
+            424,
+            99
+          ],
+          "sha256": "890d3e32a844d8acc544216afba84cedfb2d687701bb73b6f62fd557986ca9fe"
+        },
+        {
+          "area": 239,
+          "box": [
+            385,
+            271,
+            404,
+            315
+          ],
+          "sha256": "82c94fc8c0aacc1333df8f3c12e2dbee0c0485d970a297678905a9b20a7652d4"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_in/6": {
+      "reason": "Purple curse coils/ticks and intentionally curling wooden weapon within the transformation.",
+      "components": [
+        {
+          "area": 237,
+          "box": [
+            295,
+            92,
+            312,
+            111
+          ],
+          "sha256": "49cbf29bb9458536e8d1d16fc0dce4f34f2812270e1b0fe11c78580070f053cb"
+        },
+        {
+          "area": 223,
+          "box": [
+            439,
+            101,
+            456,
+            117
+          ],
+          "sha256": "d87849a3dddc58f91790fc040dff295f13162c1c32995e176fb3663939bb852b"
+        },
+        {
+          "area": 273,
+          "box": [
+            292,
+            127,
+            310,
+            146
+          ],
+          "sha256": "0e19533262a689e13c9c114c6a2d1c80e1e1820a42888fd728e18f9e457757e1"
+        },
+        {
+          "area": 236,
+          "box": [
+            318,
+            131,
+            336,
+            148
+          ],
+          "sha256": "82357c607e5179f40537487cda72be4a300b568b3adb1e78d88c183b429fba51"
+        },
+        {
+          "area": 301,
+          "box": [
+            411,
+            217,
+            432,
+            236
+          ],
+          "sha256": "42b90b10a1ebe6b5dfba0c46d5f3c7874710c8627b654b83a4f1ae3de11844e3"
+        },
+        {
+          "area": 202,
+          "box": [
+            373,
+            306,
+            390,
+            321
+          ],
+          "sha256": "ca912a28e226da41b0cdc77c1c8c05a95a1c2b7aac6e914b0338140cea15f8a1"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_in/7": {
+      "reason": "Purple curse coils/ticks and intentionally curling wooden weapon within the transformation.",
+      "components": [
+        {
+          "area": 293,
+          "box": [
+            300,
+            63,
+            322,
+            94
+          ],
+          "sha256": "82a9196209aa9e0ad3a524db3659576b3ac23b2b6d2ce851118d9e5717155577"
+        },
+        {
+          "area": 293,
+          "box": [
+            439,
+            68,
+            467,
+            97
+          ],
+          "sha256": "863d4d82d74119cbc7bae14a9ae4ae2810e845a05b53a9e93dc9e8ab5854d598"
+        },
+        {
+          "area": 230,
+          "box": [
+            283,
+            92,
+            309,
+            110
+          ],
+          "sha256": "db1b63ae95e7d495810ce0877da5ded10454e2b8eac3643e50acf46e405d285e"
+        },
+        {
+          "area": 209,
+          "box": [
+            426,
+            186,
+            452,
+            202
+          ],
+          "sha256": "292ec60bd60c4610bc5dcee4695e65a399d62eb476bfc0b088c1dc71bb404027"
+        },
+        {
+          "area": 341,
+          "box": [
+            297,
+            212,
+            322,
+            232
+          ],
+          "sha256": "0e28cae8a50a747d66c6d6bd12c963be2eee2ce485b03872192fc3a7c15a838e"
+        },
+        {
+          "area": 369,
+          "box": [
+            380,
+            251,
+            412,
+            270
+          ],
+          "sha256": "426646af91dacc0787df37d338faa7eefa74345418310d468ddd0ed8a5208498"
+        },
+        {
+          "area": 208,
+          "box": [
+            369,
+            268,
+            386,
+            284
+          ],
+          "sha256": "3f41676f2efd4f38190a9ac0827b297df88188af8bf57b55eba819cc14864514"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_in/8": {
+      "reason": "Purple curse coils/ticks and intentionally curling wooden weapon within the transformation.",
+      "components": [
+        {
+          "area": 246,
+          "box": [
+            281,
+            61,
+            298,
+            90
+          ],
+          "sha256": "4324258363f021eb04ad5b7f0b86d38db8928af7733637bff1712840cf311260"
+        },
+        {
+          "area": 242,
+          "box": [
+            292,
+            77,
+            318,
+            99
+          ],
+          "sha256": "4af1495312dafaa98e3d1ab5d1e4e79194d6361169b88706bc72c3429a56437d"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_out/1": {
+      "reason": "Gold break-curse rays, separated straw/weapon pieces inside the requested weapon transformation, or relief breath puff.",
+      "components": [
+        {
+          "area": 539,
+          "box": [
+            304,
+            59,
+            327,
+            96
+          ],
+          "sha256": "766fc5bbf01d401d6a36ce342f03d8ffc7cdd1af7cdd1d28486ff61b662b09fd"
+        },
+        {
+          "area": 682,
+          "box": [
+            318,
+            64,
+            356,
+            103
+          ],
+          "sha256": "f7d5df73d4b9e5f4defc8d6cb6b3b0f518213eeabed035cc824896812bfc7e56"
+        },
+        {
+          "area": 533,
+          "box": [
+            421,
+            194,
+            460,
+            214
+          ],
+          "sha256": "3f7ee2d1686d48394fed415047655b78cbaacb4b3ab5a308a339c49789c6a737"
+        },
+        {
+          "area": 514,
+          "box": [
+            412,
+            210,
+            441,
+            243
+          ],
+          "sha256": "70c5b697988b70ab95d317950e1ed95e282da45d1f78ab5c2928ce91427c5b0f"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_out/2": {
+      "reason": "Gold break-curse rays, separated straw/weapon pieces inside the requested weapon transformation, or relief breath puff.",
+      "components": [
+        {
+          "area": 1394,
+          "box": [
+            378,
+            243,
+            439,
+            286
+          ],
+          "sha256": "7a82d93ddb3b383f1a1449fdf8d4b2677f77b05d541b6aac2cb6672ff985324c"
+        },
+        {
+          "area": 834,
+          "box": [
+            345,
+            326,
+            386,
+            364
+          ],
+          "sha256": "04d95091e38b7cd113da4526aedf1a0eda44a932b0fef48dcba24ff0cdadfb1f"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_out/3": {
+      "reason": "Gold break-curse rays, separated straw/weapon pieces inside the requested weapon transformation, or relief breath puff.",
+      "components": [
+        {
+          "area": 718,
+          "box": [
+            360,
+            71,
+            385,
+            116
+          ],
+          "sha256": "7468e56f9e3276894af66b584f37fbe692e6ab4910fd49e183dcb09b6341e509"
+        },
+        {
+          "area": 529,
+          "box": [
+            330,
+            85,
+            361,
+            119
+          ],
+          "sha256": "55e21a24163ee6f88292aaf01df19a58e020218c3a2ef20d3711d41600959eb6"
+        },
+        {
+          "area": 559,
+          "box": [
+            385,
+            85,
+            417,
+            120
+          ],
+          "sha256": "6225687b04f122d7a1919c0d999038381a464d2220efca0129a32515b8f4d517"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_out/4": {
+      "reason": "Gold break-curse rays, separated straw/weapon pieces inside the requested weapon transformation, or relief breath puff.",
+      "components": [
+        {
+          "area": 558,
+          "box": [
+            387,
+            73,
+            415,
+            113
+          ],
+          "sha256": "8a903f892e17f93231aa1a3d05e93e0272dedff20cbe26d59b0d0e7e56adeff0"
+        },
+        {
+          "area": 461,
+          "box": [
+            354,
+            86,
+            373,
+            124
+          ],
+          "sha256": "fa3cc1d059bf1df6b4694a16a322c9711b9dfc86a7c103ecfecff8362acd7793"
+        },
+        {
+          "area": 438,
+          "box": [
+            424,
+            97,
+            453,
+            129
+          ],
+          "sha256": "9c7ba348e93fde211149864a8faf6a45cc30910a573fc726c84457dac4b9e372"
+        },
+        {
+          "area": 442,
+          "box": [
+            301,
+            122,
+            332,
+            150
+          ],
+          "sha256": "4b90e33cfaf7f15030d979193e72ba036965a682d5215023bc44f42972cd6bb8"
+        },
+        {
+          "area": 425,
+          "box": [
+            426,
+            209,
+            459,
+            235
+          ],
+          "sha256": "a90c791bee25b8605532f8660fe0a2bb4d9fc08508b4eebf18b3eca1f802dc8b"
+        },
+        {
+          "area": 451,
+          "box": [
+            386,
+            248,
+            404,
+            287
+          ],
+          "sha256": "614ebc3a29025395a988646004e13e8c89187fc9e4951408e27c2a49864dcfe4"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_out/5": {
+      "reason": "Gold break-curse rays, separated straw/weapon pieces inside the requested weapon transformation, or relief breath puff.",
+      "components": [
+        {
+          "area": 962,
+          "box": [
+            304,
+            71,
+            376,
+            126
+          ],
+          "sha256": "c6fce535e2910b1bdcf912d9a061478523c44bc4033a1f0da03b4004cbf7a03c"
+        },
+        {
+          "area": 1998,
+          "box": [
+            373,
+            195,
+            465,
+            269
+          ],
+          "sha256": "ca01a46a0deef358311dcbe602abdda7d80f5d94e1d77af0e0b014acf1a05d8f"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_out/6": {
+      "reason": "Gold break-curse rays, separated straw/weapon pieces inside the requested weapon transformation, or relief breath puff.",
+      "components": [
+        {
+          "area": 703,
+          "box": [
+            376,
+            63,
+            418,
+            103
+          ],
+          "sha256": "8f0484cd37ccf8a102c589bd39e309e2376d66475d6c706e6d3a1d061a68a9e6"
+        },
+        {
+          "area": 1749,
+          "box": [
+            319,
+            83,
+            373,
+            141
+          ],
+          "sha256": "261c597ebb2c7e1d468adc2acbda7208b93ec3f0c2f632390315bcb6ed68d831"
+        },
+        {
+          "area": 395,
+          "box": [
+            449,
+            109,
+            469,
+            147
+          ],
+          "sha256": "e326cca851e264b9c36ee1c69c64b3f2a2b949b103265a5746f0d20afdfc6d65"
+        },
+        {
+          "area": 944,
+          "box": [
+            323,
+            151,
+            354,
+            202
+          ],
+          "sha256": "6410c3efe44dd81892570a71752f2b3f7ccef582eb1eb921b5c3d5ceed457291"
+        },
+        {
+          "area": 1006,
+          "box": [
+            423,
+            158,
+            463,
+            215
+          ],
+          "sha256": "ae7043ceb4f87efe31a2a14d74d54a8040722205dd6097d0fe7535b64f72696e"
+        },
+        {
+          "area": 813,
+          "box": [
+            294,
+            189,
+            322,
+            238
+          ],
+          "sha256": "674b2a6adba6c835347d23f4ed5240e9d06bb0bdde9a64e1b1f7f027a2358337"
+        },
+        {
+          "area": 1619,
+          "box": [
+            410,
+            221,
+            458,
+            281
+          ],
+          "sha256": "93c9ad94f55c5baa6cdd883458e6e70f37ca3e8421069eea3bb68cdabe3f2844"
+        },
+        {
+          "area": 1348,
+          "box": [
+            356,
+            292,
+            409,
+            347
+          ],
+          "sha256": "946bffbbee7ddc30f8827a4db4233b92a25aad079080eaa7d3795352062436fe"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_out/8": {
+      "reason": "Gold break-curse rays, separated straw/weapon pieces inside the requested weapon transformation, or relief breath puff.",
+      "components": [
+        {
+          "area": 525,
+          "box": [
+            318,
+            120,
+            354,
+            150
+          ],
+          "sha256": "a97aee8669534ab8b31bb7d666b47febab10bc1739cc72a473ca4c9b646cb6e1"
+        },
+        {
+          "area": 465,
+          "box": [
+            324,
+            146,
+            357,
+            165
+          ],
+          "sha256": "78dd114d072790945a5691b687d5622ae85913390abeec06e2554f24b6658bb8"
+        }
+      ]
+    },
+    "hero_rookie/broom/fresh_broom_out/9": {
+      "reason": "Gold break-curse rays, separated straw/weapon pieces inside the requested weapon transformation, or relief breath puff.",
+      "components": [
+        {
+          "area": 2277,
+          "box": [
+            310,
+            153,
+            376,
+            208
+          ],
+          "sha256": "aca4af195f35c51b1157bf6a054104c2d34f27c4c1da5f619e324a81d6be9877"
+        }
+      ]
+    }
+  }
+}

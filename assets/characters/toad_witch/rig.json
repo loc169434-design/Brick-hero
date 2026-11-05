@@ -68,6 +68,66 @@
         256,
         190
       ]
+    },
+    "fresh_cast_toads": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_cast_broom": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_throw_potion": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_cackle": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_stomp_angry": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_drink_transform": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
     }
   }
 }

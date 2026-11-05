@@ -13,30 +13,47 @@ def frame(atlas,index):
 
 def run():
     manifest=json.loads((ROOT/'docs/ideas/issue41_intentional_fx.json').read_text())
-    rules=manifest['frames'];errors=[];cells=0;used=set();allowed=0
-    for cid in IDS:
+    rules=dict(manifest['frames']);extra=ROOT/'docs/ideas/issue42_intentional_fx.json'
+    if extra.exists():
+        new_rules=json.loads(extra.read_text())['frames']
+        assert not set(rules)&set(new_rules),'new FX exemptions must not replace the reviewed old masks'
+        rules.update(new_rules)
+    errors=[];cells=0;used=set();allowed=0
+    ids=IDS+(['hero_toad'] if (ROOT/'assets/characters/hero_toad/anim/anim.json').exists() else [])
+    entries=[]
+    for cid in ids:
         dest=ROOT/'assets/characters'/cid
         metadata=json.loads((dest/'anim/anim.json').read_text())
         for clip,m in metadata['clips'].items():
             atlas=Image.open(dest/'anim'/f'fresh_{clip}.png').convert('RGBA')
             for i in range(m['frames']):
-                key=f'{cid}/{clip}/{i}';f=frame(atlas,i);islands=large_islands(f)
-                entry=rules.get(key,{'components':[]});exempt=entry['components']
-                for p in exempt:
-                    assert entry.get('reason'),f'FX exception needs a reason: {key}'
-                    assert signature(p) in {signature(x) for x in islands},f'stale FX exception: {key}'
-                    allowed+=1
-                if exempt:used.add(key)
-                errors.extend({'cell':key,**p} for p in violations(f,exempt))
-                assert parts(f),f'empty actor: {key}'
-                # The two witch attacks contain no intentional detached effects.
-                if cid=='toad_witch' and clip=='attack' and i in [2,3]:
-                    assert not [p for p in parts(f) if not p['body'] and p['area']>2],f'stray witch speck: {i}'
-                if cid=='crocodile':
-                    body=next(p for p in parts(f) if p['body'])
-                    assert 498<=body['box'][3]<=502,f'feet registration: {key}'
-                    assert f.getchannel('A').crop((0,0,512,180)).getextrema()==(0,0),f'fragment above crocodile: {key}'
-                cells+=1
+                entries.append((cid,clip,i,f'{cid}/{clip}/{i}',frame(atlas,i)))
+    broom=ROOT/'assets/characters/hero_rookie/anim/broom'
+    if (broom/'anim.json').exists():
+        meta=json.loads((broom/'anim.json').read_text())
+        for clip,m in meta['clips'].items():
+            wears=['fresh'] if clip in meta['fresh_only'] else meta['wears']
+            for wear in wears:
+                atlas=Image.open(broom/f'{wear}_{clip}.png').convert('RGBA')
+                for i in range(m['frames']):entries.append(('hero_rookie',clip,i,f'hero_rookie/broom/{wear}_{clip}/{i}',frame(atlas,i)))
+    for cid,clip,i,key,f in entries:
+        islands=large_islands(f)
+        entry=rules.get(key,{'components':[]});exempt=entry['components']
+        for p in exempt:
+            assert entry.get('reason'),f'FX exception needs a reason: {key}'
+            assert signature(p) in {signature(x) for x in islands},f'stale FX exception: {key}'
+            allowed+=1
+        if exempt:used.add(key)
+        errors.extend({'cell':key,**p} for p in violations(f,exempt))
+        assert parts(f),f'empty actor: {key}'
+        # The two witch attacks contain no intentional detached effects.
+        if cid=='toad_witch' and clip=='attack' and i in [2,3]:
+            assert not [p for p in parts(f) if not p['body'] and p['area']>2],f'stray witch speck: {i}'
+        if cid=='crocodile':
+            body=next(p for p in parts(f) if p['body'])
+            assert 498<=body['box'][3]<=502,f'feet registration: {key}'
+            assert f.getchannel('A').crop((0,0,512,180)).getextrema()==(0,0),f'fragment above crocodile: {key}'
+        cells+=1
     assert used==set(rules),'unused FX frame exception'
     # Real regression fixtures remain in Git; no duplicate broken PNGs in repo.
     rejected=[]

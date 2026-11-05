@@ -26,6 +26,9 @@
     ],
     "gold_mark": [
       "gold_mark.png"
+    ],
+    "potion_bottle": [
+      "potion_bottle.png"
     ]
   },
   "clips": {
@@ -90,6 +93,27 @@
       "frame_height": 512,
       "frames": 4,
       "fps": 12,
+      "loop": false
+    },
+    "potion_bottle_idle": {
+      "frame_width": 512,
+      "frame_height": 512,
+      "frames": 4,
+      "fps": 10,
+      "loop": true
+    },
+    "potion_break": {
+      "frame_width": 512,
+      "frame_height": 512,
+      "frames": 4,
+      "fps": 14,
+      "loop": false
+    },
+    "potion_burst": {
+      "frame_width": 512,
+      "frame_height": 512,
+      "frames": 8,
+      "fps": 14,
       "loop": false
     }
   }

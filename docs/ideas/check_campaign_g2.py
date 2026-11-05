@@ -16,6 +16,9 @@ def run():
         if cid=='toad_witch_giant':expected.remove('victory');expected.add('special2')
         if cid=='fairy_fickle':expected={'idle','wave','laugh'}
         if cid=='fairy_crow':expected={'idle','talk'}
+        if (ROOT/'docs/ideas/toad_witch_spells_sources.json').exists():
+            if cid=='toad_witch':expected.update({'cast_toads','cast_broom','throw_potion','cackle','stomp_angry','drink_transform'})
+            if cid=='toad_witch_giant':expected.update({'burp_toads','victory'})
         check(set(meta['clips'])==expected,cid+' clip inventory')
         check(json.loads((dest/'rig.json').read_text())['feet']==[256,500],cid+' feet')
         for clip,m in meta['clips'].items():
@@ -56,8 +59,9 @@ def run():
     for name in ['ice_1','ice_2']:
         check(Image.open(ROOT/f'assets/board/obstacles/{name}.png').getpixel((128,128))[3]<128,'ice center reveals tile color')
     for name,m in obstacles['clips'].items():
-        im=Image.open(ROOT/f'assets/board/obstacles/{name}.png');check(im.size==(2048,512),'obstacle animation')
-        if not m['loop']:check(im.crop((1536,0,2048,512)).getchannel('A').getextrema()==(0,0),'break final alpha 0')
+        im=Image.open(ROOT/f'assets/board/obstacles/{name}.png');check(im.size==(2048,((m['frames']+3)//4)*512),'obstacle animation')
+        last=m['frames']-1;x=last%4*512;y=last//4*512
+        if not m['loop']:check(im.crop((x,y,x+512,y+512)).getchannel('A').getextrema()==(0,0),'break final alpha 0')
     map3=Image.open(ROOT/'assets/bg/campaign/segment_03.png').convert('RGB');map2=Image.open(ROOT/'assets/bg/campaign/segment_02.png').convert('RGB')
     oldmap2=Image.open(io.BytesIO(subprocess.check_output(['git','show','8241c12:assets/bg/campaign/segment_02.png'],cwd=ROOT))).convert('RGB')
     check(map2.crop((0,400,1080,1920)).tobytes()==oldmap2.crop((0,400,1080,1920)).tobytes(),'G1 map2 outside upper join unchanged')

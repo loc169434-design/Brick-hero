@@ -1,0 +1,57 @@
+{
+  "scene_01_potion_hero_toad": {
+    "seconds": 6.157142857142855,
+    "frames": 74,
+    "bytes": 765664,
+    "cues": {
+      "throw_release_frame": 6,
+      "external_vial_from_witch_frame": 8,
+      "hero_transform_in": 14,
+      "hero_transform_out": 14,
+      "order": [
+        "throw_potion",
+        "vial_flight",
+        "potion_burst",
+        "transform_in",
+        "idle",
+        "attack",
+        "transform_out"
+      ]
+    }
+  },
+  "scene_02_broom_curse": {
+    "seconds": 4.757142857142854,
+    "frames": 66,
+    "bytes": 911557,
+    "cues": {
+      "cast_release_frame": 6,
+      "broom_in_frames": 12,
+      "broom_attack_impact": 6,
+      "broom_out_frames": 12,
+      "order": [
+        "cast_broom",
+        "broom_spell",
+        "broom_in",
+        "attack",
+        "broom_out"
+      ]
+    }
+  },
+  "scene_03_transform_burp": {
+    "seconds": 3.900000000000001,
+    "frames": 39,
+    "bytes": 666590,
+    "cues": {
+      "witch_transform_frames": 16,
+      "burp_release_frame": 5,
+      "external_babies_from_giant_frame": 7,
+      "baby_toads": 2,
+      "order": [
+        "drink_transform",
+        "burp_toads",
+        "toad_hop",
+        "victory"
+      ]
+    }
+  }
+}

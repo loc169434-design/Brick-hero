@@ -1,0 +1,25 @@
+{
+  "passed": 1150,
+  "actor_frames": {
+    "toad_spitter": 32,
+    "goblin_archer": 32,
+    "swamp_leech": 32,
+    "goblin_thief": 32,
+    "goblin_bomber": 32,
+    "swamp_spider": 32,
+    "frost_slime": 32,
+    "crocodile": 32,
+    "toad_witch": 32,
+    "toad_witch_giant": 32,
+    "fairy_fickle": 12,
+    "fairy_crow": 8
+  },
+  "total_actor_frames": 340,
+  "tile_atlases": 48,
+  "levels": [
+    19,
+    36
+  ],
+  "previews": 167,
+  "chapters_2_3": "pending_user_style_approval"
+}

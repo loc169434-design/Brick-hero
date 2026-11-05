@@ -1,5 +1,5 @@
 {
-  "passed": 1161,
+  "passed": 1163,
   "actor_frames": {
     "toad_spitter": 32,
     "goblin_archer": 32,
@@ -21,6 +21,8 @@
     36
   ],
   "previews": 168,
+  "contiguity_cells": 340,
+  "unapproved_large_islands": 0,
   "chapter_2": "delivered_on_art/campaign-100-g1_at_5725afb",
   "chapter_3": {
     "style": "approved_v2_issue_41",

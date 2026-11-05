@@ -74,5 +74,8 @@ def run():
     check(story['style_review']=='approved_v2_issue_41','chapter3 uses approved V2')
     for panel in story['panels']:
         check(Image.open(ROOT/'assets/story/chapter_03'/panel).width==1080,'chapter3 panel resource')
-    result={'passed':n,'actor_frames':counts,'total_actor_frames':sum(counts.values()),'tile_atlases':48,'levels':[19,36],'previews':len(previews),'chapter_2':'delivered_on_art/campaign-100-g1_at_5725afb','chapter_3':{'style':'approved_v2_issue_41','panels':len(story['panels']),'after_level':36}};OUT.mkdir(exist_ok=True);(OUT/'validation.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
+    from check_issue41_contiguity import run as check_contiguity
+    topology=check_contiguity()
+    check(not topology['unapproved_large_islands'],'one connected actor silhouette; only reviewed intentional FX may detach')
+    result={'passed':n,'actor_frames':counts,'total_actor_frames':sum(counts.values()),'tile_atlases':48,'levels':[19,36],'previews':len(previews),'contiguity_cells':topology['actor_cells_checked'],'unapproved_large_islands':0,'chapter_2':'delivered_on_art/campaign-100-g1_at_5725afb','chapter_3':{'style':'approved_v2_issue_41','panels':len(story['panels']),'after_level':36}};OUT.mkdir(exist_ok=True);(OUT/'validation.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
 if __name__=='__main__':run()

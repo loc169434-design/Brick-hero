@@ -1,0 +1,2083 @@
+{
+  "review": "Visual audit of actual G2 cells after correcting source boundary contamination. Exact component masks only; no full actor/clip/frame exemptions.",
+  "alpha_threshold": 32,
+  "connectivity": 8,
+  "max_small_particle_pixels": 200,
+  "frames": {
+    "toad_spitter/attack/4": {
+      "reason": "Detached green poison projectile and droplets.",
+      "components": [
+        {
+          "area": 2434,
+          "box": [
+            73,
+            386,
+            154,
+            430
+          ],
+          "sha256": "6447ced5dde831a76499dfda8f58a196578168b12f9563bc3c18b36bd3025ef8"
+        },
+        {
+          "area": 265,
+          "box": [
+            142,
+            422,
+            165,
+            437
+          ],
+          "sha256": "15f5e158b3aab01fc4f12c471bb78e5b1ccc9a6c74e5f31b144ad87c86e39c7a"
+        }
+      ]
+    },
+    "toad_spitter/hurt/1": {
+      "reason": "Short recoil motion strokes beside body.",
+      "components": [
+        {
+          "area": 321,
+          "box": [
+            115,
+            367,
+            146,
+            412
+          ],
+          "sha256": "2d18d085d665bc08799895b28a2d6a6d9c1ed8d334ed4a125db6f0eb0668c696"
+        },
+        {
+          "area": 394,
+          "box": [
+            129,
+            371,
+            164,
+            425
+          ],
+          "sha256": "54a36afd1512ce76c40859a3600027118198cd1c0880e10c6ccdf0306f5949d0"
+        }
+      ]
+    },
+    "toad_spitter/hurt/2": {
+      "reason": "Short recoil motion strokes beside body.",
+      "components": [
+        {
+          "area": 293,
+          "box": [
+            127,
+            395,
+            153,
+            436
+          ],
+          "sha256": "e2bf869034a4dea281379fda7aa3f2cc12af12fcfa9339606586098827030013"
+        }
+      ]
+    },
+    "toad_spitter/special/1": {
+      "reason": "Throat vibration ticks or green poison stream and droplets.",
+      "components": [
+        {
+          "area": 236,
+          "box": [
+            386,
+            357,
+            405,
+            396
+          ],
+          "sha256": "16724ffa2ac391ca911938ea42627d18ac0f1fd62e46cb0c1501554fa81ed2d7"
+        },
+        {
+          "area": 227,
+          "box": [
+            97,
+            365,
+            114,
+            403
+          ],
+          "sha256": "1053589021c483b02444f591b02769e51b1d7faabe9944c945365334d9a2b578"
+        },
+        {
+          "area": 226,
+          "box": [
+            109,
+            368,
+            125,
+            409
+          ],
+          "sha256": "5ee7bfdbbf21527ac3d64603e038c6d46c2ff551918525c5e68b5d63c6085288"
+        }
+      ]
+    },
+    "toad_spitter/special/2": {
+      "reason": "Throat vibration ticks or green poison stream and droplets.",
+      "components": [
+        {
+          "area": 237,
+          "box": [
+            118,
+            369,
+            146,
+            406
+          ],
+          "sha256": "bcbe9464a0257756c69dec164ac5402cb243471067413dec12b1236ac5ed4a82"
+        }
+      ]
+    },
+    "toad_spitter/special/3": {
+      "reason": "Throat vibration ticks or green poison stream and droplets.",
+      "components": [
+        {
+          "area": 259,
+          "box": [
+            100,
+            338,
+            132,
+            372
+          ],
+          "sha256": "60bd102fbb9116d862771737ffbad8eedeb75962aafabad74b04db912c8424c9"
+        },
+        {
+          "area": 343,
+          "box": [
+            107,
+            343,
+            146,
+            389
+          ],
+          "sha256": "2376b164667635ff715747c440872f07289b7d0b5269837c720e564040187260"
+        }
+      ]
+    },
+    "toad_spitter/special/5": {
+      "reason": "Throat vibration ticks or green poison stream and droplets.",
+      "components": [
+        {
+          "area": 298,
+          "box": [
+            154,
+            328,
+            177,
+            347
+          ],
+          "sha256": "0dd7960e4fe08b5c5ed3186a6b13a8e60fcdc02cea59b8c41f0778984a733937"
+        },
+        {
+          "area": 241,
+          "box": [
+            56,
+            334,
+            78,
+            348
+          ],
+          "sha256": "51f6b4b68a3e019e47bafaecb8e8f78990d7c387e6321630bbc3ba93248259a1"
+        },
+        {
+          "area": 275,
+          "box": [
+            125,
+            338,
+            149,
+            355
+          ],
+          "sha256": "3d25b86bccb5e86e58b702178dd9634a6e29e542be9e47fe48b588e1b6f5e8ac"
+        },
+        {
+          "area": 256,
+          "box": [
+            190,
+            354,
+            211,
+            371
+          ],
+          "sha256": "11e6ee7d9adbb3c7333999dc9d24262416409569406afa500124c9296a357040"
+        },
+        {
+          "area": 311,
+          "box": [
+            153,
+            430,
+            176,
+            449
+          ],
+          "sha256": "2ae07469048a4514e1a1f4032650947d8769c5bf705733fdcb4004d60fc0d452"
+        },
+        {
+          "area": 628,
+          "box": [
+            40,
+            432,
+            81,
+            454
+          ],
+          "sha256": "9b54f51ad83f758613569ea0e4c0d4b71d62b10f9c68216c97cef4e92a944eaa"
+        },
+        {
+          "area": 273,
+          "box": [
+            85,
+            449,
+            108,
+            466
+          ],
+          "sha256": "f1c0e35f31058a7182f9d56ce330245ec26b781dfcf2fe4821bef853f1e59ea2"
+        }
+      ]
+    },
+    "toad_spitter/special/6": {
+      "reason": "Throat vibration ticks or green poison stream and droplets.",
+      "components": [
+        {
+          "area": 221,
+          "box": [
+            359,
+            363,
+            382,
+            397
+          ],
+          "sha256": "edfe3ddf3a1ecaec6b2cd1f9a80f78834d1a0da1f78124721f56fbb59125f87b"
+        },
+        {
+          "area": 213,
+          "box": [
+            119,
+            413,
+            136,
+            453
+          ],
+          "sha256": "b332b6cd3c8f3d4507797ec8a65ea9507794935028507bac3a17eaab5a78f08f"
+        }
+      ]
+    },
+    "toad_spitter/defeat/0": {
+      "reason": "Startle marks, breath puff, or dizzy star/spirals.",
+      "components": [
+        {
+          "area": 205,
+          "box": [
+            101,
+            398,
+            121,
+            424
+          ],
+          "sha256": "7bf4c258fd859dfc46c034450bef5385091d81b0db7be3a36aced579ab9f78f9"
+        }
+      ]
+    },
+    "toad_spitter/defeat/1": {
+      "reason": "Startle marks, breath puff, or dizzy star/spirals.",
+      "components": [
+        {
+          "area": 1370,
+          "box": [
+            72,
+            420,
+            122,
+            458
+          ],
+          "sha256": "a21a85cd43ba3d811fe42bb2bc1103387544d50694c9201c9f3ed4036af0d02f"
+        }
+      ]
+    },
+    "toad_spitter/defeat/2": {
+      "reason": "Startle marks, breath puff, or dizzy star/spirals.",
+      "components": [
+        {
+          "area": 957,
+          "box": [
+            81,
+            444,
+            120,
+            479
+          ],
+          "sha256": "fcdbaf57e7c975bb580bb080b717cbc376d3735d587f61da836bbc6ddacef1c5"
+        }
+      ]
+    },
+    "toad_spitter/defeat/3": {
+      "reason": "Startle marks, breath puff, or dizzy star/spirals.",
+      "components": [
+        {
+          "area": 701,
+          "box": [
+            169,
+            344,
+            246,
+            378
+          ],
+          "sha256": "590789959e27363d1a3e2414a80275d6339995697082a5509aedba4e785ff1dc"
+        },
+        {
+          "area": 842,
+          "box": [
+            120,
+            368,
+            158,
+            404
+          ],
+          "sha256": "974bf9a89e293c9b8f7946f1ff08d9fa320a02b12c6367bf8f268ae21a2e7c43"
+        }
+      ]
+    },
+    "toad_spitter/victory/1": {
+      "reason": "Yellow laugh rays or brown chuckle ticks.",
+      "components": [
+        {
+          "area": 879,
+          "box": [
+            122,
+            303,
+            162,
+            344
+          ],
+          "sha256": "a46c0066038fb901e6c13d7b58c9c58f21720ede725661e0bb366d2fe89f458f"
+        },
+        {
+          "area": 1107,
+          "box": [
+            94,
+            335,
+            145,
+            366
+          ],
+          "sha256": "53620c4e370a583a94864db1ab3605e3b50f908d5ee38c5f19fd9c886c81e2b4"
+        },
+        {
+          "area": 751,
+          "box": [
+            105,
+            374,
+            147,
+            405
+          ],
+          "sha256": "d74efc552b309341f92f3b081a161e46aa4347332f8ce5e0a8d6d7b731f58653"
+        }
+      ]
+    },
+    "toad_spitter/victory/2": {
+      "reason": "Yellow laugh rays or brown chuckle ticks.",
+      "components": [
+        {
+          "area": 1037,
+          "box": [
+            106,
+            308,
+            160,
+            374
+          ],
+          "sha256": "6e52094bc8bf97445ba2d309cf8a4aecf3eadaf907659ede7c54bee21825f262"
+        }
+      ]
+    },
+    "goblin_archer/attack/4": {
+      "reason": "Released green-tipped arrow and poison droplet.",
+      "components": [
+        {
+          "area": 2218,
+          "box": [
+            35,
+            277,
+            144,
+            332
+          ],
+          "sha256": "7669b8b8c2b2137e9a826fc590148ef85c90e4ddd811ac7a57d435a7382c8128"
+        },
+        {
+          "area": 356,
+          "box": [
+            87,
+            306,
+            114,
+            330
+          ],
+          "sha256": "934517be1f2fa7f09e0298ec9af32e3fa8f42cab8a169868d8f56dd5ab5b327e"
+        }
+      ]
+    },
+    "goblin_archer/special/2": {
+      "reason": "Released green-tipped arrow and poison droplet.",
+      "components": [
+        {
+          "area": 2124,
+          "box": [
+            38,
+            279,
+            143,
+            332
+          ],
+          "sha256": "e8d6cbd3f20c50b8db0915c082a978a461fc026daa10b1049f679eb719ac5a2b"
+        },
+        {
+          "area": 290,
+          "box": [
+            93,
+            309,
+            115,
+            331
+          ],
+          "sha256": "9bcfbdfa5538add0fb6535d4e5cc32e47bcfd5e97a2cd4c15692f59b719eae85"
+        }
+      ]
+    },
+    "goblin_archer/special/3": {
+      "reason": "Released green-tipped arrow and poison droplet.",
+      "components": [
+        {
+          "area": 2170,
+          "box": [
+            35,
+            278,
+            143,
+            332
+          ],
+          "sha256": "3517b8af0830072fd072236dd492966f1e7d29bc4953bf607a9c6f591425ee8e"
+        },
+        {
+          "area": 303,
+          "box": [
+            94,
+            310,
+            118,
+            331
+          ],
+          "sha256": "de330fb808a57c19a288b5b97d0ad89c1df51086ec852bd1766f42f1b4793af4"
+        }
+      ]
+    },
+    "goblin_archer/special/5": {
+      "reason": "Released green-tipped arrow and poison droplet.",
+      "components": [
+        {
+          "area": 2134,
+          "box": [
+            37,
+            277,
+            143,
+            331
+          ],
+          "sha256": "700ddf0d3e367baf9ba51df67671e68ed61e8df5f74c79562e58554cda2bebac"
+        },
+        {
+          "area": 288,
+          "box": [
+            92,
+            309,
+            116,
+            331
+          ],
+          "sha256": "50be53b79fef8b2b71436f89af64b9a89e8fa7ba461a007afa24ed6e401243d6"
+        }
+      ]
+    },
+    "swamp_leech/special/2": {
+      "reason": "Brown suction/expansion ticks beside mouth.",
+      "components": [
+        {
+          "area": 374,
+          "box": [
+            47,
+            289,
+            88,
+            306
+          ],
+          "sha256": "8fe9864cc61ce57c0acf7ce2b85ff39c02e45557f347ff55c9576e55531b09c7"
+        },
+        {
+          "area": 305,
+          "box": [
+            56,
+            309,
+            87,
+            326
+          ],
+          "sha256": "2d471e5a316ab1f28395e64d1f5d5e9b881e95c55d3f4a08d29cb0c0034e5975"
+        },
+        {
+          "area": 296,
+          "box": [
+            67,
+            325,
+            95,
+            351
+          ],
+          "sha256": "fef844b73cbddbe4cffcef455b271e55b06f828194871a37c9056e38397edf7f"
+        }
+      ]
+    },
+    "swamp_leech/special/3": {
+      "reason": "Brown suction/expansion ticks beside mouth.",
+      "components": [
+        {
+          "area": 479,
+          "box": [
+            42,
+            270,
+            87,
+            289
+          ],
+          "sha256": "ac5cf9914b978c4ef1e80dd05b3aefd46b7723c2fd0edd84d290847c31bd338e"
+        },
+        {
+          "area": 542,
+          "box": [
+            41,
+            300,
+            86,
+            317
+          ],
+          "sha256": "8f2f91337ca513b3052021a1ff736d800c41e307fef07a3448022eb88a802cdc"
+        },
+        {
+          "area": 428,
+          "box": [
+            60,
+            320,
+            93,
+            349
+          ],
+          "sha256": "f7acd64e1a86b03bdbff9a2cb42409c04e073137f5fb820aaf9fb6d58a63ee3d"
+        }
+      ]
+    },
+    "swamp_leech/special/4": {
+      "reason": "Brown suction/expansion ticks beside mouth.",
+      "components": [
+        {
+          "area": 572,
+          "box": [
+            37,
+            247,
+            87,
+            269
+          ],
+          "sha256": "a8175b1897c2a6eb4788a0c92bd0b541e8d35fa838fdad80b98094843b16a288"
+        },
+        {
+          "area": 667,
+          "box": [
+            36,
+            281,
+            86,
+            299
+          ],
+          "sha256": "4cacaaaa8b0644dc663b1e2b039aab521cf72cf8bcd837527b961b14f4fed438"
+        },
+        {
+          "area": 650,
+          "box": [
+            46,
+            307,
+            91,
+            336
+          ],
+          "sha256": "d47459884d9c51a47defef4e46bcdc6ff7c9eb39f8cf503c99b2f5c044a51c7a"
+        },
+        {
+          "area": 522,
+          "box": [
+            71,
+            330,
+            105,
+            368
+          ],
+          "sha256": "7910a4f71153eee37294968c8fc060c9f69d4486ee0512235f57e18266150493"
+        }
+      ]
+    },
+    "swamp_leech/defeat/1": {
+      "reason": "Startle ticks, sweat drop, or dizzy spiral.",
+      "components": [
+        {
+          "area": 371,
+          "box": [
+            83,
+            236,
+            105,
+            268
+          ],
+          "sha256": "8cfffc486c1f7ca3c2c73776180e3a4fcc2041f19fdcfc6a405a357075af695a"
+        },
+        {
+          "area": 304,
+          "box": [
+            59,
+            255,
+            89,
+            279
+          ],
+          "sha256": "d4c5c96b49b0df19b25c6b045ad105d8acb79a7dfc78918caee1a0eee510e5d1"
+        },
+        {
+          "area": 279,
+          "box": [
+            50,
+            283,
+            81,
+            296
+          ],
+          "sha256": "e4e0da365bfe498e5528fa4e8ddd0b6622ab09bfc6424c328b2f836601804b79"
+        }
+      ]
+    },
+    "swamp_leech/defeat/2": {
+      "reason": "Startle ticks, sweat drop, or dizzy spiral.",
+      "components": [
+        {
+          "area": 256,
+          "box": [
+            51,
+            291,
+            79,
+            321
+          ],
+          "sha256": "9745c1038ce6a86c3aec005aff7f1f97cf18a9431da754ebc8ee5297804c6c96"
+        },
+        {
+          "area": 384,
+          "box": [
+            59,
+            298,
+            100,
+            343
+          ],
+          "sha256": "0569687378c116e9112e62f05142f3ac72a19d0b6ba1e9e8017806601527b58b"
+        }
+      ]
+    },
+    "swamp_leech/defeat/3": {
+      "reason": "Startle ticks, sweat drop, or dizzy spiral.",
+      "components": [
+        {
+          "area": 866,
+          "box": [
+            66,
+            301,
+            113,
+            348
+          ],
+          "sha256": "99a439b004f2802e1dc68a55197aeb60787cadd49a742d928039d86068835afd"
+        }
+      ]
+    },
+    "swamp_leech/defeat/4": {
+      "reason": "Startle ticks, sweat drop, or dizzy spiral.",
+      "components": [
+        {
+          "area": 1977,
+          "box": [
+            67,
+            271,
+            143,
+            351
+          ],
+          "sha256": "e6cac32e30f15455a0d5bb41bd4e2a6958a2c492a6ce506b5da25b819a2696c7"
+        }
+      ]
+    },
+    "swamp_leech/victory/1": {
+      "reason": "Laugh ticks or gold sparkles.",
+      "components": [
+        {
+          "area": 603,
+          "box": [
+            100,
+            159,
+            127,
+            200
+          ],
+          "sha256": "6aa70d603780452bf8e3146f331b5233b624e571128887367c5209750e4b0096"
+        },
+        {
+          "area": 582,
+          "box": [
+            67,
+            183,
+            106,
+            217
+          ],
+          "sha256": "1e1b163012cdb64036e1c7ae12b187d344b8e27dd7e282ab2cb7a14fac2b9ca3"
+        },
+        {
+          "area": 477,
+          "box": [
+            55,
+            220,
+            94,
+            239
+          ],
+          "sha256": "0b9cfd95257e579e3abec60ef16aef59fff6cb43a6bd5950d9707a69bae5a9e9"
+        }
+      ]
+    },
+    "swamp_leech/victory/2": {
+      "reason": "Laugh ticks or gold sparkles.",
+      "components": [
+        {
+          "area": 455,
+          "box": [
+            102,
+            145,
+            126,
+            182
+          ],
+          "sha256": "522371e4a678421019ee6a0e14fc85c3f614ea13bb0f5d5c45d07a9990324b09"
+        },
+        {
+          "area": 547,
+          "box": [
+            71,
+            164,
+            107,
+            197
+          ],
+          "sha256": "4de08f3f44e763e120d98c9070446d3ba67c2447974b1e2a85d97ab58df81cf2"
+        },
+        {
+          "area": 472,
+          "box": [
+            58,
+            200,
+            96,
+            219
+          ],
+          "sha256": "319f83ea5cb985b670aa152b44127d33e7d79162c9dfe7fd8139f1c83ad2d89c"
+        }
+      ]
+    },
+    "swamp_leech/victory/3": {
+      "reason": "Laugh ticks or gold sparkles.",
+      "components": [
+        {
+          "area": 1692,
+          "box": [
+            352,
+            130,
+            412,
+            216
+          ],
+          "sha256": "5ba6815627143785d9764ca7c20f33e31e45e6248445e1575fc3c18721558df7"
+        },
+        {
+          "area": 1939,
+          "box": [
+            52,
+            164,
+            115,
+            258
+          ],
+          "sha256": "6e458d8e975206650520528b5cb456bf5084c8db843dd4d2a7a41c5f8be0f46a"
+        }
+      ]
+    },
+    "goblin_bomber/attack/4": {
+      "reason": "Thrown bomb with fuse and speed strokes.",
+      "components": [
+        {
+          "area": 3568,
+          "box": [
+            36,
+            189,
+            130,
+            278
+          ],
+          "sha256": "5390a94367762af221aab7e399aaaecfb831482a93a2cc326892ac61aead7d92"
+        },
+        {
+          "area": 533,
+          "box": [
+            108,
+            234,
+            195,
+            251
+          ],
+          "sha256": "0f442d5a3013b5350a8ff9611b3d9a1bc6a6d320f781f91ce7f7c61bba547eab"
+        },
+        {
+          "area": 428,
+          "box": [
+            111,
+            251,
+            185,
+            262
+          ],
+          "sha256": "5184f861c6b9628fb3cd3c629788d696fc40f120ad873522439dd4ee095fe602"
+        }
+      ]
+    },
+    "goblin_bomber/special/5": {
+      "reason": "Thrown bomb with fuse and speed strokes.",
+      "components": [
+        {
+          "area": 6571,
+          "box": [
+            37,
+            81,
+            146,
+            211
+          ],
+          "sha256": "59ab6a74fb4135ad578f299507be60b58830dafbb70b594351106b0a752be114"
+        },
+        {
+          "area": 579,
+          "box": [
+            117,
+            153,
+            195,
+            190
+          ],
+          "sha256": "49a8ee6052a2216eac95a65111427e6f0e825034f3c840e74f6bc16169b4476d"
+        },
+        {
+          "area": 380,
+          "box": [
+            118,
+            172,
+            176,
+            194
+          ],
+          "sha256": "b6af5ae49d62cbad84d7150499e2f191b9a12cd16cc2c9631e3f0db4c0035c01"
+        }
+      ]
+    },
+    "goblin_bomber/defeat/0": {
+      "reason": "Startle ticks or dizzy stars/spiral.",
+      "components": [
+        {
+          "area": 265,
+          "box": [
+            171,
+            115,
+            195,
+            147
+          ],
+          "sha256": "7624e123c3d9d787cb05eb867d383785a15170bd28be902ea2caa08946f302fe"
+        },
+        {
+          "area": 451,
+          "box": [
+            134,
+            124,
+            180,
+            158
+          ],
+          "sha256": "e702767c62e61937047fdbfb4cb9332081106250280cd08609515c4de7ddaaa7"
+        },
+        {
+          "area": 369,
+          "box": [
+            126,
+            162,
+            171,
+            174
+          ],
+          "sha256": "b68b81d45d9672a91aa504ed9505c3bd1e3fd08f66cee89a615dd5fce47cee4e"
+        }
+      ]
+    },
+    "goblin_bomber/defeat/4": {
+      "reason": "Startle ticks or dizzy stars/spiral.",
+      "components": [
+        {
+          "area": 1176,
+          "box": [
+            238,
+            266,
+            285,
+            309
+          ],
+          "sha256": "811ec2fff81b69668c6ea0a4658e86301733d0e469078d2000b18a3412f68c8a"
+        },
+        {
+          "area": 1539,
+          "box": [
+            80,
+            273,
+            155,
+            333
+          ],
+          "sha256": "6c57e7f8d741e0764d493949db5ac0c54fd9b1a9dcc627d0a7c7271f3a1324de"
+        },
+        {
+          "area": 1347,
+          "box": [
+            126,
+            274,
+            228,
+            312
+          ],
+          "sha256": "8b87593dd39c1eb9d54aa8bf0fc523326ca291bffca9a6c7944839feb152b15d"
+        }
+      ]
+    },
+    "goblin_bomber/defeat/5": {
+      "reason": "Startle ticks or dizzy stars/spiral.",
+      "components": [
+        {
+          "area": 2147,
+          "box": [
+            37,
+            344,
+            92,
+            397
+          ],
+          "sha256": "f3d4db7235fcb5405c15631d9983cc04f5f6597c988c0e67890b35c42a63f80d"
+        }
+      ]
+    },
+    "goblin_bomber/victory/1": {
+      "reason": "Brown/yellow laughing rays.",
+      "components": [
+        {
+          "area": 393,
+          "box": [
+            130,
+            145,
+            171,
+            174
+          ],
+          "sha256": "fa66ece0ebb08d3e6842fee55ad166691ee81a73f82ba55090cdf05540eb1a81"
+        },
+        {
+          "area": 470,
+          "box": [
+            111,
+            179,
+            163,
+            192
+          ],
+          "sha256": "0a83909c1eda6011cec6e2769fedc77deb3b68c8d9ea0cc971dc83d0412717ed"
+        },
+        {
+          "area": 413,
+          "box": [
+            121,
+            205,
+            165,
+            227
+          ],
+          "sha256": "403c07a308644832b394ec5926ae1bc6be15358a22129987d5bca18f2bdf5a12"
+        }
+      ]
+    },
+    "goblin_bomber/victory/3": {
+      "reason": "Brown/yellow laughing rays.",
+      "components": [
+        {
+          "area": 710,
+          "box": [
+            107,
+            91,
+            139,
+            137
+          ],
+          "sha256": "01a96124b4bb5b9be26af01c37d57ab0e3017dba33bc90a8be219430f14802fb"
+        },
+        {
+          "area": 738,
+          "box": [
+            69,
+            110,
+            117,
+            145
+          ],
+          "sha256": "507433c7bda16ad8072881d06f3048a2a10bbde4c672b9bd189659a2182a7c1a"
+        },
+        {
+          "area": 597,
+          "box": [
+            65,
+            150,
+            106,
+            170
+          ],
+          "sha256": "a10f5049caab9a772ff4ab78ab3ff143270b899b71adf5caa6e12537728b3053"
+        }
+      ]
+    },
+    "frost_slime/attack/3": {
+      "reason": "Sweat drop or attack ticks beside face.",
+      "components": [
+        {
+          "area": 1143,
+          "box": [
+            376,
+            370,
+            427,
+            403
+          ],
+          "sha256": "1151dfe72768722b1fda7cc331f755f8d82a768ddb69512788049580d8005596"
+        }
+      ]
+    },
+    "frost_slime/attack/4": {
+      "reason": "Sweat drop or attack ticks beside face.",
+      "components": [
+        {
+          "area": 686,
+          "box": [
+            64,
+            353,
+            104,
+            379
+          ],
+          "sha256": "73a6b6029acc5fa6d76d70f788e914743477a579154cb20d5373d0c9f12a3dbf"
+        },
+        {
+          "area": 587,
+          "box": [
+            48,
+            382,
+            83,
+            406
+          ],
+          "sha256": "aaa9db761415b709c94707228451b4d6a8ff42eb24966740d00415991acc1fc7"
+        }
+      ]
+    },
+    "frost_slime/hurt/1": {
+      "reason": "Short brown recoil strokes beside body.",
+      "components": [
+        {
+          "area": 619,
+          "box": [
+            399,
+            358,
+            431,
+            416
+          ],
+          "sha256": "0cd3455aca632d9297ffc80d6732c8f14ce1135928c8430a88fd55f19e124b39"
+        },
+        {
+          "area": 523,
+          "box": [
+            384,
+            378,
+            410,
+            435
+          ],
+          "sha256": "be001aabfe795a368851ee25626063cd04a9be9ce4d791d782d4e232af0d7475"
+        }
+      ]
+    },
+    "frost_slime/special/4": {
+      "reason": "Sneeze ticks, shake strokes, or separate drawn snowflakes.",
+      "components": [
+        {
+          "area": 388,
+          "box": [
+            48,
+            232,
+            95,
+            261
+          ],
+          "sha256": "c75aefe4b222a42cc00af824facaca7bb120092edff541e41a2d4dd8f8bdc551"
+        },
+        {
+          "area": 550,
+          "box": [
+            46,
+            247,
+            108,
+            291
+          ],
+          "sha256": "2fc9cb616f4307121fceb9e626faa885ab735a9421e4dc17488c433e9d2e0a18"
+        },
+        {
+          "area": 359,
+          "box": [
+            411,
+            403,
+            441,
+            446
+          ],
+          "sha256": "410134cb0d5eba9d7e8cfbc706aa00a4ad6492a2d66cd1f16454d41d8047b8b2"
+        },
+        {
+          "area": 360,
+          "box": [
+            400,
+            413,
+            426,
+            462
+          ],
+          "sha256": "c5a75826c06a37edc887eeb3f03ed0f73b85188aecbd7ba5593ad716bd1d3c4b"
+        }
+      ]
+    },
+    "frost_slime/special/5": {
+      "reason": "Sneeze ticks, shake strokes, or separate drawn snowflakes.",
+      "components": [
+        {
+          "area": 692,
+          "box": [
+            163,
+            230,
+            196,
+            281
+          ],
+          "sha256": "4321b602d8c71e465749ae7ec81e81e35e5d792738b56e0ad3f88cd7d2334ebe"
+        },
+        {
+          "area": 655,
+          "box": [
+            134,
+            261,
+            180,
+            296
+          ],
+          "sha256": "67002c31addaeae81ba3080bda60028833e6f5fa29909fd4ffadfd8c39ba273b"
+        },
+        {
+          "area": 4530,
+          "box": [
+            41,
+            271,
+            113,
+            352
+          ],
+          "sha256": "37cd2fb5bed148cc527d8978edf688f4fc128f16001e9fe08a5f380d04e01ced"
+        },
+        {
+          "area": 3793,
+          "box": [
+            52,
+            365,
+            119,
+            438
+          ],
+          "sha256": "5dbffa55f20146c34893b529d45bb67e11074e4bd49517ec65cd2739b23a221e"
+        }
+      ]
+    },
+    "frost_slime/defeat/0": {
+      "reason": "Startle ticks, sweat, dizzy spiral, or breath puff.",
+      "components": [
+        {
+          "area": 583,
+          "box": [
+            117,
+            161,
+            141,
+            208
+          ],
+          "sha256": "afc36d94151980f171a23db735051b04f54d7ea201a604698efc5b9134e9dc42"
+        },
+        {
+          "area": 653,
+          "box": [
+            82,
+            178,
+            124,
+            219
+          ],
+          "sha256": "0af6c24b85ee0cce9de13f547c8f9be0934095453d318fcb6fb1145d5a14dc11"
+        },
+        {
+          "area": 581,
+          "box": [
+            68,
+            211,
+            113,
+            236
+          ],
+          "sha256": "1447d298038716829d094d239cceec99fea9bee1a1ad25bfd8f179f39f7f9c55"
+        }
+      ]
+    },
+    "frost_slime/defeat/1": {
+      "reason": "Startle ticks, sweat, dizzy spiral, or breath puff.",
+      "components": [
+        {
+          "area": 879,
+          "box": [
+            338,
+            222,
+            390,
+            258
+          ],
+          "sha256": "057bf404b3cdd4aa7558d7313e304cf36acdbec906ccc537252b46a9afa8a200"
+        },
+        {
+          "area": 1027,
+          "box": [
+            356,
+            256,
+            418,
+            281
+          ],
+          "sha256": "6070c4aa37ff9c08828cfb575c82c8e2566b9e93a73b57e75401cfa0b32a3e7a"
+        }
+      ]
+    },
+    "frost_slime/defeat/4": {
+      "reason": "Startle ticks, sweat, dizzy spiral, or breath puff.",
+      "components": [
+        {
+          "area": 3303,
+          "box": [
+            74,
+            191,
+            164,
+            261
+          ],
+          "sha256": "a8486d6233b51b1fe7cb8f6bb35672883a608ef42bc2ceb8b1e73d349c4a7144"
+        },
+        {
+          "area": 1038,
+          "box": [
+            110,
+            246,
+            158,
+            298
+          ],
+          "sha256": "b37d340ceb9599f787c9170ea0f44d7c3f8fd21c52a96a700115e8205f393ad2"
+        }
+      ]
+    },
+    "frost_slime/defeat/5": {
+      "reason": "Startle ticks, sweat, dizzy spiral, or breath puff.",
+      "components": [
+        {
+          "area": 3285,
+          "box": [
+            63,
+            243,
+            132,
+            304
+          ],
+          "sha256": "3da6b9548b12b8178874f9d776769bed208dec6bfa198ba8d23b0169be6049e1"
+        },
+        {
+          "area": 711,
+          "box": [
+            75,
+            318,
+            106,
+            347
+          ],
+          "sha256": "6679ea9ead393870a4f01ec61bded1990123c17780eaa957d6ceee6e2ac903e7"
+        }
+      ]
+    },
+    "frost_slime/victory/1": {
+      "reason": "Gold laugh rays or chuckle ticks.",
+      "components": [
+        {
+          "area": 2011,
+          "box": [
+            100,
+            158,
+            159,
+            226
+          ],
+          "sha256": "5a4de102c34abe90ad5927974ff1f8ad5f570e4d519c4dbe7b7ff64cca99a901"
+        },
+        {
+          "area": 2067,
+          "box": [
+            67,
+            202,
+            135,
+            255
+          ],
+          "sha256": "2c4105989508dff3c1a3f9602c8e12427e7446873432da9284755eac0cc745c5"
+        }
+      ]
+    },
+    "frost_slime/victory/3": {
+      "reason": "Gold laugh rays or chuckle ticks.",
+      "components": [
+        {
+          "area": 1892,
+          "box": [
+            87,
+            91,
+            146,
+            156
+          ],
+          "sha256": "aa318b7c10178e6e5708f267c3b19091f95e2fe0847f83fd403e9394507b30c5"
+        },
+        {
+          "area": 1622,
+          "box": [
+            149,
+            91,
+            191,
+            147
+          ],
+          "sha256": "bff40e7713bc03a30ec15ede4903affadcaa7ea6b90ec6abaacc0c8c7fbf90f0"
+        },
+        {
+          "area": 1756,
+          "box": [
+            65,
+            138,
+            125,
+            180
+          ],
+          "sha256": "7f65381c212c335954d472edc0b608e670a37384f1405e793686fbe72fa218a4"
+        }
+      ]
+    },
+    "crocodile/attack/4": {
+      "reason": "Brown impact ticks beside snout.",
+      "components": [
+        {
+          "area": 306,
+          "box": [
+            65,
+            306,
+            95,
+            329
+          ],
+          "sha256": "0e4aa5af5ae4813ea13c18aeebf9eed464d009c93552b93782328bdfca488ec5"
+        },
+        {
+          "area": 308,
+          "box": [
+            58,
+            327,
+            88,
+            342
+          ],
+          "sha256": "0d34f986b19d0e39cb0eb8182ec7ca8225784bd754f15f3a02dcaf951b5f459c"
+        }
+      ]
+    },
+    "crocodile/special/5": {
+      "reason": "Brown head/tail speed and impact strokes.",
+      "components": [
+        {
+          "area": 387,
+          "box": [
+            65,
+            303,
+            84,
+            335
+          ],
+          "sha256": "3686f0a8165d7040d63be9a2c8253cc42bfb07a1e948ef0080fdd171444717cd"
+        },
+        {
+          "area": 334,
+          "box": [
+            349,
+            303,
+            389,
+            345
+          ],
+          "sha256": "d615d6929cdc4412591f5ea6cad62c01831973c8de621e189f837739fd5bc907"
+        },
+        {
+          "area": 521,
+          "box": [
+            36,
+            308,
+            67,
+            345
+          ],
+          "sha256": "44d44b89a129a2ec53b6e816820ad2f8e75951cfc4b8d905b4e9263ef3ba5bd5"
+        },
+        {
+          "area": 227,
+          "box": [
+            36,
+            344,
+            58,
+            359
+          ],
+          "sha256": "03502408945dd464abf8304fa097aabbed7e0fab54a1b6acdf0c407b251744b0"
+        },
+        {
+          "area": 370,
+          "box": [
+            425,
+            415,
+            476,
+            464
+          ],
+          "sha256": "9725b2dea4bb7f66d879ff0d5d0964465d55741a86a0b369bab3dcb6002e8708"
+        },
+        {
+          "area": 222,
+          "box": [
+            433,
+            449,
+            472,
+            476
+          ],
+          "sha256": "da137f5359fd7331ad9a3181fae62258cbe91d54cd62ad65ad956657a1984f74"
+        }
+      ]
+    },
+    "crocodile/special/6": {
+      "reason": "Brown head/tail speed and impact strokes.",
+      "components": [
+        {
+          "area": 204,
+          "box": [
+            421,
+            358,
+            453,
+            384
+          ],
+          "sha256": "c41e20cd8d08591c8d1977ae999940f3be6ede57276582db9c70c119997a9a17"
+        },
+        {
+          "area": 719,
+          "box": [
+            366,
+            363,
+            453,
+            417
+          ],
+          "sha256": "cff9478eb24832c75c2aee67157a630da81f9a5089f79f3fee911b173ef657f2"
+        }
+      ]
+    },
+    "crocodile/defeat/0": {
+      "reason": "Startle ticks or dizzy spirals above head.",
+      "components": [
+        {
+          "area": 268,
+          "box": [
+            87,
+            265,
+            111,
+            289
+          ],
+          "sha256": "b121fa79511663a32d8470ffbb2b98299c02f910a78dc6629d07225c06891878"
+        }
+      ]
+    },
+    "crocodile/defeat/4": {
+      "reason": "Startle ticks or dizzy spirals above head.",
+      "components": [
+        {
+          "area": 492,
+          "box": [
+            161,
+            363,
+            195,
+            388
+          ],
+          "sha256": "f29428dd90b5691e7e1851605959d7edb0abad961dc88f78388efe4437653831"
+        },
+        {
+          "area": 818,
+          "box": [
+            75,
+            366,
+            118,
+            402
+          ],
+          "sha256": "eb45a106809025bd464117814a6b60ec4f74874c19541fdea6c6ae1b562ceef4"
+        }
+      ]
+    },
+    "crocodile/victory/1": {
+      "reason": "Laugh ticks beside snout.",
+      "components": [
+        {
+          "area": 264,
+          "box": [
+            117,
+            243,
+            138,
+            267
+          ],
+          "sha256": "38edef2e945a5f487aa870f55afa75761b2bf7e8e1cdbb3f3afca4ce33407c0b"
+        },
+        {
+          "area": 289,
+          "box": [
+            100,
+            252,
+            124,
+            279
+          ],
+          "sha256": "83f068f24c5b27599ec5aff1a508cb8a2c80cf6c19da646ae3b154cc0be57462"
+        },
+        {
+          "area": 229,
+          "box": [
+            100,
+            303,
+            122,
+            324
+          ],
+          "sha256": "c584226d787e6005929d1cc4eb7d0530a0a9daec04732a5c6e1b2c5e0049b9dc"
+        }
+      ]
+    },
+    "toad_witch/special/4": {
+      "reason": "Purple summoning smoke bubbles beside staff and small summoned toads.",
+      "components": [
+        {
+          "area": 1580,
+          "box": [
+            54,
+            374,
+            102,
+            424
+          ],
+          "sha256": "e06e3bec69c4a43144d2592de0760e45d79773643fa95f6df086eeef2a6fc108"
+        }
+      ]
+    },
+    "toad_witch/special/5": {
+      "reason": "Purple summoning smoke bubbles beside staff and small summoned toads.",
+      "components": [
+        {
+          "area": 1344,
+          "box": [
+            85,
+            363,
+            127,
+            408
+          ],
+          "sha256": "ef0b5ce3844cedcfa67a6d122d6911541811fdc5c7ec8c88c67cee47b1d60add"
+        }
+      ]
+    },
+    "toad_witch/defeat/4": {
+      "reason": "Brown dizzy spiral above hat.",
+      "components": [
+        {
+          "area": 1634,
+          "box": [
+            147,
+            258,
+            192,
+            320
+          ],
+          "sha256": "daf713b6a8065c4e3bfd6f5a2e60fcea9a7773202390c429d5ea2351e65cc3c8"
+        }
+      ]
+    },
+    "toad_witch/defeat/5": {
+      "reason": "Brown dizzy spiral above hat.",
+      "components": [
+        {
+          "area": 1634,
+          "box": [
+            147,
+            258,
+            192,
+            320
+          ],
+          "sha256": "daf713b6a8065c4e3bfd6f5a2e60fcea9a7773202390c429d5ea2351e65cc3c8"
+        }
+      ]
+    },
+    "toad_witch_giant/attack/4": {
+      "reason": "Tongue spray droplets.",
+      "components": [
+        {
+          "area": 549,
+          "box": [
+            59,
+            311,
+            99,
+            333
+          ],
+          "sha256": "7d58bcfce362fbc5189aa21ec029ed7f5d27154ca9ec583081a34bc1970dd4c6"
+        },
+        {
+          "area": 356,
+          "box": [
+            35,
+            333,
+            62,
+            352
+          ],
+          "sha256": "ceee93fad0e364c93ed95da11b7e8d14f4c6344146137c8f3537efff99060987"
+        },
+        {
+          "area": 610,
+          "box": [
+            42,
+            429,
+            84,
+            453
+          ],
+          "sha256": "b0454c06ff42f8467b3368288236f7f2786c48d8e23b85552c5c23bcae12f910"
+        }
+      ]
+    },
+    "toad_witch_giant/hurt/2": {
+      "reason": "Brown impact rays above hat.",
+      "components": [
+        {
+          "area": 351,
+          "box": [
+            119,
+            168,
+            134,
+            211
+          ],
+          "sha256": "04d32cba710874781a33638468312c946da69d60071a1ac9418adf84840c091a"
+        },
+        {
+          "area": 527,
+          "box": [
+            74,
+            197,
+            111,
+            234
+          ],
+          "sha256": "31597a0f7f0684a59a70888220d882bddbf9f1b30bacf393fb9cb497a26ee708"
+        },
+        {
+          "area": 305,
+          "box": [
+            64,
+            239,
+            98,
+            257
+          ],
+          "sha256": "3ed4da58a6d635a1a4109d57b9128af1655f93def11cf4b1661e7cc6f59712d5"
+        }
+      ]
+    },
+    "toad_witch_giant/special/4": {
+      "reason": "Deliberate stomp dust and impact strokes below feet.",
+      "components": [
+        {
+          "area": 3550,
+          "box": [
+            54,
+            443,
+            137,
+            500
+          ],
+          "sha256": "4cfcc3d09fd008726f37b7c588f878cf30e9421cd58a1a3894216a0359e89e0f"
+        },
+        {
+          "area": 405,
+          "box": [
+            276,
+            444,
+            305,
+            491
+          ],
+          "sha256": "52b87f3e5296156bfc5eec6205568342f4529369565121c4a5d1d7cb71576194"
+        },
+        {
+          "area": 329,
+          "box": [
+            160,
+            451,
+            184,
+            493
+          ],
+          "sha256": "74bb2243f6d2e02a82c87438cf0b908f7a98f23bdab11ac5a7dd394cb3bd756c"
+        },
+        {
+          "area": 2037,
+          "box": [
+            336,
+            458,
+            402,
+            500
+          ],
+          "sha256": "a0452e464a93ee8f7157ae5170aa247c5da94bb01b3084552add69caca4be1cd"
+        },
+        {
+          "area": 311,
+          "box": [
+            295,
+            472,
+            321,
+            498
+          ],
+          "sha256": "6e0210feb9830aec778d2e88b6db636d3fc2a06dbc5ea14f536d4af236b85565"
+        }
+      ]
+    },
+    "toad_witch_giant/defeat/0": {
+      "reason": "Recoil ticks, dizzy stars/spiral, transformation smoke, or escape speed strokes.",
+      "components": [
+        {
+          "area": 328,
+          "box": [
+            67,
+            271,
+            91,
+            318
+          ],
+          "sha256": "ea8a4e1e0883ef57be3d66e49133ecad51fe67a580262d6deea6cf25d797aa89"
+        },
+        {
+          "area": 392,
+          "box": [
+            84,
+            285,
+            106,
+            337
+          ],
+          "sha256": "b1256e32a819aa2ed89736efc5f4b39f85f2ea5e192d85b2dfc10900ab4022f2"
+        },
+        {
+          "area": 321,
+          "box": [
+            376,
+            306,
+            408,
+            346
+          ],
+          "sha256": "fe71a4b8d23eaffab940a14e75437a548b079896d4d4957035148e3673c15f9c"
+        },
+        {
+          "area": 216,
+          "box": [
+            401,
+            309,
+            420,
+            340
+          ],
+          "sha256": "1d40f82700769d39107472237ef135d5b85d59926733cda0b208aa67affad942"
+        }
+      ]
+    },
+    "toad_witch_giant/defeat/3": {
+      "reason": "Recoil ticks, dizzy stars/spiral, transformation smoke, or escape speed strokes.",
+      "components": [
+        {
+          "area": 2937,
+          "box": [
+            132,
+            242,
+            213,
+            305
+          ],
+          "sha256": "42816f44858adc2f15edb0d517855ded0f6322e4b611305777bc779d062f9df2"
+        },
+        {
+          "area": 1517,
+          "box": [
+            323,
+            247,
+            375,
+            296
+          ],
+          "sha256": "6309917b502a09528ea209efbf7208971040cc87808d2910b6e3be8bf163731d"
+        },
+        {
+          "area": 1094,
+          "box": [
+            82,
+            303,
+            123,
+            343
+          ],
+          "sha256": "0ea41f17f9abe7c4de12686279a570ad7b226e6d9a73b4c058097184bbf756fa"
+        },
+        {
+          "area": 1016,
+          "box": [
+            363,
+            314,
+            400,
+            352
+          ],
+          "sha256": "37928c5830ec469a31b560a9b68ae4a21b60f54aedd809b50a6955c98a28bb7b"
+        }
+      ]
+    },
+    "toad_witch_giant/defeat/4": {
+      "reason": "Recoil ticks, dizzy stars/spiral, transformation smoke, or escape speed strokes.",
+      "components": [
+        {
+          "area": 3625,
+          "box": [
+            370,
+            284,
+            442,
+            352
+          ],
+          "sha256": "2fca0d374f9878a5c4112de4c6451d2292dc1a31af92db02b64adae901427d78"
+        },
+        {
+          "area": 654,
+          "box": [
+            408,
+            359,
+            436,
+            392
+          ],
+          "sha256": "d700f434e81cc3d7ee255010d55fcdecd6ffc94f0d16db9e2e09ad468f9008db"
+        }
+      ]
+    },
+    "toad_witch_giant/defeat/5": {
+      "reason": "Recoil ticks, dizzy stars/spiral, transformation smoke, or escape speed strokes.",
+      "components": [
+        {
+          "area": 564,
+          "box": [
+            134,
+            270,
+            171,
+            289
+          ],
+          "sha256": "c0b392eb8682d70f2f80906e2a1698ff6628cf935997edf545c93750245fbced"
+        },
+        {
+          "area": 266,
+          "box": [
+            134,
+            309,
+            154,
+            331
+          ],
+          "sha256": "379932e77b36a666472fc8e663569a41dd1042143a6dc40a6fd206473a125b9d"
+        },
+        {
+          "area": 438,
+          "box": [
+            155,
+            491,
+            220,
+            500
+          ],
+          "sha256": "a3930ed493840e5cd0b934fef363743d9a4d85cc34ab50a06701ac512ef1b3e1"
+        }
+      ]
+    },
+    "toad_witch_giant/special2/2": {
+      "reason": "Green poison-rain droplets above hat.",
+      "components": [
+        {
+          "area": 513,
+          "box": [
+            156,
+            95,
+            193,
+            127
+          ],
+          "sha256": "e5f060bf3cf8d5caade3495d3402656b5cde6bbac18d6153662cf83b787d7456"
+        },
+        {
+          "area": 2418,
+          "box": [
+            310,
+            97,
+            371,
+            193
+          ],
+          "sha256": "adef00b89b821dde939600701b1a215c68e1673ead19e1781b36bc8badc9a2ea"
+        },
+        {
+          "area": 814,
+          "box": [
+            272,
+            98,
+            301,
+            140
+          ],
+          "sha256": "cd334b71ab7cf7d8a917d28fa8de9ff00e3620fce51e7dd1f0140e3e8c355cd6"
+        },
+        {
+          "area": 2153,
+          "box": [
+            65,
+            100,
+            146,
+            161
+          ],
+          "sha256": "6560cdb2c5184b155ee79dbf13b6f483e2cd67c7150003462fadb04a7d6e976e"
+        },
+        {
+          "area": 3364,
+          "box": [
+            162,
+            101,
+            246,
+            198
+          ],
+          "sha256": "682cdb53fddd994436a3bb3415ca09365eeb216ef498ceeb9a92dd36cc19ac0a"
+        },
+        {
+          "area": 1754,
+          "box": [
+            357,
+            101,
+            423,
+            167
+          ],
+          "sha256": "9d3912813c36c093386cb869618290d8c35a027d0b5b11ac1c20bd794b52657e"
+        },
+        {
+          "area": 2317,
+          "box": [
+            241,
+            104,
+            274,
+            198
+          ],
+          "sha256": "eca2b211d2f981b12b906d7004dc7db60bb7ba5342370946cc95bde1d5415b2a"
+        },
+        {
+          "area": 281,
+          "box": [
+            130,
+            136,
+            148,
+            157
+          ],
+          "sha256": "3a6b365aa19b625e5f744b03aeb0675809730cf0cc271b1d0d67669c70434986"
+        },
+        {
+          "area": 1178,
+          "box": [
+            91,
+            167,
+            126,
+            221
+          ],
+          "sha256": "8e21dda924f95457b01f3e780ca212d8273e9469ae779359b35336c0255a1c72"
+        },
+        {
+          "area": 748,
+          "box": [
+            400,
+            183,
+            429,
+            221
+          ],
+          "sha256": "92a88531612324cafe17ecf5e46d6efca8fb6d4a829060ec51e3618d87ee86c4"
+        },
+        {
+          "area": 317,
+          "box": [
+            303,
+            184,
+            320,
+            210
+          ],
+          "sha256": "5fc1eb3e23c00dffacb8ae045d54c77ac7e08a6cf6c973a055d864f8bd8ab565"
+        },
+        {
+          "area": 849,
+          "box": [
+            137,
+            206,
+            162,
+            250
+          ],
+          "sha256": "e57acefb729c48e655d86852a7a6e4174d8c82bc0634288817dfea194497db8c"
+        }
+      ]
+    },
+    "fairy_fickle/wave/2": {
+      "reason": "Purple hand-drawn wand motion arcs.",
+      "components": [
+        {
+          "area": 769,
+          "box": [
+            55,
+            98,
+            179,
+            129
+          ],
+          "sha256": "e6f027a9f74e70f2c7cd65b5c7abe67aae2fefbd5e4ddb387bba10cabbbfe790"
+        },
+        {
+          "area": 954,
+          "box": [
+            43,
+            117,
+            123,
+            167
+          ],
+          "sha256": "b6420386fc31378e29aa3ede74eb3a1996946792ef9e5bae2a0033918d84357e"
+        },
+        {
+          "area": 518,
+          "box": [
+            88,
+            129,
+            175,
+            155
+          ],
+          "sha256": "60f475dda1081661390b96f8fdff67813c835be5190507ae685d7f413be06afd"
+        },
+        {
+          "area": 455,
+          "box": [
+            36,
+            255,
+            94,
+            297
+          ],
+          "sha256": "bed35d4834464ec2aef2cf639dd5dd0a418baefbf69b76b1b1e5b4644747547f"
+        },
+        {
+          "area": 514,
+          "box": [
+            36,
+            282,
+            118,
+            318
+          ],
+          "sha256": "5de4b344c27af750b4284773e123e33127c0041670019643889e8c262ff635ef"
+        }
+      ]
+    },
+    "fairy_crow/idle/2": {
+      "reason": "Small brown caw ticks beside beak.",
+      "components": [
+        {
+          "area": 232,
+          "box": [
+            88,
+            283,
+            114,
+            320
+          ],
+          "sha256": "088628154481040e90172071251510b704659d1f6a5b22477748211c78459971"
+        },
+        {
+          "area": 205,
+          "box": [
+            68,
+            286,
+            87,
+            320
+          ],
+          "sha256": "730ffbd6e4ec9a0c94c894a305cbce8a5408fb2e7cfefcf0f9222942af0ac085"
+        }
+      ]
+    },
+    "fairy_crow/talk/2": {
+      "reason": "Small brown caw ticks beside beak.",
+      "components": [
+        {
+          "area": 354,
+          "box": [
+            96,
+            182,
+            121,
+            206
+          ],
+          "sha256": "b69292075ebb39214168e2dbec046bdbecef49d98a7e923ee97e9c5c9885bcac"
+        },
+        {
+          "area": 650,
+          "box": [
+            75,
+            204,
+            112,
+            227
+          ],
+          "sha256": "c348dd44e6c9769ceb4429065b84827ffeb437b26b2d1766b97f0f236ece08ab"
+        },
+        {
+          "area": 424,
+          "box": [
+            80,
+            236,
+            112,
+            258
+          ],
+          "sha256": "989414ac177a1c4df495959af497b2ed999facae4ca7fa9611c979ba7e2d2046"
+        }
+      ]
+    }
+  }
+}

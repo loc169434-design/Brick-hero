@@ -56,3 +56,7 @@ Theo issue #41. Nét V2 chương 1 đã được duyệt. [Chương 3](../issue4
 [Ghép nhân vật thử trên nền đầm lầy](swamp_fighters_layout.jpg) · [Trại Goblin](goblin_camp_fighters_layout.jpg) — ảnh ghép offline, không phải screenshot game.
 
 [NPC ông già và Bin](npc_stills.jpg) · [Đom đóm](ambient_firefly.gif) · [Bong bóng](ambient_bubble.gif) · [Lá sen](ambient_lotus.gif)
+
+## Sửa lỗi đóng atlas sau duyệt
+
+[Chi tiết sửa và kiểm liên thông](../issue41_atlas_repair.md) · [Cá Sấu attack](crocodile_attack.gif) · [special](crocodile_special.gif) · [defeat](crocodile_defeat.gif) · [Mụ Cóc attack](toad_witch_attack.gif). Đã kiểm liên thông đủ 340 ô; không còn mảnh lớn chưa được đối chiếu.

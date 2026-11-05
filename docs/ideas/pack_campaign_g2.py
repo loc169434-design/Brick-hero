@@ -16,6 +16,13 @@ def source(key):return Path(MANIFEST['sources'][key]['path'])
 def cells(path,cols,rows):
     im=Image.open(path).convert('RGBA')
     return [im.crop((round(x*im.width/cols),round(y*im.height/rows),round((x+1)*im.width/cols),round((y+1)*im.height/rows))) for y in range(rows) for x in range(cols)]
+def actor_cells(cid,rows=8):
+    info=MANIFEST['sources'][cid];im=Image.open(source(cid)).convert('RGBA')
+    # Generated sheets need not have equally spaced rows. Never split a figure
+    # at an assumed grid boundary; preserve the entire drawing in a measured box.
+    raw=([im.crop(box) for box in info['crop_boxes']] if 'crop_boxes' in info else cells(source(cid),4,rows))
+    for index,box in info.get('crop_overrides',{}).items():raw[int(index)]=im.crop(box)
+    return raw
 def register(raw,size=512,fit=440,center=None):
     boxes=[f.getchannel('A').point(lambda a:255 if a>64 else 0).getbbox() for f in raw]
     assert all(boxes),'empty source drawing'
@@ -69,7 +76,7 @@ def character(cid,raw,specs=SPEC):
 def monsters(ids):
     for cid in ids:
         specs=SPEC if cid!='toad_witch_giant' else SPEC[:-1]+[('special2',28,4,8,False,2)]
-        character(cid,cells(source(cid),4,8),specs)
+        character(cid,actor_cells(cid),specs)
 
 def tiles():
     manifest=json.loads((ROOT/'assets/tiles/animation_pack.json').read_text())
@@ -108,7 +115,7 @@ def tiles():
         lines.append(']');(dest/f'sprite_frames_{color}.tres').write_text('\n\n'.join(lines)+'\n')
 
 def npcs():
-    character('fairy_fickle',cells(source('npc_fairy_fickle'),4,3),[('idle',0,4,8,True,None),('wave',4,4,8,False,None),('laugh',8,4,8,False,None)])
+    character('fairy_fickle',actor_cells('npc_fairy_fickle',3),[('idle',0,4,8,True,None),('wave',4,4,8,False,None),('laugh',8,4,8,False,None)])
     character('fairy_crow',cells(source('npc_fairy_crow'),4,2),[('idle',0,4,8,True,None),('talk',4,4,8,False,None)])
     raw=register(cells(source('npc_swamp_npcs'),3,2));specs={'swamp_old_man':{'idle':0,'talk':1},'bin':{'idle':2,'talk':3,'cheer':4}}
     for cid,poses in specs.items():

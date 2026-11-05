@@ -1,0 +1,29 @@
+{
+  "alpha_threshold": 32,
+  "connectivity": 8,
+  "max_small_particle_pixels": 200,
+  "actor_cells_checked": 340,
+  "reviewed_fx_components": 174,
+  "unapproved_large_islands": [],
+  "baseline": "10ccc4c",
+  "old_broken_crocodile_cells_rejected": [
+    "crocodile/attack/1",
+    "crocodile/attack/2",
+    "crocodile/attack/3",
+    "crocodile/attack/4",
+    "crocodile/hurt/1",
+    "crocodile/hurt/2",
+    "crocodile/special/1",
+    "crocodile/special/2",
+    "crocodile/special/3",
+    "crocodile/special/4",
+    "crocodile/special/5",
+    "crocodile/special/6",
+    "crocodile/defeat/0",
+    "crocodile/defeat/1",
+    "crocodile/defeat/2",
+    "crocodile/defeat/3",
+    "crocodile/defeat/4",
+    "crocodile/defeat/5"
+  ]
+}

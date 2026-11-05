@@ -46,11 +46,11 @@ Hai nền `assets/bg/swamp/` và `assets/bg/goblin_camp/`, mỗi nền bốn l�
 
 Diễn biến: ông già báo Bin bị bắt → mở lồng cứu Bin trong trại Goblin → Bin đưa sách chiêu bìa tím có dấu sét → Mụ Cóc uống thuốc → cóc khổng lồ quất lưỡi, hiệp sĩ che cho Bin → mụ thu nhỏ bỏ chạy → nhận Giáp Kháng Độc màu xanh, cùng Bin đi về rừng đen. Giáp được cầm trên tay, hiệp sĩ vẫn mặc áo xanh khăn đỏ. Giữ đúng tóc/áo/túi của Bin, mũ ông già, mũ sen/gậy nấm/cóc vai của mụ. Không có chữ thoại trong ảnh.
 
-[Gallery chương 3](issue41_chapter3_review/index.md) · [Kiểm truyện](issue41_chapter3_review/validation.json). Bản đọc webtoon **528.513 byte**, các preview GIF/JPG dưới 2 MB. Nguồn vẽ mới lớn nằm ngoài repo, đường dẫn và SHA-256 ở `story_chapter_03_sources.json`; script chỉ co đồng đều toàn khung và ghép ảnh đọc thử, không dựng tư thế bằng code. Style đã được duyệt; chưa tuyên bố người dùng duyệt riêng nội dung từng khung chương 2–3.
+[Gallery chương 3](issue41_chapter3_review/index.md) · [Kiểm truyện](issue41_chapter3_review/validation.json). Bản đọc webtoon **528.513 byte**, các preview GIF/JPG dưới 2 MB. Nguồn vẽ mới lớn nằm ngoài repo, đường dẫn và SHA-256 ở `story_chapter_03_sources.json`; script chỉ co đồng đều toàn khung và ghép ảnh đọc thử, không dựng tư thế bằng code. Người dùng đã xác nhận duyệt truyện chương 1–3 nét V2 trong lượt giao sửa atlas tiếp theo.
 
 ## Kiểm tra
 
-- [Kiểm asset](campaign_g2_review/validation.json): **1.161 điều kiện đạt**; inventory, số ô/kích thước/alpha, VRAM import, victory về idle, manifest gạch cũ không đổi, băng nhìn xuyên tâm, overlap đúng pixel, cờ node và mọi preview dưới **2.000.000 byte**.
+- [Kiểm asset](campaign_g2_review/validation.json): **1.163 điều kiện đạt**; inventory, số ô/kích thước/alpha, VRAM import, victory về idle, manifest gạch cũ không đổi, băng nhìn xuyên tâm, overlap đúng pixel, cờ node và mọi preview dưới **2.000.000 byte**.
 - [Smoke Godot 4.7.2](campaign_g2_review/resource_smoke.log): **65 clip** × ba fallback wear, **48 atlas gạch**, bốn SpriteFrames, 14 texture nền/ambient, **7 panel chương 3**; **0 failures**. Có tải cả vật cản và ảnh đứng NPC.
 - [Kiểm truyện riêng](issue41_chapter3_review/validation.json): **49 điều kiện đạt**, thứ tự/kích thước/trigger/approval/source hash/preview.
 - [Suite hiện có](campaign_g2_review/godot_tests.log): **93 passed, 0 failed**.
@@ -82,3 +82,7 @@ Dùng Godot **4.7.2**, thiết lập XDG writable như onboarding nếu cần. K
 Đã push các nhóm G2: `334ce28` (hai quái ưu tiên), `27732eb` (gạch/vật cản/nền/map), `1c77f07` (quái còn lại và hai pha Mụ Cóc), `cbb0467` (NPC), `4942a02` (kiểm tra/bàn giao). Phần 0 ở nhánh G1 commit `8241c12` đã push trước đó.
 
 Lệnh tạo draft PR G2 và comment vào #41 đều trả `Post "https://api.github.com/graphql": Forbidden`. **Chưa tạo được PR G2, chưa đăng comment, chưa merge.** [Nội dung comment lưu sẵn](campaign_g2_issue41_comment.md). Có thể mở từ [trang so sánh main…art/campaign-100-g2](https://github.com/loc169434-design/Brick-hero/compare/main...art/campaign-100-g2?expand=1). Không tự đóng issue; còn bước review/tích hợp code của Claude. Nét V2 đã được người dùng duyệt, truyện chương 2–3 đã xuất và kiểm tra.
+
+## Sửa atlas sau duyệt — tiếp sau `10ccc4c`
+
+Đã đóng lại đủ sáu clip Cá Sấu theo biên hàng nguồn thực tế, làm sạch attack 2–3 của Mụ Cóc. Luật mới quét **340 ô** theo phần alpha liên thông, từ chối mảnh rời **>200 pixel** trừ từng hiệu ứng có mask được đối chiếu rõ. Cùng luật bắt đủ **18 ô cá sấu lỗi ở commit cũ**. Khi chạy luật trên cả bộ, đã sửa thêm các mảnh lẫn ô cùng nguyên nhân ở Cóc Phun Độc và bốn ô của các actor khác. [Chi tiết, GIF và lệnh kiểm](issue41_atlas_repair.md) · [Kết quả liên thông](campaign_g2_review/contiguity_validation.json). Godot smoke 0 failures; suite 93/93.

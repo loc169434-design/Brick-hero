@@ -1,0 +1,168 @@
+{
+  "base": "36db7f907de9ecba58e4daffde2fb47e17d96fe5",
+  "sources": {
+    "toad_spitter": {
+      "path": "/workspace/generated_images/exec-9a88cba0-d2f8-459c-872d-741237b1942f.png",
+      "sha256": "9083d120db5b27adb0c62ab4359790f4aaa918b678814a7fc6af645e3612cd84"
+    },
+    "goblin_archer": {
+      "path": "/workspace/generated_images/exec-9b291992-23a5-4272-b3a0-7236143244c9.png",
+      "sha256": "81cd740d60d576c0c6719fd2499c5ae822d1c176901d62bc6990e64d1206cbe3"
+    },
+    "swamp_leech": {
+      "path": "/workspace/generated_images/exec-143a9372-a3d7-4e71-9b76-c88c5815830a.png"
+    },
+    "goblin_thief": {
+      "path": "/workspace/generated_images/exec-8899cd95-fa5c-4821-b08f-58730631f4c6.png"
+    },
+    "goblin_bomber": {
+      "path": "/workspace/generated_images/exec-07a58b4d-7f12-47a6-9b2a-77fd32868d20.png"
+    },
+    "swamp_spider": {
+      "path": "/workspace/generated_images/exec-f549252b-1bb5-48ff-bb2f-87a32f125e96.png"
+    },
+    "frost_slime": {
+      "path": "/workspace/generated_images/exec-d1217c29-18e5-444a-92a0-5396df9685c5.png"
+    },
+    "crocodile": {
+      "path": "/workspace/generated_images/exec-a0c371bd-6179-4bd1-a0a4-7771e2ef010b.png"
+    },
+    "toad_witch": {
+      "path": "/workspace/generated_images/exec-0c298456-1110-4760-8f5a-1584d5e630ec.png"
+    },
+    "toad_witch_giant": {
+      "path": "/workspace/generated_images/exec-36117db6-5ac6-40ab-8b95-14ee339cc3b7.png"
+    },
+    "tile_red_0": {
+      "path": "/workspace/generated_images/exec-bd2d13c2-24e9-4918-bf5c-eb1472172346.png"
+    },
+    "tile_red_1": {
+      "path": "/workspace/generated_images/exec-9fc56afe-e264-4418-8953-fb986b10fd7d.png"
+    },
+    "tile_green_0": {
+      "path": "/workspace/generated_images/exec-cc99a7c0-fdd7-40a6-a51f-1490ba85ad55.png"
+    },
+    "tile_green_1": {
+      "path": "/workspace/generated_images/exec-ac4bbe67-88a9-4956-bc91-3a4ed34412f9.png"
+    },
+    "tile_yellow_0": {
+      "path": "/workspace/generated_images/exec-3d359332-60e2-422e-aedc-d97d13407cf8.png"
+    },
+    "tile_yellow_1": {
+      "path": "/workspace/generated_images/exec-8bbb12ce-34b2-4b2e-bae4-a17bbf9d4596.png"
+    },
+    "tile_purple_0": {
+      "path": "/workspace/generated_images/exec-b387a3c5-c1a2-488d-b87b-395eb05a5b64.png"
+    },
+    "tile_purple_1": {
+      "path": "/workspace/generated_images/exec-b807ec83-7797-460f-911a-f623b65d684d.png"
+    },
+    "npc_fairy_fickle": {
+      "path": "/workspace/generated_images/exec-5b8694a8-14da-41e7-a209-de5b0ac74fe6.png"
+    },
+    "npc_fairy_crow": {
+      "path": "/workspace/generated_images/exec-501e8bea-e77d-4c36-a1d1-263222f3c9ea.png"
+    },
+    "npc_swamp_npcs": {
+      "path": "/workspace/generated_images/exec-044fa282-30fe-46c0-936d-3ef094ef8d42.png"
+    },
+    "bg_swamp": {
+      "path": "/workspace/generated_images/exec-cea48979-8bb9-4436-b39d-c60fe8dbb19f.png"
+    },
+    "layers_swamp": {
+      "path": "/workspace/generated_images/exec-0ac89d53-116c-4e4e-addb-314b80ef53c4.png"
+    },
+    "bg_goblin_camp": {
+      "path": "/workspace/generated_images/exec-fce6f61d-e00a-4ca0-827d-95e8e9d81e0a.png"
+    },
+    "layers_goblin_camp": {
+      "path": "/workspace/generated_images/exec-cedfdb0e-1ade-4930-ac38-60ff5c5580c8.png"
+    },
+    "sky": {
+      "path": "/workspace/generated_images/exec-040eee7b-cf55-426e-9682-f822b96d74fc.png"
+    },
+    "obstacles": {
+      "path": "/workspace/generated_images/exec-d5c7e1ad-1028-4308-8ba9-51cda056f568.png"
+    },
+    "ambient": {
+      "path": "/workspace/generated_images/exec-a9c8633b-eb67-49db-ab7d-a59790dfd925.png"
+    },
+    "map": {
+      "path": "/workspace/generated_images/exec-97ec100e-611a-468c-b0d8-6c02a434a4e3.png"
+    }
+  },
+  "map_nodes": [
+    [
+      540,
+      1840
+    ],
+    [
+      575,
+      1700
+    ],
+    [
+      425,
+      1585
+    ],
+    [
+      287,
+      1493
+    ],
+    [
+      780,
+      1401
+    ],
+    [
+      460,
+      1309
+    ],
+    [
+      299,
+      1206
+    ],
+    [
+      690,
+      1114
+    ],
+    [
+      804,
+      1033
+    ],
+    [
+      299,
+      976
+    ],
+    [
+      540,
+      875
+    ],
+    [
+      552,
+      747
+    ],
+    [
+      322,
+      666
+    ],
+    [
+      690,
+      574
+    ],
+    [
+      517,
+      471
+    ],
+    [
+      299,
+      390
+    ],
+    [
+      690,
+      299
+    ],
+    [
+      528,
+      161
+    ]
+  ]
+}

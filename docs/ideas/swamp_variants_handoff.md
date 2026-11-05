@@ -4,7 +4,13 @@ Tiếp trên `art/campaign-100-g2` từ **`2f51e32`**, theo hai comment về khu
 
 Khi bắt đầu, G2 vẫn còn bản cóc trơn không khung. Đã hoàn thiện **A theo khuôn được yêu cầu** để làm mẫu so đúng; sau đó làm **B** bỏ huy hiệu và đổi bảng màu. Cả hai đều có đủ tài nguyên, không chỉ là mockup bốn ô đứng.
 
-## Ảnh để chọn
+## Phương án đã duyệt
+
+Ngày 2026-11-05, người dùng chọn **B đúng như ảnh bốn ô đã gửi**, tương ứng bộ tại commit `f22f711`: san hô đeo khăn, xanh ngọc đội lá sen, mật ong đội vương miện và chàm đội mũ phù thủy. Giữ nét cóc láu cá, da sần, khung và bóng khối hiện có. Bộ đầy đủ dùng family **`swamp_b`**, đường dẫn **`assets/tiles/swamp_b/`**. Các bản thử nét dễ thương chỉ là nghiên cứu; mẫu được duyệt là B hiện có.
+
+Claude dùng family `swamp_b` khi nối bộ gạch đầm lầy vào game. A được giữ lại để đối chiếu. Lần chốt này chỉ cập nhật bàn giao vì tài nguyên B đã đúng ảnh người dùng chọn.
+
+## Ảnh đối chiếu
 
 **[So sánh ba hàng đầy đủ](swamp_variants_review/comparison_3_rows.jpg)**: Goblin/Orc hiện tại → A → B. Mỗi hàng có cả **128 px màu, 46 px màu, 128 px xám, 46 px xám**; các ô giữ đúng số pixel ghi trong ảnh.
 
@@ -64,7 +70,7 @@ Hai thư mục có cùng cấu trúc:
 
 12 clip: idle, drop, land, combo, hurt, taunt, fear, near_miss, gloat, death, win, lose. Có 12 nhóm pose nguồn × bốn cel vẽ riêng mỗi màu. Giữ việc dùng chung cel đã có: taunt/lose dùng laugh; death/win dùng fear+scream rồi alpha 0; near_miss ghép fear→relief→laugh. Không tăng số khung bằng nội suy. Idle 0 khớp chính xác PNG đứng.
 
-`assets/tiles/animation_pack.json` giữ nguyên mọi family cũ ngoài swamp, cập nhật A tại family `swamp` và thêm B tại `swamp_b`. Các tên màu/vai trò và timing A cũ giữ nguyên. Đã tải được cả hai trực tiếp qua `TileArt.new(family)`; `TileArt.THEMES` và logic chọn theme vẫn do Claude nối sau khi người dùng chọn A/B.
+`assets/tiles/animation_pack.json` giữ nguyên mọi family cũ ngoài swamp, cập nhật A tại family `swamp` và thêm B tại `swamp_b`. Các tên màu/vai trò và timing A cũ giữ nguyên. Đã tải được cả hai trực tiếp qua `TileArt.new(family)`; Claude nối **B (`swamp_b`) đã được người dùng duyệt** vào `TileArt.THEMES` và logic chọn theme.
 
 ## Kiểm tra và tái xuất
 

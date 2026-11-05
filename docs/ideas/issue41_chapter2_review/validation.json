@@ -1,0 +1,52 @@
+{
+  "passed": 45,
+  "chapter": 2,
+  "style": "approved_v2_issue_41",
+  "panels": 6,
+  "heights": [
+    540,
+    720,
+    1350,
+    540,
+    1440,
+    1440
+  ],
+  "previews": [
+    {
+      "file": "before_after.jpg",
+      "bytes": 769988
+    },
+    {
+      "file": "panel_01.jpg",
+      "bytes": 80000
+    },
+    {
+      "file": "panel_02.jpg",
+      "bytes": 96156
+    },
+    {
+      "file": "panel_03.jpg",
+      "bytes": 169003
+    },
+    {
+      "file": "panel_04.jpg",
+      "bytes": 86229
+    },
+    {
+      "file": "panel_05.jpg",
+      "bytes": 190945
+    },
+    {
+      "file": "panel_06.jpg",
+      "bytes": 187307
+    },
+    {
+      "file": "sprite_comparison.jpg",
+      "bytes": 281338
+    },
+    {
+      "file": "webtoon.jpg",
+      "bytes": 512362
+    }
+  ]
+}

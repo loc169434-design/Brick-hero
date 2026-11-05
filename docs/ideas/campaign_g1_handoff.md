@@ -43,7 +43,7 @@ Khiên Tù Trưởng nằm trong hình vẽ pha 1. Khi hết khiên, Claude chuy
 
 `assets/bg/campaign/segment_01.png` và `segment_02.png`, mỗi đoạn 1080×1920. Đoạn 1 lâu đài/bãi tập, đoạn 2 trại Orc tới đầm lầy. Không số/khóa/trạng thái màn vẽ vào ảnh. `nodes_g1.json` có đúng **18** mức, tọa độ theo từng đoạn, thứ tự dưới lên; cờ khó 14, thưởng 15, trùm 18, cánh hoa 5. Số đỏ chỉ có trong ảnh review.
 
-Code ghép đoạn 2 phía trên đoạn 1. Đây là hai tranh độc lập cùng bảng màu và đường giữa; mép ghép chưa được vẽ thành một dải liền pixel, cần transition/crossfade ngắn hoặc tinh chỉnh mỹ thuật khi ghép bản đồ dài. Chưa thay bản đồ 15 điểm đang dùng trên main, chưa tạo 100 node giả.
+Code ghép đoạn 2 phía trên đoạn 1, overlap 200 px tại y=1720. Phần 0 issue #41 đã vẽ lại dải nối, trùng pixel, không cần crossfade che lỗi. Chưa thay bản đồ 15 điểm đang dùng trên main, chưa tạo 100 node giả.
 
 ## Truyện chương 1–2
 
@@ -76,3 +76,7 @@ Dùng Godot **4.7.2**, không dùng binary 4.6.3 mặc định của máy onboar
 ## Trạng thái GitHub
 
 Đã push commit ảnh `4b3270c` lên `origin/art/campaign-100-g1`. Lệnh mở draft PR trả `Post "https://api.github.com/graphql": Forbidden`, nên **chưa tạo được PR**, chưa merge. Claude có thể fetch trực tiếp nhánh hoặc mở PR tại [trang so sánh](https://github.com/loc169434-design/Brick-hero/compare/main...art/campaign-100-g1?expand=1).
+
+## Cập nhật issue #41 — V2 đã được duyệt
+
+Người dùng trả lời **“Duyệt V2”** cho chương 1 ở commit `46d7f0b`. Đã vẽ lại sáu khung chương 2 theo nét đó, giữ nội dung và kín danh tính Hiệp Sĩ Bí Ẩn. [Đọc chương 2](issue41_chapter2_review/webtoon.jpg) · [Trước/sau](issue41_chapter2_review/before_after.jpg) · [Bàn giao Phần 0](issue41_part0_handoff.md). Kiểm truyện 45/45, Phần 0 97/97, G1 560/560; Godot tải 12 panel, suite 93/93. Chương 3 giao trên nhánh G2.

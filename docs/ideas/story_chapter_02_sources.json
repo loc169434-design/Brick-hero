@@ -1,0 +1,50 @@
+{
+  "chapter": 2,
+  "baseline": "46d7f0b",
+  "style_approval": {
+    "user_reply": "Duyệt V2",
+    "style_commit": "46d7f0b",
+    "scope": "V2 hand ink and sparse flat marker for chapters 2 and 3"
+  },
+  "rendering": "Image-tool complete panels; whole-panel scale only. Final panel is borderless bleed.",
+  "sources": [
+    {
+      "path": "/workspace/generated_images/exec-74b675df-9981-413b-82be-8b015b543d97.png",
+      "sha256": "17bd99e178b6df0f7fb62b4a01cee20ae5b5fa6ef95829ce3358d93abf5f014d"
+    },
+    {
+      "path": "/workspace/generated_images/exec-80ca450b-0c54-4b9b-858f-6dd82914844d.png",
+      "sha256": "30a25b0b9b8958df9adaf40c30e95adb75673a0aea7a59e5db949b81eb5e6e80"
+    },
+    {
+      "path": "/workspace/generated_images/exec-6b746395-c3ce-4429-9058-0afd397a5ebf.png",
+      "sha256": "b80e3c045d4927be18878225b41dc955127685bda576d1bcffb5ab0a5324eab2"
+    },
+    {
+      "path": "/workspace/generated_images/exec-60b63eb1-d61e-445d-b575-08ce9a41a6c7.png",
+      "sha256": "85b6389a6bc249ab5d92e4fe55a3cb3fa5a138ab927f48abd2609adb38a60c4e"
+    },
+    {
+      "path": "/workspace/generated_images/exec-e3251e0e-6097-4042-a5e9-5d03ee3630fa.png",
+      "sha256": "0903cc98279f8ff938bc637b7260c38653fc6a9d3a612df854d065a9ee059364"
+    },
+    {
+      "path": "/workspace/generated_images/exec-088bb993-814e-4aa6-abe7-735fa40f88b8.png",
+      "sha256": "0bfaae0985882b73889ca19656122242a68f3c084b1dd920dbfd78148afa4014"
+    }
+  ],
+  "identity_refs": [
+    {
+      "label": "hero_rookie",
+      "path": "/workspace/Brick-hero/assets/characters/hero_rookie/fresh_idle.png"
+    },
+    {
+      "label": "fairy_beggar",
+      "path": "/workspace/Brick-hero/assets/characters/fairy_beggar/fresh_idle.png"
+    },
+    {
+      "label": "orc_chief",
+      "path": "/workspace/Brick-hero/assets/characters/orc_chief/fresh_idle.png"
+    }
+  ]
+}

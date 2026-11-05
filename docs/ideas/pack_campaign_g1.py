@@ -144,6 +144,9 @@ def main():
     if (DOC/'issue41_part0_sources.json').exists():
         from pack_issue41_part0 import main as pack_part0
         pack_part0()
+    if (DOC/'story_chapter_02_sources.json').exists():
+        from pack_issue41_story import main as pack_story
+        pack_story(2)
 
 def export_icons(path):
     names=['node_hard','node_boss','node_bonus','node_petal','golden_petal','orc_flag','rescue_cage','brass_key']

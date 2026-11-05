@@ -110,7 +110,7 @@ def pack_chapter(sources):
         im.save(chapter/f'panel_{i:02}.png',optimize=True);after.append(im)
         before.append(original(f'assets/story/chapter_01/panel_{i:02}.png').convert('RGB'))
         jpg(im,OUT/f'chapter1_panel_{i:02}_after.jpg',720)
-    meta=json.loads((chapter/'chapter.json').read_text());meta.update({'style_review':'pending_user_approval_issue_41','style_revision':CONFIG.get('style_revision',1),'panel_heights':[im.height for im in after],'layout':'vertical_variable_heights','gutter_px':36});write(chapter/'chapter.json',meta)
+    meta=json.loads((chapter/'chapter.json').read_text());meta.update({'style_review':CONFIG.get('style_review','pending_user_approval_issue_41'),'style_revision':CONFIG.get('style_revision',1),'panel_heights':[im.height for im in after],'layout':'vertical_variable_heights','gutter_px':36});write(chapter/'chapter.json',meta)
     tall=Image.new('RGB',(1080,sum(im.height for im in after)+36*5),'#f6e8cc');y=0
     for im in after:tall.paste(im,(0,y));y+=im.height+36
     jpg(tall,OUT/'chapter1_after_webtoon.jpg',540)

@@ -40,16 +40,18 @@ def main():
     for i in range(1,7):
         im=Image.open(ROOT/f'assets/story/chapter_01/panel_{i:02}.png');check(im.width==1080,'panel width');heights.append(im.height)
     check(len(set(heights))>=3,'variable webtoon heights')
-    # User explicitly asked not to redraw chapters 2 and 3 before approval.
+    # Preserve the approval gate: later chapters are authorized only after V2 approval.
+    approval=json.loads((ROOT/'assets/story/chapter_01/chapter.json').read_text()).get('style_review')
     changed=subprocess.check_output(['git','diff','--name-only','f83b5fc'],cwd=ROOT,text=True).splitlines()
-    check(not any(p.startswith(('assets/story/chapter_02/','assets/story/chapter_03/')) for p in changed),'chapters 2 and 3 untouched')
+    later=any(p.startswith(('assets/story/chapter_02/','assets/story/chapter_03/')) for p in changed)
+    check(not later or approval=='approved_v2_issue_41','later chapters require approved V2')
     previews=[]
     for p in OUT.iterdir():
         if p.suffix.lower() in ['.gif','.jpg']:
             check(p.stat().st_size<2_000_000,'preview size '+p.name);previews.append({'file':p.name,'bytes':p.stat().st_size})
         check(p.suffix.lower() not in ['.webp','.png'],'review only GIF/JPG')
     revision=json.loads((ROOT/'assets/story/chapter_01/chapter.json').read_text()).get('style_revision',1)
-    report={'passed':count,'overlap_pixels':[1080,200],'overlap_sha256':hashlib.sha256(a).hexdigest(),'panel_heights':heights,'previews':previews,'style_revision':revision,'comic_style_approval':'pending_user'}
+    report={'passed':count,'overlap_pixels':[1080,200],'overlap_sha256':hashlib.sha256(a).hexdigest(),'panel_heights':heights,'previews':previews,'style_revision':revision,'comic_style_approval':approval}
     (OUT/'validation.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 
 if __name__=='__main__':main()

@@ -44,5 +44,11 @@
   },
   "style_revision": 2,
   "previous_style_commit": "8241c12",
-  "style_feedback": "Cần nét mộc hơn nữa"
+  "style_feedback": "Cần nét mộc hơn nữa",
+  "style_review": "approved_v2_issue_41",
+  "style_approval": {
+    "user_reply": "Duyệt V2",
+    "style_commit": "46d7f0b",
+    "scope": "Apply approved V2 style to chapters 2 and 3"
+  }
 }

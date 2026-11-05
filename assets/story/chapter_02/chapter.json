@@ -9,5 +9,22 @@
     "panel_05.png",
     "panel_06.png"
   ],
-  "text_baked": false
+  "text_baked": false,
+  "style_revision": 2,
+  "style_review": "approved_v2_issue_41",
+  "style_approval": {
+    "user_reply": "Duyệt V2",
+    "style_commit": "46d7f0b",
+    "scope": "V2 hand ink and sparse flat marker for chapters 2 and 3"
+  },
+  "panel_heights": [
+    540,
+    720,
+    1350,
+    540,
+    1440,
+    1440
+  ],
+  "layout": "vertical_variable_heights",
+  "gutter_px": 36
 }

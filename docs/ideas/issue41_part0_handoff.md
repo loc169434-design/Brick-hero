@@ -4,7 +4,7 @@ Nhánh `art/campaign-100-g1`, commit tiếp sau `f83b5fc`. Theo [issue #41](http
 
 ## Duyệt chương 1
 
-**V2 sau phản hồi “Cần nét mộc hơn nữa”:** đã vẽ lại toàn bộ sáu khung theo nét bút nâu mảnh, có nét dò/đứt, mảng màu tô để lộ giấy và gần như không có bóng. [So trực tiếp V1/V2](issue41_part0_review/chapter1_v1_v2.jpg). V1 ở commit `8241c12` chưa được duyệt; V2 cũng đang chờ duyệt, chưa áp nét sang chương 2–3. Metadata/source manifest ghi `style_revision: 2` và giữ nguồn ngoài repo.
+**V2 sau phản hồi “Cần nét mộc hơn nữa”:** đã vẽ lại toàn bộ sáu khung theo nét bút nâu mảnh, có nét dò/đứt, mảng màu tô để lộ giấy và gần như không có bóng. [So trực tiếp V1/V2](issue41_part0_review/chapter1_v1_v2.jpg). V1 ở commit `8241c12` chưa được duyệt; **Người dùng đã duyệt V2: “Duyệt V2”.** Dùng nét này cho chương 2–3. Metadata/source manifest ghi `style_revision: 2` và giữ nguồn ngoài repo.
 
 **[So sánh đủ sáu khung trước/sau](issue41_part0_review/chapter1_before_after.jpg)** (JPG dưới 0,8 MB).
 
@@ -12,7 +12,7 @@ Nhánh `art/campaign-100-g1`, commit tiếp sau `f83b5fc`. Theo [issue #41](http
 
 Giữ sáu sự kiện cũ: luyện kiếm, quà sinh nhật, Bà Tiên xông vào, lời thử, rồng bắt, công chúa thả cánh hoa khi đang bị mang đi. Mỗi khung vẽ riêng theo ảnh mẫu nhân vật game. Viền nâu mảnh có nét dò và chỗ đứt, mảng màu tô thưa để lộ giấy, gần như không có bóng; ít đồ nền, không glow/ánh sáng điện ảnh. Khung xuất rộng 1080, cao lần lượt **540, 720, 1350, 540, 1440, 1484**, khung cuối cắt viền thành ảnh tràn mép. Chừa giấy trống cho thoại do code vẽ.
 
-**Nét mới đang chờ người dùng duyệt. Chưa vẽ lại chương 2 và chưa làm chương 3.** `chapter_01/chapter.json` ghi rõ trạng thái duyệt. Có thể tiếp tục phần quái/vật cản G2 độc lập với việc duyệt truyện.
+**V2 đã được duyệt bằng phản hồi “Duyệt V2”. Chương 2 đã vẽ lại đủ sáu khung trên G1; chương 3 nằm trên G2.** [Đọc chương 2](issue41_chapter2_review/webtoon.jpg) · [Trước/sau](issue41_chapter2_review/before_after.jpg) · [Đối chiếu sprite](issue41_chapter2_review/sprite_comparison.jpg). `chapter_01/chapter.json` ghi rõ trạng thái duyệt. Có thể tiếp tục phần quái/vật cản G2 độc lập với việc duyệt truyện.
 
 ## Sửa G1
 
@@ -39,3 +39,11 @@ godot --headless --path . -s res://tests/run_tests.gd
 ```
 
 Packer G1 gốc gọi lớp sửa Phần 0 cuối cùng, tránh tái xuất đè lại lỗi cũ. Nguồn bên ngoài cần còn tại đường dẫn manifest khi tái xuất; PNG production độc lập khi chơi. Chưa xác nhận gameplay quái mới hoặc chất lượng trên điện thoại. Không thay code/balance/test của Claude.
+
+## Chương 2 theo V2 đã duyệt
+
+Sáu khung riêng rộng 1080, cao 540/720/1350/540/1440/1440; khung cuối tràn mép. Bà lão vẫn là bà tiên già cùng tạo hình, không có cô tiên trẻ trong áo choàng. Hiệp Sĩ Bí Ẩn giữ kín mặt. Giữ diễn biến cho bánh → lộ dáng tiên → bình máu → phá khiên → Tù Trưởng thua → đầm lầy. Nét mực nâu có nét dò, màu marker tô thưa, không gradient/bóng điện ảnh.
+
+[Kiểm truyện](issue41_chapter2_review/validation.json): **45 điều kiện đạt**; [smoke Godot](issue41_chapter2_review/resource_smoke.log): **34 clip, 12 panel, 0 failures**; [suite](issue41_chapter2_review/godot_tests.log): **93 passed, 0 failed**. Kiểm G1 560/560 và Phần 0 97/97 vẫn đạt. Preview lớn nhất 769.988 byte.
+
+Tái xuất riêng: `python docs/ideas/pack_issue41_story.py 2`; kiểm: `python docs/ideas/check_issue41_story.py 2`. Nguồn mới ngoài repo, SHA-256 ở `story_chapter_02_sources.json`. Packer G1 gọi lại lớp sửa Phần 0 và chương 2 ở cuối để không khôi phục tranh cũ. Kiểm tra approval gate cho phép chương sau chỉ khi metadata ghi V2 đã duyệt; không còn yêu cầu giữ nguyên chương 2 sau khi người dùng đã cho phép.

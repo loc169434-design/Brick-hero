@@ -69,5 +69,10 @@ def run():
     for p in OUT.iterdir():
         check(p.suffix.lower() not in ['.png','.webp'],'preview formats')
         if p.suffix.lower() in ['.jpg','.gif']:check(p.stat().st_size<2_000_000,'preview bytes');previews.append(p.name)
-    result={'passed':n,'actor_frames':counts,'total_actor_frames':sum(counts.values()),'tile_atlases':48,'levels':[19,36],'previews':len(previews),'chapters_2_3':'pending_user_style_approval'};OUT.mkdir(exist_ok=True);(OUT/'validation.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
+    story=json.loads((ROOT/'assets/story/chapter_03/chapter.json').read_text())
+    check(story['after_level']==36 and 6<=len(story['panels'])<=8,'chapter3 trigger and panel count')
+    check(story['style_review']=='approved_v2_issue_41','chapter3 uses approved V2')
+    for panel in story['panels']:
+        check(Image.open(ROOT/'assets/story/chapter_03'/panel).width==1080,'chapter3 panel resource')
+    result={'passed':n,'actor_frames':counts,'total_actor_frames':sum(counts.values()),'tile_atlases':48,'levels':[19,36],'previews':len(previews),'chapter_2':'delivered_on_art/campaign-100-g1_at_5725afb','chapter_3':{'style':'approved_v2_issue_41','panels':len(story['panels']),'after_level':36}};OUT.mkdir(exist_ok=True);(OUT/'validation.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
 if __name__=='__main__':run()

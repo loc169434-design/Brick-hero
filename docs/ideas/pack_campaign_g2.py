@@ -1,6 +1,6 @@
 """Pack complete image-tool drawings for #41; no pose rigging or painting.
 
-Generated sources stay outside repo. Run --group priority/characters/tiles/world/npcs.
+Generated sources stay outside repo. Run --group priority/characters/tiles/world/npcs/story.
 """
 from pathlib import Path
 import argparse, json, math, hashlib, io, subprocess
@@ -187,7 +187,11 @@ def world():
 
 def main():
     global MANIFEST
-    p=argparse.ArgumentParser();p.add_argument('--group',choices=['priority','characters','tiles','world','npcs'],required=True);args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--group',choices=['priority','characters','tiles','world','npcs','story'],required=True);args=p.parse_args()
+    if args.group=='story':
+        from pack_issue41_story import main as pack_story
+        pack_story(3)
+        return
     MANIFEST=json.loads((DOC/'campaign_g2_sources.json').read_text());REVIEW.mkdir(exist_ok=True);(REVIEW/'.gdignore').touch()
     for info in MANIFEST['sources'].values():
         path=Path(info['path']);info['sha256']=hashlib.sha256(path.read_bytes()).hexdigest()

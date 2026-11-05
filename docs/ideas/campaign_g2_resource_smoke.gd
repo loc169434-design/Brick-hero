@@ -62,6 +62,18 @@ func run() -> void:
 		if load("res://assets/board/obstacles/"+entry+".png")==null:
 			failures.append(entry)
 	if load("res://assets/bg/campaign/segment_03.png")==null:failures.append("map3")
-	print("G2 smoke: %d actor clips with 3 wear fallbacks, %d tile atlases, 4 SpriteFrames, %d backdrop/ambient textures; %d failures" % [clip_count,tiles,texture_count,failures.size()])
+	var chapter: JSON = load("res://assets/story/chapter_03/chapter.json")
+	var panels := 0
+	if chapter == null:
+		failures.append("chapter3 metadata missing")
+	else:
+		if int(chapter.data.after_level) != 36 or chapter.data.style_review != "approved_v2_issue_41":
+			failures.append("chapter3 metadata contract")
+		for panel: String in chapter.data.panels:
+			var texture: Texture2D = load("res://assets/story/chapter_03/"+panel)
+			if texture == null or texture.get_width() != 1080:
+				failures.append("chapter3/"+panel)
+			panels += 1
+	print("G2 smoke: %d actor clips with 3 wear fallbacks, %d tile atlases, 4 SpriteFrames, %d backdrop/ambient textures, %d chapter3 panels; %d failures" % [clip_count,tiles,texture_count,panels,failures.size()])
 	for failure in failures:printerr(failure)
 	quit(0 if failures.is_empty() else 1)

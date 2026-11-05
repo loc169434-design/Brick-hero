@@ -1,0 +1,61 @@
+{
+  "chapter": 3,
+  "style_approval": {
+    "user_reply": "Duyệt V2",
+    "style_commit": "46d7f0b",
+    "scope": "V2 hand ink and sparse flat marker for chapters 2 and 3"
+  },
+  "rendering": "Image-tool complete panels, whole-image uniform scaling only; final panel borderless. Spellbook lightning emblem kept consistent by image-tool edit.",
+  "sources": [
+    {
+      "path": "/workspace/generated_images/exec-3d1e955b-c078-44d1-b179-925f4f07c1bf.png",
+      "sha256": "ea24c9f99dc2d7c3083b89c630b0851e92341970a0b6e548c56b08fc9524a892"
+    },
+    {
+      "path": "/workspace/generated_images/exec-3d4b2f8a-342b-46d7-ab68-46fe6acb65c8.png",
+      "sha256": "d167e6f2e3abd567c014ef2ccb0cdd2f416242457160c27a6aed4dbdca79a214"
+    },
+    {
+      "path": "/workspace/generated_images/exec-4d852159-0df8-4a63-8585-4e85b4be9018.png",
+      "sha256": "058beefd5d7052b73b13e7453abf07a8f5f3a87876d841d0e08515e5ece9fed8"
+    },
+    {
+      "path": "/workspace/generated_images/exec-9c2966ce-ad4d-4903-abfd-cdc5d4846de9.png",
+      "sha256": "3580df687310ffb84af2c55d16a1c33e358cf21ffb1e51f196b65dd3fe497e62"
+    },
+    {
+      "path": "/workspace/generated_images/exec-3802cf06-56fb-4e2d-9995-d5ff3161987a.png",
+      "sha256": "060782f7143c1f04dbe4f778641feb94e13b4425440387a79e6efe32009791d8"
+    },
+    {
+      "path": "/workspace/generated_images/exec-82e6c921-caed-410e-aacd-ab264c0e81bd.png",
+      "sha256": "b16b211a459a540c623a4a93a15dc5c6111163175e1679c59897cf65365f76fc"
+    },
+    {
+      "path": "/workspace/generated_images/exec-e836c31c-e42e-4370-868c-6bad3cce0d5e.png",
+      "sha256": "943a8aa8a81e714bb690555e872f0579884113692f4f6f99b155bb2485485b8d"
+    }
+  ],
+  "identity_refs": [
+    {
+      "label": "hero_rookie",
+      "path": "/workspace/Brick-hero/assets/characters/hero_rookie/fresh_idle.png"
+    },
+    {
+      "label": "bin",
+      "path": "/workspace/Brick-hero/assets/characters/bin/idle.png"
+    },
+    {
+      "label": "swamp_old_man",
+      "path": "/workspace/Brick-hero/assets/characters/swamp_old_man/idle.png"
+    },
+    {
+      "label": "toad_witch",
+      "path": "/workspace/Brick-hero/assets/characters/toad_witch/fresh_idle.png"
+    },
+    {
+      "label": "giant_toad",
+      "path": "/workspace/Brick-hero/assets/characters/toad_witch_giant/fresh_idle.png"
+    }
+  ]
+}

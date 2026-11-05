@@ -2,7 +2,7 @@
 
 Nhánh `art/campaign-100-g2`, tạo từ `main` mới nhất lúc bắt đầu (`36db7f9`). Theo [issue #41](https://github.com/loc169434-design/Brick-hero/issues/41). Chỉ sửa `assets/` và `docs/ideas/`.
 
-**Truyện chương 2–3 đang chờ duyệt nét chương 1.** Không có ảnh mới cho hai chương này trong nhánh G2; không coi toàn bộ issue đã hoàn tất. Phần 0 đã push riêng tại **`8241c12` trên `art/campaign-100-g1`**. [So sánh trước/sau chương 1](https://github.com/loc169434-design/Brick-hero/blob/art/campaign-100-g1/docs/ideas/issue41_part0_review/chapter1_before_after.jpg) · [Đặt cạnh sprite game](https://github.com/loc169434-design/Brick-hero/blob/art/campaign-100-g1/docs/ideas/issue41_part0_review/chapter1_sprite_comparison.jpg).
+**Người dùng đã duyệt nét V2 bằng phản hồi “Duyệt V2”.** Chương 2 đã vẽ lại đủ sáu khung và push ở `5725afb` trên `art/campaign-100-g1`; chương 3 đã hoàn thành **bảy khung** trên nhánh G2. [Đọc chương 2](https://github.com/loc169434-design/Brick-hero/blob/art/campaign-100-g1/docs/ideas/issue41_chapter2_review/webtoon.jpg) · [Đọc chương 3](issue41_chapter3_review/webtoon.jpg) · [Đối chiếu nhân vật chương 3](issue41_chapter3_review/sprite_comparison.jpg). Phần 0 G1 gồm sửa bản đồ, Tù Trưởng, Kỵ Lợn và bà lão; nét V2 chương 1 ở `46d7f0b`.
 
 ## Duyệt ảnh G2
 
@@ -40,10 +40,19 @@ Hai nền `assets/bg/swamp/` và `assets/bg/goblin_camp/`, mỗi nền bốn l�
 
 Để nối thực sự liền nét, đợt G2 **cập nhật cả 400 px trên của `segment_02.png`**; 1520 px còn lại giữ nguyên bản sửa G1 `8241c12`, gồm mép nối 2–1. 200 px dưới đoạn 3 bằng pixel 200 px trên đoạn 2 mới. Khi ghép nhánh, giữ `segment_02` của G2 và `segment_01` của G1; không dùng lại map2 cũ. **Tích hợp G1 trước G2**. Nhánh G2 không tự mang toàn bộ G1 vào main hoặc đổi lịch sử main.
 
+## Truyện chương 3 — nét V2 đã duyệt
+
+`assets/story/chapter_03/`, **7 khung** rộng 1080; cao **540, 1440, 720, 1440, 540, 720, 1440**. `chapter.json`: `after_level: 36`, `text_baked: false`, `style_revision: 2`, ghi nguồn duyệt nét “Duyệt V2”. Bút nâu mảnh có nét dò, màu phẳng tô thưa để lộ giấy, không glow/gradient/đèn điện ảnh; nền ít nét, khung cuối tràn mép.
+
+Diễn biến: ông già báo Bin bị bắt → mở lồng cứu Bin trong trại Goblin → Bin đưa sách chiêu bìa tím có dấu sét → Mụ Cóc uống thuốc → cóc khổng lồ quất lưỡi, hiệp sĩ che cho Bin → mụ thu nhỏ bỏ chạy → nhận Giáp Kháng Độc màu xanh, cùng Bin đi về rừng đen. Giáp được cầm trên tay, hiệp sĩ vẫn mặc áo xanh khăn đỏ. Giữ đúng tóc/áo/túi của Bin, mũ ông già, mũ sen/gậy nấm/cóc vai của mụ. Không có chữ thoại trong ảnh.
+
+[Gallery chương 3](issue41_chapter3_review/index.md) · [Kiểm truyện](issue41_chapter3_review/validation.json). Bản đọc webtoon **528.513 byte**, các preview GIF/JPG dưới 2 MB. Nguồn vẽ mới lớn nằm ngoài repo, đường dẫn và SHA-256 ở `story_chapter_03_sources.json`; script chỉ co đồng đều toàn khung và ghép ảnh đọc thử, không dựng tư thế bằng code. Style đã được duyệt; chưa tuyên bố người dùng duyệt riêng nội dung từng khung chương 2–3.
+
 ## Kiểm tra
 
-- [Kiểm asset](campaign_g2_review/validation.json): inventory, số ô/kích thước/alpha, VRAM import, victory về idle, manifest gạch cũ không đổi, băng nhìn xuyên tâm, overlap đúng pixel, cờ node và mọi preview dưới **2.000.000 byte**.
-- [Smoke Godot 4.7.2](campaign_g2_review/resource_smoke.log): **65 clip** × ba fallback wear, **48 atlas gạch**, bốn SpriteFrames, 14 texture nền/ambient; **0 failures**. Có tải cả vật cản và ảnh đứng NPC.
+- [Kiểm asset](campaign_g2_review/validation.json): **1.161 điều kiện đạt**; inventory, số ô/kích thước/alpha, VRAM import, victory về idle, manifest gạch cũ không đổi, băng nhìn xuyên tâm, overlap đúng pixel, cờ node và mọi preview dưới **2.000.000 byte**.
+- [Smoke Godot 4.7.2](campaign_g2_review/resource_smoke.log): **65 clip** × ba fallback wear, **48 atlas gạch**, bốn SpriteFrames, 14 texture nền/ambient, **7 panel chương 3**; **0 failures**. Có tải cả vật cản và ảnh đứng NPC.
+- [Kiểm truyện riêng](issue41_chapter3_review/validation.json): **49 điều kiện đạt**, thứ tự/kích thước/trigger/approval/source hash/preview.
 - [Suite hiện có](campaign_g2_review/godot_tests.log): **93 passed, 0 failed**.
 - [Smoke hai quái ưu tiên](campaign_g2_review/priority_smoke.log): 12 clip, **0 failures**.
 - Chưa có gameplay màn 19–36, poison/bùn/bom/trùm hai pha, chưa chạy bot chiến dịch hoặc kiểm điện thoại. Đó là công việc tích hợp code của Claude; không dùng kiểm asset để tuyên bố các cơ chế đã chạy.
@@ -58,6 +67,8 @@ python docs/ideas/pack_campaign_g2.py --group characters
 python docs/ideas/pack_campaign_g2.py --group tiles
 python docs/ideas/pack_campaign_g2.py --group world
 python docs/ideas/pack_campaign_g2.py --group npcs
+python docs/ideas/pack_campaign_g2.py --group story
+python docs/ideas/check_issue41_story.py 3
 godot --headless --editor --path . --import --quit
 python docs/ideas/check_campaign_g2.py
 godot --headless --path . -s res://docs/ideas/campaign_g2_resource_smoke.gd
@@ -70,4 +81,4 @@ Dùng Godot **4.7.2**, thiết lập XDG writable như onboarding nếu cần. K
 
 Đã push các nhóm G2: `334ce28` (hai quái ưu tiên), `27732eb` (gạch/vật cản/nền/map), `1c77f07` (quái còn lại và hai pha Mụ Cóc), `cbb0467` (NPC), `4942a02` (kiểm tra/bàn giao). Phần 0 ở nhánh G1 commit `8241c12` đã push trước đó.
 
-Lệnh tạo draft PR G2 và comment vào #41 đều trả `Post "https://api.github.com/graphql": Forbidden`. **Chưa tạo được PR G2, chưa đăng comment, chưa merge.** [Nội dung comment lưu sẵn](campaign_g2_issue41_comment.md). Có thể mở từ [trang so sánh main…art/campaign-100-g2](https://github.com/loc169434-design/Brick-hero/compare/main...art/campaign-100-g2?expand=1). Không đóng issue trong lúc còn chờ duyệt và làm truyện.
+Lệnh tạo draft PR G2 và comment vào #41 đều trả `Post "https://api.github.com/graphql": Forbidden`. **Chưa tạo được PR G2, chưa đăng comment, chưa merge.** [Nội dung comment lưu sẵn](campaign_g2_issue41_comment.md). Có thể mở từ [trang so sánh main…art/campaign-100-g2](https://github.com/loc169434-design/Brick-hero/compare/main...art/campaign-100-g2?expand=1). Không tự đóng issue; còn bước review/tích hợp code của Claude. Nét V2 đã được người dùng duyệt, truyện chương 2–3 đã xuất và kiểm tra.

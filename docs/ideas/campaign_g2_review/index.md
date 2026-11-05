@@ -1,5 +1,5 @@
 # G2 — ảnh để Claude tích hợp
-Theo issue #41. Chương 2–3 chờ người dùng duyệt nét chương 1. Đây là preview asset, không phải gameplay đã tích hợp.
+Theo issue #41. Nét V2 chương 1 đã được duyệt. [Chương 3](../issue41_chapter3_review/webtoon.jpg) đã hoàn thành bảy khung; chương 2 ở nhánh G1 commit `5725afb`. Đây là preview asset, không phải gameplay đã tích hợp.
 
 ## toad_spitter
 

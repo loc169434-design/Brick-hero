@@ -1,0 +1,73 @@
+{
+  "id": "swamp_leech",
+  "canvas": [
+    512,
+    512
+  ],
+  "feet": [
+    256,
+    500
+  ],
+  "anchors": {
+    "fresh_idle": {
+      "head": [
+        121,
+        325
+      ],
+      "mouth": [
+        91,
+        352
+      ]
+    },
+    "fresh_attack": {
+      "head": [
+        121,
+        325
+      ],
+      "mouth": [
+        91,
+        352
+      ]
+    },
+    "fresh_hurt": {
+      "head": [
+        121,
+        325
+      ],
+      "mouth": [
+        91,
+        352
+      ]
+    },
+    "fresh_special": {
+      "head": [
+        121,
+        325
+      ],
+      "mouth": [
+        91,
+        352
+      ]
+    },
+    "fresh_defeat": {
+      "head": [
+        121,
+        325
+      ],
+      "mouth": [
+        91,
+        352
+      ]
+    },
+    "fresh_victory": {
+      "head": [
+        121,
+        325
+      ],
+      "mouth": [
+        91,
+        352
+      ]
+    }
+  }
+}

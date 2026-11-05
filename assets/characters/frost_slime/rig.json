@@ -1,0 +1,73 @@
+{
+  "id": "frost_slime",
+  "canvas": [
+    512,
+    512
+  ],
+  "feet": [
+    256,
+    500
+  ],
+  "anchors": {
+    "fresh_idle": {
+      "head": [
+        244,
+        314
+      ],
+      "mouth": [
+        226,
+        367
+      ]
+    },
+    "fresh_attack": {
+      "head": [
+        244,
+        314
+      ],
+      "mouth": [
+        226,
+        367
+      ]
+    },
+    "fresh_hurt": {
+      "head": [
+        244,
+        314
+      ],
+      "mouth": [
+        226,
+        367
+      ]
+    },
+    "fresh_special": {
+      "head": [
+        244,
+        314
+      ],
+      "mouth": [
+        226,
+        367
+      ]
+    },
+    "fresh_defeat": {
+      "head": [
+        244,
+        314
+      ],
+      "mouth": [
+        226,
+        367
+      ]
+    },
+    "fresh_victory": {
+      "head": [
+        244,
+        314
+      ],
+      "mouth": [
+        226,
+        367
+      ]
+    }
+  }
+}

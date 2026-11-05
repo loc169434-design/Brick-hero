@@ -65,3 +65,9 @@ godot --headless --path . -s res://tests/run_tests.gd
 ```
 
 Dùng Godot **4.7.2**, thiết lập XDG writable như onboarding nếu cần. Khi tái xuất, cần giữ nguồn ngoài repo và Git object G1 `8241c12` (fetch `art/campaign-100-g1` nếu clone chưa có); packer chỉ cắt/co nguyên cel, đăng ký/đóng atlas, cắt overlap và xuất preview, không dựng nhân vật bằng code.
+
+## Bàn giao GitHub
+
+Đã push các nhóm G2: `334ce28` (hai quái ưu tiên), `27732eb` (gạch/vật cản/nền/map), `1c77f07` (quái còn lại và hai pha Mụ Cóc), `cbb0467` (NPC), `4942a02` (kiểm tra/bàn giao). Phần 0 ở nhánh G1 commit `8241c12` đã push trước đó.
+
+Lệnh tạo draft PR G2 và comment vào #41 đều trả `Post "https://api.github.com/graphql": Forbidden`. **Chưa tạo được PR G2, chưa đăng comment, chưa merge.** [Nội dung comment lưu sẵn](campaign_g2_issue41_comment.md). Có thể mở từ [trang so sánh main…art/campaign-100-g2](https://github.com/loc169434-design/Brick-hero/compare/main...art/campaign-100-g2?expand=1). Không đóng issue trong lúc còn chờ duyệt và làm truyện.

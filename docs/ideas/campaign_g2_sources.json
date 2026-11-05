@@ -10,85 +10,108 @@
       "sha256": "81cd740d60d576c0c6719fd2499c5ae822d1c176901d62bc6990e64d1206cbe3"
     },
     "swamp_leech": {
-      "path": "/workspace/generated_images/exec-143a9372-a3d7-4e71-9b76-c88c5815830a.png"
+      "path": "/workspace/generated_images/exec-143a9372-a3d7-4e71-9b76-c88c5815830a.png",
+      "sha256": "39ad6fc96b2de9ac00eefec36077855517aa553aaee2d0acb5e3198a36ced444"
     },
     "goblin_thief": {
-      "path": "/workspace/generated_images/exec-8899cd95-fa5c-4821-b08f-58730631f4c6.png"
+      "path": "/workspace/generated_images/exec-8899cd95-fa5c-4821-b08f-58730631f4c6.png",
+      "sha256": "15d39a1dd8ac61e9f3e6ac6a8215aa768a5867f5e10d69cf296b9386acfb1d8e"
     },
     "goblin_bomber": {
-      "path": "/workspace/generated_images/exec-07a58b4d-7f12-47a6-9b2a-77fd32868d20.png"
+      "path": "/workspace/generated_images/exec-07a58b4d-7f12-47a6-9b2a-77fd32868d20.png",
+      "sha256": "209e5a036d08ee10f776831e3263119155e708fc1ae748d1d21ffc3636223a4a"
     },
     "swamp_spider": {
-      "path": "/workspace/generated_images/exec-f549252b-1bb5-48ff-bb2f-87a32f125e96.png"
+      "path": "/workspace/generated_images/exec-f549252b-1bb5-48ff-bb2f-87a32f125e96.png",
+      "sha256": "7da3042d2cbed1efd4524be87912c1c88d3ff413f195e9f3176b26c19dc7cd5e"
     },
     "frost_slime": {
-      "path": "/workspace/generated_images/exec-d1217c29-18e5-444a-92a0-5396df9685c5.png"
+      "path": "/workspace/generated_images/exec-d1217c29-18e5-444a-92a0-5396df9685c5.png",
+      "sha256": "905d0289817a065f65656ac333d4c47a6a6b1efdcee906c0d35d0e87ef8614d2"
     },
     "crocodile": {
-      "path": "/workspace/generated_images/exec-a0c371bd-6179-4bd1-a0a4-7771e2ef010b.png"
+      "path": "/workspace/generated_images/exec-a0c371bd-6179-4bd1-a0a4-7771e2ef010b.png",
+      "sha256": "80bcffe283a47e50d98a5151191ee98d5ceaf8f95c36a54d712b4232de354c9b"
     },
     "toad_witch": {
-      "path": "/workspace/generated_images/exec-0c298456-1110-4760-8f5a-1584d5e630ec.png"
+      "path": "/workspace/generated_images/exec-0c298456-1110-4760-8f5a-1584d5e630ec.png",
+      "sha256": "1a158c4ac50fbb0a571ce00d79f948014bbea7a38d4843f45a9ce7b3f9349e2a"
     },
     "toad_witch_giant": {
-      "path": "/workspace/generated_images/exec-36117db6-5ac6-40ab-8b95-14ee339cc3b7.png"
+      "path": "/workspace/generated_images/exec-36117db6-5ac6-40ab-8b95-14ee339cc3b7.png",
+      "sha256": "c9be1a6e002988128a38689812bb07826b33e1dd7632df472fbafc7b26bae664"
     },
     "tile_red_0": {
-      "path": "/workspace/generated_images/exec-bd2d13c2-24e9-4918-bf5c-eb1472172346.png"
+      "path": "/workspace/generated_images/exec-bd2d13c2-24e9-4918-bf5c-eb1472172346.png",
+      "sha256": "05fff6ebbd395d40754f0e1de8a22d3d90b58c94a6bbd434ca7f4d72409e7938"
     },
     "tile_red_1": {
-      "path": "/workspace/generated_images/exec-9fc56afe-e264-4418-8953-fb986b10fd7d.png"
+      "path": "/workspace/generated_images/exec-9fc56afe-e264-4418-8953-fb986b10fd7d.png",
+      "sha256": "69db3513bc8fe168ef559bc3d0397137ab3f0234a23c6a6db280c126d25bf03a"
     },
     "tile_green_0": {
-      "path": "/workspace/generated_images/exec-cc99a7c0-fdd7-40a6-a51f-1490ba85ad55.png"
+      "path": "/workspace/generated_images/exec-cc99a7c0-fdd7-40a6-a51f-1490ba85ad55.png",
+      "sha256": "b36e97cc093b0827fa288de5f2607d6a8aac8a58d683924b6579c07c3a703762"
     },
     "tile_green_1": {
-      "path": "/workspace/generated_images/exec-ac4bbe67-88a9-4956-bc91-3a4ed34412f9.png"
+      "path": "/workspace/generated_images/exec-ac4bbe67-88a9-4956-bc91-3a4ed34412f9.png",
+      "sha256": "c8ac6949af66a6acac964bbd06afa7de3e78d1d520f7ed3f8270a66912f40791"
     },
     "tile_yellow_0": {
-      "path": "/workspace/generated_images/exec-3d359332-60e2-422e-aedc-d97d13407cf8.png"
+      "path": "/workspace/generated_images/exec-3d359332-60e2-422e-aedc-d97d13407cf8.png",
+      "sha256": "abd766fb56c8d1d8f0b3992bfdfe7c3a1e4889d01d8c3ba71b1980c7f0324ef0"
     },
     "tile_yellow_1": {
-      "path": "/workspace/generated_images/exec-8bbb12ce-34b2-4b2e-bae4-a17bbf9d4596.png"
+      "path": "/workspace/generated_images/exec-8bbb12ce-34b2-4b2e-bae4-a17bbf9d4596.png",
+      "sha256": "48791f57820837ba0588dd352ac0557ecf43659fd116f1b2b1273ed81dc29625"
     },
     "tile_purple_0": {
-      "path": "/workspace/generated_images/exec-b387a3c5-c1a2-488d-b87b-395eb05a5b64.png"
+      "path": "/workspace/generated_images/exec-b387a3c5-c1a2-488d-b87b-395eb05a5b64.png",
+      "sha256": "87730922bb727ff7568989a04c170001250a1b9a0089b6ee8fcc3d1ef2617cd7"
     },
     "tile_purple_1": {
-      "path": "/workspace/generated_images/exec-b807ec83-7797-460f-911a-f623b65d684d.png"
+      "path": "/workspace/generated_images/exec-b807ec83-7797-460f-911a-f623b65d684d.png",
+      "sha256": "c35f3dc41a6cb2277dd8a1379f36073f8fbe76f61cd3fb4846d4271cd1c90bff"
     },
     "npc_fairy_fickle": {
-      "path": "/workspace/generated_images/exec-5b8694a8-14da-41e7-a209-de5b0ac74fe6.png"
+      "path": "/workspace/generated_images/exec-5b8694a8-14da-41e7-a209-de5b0ac74fe6.png",
+      "sha256": "d9bb086b3319c73eed34c7fbc1033a60f7f785c93766d2a01ba86e5c3a62fac5"
     },
     "npc_fairy_crow": {
-      "path": "/workspace/generated_images/exec-501e8bea-e77d-4c36-a1d1-263222f3c9ea.png"
+      "path": "/workspace/generated_images/exec-501e8bea-e77d-4c36-a1d1-263222f3c9ea.png",
+      "sha256": "a07fcbd9f9fb3df425ec99b53f9e8dae6c4827adde6ed375a1570fdcec6cad8d"
     },
     "npc_swamp_npcs": {
-      "path": "/workspace/generated_images/exec-044fa282-30fe-46c0-936d-3ef094ef8d42.png"
-    },
-    "bg_swamp": {
-      "path": "/workspace/generated_images/exec-cea48979-8bb9-4436-b39d-c60fe8dbb19f.png"
+      "path": "/workspace/generated_images/exec-044fa282-30fe-46c0-936d-3ef094ef8d42.png",
+      "sha256": "f6ab94a11cff4089137ffb4582849710334021df72f558ad161595257c3d07da"
     },
     "layers_swamp": {
-      "path": "/workspace/generated_images/exec-0ac89d53-116c-4e4e-addb-314b80ef53c4.png"
-    },
-    "bg_goblin_camp": {
-      "path": "/workspace/generated_images/exec-fce6f61d-e00a-4ca0-827d-95e8e9d81e0a.png"
+      "path": "/workspace/generated_images/exec-0ac89d53-116c-4e4e-addb-314b80ef53c4.png",
+      "sha256": "142cb97d61c209cfbd768f4c5826a7b3e7c1c55cee2194d042abce2249129c37"
     },
     "layers_goblin_camp": {
-      "path": "/workspace/generated_images/exec-cedfdb0e-1ade-4930-ac38-60ff5c5580c8.png"
+      "path": "/workspace/generated_images/exec-cedfdb0e-1ade-4930-ac38-60ff5c5580c8.png",
+      "sha256": "1378068016adc4136a319831122b62ba738045b650b52da127ba577bc275ef13"
     },
     "sky": {
-      "path": "/workspace/generated_images/exec-040eee7b-cf55-426e-9682-f822b96d74fc.png"
+      "path": "/workspace/generated_images/exec-040eee7b-cf55-426e-9682-f822b96d74fc.png",
+      "sha256": "a1582accbfeb34c425b2f9f40c143385d826d7f835349374c8ef8826d60bfb58"
     },
     "obstacles": {
-      "path": "/workspace/generated_images/exec-d5c7e1ad-1028-4308-8ba9-51cda056f568.png"
+      "path": "/workspace/generated_images/exec-e06a012c-1e33-4598-b50b-1a86974b8a0f.png",
+      "sha256": "c9f764351779d4bcf73901d31c42fed418b0ee10de7ef50c978df63461cfb1fb"
     },
     "ambient": {
-      "path": "/workspace/generated_images/exec-a9c8633b-eb67-49db-ab7d-a59790dfd925.png"
+      "path": "/workspace/generated_images/exec-a9c8633b-eb67-49db-ab7d-a59790dfd925.png",
+      "sha256": "4327030cf2aec5ea53350c3e64446c348bfe13d60fbd89178b4565f1120882d0"
     },
     "map": {
-      "path": "/workspace/generated_images/exec-97ec100e-611a-468c-b0d8-6c02a434a4e3.png"
+      "path": "/workspace/generated_images/exec-97ec100e-611a-468c-b0d8-6c02a434a4e3.png",
+      "sha256": "123551e820a0f304c20e435e725b04a47c62f1bd3d790230e0251d59f9639d73"
+    },
+    "map_join": {
+      "path": "/workspace/generated_images/exec-235b7127-c216-4492-b962-5bce2b04e122.png",
+      "sha256": "5ef0796266af41c3cb7deeb988e2406bcd921057b0f22ee88d1745a32037eea0"
     }
   },
   "map_nodes": [

@@ -44,6 +44,11 @@ def preview(name,frames,fps):
     im=Image.new('RGB',(896,250*math.ceil(len(frames)/4)),'#193444');d=ImageDraw.Draw(im)
     for i,f in enumerate(rgb):x=i%4*224;y=i//4*250;im.paste(f,(x,y+26));d.text((x+8,y+7),str(i),fill='white')
     jpg(im,REVIEW/(name+'.jpg'))
+def anchor_points(cid,neutral):
+    box=neutral.getchannel('A').point(lambda a:255 if a>64 else 0).getbbox();x,y,r,b=box;w=r-x;h=b-y
+    fractions={'toad_spitter':(.34,.26,.10,.52),'toad_witch_giant':(.35,.35,.12,.57),'swamp_leech':(.14,.35,.06,.45),'swamp_spider':(.27,.35,.19,.58),'frost_slime':(.46,.44,.40,.60),'crocodile':(.40,.24,.12,.38),'fairy_crow':(.35,.25,.14,.38)}
+    if cid not in fractions:return {'head':[256,150],'mouth':[256,190]}
+    hx,hy,mx,my=fractions[cid];return {'head':[round(x+hx*w),round(y+hy*h)],'mouth':[round(x+mx*w),round(y+my*h)]}
 def character(cid,raw,specs=SPEC):
     fs=register(raw);dest=ROOT/'assets/characters'/cid;(dest/'anim').mkdir(parents=True,exist_ok=True);neutral=fs[0].copy()
     meta={'frame_size':[512,512],'columns':4,'clips':{}}
@@ -60,7 +65,7 @@ def character(cid,raw,specs=SPEC):
         if impact is not None:info['impact']=impact
         if cid=='goblin_archer' and clip=='special':info['hits']=[2,3,5]
         meta['clips'][clip]=info;preview(cid+'_'+clip,frames,fps)
-    write(dest/'anim/anim.json',meta);write(dest/'rig.json',{'id':cid,'canvas':[512,512],'feet':[256,500],'anchors':{'fresh_'+c:{'head':[256,150],'mouth':[256,190]} for c in meta['clips']}})
+    write(dest/'anim/anim.json',meta);write(dest/'rig.json',{'id':cid,'canvas':[512,512],'feet':[256,500],'anchors':{'fresh_'+c:anchor_points(cid,neutral) for c in meta['clips']}})
 def monsters(ids):
     for cid in ids:
         specs=SPEC if cid!='toad_witch_giant' else SPEC[:-1]+[('special2',28,4,8,False,2)]
@@ -114,15 +119,21 @@ def npcs():
 def world():
     for family in ['swamp','goblin_camp']:
         dest=ROOT/'assets/bg'/family;dest.mkdir(parents=True,exist_ok=True)
-        layers=[Image.open(source('sky')).convert('RGBA')]+cells(source('layers_'+family),3,1)
+        drawings=cells(source('layers_'+family),3,1)
+        bottom=max(f.getchannel('A').point(lambda a:255 if a>64 else 0).getbbox()[3] for f in drawings)
+        # Remove common export gutter so foreground banks reach canvas bottom.
+        drawings=[f.crop((0,0,f.width,bottom)) for f in drawings]
+        layers=[Image.open(source('sky')).convert('RGBA')]+drawings
         for name,f in zip(['sky','far','mid','ground'],layers):f.resize((1080,660),Image.Resampling.LANCZOS).save(dest/(name+'.png'),optimize=True)
         ambient=cells(source('ambient'),4,3);effects={}
         for i,name in enumerate(['firefly','bubble','lotus']):
-            fs=register([f for f in ambient[i*4:i*4+4] if f.getchannel('A').getbbox()],256,210,128)
+            chosen=ambient[i*4:i*4+(3 if name=='bubble' else 4)]
+            fs=register(chosen,256,210,128)
             if name=='bubble':fs=fs[:3]+[Image.new('RGBA',(256,256))]
             while len(fs)<4:fs.append(fs[0].copy())
             sheet(fs).save(dest/(name+'.png'),optimize=True)
-            effects[name]={'file':name+'.png','columns':4,'frame_size':[256,256],'frames':4,'fps':8,'loop':True,'positions':{'firefly':[[210,350],[850,300],[640,200]],'bubble':[[400,570],[800,580]],'lotus':[[200,590],[900,600]]}[name]}
+            if family=='swamp':preview('ambient_'+name,[f.resize((512,512)) for f in fs],8)
+            effects[name]={'file':name+'.png','columns':4,'frame_size':[256,256],'origin':[128,128],'scale':{'firefly':0.15,'bubble':0.2,'lotus':0.5}[name],'frames':4,'fps':8,'loop':True,'positions':{'firefly':[[210,350],[850,300],[640,200]],'bubble':[[400,570],[800,580]],'lotus':[[200,590],[900,600]]}[name]}
         write(dest/'layers.json',{'canvas':[1080,660],'static_order':['sky','far','mid','ground'],'flag':None,'smoke':[],'torch':[],'grass':[],'bird_lane_y':[],'ambient_effects':effects,'safe_parallax':{'zoom_min_when_panning':1.1,'zoom_max':1.15,'x_offsets':{'sky':0,'far':-8,'mid':8,'ground':12},'y_offset':0}})
         composite=Image.new('RGBA',(1080,660),'#a3b59a')
         for name in ['sky','far','mid','ground']:composite.alpha_composite(Image.open(dest/(name+'.png')).convert('RGBA'))
@@ -133,7 +144,13 @@ def world():
     for filename in files:
         target=ROOT/filename
         if not target.exists():target.write_bytes(subprocess.check_output(['git','show','8241c12:'+filename],cwd=ROOT))
-    meta=json.loads((dest/'obstacles.json').read_text());raw=cells(source('obstacles'),4,8)
+    meta=json.loads((dest/'obstacles.json').read_text())
+    # Cleanup export has a large outer gutter and slightly unequal row spacing.
+    # Explicit measured crop boxes prevent neighboring-row fragments in cells.
+    atlas=Image.open(source('obstacles')).convert('RGBA')
+    assert atlas.size==(887,1774),'remeasure obstacle crop boxes for a new source'
+    xs=[28,236,444,652,860];ys=[120,322,532,744,944,1148,1350,1544,1740]
+    raw=[atlas.crop((xs[x],ys[y],xs[x+1],ys[y+1])) for y in range(8) for x in range(4)]
     static={'poison_toad':0,'mud':4,'web':5,'time_bomb':6,'gold_mark':7,'ice_1':8,'ice_2':9}
     for name,index in static.items():
         f=raw[index];f.thumbnail((240,240));out=Image.new('RGBA',(256,256));out.alpha_composite(f,((256-f.width)//2,(256-f.height)//2));out.save(dest/(name+'.png'),optimize=True)
@@ -153,7 +170,11 @@ def world():
     im=Image.open(source('map')).convert('RGB').resize((1080,1920),Image.Resampling.LANCZOS)
     # Shared band comes from the corrected G1 export; no painted seam approximation.
     lower=Image.open(io.BytesIO(subprocess.check_output(['git','show','8241c12:assets/bg/campaign/segment_02.png'],cwd=ROOT))).convert('RGB')
-    im.paste(lower.crop((0,0,1080,200)),(0,1720));im.save(mapdir/'segment_03.png',optimize=True)
+    band=Image.open(source('map_join')).convert('RGB').resize((1080,600),Image.Resampling.LANCZOS)
+    im.paste(band.crop((0,0,1080,400)),(0,1520))
+    lower.paste(band.crop((0,200,1080,600)),(0,0))
+    im.save(mapdir/'segment_03.png',optimize=True);lower.save(mapdir/'segment_02.png',optimize=True)
+    join=Image.new('RGB',(1080,900));join.paste(im.crop((0,1320,1080,1920)));join.paste(lower.crop((0,200,1080,500)),(0,600));jpg(join,REVIEW/'map_03_02_join.jpg',720)
     # Coordinates are finalized after visual review of the generated map.
     coords=MANIFEST.get('map_nodes',[])
     assert len(coords)==18,'measure all 18 map nodes before world export'
@@ -161,7 +182,7 @@ def world():
     for level,(x,y) in enumerate(coords,19):
         node={'level':level,'segment':3,'x':x,'y':y,'hard':level in [28,34],'bonus':level==30,'boss':level==36,'petal':level==33};nodes.append(node)
         draw.ellipse((x-25,y-25,x+25,y+25),fill='#b83228',outline='white',width=2);draw.text((x-8,y-6),str(level),fill='white')
-    write(mapdir/'nodes_g2.json',nodes);write(mapdir/'layout_g2.json',{'segment_size':[1080,1920],'overlap_px':200,'top_to_bottom':[3,2,1],'origins':{'3':[0,0],'2':[0,1720],'1':[0,3440]},'requires_g1_commit':'8241c12'})
+    write(mapdir/'nodes_g2.json',nodes);write(mapdir/'layout_g2.json',{'segment_size':[1080,1920],'overlap_px':200,'top_to_bottom':[3,2,1],'origins':{'3':[0,0],'2':[0,1720],'1':[0,3440]},'requires_g1_commit':'8241c12','updates_segment_02_top_px':400})
     jpg(marked,REVIEW/'map_03_nodes.jpg',540)
 
 def main():

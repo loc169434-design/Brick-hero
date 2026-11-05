@@ -1,0 +1,75 @@
+{
+  "passed": 1330,
+  "families": [
+    "swamp",
+    "swamp_b"
+  ],
+  "animation_atlases": 96,
+  "sprite_frames_resources": 8,
+  "mean_gray46": {
+    "red": 101.89300626304802,
+    "green": 125.07262277951934,
+    "yellow": 145.85587467362924,
+    "purple": 62.315240083507305
+  },
+  "dark_to_light": [
+    "purple",
+    "red",
+    "green",
+    "yellow"
+  ],
+  "min_gray46_gap": 20.78325189410991,
+  "min_expression_frame_gap": 32.0,
+  "expression_frame_gaps": {
+    "idle": 40.0,
+    "blink": 33.0,
+    "chuckle": 32.0,
+    "laugh": 33.0,
+    "fear": 35.0,
+    "relief": 34.0,
+    "scream": 37.0,
+    "gloat": 37.0,
+    "hurt": 37.0
+  },
+  "board": [
+    7,
+    8
+  ],
+  "board_cells_per_color": 14,
+  "previews": [
+    {
+      "file": "board_a_128px.jpg",
+      "bytes": 718949
+    },
+    {
+      "file": "board_b_128px.jpg",
+      "bytes": 634112
+    },
+    {
+      "file": "board_current_128px.jpg",
+      "bytes": 630556
+    },
+    {
+      "file": "boards_46px.jpg",
+      "bytes": 411339
+    },
+    {
+      "file": "boards_gray_46px.jpg",
+      "bytes": 226980
+    },
+    {
+      "file": "comparison_3_rows.jpg",
+      "bytes": 318378
+    },
+    {
+      "file": "comparison_46px.jpg",
+      "bytes": 37559
+    },
+    {
+      "file": "comparison_gray_46px.jpg",
+      "bytes": 22426
+    }
+  ],
+  "baseline": "2f51e32",
+  "non_swamp_png_preserved": true
+}

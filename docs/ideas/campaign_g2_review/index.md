@@ -60,3 +60,7 @@ Theo issue #41. Nét V2 chương 1 đã được duyệt. [Chương 3](../issue4
 ## Sửa lỗi đóng atlas sau duyệt
 
 [Chi tiết sửa và kiểm liên thông](../issue41_atlas_repair.md) · [Cá Sấu attack](crocodile_attack.gif) · [special](crocodile_special.gif) · [defeat](crocodile_defeat.gif) · [Mụ Cóc attack](toad_witch_attack.gif). Đã kiểm liên thông đủ 340 ô; không còn mảnh lớn chưa được đối chiếu.
+
+## Gạch Cóc — phương án A/B mới
+
+[So sánh ba hàng 128 px / 46 px / xám](../swamp_variants_review/comparison_3_rows.jpg) · [Ba bảng 7×8 ở 46 px](../swamp_variants_review/boards_46px.jpg) · [Bàn giao](../swamp_variants_handoff.md). Các GIF/lưới `tiles_<color>` trong gallery này đã được cập nhật theo A mới.

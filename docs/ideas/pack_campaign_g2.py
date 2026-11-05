@@ -208,5 +208,8 @@ def main():
     elif args.group=='tiles':tiles()
     elif args.group=='npcs':npcs()
     else:world()
+    if args.group=='tiles' and (DOC/'swamp_variants_sources.json').exists():
+        from pack_swamp_variants import main as pack_variants
+        pack_variants()
 
 if __name__=='__main__':main()

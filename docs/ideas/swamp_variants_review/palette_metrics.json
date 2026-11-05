@@ -1,0 +1,23 @@
+{
+  "roles": {
+    "red": {
+      "mean_gray46": 101.89300626304802
+    },
+    "green": {
+      "mean_gray46": 125.07262277951934
+    },
+    "yellow": {
+      "mean_gray46": 145.85587467362924
+    },
+    "purple": {
+      "mean_gray46": 62.315240083507305
+    }
+  },
+  "dark_to_light": [
+    "purple",
+    "red",
+    "green",
+    "yellow"
+  ],
+  "min_adjacent_mean_gray46_gap": 20.78325189410991
+}

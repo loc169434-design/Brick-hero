@@ -1,0 +1,85 @@
+{
+  "seed": 4102,
+  "columns": 7,
+  "rows": 8,
+  "counts": {
+    "red": 14,
+    "green": 14,
+    "yellow": 14,
+    "purple": 14
+  },
+  "layout": [
+    [
+      "green",
+      "yellow",
+      "red",
+      "green",
+      "red",
+      "yellow",
+      "purple"
+    ],
+    [
+      "yellow",
+      "green",
+      "yellow",
+      "yellow",
+      "purple",
+      "green",
+      "red"
+    ],
+    [
+      "red",
+      "yellow",
+      "yellow",
+      "purple",
+      "purple",
+      "yellow",
+      "red"
+    ],
+    [
+      "yellow",
+      "purple",
+      "purple",
+      "red",
+      "green",
+      "yellow",
+      "purple"
+    ],
+    [
+      "red",
+      "green",
+      "purple",
+      "green",
+      "yellow",
+      "purple",
+      "red"
+    ],
+    [
+      "green",
+      "green",
+      "red",
+      "yellow",
+      "purple",
+      "red",
+      "purple"
+    ],
+    [
+      "green",
+      "green",
+      "green",
+      "red",
+      "purple",
+      "green",
+      "red"
+    ],
+    [
+      "purple",
+      "purple",
+      "yellow",
+      "red",
+      "yellow",
+      "red",
+      "green"
+    ]
+  ]
+}

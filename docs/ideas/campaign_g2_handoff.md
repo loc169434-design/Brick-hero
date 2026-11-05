@@ -86,3 +86,9 @@ Lệnh tạo draft PR G2 và comment vào #41 đều trả `Post "https://api.gi
 ## Sửa atlas sau duyệt — tiếp sau `10ccc4c`
 
 Đã đóng lại đủ sáu clip Cá Sấu theo biên hàng nguồn thực tế, làm sạch attack 2–3 của Mụ Cóc. Luật mới quét **340 ô** theo phần alpha liên thông, từ chối mảnh rời **>200 pixel** trừ từng hiệu ứng có mask được đối chiếu rõ. Cùng luật bắt đủ **18 ô cá sấu lỗi ở commit cũ**. Khi chạy luật trên cả bộ, đã sửa thêm các mảnh lẫn ô cùng nguyên nhân ở Cóc Phun Độc và bốn ô của các actor khác. [Chi tiết, GIF và lệnh kiểm](issue41_atlas_repair.md) · [Kết quả liên thông](campaign_g2_review/contiguity_validation.json). Godot smoke 0 failures; suite 93/93.
+
+## Bổ sung phương án gạch A/B theo comment #41
+
+Đã hoàn thiện A theo khuôn Goblin/Orc trong `assets/tiles/swamp/`: khung bo góc, viền mực, bóng khối, da cóc tự nhiên, phụ kiện màu và huy hiệu vai trò. Thêm B đầy đủ cùng cấu trúc ở `assets/tiles/swamp_b/`: không huy hiệu, màu san hô/xanh ngọc/mật ong/chàm. Mỗi bộ 48 atlas và bốn SpriteFrames. Tên màu trong code và thời lượng clip giữ nguyên.
+
+[So sánh ba hàng 128/46/xám](swamp_variants_review/comparison_3_rows.jpg) · [Bảng 7×8 A](swamp_variants_review/board_a_128px.jpg) · [Bảng 7×8 B](swamp_variants_review/board_b_128px.jpg) · [Bàn giao và số đo](swamp_variants_handoff.md). Chờ người dùng chọn A/B; không thay code chọn theme. PNG ngoài bộ swamp giữ nguyên, gồm Cá Sấu đã sửa ở `2f51e32`.

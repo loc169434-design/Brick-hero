@@ -36,7 +36,7 @@ def run():
     for cid,poses in [('swamp_old_man',['idle','talk']),('bin',['idle','talk','cheer'])]:
         for pose in poses:check(Image.open(ROOT/f'assets/characters/{cid}/{pose}.png').size==(512,512),cid+' standing pose')
     manifest=json.loads((ROOT/'assets/tiles/animation_pack.json').read_text());old=json.loads(subprocess.check_output(['git','show','36db7f9:assets/tiles/animation_pack.json'],cwd=ROOT))
-    check([a for a in manifest['atlases'] if a['family']!='swamp']==old['atlases'],'existing tile atlases unchanged')
+    check([a for a in manifest['atlases'] if a['family'] not in ['swamp','swamp_b']]==old['atlases'],'existing non-swamp tile atlases unchanged')
     entries=[a for a in manifest['atlases'] if a['family']=='swamp'];check(len(entries)==48,'48 tile clips')
     for a in entries:
         im=Image.open(ROOT/a['file']);check(im.mode=='RGBA' and im.size==(a['width'],a['height']),'tile contract')

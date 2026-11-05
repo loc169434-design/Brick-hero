@@ -1,5 +1,6 @@
 {
   "family": "swamp",
+  "variant": "A",
   "expressions": [
     "idle",
     "blink",
@@ -685,10 +686,18 @@
       "loop": false
     }
   ],
+  "role_names_unchanged": true,
+  "role_badges": true,
+  "palette": {
+    "red": "red",
+    "green": "green",
+    "yellow": "yellow",
+    "purple": "purple"
+  },
   "shared_drawn_cels": {
     "death/win": "fear+scream",
     "taunt/lose": "laugh",
     "near_miss": "fear+relief+laugh"
   },
-  "notes": "4 independently drawn cels per source action; no body-part interpolation"
+  "notes": "4 independently hand-drawn cels per source action; intentional reuse documented, no pose interpolation."
 }

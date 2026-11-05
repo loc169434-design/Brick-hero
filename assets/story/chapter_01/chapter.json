@@ -17,8 +17,9 @@
     1350,
     540,
     1440,
-    1461
+    1484
   ],
   "layout": "vertical_variable_heights",
-  "gutter_px": 36
+  "gutter_px": 36,
+  "style_revision": 2
 }

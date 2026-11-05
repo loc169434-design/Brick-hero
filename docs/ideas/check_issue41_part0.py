@@ -48,7 +48,8 @@ def main():
         if p.suffix.lower() in ['.gif','.jpg']:
             check(p.stat().st_size<2_000_000,'preview size '+p.name);previews.append({'file':p.name,'bytes':p.stat().st_size})
         check(p.suffix.lower() not in ['.webp','.png'],'review only GIF/JPG')
-    report={'passed':count,'overlap_pixels':[1080,200],'overlap_sha256':hashlib.sha256(a).hexdigest(),'panel_heights':heights,'previews':previews,'comic_style_approval':'pending_user'}
+    revision=json.loads((ROOT/'assets/story/chapter_01/chapter.json').read_text()).get('style_revision',1)
+    report={'passed':count,'overlap_pixels':[1080,200],'overlap_sha256':hashlib.sha256(a).hexdigest(),'panel_heights':heights,'previews':previews,'style_revision':revision,'comic_style_approval':'pending_user'}
     (OUT/'validation.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 
 if __name__=='__main__':main()

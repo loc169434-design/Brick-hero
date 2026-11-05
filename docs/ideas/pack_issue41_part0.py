@@ -40,11 +40,14 @@ def preview_grid(name,frames):
         im.paste(b.convert('RGB').resize((256,256)),(i*256,30));d.text((i*256+10,10),str(i),fill='white')
     jpg(im,OUT/(name+'.jpg'))
 
-def main():
+def main(chapter_only=False):
     global CONFIG
     CONFIG=json.loads(MANIFEST.read_text());sources={k:Path(v['path']) for k,v in CONFIG['sources'].items()}
     for k,p in sources.items():CONFIG['sources'][k]['sha256']=hashlib.sha256(p.read_bytes()).hexdigest()
     write(MANIFEST,CONFIG);OUT.mkdir(exist_ok=True)
+    if chapter_only:
+        pack_chapter(sources)
+        return
     # Same 200-pixel band is contained in both maps. Renderer must overlap 200px.
     band=Image.open(sources['41map_clean']).convert('RGB').resize((1080,600),Image.Resampling.LANCZOS)
     upper=original('assets/bg/campaign/segment_02.png').convert('RGB')
@@ -95,6 +98,9 @@ def main():
         metadata['clips'][clip]={'frames':4,'fps':8,'loop':clip=='idle'};gif('fairy_beggar_'+clip,clipframes)
     fs[0].save(dest/'idle.png',optimize=True)
     write(dest/'anim/anim.json',metadata);write(dest/'rig.json',{'id':'fairy_beggar','canvas':[512,512],'feet':[256,500],'anchors':{f'fresh_{c}':{'head':[256,150],'mouth':[256,190]} for c in metadata['clips']}})
+    pack_chapter(sources)
+
+def pack_chapter(sources):
     # Independent panels retain their native aspect ratios, not a uniform grid.
     after=[];before=[];chapter=ROOT/'assets/story/chapter_01'
     for i in range(1,7):
@@ -104,7 +110,7 @@ def main():
         im.save(chapter/f'panel_{i:02}.png',optimize=True);after.append(im)
         before.append(original(f'assets/story/chapter_01/panel_{i:02}.png').convert('RGB'))
         jpg(im,OUT/f'chapter1_panel_{i:02}_after.jpg',720)
-    meta=json.loads((chapter/'chapter.json').read_text());meta.update({'style_review':'pending_user_approval_issue_41','panel_heights':[im.height for im in after],'layout':'vertical_variable_heights','gutter_px':36});write(chapter/'chapter.json',meta)
+    meta=json.loads((chapter/'chapter.json').read_text());meta.update({'style_review':'pending_user_approval_issue_41','style_revision':CONFIG.get('style_revision',1),'panel_heights':[im.height for im in after],'layout':'vertical_variable_heights','gutter_px':36});write(chapter/'chapter.json',meta)
     tall=Image.new('RGB',(1080,sum(im.height for im in after)+36*5),'#f6e8cc');y=0
     for im in after:tall.paste(im,(0,y));y+=im.height+36
     jpg(tall,OUT/'chapter1_after_webtoon.jpg',540)
@@ -116,10 +122,23 @@ def main():
     compare=Image.new('RGB',(920,sum(im.height for im in rows)),'#f6e8cc');y=0
     for im in rows:compare.paste(im,(0,y));y+=im.height
     jpg(compare,OUT/'chapter1_before_after.jpg',920)
+    if CONFIG.get('style_revision',1)>=2:
+        rows=[]
+        for i,new in enumerate(after,1):
+            path=f'assets/story/chapter_01/panel_{i:02}.png'
+            old=Image.open(io.BytesIO(subprocess.check_output(['git','show',CONFIG['previous_style_commit']+':'+path],cwd=ROOT))).convert('RGB')
+            old=old.resize((440,round(old.height*440/old.width)));small=new.resize((440,round(new.height*440/new.width)))
+            row=Image.new('RGB',(920,max(old.height,small.height)+48),'#f8edd8');row.paste(old,(10,38));row.paste(small,(470,38));d=ImageDraw.Draw(row);d.text((10,10),f'{i} V1',fill='#4c2d1c');d.text((470,10),f'{i} V2 - ROUGHER PEN',fill='#4c2d1c');rows.append(row)
+        im=Image.new('RGB',(920,sum(r.height for r in rows)),'#f8edd8');y=0
+        for row in rows:im.paste(row,(0,y));y+=row.height
+        jpg(im,OUT/'chapter1_v1_v2.jpg',920)
     # Character reference board uses unchanged game sprites beside the new panels.
     board=Image.new('RGB',(1080,700),'#f6e8cc');d=ImageDraw.Draw(board)
     for j,(cid,pose) in enumerate([('hero_rookie','fresh_idle'),('princess','idle'),('king','idle')]):
         sprite=Image.open(ROOT/f'assets/characters/{cid}/{pose}.png').convert('RGBA');sprite.thumbnail((240,240));board.paste(sprite,(j*360+60,35),sprite);d.text((j*360+60,10),cid+' GAME SPRITE',fill='#4c2d1c')
     board.paste(after[0].resize((540,270)),(0,340));board.paste(after[1].resize((540,360)),(540,300));jpg(board,OUT/'chapter1_sprite_comparison.jpg',1080)
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser();parser.add_argument('--chapter-only',action='store_true')
+    main(chapter_only=parser.parse_args().chapter_only)

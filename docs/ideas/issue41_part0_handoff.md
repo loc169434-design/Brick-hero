@@ -4,11 +4,13 @@ Nhánh `art/campaign-100-g1`, commit tiếp sau `f83b5fc`. Theo [issue #41](http
 
 ## Duyệt chương 1
 
+**V2 sau phản hồi “Cần nét mộc hơn nữa”:** đã vẽ lại toàn bộ sáu khung theo nét bút nâu mảnh, có nét dò/đứt, mảng màu tô để lộ giấy và gần như không có bóng. [So trực tiếp V1/V2](issue41_part0_review/chapter1_v1_v2.jpg). V1 ở commit `8241c12` chưa được duyệt; V2 cũng đang chờ duyệt, chưa áp nét sang chương 2–3. Metadata/source manifest ghi `style_revision: 2` và giữ nguồn ngoài repo.
+
 **[So sánh đủ sáu khung trước/sau](issue41_part0_review/chapter1_before_after.jpg)** (JPG dưới 0,8 MB).
 
 **[Đặt cạnh sprite gốc](issue41_part0_review/chapter1_sprite_comparison.jpg)** · [Đọc bản webtoon mới](issue41_part0_review/chapter1_after_webtoon.jpg).
 
-Giữ sáu sự kiện cũ: luyện kiếm, quà sinh nhật, Bà Tiên xông vào, lời thử, rồng bắt, công chúa thả cánh hoa khi đang bị mang đi. Mỗi khung vẽ riêng theo ảnh mẫu nhân vật game. Viền nâu không đều, màu phẳng với bóng cắt, ít đồ nền, vân giấy nhẹ; bỏ glow/ánh sáng điện ảnh. Khung xuất rộng 1080, cao lần lượt **540, 720, 1350, 540, 1440, 1461**, khung cuối cắt viền thành ảnh tràn mép. Chừa giấy trống cho thoại do code vẽ.
+Giữ sáu sự kiện cũ: luyện kiếm, quà sinh nhật, Bà Tiên xông vào, lời thử, rồng bắt, công chúa thả cánh hoa khi đang bị mang đi. Mỗi khung vẽ riêng theo ảnh mẫu nhân vật game. Viền nâu mảnh có nét dò và chỗ đứt, mảng màu tô thưa để lộ giấy, gần như không có bóng; ít đồ nền, không glow/ánh sáng điện ảnh. Khung xuất rộng 1080, cao lần lượt **540, 720, 1350, 540, 1440, 1484**, khung cuối cắt viền thành ảnh tràn mép. Chừa giấy trống cho thoại do code vẽ.
 
 **Nét mới đang chờ người dùng duyệt. Chưa vẽ lại chương 2 và chưa làm chương 3.** `chapter_01/chapter.json` ghi rõ trạng thái duyệt. Có thể tiếp tục phần quái/vật cản G2 độc lập với việc duyệt truyện.
 
@@ -28,6 +30,7 @@ Giữ sáu sự kiện cũ: luyện kiếm, quà sinh nhật, Bà Tiên xông v�
 
 ```sh
 python docs/ideas/pack_issue41_part0.py
+python docs/ideas/pack_issue41_part0.py --chapter-only # Chỉ tái xuất truyện/ảnh duyệt, giữ các sửa G1 khác
 python docs/ideas/check_issue41_part0.py
 python docs/ideas/check_campaign_g1.py
 godot --headless --editor --path . --import --quit

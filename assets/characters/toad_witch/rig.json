@@ -1,0 +1,133 @@
+{
+  "id": "toad_witch",
+  "canvas": [
+    512,
+    512
+  ],
+  "feet": [
+    256,
+    500
+  ],
+  "anchors": {
+    "fresh_idle": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_attack": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_hurt": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_special": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_defeat": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_victory": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_cast_toads": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_cast_broom": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_throw_potion": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_cackle": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_stomp_angry": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_drink_transform": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    }
+  }
+}

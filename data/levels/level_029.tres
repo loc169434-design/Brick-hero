@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level/level_data.gd" id="1_level"]
+
+[resource]
+script = ExtResource("1_level")
+number = 29
+monsters = PackedStringArray("goblin_archer")
+kill = false
+rescue = 1
+rescue_item = "rescue_cage"

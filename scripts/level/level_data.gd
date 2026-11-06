@@ -18,12 +18,20 @@ extends Resource
 ## Gather this many squares of `collect_color` (Cell.BlockColor).
 @export var collect := 0
 @export var collect_color := -1
-## Crates dealt onto the board, how thick, and between which rows.
+## Obstacles dealt onto the board (`obstacle`: "crate", "mud", "poison_toad", "time_bomb"),
+## how many, how thick, and between which rows.
+@export var obstacle := "crate"
 @export var crates := 0
 @export var crate_layers := 1
 @export var crate_rows := Vector2i(3, 7)
-## Whether every crate has to be broken.
+## Whether every one of those obstacles has to be broken.
 @export var break_crates := false
+## An overlay laid on tiles at the start ("ice", "web", "mark"), how many, how thick (ice).
+@export var cover := ""
+@export var cover_count := 0
+@export var cover_layers := 1
+## Whether every one of those overlays has to be cleared.
+@export var break_cover := false
 ## Items dealt onto the top row, to bring down to the bottom.
 @export var rescue := 0
 @export var rescue_item := "orc_flag"

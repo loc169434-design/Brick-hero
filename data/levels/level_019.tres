@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level/level_data.gd" id="1_level"]
+
+[resource]
+script = ExtResource("1_level")
+number = 19
+monsters = PackedStringArray("toad_spitter")
+obstacle = "poison_toad"
+crates = 3
+crate_rows = Vector2i(2, 6)

@@ -1,0 +1,52 @@
+{
+  "toad_hop": {
+    "frames": 6,
+    "fps": 14,
+    "columns": 4,
+    "frame_size": [
+      512,
+      512
+    ],
+    "loop": false
+  },
+  "poof_green": {
+    "frames": 8,
+    "fps": 14,
+    "columns": 4,
+    "frame_size": [
+      512,
+      512
+    ],
+    "loop": false
+  },
+  "broom_spell": {
+    "frames": 8,
+    "fps": 14,
+    "columns": 4,
+    "frame_size": [
+      512,
+      512
+    ],
+    "loop": false
+  },
+  "spell_break": {
+    "frames": 8,
+    "fps": 14,
+    "columns": 4,
+    "frame_size": [
+      512,
+      512
+    ],
+    "loop": false
+  },
+  "levitate": {
+    "frames": 8,
+    "fps": 12,
+    "columns": 4,
+    "frame_size": [
+      512,
+      512
+    ],
+    "loop": true
+  }
+}

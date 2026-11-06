@@ -17,6 +17,17 @@ const NEAR_MISS_HEALTH := 0.15
 const GLOAT_HEALTH := 0.3
 ## Seconds after the move until the thrown rock lands on the board.
 const ROCK_LANDS := 1.0
+## A time bomb going off hurts the hero this much; each poison toad on the board spits this.
+const BOMB_DAMAGE := 10
+const TOAD_SPIT := 1
+const BOMB_TIMER := 3
+## Moves the hero stays a toad, and the sword a broom.
+const TOAD_TURNS := 2
+const BROOM_TURNS := 2
+## Gold a thief takes for each of its marks still on the board.
+const STEAL_PER_MARK := 2
+## Extra damage when the witch throws one of the hero's own specials at them: it goes off.
+const LIFT_SPECIAL_BONUS := 8
 
 @export var board: BoardView
 @export var battle_view: BattleView
@@ -52,6 +63,7 @@ func _ready() -> void:
 		battle_view.impact.connect(feel.impact)
 		battle_view.slow_motion.connect(feel.slow_motion)
 	board.orb_targets = battle_view.orb_targets()
+	battle_view.tile_thrown.connect(board.throw_lifted)
 	if skill_bar:
 		skill_bar.pressed.connect(_on_skill_pressed)
 	_start()
@@ -109,6 +121,12 @@ func _start() -> void:
 
 func _on_move_finished(result: MoveResult) -> void:
 	var report := state.apply_move(result)
+	_board_turn(result, report)
+	if report.board_spell:
+		_cast(report)
+	# The witch takes hold of a tile a move before she throws it.
+	if state.outcome == BattleState.Outcome.ONGOING and state.attacks_next_move() and state.coming_spell() == "lift":
+		board.mark_lift()
 	if level:
 		progress.record(result)
 		_judge(report)
@@ -143,6 +161,79 @@ func _on_skill_pressed() -> void:
 		board.locked = false
 
 
+## The board's turn after the move: bombs and potions that ran out go off, poison toads spit,
+## mud creeps. What hurts the hero comes off their health now, before the fight is judged.
+func _board_turn(result: MoveResult, report: TurnReport) -> void:
+	var mud_hit := false
+	for step in result.steps:
+		for b in step.broken:
+			mud_hit = mud_hit or b["kind"] == "mud"
+	var events := board.end_turn(mud_hit)
+	report.board_damage = events["bombs"].size() * BOMB_DAMAGE + events["toads"] * TOAD_SPIT
+	if not events["potions"].is_empty() and state.outcome == BattleState.Outcome.ONGOING:
+		state.toad_turns = TOAD_TURNS
+		report.turned_toad = true
+	if report.board_damage > 0 and state.outcome == BattleState.Outcome.ONGOING:
+		state.hero_hp = maxi(state.hero_hp - report.board_damage, 0)
+		if state.hero_hp == 0:
+			state.outcome = BattleState.Outcome.LOST
+			report.outcome = state.outcome
+
+
+## A monster's spell on the board (TurnReport.board_spell). Curses on the hero take hold at
+## once; what lands on the board waits for the attack to play out.
+func _cast(report: TurnReport) -> void:
+	var power := state.monster.special_power
+	match report.board_spell:
+		"lift":
+			_lift(report)
+			return
+		"broom":
+			state.broom_turns = BROOM_TURNS
+			report.broomed = true
+			return
+		"marks":
+			var marks := board.game.count(func(c: Cell) -> bool: return c.marked)
+			report.stolen = mini(state.gold, marks * STEAL_PER_MARK)
+			state.gold -= report.stolen
+	var fight := state
+	await get_tree().create_timer(ROCK_LANDS).timeout
+	if fight != state:
+		return
+	match report.board_spell:
+		"toads", "burp":
+			for i in power:
+				board.drop_obstacle("poison_toad", 1)
+		"bomb":
+			board.drop_obstacle("time_bomb", 1, BOMB_TIMER)
+		"potion":
+			board.drop_obstacle("potion_bottle", 1, 1)
+		"web", "ice", "marks":
+			board.cover("mark" if report.board_spell == "marks" else report.board_spell, power)
+
+
+## The witch throws the tile she took hold of. If the player cleared it first, the spell breaks:
+## the attack misses. If it was one of the hero's specials, it goes off on them.
+func _lift(report: TurnReport) -> void:
+	if board.lift_square().x < 0:
+		board.lift_cell = null
+		report.lift_fizzled = true
+		state.hero_hp = mini(state.hero_hp + report.monster_attack, rules.hero_max_hp)
+		report.monster_attack = 0
+		if state.outcome == BattleState.Outcome.LOST and state.hero_hp > 0:
+			state.outcome = BattleState.Outcome.ONGOING
+			report.outcome = state.outcome
+		return
+	report.lift_thrown = true
+	if board.lift_cell.is_special():
+		report.lift_special = true
+		report.monster_attack += LIFT_SPECIAL_BONUS
+		state.hero_hp = maxi(state.hero_hp - LIFT_SPECIAL_BONUS, 0)
+		if state.hero_hp == 0:
+			state.outcome = BattleState.Outcome.LOST
+			report.outcome = state.outcome
+
+
 ## The Orc's rock lands on the board as it hits: a two-layer obstacle on a random tile.
 func _throw_rock() -> void:
 	var fight := state
@@ -153,7 +244,11 @@ func _throw_rock() -> void:
 
 func _set_up_board(game: LinkGame) -> void:
 	if level.crates > 0:
-		game.place("crate", level.crates, level.crate_layers, level.crate_rows.x, level.crate_rows.y)
+		for p in game.place(level.obstacle, level.crates, level.crate_layers, level.crate_rows.x, level.crate_rows.y):
+			if level.obstacle == "time_bomb":
+				game.board.get_cell(p).timer = BOMB_TIMER + 2
+	if level.cover_count > 0:
+		game.cover(level.cover, level.cover_count, level.cover_layers)
 	if level.rescue > 0:
 		game.place(level.rescue_item, level.rescue, 0, 0, 1)
 
@@ -193,6 +288,9 @@ func _bring_on_next() -> void:
 		return
 	var next: MonsterData
 	if state.monster.next_phase:
+		await battle_view.play_transform()
+		if fight != state:
+			return
 		next = load("res://data/monsters/%s.tres" % state.monster.next_phase)
 	else:
 		encounter_index += 1

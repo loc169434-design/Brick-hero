@@ -36,6 +36,11 @@
       "frames": 4,
       "fps": 8,
       "loop": false
+    },
+    "rage": {
+      "frames": 10,
+      "fps": 12,
+      "loop": false
     }
   }
 }

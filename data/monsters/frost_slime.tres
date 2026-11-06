@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MonsterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/battle/monster_data.gd" id="1_monster"]
+
+[resource]
+script = ExtResource("1_monster")
+id = "frost_slime"
+display_name = "Thạch Băng"
+max_hp = 70
+shield_layers = 1
+attack = 10
+countdown = 3
+special = "ice"
+special_power = 2
+tile_theme = "swamp_b"
+background = "swamp"

@@ -28,10 +28,97 @@ func deal() -> void:
 			for x in board.columns:
 				var p := Vector2i(x, y)
 				var cell := board.get_cell(p)
-				if cell == null or not cell.is_blocker():
+				if cell == null or not (cell.is_blocker() or cell.web or cell.ice > 0 or cell.marked):
 					board.set_cell(p, Cell.new(_color_without_line(p)))
 		if has_move():
 			return
+
+
+## Lays an overlay on `count` random plain tiles between rows `from_row` and `to_row`:
+## "ice" (`layers` thick), "web", or "mark" (gold tiles only). Keeps a link possible.
+## Returns where they went.
+func cover(kind: String, count: int, layers := 1, from_row := 0, to_row := -1) -> Array[Vector2i]:
+	var last := board.rows - 1 if to_row < 0 else mini(to_row, board.rows - 1)
+	var spots: Array[Vector2i] = []
+	for y in range(from_row, last + 1):
+		for x in board.columns:
+			var cell := board.get_cell(Vector2i(x, y))
+			if cell == null or cell.is_blocker() or cell.is_special() or cell.web or cell.ice > 0 or cell.marked:
+				continue
+			if kind == "mark" and cell.color != Cell.BlockColor.YELLOW:
+				continue
+			spots.append(Vector2i(x, y))
+	var covered: Array[Vector2i] = []
+	while covered.size() < count and not spots.is_empty():
+		var p: Vector2i = spots.pop_at(_rng.randi_range(0, spots.size() - 1))
+		var cell := board.get_cell(p)
+		match kind:
+			"ice":
+				cell.ice = layers
+			"web":
+				cell.web = true
+				if not has_move():
+					cell.web = false
+					continue
+			"mark":
+				cell.marked = true
+		covered.append(p)
+	return covered
+
+
+## Counts the cells for which `test` is true.
+func count(test: Callable) -> int:
+	var total := 0
+	for y in board.rows:
+		for x in board.columns:
+			var cell := board.get_cell(Vector2i(x, y))
+			if cell and test.call(cell):
+				total += 1
+	return total
+
+
+## What the board does on its own once a move has played out, before the monster's turn:
+## time bombs and potion bottles tick down and go off at zero (they leave the board), and mud
+## that wasn't hit this move creeps onto a tile beside it. Returns
+## {"bombs": [Vector2i…], "potions": [Vector2i…], "mud": Vector2i or null, "toads": int}.
+func end_turn(mud_hit: bool) -> Dictionary:
+	var events := {"bombs": [], "potions": [], "mud": null, "toads": 0}
+	var muds: Array[Vector2i] = []
+	for y in board.rows:
+		for x in board.columns:
+			var p := Vector2i(x, y)
+			var cell := board.get_cell(p)
+			if cell == null or not cell.is_blocker():
+				continue
+			match cell.blocker:
+				"time_bomb", "potion_bottle":
+					cell.timer -= 1
+					if cell.timer <= 0:
+						events["bombs" if cell.blocker == "time_bomb" else "potions"].append(p)
+						board.set_cell(p, Cell.new(_rng.randi_range(0, Cell.COLOR_COUNT - 1)))
+				"mud":
+					muds.append(p)
+				"poison_toad":
+					events["toads"] += 1
+	if not mud_hit and not muds.is_empty():
+		muds.shuffle()
+		for p in muds:
+			var spots: Array[Vector2i] = []
+			for d in Resolver.NEIGHBORS:
+				var q: Vector2i = p + d
+				var cell := board.get_cell(q)
+				if cell and not cell.is_blocker() and not cell.is_special():
+					spots.append(q)
+			if not spots.is_empty():
+				var q: Vector2i = spots[_rng.randi_range(0, spots.size() - 1)]
+				board.set_cell(q, Cell.obstacle("mud", 1))
+				if has_move():
+					events["mud"] = q
+					break
+				board.set_cell(q, Cell.new(_rng.randi_range(0, Cell.COLOR_COUNT - 1)))
+	if not has_move():
+		deal()
+	return events
 
 
 ## Puts `count` obstacles of `kind` (`layers` thick; 0 for items) on random tiles between rows
@@ -59,7 +146,7 @@ func place(kind: String, count: int, layers := 0, from_row := 0, to_row := -1) -
 ## Whether `p` can be added to the end of `path` (or start it, if `path` is empty).
 func can_extend(path: Array[Vector2i], p: Vector2i) -> bool:
 	var cell := board.get_cell(p)
-	if cell == null or cell.is_blocker() or path.has(p):
+	if cell == null or cell.is_blocker() or cell.web or path.has(p):
 		return false
 	if path.is_empty():
 		return true

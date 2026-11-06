@@ -74,6 +74,11 @@ var _time := 0.0
 var squash_scale := Vector2.ONE
 ## anim.json, or empty without clips.
 var _anim := {}
+## A set of clips that stands in for the usual ones while it's on: anim/<variant>/ with its own
+## anim.json (the hero's sword turned into a broom). Clips it doesn't have play as usual.
+var variant := ""
+var _variant_clips := {}
+var _base_clips := {}
 ## Loaded clip sheets by path; null for a missing one.
 var _sheets := {}
 ## The clip playing: its name, sheet, settings, and seconds since it started. Empty name: none.
@@ -130,7 +135,10 @@ func setup(id: String, p_facing: int, layers := -1) -> void:
 	if ResourceLoader.exists(anim_path):
 		var anim_json: JSON = load(anim_path)
 		if anim_json.data is Dictionary:
-			_anim = anim_json.data
+			_anim = anim_json.data.duplicate(true)
+	variant = ""
+	_variant_clips = {}
+	_base_clips = _anim.get("clips", {}).duplicate(true)
 	if _motion:
 		_motion.kill()
 	_body.position = Vector2.ZERO
@@ -239,6 +247,8 @@ func finish(won: bool) -> void:
 func _process(delta: float) -> void:
 	_time += delta
 	_update_clip(delta)
+	if ground_shadow:
+		queue_redraw()
 	# Breathing: a slow squash that keeps still art from looking frozen. An idle clip breathes
 	# by itself.
 	var breath := 0.0 if not procedural_motion or _clip == &"idle" or end_pose else sin(_time * 2.4)
@@ -320,9 +330,30 @@ func _has_still(pose_mood: StringName) -> bool:
 	return pose_mood != &"idle" and (_texture("%s_%s" % [WEAR_NAMES[wear], pose_mood]) != null or _texture(String(pose_mood)) != null)
 
 
+## Switches to the clip set in anim/`name`/ ("" for the usual one) and restarts the clip.
+func set_variant(name: String) -> void:
+	if name == variant:
+		return
+	variant = name
+	_variant_clips = {}
+	var path := "res://assets/characters/%s/anim/%s/anim.json" % [character_id, name]
+	if name and ResourceLoader.exists(path):
+		var json: JSON = load(path)
+		if json.data is Dictionary:
+			_variant_clips = json.data.get("clips", {})
+	var clips: Dictionary = _base_clips.duplicate(true)
+	for clip in _variant_clips:
+		clips[clip] = _variant_clips[clip]
+	_anim["clips"] = clips
+	_sheets.clear()
+	_clip_key = ""
+	_body.queue_redraw()
+
+
 func _clip_sheet_for(clip: StringName) -> Texture2D:
+	var folder := "anim/%s/" % variant if _variant_clips.has(String(clip)) else "anim/"
 	for stem in ["%s_%s" % [WEAR_NAMES[wear], clip], "fresh_%s" % clip, String(clip)]:
-		var path := "res://assets/characters/%s/anim/%s.png" % [character_id, stem]
+		var path := "res://assets/characters/%s/%s%s.png" % [character_id, folder, stem]
 		if not _sheets.has(path):
 			_sheets[path] = load(path) if ResourceLoader.exists(path) else null
 		if _sheets[path]:
@@ -345,6 +376,22 @@ func point(key: String, pose: StringName = &"") -> Vector2:
 ## Stars spin around the head: knocked silly for `seconds`.
 func daze(seconds := 0.8) -> void:
 	_spin_stars(seconds)
+
+
+## A soft oval shadow on the ground under the feet, so the fighter stands on the scene rather
+## than floating over it. It stays on the ground when the body hops, shrinking as it rises.
+@export var ground_shadow := true
+
+
+func _draw() -> void:
+	if not ground_shadow or character_id.is_empty():
+		return
+	var lift := clampf(-_body.position.y / 200.0, 0.0, 0.7)
+	var width := DISPLAY_SIZE * 0.36 * (1.0 - lift * 0.5)
+	draw_set_transform(Vector2(_body.position.x, 4), 0.0, Vector2(1.0, 0.26))
+	for i in 4:
+		draw_circle(Vector2.ZERO, width * (1.0 - i * 0.18), Color(0.05, 0.04, 0.02, 0.13 * (1.0 - lift)))
+	draw_set_transform(Vector2.ZERO)
 
 
 ## Moves the body to `offset` from the feet over `seconds`. Returns when it gets there.

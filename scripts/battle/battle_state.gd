@@ -22,6 +22,19 @@ var shield: int
 var countdown: int
 ## Moves the war drum has taken off the monster's countdown (MonsterData.special "drum").
 var tempo := 0
+## Poison eating the hero's health: this much a move, for poison_turns more moves. More poison
+## stacks on top and starts the count again; gathering CURE_GREENS green squares in one move
+## washes it all out.
+var poison := 0
+var poison_turns := 0
+## Whether the hero is a toad (moves left), cursed by the Toad Witch's bottle: red squares do
+## a single point each and the skill bar can't be used.
+var toad_turns := 0
+## Moves left with the sword turned into a broom: red squares do half damage. A link of
+## BROOM_BREAK_LINK squares or more breaks the spell.
+var broom_turns := 0
+## The monster has flown into a rage (MonsterData.rage_below): faster, harder attacks.
+var raging := false
 var gold := 0
 ## Fills from cleared squares; at rules.rage_max the hero skill is ready. Starts empty each fight.
 var rage := 0
@@ -59,6 +72,18 @@ func next_attack_is_critical() -> bool:
 	return monster.counterattacks and monster.crit_every > 0 and (attacks_made + 1) % monster.crit_every == 0
 
 
+const POISON_TURNS := 3
+## A raging monster's attacks hit this many times harder.
+const RAGE_POWER := 1.25
+const CURE_GREENS := 3
+const BROOM_BREAK_LINK := 6
+
+
+func poison_hero(damage: int) -> void:
+	poison += damage
+	poison_turns = POISON_TURNS
+
+
 func apply_move(result: MoveResult) -> TurnReport:
 	var report := TurnReport.new()
 	if outcome != Outcome.ONGOING:
@@ -86,6 +111,17 @@ func apply_move(result: MoveResult) -> TurnReport:
 		for cell in step.cleared_cells:
 			if cell.critical:
 				report.critical = true
+	# Under a curse the sword hits softer: a broom sweeps for half, a toad's tongue for 1 a square.
+	if broom_turns > 0 and result.path.size() >= BROOM_BREAK_LINK:
+		broom_turns = 0
+		report.broom_broken = true
+	if toad_turns > 0:
+		var reds := 0
+		for step in result.steps:
+			reds += step.count_by_color().get(Cell.BlockColor.RED, 0)
+		red = reds
+	elif broom_turns > 0:
+		red *= 0.5
 	if red > 0.0 and not report.critical and rng.randf() < rules.crit_chance:
 		report.critical = true
 	if report.critical and red > 0.0:
@@ -94,12 +130,19 @@ func apply_move(result: MoveResult) -> TurnReport:
 		report.critical = false
 
 	_strike(red, purple, smashes, report)
+	if not raging and monster.rage_below > 0.0 and monster_hp > 0 and monster_health() <= monster.rage_below:
+		raging = true
+		report.raged = true
+		countdown = mini(countdown, attack_every())
 	report.heal = mini(roundi(green), rules.hero_max_hp - hero_hp)
 	hero_hp += report.heal
 	report.gold = roundi(yellow)
 	gold += report.gold
+	_tick_curses(result, report)
 
-	if monster_hp <= 0:
+	if monster_hp <= 0 or outcome == Outcome.LOST:
+		if monster_hp <= 0:
+			outcome = Outcome.WON
 		outcome = Outcome.WON
 	elif monster.counterattacks:
 		countdown -= 1
@@ -114,6 +157,17 @@ func apply_move(result: MoveResult) -> TurnReport:
 				"drum":
 					tempo += 1
 					report.drummed = true
+				"poison":
+					poison_hero(monster.special_power)
+					report.poisoned = true
+				"leech":
+					report.leeched = mini(report.monster_attack, monster.max_hp - monster_hp)
+					monster_hp += report.leeched
+				"":
+					pass
+				_:
+					# Spells on the board are cast by the fight (BattleManager.cast).
+					report.board_spell = _next_spell()
 			countdown = attack_every()
 			if hero_hp == 0:
 				outcome = Outcome.LOST
@@ -126,7 +180,7 @@ func apply_move(result: MoveResult) -> TurnReport:
 ## Whether the hero skill can be used now: the bar is full, the fight is on, and the skill would
 ## do something (Hồi Quang needs the hero hurt).
 func skill_ready() -> bool:
-	if outcome != Outcome.ONGOING or rage < rules.rage_max or not SKILLS.has(rules.skill):
+	if outcome != Outcome.ONGOING or rage < rules.rage_max or not SKILLS.has(rules.skill) or toad_turns > 0:
 		return false
 	return rules.skill != "second_wind" or hero_hp < rules.hero_max_hp
 
@@ -185,12 +239,56 @@ func _gain_rage(result: MoveResult) -> int:
 ## What a monster attack takes off the hero after the helmet and armor.
 func monster_hit(critical: bool) -> int:
 	var crit_bonus := (rules.monster_crit_multiplier - 1.0) * (1.0 - rules.crit_guard) if critical else 0.0
-	return maxi(roundi(monster.attack * (1.0 + crit_bonus)) - rules.armor, 1)
+	var rage := RAGE_POWER if raging else 1.0
+	return maxi(roundi(monster.attack * rage * (1.0 + crit_bonus)) - rules.armor, 1)
 
 
 ## Moves between the monster's attacks, sped up by the war drum, but never under 2.
 func attack_every() -> int:
+	if raging:
+		return maxi(monster.countdown - tempo - 1, 1)
 	return maxi(monster.countdown - tempo, mini(2, monster.countdown))
+
+
+## Poison bites and the curses wear off, once per move.
+func _tick_curses(result: MoveResult, report: TurnReport) -> void:
+	if poison_turns > 0:
+		var greens := 0
+		for step in result.steps:
+			greens += step.count_by_color().get(Cell.BlockColor.GREEN, 0)
+		if greens >= CURE_GREENS:
+			poison = 0
+			poison_turns = 0
+			report.cured = true
+		else:
+			report.poison_damage = mini(poison, hero_hp)
+			hero_hp -= report.poison_damage
+			poison_turns -= 1
+			if poison_turns == 0:
+				poison = 0
+			if hero_hp == 0:
+				outcome = Outcome.LOST
+	if toad_turns > 0:
+		toad_turns -= 1
+		report.toad_back = toad_turns == 0
+	if broom_turns > 0:
+		broom_turns -= 1
+		report.broom_broken = report.broom_broken or broom_turns == 0
+
+
+## The spell a monster with board spells casts on this attack: its `special` names one, or a
+## list of them separated by "," taken in turn.
+func _next_spell() -> String:
+	var spells := monster.special.split(",")
+	return spells[(attacks_made - 1) % spells.size()].strip_edges()
+
+
+## The spell the monster's next attack will cast, "" for none: shown a move ahead.
+func coming_spell() -> String:
+	if monster.special in ["", "rock", "drum", "poison", "leech"]:
+		return ""
+	var spells := monster.special.split(",")
+	return spells[attacks_made % spells.size()].strip_edges()
 
 
 func hero_health() -> float:

@@ -20,11 +20,15 @@ var spawned: Array[Dictionary] = []
 ## Crates and rocks that lost a layer and still stand: { "at": Vector2i, "layers": int left }.
 var hit: Array[Dictionary] = []
 ## Crates and rocks that broke this round (also in `cleared`): { "at": Vector2i, "kind": String }.
+## Ice melted all the way and webs torn away are here too, with kind "ice" or "web"; their
+## tile stays.
 var broken: Array[Dictionary] = []
 ## Items that reached the bottom row and were taken off (also in `cleared`):
 ## { "at": Vector2i, "kind": String }. A round of rescues only, with no tiles, keeps the chain
 ## number of the round before it.
 var rescued: Array[Dictionary] = []
+## Iced tiles that lost a layer and stayed: { "at": Vector2i, "ice": int left }.
+var thawed: Array[Dictionary] = []
 ## { "from": Vector2i, "to": Vector2i }, plus "cell" for a new square dropped in from above
 ## (its "from" is above the board).
 var falls: Array[Dictionary] = []

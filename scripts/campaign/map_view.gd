@@ -41,6 +41,21 @@ const MOUND := Color(0.45, 0.3, 0.16)
 
 var campaign: Campaign
 
+## Sky over the map (see _move_sky): drifting clouds, birds, the swamp's fireflies.
+const CLOUDS := 9
+const CLOUD_ART := ["res://assets/bg/orc_camp/cloud_1.png", "res://assets/bg/orc_camp/cloud_2.png", "res://assets/bg/orc_camp/cloud_3.png"]
+const BIRD_ART := "res://assets/bg/orc_camp/bird.png"
+const FIREFLY_ART := "res://assets/bg/swamp/firefly.png"
+## Segments (counted from 1 at the bottom) where fireflies come out.
+const FIREFLY_SEGMENTS := [3]
+const FIREFLIES := 26
+var _cloud_art: Array[Texture2D] = []
+var _clouds: Array[Dictionary] = []
+var _bird_art: Texture2D
+var _birds: Array[Dictionary] = []
+var _next_bird := 2.0
+var _firefly_art: Texture2D
+var _fireflies: Array[Vector2] = []
 ## The map's segments, bottom one first.
 var _segments: Array[Texture2D] = []
 ## Marks on special stops: hard, boss, bonus, petal.
@@ -83,6 +98,11 @@ func _ready() -> void:
 		var path := "res://assets/ui/campaign/node_%s.png" % kind
 		_badges[kind] = load(path) if ResourceLoader.exists(path) else null
 	_lock = load(LOCK_ICON) if ResourceLoader.exists(LOCK_ICON) else null
+	for path in CLOUD_ART:
+		if ResourceLoader.exists(path):
+			_cloud_art.append(load(path))
+	_bird_art = load(BIRD_ART) if ResourceLoader.exists(BIRD_ART) else null
+	_firefly_art = load(FIREFLY_ART) if ResourceLoader.exists(FIREFLY_ART) else null
 	_load_ambience()
 	_coin = load(COIN) if ResourceLoader.exists(COIN) else null
 	_font = load(FONT) if ResourceLoader.exists(FONT) else ThemeDB.fallback_font
@@ -191,8 +211,30 @@ func _set_toast_alpha(a: float) -> void:
 
 func _process(delta: float) -> void:
 	_time += delta
+	_move_sky(delta)
 	queue_redraw()
 	_hud.queue_redraw()
+
+
+## The painted map never sits still: clouds drift over it and their shadows slide across the
+## land, birds cross now and then, and fireflies wink over the swamp.
+func _move_sky(delta: float) -> void:
+	if _clouds.is_empty() and not _cloud_art.is_empty():
+		for i in CLOUDS:
+			_clouds.append({"at": Vector2(randf_range(-200, SCREEN.x), randf_range(0, map_size().y)), "speed": randf_range(14, 30), "art": i % _cloud_art.size(), "scale": randf_range(1.6, 2.6)})
+	for cloud in _clouds:
+		cloud["at"].x += cloud["speed"] * delta
+		if cloud["at"].x > SCREEN.x + 200:
+			cloud["at"] = Vector2(-500, randf_range(0, map_size().y))
+	_next_bird -= delta
+	if _next_bird <= 0.0 and _bird_art:
+		_next_bird = randf_range(4.0, 9.0)
+		var view_top := _camera.position.y
+		var left := randf() < 0.5
+		_birds.append({"at": Vector2(-60.0 if left else SCREEN.x + 60.0, view_top + randf_range(150, SCREEN.y * 0.6)), "speed": randf_range(130, 190) * (1.0 if left else -1.0), "count": randi_range(1, 3)})
+	for bird in _birds:
+		bird["at"].x += bird["speed"] * delta
+	_birds = _birds.filter(func(b: Dictionary) -> bool: return b["at"].x > -200 and b["at"].x < SCREEN.x + 200)
 
 
 # --- pieces on the stops -----------------------------------------------------
@@ -353,10 +395,57 @@ func _draw() -> void:
 		if _segments[i]:
 			draw_texture_rect(_segments[i], Rect2(Vector2(0, (_segments.size() - 1 - i) * SCREEN.y), SCREEN), false)
 	_draw_ambience()
+	_draw_cloud_shadows()
+	_draw_fireflies()
 	if campaign == null:
 		return
 	for i in campaign.stops.size():
 		_draw_stop(i)
+	_draw_sky()
+
+
+func _draw_cloud_shadows() -> void:
+	for cloud in _clouds:
+		var art: Texture2D = _cloud_art[cloud["art"]]
+		var size := Vector2(art.get_size()) * float(cloud["scale"])
+		draw_texture_rect(art, Rect2(cloud["at"] + Vector2(90, 260), size), false, Color(0.05, 0.1, 0.05, 0.16))
+
+
+## Clouds and birds pass over everything on the map, stops included.
+func _draw_sky() -> void:
+	for cloud in _clouds:
+		var art: Texture2D = _cloud_art[cloud["art"]]
+		var size := Vector2(art.get_size()) * float(cloud["scale"])
+		draw_texture_rect(art, Rect2(cloud["at"], size), false, Color(1, 1, 1, 0.55))
+	if _bird_art:
+		var frame_width := _bird_art.get_width() / 4.0
+		for bird in _birds:
+			for k in int(bird["count"]):
+				var frame := int(_time * 10.0 + k * 1.7) % 4
+				var at: Vector2 = bird["at"] + Vector2(-signf(bird["speed"]) * k * 46, k * 22 + sin(_time * 3.0 + k) * 8)
+				var flip := -1.0 if bird["speed"] < 0 else 1.0
+				draw_set_transform(at, 0.0, Vector2(0.9 * flip, 0.9))
+				draw_texture_rect_region(_bird_art, Rect2(Vector2(-frame_width / 2, -32), Vector2(frame_width, 64)), Rect2(frame * frame_width, 0, frame_width, 64))
+				draw_set_transform(Vector2.ZERO)
+
+
+func _draw_fireflies() -> void:
+	if _firefly_art == null or campaign == null:
+		return
+	if _fireflies.is_empty():
+		for segment: int in FIREFLY_SEGMENTS:
+			if segment > campaign.segments:
+				continue
+			var top := (campaign.segments - segment) * SCREEN.y
+			for i in FIREFLIES:
+				_fireflies.append(Vector2(randf_range(40, SCREEN.x - 40), top + randf_range(60, SCREEN.y - 60)))
+	for i in _fireflies.size():
+		var wink := pow(maxf(sin(_time * 1.7 + i * 2.3), 0.0), 2.0)
+		if wink <= 0.02:
+			continue
+		var at := _fireflies[i] + Vector2(sin(_time * 0.8 + i) * 22, cos(_time * 0.6 + i * 1.3) * 16)
+		var frame := int(_time * 8.0 + i) % 4
+		draw_texture_rect_region(_firefly_art, Rect2(at - Vector2(28, 28), Vector2(56, 56)), Rect2(frame * 256, 0, 256, 256), Color(1, 1, 0.8, wink))
 
 
 func _draw_ambience() -> void:

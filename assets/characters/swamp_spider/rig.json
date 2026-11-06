@@ -1,0 +1,73 @@
+{
+  "id": "swamp_spider",
+  "canvas": [
+    512,
+    512
+  ],
+  "feet": [
+    256,
+    500
+  ],
+  "anchors": {
+    "fresh_idle": {
+      "head": [
+        172,
+        346
+      ],
+      "mouth": [
+        143,
+        400
+      ]
+    },
+    "fresh_attack": {
+      "head": [
+        172,
+        346
+      ],
+      "mouth": [
+        143,
+        400
+      ]
+    },
+    "fresh_hurt": {
+      "head": [
+        172,
+        346
+      ],
+      "mouth": [
+        143,
+        400
+      ]
+    },
+    "fresh_special": {
+      "head": [
+        172,
+        346
+      ],
+      "mouth": [
+        143,
+        400
+      ]
+    },
+    "fresh_defeat": {
+      "head": [
+        172,
+        346
+      ],
+      "mouth": [
+        143,
+        400
+      ]
+    },
+    "fresh_victory": {
+      "head": [
+        172,
+        346
+      ],
+      "mouth": [
+        143,
+        400
+      ]
+    }
+  }
+}

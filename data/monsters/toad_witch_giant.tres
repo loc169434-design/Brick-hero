@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MonsterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/battle/monster_data.gd" id="1_monster"]
+
+[resource]
+script = ExtResource("1_monster")
+id = "toad_witch_giant"
+display_name = "Cóc Khổng Lồ"
+max_hp = 70
+attack = 10
+countdown = 2
+special = "burp"
+special_power = 2
+tile_theme = "swamp_b"
+background = "swamp"

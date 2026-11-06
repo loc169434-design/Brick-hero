@@ -18,6 +18,14 @@ var critical := false
 var blocker := ""
 ## Layers left on a crate or rock. Items have none: they can't be broken.
 var layers := 0
+## Moves left before a time bomb goes off or a potion bottle bursts.
+var timer := 0
+## Overlays on a tile, which keeps its color. Ice (layers): the tile still links, but clearing
+## it only melts a layer. Web: the tile can't be linked until a square beside it clears or a
+## blast hits it. Marked: a thief's mark on a gold tile, gone when the tile clears.
+var ice := 0
+var web := false
+var marked := false
 
 
 func _init(p_color: int = NO_COLOR, p_special: Special = Special.NONE) -> void:
@@ -49,7 +57,7 @@ func is_item() -> bool:
 ## Specials are wild: they join a link of any color, and any specials link with each other.
 ## A bomb or lightning still keeps the color of the link that made it, for what it sets off.
 func matches(c: int) -> bool:
-	return not is_blocker() and (special != Special.NONE or color == c)
+	return not is_blocker() and not web and (special != Special.NONE or color == c)
 
 
 func is_special() -> bool:

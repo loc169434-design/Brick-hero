@@ -13,3 +13,4 @@ attack = 9
 countdown = 2
 tile_theme = "orc_shield"
 background = "orc_camp"
+rage_below = 0.3

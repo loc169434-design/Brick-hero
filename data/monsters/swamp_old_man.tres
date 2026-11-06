@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MonsterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/battle/monster_data.gd" id="1_monster"]
+
+[resource]
+script = ExtResource("1_monster")
+id = "swamp_old_man"
+display_name = "Ông già đầm lầy"
+max_hp = 999
+counterattacks = false
+attack = 0
+countdown = 0
+tile_theme = "swamp_b"
+background = "swamp"

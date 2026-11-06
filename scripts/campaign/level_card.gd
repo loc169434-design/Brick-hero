@@ -128,6 +128,8 @@ func _draw_goals(center: Vector2) -> void:
 		chips.append(["collect", str(level.collect)])
 	if level.break_crates:
 		chips.append(["crate", str(level.crates)])
+	if level.break_cover:
+		chips.append(["cover", str(level.cover_count)])
 	if level.rescue > 0:
 		chips.append(["rescue", str(level.rescue)])
 	if level.bonus:
@@ -156,7 +158,9 @@ func _draw_goals(center: Vector2) -> void:
 				box.set_corner_radius_all(16)
 				_canvas.draw_style_box(box, icon.grow(-4))
 			"crate":
-				_draw_texture(_art.texture(Cell.obstacle("crate", maxi(level.crate_layers, 1))), icon)
+				_draw_texture(_art.texture(Cell.obstacle(level.obstacle, maxi(level.crate_layers, 1))), icon)
+			"cover":
+				_draw_texture(_art.overlay(level.cover, level.cover_layers), icon)
 			"rescue":
 				_draw_texture(_art.texture(Cell.obstacle(level.rescue_item)), icon)
 			"bonus":

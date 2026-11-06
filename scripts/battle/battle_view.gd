@@ -72,7 +72,10 @@ const COMIC_SCALE := 0.55
 const CRIT_ZOOM := 1.12
 ## Comic lettering for each hero skill (assets/fx/comic/<word>.png). Without the art, the
 ## skill's name floats up instead.
-const SKILL_COMICS := {"armor_breaker": "armor_break", "second_wind": "second_wind"}
+const SKILL_COMICS := {
+	"armor_breaker": "armor_break", "second_wind": "second_wind", "thunder_slash": "thunder_slash",
+	"iron_guard": "iron_guard", "blade_vortex": "blade_vortex", "starfall_strike": "starfall",
+}
 const SKILL_NAME_AT := Vector2(HERO_FEET.x + 40, 150)
 ## The monster's attacks, taken in turn.
 const MONSTER_ATTACKS := [&"rock", &"club", &"charge"]
@@ -93,6 +96,10 @@ const WARN := Color(0.95, 0.3, 0.25)
 const HIT_SPARK := Color(1, 0.85, 0.45)
 const HURT_SPARK := Color(1, 0.45, 0.35)
 const POISON := Color(0.55, 0.9, 0.3)
+## The new skills' light: Lôi Trảm's lightning, Hộ Thể's guard, Tinh Kiếm's star.
+const THUNDER := Color(0.55, 0.9, 1.0)
+const GUARD := Color(0.4, 0.65, 1.0)
+const STARFALL := Color(1.0, 0.9, 0.5)
 const CURSE := Color(0.75, 0.55, 1.0)
 const RAGE := Color(1.0, 0.3, 0.15)
 const PLAQUE := Color(0.27, 0.17, 0.1)
@@ -339,7 +346,7 @@ func _play_report(report: TurnReport) -> void:
 		# Nothing that hurts it: green and yellow only. It sidesteps and laughs.
 		_monster_dodges()
 
-	if report.monster_attack > 0:
+	if report.monster_attack > 0 or report.guarded > 0:
 		await get_tree().create_timer(0.45).timeout
 		if fight != _fight:
 			return
@@ -598,6 +605,45 @@ func _hero_skill(report: TurnReport) -> void:
 			_sparks.flare(chest, HP_HERO.lightened(0.3), 2.5)
 			_flash("shockwave", chest, 0.2, 1.6, 0.5, 0.0, true)
 			await _wait(0.6)
+		"thunder_slash":
+			# Lightning gathers on the raised blade, then the cut comes down with the bolt.
+			var blade := _local(_hero.point("hand")) + Vector2(0, -80)
+			for i in 3:
+				_sparks.flare(blade + Vector2(randf_range(-30, 30), randf_range(-40, 10)), THUNDER, 1.2)
+			Sfx.play(&"charge", 0.8)
+			await _wait(0.3)
+			await _hero.attack()
+			var struck := _local(_monster.point("head")) + Vector2(0, 40)
+			_flash("slash_crit", struck, 0.4, 1.3, 0.3, -0.5, true)
+			for i in 6:
+				_sparks.flare(struck + Vector2(randf_range(-70, 70), randf_range(-90, 60)), THUNDER, 1.6)
+			Sfx.play(&"boom", 1.3)
+			_land_hit(report, "zap")
+			if report.delayed:
+				_float("+1 LƯỢT", COUNTDOWN_AT + Vector2(0, 150), THUNDER, 52)
+		"iron_guard":
+			_hero.react(&"bash", 0.0)
+			await _wait(0.25)
+			var body := _local(_hero.point("head")) + Vector2(0, 110)
+			_flash("shockwave", body, 0.3, 2.0, 0.6, 0.0, true)
+			for i in 8:
+				_sparks.flare(body + Vector2(cos(i * TAU / 8), sin(i * TAU / 8)) * 110, GUARD, 1.2)
+			Sfx.play(&"clang", 1.2)
+			_float("HỘ THỂ +%d" % report.guard, HERO_FEET + Vector2(0, -230), GUARD.lightened(0.3), 56)
+			await _wait(0.5)
+			_hero.react(&"idle")
+		"blade_vortex":
+			await _move_combo(report)
+		"starfall_strike":
+			var star := _local(_hero.point("hand")) + Vector2(0, -120)
+			_sparks.flare(star, STARFALL, 2.5)
+			Sfx.play(&"special", 0.9)
+			await _wait(0.3)
+			await _move_leap(report)
+			var through := _local(_monster.point("head")) + Vector2(0, 60)
+			for i in 10:
+				_sparks.flare(through + Vector2(randf_range(-90, 90), randf_range(-120, 80)), STARFALL, 1.4)
+			_float("XUYÊN KHIÊN!", MONSTER_FEET + Vector2(-150, -260), STARFALL, 50)
 	_camera(1.0, SIZE / 2, 0.35)
 
 
@@ -817,7 +863,12 @@ func _hero_hit(report: TurnReport, comic: String, pose: StringName) -> void:
 	else:
 		_comic(comic, head + Vector2(110, -40))
 	_comic("ouch", head + Vector2(-30, -10), 0.6)
-	_float("-%d" % report.monster_attack, HERO_FEET + Vector2(0, -200), WARN, FLOAT_SIZE + (40 if report.monster_critical else 16))
+	if report.monster_attack > 0:
+		_float("-%d" % report.monster_attack, HERO_FEET + Vector2(0, -200), WARN, FLOAT_SIZE + (40 if report.monster_critical else 16))
+	if report.guarded > 0:
+		var body := _local(_hero.point("head")) + Vector2(0, 110)
+		_flash("shockwave", body, 0.2, 1.4, 0.35, 0.0, true)
+		_float("ĐỠ %d" % report.guarded, HERO_FEET + Vector2(-120, -280), GUARD.lightened(0.3), 50)
 	Sfx.play(&"thud")
 	impact.emit(0.35 + minf(report.monster_attack / 40.0, 0.4) + (0.3 if report.monster_critical else 0.0), 0.06)
 	_drain_trails()
@@ -1194,11 +1245,18 @@ func _draw_statuses(x: float) -> void:
 		statuses.append(["toad", _state.toad_turns])
 	if _state.broom_turns > 0:
 		statuses.append(["broom", _state.broom_turns])
+	if _state.guard > 0:
+		statuses.append(["guard", _state.guard])
 	for status in statuses:
 		var icon := _status_icon(status[0])
 		var rect := Rect2(Vector2(x, ROW_Y - 4), Vector2(44, 44))
 		if icon:
 			_overlay.draw_texture_rect(icon, rect, false)
+		elif status[0] == "guard":
+			# Until there's art: a blue shield.
+			var c := rect.get_center()
+			_overlay.draw_colored_polygon(PackedVector2Array([c + Vector2(-18, -18), c + Vector2(18, -18), c + Vector2(15, 6), c + Vector2(0, 20), c + Vector2(-15, 6)]), GUARD)
+			_overlay.draw_polyline(PackedVector2Array([c + Vector2(-18, -18), c + Vector2(18, -18), c + Vector2(15, 6), c + Vector2(0, 20), c + Vector2(-15, 6), c + Vector2(-18, -18)]), BAR_RIM_COLOR, 3.0)
 		_draw_text(str(status[1]), Vector2(rect.end.x - 6, rect.end.y), 26, TEXT, _number_font)
 		x += 58.0
 

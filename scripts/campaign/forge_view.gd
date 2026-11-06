@@ -75,13 +75,19 @@ const ROW_ICON := 78.0
 const ROW_X := 370.0
 const ROW_Y0 := 1462.0
 const ROW_STEP := 86.0
-## The skill buttons over the hero, one under the other.
-const SKILL_PILL := Rect2(66, 1500, 270, 60)
-const SKILL_STEP := 70.0
+## The skill buttons over the hero: round, three to a row, the picked one named above them.
+const SKILL_FIRST := Vector2(110, 1522)
+const SKILL_STEP := Vector2(90, 72)
+const SKILL_COLUMNS := 3
+const SKILL_RADIUS := 30.0
 ## What the smith says about each skill when it's picked.
 const SKILL_LINES := {
 	"armor_breaker": "Phá Giáp: bóc khiên rồi chém mạnh!",
 	"second_wind": "Hồi Quang: hồi máu giữa trận!",
+	"thunder_slash": "Lôi Trảm: sét đánh, quái đánh trễ một lượt!",
+	"iron_guard": "Hộ Thể: đỡ bớt đòn tới của quái!",
+	"blade_vortex": "Phong Kiếm: xoay ba vòng chém!",
+	"starfall_strike": "Tinh Kiếm: xuyên thẳng qua khiên!",
 }
 
 const STRIKES := 3
@@ -263,7 +269,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_on_booster_tapped(id)
 			return
 	for id: String in Gear.SKILL_AFTER:
-		if _skill_pill(id).has_point(event.position):
+		if event.position.distance_to(_skill_spot(id)) <= SKILL_RADIUS + 8:
 			_on_skill_tapped(id)
 			return
 	for slot: String in Gear.SLOTS:
@@ -361,9 +367,9 @@ func _draw_shelf() -> void:
 		_hud.draw_string(_font, tag_at + Vector2(30, 27), tag, HORIZONTAL_ALIGNMENT_LEFT, -1, 26, INK)
 
 
-func _skill_pill(id: String) -> Rect2:
+func _skill_spot(id: String) -> Vector2:
 	var i := Gear.SKILL_AFTER.keys().find(id)
-	return Rect2(SKILL_PILL.position + Vector2(0, i * SKILL_STEP), SKILL_PILL.size)
+	return SKILL_FIRST + Vector2(i % SKILL_COLUMNS, i / SKILL_COLUMNS) * SKILL_STEP
 
 
 func _locked_reason(id: String) -> String:
@@ -883,26 +889,18 @@ func _draw_board() -> void:
 ## The skill buttons over the hero: the one he takes glows red and gold, a learned one is plain
 ## wood, a locked one is dim with a padlock.
 func _draw_skills() -> void:
-	_text(_hud, "TUYỆT CHIÊU", Vector2(SKILL_PILL.get_center().x, SKILL_PILL.position.y - 12), 24, WOOD_DARK)
+	var middle := SKILL_FIRST.x + SKILL_STEP.x * (SKILL_COLUMNS - 1) / 2.0
+	_text(_hud, "CHIÊU: " + String(BattleState.SKILLS.get(campaign.skill, "")), Vector2(middle, SKILL_FIRST.y - SKILL_RADIUS - 14), 24, WOOD_DARK)
 	for id: String in Gear.SKILL_AFTER:
-		var pill := _skill_pill(id)
+		var center := _skill_spot(id)
 		var picked := campaign.skill == id
 		var learned := Gear.skill_unlocked(id, campaign.cleared)
-		if picked:
-			pill = pill.grow(4.0 * sin(_picked_t * PI))
-		_box(_hud, pill.grow(4), GOLD if picked else INK, 22)
-		_box(_hud, pill, RIBBON if picked else (WOOD if learned else Color(WOOD_DARK, 0.55)), 18)
-		if learned:
-			_box(_hud, Rect2(pill.position + Vector2(6, 5), Vector2(pill.size.x - 12, 8)), Color(1, 1, 1, 0.2), 4)
-		var icon_at := Vector2(pill.position.x + 34, pill.get_center().y)
-		_hud.draw_circle(icon_at, 24, INK)
-		_hud.draw_circle(icon_at, 21, Color(0.32, 0.12, 0.05) if picked else WOOD_DARK)
-		SkillBar.draw_icon(_hud, id, icon_at, 21, GOLD if picked else (PAPER if learned else Color(PAPER, 0.35)), Color.WHITE if learned else LOCKED_TINT)
-		var title: String = BattleState.SKILLS[id]
-		var color := PAPER if learned else Color(PAPER, 0.5)
-		_hud.draw_string(_font, Vector2(pill.position.x + 68, pill.get_center().y + 10), title, HORIZONTAL_ALIGNMENT_LEFT, -1, 28, color)
+		var radius := SKILL_RADIUS + (4.0 * sin(_picked_t * PI) if picked else 0.0)
+		_hud.draw_circle(center, radius + 5, GOLD if picked else INK)
+		_hud.draw_circle(center, radius, RIBBON if picked else (WOOD if learned else Color(WOOD_DARK, 0.55)))
+		SkillBar.draw_icon(_hud, id, center, radius * 0.9, GOLD if picked else (PAPER if learned else Color(PAPER, 0.35)), Color.WHITE if learned else LOCKED_TINT)
 		if not learned:
-			_draw_padlock_on(_hud, Vector2(pill.end.x - 26, pill.get_center().y + 2), Color(PAPER, 0.7))
+			_draw_padlock_on(_hud, center + Vector2(radius * 0.6, radius * 0.6), Color(PAPER, 0.8))
 
 
 ## One row of the board: the piece in a round frame, its name, and what it does. An empty slot

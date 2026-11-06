@@ -157,6 +157,21 @@ static func draw_icon(canvas: CanvasItem, skill: String, center: Vector2, radius
 		"second_wind":
 			canvas.draw_rect(Rect2(center - Vector2(size * 0.3, size), Vector2(size * 0.6, size * 2)), color)
 			canvas.draw_rect(Rect2(center - Vector2(size, size * 0.3), Vector2(size * 2, size * 0.6)), color)
+		"thunder_slash":
+			canvas.draw_colored_polygon(PackedVector2Array([center + Vector2(size * 0.2, -size), center + Vector2(-size * 0.55, size * 0.1), center + Vector2(-0.02 * size, size * 0.1), center + Vector2(-size * 0.25, size), center + Vector2(size * 0.6, -size * 0.2), center + Vector2(size * 0.05, -size * 0.2)]), color)
+		"iron_guard":
+			var shield := PackedVector2Array([center + Vector2(-size, -size * 0.8), center + Vector2(size, -size * 0.8), center + Vector2(size * 0.85, size * 0.3), center + Vector2(0, size), center + Vector2(-size * 0.85, size * 0.3)])
+			canvas.draw_colored_polygon(shield, color)
+			canvas.draw_arc(center, size * 0.45, 0, TAU, 24, RIM, maxf(size * 0.14, 2.0))
+		"blade_vortex":
+			for k in 3:
+				canvas.draw_arc(center, size * (0.35 + 0.3 * k), k * 2.1, k * 2.1 + 3.6, 20, color, maxf(size * 0.16, 2.0))
+		"starfall_strike":
+			var points := PackedVector2Array()
+			for k in 10:
+				var r := size if k % 2 == 0 else size * 0.42
+				points.append(center + Vector2(0, -r).rotated(k * TAU / 10))
+			canvas.draw_colored_polygon(points, color)
 
 
 func _rounded(rect: Rect2, color: Color, radius: int, shadow := 0) -> void:

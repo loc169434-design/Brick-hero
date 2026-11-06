@@ -10,6 +10,10 @@ enum Outcome { ONGOING, WON, LOST }
 const SKILLS := {
 	"armor_breaker": "PHÁ GIÁP",
 	"second_wind": "HỒI QUANG",
+	"thunder_slash": "LÔI TRẢM",
+	"iron_guard": "HỘ THỂ",
+	"blade_vortex": "PHONG KIẾM",
+	"starfall_strike": "TINH KIẾM",
 }
 
 var rules: BattleRules
@@ -33,6 +37,10 @@ var toad_turns := 0
 ## Moves left with the sword turned into a broom: red squares do half damage. A link of
 ## BROOM_BREAK_LINK squares or more breaks the spell.
 var broom_turns := 0
+## Hộ Thể: this much comes off the monster's next attack, then it's spent.
+var guard := 0
+## Lôi Trảm has already held the monster's current attack back a move.
+var delayed := false
 ## The monster has flown into a rage (MonsterData.rage_below): faster, harder attacks.
 var raging := false
 var gold := 0
@@ -155,6 +163,11 @@ func apply_move(result: MoveResult, free := false) -> TurnReport:
 		if countdown <= 0:
 			report.monster_critical = next_attack_is_critical()
 			report.monster_attack = monster_hit(report.monster_critical)
+			if guard > 0:
+				report.guarded = mini(guard, report.monster_attack)
+				report.monster_attack -= report.guarded
+				guard = 0
+			delayed = false
 			hero_hp = maxi(hero_hp - report.monster_attack, 0)
 			attacks_made += 1
 			match monster.special:
@@ -201,7 +214,12 @@ func drink_potion(amount: int) -> TurnReport:
 func skill_ready() -> bool:
 	if outcome != Outcome.ONGOING or rage < rules.rage_max or not SKILLS.has(rules.skill) or toad_turns > 0:
 		return false
-	return rules.skill != "second_wind" or hero_hp < rules.hero_max_hp
+	match rules.skill:
+		"second_wind":
+			return hero_hp < rules.hero_max_hp
+		"iron_guard":
+			return guard == 0 and monster.counterattacks
+	return true
 
 
 ## Spends the full bar on the hero skill. It isn't a move: the monster's countdown doesn't tick.
@@ -219,6 +237,22 @@ func use_skill() -> TurnReport:
 		"second_wind":
 			report.heal = mini(rules.second_wind_heal, rules.hero_max_hp - hero_hp)
 			hero_hp += report.heal
+		"thunder_slash":
+			_strike(rules.thunder_slash_squares * rules.red_damage, 0, 0, report)
+			if monster.counterattacks and not delayed and monster_hp > 0:
+				countdown += 1
+				delayed = true
+				report.delayed = true
+		"iron_guard":
+			guard = rules.iron_guard_block
+			report.guard = guard
+		"blade_vortex":
+			report.hits = rules.blade_vortex_hits
+			_strike(rules.blade_vortex_hits * rules.blade_vortex_squares * rules.red_damage, 0, 0, report)
+		"starfall_strike":
+			report.damage = mini(roundi(rules.starfall_squares * rules.red_damage), monster_hp)
+			monster_hp -= report.damage
+			report.pierced = true
 	if monster_hp <= 0:
 		outcome = Outcome.WON
 	report.outcome = outcome

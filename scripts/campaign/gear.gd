@@ -20,7 +20,14 @@ const SLOT_NAMES := {
 const STARTING := ["wood_sword"]
 ## The hero skills the forge lets the player pick (BattleState.SKILLS), each with the level
 ## that must be won before it can be picked ("" for none). The hero takes one into every fight.
-const SKILL_AFTER := {"armor_breaker": "", "second_wind": "7"}
+const SKILL_AFTER := {
+	"armor_breaker": "",
+	"second_wind": "7",
+	"thunder_slash": "12",
+	"iron_guard": "18",
+	"blade_vortex": "24",
+	"starfall_strike": "30",
+}
 const STARTING_SKILL := "armor_breaker"
 
 ## Each item: slot, name, price, `after` (the level that must be won first, "" for none)

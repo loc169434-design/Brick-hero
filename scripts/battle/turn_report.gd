@@ -54,6 +54,14 @@ var lift_fizzled := false
 var lift_special := false
 ## Gold a thief took for the marks left on the board.
 var stolen := 0
+## Skills: Lôi Trảm held the attack back a move; Hộ Thể raised a guard of this much; Phong
+## Kiếm cut this many times; Tinh Kiếm went through the shield.
+var delayed := false
+var guard := 0
+var hits := 0
+var pierced := false
+## Damage Hộ Thể took off the monster's attack.
+var guarded := 0
 ## A booster used ("potion"), played by the fight like a skill.
 var booster := ""
 var outcome := BattleState.Outcome.ONGOING

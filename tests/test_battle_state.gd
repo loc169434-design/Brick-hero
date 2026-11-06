@@ -261,3 +261,60 @@ func test_second_wind_heals_and_waits_until_the_hero_is_hurt() -> void:
 	assert_eq(report.heal, 10, "up to full")
 	assert_eq(battle.hero_hp, 100)
 	assert_eq(battle.rage, 0)
+
+
+func _skilled(skill: String, monster: MonsterData) -> BattleState:
+	var state := _battle(monster)
+	state.rules = state.rules.duplicate()
+	state.rules.skill = skill
+	state.rage = state.rules.rage_max
+	return state
+
+
+func test_thunder_slash_hits_and_holds_the_attack_back_once() -> void:
+	var orc := _monster(80, 0, 12, 3)
+	orc.counterattacks = true
+	var state := _skilled("thunder_slash", orc)
+	var report := state.use_skill()
+	assert_eq(report.damage, roundi(state.rules.thunder_slash_squares * state.rules.red_damage))
+	assert_true(report.delayed)
+	assert_eq(state.countdown, 4)
+	state.rage = state.rules.rage_max
+	state.use_skill()
+	assert_eq(state.countdown, 4, "not twice for the same attack")
+
+
+func test_iron_guard_takes_the_edge_off_the_next_attack() -> void:
+	var orc := _monster(80, 0, 20, 1)
+	orc.counterattacks = true
+	var state := _skilled("iron_guard", orc)
+	state.use_skill()
+	assert_eq(state.guard, state.rules.iron_guard_block)
+	assert_true(not state.skill_ready(), "no second guard while one is up")
+	var report := state.apply_move(_move([[G, G, G]]))
+	assert_eq(report.guarded, state.rules.iron_guard_block)
+	assert_eq(report.monster_attack, 20 - state.rules.iron_guard_block)
+	assert_eq(state.guard, 0, "spent")
+
+
+func test_blade_vortex_cuts_three_times() -> void:
+	var state := _skilled("blade_vortex", _monster(80))
+	var report := state.use_skill()
+	assert_eq(report.hits, 3)
+	assert_eq(report.damage, roundi(3 * state.rules.blade_vortex_squares * state.rules.red_damage))
+
+
+func test_starfall_goes_through_the_shield_and_leaves_it() -> void:
+	var state := _skilled("starfall_strike", _monster(80, 3))
+	var shield := state.shield
+	var report := state.use_skill()
+	assert_eq(report.damage, roundi(state.rules.starfall_squares * state.rules.red_damage), "full damage, no halving")
+	assert_eq(state.shield, shield)
+	assert_true(report.pierced)
+
+
+func test_every_skill_can_be_learned_and_named() -> void:
+	for id: String in Gear.SKILL_AFTER:
+		assert_true(BattleState.SKILLS.has(id), id)
+		var after: String = Gear.SKILL_AFTER[id]
+		assert_true(after.is_empty() or Campaign.has_level(after), "%s is taught by a real level" % id)

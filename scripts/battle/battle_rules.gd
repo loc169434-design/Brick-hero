@@ -58,3 +58,13 @@ extends Resource
 @export var armor_breaker_squares := 8.0
 ## Hồi Quang: health back.
 @export var second_wind_heal := 25
+## Lôi Trảm: hits like this many red squares (halved by a shield) and holds the monster's
+## attack back a move.
+@export var thunder_slash_squares := 8.0
+## Hộ Thể: the monster's next attack does this much less.
+@export var iron_guard_block := 12
+## Phong Kiếm: this many spinning cuts, each like this many red squares.
+@export var blade_vortex_hits := 3
+@export var blade_vortex_squares := 3.0
+## Tinh Kiếm: hits like this many red squares straight through any shield, leaving it whole.
+@export var starfall_squares := 7.0

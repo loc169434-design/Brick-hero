@@ -32,6 +32,12 @@ const RECIPES := {
 		{"wave": "noise", "length": 0.4, "volume": 0.7, "smooth": 0.8},
 		{"wave": "sine", "from": 140.0, "to": 38.0, "length": 0.35, "volume": 0.7},
 	],
+	# A storm's thunder rolling after the flash (ArenaWeather).
+	"thunder": [
+		{"wave": "noise", "length": 0.25, "volume": 0.6, "smooth": 0.5},
+		{"wave": "noise", "start": 0.1, "length": 1.4, "volume": 0.55, "smooth": 0.93},
+		{"wave": "sine", "from": 70.0, "to": 34.0, "start": 0.05, "length": 1.1, "volume": 0.45},
+	],
 	"special": [
 		{"wave": "triangle", "from": 880.0, "to": 880.0, "length": 0.1, "volume": 0.3},
 		{"wave": "triangle", "from": 1108.0, "to": 1108.0, "start": 0.05, "length": 0.1, "volume": 0.3},

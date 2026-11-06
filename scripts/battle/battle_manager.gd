@@ -103,6 +103,9 @@ func _start() -> void:
 		encounter_index = 0
 	state = BattleState.new(rules, monster())
 	state.rng.randomize()
+	var sky := Weather.pick(monster().background, state.rng, level.times if level else PackedStringArray(), level.weathers if level else PackedStringArray())
+	state.time_of_day = sky[0]
+	state.weather = sky[1]
 	state.gold = starting_gold
 	board.set_tile_theme(monster().tile_theme)
 	board.locked = false
@@ -301,6 +304,9 @@ func _bring_on_next() -> void:
 	state.hero_hp = carried.hero_hp
 	state.gold = carried.gold
 	state.rage = carried.rage
+	# The same sky hangs over the whole level.
+	state.time_of_day = carried.time_of_day
+	state.weather = carried.weather
 	# The drum keeps beating for whoever steps in next.
 	state.tempo = carried.tempo
 	state.countdown = state.attack_every()

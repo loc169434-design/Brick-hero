@@ -10,3 +10,5 @@ obstacle = "poison_toad"
 crates = 2
 boss = true
 chapter = 3
+times = PackedStringArray("dusk")
+weathers = PackedStringArray("rain")

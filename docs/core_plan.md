@@ -181,6 +181,7 @@ B3 gồm:
 - Hiệu ứng nổ ô đặc biệt và font Baloo 2 (PR #13, quy cách ở `docs/ideas/specials_fx.md`). Đã ghép vào game: `scripts/board/special_fx.gd` phát hiệu ứng, font đặt làm mặc định trong `project.godot`.
 - Bom, sét, sao nổi khối có lửa ngòi và tia điện chạy (nhánh `art/specials-3d`, bàn giao ở `docs/ideas/specials_3d_review/README.md`). Đã ghép: `scripts/board/special_art.gd` nạp ảnh, `board_view.gd` vẽ khung theo thời gian.
 - Thiết kế 4 quái, rồng, lò rèn, lời thoại (nhánh `docs/monsters`) và ảnh vương quốc (nhánh `art/kingdom`). Dùng cho giai đoạn 4–5, chưa ghép.
+- Trời bốn giờ, mưa, giông, sương, mắt đỏ, biểu tượng thời tiết và bản đồ sống động (nhánh `art/world-life`, issue #49). Đã ghép phần hình: `scripts/battle/weather.gd` bốc giờ/trời theo vùng hoặc theo màn, `arena_backdrop.gd` đổi trời và ánh sáng, `arena_weather.gd` vẽ mưa/sương/chớp, `map_view.gd` dùng mây, cờ, thác mới. Hiệu ứng lên luật (buff theo trời) chưa làm, chờ bot đo.
 
 Việc mới thì tạo nhánh mới từ `main`, xong thì comment trực tiếp vào issue.
 

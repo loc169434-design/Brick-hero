@@ -71,3 +71,5 @@ Rút ra từ góp ý "nhân vật đứng lơ lửng" ở nền đầm lầy và
 1. Code khung thời tiết với hình tạm (đổi màu theo giờ, mưa, chớp), bật cho vùng đầm lầy, đo bằng bot.
 2. ChatGPT vẽ trời 4 giờ và mắt đỏ cho các nền đã có, sửa nền đầm lầy và trại Goblin theo mục 4.
 3. Bật dần cho các vùng sau, cùng lúc với nền mới của vùng đó.
+
+Trạng thái 2026-11-07: bước 2 xong (issue #49), phần hình đã ghép cho cả bốn nền hiện có. Giờ và trời được bốc theo bảng mục 2 (`Weather.REGIONS`), màn 36 khóa chiều mưa. Chưa có: các buff ở mục 1, bóng tối và sương trên bảng, tia sét biến ô thành ô sét.

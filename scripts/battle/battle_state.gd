@@ -43,6 +43,9 @@ var outcome := Outcome.ONGOING
 var moves := 0
 ## Attacks the monster has made this fight, for its critical every crit_every attacks.
 var attacks_made := 0
+## The hour and the sky the fight is fought under (Weather.HOURS, Weather.SKIES).
+var time_of_day := Weather.DEFAULT_HOUR
+var weather := Weather.DEFAULT_SKY
 ## For lucky critical hits. Fixed seed by default so tests and the balance bot repeat;
 ## the game randomizes it.
 var rng := RandomNumberGenerator.new()

@@ -7,8 +7,11 @@ extends Node2D
 ## badge beside the next stop. Tapping an open or cleared stop asks for that fight
 ## (stop_chosen). A map taller than the screen scrolls with a drag.
 ##
-## The painted map lives on through assets/bg/world_map_fx/anim.json: smoke curling from
-## chimneys, glints on the water, gold twinkling in the dragon's hoard.
+## The painted map lives on through assets/bg/campaign/ambience.json (art issue #49): smoke
+## curling from chimneys, glints on the water, flags flapping on the Orc camp's poles,
+## waterfalls, gold twinkling in the dragon's hoard, and soft clouds drifting over it all with
+## their shadows on the land. Its `profiles` name the file laid out for each number of
+## segments, since every position is on the whole map.
 
 signal stop_chosen(id: String)
 ## The forge button was pressed.
@@ -18,6 +21,10 @@ const SCREEN := Vector2(1080, 1920)
 ## Map segments, segment 1 at the bottom: assets/bg/campaign/segment_01.png and up.
 const SEGMENT := "res://assets/bg/campaign/segment_%02d.png"
 const AMBIENCE := "res://assets/bg/campaign/ambience.json"
+## Cloud drift when the ambience doesn't say: opacity, shadow, its offset, speeds, wrap.
+const CLOUD_MOTION := {"opacity": 0.55, "shadow_opacity": 0.16, "shadow_offset": [90, 260], "speed_px_per_second": [14, 30], "wrap_x": [-500, 1280]}
+## Clouds on the map for each segment, counting those the ambience places.
+const CLOUDS_PER_SEGMENT := 2
 const LOCK_ICON := "res://assets/ui/map_node_locked.png"
 const COIN := "res://assets/fx/props/coin.png"
 const FONT := "res://assets/fonts/baloo_2_extra_bold.ttf"
@@ -63,6 +70,9 @@ var _badges := {}
 ## The map's moving touches, as read from AMBIENCE, and their textures by name.
 var _ambience := {}
 var _ambience_art := {}
+var _ambience_path := ""
+## How clouds drift: CLOUD_MOTION, or the ambience's cloud_motion.
+var _cloud_motion := CLOUD_MOTION
 var _lock: Texture2D
 var _coin: Texture2D
 var _font: Font
@@ -103,7 +113,7 @@ func _ready() -> void:
 			_cloud_art.append(load(path))
 	_bird_art = load(BIRD_ART) if ResourceLoader.exists(BIRD_ART) else null
 	_firefly_art = load(FIREFLY_ART) if ResourceLoader.exists(FIREFLY_ART) else null
-	_load_ambience()
+	_load_ambience(AMBIENCE)
 	_coin = load(COIN) if ResourceLoader.exists(COIN) else null
 	_font = load(FONT) if ResourceLoader.exists(FONT) else ThemeDB.fallback_font
 	_camera = Camera2D.new()
@@ -139,19 +149,38 @@ func _ready() -> void:
 	visibility_changed.connect(func() -> void: _hud_layer.visible = visible)
 
 
-func _load_ambience() -> void:
-	if not ResourceLoader.exists(AMBIENCE):
+func _load_ambience(path: String) -> void:
+	if path == _ambience_path or not ResourceLoader.exists(path):
 		return
-	var json: JSON = load(AMBIENCE)
+	var json: JSON = load(path)
 	if not json.data is Dictionary:
 		return
+	_ambience_path = path
 	_ambience = json.data
-	var dir := AMBIENCE.get_base_dir() + "/"
+	_ambience_art.clear()
+	var dir := path.get_base_dir() + "/"
 	for name: String in _ambience.get("textures", {}):
 		var info: Dictionary = _ambience["textures"][name]
-		var path: String = dir + String(info.get("file", ""))
-		if ResourceLoader.exists(path):
-			_ambience_art[name] = {"texture": load(path), "info": info}
+		var file: String = dir + String(info.get("file", ""))
+		if ResourceLoader.exists(file):
+			_ambience_art[name] = {"texture": load(file), "info": info}
+	# The map's own clouds take over from the ones borrowed from the Orc camp.
+	var clouds: Array[Texture2D] = []
+	for name: String in _ambience_art:
+		if name.begins_with("cloud_"):
+			clouds.append(_ambience_art[name]["texture"])
+	if not clouds.is_empty():
+		_cloud_art = clouds
+	_cloud_motion = CLOUD_MOTION.merged(_ambience.get("cloud_motion", {}), true)
+	_clouds.clear()
+
+
+## The ambience laid out for a map of `count` segments.
+func _ambience_for(count: int) -> void:
+	var base: Variant = load(AMBIENCE).data if ResourceLoader.exists(AMBIENCE) else null
+	var profiles: Dictionary = base.get("profiles", {}) if base is Dictionary else {}
+	var file: String = profiles.get(str(count), AMBIENCE.get_file())
+	_load_ambience(AMBIENCE.get_base_dir() + "/" + file)
 
 
 func map_size() -> Vector2:
@@ -172,6 +201,7 @@ func show_campaign(p_campaign: Campaign, won_at := -1, first_clear := false) -> 
 	campaign = p_campaign
 	if _segments.size() != campaign.segments:
 		_load_segments(campaign.segments)
+		_ambience_for(campaign.segments)
 	_camera.make_current()
 	_names.clear()
 	for stop in campaign.stops:
@@ -220,12 +250,12 @@ func _process(delta: float) -> void:
 ## land, birds cross now and then, and fireflies wink over the swamp.
 func _move_sky(delta: float) -> void:
 	if _clouds.is_empty() and not _cloud_art.is_empty():
-		for i in CLOUDS:
-			_clouds.append({"at": Vector2(randf_range(-200, SCREEN.x), randf_range(0, map_size().y)), "speed": randf_range(14, 30), "art": i % _cloud_art.size(), "scale": randf_range(1.6, 2.6)})
+		_spread_clouds()
+	var wrap: Array = _cloud_motion["wrap_x"]
 	for cloud in _clouds:
 		cloud["at"].x += cloud["speed"] * delta
-		if cloud["at"].x > SCREEN.x + 200:
-			cloud["at"] = Vector2(-500, randf_range(0, map_size().y))
+		if cloud["at"].x > float(wrap[1]):
+			cloud["at"] = Vector2(float(wrap[0]), randf_range(0, map_size().y))
 	_next_bird -= delta
 	if _next_bird <= 0.0 and _bird_art:
 		_next_bird = randf_range(4.0, 9.0)
@@ -404,11 +434,31 @@ func _draw() -> void:
 	_draw_sky()
 
 
+## The ambience's own clouds where it puts them, then more scattered about until every segment
+## has its share. A cloud's `at` is its top-left corner.
+func _spread_clouds() -> void:
+	var speeds: Array = _cloud_motion["speed_px_per_second"]
+	var own := _cloud_art.size() == 3 and _ambience_art.has("cloud_1")
+	if own:
+		for cloud: Dictionary in _ambience.get("clouds", []):
+			var art := maxi(int(String(cloud.get("texture", "cloud_1")).trim_prefix("cloud_")) - 1, 0) % _cloud_art.size()
+			var size := Vector2(_cloud_art[art].get_size()) * float(cloud.get("scale", 1.0))
+			var centre := Vector2(cloud["position"][0], cloud["position"][1])
+			_clouds.append({"at": centre - size / 2, "speed": float(cloud.get("speed", speeds[0])), "art": art, "scale": float(cloud.get("scale", 1.0))})
+	var wanted := maxi(CLOUDS_PER_SEGMENT * maxi(_segments.size(), 1), CLOUDS if not own else 0)
+	var i := 0
+	while _clouds.size() < wanted:
+		var grow := randf_range(0.6, 0.95) if own else randf_range(1.6, 2.6)
+		_clouds.append({"at": Vector2(randf_range(-200, SCREEN.x), randf_range(0, map_size().y)), "speed": randf_range(float(speeds[0]), float(speeds[1])), "art": i % _cloud_art.size(), "scale": grow})
+		i += 1
+
+
 func _draw_cloud_shadows() -> void:
+	var offset: Array = _cloud_motion["shadow_offset"]
 	for cloud in _clouds:
 		var art: Texture2D = _cloud_art[cloud["art"]]
 		var size := Vector2(art.get_size()) * float(cloud["scale"])
-		draw_texture_rect(art, Rect2(cloud["at"] + Vector2(90, 260), size), false, Color(0.05, 0.1, 0.05, 0.16))
+		draw_texture_rect(art, Rect2(cloud["at"] + Vector2(offset[0], offset[1]), size), false, Color(0.05, 0.1, 0.05, float(_cloud_motion["shadow_opacity"])))
 
 
 ## Clouds and birds pass over everything on the map, stops included.
@@ -416,7 +466,7 @@ func _draw_sky() -> void:
 	for cloud in _clouds:
 		var art: Texture2D = _cloud_art[cloud["art"]]
 		var size := Vector2(art.get_size()) * float(cloud["scale"])
-		draw_texture_rect(art, Rect2(cloud["at"], size), false, Color(1, 1, 1, 0.55))
+		draw_texture_rect(art, Rect2(cloud["at"], size), false, Color(1, 1, 1, float(_cloud_motion["opacity"])))
 	if _bird_art:
 		var frame_width := _bird_art.get_width() / 4.0
 		for bird in _birds:
@@ -470,6 +520,13 @@ func _draw_ambience() -> void:
 		var at := Vector2(glints[i][0], glints[i][1] + t * float(water.get("travel_y_px", 12)))
 		var size := lerpf(float(water_sizes[0]), float(water_sizes[1]), sin(t * PI))
 		_draw_fx_frame("sparkle", at, size * 2.0, 0.0, _tint(water.get("tint"), float(water.get("opacity", 0.45)) * sin(t * PI)))
+	# Flags flap on their poles and waterfalls tumble, each a looping strip of frames.
+	for kind: String in ["flags", "waterfalls"]:
+		var name := "flag" if kind == "flags" else "waterfall"
+		for piece: Dictionary in _ambience.get(kind, []):
+			var size: Array = piece.get("size_px", [64, 96])
+			var origin: Variant = piece.get("origin")
+			_draw_fx_strip(name, Vector2(piece["position"][0], piece["position"][1]), Vector2(size[0], size[1]), origin, float(piece.get("phase", 0.0)))
 	# Gold in the hoard twinkles now and then.
 	var gold: Dictionary = _ambience.get("gold_motion", {})
 	var gold_sizes: Array = gold.get("size_px", [20, 34])
@@ -500,6 +557,24 @@ func _draw_fx_frame(name: String, at: Vector2, size: float, t: float, tint: Colo
 	var frame := mini(int(t * frames), frames - 1)
 	var source := Rect2(Vector2(frame % columns, frame / columns) * cell, cell)
 	draw_texture_rect_region(art["texture"], Rect2(at - Vector2.ONE * size / 2, Vector2.ONE * size), source, tint)
+
+
+## The looping frame for now of an ambience strip, `size` across and tall, its `origin`
+## (in the art's frame, by default its middle) at `at`. `phase` 0..1 staggers pieces.
+func _draw_fx_strip(name: String, at: Vector2, size: Vector2, origin: Variant, phase: float) -> void:
+	if not _ambience_art.has(name):
+		return
+	var art: Dictionary = _ambience_art[name]
+	var info: Dictionary = art["info"]
+	var frames := int(info.get("frames", 1))
+	var columns := int(info.get("columns", 1))
+	var cell := Vector2(info["frame_size"][0], info["frame_size"][1])
+	if not origin is Array:
+		origin = info.get("origin", [cell.x / 2, cell.y / 2])
+	var pivot := Vector2(origin[0], origin[1]) * size / cell
+	var frame := int(_time * float(info.get("fps", 12)) + phase * frames) % frames
+	var source := Rect2(Vector2(frame % columns, frame / columns) * cell, cell)
+	draw_texture_rect_region(art["texture"], Rect2(at - pivot, size), source)
 
 
 func _draw_stop(index: int) -> void:

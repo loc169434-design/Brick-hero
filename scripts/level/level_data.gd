@@ -49,3 +49,7 @@ extends Resource
 @export var petal := false
 ## The story chapter read after winning this level the first time; 0 for none.
 @export var chapter := 0
+## Hours and skies this level's fights may be fought under (Weather.HOURS, Weather.SKIES),
+## one drawn per fight; empty to take the region's. A boss can lock one for its story.
+@export var times: PackedStringArray = []
+@export var weathers: PackedStringArray = []

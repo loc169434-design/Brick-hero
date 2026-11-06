@@ -59,6 +59,8 @@ const COMBAT_DIR := "res://assets/fx/combat/"
 ## as {"<effect>": {"frames", "fps", "columns", "frame_size"}}. They win over the still image.
 const COMBAT_ANIM := "res://assets/fx/combat/anim/anim.json"
 const PROP_DIR := "res://assets/fx/props/"
+const WEATHER_DIR := "res://assets/fx/weather/"
+const SKY_ICON := 44.0
 const NUMBER_FONT := "res://assets/fonts/Bangers-Regular.ttf"
 ## Comic lettering pops to this scale (of its 512×320 art).
 const COMIC_SCALE := 0.55
@@ -141,6 +143,11 @@ var _hud_swords: Array[Texture2D] = []
 var _clash_spark: Texture2D
 var _combat_anim := {}
 var _backdrop: ArenaBackdrop
+## Holds both fighters, so the hour's light tints them without touching their own flashes.
+var _cast: Node2D
+var _weather: ArenaWeather
+## Hour and weather icons by name (assets/fx/weather/icon_<name>.png).
+var _weather_icons := {}
 var _hero: CharacterRig
 var _monster: CharacterRig
 ## Drawn above the fighters.
@@ -167,12 +174,18 @@ func _ready() -> void:
 	_backdrop = ArenaBackdrop.new()
 	_backdrop.position = BACKDROP_SHIFT
 	_stage.add_child(_backdrop)
+	_cast = Node2D.new()
+	_stage.add_child(_cast)
 	_hero = CharacterRig.new()
 	_hero.position = HERO_FEET
-	_stage.add_child(_hero)
+	_cast.add_child(_hero)
 	_monster = CharacterRig.new()
 	_monster.position = MONSTER_FEET
-	_stage.add_child(_monster)
+	_cast.add_child(_monster)
+	_weather = ArenaWeather.new()
+	_weather.position = BACKDROP_SHIFT
+	_weather.backdrop = _backdrop
+	_stage.add_child(_weather)
 	_fx = Node2D.new()
 	_stage.add_child(_fx)
 	_sparks = TileParticles.new()
@@ -220,6 +233,9 @@ func show_state(state: BattleState) -> void:
 	_set_camera(1.0, SIZE / 2)
 	if _backdrop.background != state.monster.background:
 		_backdrop.load_background(state.monster.background)
+	_backdrop.set_sky(state.time_of_day, state.weather)
+	_weather.set_sky(state.weather)
+	_cast.modulate = _backdrop.fighter_light()
 	_hero.setup(HERO_ID, 1)
 	_monster.setup(state.monster.id, -1, state.shield_layers() if state.monster.shield_layers > 0 else -1)
 	_monster.modulate = Color.WHITE
@@ -1064,7 +1080,7 @@ func _draw_overlay() -> void:
 	_draw_text(monster_name, Vector2(MONSTER_BAR.x + BAR_SIZE.x - 4 - _text_width(monster_name, LABEL_SIZE), ROW_Y + LABEL_SIZE), LABEL_SIZE, TEXT)
 	_draw_shield_layers()
 	_draw_gold()
-	_draw_statuses()
+	_draw_statuses(_draw_sky_icons(HERO_BAR.x + 128.0))
 	_draw_turn_plaque(COUNTDOWN_AT)
 	if _state.outcome == BattleState.Outcome.ONGOING and _state.monster.counterattacks:
 		_draw_countdown(COUNTDOWN_AT + Vector2(0, 76))
@@ -1164,7 +1180,7 @@ func _draw_gold() -> void:
 
 
 ## Poison, toad and broom on the hero, as icons by their name with the moves left.
-func _draw_statuses() -> void:
+func _draw_statuses(x: float) -> void:
 	var statuses: Array = []
 	if _state.poison_turns > 0:
 		statuses.append(["poison", _state.poison_turns])
@@ -1172,7 +1188,6 @@ func _draw_statuses() -> void:
 		statuses.append(["toad", _state.toad_turns])
 	if _state.broom_turns > 0:
 		statuses.append(["broom", _state.broom_turns])
-	var x := HERO_BAR.x + 128.0
 	for status in statuses:
 		var icon := _status_icon(status[0])
 		var rect := Rect2(Vector2(x, ROW_Y - 4), Vector2(44, 44))
@@ -1180,6 +1195,27 @@ func _draw_statuses() -> void:
 			_overlay.draw_texture_rect(icon, rect, false)
 		_draw_text(str(status[1]), Vector2(rect.end.x - 6, rect.end.y), 26, TEXT, _number_font)
 		x += 66.0
+
+
+## The hour, and the weather unless it's clear, as small icons in the hero's row from `x`.
+## Returns where the row carries on.
+func _draw_sky_icons(x: float) -> float:
+	var names: Array[StringName] = [_state.time_of_day]
+	if _state.weather != Weather.DEFAULT_SKY:
+		names.append(_state.weather)
+	for name in names:
+		var icon := _weather_icon(name)
+		if icon:
+			_overlay.draw_texture_rect(icon, Rect2(Vector2(x, ROW_Y - 4), Vector2.ONE * SKY_ICON), false)
+			x += SKY_ICON + 6
+	return x + 14 if x > HERO_BAR.x + 128.0 else x
+
+
+func _weather_icon(name: StringName) -> Texture2D:
+	if not _weather_icons.has(name):
+		var path := WEATHER_DIR + "icon_%s.png" % name
+		_weather_icons[name] = load(path) if ResourceLoader.exists(path) else null
+	return _weather_icons[name]
 
 
 func _status_icon(name: String) -> Texture2D:

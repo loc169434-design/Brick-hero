@@ -141,3 +141,37 @@ func test_spells_take_turns() -> void:
 		move.steps.append(ClearStep.new())
 		spells.append(state.apply_move(move).board_spell)
 	assert_eq(spells, ["toads", "broom", "potion", "toads"])
+
+
+func test_an_orc_goes_berserk_below_its_rage_line() -> void:
+	var rules: BattleRules = load("res://data/balance.tres")
+	var orc: MonsterData = load("res://data/monsters/orc_shield.tres")
+	var state := BattleState.new(rules, orc)
+	assert_eq(state.attack_every(), 3)
+	var calm := state.monster_hit(false)
+	state.shield = 0
+	state.monster_hp = int(orc.max_hp * 0.35)
+	var move := MoveResult.new()
+	var step := ClearStep.new()
+	step.chain = 1
+	for i in 2:
+		step.cleared_cells.append(Cell.new(R))
+		step.cleared.append(Vector2i.ZERO)
+	move.steps.append(step)
+	var report := state.apply_move(move)
+	assert_true(report.raged, "it snaps")
+	assert_true(state.raging)
+	assert_eq(state.attack_every(), 2, "a move sooner")
+	assert_true(state.monster_hit(false) > calm, "and harder")
+	assert_true(not state.apply_move(move).raged, "only once")
+
+
+func test_the_witch_announces_her_lift_a_move_ahead() -> void:
+	var rules: BattleRules = load("res://data/balance.tres")
+	var witch: MonsterData = load("res://data/monsters/toad_witch.tres")
+	var state := BattleState.new(rules, witch)
+	assert_eq(state.coming_spell(), "toads")
+	state.attacks_made = 1
+	assert_eq(state.coming_spell(), "lift")
+	var orc := BattleState.new(rules, load("res://data/monsters/orc_rock.tres"))
+	assert_eq(orc.coming_spell(), "", "a rock isn't a spell")

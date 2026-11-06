@@ -45,6 +45,13 @@ var board_damage := 0
 var turned_toad := false
 ## The broom spell landed on the sword this move.
 var broomed := false
+## The monster flew into a rage this move.
+var raged := false
+## The witch's lifted tile: thrown at the hero, or the spell broke because the tile was
+## cleared first. Also whether the tile was one of the hero's specials (it goes off on them).
+var lift_thrown := false
+var lift_fizzled := false
+var lift_special := false
 ## Gold a thief took for the marks left on the board.
 var stolen := 0
 var outcome := BattleState.Outcome.ONGOING

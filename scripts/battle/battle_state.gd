@@ -33,6 +33,8 @@ var toad_turns := 0
 ## Moves left with the sword turned into a broom: red squares do half damage. A link of
 ## BROOM_BREAK_LINK squares or more breaks the spell.
 var broom_turns := 0
+## The monster has flown into a rage (MonsterData.rage_below): faster, harder attacks.
+var raging := false
 var gold := 0
 ## Fills from cleared squares; at rules.rage_max the hero skill is ready. Starts empty each fight.
 var rage := 0
@@ -71,6 +73,8 @@ func next_attack_is_critical() -> bool:
 
 
 const POISON_TURNS := 3
+## A raging monster's attacks hit this many times harder.
+const RAGE_POWER := 1.25
 const CURE_GREENS := 3
 const BROOM_BREAK_LINK := 6
 
@@ -126,6 +130,10 @@ func apply_move(result: MoveResult) -> TurnReport:
 		report.critical = false
 
 	_strike(red, purple, smashes, report)
+	if not raging and monster.rage_below > 0.0 and monster_hp > 0 and monster_health() <= monster.rage_below:
+		raging = true
+		report.raged = true
+		countdown = mini(countdown, attack_every())
 	report.heal = mini(roundi(green), rules.hero_max_hp - hero_hp)
 	hero_hp += report.heal
 	report.gold = roundi(yellow)
@@ -231,11 +239,14 @@ func _gain_rage(result: MoveResult) -> int:
 ## What a monster attack takes off the hero after the helmet and armor.
 func monster_hit(critical: bool) -> int:
 	var crit_bonus := (rules.monster_crit_multiplier - 1.0) * (1.0 - rules.crit_guard) if critical else 0.0
-	return maxi(roundi(monster.attack * (1.0 + crit_bonus)) - rules.armor, 1)
+	var rage := RAGE_POWER if raging else 1.0
+	return maxi(roundi(monster.attack * rage * (1.0 + crit_bonus)) - rules.armor, 1)
 
 
 ## Moves between the monster's attacks, sped up by the war drum, but never under 2.
 func attack_every() -> int:
+	if raging:
+		return maxi(monster.countdown - tempo - 1, 1)
 	return maxi(monster.countdown - tempo, mini(2, monster.countdown))
 
 
@@ -270,6 +281,14 @@ func _tick_curses(result: MoveResult, report: TurnReport) -> void:
 func _next_spell() -> String:
 	var spells := monster.special.split(",")
 	return spells[(attacks_made - 1) % spells.size()].strip_edges()
+
+
+## The spell the monster's next attack will cast, "" for none: shown a move ahead.
+func coming_spell() -> String:
+	if monster.special in ["", "rock", "drum", "poison", "leech"]:
+		return ""
+	var spells := monster.special.split(",")
+	return spells[attacks_made % spells.size()].strip_edges()
 
 
 func hero_health() -> float:

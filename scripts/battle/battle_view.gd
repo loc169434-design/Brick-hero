@@ -18,6 +18,8 @@ extends Node2D
 
 ## A blow landed: `strength` 0..1 of screen shake, `freeze` seconds of hit-stop.
 signal impact(strength: float, freeze: float)
+## The witch flicks her wand: the board should throw its lifted tile at `target` (global).
+signal tile_thrown(target: Vector2)
 ## Run the game at `time_scale` for `seconds` of real time.
 signal slow_motion(time_scale: float, seconds: float)
 
@@ -85,6 +87,7 @@ const HIT_SPARK := Color(1, 0.85, 0.45)
 const HURT_SPARK := Color(1, 0.45, 0.35)
 const POISON := Color(0.55, 0.9, 0.3)
 const CURSE := Color(0.75, 0.55, 1.0)
+const RAGE := Color(1.0, 0.3, 0.15)
 const CURSE_DIR := "res://assets/fx/curse/"
 const STATUS_DIR := "res://assets/ui/status/"
 const OUTLINE := Color(0.1, 0.07, 0.05)
@@ -112,6 +115,7 @@ var _number_font: Font
 var _goal: LevelProgress
 var _goal_art := ObstacleArt.new()
 var _status_icons := {}
+var _rage_time := 0.0
 var _combat_anim := {}
 var _backdrop: ArenaBackdrop
 var _hero: CharacterRig
@@ -187,6 +191,8 @@ func show_state(state: BattleState) -> void:
 		_backdrop.load_background(state.monster.background)
 	_hero.setup(HERO_ID, 1)
 	_monster.setup(state.monster.id, -1, state.shield_layers() if state.monster.shield_layers > 0 else -1)
+	_monster.modulate = Color.WHITE
+	_rage_time = 0.0
 	if _trail_tween:
 		_trail_tween.kill()
 	_hero_trail = state.hero_hp
@@ -249,6 +255,8 @@ func _play_report(report: TurnReport) -> void:
 		_float("+%d VÀNG" % report.gold, _coin_center() + Vector2(0, 70), GOLD)
 		Sfx.play(&"coin", 1.0, -4.0)
 	_show_afflictions(report)
+	if report.raged:
+		_go_berserk()
 	_drain_trails()
 
 	match report.outcome:
@@ -322,9 +330,26 @@ func _show_afflictions(report: TurnReport) -> void:
 		_comic("crack", over_head, 0.8)
 		await get_tree().create_timer(0.42).timeout
 		_hero.set_variant("")
+	if report.lift_fizzled:
+		_monster.react(&"stomp_angry" if _monster.has_clip(&"stomp_angry") else &"hurt", 1.0)
+		_float("PHÁ PHÉP!", MONSTER_FEET + Vector2(0, -260), CURSE, 52)
+		Sfx.play(&"untick", 0.7)
 	if report.stolen > 0:
 		_float("-%d VÀNG" % report.stolen, _coin_center() + Vector2(0, 70), HURT_SPARK)
 	_redraw()
+
+
+## The monster snaps at low health: it roars, the screen shakes, and it goes red and fast.
+func _go_berserk() -> void:
+	var head := _local(_monster.point("head"))
+	_monster.react(_monster_clip(&"special"), 1.0)
+	_monster.squash(0.2, 0.3)
+	_comic("boom", head + Vector2(-60, -120), 1.0)
+	_float("NỔI ĐIÊN!", MONSTER_FEET + Vector2(-20, -280), RAGE, 64)
+	_flash("shockwave", head + Vector2(0, 60), 0.2, 1.8, 0.45, 0.0, true)
+	Sfx.play(&"warn", 0.6)
+	Sfx.play(&"boom", 0.7)
+	impact.emit(0.6, 0.05)
 
 
 ## Spells the monster's attack cast on the hero.
@@ -356,7 +381,16 @@ func _turn_toad(into: bool) -> void:
 	_hero.position = feet
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	# A raging monster glows red with each heartbeat and steams.
+	if _state and _state.raging and _state.outcome == BattleState.Outcome.ONGOING:
+		_rage_time += delta
+		var beat := pow(maxf(sin(_rage_time * 7.0), 0.0), 3.0)
+		_monster.modulate = Color(1.0, 0.62 - 0.22 * beat, 0.55 - 0.25 * beat)
+		if randf() < delta * 10.0:
+			_sparks.flare(_local(_monster.point("head")) + Vector2(randf_range(-60, 60), randf_range(-40, 20)), RAGE, 0.6)
+	elif _monster.modulate != Color.WHITE:
+		_monster.modulate = Color.WHITE
 	# The countdown pulses while the monster is winding up; low health bars throb.
 	if _state and (_state.attacks_next_move() or _state.hero_health() <= LOW_HEALTH or _state.monster_health() <= LOW_HEALTH):
 		_overlay.queue_redraw()
@@ -615,8 +649,10 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 const SPELL_CLIPS := {
 	"toads": [&"cast_toads", "zap"], "broom": [&"cast_broom", "zap"], "potion": [&"throw_potion", "whoosh"],
 	"burp": [&"burp_toads", "boom"], "web": [&"special", "whoosh"], "ice": [&"special", "zap"],
-	"bomb": [&"special", "boom"], "marks": [&"special", "heh"],
+	"bomb": [&"special", "boom"], "marks": [&"special", "heh"], "lift": [&"cast_broom", "zap"],
 }
+## Seconds from the wand flick until the thrown tile reaches the hero.
+const LIFT_TIME := 1.0
 
 
 ## A monster whose attack is a spell or a special blow: its own clip, the hit on the hero, and
@@ -634,6 +670,16 @@ func _monster_spell(report: TurnReport) -> void:
 			_flash("toad_hop", _local(_monster.point("hand")) + Vector2(-80 - 90 * i, 60), 0.4, 0.6, 0.5)
 	if report.board_spell == "broom":
 		_flash("broom_spell", head + Vector2(80, 60), 0.5, 0.9, 0.4)
+	if report.lift_thrown:
+		tile_thrown.emit(_hero.point("head"))
+		Sfx.play(&"charge", 1.2)
+		await get_tree().create_timer(LIFT_TIME).timeout
+		if report.lift_special:
+			_flash("shockwave", head + Vector2(0, 40), 0.3, 1.6, 0.4, 0.0, true)
+			Sfx.play(&"boom")
+		_hero.daze()
+		_hero_hit(report, "boom" if report.lift_special else "bonk", &"dizzy")
+		return
 	if report.leeched > 0:
 		_float("+%d" % report.leeched, MONSTER_FEET + Vector2(0, -230), HP_MONSTER.lightened(0.3))
 		_monster.set_health(_state.monster_health())

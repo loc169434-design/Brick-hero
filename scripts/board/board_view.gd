@@ -91,6 +91,11 @@ const KNOCK_TIME := 0.3
 const FIDGETS_PER_SECOND := 2.2
 const FIDGET_POSES := ["blink", "blink", "blink", "chuckle", "laugh"]
 const FIDGET_HOP := 14.0
+## The witch's lifted tile: how long it rises, then flies, and how big it gets on the way.
+const LIFT_RISE := 0.45
+const LIFT_FLIGHT := 0.55
+const LIFT_GROW := 1.9
+const SPELL_GLOW := Color(0.75, 0.45, 1.0)
 ## A break-up clip is drawn this many squares wide, so splinters fly past the square.
 const BREAK_SCALE := 1.6
 ## Dust thrown off when a crate or rock breaks.
@@ -125,6 +130,10 @@ var _obstacles := ObstacleArt.new()
 var _knocked := {}
 ## Idle tiles fidgeting: square -> {"pose", "start", "end"}.
 var _fidgets := {}
+## The tile a witch's spell has hold of, glowing and shaking until she throws it (null for none).
+var lift_cell: Cell
+## The thrown tile in the air: {"cell", "from", "to", "t"} in board coordinates; {} for none.
+var _flying := {}
 ## Placeholder tile style per color, used only when there's no tile art.
 var _styles := {}
 ## What's on screen. Lags behind the model while a chain is being replayed.
@@ -261,6 +270,98 @@ func drop_obstacle(kind: String, layers: int, timer := 0) -> void:
 	_shards.shatter((Vector2(p) + Vector2(0.5, 0.5)) * CELL, BLOCKER_DUST.get(kind, BLOCKER_DUST["crate"]), 12)
 	Sfx.play(&"thud", 0.8)
 	impact.emit(0.35, 0.04)
+
+
+## A witch's spell takes hold of a tile, a move before she throws it: one of the hero's specials
+## if there is one, else a plain tile in the top half. Clearing it breaks the spell.
+func mark_lift() -> void:
+	var picks: Array[Cell] = []
+	var specials: Array[Cell] = []
+	for y in game.board.rows:
+		for x in game.board.columns:
+			var cell := game.board.get_cell(Vector2i(x, y))
+			if cell == null or cell.is_blocker() or cell.ice > 0 or cell.web or cell.marked:
+				continue
+			if cell.special in [Cell.Special.BOMB, Cell.Special.LIGHTNING]:
+				specials.append(cell)
+			elif not cell.is_special() and y < game.board.rows / 2:
+				picks.append(cell)
+	var from := specials if not specials.is_empty() else picks
+	lift_cell = from[randi() % from.size()] if not from.is_empty() else null
+	if lift_cell:
+		Sfx.play(&"charge", 1.5)
+	_redraw()
+
+
+## Where the lifted tile is now, or (-1, -1) once it's gone (cleared by the player).
+func lift_square() -> Vector2i:
+	if lift_cell:
+		for y in game.board.rows:
+			for x in game.board.columns:
+				if game.board.get_cell(Vector2i(x, y)) == lift_cell:
+					return Vector2i(x, y)
+	return Vector2i(-1, -1)
+
+
+## The witch tears the marked tile off the board: it rises, swelling as if coming at the
+## screen, its shadow shrinking on the board, then flies up past the frame to `target` (global),
+## where the fight shows the hit. The tiles above fall into its place.
+func throw_lifted(target: Vector2) -> void:
+	var p := lift_square()
+	var cell := lift_cell
+	lift_cell = null
+	if p.x < 0:
+		_redraw()
+		return
+	var generation := _generation
+	while _busy or not path.is_empty():
+		await get_tree().process_frame
+		if generation != _generation or _finished:
+			return
+	p = Vector2i(-1, -1)
+	for y in game.board.rows:
+		for x in game.board.columns:
+			if game.board.get_cell(Vector2i(x, y)) == cell:
+				p = Vector2i(x, y)
+	if p.x < 0:
+		return
+	_busy = true
+	var from := (Vector2(p) + Vector2(0.5, 0.5)) * CELL
+	_flying = {"cell": cell, "from": from, "to": to_local(target), "t": 0.0, "square": p}
+	_fidgets.erase(p)
+	Sfx.play(&"whoosh", 0.7)
+	var tween := create_tween()
+	tween.tween_method(func(t: float) -> void:
+		_flying["t"] = t
+		_redraw(), 0.0, 1.0, LIFT_RISE + LIFT_FLIGHT)
+	# Halfway up, the hole closes: the column falls into its place.
+	await get_tree().create_timer(LIFT_RISE * 0.6).timeout
+	if generation != _generation:
+		return
+	game.board.set_cell(p, null)
+	var falls := Resolver.apply_gravity(game.board, game._random_cell)
+	var carried: Array[Cell] = []
+	for fall in falls:
+		carried.append(fall["cell"] if fall.has("cell") else _shown.get(fall["from"]))
+	_shown.erase(p)
+	for fall in falls:
+		_shown.erase(fall["from"])
+	for i in falls.size():
+		var to: Vector2i = falls[i]["to"]
+		_shown[to] = carried[i]
+		_falling[to] = to.y - falls[i]["from"].y
+	_fall_t = 0.0
+	await _animate_falls(FALL_TIME, generation)
+	await tween.finished
+	if generation != _generation:
+		return
+	_flying = {}
+	if not game.has_move():
+		game.deal()
+		_show_popup("XÁO BẢNG")
+	_shown = _snapshot()
+	_busy = false
+	_redraw()
 
 
 ## Sets the board up for a level after a restart, without starting over: a fixed deal when
@@ -902,6 +1003,7 @@ func _draw_overlay() -> void:
 	if not path.is_empty():
 		_draw_blast()
 		_draw_link()
+	_draw_lift()
 	if _popup_alpha > 0.0:
 		# Scaled around the middle of the letters rather than their baseline.
 		var lift := _popup_size * 0.35
@@ -912,6 +1014,56 @@ func _draw_overlay() -> void:
 		_overlay.draw_rect(Rect2(Vector2.ZERO, size), Color(0, 0, 0, 0.45))
 		_draw_centered_text(_end_title, Vector2(size.x / 2, size.y * 0.45), 110, TEXT)
 		_draw_centered_text(_end_subtitle, Vector2(size.x / 2, size.y * 0.45 + 90), 44, TEXT_DIM)
+
+
+## The witch's spell on a tile: a purple aura and a shake while it's held, then the tile in
+## flight, drawn over everything so it leaves the board through its frame.
+func _draw_lift() -> void:
+	if lift_cell and _flying.is_empty():
+		var p := lift_square()
+		if p.x >= 0 and _shown.get(p) == lift_cell:
+			var center := (Vector2(p) + Vector2(0.5, 0.5)) * CELL
+			var pulse := 0.5 + 0.5 * sin(_time * 8.0)
+			_overlay.draw_circle(center, CELL * (0.62 + 0.08 * pulse), Color(SPELL_GLOW, 0.25 + 0.2 * pulse))
+			for i in 3:
+				var a := _time * 3.0 + i * TAU / 3.0
+				_overlay.draw_arc(center, CELL * 0.6, a, a + 1.4, 16, Color(SPELL_GLOW, 0.9), 5.0, true)
+	if _flying.is_empty():
+		return
+	var t: float = _flying["t"]
+	var from: Vector2 = _flying["from"]
+	var to: Vector2 = _flying["to"]
+	var rise := clampf(t / (LIFT_RISE / (LIFT_RISE + LIFT_FLIGHT)), 0.0, 1.0)
+	var fly := clampf((t - LIFT_RISE / (LIFT_RISE + LIFT_FLIGHT)) / (LIFT_FLIGHT / (LIFT_RISE + LIFT_FLIGHT)), 0.0, 1.0)
+	# The shadow stays on the board, shrinking and fading as the tile comes off it.
+	if fly < 1.0:
+		_overlay.draw_set_transform(from + Vector2(10, 18), 0.0, Vector2(1.0, 0.5))
+		_overlay.draw_circle(Vector2.ZERO, CELL * 0.5 * (1.0 - rise * 0.6), Color(0, 0, 0, 0.45 * (1.0 - fly)))
+		_overlay.draw_set_transform(Vector2.ZERO)
+	var lifted := from + Vector2(0, -CELL * 0.9 * ease(rise, 0.5))
+	var arc := Vector2(0, -CELL * 2.4 * sin(fly * PI))
+	var at := lifted.lerp(to, ease(fly, 1.6)) + arc
+	var grow := lerpf(1.0, LIFT_GROW, ease(rise, 0.5)) * lerpf(1.0, 0.75, fly)
+	# Tumbling towards the screen: it turns, and squashes across as it spins (a 2D hint of 3D).
+	var spin := rise * 0.25 + fly * TAU * 1.25
+	var squash := Vector2(absf(cos(fly * TAU)) * 0.6 + 0.4, 1.0)
+	_overlay.draw_circle(at, CELL * 0.75 * grow, Color(SPELL_GLOW, 0.3))
+	_overlay.draw_set_transform(at, spin, squash * grow)
+	var cell: Cell = _flying["cell"]
+	var size := Vector2(CELL, CELL)
+	if cell.is_special():
+		_overlay.draw_circle(Vector2.ZERO, CELL * 0.4, Color(0.2, 0.2, 0.25))
+		_overlay.draw_circle(Vector2.ZERO, CELL * 0.4, Color(1, 0.7, 0.3), false, 6.0)
+	else:
+		var texture := _art.tile(cell.color)
+		if texture:
+			_overlay.draw_texture_rect(texture, Rect2(-size / 2, size), false)
+		else:
+			_overlay.draw_rect(Rect2(-size / 2, size), BLOCK_COLORS.get(cell.color, Color.WHITE))
+	_overlay.draw_set_transform(Vector2.ZERO)
+	for i in 3:
+		var a := _time * 6.0 + i * TAU / 3.0
+		_overlay.draw_arc(at, CELL * 0.62 * grow, a, a + 1.2, 16, Color(SPELL_GLOW, 0.85), 5.0, true)
 
 
 ## Shows what the traced link would blow up besides its own squares: the rest dims.

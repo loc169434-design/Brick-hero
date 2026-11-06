@@ -26,6 +26,8 @@ const TOAD_TURNS := 2
 const BROOM_TURNS := 2
 ## Gold a thief takes for each of its marks still on the board.
 const STEAL_PER_MARK := 2
+## Extra damage when the witch throws one of the hero's own specials at them: it goes off.
+const LIFT_SPECIAL_BONUS := 8
 
 @export var board: BoardView
 @export var battle_view: BattleView
@@ -61,6 +63,7 @@ func _ready() -> void:
 		battle_view.impact.connect(feel.impact)
 		battle_view.slow_motion.connect(feel.slow_motion)
 	board.orb_targets = battle_view.orb_targets()
+	battle_view.tile_thrown.connect(board.throw_lifted)
 	if skill_bar:
 		skill_bar.pressed.connect(_on_skill_pressed)
 	_start()
@@ -121,6 +124,9 @@ func _on_move_finished(result: MoveResult) -> void:
 	_board_turn(result, report)
 	if report.board_spell:
 		_cast(report)
+	# The witch takes hold of a tile a move before she throws it.
+	if state.outcome == BattleState.Outcome.ONGOING and state.attacks_next_move() and state.coming_spell() == "lift":
+		board.mark_lift()
 	if level:
 		progress.record(result)
 		_judge(report)
@@ -179,6 +185,9 @@ func _board_turn(result: MoveResult, report: TurnReport) -> void:
 func _cast(report: TurnReport) -> void:
 	var power := state.monster.special_power
 	match report.board_spell:
+		"lift":
+			_lift(report)
+			return
 		"broom":
 			state.broom_turns = BROOM_TURNS
 			report.broomed = true
@@ -201,6 +210,28 @@ func _cast(report: TurnReport) -> void:
 			board.drop_obstacle("potion_bottle", 1, 1)
 		"web", "ice", "marks":
 			board.cover("mark" if report.board_spell == "marks" else report.board_spell, power)
+
+
+## The witch throws the tile she took hold of. If the player cleared it first, the spell breaks:
+## the attack misses. If it was one of the hero's specials, it goes off on them.
+func _lift(report: TurnReport) -> void:
+	if board.lift_square().x < 0:
+		board.lift_cell = null
+		report.lift_fizzled = true
+		state.hero_hp = mini(state.hero_hp + report.monster_attack, rules.hero_max_hp)
+		report.monster_attack = 0
+		if state.outcome == BattleState.Outcome.LOST and state.hero_hp > 0:
+			state.outcome = BattleState.Outcome.ONGOING
+			report.outcome = state.outcome
+		return
+	report.lift_thrown = true
+	if board.lift_cell.is_special():
+		report.lift_special = true
+		report.monster_attack += LIFT_SPECIAL_BONUS
+		state.hero_hp = maxi(state.hero_hp - LIFT_SPECIAL_BONUS, 0)
+		if state.hero_hp == 0:
+			state.outcome = BattleState.Outcome.LOST
+			report.outcome = state.outcome
 
 
 ## The Orc's rock lands on the board as it hits: a two-layer obstacle on a random tile.

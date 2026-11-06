@@ -14,3 +14,4 @@ countdown = 4
 tile_theme = "orc_shield"
 background = "orc_camp"
 special = "drum"
+rage_below = 0.3

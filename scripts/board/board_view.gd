@@ -85,6 +85,12 @@ const LINK_GROW := 6.0
 const LINK_TREMBLE := 1.8
 ## How long a tile let go from the link looks relieved.
 const RELIEF_TIME := 0.7
+## How long a crate or rock shakes after losing a layer.
+const KNOCK_TIME := 0.3
+## A break-up clip is drawn this many squares wide, so splinters fly past the square.
+const BREAK_SCALE := 1.6
+## Dust thrown off when a crate or rock breaks.
+const BLOCKER_DUST := {"crate": Color(0.66, 0.45, 0.24), "rock": Color(0.6, 0.6, 0.62)}
 ## Tiles cast their shadow this far down and right, so they read as raised blocks.
 const SHADOW_DROP := Vector2(3, 8)
 const SHADOW := Color(0.22, 0.12, 0.04, 0.42)
@@ -110,6 +116,9 @@ var path: Array[Vector2i] = []
 
 var _art: TileArt
 var _special_art := SpecialArt.new()
+var _obstacles := ObstacleArt.new()
+## Crates and rocks that just lost a layer shake until this time, by square.
+var _knocked := {}
 ## Placeholder tile style per color, used only when there's no tile art.
 var _styles := {}
 ## What's on screen. Lags behind the model while a chain is being replayed.
@@ -239,7 +248,7 @@ func is_finished() -> bool:
 func play_reaction(clip: StringName, count: int) -> void:
 	if _busy or _finished or not _art.has_clip(clip):
 		return
-	var idle := _shown.keys().filter(func(p: Vector2i) -> bool: return not _shown[p].is_special() and not _sprites.has(p))
+	var idle := _shown.keys().filter(func(p: Vector2i) -> bool: return not _shown[p].is_special() and not _shown[p].is_blocker() and not _sprites.has(p))
 	idle.shuffle()
 	for p in idle.slice(0, count):
 		_play_clip(p, clip, null, true, 1.0)
@@ -363,9 +372,22 @@ func _replay(result: MoveResult, before: Dictionary) -> void:
 			_show_popup("CHUỖI x%d" % step.chain, mini(POPUP_SIZE + 16 * (step.chain - 2), 170))
 		# Every square in the round bursts at once; the round waits for the longest burst.
 		var burst := 0.0
+		for h in step.hit:
+			if _shown.has(h["at"]):
+				_shown[h["at"]].layers = h["layers"]
+				_knocked[h["at"]] = _time + KNOCK_TIME
+		if not step.hit.is_empty() or not step.broken.is_empty():
+			Sfx.play(&"thud", 1.2)
+		for r in step.rescued:
+			_rescue_item(r["at"], r["kind"])
 		for i in step.cleared.size():
+			var cleared_cell: Cell = step.cleared_cells[i]
+			if cleared_cell.is_blocker():
+				var broke := 0.0 if cleared_cell.is_item() else _play_break(step.cleared[i], cleared_cell.blocker)
+				burst = maxf(burst, broke)
+				continue
 			# Specials have no tile to burst: they flash, and their blast does the rest.
-			var seconds := 0.0 if step.cleared_cells[i].is_special() else _play_clip(step.cleared[i], &"combo", step.cleared_cells[i], false)
+			var seconds := 0.0 if cleared_cell.is_special() else _play_clip(step.cleared[i], &"combo", cleared_cell, false)
 			if seconds > 0.0:
 				burst = maxf(burst, seconds)
 			else:
@@ -419,6 +441,8 @@ func _burst_into_light(step: ClearStep) -> void:
 	var orbs := 0
 	for i in step.cleared.size():
 		var cell: Cell = step.cleared_cells[i]
+		if cell.is_blocker():
+			continue
 		var center := (Vector2(step.cleared[i]) + Vector2(0.5, 0.5)) * CELL
 		var color: Color = BLOCK_COLORS.get(cell.color, STAR_LINK_COLOR)
 		if cell.is_special():
@@ -470,7 +494,7 @@ func _set_fall_t(t: float) -> void:
 ## Returns the clip's length in seconds, or 0 if the theme has no art for it.
 func _play_clip(p: Vector2i, clip: StringName, cell: Cell = null, free_when_done := true, speed := REPLAY_SPEED) -> float:
 	var target: Cell = cell if cell else _shown.get(p)
-	if target == null or (cell == null and target.is_special()):
+	if target == null or target.is_blocker() or (cell == null and target.is_special()):
 		return 0.0
 	if not _art.ensure_clip(target.color, clip):
 		return 0.0
@@ -487,6 +511,44 @@ func _play_clip(p: Vector2i, clip: StringName, cell: Cell = null, free_when_done
 		sprite.animation_finished.connect(_on_clip_finished.bind(p, sprite))
 	_redraw()
 	return _art.clip_seconds(target.color, clip) / speed
+
+
+## A crate or rock at `p` breaks apart. Returns how long that takes.
+func _play_break(p: Vector2i, kind: String) -> float:
+	var frames := _obstacles.break_frames(kind)
+	if frames == null:
+		_flashing[p] = true
+		return 0.0
+	_free_sprite(p)
+	var sprite := AnimatedSprite2D.new()
+	sprite.sprite_frames = frames
+	sprite.position = (Vector2(p) + Vector2(0.5, 0.5)) * CELL
+	sprite.scale = Vector2.ONE * CELL * BREAK_SCALE / 512.0
+	sprite.speed_scale = REPLAY_SPEED
+	_sprite_layer.add_child(sprite)
+	sprite.play(&"break")
+	_sprites[p] = sprite
+	_shards.shatter(sprite.position, BLOCKER_DUST.get(kind, BLOCKER_DUST["crate"]), 10)
+	return frames.get_frame_count(&"break") / frames.get_animation_speed(&"break") / REPLAY_SPEED
+
+
+## An item reached the bottom row: it floats up, glowing, and fades away.
+func _rescue_item(p: Vector2i, kind: String) -> void:
+	var texture := _obstacles.texture(Cell.obstacle(kind))
+	Sfx.play(&"coin", 1.3)
+	_lights.flare((Vector2(p) + Vector2(0.5, 0.5)) * CELL, Color(1, 0.85, 0.4), 2.0)
+	if texture == null:
+		return
+	var sprite := Sprite2D.new()
+	sprite.texture = texture
+	sprite.position = (Vector2(p) + Vector2(0.5, 0.5)) * CELL
+	sprite.scale = Vector2.ONE * CELL * 0.9 / texture.get_width()
+	_sprite_layer.add_child(sprite)
+	var tween := sprite.create_tween().set_parallel()
+	tween.tween_property(sprite, "position:y", sprite.position.y - CELL * 1.6, 0.7).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	tween.tween_property(sprite, "scale", sprite.scale * 1.4, 0.7)
+	tween.tween_property(sprite, "modulate:a", 0.0, 0.35).set_delay(0.45)
+	tween.chain().tween_callback(sprite.queue_free)
 
 
 func _on_clip_finished(p: Vector2i, sprite: AnimatedSprite2D) -> void:
@@ -539,7 +601,11 @@ func _snapshot() -> Dictionary:
 	for y in game.board.rows:
 		for x in game.board.columns:
 			var cell := game.board.get_cell(Vector2i(x, y))
-			if cell:
+			if cell and cell.is_blocker():
+				# A copy, so a crate keeps its layers on screen until the replay knocks one off.
+				var copy := Cell.obstacle(cell.blocker, cell.layers)
+				cells[Vector2i(x, y)] = copy
+			elif cell:
 				cells[Vector2i(x, y)] = cell
 	return cells
 
@@ -578,7 +644,10 @@ func _draw() -> void:
 			rect.position.y -= LINK_LIFT * (1.0 + _link_pop * (1.0 if p == path[-1] else 0.0))
 			# Caught in the link, the Orcs tremble.
 			rect.position.x += LINK_TREMBLE * sin(_time * 47.0 + p.x * 3.1 + p.y * 1.7)
-		elif not _falling.has(p) and not _flashing.has(p) and not _finished:
+		elif _knocked.get(p, 0.0) > _time:
+			# A crate or rock that just lost a layer shudders.
+			rect.position.x += 7.0 * sin(_time * 60.0) * (_knocked[p] - _time) / KNOCK_TIME
+		elif not _falling.has(p) and not _flashing.has(p) and not _finished and not (_shown[p].is_blocker() and not _shown[p].is_item()):
 			# Breathing: each tile bobs a little out of step with its neighbors.
 			var breath := sin(_time * BREATH_SPEED + p.x * 0.7 + p.y * 0.45)
 			rect.position.y -= BREATH_LIFT * breath
@@ -598,7 +667,7 @@ func _draw() -> void:
 				_draw_glow(rect.get_center(), CELL * 1.6, Color(1, 1, 1, 0.9))
 			else:
 				draw_rect(rect.grow(-6), Color(1, 1, 1, 0.75))
-		elif not _falling.has(p) and not _shown[p].is_special():
+		elif not _falling.has(p) and not _shown[p].is_special() and not _shown[p].is_blocker():
 			_draw_shine(rect.grow(-3), p)
 
 
@@ -797,6 +866,13 @@ func _draw_link() -> void:
 func _draw_cell(rect: Rect2, cell: Cell, alpha := 1.0, phase := 0.0, pose := "") -> void:
 	if cell.is_special():
 		_draw_special(rect, cell, alpha, _time + phase)
+		return
+	if cell.is_blocker():
+		var picture := _obstacles.texture(cell)
+		if picture:
+			draw_texture_rect(picture, rect.grow(-4 if cell.is_item() else 2), false, Color(1, 1, 1, alpha))
+		else:
+			draw_rect(rect.grow(-6), Color(0.45, 0.3, 0.16, alpha))
 		return
 	var inner := rect.grow(-3)
 	var texture: Texture2D = _art.expression(cell.color, pose) if pose else null

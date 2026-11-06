@@ -1,0 +1,76 @@
+{
+  "checks_passed": 206,
+  "sky_variants": 16,
+  "weather_cels": 26,
+  "icons": 7,
+  "previews": [
+    {
+      "file": "fog_scene.gif",
+      "bytes": 276689
+    },
+    {
+      "file": "swamp_four_hours.jpg",
+      "bytes": 171309
+    },
+    {
+      "file": "orc_camp_four_hours.jpg",
+      "bytes": 143561
+    },
+    {
+      "file": "orc_camp_day_cycle.gif",
+      "bytes": 162467
+    },
+    {
+      "file": "goblin_camp_day_cycle.gif",
+      "bytes": 256776
+    },
+    {
+      "file": "lightning_bolt_scene.gif",
+      "bytes": 425901
+    },
+    {
+      "file": "swamp_day_cycle.gif",
+      "bytes": 215932
+    },
+    {
+      "file": "training_field_day_cycle.gif",
+      "bytes": 137209
+    },
+    {
+      "file": "fog.gif",
+      "bytes": 44269
+    },
+    {
+      "file": "rain_splash.gif",
+      "bytes": 32832
+    },
+    {
+      "file": "rain.gif",
+      "bytes": 129430
+    },
+    {
+      "file": "lightning_bolt.gif",
+      "bytes": 46665
+    },
+    {
+      "file": "weather_icons.jpg",
+      "bytes": 44944
+    },
+    {
+      "file": "red_eyes.gif",
+      "bytes": 19950
+    },
+    {
+      "file": "goblin_camp_four_hours.jpg",
+      "bytes": 182009
+    },
+    {
+      "file": "training_field_four_hours.jpg",
+      "bytes": 130468
+    },
+    {
+      "file": "rain_scene.gif",
+      "bytes": 317239
+    }
+  ]
+}

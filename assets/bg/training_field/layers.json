@@ -80,5 +80,52 @@
     "grass": 0.75,
     "smoke": 0.6,
     "torch": 0.7
-  }
+  },
+  "eyes": [
+    [
+      65,
+      390
+    ],
+    [
+      1015,
+      365
+    ],
+    [
+      116,
+      410
+    ]
+  ],
+  "sky_times": {
+    "morning": "sky_morning.png",
+    "noon": "sky_noon.png",
+    "dusk": "sky_dusk.png",
+    "night": "sky_night.png"
+  },
+  "time_lighting": {
+    "morning": [
+      1.0,
+      0.96,
+      0.86,
+      1.0
+    ],
+    "noon": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "dusk": [
+      1.0,
+      0.74,
+      0.58,
+      1.0
+    ],
+    "night": [
+      0.32,
+      0.4,
+      0.64,
+      1.0
+    ]
+  },
+  "time_lighting_note": "Suggested runtime modulation for far/mid/ground and fighters; sky uses its own painted variant, eyes are drawn after modulation. No layer artwork recolored."
 }

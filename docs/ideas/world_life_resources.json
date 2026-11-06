@@ -111,11 +111,212 @@
         384,
         640
       ]
+    },
+    {
+      "file": "assets/bg/training_field/sky_morning.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/training_field/sky_noon.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/training_field/sky_dusk.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/training_field/sky_night.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/orc_camp/sky_morning.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/orc_camp/sky_noon.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/orc_camp/sky_dusk.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/orc_camp/sky_night.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/swamp/sky_morning.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/swamp/sky_noon.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/swamp/sky_dusk.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/swamp/sky_night.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/goblin_camp/sky_morning.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/goblin_camp/sky_noon.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/goblin_camp/sky_dusk.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/bg/goblin_camp/sky_night.png",
+      "size": [
+        1080,
+        660
+      ]
+    },
+    {
+      "file": "assets/fx/weather/rain.png",
+      "size": [
+        2160,
+        1320
+      ]
+    },
+    {
+      "file": "assets/fx/weather/rain_splash.png",
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "file": "assets/fx/weather/lightning_bolt.png",
+      "size": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "file": "assets/fx/weather/fog.png",
+      "size": [
+        2160,
+        1320
+      ]
+    },
+    {
+      "file": "assets/fx/weather/red_eyes.png",
+      "size": [
+        768,
+        256
+      ]
+    },
+    {
+      "file": "assets/fx/weather/icon_morning.png",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/fx/weather/icon_noon.png",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/fx/weather/icon_dusk.png",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/fx/weather/icon_night.png",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/fx/weather/icon_rain.png",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/fx/weather/icon_storm.png",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/fx/weather/icon_fog.png",
+      "size": [
+        128,
+        128
+      ]
     }
   ],
   "metadata": [
+    "assets/bg/goblin_camp/layers.json",
+    "assets/bg/orc_camp/layers.json",
+    "assets/bg/swamp/layers.json",
+    "assets/bg/training_field/layers.json",
+    "assets/fx/weather/anim.json",
+    "assets/tiles/swamp_b/swamp_manifest.json",
     "assets/ui/hud/anim.json",
-    "assets/ui/hud/hud_manifest.json",
-    "assets/tiles/swamp_b/swamp_manifest.json"
+    "assets/ui/hud/hud_manifest.json"
   ]
 }

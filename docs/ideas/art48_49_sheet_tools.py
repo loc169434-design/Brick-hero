@@ -88,17 +88,21 @@ def actor_frames(raw, reference):
     return result, registration
 
 
-def fx_frames(raw, size=(512,512), fill=.8):
+def fx_frames(raw, size=(512,512), fill=.8, blank=(), anchor_y=None):
     # The same scale for the whole clip avoids per-frame pulsing from packing.
-    boxes = [bounds(np.asarray(im)[:,:,3] > 32) for im in raw]
-    maximum = max(max((b[2]-b[0])/size[0], (b[3]-b[1])/size[1]) for b in boxes)
+    boxes = [None if i in blank else bounds(np.asarray(im)[:,:,3] > 32) for i,im in enumerate(raw)]
+    maximum = max(max((b[2]-b[0])/size[0], (b[3]-b[1])/size[1]) for b in boxes if b is not None)
     scale = fill/maximum
     result=[]
     for im, b in zip(raw, boxes):
+        if b is None:
+            result.append(Image.new('RGBA',size))
+            continue
         im=im.crop(b)
         im=im.resize((max(1,round(im.width*scale)),max(1,round(im.height*scale))),Image.Resampling.LANCZOS)
         canvas=Image.new('RGBA',size)
-        canvas.alpha_composite(im,((size[0]-im.width)//2,(size[1]-im.height)//2))
+        top=(size[1]-im.height)//2 if anchor_y is None else round(size[1]*anchor_y-im.height)
+        canvas.alpha_composite(im,((size[0]-im.width)//2,top))
         result.append(canvas)
     return result
 

@@ -130,6 +130,401 @@
         ]
       ],
       "original_before_glance_correction": "/workspace/generated_images/exec-c8817ba2-e32b-4a52-b843-e2fc68fad764.png"
+    },
+    "sky_training_field": {
+      "path": "/workspace/generated_images/exec-b9b02481-62bb-4e57-854e-24957c6e42dc.png",
+      "grid": [
+        2,
+        2
+      ],
+      "crop_boxes": [
+        [
+          0,
+          0,
+          762,
+          516
+        ],
+        [
+          762,
+          0,
+          1525,
+          516
+        ],
+        [
+          0,
+          516,
+          762,
+          1031
+        ],
+        [
+          762,
+          516,
+          1525,
+          1031
+        ]
+      ],
+      "sha256": "c6b0650942b94814cf9e7e350a4adc3ad00bb85a20f3693daaa868dca4bb0d81"
+    },
+    "sky_orc_camp": {
+      "path": "/workspace/generated_images/exec-fa00e7ae-62c1-43ce-808c-1f65ff4831e8.png",
+      "grid": [
+        2,
+        2
+      ],
+      "crop_boxes": [
+        [
+          0,
+          0,
+          768,
+          512
+        ],
+        [
+          768,
+          0,
+          1536,
+          512
+        ],
+        [
+          0,
+          512,
+          768,
+          1024
+        ],
+        [
+          768,
+          512,
+          1536,
+          1024
+        ]
+      ],
+      "sha256": "47514bbe99a2cf7642903aab7f59da36d1e3bd5f57572dbeb804048d772319a1"
+    },
+    "sky_swamp": {
+      "path": "/workspace/generated_images/exec-5ac2072c-48da-4b29-84c4-d36c9a423454.png",
+      "grid": [
+        2,
+        2
+      ],
+      "crop_boxes": [
+        [
+          0,
+          0,
+          768,
+          512
+        ],
+        [
+          768,
+          0,
+          1536,
+          512
+        ],
+        [
+          0,
+          512,
+          768,
+          1024
+        ],
+        [
+          768,
+          512,
+          1536,
+          1024
+        ]
+      ],
+      "sha256": "063fb8540cf42a956fd4efc95597a530c72a1fc0ef905bff066ffd2d1be60bae"
+    },
+    "sky_goblin_camp": {
+      "path": "/workspace/generated_images/exec-8cfde028-c9cb-483b-8674-9fc3de36e710.png",
+      "grid": [
+        2,
+        2
+      ],
+      "crop_boxes": [
+        [
+          0,
+          0,
+          768,
+          512
+        ],
+        [
+          768,
+          0,
+          1536,
+          512
+        ],
+        [
+          0,
+          512,
+          768,
+          1024
+        ],
+        [
+          768,
+          512,
+          1536,
+          1024
+        ]
+      ],
+      "sha256": "59b41a29dca8bc4dca5cae186e8da7e27c67031ab312f63ac00f0f7fac66cf45"
+    },
+    "rain": {
+      "path": "/workspace/generated_images/exec-934b807c-160c-4d98-bc26-29aa23bfa409.png",
+      "original_before_visibility_revision": "/workspace/generated_images/exec-dfdc97f7-b697-4f6a-9a49-c33272bbe36b.png",
+      "sha256": "adfd58da8ee04ab619cc34652dedda947e30b72e93baaa089a393f53d725f9bd",
+      "grid": [
+        2,
+        2
+      ],
+      "crop_boxes": [
+        [
+          0,
+          0,
+          803,
+          489
+        ],
+        [
+          803,
+          0,
+          1606,
+          489
+        ],
+        [
+          0,
+          489,
+          803,
+          979
+        ],
+        [
+          803,
+          489,
+          1606,
+          979
+        ]
+      ]
+    },
+    "rain_splash": {
+      "path": "/workspace/generated_images/exec-e9677783-fa1e-4210-b10a-837e8828dec3.png",
+      "sha256": "62a241e4d57202a09be2628e51a7b20a5255904cd8c354236d7a4cac708db63f",
+      "grid": [
+        3,
+        2
+      ],
+      "crop_boxes": [
+        [
+          0,
+          0,
+          512,
+          512
+        ],
+        [
+          512,
+          0,
+          1024,
+          512
+        ],
+        [
+          1024,
+          0,
+          1536,
+          512
+        ],
+        [
+          0,
+          512,
+          512,
+          1024
+        ],
+        [
+          512,
+          512,
+          1024,
+          1024
+        ],
+        [
+          1024,
+          512,
+          1536,
+          1024
+        ]
+      ]
+    },
+    "lightning_bolt": {
+      "path": "/workspace/generated_images/exec-55e1ab74-f15e-4784-bc0c-c3b8090ce7e0.png",
+      "sha256": "aa4d35b2e6820a3874fe65848c0e6bf1538aab5d714c1fab15bbe8464f1dbce3",
+      "grid": [
+        3,
+        2
+      ],
+      "crop_boxes": [
+        [
+          0,
+          0,
+          362,
+          724
+        ],
+        [
+          362,
+          0,
+          724,
+          724
+        ],
+        [
+          724,
+          0,
+          1086,
+          724
+        ],
+        [
+          0,
+          724,
+          362,
+          1448
+        ],
+        [
+          362,
+          724,
+          724,
+          1448
+        ],
+        [
+          724,
+          724,
+          1086,
+          1448
+        ]
+      ]
+    },
+    "fog": {
+      "path": "/workspace/generated_images/exec-3d94a4d1-cb22-407c-a49d-4a7f87e3c9e4.png",
+      "sha256": "15674a406915aba00881ee9bdbde1b40796f084d3cb057b4e255fa611f7aa077",
+      "grid": [
+        2,
+        2
+      ],
+      "crop_boxes": [
+        [
+          0,
+          0,
+          1086,
+          362
+        ],
+        [
+          1086,
+          0,
+          2172,
+          362
+        ],
+        [
+          0,
+          362,
+          1086,
+          724
+        ],
+        [
+          1086,
+          362,
+          2172,
+          724
+        ]
+      ]
+    },
+    "red_eyes": {
+      "path": "/workspace/generated_images/exec-24b97f66-75dc-4d7d-b9dd-d69f5a5a87f0.png",
+      "sha256": "0479c5270906ea590c5e578be1d3071f76d8cfcdfd042d15066679b2c26d0bea",
+      "grid": [
+        3,
+        2
+      ],
+      "crop_boxes": [
+        [
+          0,
+          0,
+          724,
+          362
+        ],
+        [
+          724,
+          0,
+          1448,
+          362
+        ],
+        [
+          1448,
+          0,
+          2172,
+          362
+        ],
+        [
+          0,
+          362,
+          724,
+          724
+        ],
+        [
+          724,
+          362,
+          1448,
+          724
+        ],
+        [
+          1448,
+          362,
+          2172,
+          724
+        ]
+      ]
+    },
+    "weather_icons": {
+      "path": "/workspace/generated_images/exec-0d346f53-c860-4564-a351-0e97aae52b89.png",
+      "sha256": "2880a990ae39e0f2d44cc594b732f9ae21714216cb2ab33497a23882a52d8632",
+      "grid": [
+        4,
+        2
+      ],
+      "crop_boxes": [
+        [
+          0,
+          0,
+          443,
+          443
+        ],
+        [
+          443,
+          0,
+          887,
+          443
+        ],
+        [
+          887,
+          0,
+          1330,
+          443
+        ],
+        [
+          1330,
+          0,
+          1774,
+          443
+        ],
+        [
+          0,
+          443,
+          443,
+          887
+        ],
+        [
+          443,
+          443,
+          887,
+          887
+        ],
+        [
+          887,
+          443,
+          1330,
+          887
+        ]
+      ]
     }
   }
 }

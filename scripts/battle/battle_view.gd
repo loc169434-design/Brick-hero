@@ -335,7 +335,7 @@ func _play_report(report: TurnReport) -> void:
 		_monster.react(&"scared", 1.2)
 	elif report.damage > 0 and _state.monster_health() <= 0.3:
 		_monster.react(&"scared", 1.2)
-	elif report.damage == 0 and report.shield_damage == 0 and _state.monster.counterattacks and not report.skill:
+	elif report.damage == 0 and report.shield_damage == 0 and _state.monster.counterattacks and not report.skill and not report.booster:
 		# Nothing that hurts it: green and yellow only. It sidesteps and laughs.
 		_monster_dodges()
 

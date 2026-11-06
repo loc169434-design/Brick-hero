@@ -11,6 +11,8 @@ extends Node2D
 ## (orb_targets). Tiles cast shadows so they read as raised blocks.
 
 signal move_finished(result: MoveResult)
+## The hammer booster came down and the board has settled (LinkGame.smash). Not a move.
+signal smashed(result: MoveResult)
 signal restarted
 ## Something hit hard enough to feel: `strength` 0..1 of screen shake, `freeze` seconds of hit-stop.
 signal impact(strength: float, freeze: float)
@@ -19,6 +21,9 @@ const CELL := 140
 ## The tile clips are paced for a showcase; replays run them faster to keep turns snappy.
 const REPLAY_SPEED := 2.0
 const FLASH_TIME := 0.22
+## The hammer booster's swing, and the fraction of it at which it lands.
+const HAMMER_TIME := 0.5
+const HAMMER_HIT := 0.45
 const FALL_TIME := 0.2
 const POPUP_TIME := 0.9
 const POPUP_SIZE := 110
@@ -159,6 +164,14 @@ var _sprites := {}
 var _busy := false
 ## Set while something off the board is playing out (a hero skill), so no link starts meanwhile.
 var locked := false
+## The hammer booster is in hand: the next tap on a square smashes it instead of linking.
+var hammer_armed := false:
+	set(value):
+		hammer_armed = value
+		_overlay_redraw()
+## Where the hammer last came down and when, for its swing on the overlay.
+var _hammer_at := Vector2i(-1, -1)
+var _hammer_t := -1.0
 ## Set once the fight is decided, until restart.
 var _finished := false
 var _end_title := ""
@@ -389,6 +402,8 @@ func prepare(seed := -1, setup := Callable()) -> void:
 
 func new_game() -> void:
 	_generation += 1
+	hammer_armed = false
+	_hammer_t = -1.0
 	_clear_sprites()
 	_special_fx.clear()
 	_shards.clear()
@@ -542,7 +557,9 @@ func end_link() -> void:
 
 # --- replay ----------------------------------------------------------------
 
-func _replay(result: MoveResult, before: Dictionary) -> void:
+## `free` replays a booster's blow: the board settles the same, then `smashed` is emitted
+## instead of `move_finished`.
+func _replay(result: MoveResult, before: Dictionary, free := false) -> void:
 	var generation := _generation
 	_busy = true
 	_relief.clear()
@@ -626,7 +643,112 @@ func _replay(result: MoveResult, before: Dictionary) -> void:
 	_shown = _snapshot()
 	_busy = false
 	_redraw()
-	move_finished.emit(result)
+	if free:
+		smashed.emit(result)
+	else:
+		move_finished.emit(result)
+
+
+# --- boosters ----------------------------------------------------------------
+
+## Brings the armed hammer down on `p`. Returns whether it struck.
+func smash_at(p: Vector2i) -> bool:
+	hammer_armed = false
+	if not can_act() or not game.board.is_inside(p):
+		return false
+	var before := _snapshot()
+	var result := game.smash(p)
+	if result == null:
+		return false
+	_hammer_at = p
+	_hammer_t = 0.0
+	var tween := create_tween()
+	tween.tween_method(func(t: float) -> void: _hammer_t = t, 0.0, 1.0, HAMMER_TIME)
+	tween.tween_callback(func() -> void: _hammer_t = -1.0)
+	Sfx.play(&"whoosh", 1.3)
+	_replay_after_swing(result, before)
+	return true
+
+
+func _replay_after_swing(result: MoveResult, before: Dictionary) -> void:
+	var generation := _generation
+	_busy = true
+	await get_tree().create_timer(HAMMER_TIME * HAMMER_HIT).timeout
+	if generation != _generation:
+		return
+	Sfx.play(&"thud", 0.8)
+	impact.emit(0.5, 0.06)
+	_replay(result, before, true)
+
+
+## Deals the tiles again, keeping the specials and obstacles. Returns whether it could.
+func shuffle_tiles() -> bool:
+	if not can_act():
+		return false
+	game.deal(true)
+	_clear_sprites()
+	_shown = _snapshot()
+	_show_popup("XÁO BẢNG")
+	Sfx.play(&"shuffle")
+	_play_on_every_square(&"land")
+	for p: Vector2i in _shown:
+		_lights.flare((Vector2(p) + Vector2(0.5, 0.5)) * CELL, Color(1, 0.95, 0.7), 0.5)
+	_redraw()
+	return true
+
+
+## The opening-bomb booster: a bomb and a lightning appear among the tiles. Returns whether
+## they could be placed.
+func place_opening_specials() -> bool:
+	if not can_act():
+		return false
+	var placed := game.place_opening_specials()
+	if placed.is_empty():
+		return false
+	_shown = _snapshot()
+	for p in placed:
+		var center := (Vector2(p) + Vector2(0.5, 0.5)) * CELL
+		_lights.flare(center, Color(1, 0.8, 0.3), 2.5)
+		_shards.shatter(center, Color(1, 0.85, 0.4), 10)
+	_show_popup("BOM MỞ MÀN!")
+	Sfx.play(&"special")
+	impact.emit(0.3, 0.0)
+	_redraw()
+	return true
+
+
+func _overlay_redraw() -> void:
+	if _overlay:
+		_overlay.queue_redraw()
+
+
+## The hammer: armed, a gold frame pulses round the board; swung, it rises over the square,
+## comes down hard on HAMMER_HIT and bounces off.
+func _draw_hammer() -> void:
+	var size := board_size()
+	if hammer_armed:
+		var pulse := 0.5 + 0.5 * sin(_time * 6.0)
+		_overlay.draw_rect(Rect2(Vector2.ZERO, size).grow(-4), Color(1, 0.8, 0.25, 0.5 + 0.4 * pulse), false, 8.0)
+		_draw_centered_text("CHẠM Ô ĐỂ ĐẬP", Vector2(size.x / 2, size.y - 30), 40, Color(1, 0.92, 0.6), 10)
+	if _hammer_t < 0.0:
+		return
+	var center := (Vector2(_hammer_at) + Vector2(0.5, 0.5)) * CELL
+	var t := _hammer_t
+	# Raised back, slammed down to flat at HAMMER_HIT, then a small bounce and gone.
+	var angle := lerpf(-1.4, 0.15, ease(t / HAMMER_HIT, 3.0)) if t < HAMMER_HIT else 0.15 - 0.25 * sin((t - HAMMER_HIT) / (1.0 - HAMMER_HIT) * PI)
+	var alpha := 1.0 if t < 0.8 else (1.0 - t) / 0.2
+	var pivot := center + Vector2(CELL * 0.9, -CELL * 0.1)
+	_overlay.draw_set_transform(pivot, angle, Vector2.ONE)
+	var handle := Rect2(Vector2(-CELL * 0.95, -CELL * 0.06), Vector2(CELL * 0.95, CELL * 0.12))
+	_overlay.draw_rect(handle, Color(0.55, 0.35, 0.18, alpha))
+	var head := Rect2(Vector2(-CELL * 1.15, -CELL * 0.32), Vector2(CELL * 0.36, CELL * 0.64))
+	_overlay.draw_rect(head.grow(4), Color(0.12, 0.08, 0.05, alpha))
+	_overlay.draw_rect(head, Color(0.62, 0.64, 0.7, alpha))
+	_overlay.draw_rect(Rect2(head.position, Vector2(head.size.x, head.size.y * 0.25)), Color(0.85, 0.87, 0.92, alpha))
+	_overlay.draw_set_transform(Vector2.ZERO)
+	if t >= HAMMER_HIT and t < HAMMER_HIT + 0.2:
+		var ring := (t - HAMMER_HIT) / 0.2
+		_overlay.draw_arc(center, CELL * (0.3 + 0.6 * ring), 0, TAU, 32, Color(1, 0.95, 0.7, 1.0 - ring), 6.0)
 
 
 ## Every cleared square shatters and flares in its color; some send an orb up to the fight.
@@ -1019,6 +1141,7 @@ func _draw_overlay() -> void:
 		_draw_blast()
 		_draw_link()
 	_draw_lift()
+	_draw_hammer()
 	if _popup_alpha > 0.0:
 		# Scaled around the middle of the letters rather than their baseline.
 		var lift := _popup_size * 0.35

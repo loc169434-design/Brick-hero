@@ -3,9 +3,12 @@ extends Node
 
 ## The fight is won and the player tapped on: back to the map with `gold` in the purse.
 signal fight_over(won: bool, gold: int)
+## A booster was used up; `boosters` already counts one less.
+signal booster_used(id: String)
 ## Runs the fights in order: feeds each finished move to the BattleState, shows the result
 ## above the board, makes the board's tiles react, and ends the board when a fight is decided.
-## The skill bar's button spends a full rage bar on the hero skill, between moves.
+## The skill bar's button spends a full rage bar on the hero skill, between moves, and the
+## booster bar's buttons spend the boosters the hero brought (Boosters).
 ## Winning moves on to the next encounter; losing retries the same one.
 ##
 ## On the campaign map (`return_to_map`), a won fight ends with fight_over instead of moving
@@ -35,6 +38,8 @@ const LIFT_SPECIAL_BONUS := 8
 @export var feel: ScreenFeel
 ## The rage bar and skill button. Optional.
 @export var skill_bar: SkillBar
+## The booster buttons. Optional.
+@export var booster_bar: BoosterBar
 ## Fought in order: the training scarecrow, then the Shield Orc, and so on.
 @export var encounters: Array[MonsterData] = []
 @export var rules: BattleRules
@@ -47,6 +52,11 @@ const LIFT_SPECIAL_BONUS := 8
 @export var level: LevelData
 
 var progress: LevelProgress
+## Boosters the hero carries, by Boosters id: the campaign's bag, shared, so what's used here is
+## gone from it. Played on its own the fight brings a few of each to try.
+var boosters := {"hammer": 2, "shuffle": 2, "potion": 2, "opening_bombs": 2}
+## How many of each were used this fight (at most Boosters.PER_FIGHT).
+var _used := {}
 ## The monster fell but the level goes on with the next one (or its next form).
 var _next_up := false
 
@@ -57,6 +67,9 @@ var _advance_on_restart := false
 
 func _ready() -> void:
 	board.move_finished.connect(_on_move_finished)
+	board.smashed.connect(_on_smashed)
+	if booster_bar:
+		booster_bar.pressed.connect(_on_booster_pressed)
 	board.restarted.connect(_on_restarted)
 	if feel:
 		board.impact.connect(feel.impact)
@@ -67,6 +80,12 @@ func _ready() -> void:
 	if skill_bar:
 		skill_bar.pressed.connect(_on_skill_pressed)
 	_start()
+
+
+## The booster buttons light up and dim as the board gets busy and free again.
+func _process(_delta: float) -> void:
+	if state:
+		_show_boosters()
 
 
 func monster() -> MonsterData:
@@ -119,7 +138,92 @@ func _start() -> void:
 	battle_view.show_state(state)
 	if skill_bar:
 		skill_bar.show_state(state)
+	_used.clear()
+	board.hammer_armed = false
+	_show_boosters()
 	_show_hint()
+
+
+# --- boosters ----------------------------------------------------------------
+
+## Whether booster `id` can go off now: there's one left, this fight hasn't used too many, the
+## fight is on and the board is free. Each has its own condition on top.
+func booster_ready(id: String) -> bool:
+	if int(boosters.get(id, 0)) <= 0 or int(_used.get(id, 0)) >= Boosters.PER_FIGHT:
+		return false
+	if state.outcome != BattleState.Outcome.ONGOING or _next_up:
+		return false
+	match id:
+		"potion":
+			return state.hero_hp < rules.hero_max_hp
+		"opening_bombs":
+			return state.moves == 0 and int(_used.get(id, 0)) == 0 and board.can_act()
+	return board.can_act()
+
+
+func _on_booster_pressed(id: String) -> void:
+	if id == "hammer" and board.hammer_armed:
+		board.hammer_armed = false
+		_show_boosters()
+		return
+	if not booster_ready(id) or not board.path.is_empty():
+		booster_bar.refuse(id)
+		return
+	match id:
+		"hammer":
+			board.hammer_armed = true
+		"shuffle":
+			if board.shuffle_tiles():
+				_spend(id)
+		"opening_bombs":
+			if board.place_opening_specials():
+				_spend(id)
+		"potion":
+			var fight := state
+			board.locked = true
+			while battle_view.is_playing():
+				await get_tree().process_frame
+			if fight != state or not booster_ready(id):
+				board.locked = false
+				_show_boosters()
+				return
+			_spend(id)
+			var report := state.drink_potion(Boosters.POTION_HEAL)
+			_show_boosters()
+			await battle_view.play_report(report)
+			if fight == state:
+				board.locked = false
+	_show_boosters()
+
+
+## The hammer came down: its squares act like a move's, without being one.
+func _on_smashed(result: MoveResult) -> void:
+	_spend("hammer")
+	var report := state.apply_move(result, true)
+	if level:
+		progress.record(result, false)
+		_judge(report)
+	battle_view.play_report(report)
+	if skill_bar:
+		skill_bar.refresh()
+	_settle(report)
+	_show_boosters()
+
+
+func _spend(id: String) -> void:
+	boosters[id] = maxi(int(boosters.get(id, 0)) - 1, 0)
+	_used[id] = int(_used.get(id, 0)) + 1
+	booster_used.emit(id)
+
+
+func _show_boosters() -> void:
+	if not booster_bar:
+		return
+	var usable := {}
+	for id: String in Boosters.ORDER:
+		usable[id] = booster_ready(id) or (id == "hammer" and board.hammer_armed)
+	booster_bar.armed = "hammer" if board.hammer_armed else ""
+	booster_bar.show_counts(boosters, usable)
 
 
 func _on_move_finished(result: MoveResult) -> void:
@@ -139,6 +243,7 @@ func _on_move_finished(result: MoveResult) -> void:
 	if skill_bar:
 		skill_bar.refresh()
 	_settle(report)
+	_show_boosters()
 
 
 ## The skill goes off only between moves, with the bar full. It waits for the last move to finish

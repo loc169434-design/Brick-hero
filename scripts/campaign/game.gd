@@ -65,6 +65,9 @@ func start_fight(id: String) -> void:
 	manager.rules.yellow_gold *= level.gold_multiplier
 	manager.return_to_map = true
 	manager.starting_gold = campaign.gold
+	# The bag is shared: what the fight uses is gone, and saved at once.
+	manager.boosters = campaign.boosters
+	manager.booster_used.connect(func(_id: String) -> void: campaign.save(save_path))
 	manager.fight_over.connect(end_fight)
 	map.hide()
 	add_child(battle)
@@ -103,6 +106,13 @@ func end_fight(won: bool, gold: int) -> void:
 	var won_at := campaign.index_of(_fighting) if won else -1
 	var first_clear := campaign.finish_fight(_fighting, won, gold, stars)
 	var level := Campaign.level(_fighting)
+	var prize := ""
+	if won and level:
+		var rng := RandomNumberGenerator.new()
+		rng.randomize()
+		prize = Boosters.reward(first_clear, level.boss or level.hard, stars, rng)
+		if prize and not campaign.add_booster(prize):
+			prize = ""
 	campaign.save(save_path)
 	battle.queue_free()
 	battle = null
@@ -114,6 +124,8 @@ func end_fight(won: bool, gold: int) -> void:
 		await read_story(chapter)
 	map.show()
 	map.show_campaign(campaign, won_at, first_clear)
+	if prize:
+		map.show_toast("Nhận được: %s!" % Boosters.ITEMS[prize]["name"], 3.0)
 
 
 ## Shows story chapter `number` over everything until it's read or skipped.

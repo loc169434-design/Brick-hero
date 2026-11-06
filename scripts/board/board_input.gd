@@ -33,8 +33,16 @@ func _on_touch(event: InputEventScreenTouch) -> void:
 		if view.is_finished():
 			view.new_game()
 			return
-		_pressed = true
 		_last_pos = view.to_local(event.position)
+		if view.hammer_armed:
+			# The hammer comes down where the finger lands; a tap off the board puts it away.
+			var target := view.cell_at(_last_pos)
+			if target.x >= 0:
+				view.smash_at(target)
+			else:
+				view.hammer_armed = false
+			return
+		_pressed = true
 		view.begin_link(view.cell_at(_last_pos, PICK_REACH))
 	elif _pressed:
 		_pressed = false

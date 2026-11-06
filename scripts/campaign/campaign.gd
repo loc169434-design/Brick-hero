@@ -32,6 +32,8 @@ var stars := {}
 var owned: Array[String] = []
 ## The hero skill taken into every fight, picked at the forge.
 var skill := Gear.STARTING_SKILL
+## Boosters in the bag, by Boosters id: how many of each.
+var boosters := {}
 
 
 func _init() -> void:
@@ -156,6 +158,38 @@ func buy(id: String) -> bool:
 	return true
 
 
+func booster_count(id: String) -> int:
+	return int(boosters.get(id, 0))
+
+
+## Buys one booster `id` at the forge. Returns whether it was bought.
+func buy_booster(id: String) -> bool:
+	if not Boosters.is_known(id) or booster_count(id) >= Boosters.MAX_CARRIED:
+		return false
+	var price := int(Boosters.ITEMS[id]["price"])
+	if gold < price:
+		return false
+	gold -= price
+	boosters[id] = booster_count(id) + 1
+	return true
+
+
+## Adds a booster won in a fight, if the bag has room for it. Returns whether it went in.
+func add_booster(id: String) -> bool:
+	if not Boosters.is_known(id) or booster_count(id) >= Boosters.MAX_CARRIED:
+		return false
+	boosters[id] = booster_count(id) + 1
+	return true
+
+
+## Takes one booster `id` out of the bag. Returns whether there was one.
+func use_booster(id: String) -> bool:
+	if booster_count(id) <= 0:
+		return false
+	boosters[id] = booster_count(id) - 1
+	return true
+
+
 ## Takes skill `id` into the next fights if it's been learned. Returns whether it was picked.
 func pick_skill(id: String) -> bool:
 	if not Gear.skill_unlocked(id, cleared):
@@ -165,7 +199,7 @@ func pick_skill(id: String) -> bool:
 
 
 func to_dict() -> Dictionary:
-	return {"cleared": cleared.duplicate(), "gold": gold, "stars": stars.duplicate(), "owned": owned.duplicate(), "skill": skill}
+	return {"cleared": cleared.duplicate(), "gold": gold, "stars": stars.duplicate(), "owned": owned.duplicate(), "skill": skill, "boosters": boosters.duplicate()}
 
 
 func apply_dict(data: Dictionary) -> void:
@@ -180,6 +214,12 @@ func apply_dict(data: Dictionary) -> void:
 			owned.append(String(id))
 	skill = Gear.STARTING_SKILL
 	pick_skill(String(data.get("skill", "")))
+	boosters.clear()
+	var bag: Variant = data.get("boosters", {})
+	if bag is Dictionary:
+		for id in bag:
+			if Boosters.is_known(String(id)):
+				boosters[String(id)] = clampi(int(bag[id]), 0, Boosters.MAX_CARRIED)
 	stars.clear()
 	var saved: Variant = data.get("stars", {})
 	if saved is Dictionary:

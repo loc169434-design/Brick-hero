@@ -87,7 +87,9 @@ func poison_hero(damage: int) -> void:
 	poison_turns = POISON_TURNS
 
 
-func apply_move(result: MoveResult) -> TurnReport:
+## A `free` result (the hammer booster) acts like a move's squares but isn't one: the
+## monster's countdown and the hero's curses don't tick, and it isn't counted.
+func apply_move(result: MoveResult, free := false) -> TurnReport:
 	var report := TurnReport.new()
 	if outcome != Outcome.ONGOING:
 		report.outcome = outcome
@@ -141,13 +143,14 @@ func apply_move(result: MoveResult) -> TurnReport:
 	hero_hp += report.heal
 	report.gold = roundi(yellow)
 	gold += report.gold
-	_tick_curses(result, report)
+	if not free:
+		_tick_curses(result, report)
 
 	if monster_hp <= 0 or outcome == Outcome.LOST:
 		if monster_hp <= 0:
 			outcome = Outcome.WON
 		outcome = Outcome.WON
-	elif monster.counterattacks:
+	elif monster.counterattacks and not free:
 		countdown -= 1
 		if countdown <= 0:
 			report.monster_critical = next_attack_is_critical()
@@ -176,7 +179,20 @@ func apply_move(result: MoveResult) -> TurnReport:
 				outcome = Outcome.LOST
 	report.rage_gained = _gain_rage(result)
 	report.outcome = outcome
-	moves += 1
+	if not free:
+		moves += 1
+	return report
+
+
+## The potion booster: up to `amount` health back, not a move. Returns the report to play.
+func drink_potion(amount: int) -> TurnReport:
+	var report := TurnReport.new()
+	report.outcome = outcome
+	if outcome != Outcome.ONGOING:
+		return report
+	report.booster = "potion"
+	report.heal = mini(amount, rules.hero_max_hp - hero_hp)
+	hero_hp += report.heal
 	return report
 
 

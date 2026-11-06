@@ -57,6 +57,18 @@ const TAP_REACH := 95.0
 ## The gear board on the dark floor at the bottom: a wooden frame round a parchment, the hero
 ## standing on the left, one row per slot on the right.
 const BOARD := Rect2(24, 1374, 1032, 518)
+## The shelf of boosters (Boosters) along the top: a plank, each booster on it with how many
+## are in the bag and its price underneath. A tap buys one.
+const SHELF := Rect2(150, 112, 780, 214)
+const SHELF_FIRST := Vector2(270, 214)
+const SHELF_STEP := 180.0
+const SHELF_RADIUS := 46.0
+const BOOSTER_LINES := {
+	"hammer": "Búa tạ của ta, đập gì vỡ nấy!",
+	"shuffle": "Bảng rối quá thì xóc lại!",
+	"potion": "Uống vào là khỏe re!",
+	"opening_bombs": "Vào trận có sẵn bom, sướng nhé!",
+}
 const HERO_FEET := Vector2(190, 1850)
 const HERO_SCALE := 0.74
 const ROW_ICON := 78.0
@@ -105,6 +117,8 @@ var campaign: Campaign
 var _background: Texture2D
 var _coin: Texture2D
 var _font: Font
+## Booster badges popping after a buy, 1 → 0, by id.
+var _shelf_pop := {}
 var _comic_font: Font
 var _camera: Camera2D
 var _smith: CharacterRig
@@ -244,6 +258,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if not _forging.is_empty():
 		return
+	for id: String in Boosters.ORDER:
+		if event.position.distance_to(_shelf_spot(id)) < SHELF_RADIUS + 30:
+			_on_booster_tapped(id)
+			return
 	for id: String in Gear.SKILL_AFTER:
 		if _skill_pill(id).has_point(event.position):
 			_on_skill_tapped(id)
@@ -283,6 +301,64 @@ func _on_skill_tapped(id: String) -> void:
 	_picked_t = 1.0
 	skill_picked.emit(id)
 	_say(SKILL_LINES.get(id, title))
+
+
+func _on_booster_tapped(id: String) -> void:
+	if campaign.booster_count(id) >= Boosters.MAX_CARRIED:
+		Sfx.play(&"untick")
+		_say("Túi đầy %s rồi!" % String(Boosters.ITEMS[id]["name"]).to_lower())
+		return
+	var price := int(Boosters.ITEMS[id]["price"])
+	if not campaign.buy_booster(id):
+		Sfx.play(&"untick")
+		_say("Thiếu %d vàng!" % (price - campaign.gold))
+		return
+	Sfx.play(&"coin")
+	bought.emit(id)
+	_shelf_pop[id] = 1.0
+	_say(BOOSTER_LINES.get(id, ""))
+	_smith.react(&"cheer" if _smith.has_clip(&"cheer") else &"talk", 1.0)
+
+
+func _shelf_spot(id: String) -> Vector2:
+	return SHELF_FIRST + Vector2(SHELF_STEP * Boosters.ORDER.find(id), 0)
+
+
+## The booster shelf: a dark plank, each booster on a round badge popping when just bought,
+## how many are in the bag, and its price on a tag below.
+func _draw_shelf() -> void:
+	_box(_hud, SHELF, Color(0.16, 0.09, 0.05, 0.82), 28)
+	var title := "ĐỒ HỖ TRỢ"
+	var title_width := _font.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, 30).x
+	_hud.draw_string_outline(_font, Vector2(SHELF.get_center().x - title_width / 2, SHELF.position.y + 36), title, HORIZONTAL_ALIGNMENT_LEFT, -1, 30, 8, INK)
+	_hud.draw_string(_font, Vector2(SHELF.get_center().x - title_width / 2, SHELF.position.y + 36), title, HORIZONTAL_ALIGNMENT_LEFT, -1, 30, GOLD)
+	for id: String in Boosters.ORDER:
+		var center := _shelf_spot(id)
+		var pop: float = _shelf_pop.get(id, 0.0)
+		var radius := SHELF_RADIUS * (1.0 + 0.25 * pop)
+		var count := campaign.booster_count(id)
+		var price := int(Boosters.ITEMS[id]["price"])
+		var afford := campaign.gold >= price and count < Boosters.MAX_CARRIED
+		_hud.draw_circle(center, radius + 5, GOLD if pop > 0.0 else INK)
+		_hud.draw_circle(center, radius, Color(0.32, 0.2, 0.1))
+		var art := "res://assets/ui/boosters/%s.png" % id
+		if ResourceLoader.exists(art):
+			var size := Vector2.ONE * radius * 1.7
+			_hud.draw_texture_rect(load(art), Rect2(center - size / 2, size), false)
+		else:
+			BoosterBar.draw_icon(_hud, id, center, radius * 0.6)
+		var badge := center + Vector2(radius * 0.75, -radius * 0.7)
+		_hud.draw_circle(badge, 19, INK)
+		_hud.draw_circle(badge, 15, PAPER if count > 0 else Color(0.5, 0.45, 0.4))
+		var text := str(count)
+		var width := _font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, 24).x
+		_hud.draw_string(_font, badge + Vector2(-width / 2, 9), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, INK)
+		var tag := "%d" % price
+		var tag_width := _font.get_string_size(tag, HORIZONTAL_ALIGNMENT_LEFT, -1, 26).x + 34
+		var tag_at := center + Vector2(-tag_width / 2, radius + 8)
+		_box(_hud, Rect2(tag_at, Vector2(tag_width, 34)), Color(PAPER, 0.95) if afford else Color(0.55, 0.5, 0.45, 0.9), 17)
+		_hud.draw_circle(tag_at + Vector2(16, 17), 10, GOLD)
+		_hud.draw_string(_font, tag_at + Vector2(30, 27), tag, HORIZONTAL_ALIGNMENT_LEFT, -1, 26, INK)
 
 
 func _skill_pill(id: String) -> Rect2:
@@ -459,6 +535,8 @@ func _process(delta: float) -> void:
 		if _strike_timer <= 0.0:
 			_strike()
 	_flash = maxf(_flash - delta * 2.5, 0.0)
+	for id: String in _shelf_pop.keys():
+		_shelf_pop[id] = maxf(float(_shelf_pop[id]) - delta * 3.0, 0.0)
 	_shake = maxf(_shake - delta * 6.0, 0.0)
 	_landed_t = maxf(_landed_t - delta * 1.5, 0.0)
 	_picked_t = maxf(_picked_t - delta * 2.0, 0.0)
@@ -762,6 +840,8 @@ func _draw_hud() -> void:
 			best = ladder[ladder.find(_forging) - 1] if ladder.find(_forging) > 0 else ""
 		_draw_row(slot, best)
 	_draw_skills()
+	if not flying:
+		_draw_shelf()
 	if flying and _camera.zoom.x <= 1.001:
 		_draw_item(_hud, _forging, _piece_at, ICON_SIZE * _piece_scale, 0.0, Color.WHITE)
 	if _flash > 0.0:

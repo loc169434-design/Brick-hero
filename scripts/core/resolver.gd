@@ -9,20 +9,51 @@ const NEIGHBORS := [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
 ## Plays `path` (already checked by LinkGame) and every round it sets off.
 ## `refill` returns a new Cell for each square emptied at the top; without it the gaps stay empty.
 static func resolve_link(board: BoardModel, rules: BoardRules, path: Array[Vector2i], refill := Callable()) -> Array[ClearStep]:
+	return settle(board, rules, link_step(board, rules, path), refill)
+
+
+## A blow from outside the board (the hammer booster) landing on `squares`: tiles there
+## clear, obstacles lose a layer, specials go off; then the board settles as after a link.
+static func resolve_blast(board: BoardModel, rules: BoardRules, squares: Array[Vector2i], refill := Callable()) -> Array[ClearStep]:
+	var step := ClearStep.new()
+	var marked := {}
+	for p in squares:
+		if board.get_cell(p):
+			marked[p] = true
+	_trigger_specials(board, step, marked)
+	_hit_blockers(board, step, marked)
+	_collect(board, step, marked)
+	if step.is_empty():
+		# Only a layer off an obstacle, ice or a web: nothing falls.
+		if step.hit.is_empty() and step.thawed.is_empty() and step.broken.is_empty():
+			return []
+		step.chain = 1
+		_apply_marks(board, step)
+		return [step]
+	return settle(board, rules, step, refill)
+
+
+## Layers knocked off, ice melted and webs torn by `step`, onto the board.
+static func _apply_marks(board: BoardModel, step: ClearStep) -> void:
+	for h in step.hit:
+		board.get_cell(h["at"]).layers = h["layers"]
+	for t in step.thawed:
+		board.get_cell(t["at"]).ice = t["ice"]
+	for b in step.broken:
+		if b["kind"] == "web":
+			board.get_cell(b["at"]).web = false
+
+
+## Plays `step` and every round it sets off.
+static func settle(board: BoardModel, rules: BoardRules, first: ClearStep, refill := Callable()) -> Array[ClearStep]:
 	var steps: Array[ClearStep] = []
 	var chain := 0
-	var step := link_step(board, rules, path)
+	var step := first
 	while not step.is_empty():
 		if step.rescued.is_empty():
 			chain += 1
 		step.chain = maxi(chain, 1)
-		for h in step.hit:
-			board.get_cell(h["at"]).layers = h["layers"]
-		for t in step.thawed:
-			board.get_cell(t["at"]).ice = t["ice"]
-		for b in step.broken:
-			if b["kind"] == "web":
-				board.get_cell(b["at"]).web = false
+		_apply_marks(board, step)
 		for p in step.cleared:
 			board.set_cell(p, null)
 		for s in step.spawned:

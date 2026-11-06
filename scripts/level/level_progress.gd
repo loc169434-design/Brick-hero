@@ -16,8 +16,11 @@ func _init(p_level: LevelData) -> void:
 	level = p_level
 
 
-func record(result: MoveResult) -> void:
-	moves += 1
+## `counts_move` is false for a booster's blow: its squares count toward the goals but it
+## isn't one of the level's moves.
+func record(result: MoveResult, counts_move := true) -> void:
+	if counts_move:
+		moves += 1
 	for step in result.steps:
 		if level.collect_color >= 0:
 			collected += step.count_by_color().get(level.collect_color, 0)

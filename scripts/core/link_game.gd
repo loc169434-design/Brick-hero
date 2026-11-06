@@ -21,17 +21,56 @@ func _init(p_rules: BoardRules = null, seed_value: int = -1) -> void:
 
 
 ## Fills the board with no ready-made lines and at least one possible link. Crates, rocks
-## and items stay where they are; only the tiles around them are dealt again.
-func deal() -> void:
+## and items stay where they are; only the tiles around them are dealt again. With
+## `keep_specials` (the shuffle booster) the player's specials stay too.
+func deal(keep_specials := false) -> void:
 	for attempt in 200:
 		for y in board.rows:
 			for x in board.columns:
 				var p := Vector2i(x, y)
 				var cell := board.get_cell(p)
+				if cell and keep_specials and cell.is_special():
+					continue
 				if cell == null or not (cell.is_blocker() or cell.web or cell.ice > 0 or cell.marked):
 					board.set_cell(p, Cell.new(_color_without_line(p)))
 		if has_move():
 			return
+
+
+## The hammer booster comes down on `p`. Not a move: nothing is linked. Null if there's
+## nothing there to hit.
+func smash(p: Vector2i) -> MoveResult:
+	if board.get_cell(p) == null:
+		return null
+	var result := MoveResult.new()
+	var squares: Array[Vector2i] = [p]
+	result.steps = Resolver.resolve_blast(board, rules, squares, _random_cell)
+	if result.steps.is_empty():
+		# An item on its way down: the hammer has nothing to break.
+		return null
+	if not has_move():
+		deal()
+		result.reshuffled = true
+	return result
+
+
+## The opening-bomb booster: a bomb and a lightning on plain tiles away from the edges, each
+## keeping its tile's color. Returns where they went.
+func place_opening_specials() -> Array[Vector2i]:
+	var spots: Array[Vector2i] = []
+	for y in range(1, board.rows - 1):
+		for x in range(1, board.columns - 1):
+			var cell := board.get_cell(Vector2i(x, y))
+			if cell and not cell.is_blocker() and not cell.is_special() and not cell.web and cell.ice == 0 and not cell.marked:
+				spots.append(Vector2i(x, y))
+	var placed: Array[Vector2i] = []
+	for kind in [Cell.Special.BOMB, Cell.Special.LIGHTNING]:
+		if spots.is_empty():
+			break
+		var p: Vector2i = spots.pop_at(_rng.randi_range(0, spots.size() - 1))
+		board.get_cell(p).special = kind
+		placed.append(p)
+	return placed
 
 
 ## Lays an overlay on `count` random plain tiles between rows `from_row` and `to_row`:

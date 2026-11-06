@@ -146,7 +146,9 @@
         "hurt",
         "croak",
         "look_left",
-        "look_right"
+        "look_right",
+        "sly",
+        "dizzy"
       ]
     }
   },

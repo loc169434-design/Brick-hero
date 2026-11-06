@@ -71,6 +71,65 @@
           1024
         ]
       ]
+    },
+    "toad_faces": {
+      "path": "/workspace/generated_images/exec-d0fb03cd-0c3a-4f03-9ed0-8e469e14b07a.png",
+      "sha256": "8f2f38184c6e7931ab191d2df8698ac0c09a087b1cd530d9418525e462423463",
+      "grid": [
+        4,
+        2
+      ],
+      "crop_boxes": [
+        [
+          0,
+          0,
+          444,
+          443
+        ],
+        [
+          444,
+          0,
+          887,
+          443
+        ],
+        [
+          887,
+          0,
+          1328,
+          443
+        ],
+        [
+          1328,
+          0,
+          1774,
+          443
+        ],
+        [
+          0,
+          443,
+          444,
+          887
+        ],
+        [
+          444,
+          443,
+          887,
+          887
+        ],
+        [
+          887,
+          443,
+          1328,
+          887
+        ],
+        [
+          1328,
+          443,
+          1774,
+          887
+        ]
+      ],
+      "original_before_glance_correction": "/workspace/generated_images/exec-c8817ba2-e32b-4a52-b843-e2fc68fad764.png"
     }
   }
 }

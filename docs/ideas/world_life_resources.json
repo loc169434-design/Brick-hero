@@ -27,10 +27,95 @@
         480,
         320
       ]
+    },
+    {
+      "file": "assets/tiles/swamp_b/expressions/red_sly.png",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/tiles/swamp_b/expressions/red_dizzy.png",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/tiles/swamp_b/expressions_red.png",
+      "size": [
+        384,
+        640
+      ]
+    },
+    {
+      "file": "assets/tiles/swamp_b/expressions/green_sly.png",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/tiles/swamp_b/expressions/green_dizzy.png",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/tiles/swamp_b/expressions_green.png",
+      "size": [
+        384,
+        640
+      ]
+    },
+    {
+      "file": "assets/tiles/swamp_b/expressions/yellow_sly.png",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/tiles/swamp_b/expressions/yellow_dizzy.png",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/tiles/swamp_b/expressions_yellow.png",
+      "size": [
+        384,
+        640
+      ]
+    },
+    {
+      "file": "assets/tiles/swamp_b/expressions/purple_sly.png",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/tiles/swamp_b/expressions/purple_dizzy.png",
+      "size": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/tiles/swamp_b/expressions_purple.png",
+      "size": [
+        384,
+        640
+      ]
     }
   ],
   "metadata": [
     "assets/ui/hud/anim.json",
-    "assets/ui/hud/hud_manifest.json"
+    "assets/ui/hud/hud_manifest.json",
+    "assets/tiles/swamp_b/swamp_manifest.json"
   ]
 }

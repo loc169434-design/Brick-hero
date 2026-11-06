@@ -1,0 +1,32 @@
+{
+  "plaque": {
+    "file": "turn_plaque.png",
+    "size": [
+      360,
+      116
+    ],
+    "text_rect": [
+      22,
+      18,
+      316,
+      80
+    ],
+    "text_embedded": false
+  },
+  "swords": {
+    "left": "sword_left.png",
+    "right": "sword_right.png",
+    "size": [
+      160,
+      160
+    ],
+    "pivot": [
+      80,
+      80
+    ],
+    "tip": "up",
+    "native_lean_degrees": 10
+  },
+  "clash_period_seconds": 2,
+  "clash_spark": "anim.json"
+}

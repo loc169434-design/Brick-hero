@@ -7,5 +7,15 @@
       384,
       384
     ]
+  },
+  "rage_steam": {
+    "frames": 8,
+    "fps": 12,
+    "columns": 4,
+    "frame_size": [
+      512,
+      512
+    ],
+    "loop": true
   }
 }

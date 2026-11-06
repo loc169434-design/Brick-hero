@@ -92,7 +92,19 @@ const PLAQUE := Color(0.27, 0.17, 0.1)
 const PLAQUE_RIM := Color(0.86, 0.66, 0.3)
 ## The plaque's swords clash this often, the clash landing this far into each round.
 const SWORD_CLASH := 2.0
+## The rage steam: its size (the sheet's cels are 512) and where it sits over the head.
+const STEAM_SCALE := 0.3
+const STEAM_OFFSET := Vector2(0, -125)
 const CLASH_AT := 0.35
+const HUD_DIR := "res://assets/ui/hud/"
+## The painted swords lean this far on their own (left one to the left), in radians.
+const SWORD_LEAN := 0.1745
+const SWORD_SIZE := 88.0
+## clash_spark.png: 6 cels of 160 in 3 columns at 24 fps.
+const SPARK_FRAMES := 6
+const SPARK_COLUMNS := 3
+const SPARK_FPS := 24.0
+const SPARK_SIZE := 96.0
 const CURSE_DIR := "res://assets/fx/curse/"
 const STATUS_DIR := "res://assets/ui/status/"
 const OUTLINE := Color(0.1, 0.07, 0.05)
@@ -121,7 +133,12 @@ var _goal: LevelProgress
 var _goal_art := ObstacleArt.new()
 var _status_icons := {}
 var _rage_time := 0.0
+var _steam: Sprite2D
 var _sword: Texture2D
+## The turn plaque's painted art (assets/ui/hud), or null to draw it plainly.
+var _plaque: Texture2D
+var _hud_swords: Array[Texture2D] = []
+var _clash_spark: Texture2D
 var _combat_anim := {}
 var _backdrop: ArenaBackdrop
 var _hero: CharacterRig
@@ -179,6 +196,12 @@ func _ready() -> void:
 	_coin = load(PROP_DIR + "coin.png") if ResourceLoader.exists(PROP_DIR + "coin.png") else null
 	var sword := "res://assets/ui/items/iron_sword.png"
 	_sword = load(sword) if ResourceLoader.exists(sword) else null
+	_plaque = _load_or_null(HUD_DIR + "turn_plaque.png")
+	for side in ["left", "right"]:
+		var texture := _load_or_null(HUD_DIR + "sword_%s.png" % side)
+		if texture:
+			_hud_swords.append(texture)
+	_clash_spark = _load_or_null(HUD_DIR + "clash_spark.png")
 	_box.shadow_color = Color(0, 0, 0, 0.35)
 	_overlay = Node2D.new()
 	add_child(_overlay)
@@ -350,14 +373,38 @@ func _show_afflictions(report: TurnReport) -> void:
 ## The monster snaps at low health: it roars, the screen shakes, and it goes red and fast.
 func _go_berserk() -> void:
 	var head := _local(_monster.point("head"))
-	_monster.react(_monster_clip(&"special"), 1.0)
+	var roar := &"rage" if _monster.has_clip(&"rage") else _monster_clip(&"special")
+	_monster.react(roar, _monster.clip_seconds(roar, 1.0))
 	_monster.squash(0.2, 0.3)
+	_start_steam()
 	_comic("boom", head + Vector2(-60, -120), 1.0)
 	_float("NỔI ĐIÊN!", MONSTER_FEET + Vector2(-20, -280), RAGE, 64)
 	_flash("shockwave", head + Vector2(0, 60), 0.2, 1.8, 0.45, 0.0, true)
 	Sfx.play(&"warn", 0.6)
 	Sfx.play(&"boom", 0.7)
 	impact.emit(0.6, 0.05)
+
+
+## Hot steam rising off a raging monster's head, looping until it falls or the fight ends.
+func _start_steam() -> void:
+	if _steam or not _combat_anim.has("rage_steam"):
+		return
+	var info: Dictionary = _combat_anim["rage_steam"]
+	_steam = _sprite(COMBAT_DIR + "anim/rage_steam.png", Vector2.ZERO, _fx)
+	if _steam == null:
+		return
+	_steam.hframes = int(info.get("columns", 4))
+	_steam.vframes = ceili(float(info.get("frames", 8)) / _steam.hframes)
+	_steam.scale = Vector2.ONE * STEAM_SCALE
+	_steam.modulate.a = 0.85
+	_steam.set_meta("frames", int(info.get("frames", 8)))
+	_steam.set_meta("fps", float(info.get("fps", 12)))
+
+
+func _stop_steam() -> void:
+	if _steam:
+		_steam.queue_free()
+		_steam = null
 
 
 ## Spells the monster's attack cast on the hero.
@@ -397,8 +444,13 @@ func _process(delta: float) -> void:
 		_monster.modulate = Color(1.0, 0.62 - 0.22 * beat, 0.55 - 0.25 * beat)
 		if randf() < delta * 10.0:
 			_sparks.flare(_local(_monster.point("head")) + Vector2(randf_range(-60, 60), randf_range(-40, 20)), RAGE, 0.6)
-	elif _monster.modulate != Color.WHITE:
-		_monster.modulate = Color.WHITE
+		if _steam:
+			_steam.position = _local(_monster.point("head")) + STEAM_OFFSET
+			_steam.frame = int(_rage_time * float(_steam.get_meta("fps"))) % int(_steam.get_meta("frames"))
+	else:
+		_stop_steam()
+		if _monster.modulate != Color.WHITE:
+			_monster.modulate = Color.WHITE
 	# The plaque's swords never rest; the countdown pulses; low health bars throb.
 	if _state:
 		_overlay.queue_redraw()
@@ -653,14 +705,15 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 		_camera(1.0, SIZE / 2, 0.35)
 
 
+## The witch's lift clip. Her drawn `lift` clip paints her at half her size (art issue #48), so
+## she waves her broom spell until it's redrawn; then this becomes &"lift".
+const LIFT_CLIP := &"cast_broom"
 ## Clips the monster plays for each spell, and the word that pops up.
 const SPELL_CLIPS := {
 	"toads": [&"cast_toads", "zap"], "broom": [&"cast_broom", "zap"], "potion": [&"throw_potion", "whoosh"],
 	"burp": [&"burp_toads", "boom"], "web": [&"special", "whoosh"], "ice": [&"special", "zap"],
-	"bomb": [&"special", "boom"], "marks": [&"special", "heh"], "lift": [&"cast_broom", "zap"],
+	"bomb": [&"special", "boom"], "marks": [&"special", "heh"], "lift": [LIFT_CLIP, "zap"],
 }
-## Seconds from the wand flick until the thrown tile reaches the hero.
-const LIFT_TIME := BoardView.LIFT_TOTAL
 
 
 ## A monster whose attack is a spell or a special blow: its own clip, the hit on the hero, and
@@ -668,6 +721,9 @@ const LIFT_TIME := BoardView.LIFT_TOTAL
 func _monster_spell(report: TurnReport) -> void:
 	var entry: Array = SPELL_CLIPS.get(report.board_spell, [&"special" if report.board_spell else &"attack", "bam"])
 	var clip: StringName = entry[0] if _monster.has_clip(entry[0]) else _monster_clip(&"special")
+	if report.lift_thrown:
+		await _lift_and_throw(report, clip)
+		return
 	_monster.react(clip, 1.0)
 	await _wait(_monster.strike_time(clip, 0.35))
 	var head := _local(_hero.point("head"))
@@ -678,20 +734,31 @@ func _monster_spell(report: TurnReport) -> void:
 			_flash("toad_hop", _local(_monster.point("hand")) + Vector2(-80 - 90 * i, 60), 0.4, 0.6, 0.5)
 	if report.board_spell == "broom":
 		_flash("broom_spell", head + Vector2(80, 60), 0.5, 0.9, 0.4)
-	if report.lift_thrown:
-		tile_thrown.emit(_hero.point("head"))
-		Sfx.play(&"charge", 1.2)
-		await get_tree().create_timer(LIFT_TIME).timeout
-		if report.lift_special:
-			_flash("shockwave", head + Vector2(0, 40), 0.3, 1.6, 0.4, 0.0, true)
-			Sfx.play(&"boom")
-		_hero.daze()
-		_hero_hit(report, "boom" if report.lift_special else "bonk", &"dizzy")
-		return
 	if report.leeched > 0:
 		_float("+%d" % report.leeched, MONSTER_FEET + Vector2(0, -230), HP_MONSTER.lightened(0.3))
 		_monster.set_health(_state.monster_health())
 	_hero_hit(report, "ouch", &"hurt")
+
+
+## The witch's lift: the tile rises off the board and whirls while she raises her wand, and her
+## flick (the clip's impact frame) is the moment it flies at the hero.
+func _lift_and_throw(report: TurnReport, clip: StringName) -> void:
+	tile_thrown.emit(_hero.point("head"))
+	Sfx.play(&"charge", 1.2)
+	var flick := _monster.strike_time(clip, 0.35)
+	var held := BoardView.LIFT_RISE + BoardView.LIFT_SPIN
+	await _wait(maxf(held - flick, 0.0))
+	_monster.react(clip, 1.0)
+	await _wait(minf(flick, held))
+	_comic("zap", _local(_monster.point("head")) + Vector2(-80, -110), 0.8)
+	Sfx.play(&"whoosh", 1.2)
+	await _wait(BoardView.LIFT_FLIGHT)
+	var head := _local(_hero.point("head"))
+	if report.lift_special:
+		_flash("shockwave", head + Vector2(0, 40), 0.3, 1.6, 0.4, 0.0, true)
+		Sfx.play(&"boom")
+	_hero.daze()
+	_hero_hit(report, "boom" if report.lift_special else "bonk", &"dizzy")
 
 
 ## The boss drinks its potion and swells into its next form, in a cloud of green smoke.
@@ -872,6 +939,10 @@ func _sprite(path: String, at: Vector2, parent: Node) -> Sprite2D:
 	sprite.position = at
 	parent.add_child(sprite)
 	return sprite
+
+
+func _load_or_null(path: String) -> Texture2D:
+	return load(path) if ResourceLoader.exists(path) else null
 
 
 ## A global position (from CharacterRig.point) in the stage's own coordinates.
@@ -1199,7 +1270,7 @@ func _rounded(rect: Rect2, color: Color, radius: int, shadow := 0) -> void:
 ## "Lượt N" on a wooden plaque between the health bars, a pair of crossed swords either side
 ## that swing apart and clash every SWORD_CLASH seconds.
 func _draw_turn_plaque(center: Vector2) -> void:
-	var size := Vector2(176, 58)
+	var size := Vector2(180, 58)
 	var box := Rect2(center - size / 2, size)
 	var t := fmod(Time.get_ticks_msec() / 1000.0, SWORD_CLASH)
 	# Apart, then a fast swing in and a ring: the clash lands at CLASH_AT.
@@ -1212,10 +1283,12 @@ func _draw_turn_plaque(center: Vector2) -> void:
 	for side in [-1.0, 1.0]:
 		var at := center + Vector2(side * (size.x / 2 + 26), 2)
 		for k in [-1.0, 1.0]:
-			_draw_sword(at, k * (0.62 - spread), 72.0)
-		if t >= CLASH_AT and t < CLASH_AT + 0.18:
-			var flash := 1.0 - (t - CLASH_AT) / 0.18
-			_overlay.draw_circle(at + Vector2(0, -16), 18.0 * flash + 6.0, Color(1, 0.95, 0.6, 0.8 * flash))
+			_draw_sword(at, k * (0.62 - spread), SWORD_SIZE if _hud_swords.size() == 2 else 72.0, k)
+		_draw_clash(at + Vector2(0, -18), t - CLASH_AT)
+	if _plaque:
+		_overlay.draw_texture_rect(_plaque, Rect2(center - size / 2, size), false)
+		_draw_text_centered("Lượt %d" % (_state.moves + 1), center + Vector2(0, 13), 36, TEXT)
+		return
 	_box.bg_color = PLAQUE
 	_box.border_color = PLAQUE_RIM
 	_box.set_border_width_all(4)
@@ -1227,8 +1300,32 @@ func _draw_turn_plaque(center: Vector2) -> void:
 	_draw_text_centered("Lượt %d" % (_state.moves + 1), center + Vector2(0, 14), 38, TEXT)
 
 
-## A sword standing on its tip's opposite end at `at`, leaned by `angle` (0 = upright).
-func _draw_sword(at: Vector2, angle: float, length: float) -> void:
+## Sparks where the blades meet, `since` seconds after they clash.
+func _draw_clash(at: Vector2, since: float) -> void:
+	if since < 0.0:
+		return
+	if _clash_spark:
+		var frame := int(since * SPARK_FPS)
+		if frame >= SPARK_FRAMES:
+			return
+		var cel := _clash_spark.get_width() / SPARK_COLUMNS
+		var region := Rect2((frame % SPARK_COLUMNS) * cel, (frame / SPARK_COLUMNS) * cel, cel, cel)
+		var rect := Rect2(at - Vector2.ONE * SPARK_SIZE / 2, Vector2.ONE * SPARK_SIZE)
+		_overlay.draw_texture_rect_region(_clash_spark, rect, region)
+	elif since < 0.18:
+		var flash := 1.0 - since / 0.18
+		_overlay.draw_circle(at, 18.0 * flash + 6.0, Color(1, 0.95, 0.6, 0.8 * flash))
+
+
+## A sword standing upright at `at`, leaned by `angle` (0 = upright). `side` picks the painted
+## left (-1) or right (+1) sword when there are any.
+func _draw_sword(at: Vector2, angle: float, length: float, side := 1.0) -> void:
+	if _hud_swords.size() == 2:
+		var texture := _hud_swords[0 if side < 0.0 else 1]
+		_overlay.draw_set_transform(at, angle - side * SWORD_LEAN, Vector2.ONE)
+		_overlay.draw_texture_rect(texture, Rect2(-Vector2.ONE * length / 2, Vector2.ONE * length), false)
+		_overlay.draw_set_transform(Vector2.ZERO)
+		return
 	if _sword == null:
 		_overlay.draw_set_transform(at, angle, Vector2.ONE)
 		_overlay.draw_line(Vector2(0, length * 0.4), Vector2(0, -length * 0.5), Color(0.85, 0.88, 0.92), 6.0)

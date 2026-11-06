@@ -38,5 +38,15 @@
       512
     ],
     "loop": false
+  },
+  "levitate": {
+    "frames": 8,
+    "fps": 12,
+    "columns": 4,
+    "frame_size": [
+      512,
+      512
+    ],
+    "loop": true
   }
 }

@@ -13,7 +13,9 @@
     "hurt",
     "croak",
     "look_left",
-    "look_right"
+    "look_right",
+    "sly",
+    "dizzy"
   ],
   "animations": [
     {
@@ -702,6 +704,6 @@
   "expression_grid": {
     "columns": 3,
     "cell": 128,
-    "rows": 4
+    "rows": 5
   }
 }

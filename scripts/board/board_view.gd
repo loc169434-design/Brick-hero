@@ -99,6 +99,12 @@ const LIFT_FLIGHT := 0.5
 const LIFT_TOTAL := LIFT_RISE + LIFT_SPIN + LIFT_FLIGHT
 const LIFT_GROW := 1.9
 const SPELL_GLOW := Color(0.75, 0.45, 1.0)
+## levitate.png: 8 cels of 512 in 4 columns, looped at 12 fps, its middle left clear.
+const LEVITATE_PATH := "res://assets/fx/curse/levitate.png"
+const LEVITATE_FRAMES := 8
+const LEVITATE_COLUMNS := 4
+const LEVITATE_FPS := 12.0
+const LEVITATE_SIZE := 1.9
 ## A break-up clip is drawn this many squares wide, so splinters fly past the square.
 const BREAK_SCALE := 1.6
 ## Dust thrown off when a crate or rock breaks.
@@ -137,6 +143,8 @@ var _fidgets := {}
 var lift_cell: Cell
 ## The thrown tile in the air: {"cell", "from", "to", "t"} in board coordinates; {} for none.
 var _flying := {}
+## The purple spell ring wound round a lifted tile (assets/fx/curse/levitate.png), or null.
+var _levitate: Texture2D
 ## Placeholder tile style per color, used only when there's no tile art.
 var _styles := {}
 ## What's on screen. Lags behind the model while a chain is being replayed.
@@ -213,6 +221,7 @@ func _ready() -> void:
 	_shine = load(SHINE_PATH) if ResourceLoader.exists(SHINE_PATH) else null
 	_glow_outline = load(GLOW_OUTLINE_PATH) if ResourceLoader.exists(GLOW_OUTLINE_PATH) else null
 	_crit_spark = load(CRIT_SPARK_PATH) if ResourceLoader.exists(CRIT_SPARK_PATH) else null
+	_levitate = load(LEVITATE_PATH) if ResourceLoader.exists(LEVITATE_PATH) else null
 	_glow = load(GLOW_PATH) if ResourceLoader.exists(GLOW_PATH) else null
 	_spark = load(SPARK_PATH) if ResourceLoader.exists(SPARK_PATH) else null
 	_shadow_box.set_corner_radius_all(22)
@@ -909,7 +918,7 @@ func _pose_for(p: Vector2i) -> String:
 		return _fidgets[p]["pose"]
 	# Caught by the witch's spell, the tile grins slyly, eyeing the hero.
 	if lift_cell and _shown.get(p) == lift_cell:
-		return "gloat"
+		return _first_expression(lift_cell.color, ["sly", "gloat"])
 	return ""
 
 
@@ -1031,9 +1040,10 @@ func _draw_lift() -> void:
 			var center := (Vector2(p) + Vector2(0.5, 0.5)) * CELL
 			var pulse := 0.5 + 0.5 * sin(_time * 8.0)
 			_overlay.draw_circle(center, CELL * (0.62 + 0.08 * pulse), Color(SPELL_GLOW, 0.25 + 0.2 * pulse))
-			for i in 3:
-				var a := _time * 3.0 + i * TAU / 3.0
-				_overlay.draw_arc(center, CELL * 0.6, a, a + 1.4, 16, Color(SPELL_GLOW, 0.9), 5.0, true)
+			if not _draw_levitate(center, 1.0):
+				for i in 3:
+					var a := _time * 3.0 + i * TAU / 3.0
+					_overlay.draw_arc(center, CELL * 0.6, a, a + 1.4, 16, Color(SPELL_GLOW, 0.9), 5.0, true)
 	if _flying.is_empty():
 		return
 	# Seconds into the throw: rising off the board, spinning in the air, then flying.
@@ -1066,7 +1076,7 @@ func _draw_lift() -> void:
 		_overlay.draw_circle(Vector2.ZERO, CELL * 0.4, Color(1, 0.7, 0.3), false, 6.0)
 	else:
 		# Sly grin on the way up; dizzy from the spinning after.
-		var face := "gloat" if whirl < 0.35 else _first_expression(cell.color, ["dizzy", "hurt", "scream"])
+		var face := _first_expression(cell.color, ["sly", "gloat"] if whirl < 0.35 else ["dizzy", "hurt", "scream"])
 		var texture := _art.expression(cell.color, face) if face else null
 		if texture == null:
 			texture = _art.tile(cell.color)
@@ -1075,9 +1085,10 @@ func _draw_lift() -> void:
 		else:
 			_overlay.draw_rect(Rect2(-size / 2, size), BLOCK_COLORS.get(cell.color, Color.WHITE))
 	_overlay.draw_set_transform(Vector2.ZERO)
-	for i in 3:
-		var a := _time * 6.0 + i * TAU / 3.0
-		_overlay.draw_arc(at, CELL * 0.62 * grow, a, a + 1.2, 16, Color(SPELL_GLOW, 0.85), 5.0, true)
+	if not _draw_levitate(at, grow * (1.0 - fly * 0.5)):
+		for i in 3:
+			var a := _time * 6.0 + i * TAU / 3.0
+			_overlay.draw_arc(at, CELL * 0.62 * grow, a, a + 1.2, 16, Color(SPELL_GLOW, 0.85), 5.0, true)
 	if whirl > 0.35:
 		# Stars circling over its head: it's seeing them.
 		for i in 3:
@@ -1087,6 +1098,18 @@ func _draw_lift() -> void:
 			for k in 8:
 				points.append(star + Vector2.from_angle(a + k * PI / 4) * (14.0 if k % 2 == 0 else 5.0))
 			_overlay.draw_colored_polygon(points, Color(1, 0.9, 0.3))
+
+
+## The looping spell ring around `center`, `grow` times a tile's size; false without the art.
+func _draw_levitate(center: Vector2, grow: float) -> bool:
+	if _levitate == null:
+		return false
+	var frame := int(_time * LEVITATE_FPS) % LEVITATE_FRAMES
+	var cel := _levitate.get_width() / LEVITATE_COLUMNS
+	var region := Rect2((frame % LEVITATE_COLUMNS) * cel, (frame / LEVITATE_COLUMNS) * cel, cel, cel)
+	var side := CELL * LEVITATE_SIZE * grow
+	_overlay.draw_texture_rect_region(_levitate, Rect2(center - Vector2.ONE * side / 2, Vector2.ONE * side), region)
+	return true
 
 
 func _first_expression(color: int, poses: Array) -> String:

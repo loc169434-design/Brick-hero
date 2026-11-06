@@ -1,0 +1,12 @@
+{
+  "clash_spark": {
+    "frames": 6,
+    "fps": 24,
+    "columns": 3,
+    "frame_size": [
+      160,
+      160
+    ],
+    "loop": false
+  }
+}

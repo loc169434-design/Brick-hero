@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crll2iowgiphy"
-path.s3tc="res://.godot/imported/tile_yellow.png-0a864df517c78a3540553fdee44208ae.s3tc.ctex"
+path="res://.godot/imported/tile_yellow.png-0a864df517c78a3540553fdee44208ae.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/tiles/swamp_b/tile_yellow.png"
-dest_files=["res://.godot/imported/tile_yellow.png-0a864df517c78a3540553fdee44208ae.s3tc.ctex"]
+dest_files=["res://.godot/imported/tile_yellow.png-0a864df517c78a3540553fdee44208ae.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

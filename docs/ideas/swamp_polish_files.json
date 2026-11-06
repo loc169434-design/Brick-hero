@@ -1,0 +1,1115 @@
+{
+  "issue": 48,
+  "base": "bc328c63fdff3b3e6df4a4e8db6d8a735c42f2af",
+  "baseline_art": "268710651880b290852c3b13a58754406f3c5c20",
+  "files": [
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/bubble.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/bubble.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/far.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/far.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/firefly.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/firefly.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/ground.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/ground.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/layers.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/lotus.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/lotus.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/mid.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/mid.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/sky.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/sky.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/bubble.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/bubble.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/far.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/far.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/firefly.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/firefly.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/ground.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/ground.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/layers.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/lotus.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/lotus.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/mid.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/mid.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/sky.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/sky.png.import"
+    },
+    {
+      "status": "M",
+      "path": "assets/tiles/animation_pack.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_combo.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_combo.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_death.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_death.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_drop.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_drop.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_fear.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_fear.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_gloat.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_gloat.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_hurt.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_hurt.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_idle.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_idle.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_land.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_land.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_lose.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_lose.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_near_miss.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_near_miss.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_taunt.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_taunt.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_win.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/green_win.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_combo.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_combo.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_death.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_death.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_drop.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_drop.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_fear.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_fear.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_gloat.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_gloat.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_hurt.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_hurt.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_idle.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_idle.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_land.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_land.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_lose.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_lose.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_near_miss.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_near_miss.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_taunt.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_taunt.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_win.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/purple_win.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_combo.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_combo.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_death.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_death.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_drop.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_drop.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_fear.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_fear.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_gloat.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_gloat.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_hurt.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_hurt.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_idle.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_idle.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_land.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_land.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_lose.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_lose.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_near_miss.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_near_miss.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_taunt.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_taunt.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_win.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/red_win.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_combo.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_combo.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_death.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_death.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_drop.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_drop.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_fear.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_fear.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_gloat.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_gloat.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_hurt.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_hurt.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_idle.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_idle.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_land.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_land.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_lose.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_lose.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_near_miss.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_near_miss.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_taunt.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_taunt.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_win.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/animations/yellow_win.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_blink.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_blink.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_chuckle.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_chuckle.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_croak.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_croak.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_fear.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_fear.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_gloat.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_gloat.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_hurt.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_hurt.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_idle.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_idle.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_laugh.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_laugh.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_look_left.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_look_left.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_look_right.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_look_right.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_relief.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_relief.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_scream.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_scream.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_blink.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_blink.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_chuckle.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_chuckle.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_croak.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_croak.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_fear.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_fear.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_gloat.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_gloat.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_hurt.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_hurt.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_idle.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_idle.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_laugh.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_laugh.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_look_left.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_look_left.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_look_right.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_look_right.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_relief.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_relief.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_scream.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_scream.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_blink.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_blink.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_chuckle.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_chuckle.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_croak.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_croak.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_fear.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_fear.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_gloat.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_gloat.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_hurt.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_hurt.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_idle.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_idle.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_laugh.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_laugh.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_look_left.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_look_left.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_look_right.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_look_right.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_relief.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_relief.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_scream.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_scream.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_blink.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_blink.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_chuckle.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_chuckle.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_croak.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_croak.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_fear.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_fear.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_gloat.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_gloat.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_hurt.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_hurt.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_idle.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_idle.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_laugh.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_laugh.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_look_left.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_look_left.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_look_right.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_look_right.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_relief.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_relief.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_scream.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_scream.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions_green.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions_green.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions_purple.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions_purple.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions_red.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions_red.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions_yellow.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions_yellow.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/sprite_frames_green.tres"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/sprite_frames_purple.tres"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/sprite_frames_red.tres"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/sprite_frames_yellow.tres"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/swamp_manifest.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/tile_green.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/tile_green.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/tile_purple.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/tile_purple.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/tile_red.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/tile_red.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/tile_yellow.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/tile_yellow.png.import"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/check_swamp_polish.py"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/pack_swamp_polish.py"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_handoff.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_resource_smoke.gd"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/.gdignore"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/backgrounds_game_layout.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/backgrounds_native_feet.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/board_7x8_46px.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/board_7x8_idle_offset.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/board_layout_7x8.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/combo_four_colors.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/death_four_colors.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/drop_four_colors.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/fear_four_colors.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/gloat_four_colors.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/goblin_camp_background.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/goblin_camp_feet_overlay.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/godot_tests.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/hurt_four_colors.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/idle_four_colors.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/index.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/land_four_colors.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/lose_four_colors.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/near_miss_four_colors.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/new_expressions.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/regression_masks.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/resource_smoke.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/swamp_background.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/swamp_feet_overlay.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/taunt_four_colors.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/validation.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_review/win_four_colors.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/swamp_polish_sources.json"
+    }
+  ]
+}

@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8nsnll7xx7kr"
-path.s3tc="res://.godot/imported/firefly.png-069226f8f597fa39f1ef6548d18f1f88.s3tc.ctex"
+path="res://.godot/imported/firefly.png-069226f8f597fa39f1ef6548d18f1f88.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/bg/goblin_camp/firefly.png"
-dest_files=["res://.godot/imported/firefly.png-069226f8f597fa39f1ef6548d18f1f88.s3tc.ctex"]
+dest_files=["res://.godot/imported/firefly.png-069226f8f597fa39f1ef6548d18f1f88.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

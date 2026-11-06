@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0dcy8qpeubfa"
-path.s3tc="res://.godot/imported/yellow_laugh.png-b7ba7fca9df8bb4fc64c4d813a0953cb.s3tc.ctex"
+path="res://.godot/imported/yellow_laugh.png-b7ba7fca9df8bb4fc64c4d813a0953cb.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/tiles/swamp_b/expressions/yellow_laugh.png"
-dest_files=["res://.godot/imported/yellow_laugh.png-b7ba7fca9df8bb4fc64c4d813a0953cb.s3tc.ctex"]
+dest_files=["res://.godot/imported/yellow_laugh.png-b7ba7fca9df8bb4fc64c4d813a0953cb.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

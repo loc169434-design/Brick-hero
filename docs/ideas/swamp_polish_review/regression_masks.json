@@ -1,0 +1,26 @@
+{
+  "fixtures": [
+    {
+      "name": "green_combo_old_cut_frame0",
+      "shape": [
+        320,
+        320
+      ],
+      "alpha_threshold": 32,
+      "provenance": "actual interim atlas before connected-drawing crop; full original retained outside git",
+      "mask_sha256": "dd8d9bd87032fe4971236f63fc87bf1d44e7dad7bc4887a3157ba4189f6943b2",
+      "mask_packbits_zlib_base64": "eNrtmTEOgzAQBEEUlGnT8RSe5jzNT/ETKCkQl5AisiNhr+wUUTJTjwR3ILGsuw4AAAAAAADg33D2Ys9og0X4c+8Se8u5N8feJt1e7gZ7S7hJY2S8MfW8NK5ZEL3TxUypt0rr071NWrPu7a2e1XmGh4eHh1fl9T/i8Xzx8PDw8PDwvtVr/k+u9LbWXkDtGaY6b2ntS0axfxnEPkftkTrtNXhb4C72ZqvYwwWt1zNaTgAAgAJX0XOa1mdCRPph9x/zhmcyKntTOIJH2XOPRDIJ3hE1RC/M5b0cYWxzJqykdHoZh8W1vJbS4WWS7YIybv7QNMmeXhtXuC4AACTcAV4/EDs="
+    },
+    {
+      "name": "yellow_combo_old_cut_frame0",
+      "shape": [
+        320,
+        320
+      ],
+      "alpha_threshold": 32,
+      "provenance": "actual interim atlas before connected-drawing crop; full original retained outside git",
+      "mask_sha256": "d30e4e73de929c100b31f893fc847b78e79fdb0229c64e9fbec87c1e8d92439b",
+      "mask_packbits_zlib_base64": "eNrt2DEOgyAYhmEMAyNHsDfhYk3q0Uh6EY/Q0cFAtZOaUL7adtH3nZ/EAGLibwwRERERERHRUcqL3jC/dI+yC0s3ao/Nqcialctdydm1iyXn1q6Xlvtmwe3aDaIbpe3TXXEDb/91WTreE7oOh/vAcY+4l7wvOO4H7szfDc4Nh8Px3d33373TpW/nDOrcQp2DeHGuojonznOsOB9qxHnTZqPFuVkS53CD0QZn8WfTwovGmlFzNmnOZc358oRw8xoew3lpX66zs3310PLs3FA9tJfzY/3Qumkdbaq7GHJfdz7H6eYGwd2nKxSSISIiIiIiEnsCsjAZMA=="
+    }
+  ]
+}

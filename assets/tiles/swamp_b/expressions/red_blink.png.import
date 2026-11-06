@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgy8w8vqsdhy8"
-path.s3tc="res://.godot/imported/red_blink.png-b48a214c245354df13252bc7ae58024f.s3tc.ctex"
+path="res://.godot/imported/red_blink.png-b48a214c245354df13252bc7ae58024f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/tiles/swamp_b/expressions/red_blink.png"
-dest_files=["res://.godot/imported/red_blink.png-b48a214c245354df13252bc7ae58024f.s3tc.ctex"]
+dest_files=["res://.godot/imported/red_blink.png-b48a214c245354df13252bc7ae58024f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dj6i4hbm8tufo"
-path.s3tc="res://.godot/imported/red_fear.png-e8302b273ca6dbd61ce1cd548bc35c5d.s3tc.ctex"
+path="res://.godot/imported/red_fear.png-e8302b273ca6dbd61ce1cd548bc35c5d.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/tiles/swamp_b/expressions/red_fear.png"
-dest_files=["res://.godot/imported/red_fear.png-e8302b273ca6dbd61ce1cd548bc35c5d.s3tc.ctex"]
+dest_files=["res://.godot/imported/red_fear.png-e8302b273ca6dbd61ce1cd548bc35c5d.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

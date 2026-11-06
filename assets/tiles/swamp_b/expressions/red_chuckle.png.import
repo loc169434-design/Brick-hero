@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://6g7jwgot7g74"
-path.s3tc="res://.godot/imported/red_chuckle.png-53d280941ea281258e49a8c7efd518fc.s3tc.ctex"
+path="res://.godot/imported/red_chuckle.png-53d280941ea281258e49a8c7efd518fc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/tiles/swamp_b/expressions/red_chuckle.png"
-dest_files=["res://.godot/imported/red_chuckle.png-53d280941ea281258e49a8c7efd518fc.s3tc.ctex"]
+dest_files=["res://.godot/imported/red_chuckle.png-53d280941ea281258e49a8c7efd518fc.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

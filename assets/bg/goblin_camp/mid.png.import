@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccuxhfc6uyda5"
-path.s3tc="res://.godot/imported/mid.png-75c5b583fe5cf4e685cc79dea082b142.s3tc.ctex"
+path="res://.godot/imported/mid.png-75c5b583fe5cf4e685cc79dea082b142.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/bg/goblin_camp/mid.png"
-dest_files=["res://.godot/imported/mid.png-75c5b583fe5cf4e685cc79dea082b142.s3tc.ctex"]
+dest_files=["res://.godot/imported/mid.png-75c5b583fe5cf4e685cc79dea082b142.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -10,7 +10,10 @@
     "relief",
     "scream",
     "gloat",
-    "hurt"
+    "hurt",
+    "croak",
+    "look_left",
+    "look_right"
   ],
   "animations": [
     {
@@ -19,12 +22,12 @@
       "animation": "idle",
       "file": "assets/tiles/swamp_b/animations/red_idle.png",
       "width": 1536,
-      "height": 192,
+      "height": 384,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 1.6666666666666667,
-      "seconds": 2.4,
+      "frames": 12,
+      "fps": 10,
+      "seconds": 1.2,
       "loop": true
     },
     {
@@ -36,9 +39,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 4.705882352941177,
-      "seconds": 0.85,
+      "frames": 6,
+      "fps": 16,
+      "seconds": 0.375,
       "loop": false
     },
     {
@@ -50,9 +53,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 6.153846153846153,
-      "seconds": 0.65,
+      "frames": 6,
+      "fps": 16,
+      "seconds": 0.375,
       "loop": false
     },
     {
@@ -60,13 +63,13 @@
       "color": "red",
       "animation": "combo",
       "file": "assets/tiles/swamp_b/animations/red_combo.png",
-      "width": 1536,
-      "height": 192,
-      "cell": 192,
+      "width": 2560,
+      "height": 320,
+      "cell": 320,
       "columns": 8,
-      "frames": 4,
-      "fps": 3.3333333333333335,
-      "seconds": 1.2,
+      "frames": 8,
+      "fps": 16,
+      "seconds": 0.5,
       "loop": false
     },
     {
@@ -78,9 +81,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 5.333333333333333,
-      "seconds": 0.75,
+      "frames": 8,
+      "fps": 14,
+      "seconds": 0.5714285714285714,
       "loop": false
     },
     {
@@ -89,12 +92,12 @@
       "animation": "taunt",
       "file": "assets/tiles/swamp_b/animations/red_taunt.png",
       "width": 1536,
-      "height": 192,
+      "height": 384,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.3529411764705883,
-      "seconds": 1.7,
+      "frames": 10,
+      "fps": 12,
+      "seconds": 0.8333333333333334,
       "loop": false
     },
     {
@@ -106,10 +109,10 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 3.3333333333333335,
-      "seconds": 1.2,
-      "loop": false
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
+      "loop": true
     },
     {
       "family": "swamp_b",
@@ -120,9 +123,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 1.4285714285714286,
-      "seconds": 2.8,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -134,9 +137,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.3529411764705883,
-      "seconds": 1.7,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -148,9 +151,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.6666666666666665,
-      "seconds": 1.5,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -162,9 +165,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.2222222222222223,
-      "seconds": 1.8,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -176,9 +179,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.0,
-      "seconds": 2,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -187,12 +190,12 @@
       "animation": "idle",
       "file": "assets/tiles/swamp_b/animations/green_idle.png",
       "width": 1536,
-      "height": 192,
+      "height": 384,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 1.6666666666666667,
-      "seconds": 2.4,
+      "frames": 12,
+      "fps": 10,
+      "seconds": 1.2,
       "loop": true
     },
     {
@@ -204,9 +207,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 4.705882352941177,
-      "seconds": 0.85,
+      "frames": 6,
+      "fps": 16,
+      "seconds": 0.375,
       "loop": false
     },
     {
@@ -218,9 +221,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 6.153846153846153,
-      "seconds": 0.65,
+      "frames": 6,
+      "fps": 16,
+      "seconds": 0.375,
       "loop": false
     },
     {
@@ -228,13 +231,13 @@
       "color": "green",
       "animation": "combo",
       "file": "assets/tiles/swamp_b/animations/green_combo.png",
-      "width": 1536,
-      "height": 192,
-      "cell": 192,
+      "width": 2560,
+      "height": 320,
+      "cell": 320,
       "columns": 8,
-      "frames": 4,
-      "fps": 3.3333333333333335,
-      "seconds": 1.2,
+      "frames": 8,
+      "fps": 16,
+      "seconds": 0.5,
       "loop": false
     },
     {
@@ -246,9 +249,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 5.333333333333333,
-      "seconds": 0.75,
+      "frames": 8,
+      "fps": 14,
+      "seconds": 0.5714285714285714,
       "loop": false
     },
     {
@@ -257,12 +260,12 @@
       "animation": "taunt",
       "file": "assets/tiles/swamp_b/animations/green_taunt.png",
       "width": 1536,
-      "height": 192,
+      "height": 384,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.3529411764705883,
-      "seconds": 1.7,
+      "frames": 10,
+      "fps": 12,
+      "seconds": 0.8333333333333334,
       "loop": false
     },
     {
@@ -274,10 +277,10 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 3.3333333333333335,
-      "seconds": 1.2,
-      "loop": false
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
+      "loop": true
     },
     {
       "family": "swamp_b",
@@ -288,9 +291,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 1.4285714285714286,
-      "seconds": 2.8,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -302,9 +305,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.3529411764705883,
-      "seconds": 1.7,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -316,9 +319,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.6666666666666665,
-      "seconds": 1.5,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -330,9 +333,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.2222222222222223,
-      "seconds": 1.8,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -344,9 +347,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.0,
-      "seconds": 2,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -355,12 +358,12 @@
       "animation": "idle",
       "file": "assets/tiles/swamp_b/animations/yellow_idle.png",
       "width": 1536,
-      "height": 192,
+      "height": 384,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 1.6666666666666667,
-      "seconds": 2.4,
+      "frames": 12,
+      "fps": 10,
+      "seconds": 1.2,
       "loop": true
     },
     {
@@ -372,9 +375,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 4.705882352941177,
-      "seconds": 0.85,
+      "frames": 6,
+      "fps": 16,
+      "seconds": 0.375,
       "loop": false
     },
     {
@@ -386,9 +389,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 6.153846153846153,
-      "seconds": 0.65,
+      "frames": 6,
+      "fps": 16,
+      "seconds": 0.375,
       "loop": false
     },
     {
@@ -396,13 +399,13 @@
       "color": "yellow",
       "animation": "combo",
       "file": "assets/tiles/swamp_b/animations/yellow_combo.png",
-      "width": 1536,
-      "height": 192,
-      "cell": 192,
+      "width": 2560,
+      "height": 320,
+      "cell": 320,
       "columns": 8,
-      "frames": 4,
-      "fps": 3.3333333333333335,
-      "seconds": 1.2,
+      "frames": 8,
+      "fps": 16,
+      "seconds": 0.5,
       "loop": false
     },
     {
@@ -414,9 +417,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 5.333333333333333,
-      "seconds": 0.75,
+      "frames": 8,
+      "fps": 14,
+      "seconds": 0.5714285714285714,
       "loop": false
     },
     {
@@ -425,12 +428,12 @@
       "animation": "taunt",
       "file": "assets/tiles/swamp_b/animations/yellow_taunt.png",
       "width": 1536,
-      "height": 192,
+      "height": 384,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.3529411764705883,
-      "seconds": 1.7,
+      "frames": 10,
+      "fps": 12,
+      "seconds": 0.8333333333333334,
       "loop": false
     },
     {
@@ -442,10 +445,10 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 3.3333333333333335,
-      "seconds": 1.2,
-      "loop": false
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
+      "loop": true
     },
     {
       "family": "swamp_b",
@@ -456,9 +459,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 1.4285714285714286,
-      "seconds": 2.8,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -470,9 +473,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.3529411764705883,
-      "seconds": 1.7,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -484,9 +487,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.6666666666666665,
-      "seconds": 1.5,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -498,9 +501,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.2222222222222223,
-      "seconds": 1.8,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -512,9 +515,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.0,
-      "seconds": 2,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -523,12 +526,12 @@
       "animation": "idle",
       "file": "assets/tiles/swamp_b/animations/purple_idle.png",
       "width": 1536,
-      "height": 192,
+      "height": 384,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 1.6666666666666667,
-      "seconds": 2.4,
+      "frames": 12,
+      "fps": 10,
+      "seconds": 1.2,
       "loop": true
     },
     {
@@ -540,9 +543,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 4.705882352941177,
-      "seconds": 0.85,
+      "frames": 6,
+      "fps": 16,
+      "seconds": 0.375,
       "loop": false
     },
     {
@@ -554,9 +557,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 6.153846153846153,
-      "seconds": 0.65,
+      "frames": 6,
+      "fps": 16,
+      "seconds": 0.375,
       "loop": false
     },
     {
@@ -564,13 +567,13 @@
       "color": "purple",
       "animation": "combo",
       "file": "assets/tiles/swamp_b/animations/purple_combo.png",
-      "width": 1536,
-      "height": 192,
-      "cell": 192,
+      "width": 2560,
+      "height": 320,
+      "cell": 320,
       "columns": 8,
-      "frames": 4,
-      "fps": 3.3333333333333335,
-      "seconds": 1.2,
+      "frames": 8,
+      "fps": 16,
+      "seconds": 0.5,
       "loop": false
     },
     {
@@ -582,9 +585,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 5.333333333333333,
-      "seconds": 0.75,
+      "frames": 8,
+      "fps": 14,
+      "seconds": 0.5714285714285714,
       "loop": false
     },
     {
@@ -593,12 +596,12 @@
       "animation": "taunt",
       "file": "assets/tiles/swamp_b/animations/purple_taunt.png",
       "width": 1536,
-      "height": 192,
+      "height": 384,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.3529411764705883,
-      "seconds": 1.7,
+      "frames": 10,
+      "fps": 12,
+      "seconds": 0.8333333333333334,
       "loop": false
     },
     {
@@ -610,10 +613,10 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 3.3333333333333335,
-      "seconds": 1.2,
-      "loop": false
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
+      "loop": true
     },
     {
       "family": "swamp_b",
@@ -624,9 +627,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 1.4285714285714286,
-      "seconds": 2.8,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -638,9 +641,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.3529411764705883,
-      "seconds": 1.7,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -652,9 +655,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.6666666666666665,
-      "seconds": 1.5,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -666,9 +669,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.2222222222222223,
-      "seconds": 1.8,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     },
     {
@@ -680,9 +683,9 @@
       "height": 192,
       "cell": 192,
       "columns": 8,
-      "frames": 4,
-      "fps": 2.0,
-      "seconds": 2,
+      "frames": 8,
+      "fps": 12,
+      "seconds": 0.6666666666666666,
       "loop": false
     }
   ],
@@ -694,10 +697,11 @@
     "yellow": "#FFE59A",
     "purple": "#27305E"
   },
-  "shared_drawn_cels": {
-    "death/win": "fear+scream",
-    "taunt/lose": "laugh",
-    "near_miss": "fear+relief+laugh"
-  },
-  "notes": "4 independently hand-drawn cels per source action; intentional reuse documented, no pose interpolation."
+  "shared_drawn_cels": {},
+  "notes": "Issue #48: 98 independently drawn cels per color, 392 total. No synthesized poses, no shared clips. Original B static tiles and nine existing individual expressions preserved.",
+  "expression_grid": {
+    "columns": 3,
+    "cell": 128,
+    "rows": 4
+  }
 }

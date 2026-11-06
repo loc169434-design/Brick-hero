@@ -108,5 +108,48 @@
       "ground": 12
     },
     "y_offset": 0
-  }
+  },
+  "standing_floor": {
+    "top_y": 380,
+    "bottom_y": 525,
+    "feet_native": [
+      [
+        270,
+        405
+      ],
+      [
+        810,
+        405
+      ]
+    ],
+    "feet_with_game_backdrop_shift": [
+      [
+        270,
+        485
+      ],
+      [
+        810,
+        485
+      ]
+    ],
+    "backdrop_shift": [
+      0,
+      -80
+    ]
+  },
+  "fighter_clear_zones": [
+    [
+      150,
+      150,
+      390,
+      485
+    ],
+    [
+      690,
+      150,
+      930,
+      485
+    ]
+  ],
+  "art_revision": "issue48_warm_flat_floor"
 }

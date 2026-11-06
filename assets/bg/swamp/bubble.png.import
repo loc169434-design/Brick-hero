@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://do76re8tt7jko"
-path.s3tc="res://.godot/imported/bubble.png-9799c004082cc566731a0bd933326b9d.s3tc.ctex"
+path="res://.godot/imported/bubble.png-9799c004082cc566731a0bd933326b9d.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/bg/swamp/bubble.png"
-dest_files=["res://.godot/imported/bubble.png-9799c004082cc566731a0bd933326b9d.s3tc.ctex"]
+dest_files=["res://.godot/imported/bubble.png-9799c004082cc566731a0bd933326b9d.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

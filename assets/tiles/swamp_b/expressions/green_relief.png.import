@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hdahh2408o64"
-path.s3tc="res://.godot/imported/green_relief.png-c373bf2b3456fd6272e0d44798e1522f.s3tc.ctex"
+path="res://.godot/imported/green_relief.png-c373bf2b3456fd6272e0d44798e1522f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/tiles/swamp_b/expressions/green_relief.png"
-dest_files=["res://.godot/imported/green_relief.png-c373bf2b3456fd6272e0d44798e1522f.s3tc.ctex"]
+dest_files=["res://.godot/imported/green_relief.png-c373bf2b3456fd6272e0d44798e1522f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

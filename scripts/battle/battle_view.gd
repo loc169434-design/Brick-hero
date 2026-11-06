@@ -100,6 +100,12 @@ const POISON := Color(0.55, 0.9, 0.3)
 const THUNDER := Color(0.55, 0.9, 1.0)
 const GUARD := Color(0.4, 0.65, 1.0)
 const STARFALL := Color(1.0, 0.9, 0.5)
+## Combos: at most this many blows, each blow's wind-up this much quicker than on its own, this
+## long between blows, and the lettering for the blows before the last.
+const MAX_COMBO_HITS := 8
+const COMBO_SPEED := 0.75
+const COMBO_GAP := 0.1
+const COMBO_COMICS := ["pow", "bam", "wham", "thud", "crack", "boom", "zap"]
 const CURSE := Color(0.75, 0.55, 1.0)
 const RAGE := Color(1.0, 0.3, 0.15)
 const PLAQUE := Color(0.27, 0.17, 0.1)
@@ -489,9 +495,9 @@ func _process(delta: float) -> void:
 ## Which move the link calls for: purple breaks shields with a bash, red gets fancier the
 ## longer the link (5 throws the sword, 6 leaps, 7 or a long chain is a combo).
 static func pick_move(report: TurnReport) -> StringName:
-	if report.link_color == Cell.BlockColor.PURPLE and report.shield_damage > 0:
+	if report.link_color == Cell.BlockColor.PURPLE and report.shield_damage > 0 and report.chain < 2:
 		return &"bash"
-	if report.link_length >= 7 or report.chain >= 3:
+	if report.link_length >= 7 or report.chain >= 2:
 		return &"combo"
 	if report.link_color == Cell.BlockColor.RED:
 		if report.link_length == 6:
@@ -549,25 +555,82 @@ func _move_leap(report: TurnReport) -> void:
 
 
 ## Two quick slashes and a flying kick that knocks the monster back.
+## How many blows a combo strings together: one more than the chain's rounds, or a few for a
+## long link, up to MAX_COMBO_HITS. Phong Kiếm cuts its own number of times.
+static func combo_hits(report: TurnReport) -> int:
+	if report.hits > 0:
+		return report.hits
+	var hits := 3
+	if report.chain >= 2:
+		hits = report.chain + 1
+	elif report.link_length >= 7:
+		hits = report.link_length - 4
+	return clampi(hits, 3, MAX_COMBO_HITS)
+
+
+## The blows of a combo of `hits`, in order: it opens with a slash, works through cuts, kicks
+## and shield bashes, and ends on a kick, a bash, or for five and more a leaping slam.
+static func combo_sequence(hits: int) -> Array[StringName]:
+	var middle: Array[StringName] = [&"attack", &"kick", &"attack", &"bash", &"attack", &"kick"]
+	var sequence: Array[StringName] = [&"attack"]
+	for i in hits - 2:
+		sequence.append(middle[i % middle.size()])
+	if hits >= 5:
+		sequence.append(&"leap")
+	elif hits == 4:
+		sequence.append(&"bash")
+	else:
+		sequence.append(&"kick")
+	return sequence
+
+
+## A string of blows (combo_sequence): the hero closes in, each blow flinches the monster and
+## bumps the hit counter, and the last shows the damage.
 func _move_combo(report: TurnReport) -> void:
-	_hero.react(&"attack", 0.0)
-	await _hero.dash_to(Vector2(MONSTER_FEET.x - HERO_FEET.x - 190, -10), _hero.strike_time(&"attack", 0.15))
-	_hero.reach_impact()
-	_land_hit(report, "pow", false, false)
-	await get_tree().create_timer(0.16).timeout
-	_hero.react(&"attack", 0.0)
-	await _wait(_hero.strike_time(&"attack", 0.0))
-	_hero.reach_impact()
-	_hero.squash(-0.15, 0.2)
-	_land_hit(report, "bam", false, false)
-	await get_tree().create_timer(0.16).timeout
-	_hero.react(&"kick", 0.0)
-	await _hero.dash_to(Vector2(MONSTER_FEET.x - HERO_FEET.x - 160, -30), _hero.strike_time(&"kick", 0.08))
-	_hero.reach_impact()
-	_monster.knockback(90.0)
-	_land_hit(report, "combo")
+	var sequence := combo_sequence(combo_hits(report))
+	var close := Vector2(MONSTER_FEET.x - HERO_FEET.x - 190, -10)
+	for i in sequence.size():
+		var blow := sequence[i]
+		var last := i == sequence.size() - 1
+		var comic: String = "combo" if last else COMBO_COMICS[i % COMBO_COMICS.size()]
+		match blow:
+			&"attack":
+				_hero.react(&"attack", 0.0)
+				if i == 0:
+					await _hero.dash_to(close, _hero.strike_time(&"attack", 0.15))
+				else:
+					await _wait(_hero.strike_time(&"attack", 0.0) * COMBO_SPEED)
+				_hero.squash(-0.12, 0.18)
+			&"kick":
+				_hero.react(&"kick", 0.0)
+				await _hero.dash_to(close + Vector2(30, -20), _hero.strike_time(&"kick", 0.08) * COMBO_SPEED)
+			&"bash":
+				_hero.react(&"bash", 0.0)
+				await _hero.dash_to(close + Vector2(-20, 0), _hero.strike_time(&"bash", 0.12) * COMBO_SPEED)
+			&"leap":
+				_hero.react(&"leap", 0.0)
+				Sfx.play(&"whoosh")
+				await _hero.hop_to(close + Vector2(40, -20), 170.0, _hero.strike_time(&"leap", 0.38) * COMBO_SPEED)
+				_monster.squash(0.4)
+		_hero.reach_impact()
+		if blow in [&"kick", &"bash", &"leap"]:
+			_monster.knockback(30.0 if not last else 90.0)
+		_land_hit(report, comic, blow == &"leap", last)
+		_show_combo_count(i + 1)
+		if not last:
+			await get_tree().create_timer(COMBO_GAP).timeout
 	await _hero.home(0.3)
 	_hero.react(&"idle")
+
+
+## "N HIT!" over the monster, bigger and hotter with each blow.
+func _show_combo_count(count: int) -> void:
+	if count < 2:
+		return
+	var heat := clampf((count - 2) / 5.0, 0.0, 1.0)
+	var color := Color(1, 0.92, 0.4).lerp(Color(1, 0.35, 0.2), heat)
+	_float("%d HIT!" % count, MONSTER_FEET + Vector2(150, -330 + count * 6), color, 44 + count * 6)
+	Sfx.play(&"tick", 1.0 + count * 0.08, -4.0)
 
 
 ## Charges in behind the shield. `comic` replaces the crack or clang.

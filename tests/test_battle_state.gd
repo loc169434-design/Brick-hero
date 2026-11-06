@@ -188,8 +188,8 @@ func test_the_link_picks_the_heros_move() -> void:
 	report.link_length = 7
 	assert_eq(BattleView.pick_move(report), &"combo")
 	report.link_length = 4
-	report.chain = 3
-	assert_eq(BattleView.pick_move(report), &"combo", "a long chain is a combo too")
+	report.chain = 2
+	assert_eq(BattleView.pick_move(report), &"combo", "a chain is a combo too")
 	report.chain = 1
 	report.link_color = P
 	report.shield_damage = 6
@@ -318,3 +318,19 @@ func test_every_skill_can_be_learned_and_named() -> void:
 		assert_true(BattleState.SKILLS.has(id), id)
 		var after: String = Gear.SKILL_AFTER[id]
 		assert_true(after.is_empty() or Campaign.has_level(after), "%s is taught by a real level" % id)
+
+
+func test_longer_chains_string_more_blows() -> void:
+	var report := TurnReport.new()
+	report.link_length = 7
+	assert_eq(BattleView.combo_hits(report), 3)
+	report.chain = 4
+	assert_eq(BattleView.combo_hits(report), 5)
+	report.chain = 20
+	assert_eq(BattleView.combo_hits(report), BattleView.MAX_COMBO_HITS)
+	assert_eq(BattleView.combo_sequence(3), [&"attack", &"attack", &"kick"] as Array[StringName])
+	var five := BattleView.combo_sequence(5)
+	assert_eq(five.size(), 5)
+	assert_eq(five[-1], &"leap", "five and more end on a leaping slam")
+	for hits in range(3, BattleView.MAX_COMBO_HITS + 1):
+		assert_eq(BattleView.combo_sequence(hits).size(), hits)

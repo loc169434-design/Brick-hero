@@ -28,7 +28,7 @@ func fixture() -> ForgeView:
 	root.add_child(view)
 	var campaign := Campaign.from_map()
 	campaign.gold = 100
-	campaign.cleared.assign(["scarecrow", "orc_shield"])
+	campaign.cleared.assign(["1", "2", "3", "4", "5", "6", "7"])
 	view.show_campaign(campaign)
 	view._smith.clip_impact.connect(func(clip: StringName) -> void: hits.append(String(clip)))
 	return view

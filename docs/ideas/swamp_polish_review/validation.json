@@ -1,0 +1,97 @@
+{
+  "issue": 48,
+  "checks_passed": 2124,
+  "published_cels": 392,
+  "atlases": 48,
+  "detached_fragment_failures": 0,
+  "edge_clipping_failures": 0,
+  "regression_counterexamples_rejected": 2,
+  "verified_original_sources": 25,
+  "unavailable_original_sources": [],
+  "previews": [
+    {
+      "file": "backgrounds_game_layout.jpg",
+      "bytes": 283431
+    },
+    {
+      "file": "backgrounds_native_feet.jpg",
+      "bytes": 331186
+    },
+    {
+      "file": "board_7x8_46px.jpg",
+      "bytes": 80609
+    },
+    {
+      "file": "board_7x8_idle_offset.gif",
+      "bytes": 1272194
+    },
+    {
+      "file": "combo_four_colors.gif",
+      "bytes": 366542
+    },
+    {
+      "file": "death_four_colors.gif",
+      "bytes": 304445
+    },
+    {
+      "file": "drop_four_colors.gif",
+      "bytes": 276936
+    },
+    {
+      "file": "fear_four_colors.gif",
+      "bytes": 373344
+    },
+    {
+      "file": "gloat_four_colors.gif",
+      "bytes": 367606
+    },
+    {
+      "file": "goblin_camp_background.jpg",
+      "bytes": 184295
+    },
+    {
+      "file": "goblin_camp_feet_overlay.jpg",
+      "bytes": 203527
+    },
+    {
+      "file": "hurt_four_colors.gif",
+      "bytes": 362922
+    },
+    {
+      "file": "idle_four_colors.gif",
+      "bytes": 531565
+    },
+    {
+      "file": "land_four_colors.gif",
+      "bytes": 263553
+    },
+    {
+      "file": "lose_four_colors.gif",
+      "bytes": 371231
+    },
+    {
+      "file": "near_miss_four_colors.gif",
+      "bytes": 359187
+    },
+    {
+      "file": "new_expressions.jpg",
+      "bytes": 112120
+    },
+    {
+      "file": "swamp_background.jpg",
+      "bytes": 158542
+    },
+    {
+      "file": "swamp_feet_overlay.jpg",
+      "bytes": 186684
+    },
+    {
+      "file": "taunt_four_colors.gif",
+      "bytes": 465919
+    },
+    {
+      "file": "win_four_colors.gif",
+      "bytes": 366039
+    }
+  ]
+}

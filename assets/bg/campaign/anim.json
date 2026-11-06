@@ -1,0 +1,43 @@
+{
+  "smoke": {
+    "file": "map_smoke.png",
+    "frame_size": [
+      192,
+      192
+    ],
+    "columns": 3,
+    "frames": 6,
+    "fps": 12,
+    "loop": true
+  },
+  "flag": {
+    "file": "map_flag.png",
+    "frame_size": [
+      128,
+      192
+    ],
+    "columns": 3,
+    "frames": 6,
+    "fps": 12,
+    "loop": true,
+    "origin": [
+      64,
+      20
+    ]
+  },
+  "waterfall": {
+    "file": "waterfall.png",
+    "frame_size": [
+      256,
+      384
+    ],
+    "columns": 3,
+    "frames": 6,
+    "fps": 12,
+    "loop": true,
+    "origin": [
+      128,
+      192
+    ]
+  }
+}

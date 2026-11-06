@@ -159,6 +159,10 @@ def sprite_frames(color, entries):
 def pack_tiles(data, packed):
     entries = []
     clips = {}
+    manifest_path = DEST / 'swamp_manifest.json'
+    manifest = json.loads(manifest_path.read_text())
+    base_poses = OLD_EXPRESSIONS + list(EXTRA)
+    retained_poses = [p for p in manifest.get('expressions', []) if p not in base_poses]
     for color in COLORS:
         color_entries = []
         for name, (kind, start, count, fps, loop) in CLIPS.items():
@@ -182,12 +186,13 @@ def pack_tiles(data, packed):
             image = packed[color, 'idle'][f].crop((32, 32, 160, 160))
             image.save(DEST / 'expressions' / f'{color}_{name}.png', optimize=True)
             expressions.append(image)
+        # Later approved stills (issue49 sly/dizzy) survive an issue48 rebuild.
+        for pose in retained_poses:
+            expressions.append(Image.open(DEST / 'expressions' / f'{color}_{pose}.png').convert('RGBA'))
         atlas(expressions, cell=128, columns=3).save(DEST / f'expressions_{color}.png', optimize=True)
-    manifest_path = DEST / 'swamp_manifest.json'
-    manifest = json.loads(manifest_path.read_text())
     manifest['animations'] = entries
-    manifest['expressions'] = OLD_EXPRESSIONS + list(EXTRA)
-    manifest['expression_grid'] = {'columns': 3, 'cell': 128, 'rows': 4}
+    manifest['expressions'] = base_poses + retained_poses
+    manifest['expression_grid'] = {'columns': 3, 'cell': 128, 'rows': math.ceil(len(manifest['expressions']) / 3)}
     manifest['shared_drawn_cels'] = {}
     manifest['notes'] = 'Issue #48: 98 independently drawn cels per color, 392 total. No synthesized poses, no shared clips. Original B static tiles and nine existing individual expressions preserved.'
     write(manifest_path, manifest)

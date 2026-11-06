@@ -1,0 +1,674 @@
+{
+  "issue": 49,
+  "base": "cb34881",
+  "files": [
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/ambience.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/ambience_g2.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/anim.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/map_cloud_1.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/map_cloud_1.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/map_cloud_2.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/map_cloud_2.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/map_cloud_3.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/map_cloud_3.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/map_flag.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/map_flag.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/map_smoke.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/map_smoke.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/map_water_glint.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/map_water_glint.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/waterfall.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/campaign/waterfall.png.import"
+    },
+    {
+      "status": "M",
+      "path": "assets/bg/goblin_camp/layers.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/sky_dusk.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/sky_dusk.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/sky_morning.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/sky_morning.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/sky_night.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/sky_night.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/sky_noon.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/goblin_camp/sky_noon.png.import"
+    },
+    {
+      "status": "M",
+      "path": "assets/bg/orc_camp/layers.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/orc_camp/sky_dusk.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/orc_camp/sky_dusk.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/orc_camp/sky_morning.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/orc_camp/sky_morning.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/orc_camp/sky_night.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/orc_camp/sky_night.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/orc_camp/sky_noon.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/orc_camp/sky_noon.png.import"
+    },
+    {
+      "status": "M",
+      "path": "assets/bg/swamp/layers.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/sky_dusk.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/sky_dusk.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/sky_morning.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/sky_morning.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/sky_night.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/sky_night.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/sky_noon.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/swamp/sky_noon.png.import"
+    },
+    {
+      "status": "M",
+      "path": "assets/bg/training_field/layers.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/training_field/sky_dusk.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/training_field/sky_dusk.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/training_field/sky_morning.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/training_field/sky_morning.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/training_field/sky_night.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/training_field/sky_night.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/training_field/sky_noon.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/bg/training_field/sky_noon.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/anim.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/fog.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/fog.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/icon_dusk.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/icon_dusk.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/icon_fog.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/icon_fog.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/icon_morning.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/icon_morning.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/icon_night.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/icon_night.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/icon_noon.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/icon_noon.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/icon_rain.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/icon_rain.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/icon_storm.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/icon_storm.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/lightning_bolt.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/lightning_bolt.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/rain.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/rain.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/rain_splash.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/rain_splash.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/red_eyes.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/fx/weather/red_eyes.png.import"
+    },
+    {
+      "status": "M",
+      "path": "assets/tiles/animation_pack.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_dizzy.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_dizzy.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_sly.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/green_sly.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_dizzy.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_dizzy.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_sly.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/purple_sly.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_dizzy.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_dizzy.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_sly.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/red_sly.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_dizzy.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_dizzy.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_sly.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/tiles/swamp_b/expressions/yellow_sly.png.import"
+    },
+    {
+      "status": "M",
+      "path": "assets/tiles/swamp_b/expressions_green.png"
+    },
+    {
+      "status": "M",
+      "path": "assets/tiles/swamp_b/expressions_purple.png"
+    },
+    {
+      "status": "M",
+      "path": "assets/tiles/swamp_b/expressions_red.png"
+    },
+    {
+      "status": "M",
+      "path": "assets/tiles/swamp_b/expressions_yellow.png"
+    },
+    {
+      "status": "M",
+      "path": "assets/tiles/swamp_b/swamp_manifest.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/ui/hud/anim.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/ui/hud/clash_spark.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/ui/hud/clash_spark.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/ui/hud/hud_manifest.json"
+    },
+    {
+      "status": "A",
+      "path": "assets/ui/hud/sword_left.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/ui/hud/sword_left.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/ui/hud/sword_right.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/ui/hud/sword_right.png.import"
+    },
+    {
+      "status": "A",
+      "path": "assets/ui/hud/turn_plaque.png"
+    },
+    {
+      "status": "A",
+      "path": "assets/ui/hud/turn_plaque.png.import"
+    },
+    {
+      "status": "M",
+      "path": "docs/ideas/check_swamp_polish.py"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/check_world_life_map.py"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/check_world_life_weather.py"
+    },
+    {
+      "status": "M",
+      "path": "docs/ideas/pack_swamp_polish.py"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/pack_world_life_faces.py"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/pack_world_life_hud.py"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/pack_world_life_map.py"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/pack_world_life_weather.py"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_handoff.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_render_hours.gd"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_render_map.gd"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_resource_smoke.gd"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_resources.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/.gdignore"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/all_preview_sizes.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/faces/resource_smoke.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/faces/sly_dizzy_128_46.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/faces/sly_dizzy_four_colors.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/faces/validation.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/hud/clash_spark.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/hud/resource_smoke.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/hud/turn_plaque_clash.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/hud/turn_plaque_preview.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/hud/validation.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/map/godot_tests.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/map/map_clouds.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/map/map_flag.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/map/map_positions_3_segments.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/map/map_smoke.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/map/orc_camp_life.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/map/orc_camp_life.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/map/resource_smoke.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/map/validation.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/map/village_life.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/map/village_life.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/map/waterfall.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/fog.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/fog_scene.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/goblin_camp_day_cycle.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/goblin_camp_four_hours.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/lightning_bolt.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/lightning_bolt_scene.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/orc_camp_day_cycle.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/orc_camp_four_hours.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/rain.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/rain_scene.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/rain_splash.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/red_eyes.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/resource_smoke.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/swamp_day_cycle.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/swamp_four_hours.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/training_field_day_cycle.gif"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/training_field_four_hours.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/validation.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_review/weather/weather_icons.jpg"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_sheet_tools.py"
+    },
+    {
+      "status": "A",
+      "path": "docs/ideas/world_life_sources.json"
+    }
+  ]
+}

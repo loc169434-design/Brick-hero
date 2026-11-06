@@ -1,0 +1,71 @@
+{
+  "rain": {
+    "frames": 4,
+    "fps": 12,
+    "columns": 2,
+    "frame_size": [
+      1080,
+      660
+    ],
+    "loop": true,
+    "tileable": [
+      "x",
+      "y"
+    ]
+  },
+  "rain_splash": {
+    "frames": 6,
+    "fps": 16,
+    "columns": 3,
+    "frame_size": [
+      512,
+      512
+    ],
+    "loop": false,
+    "origin": [
+      256,
+      420
+    ]
+  },
+  "lightning_bolt": {
+    "frames": 6,
+    "fps": 18,
+    "columns": 3,
+    "frame_size": [
+      512,
+      1024
+    ],
+    "loop": false,
+    "origin": [
+      256,
+      900
+    ]
+  },
+  "fog": {
+    "frames": 4,
+    "fps": 8,
+    "columns": 2,
+    "frame_size": [
+      1080,
+      660
+    ],
+    "loop": true,
+    "tileable": [
+      "x"
+    ]
+  },
+  "red_eyes": {
+    "frames": 6,
+    "fps": 8,
+    "columns": 3,
+    "frame_size": [
+      256,
+      128
+    ],
+    "loop": false,
+    "blank_frames": [
+      0,
+      5
+    ]
+  }
+}

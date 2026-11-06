@@ -182,6 +182,7 @@ B3 gồm:
 - Bom, sét, sao nổi khối có lửa ngòi và tia điện chạy (nhánh `art/specials-3d`, bàn giao ở `docs/ideas/specials_3d_review/README.md`). Đã ghép: `scripts/board/special_art.gd` nạp ảnh, `board_view.gd` vẽ khung theo thời gian.
 - Thiết kế 4 quái, rồng, lò rèn, lời thoại (nhánh `docs/monsters`) và ảnh vương quốc (nhánh `art/kingdom`). Dùng cho giai đoạn 4–5, chưa ghép.
 - Trời bốn giờ, mưa, giông, sương, mắt đỏ, biểu tượng thời tiết và bản đồ sống động (nhánh `art/world-life`, issue #49). Đã ghép phần hình: `scripts/battle/weather.gd` bốc giờ/trời theo vùng hoặc theo màn, `arena_backdrop.gd` đổi trời và ánh sáng, `arena_weather.gd` vẽ mưa/sương/chớp, `map_view.gd` dùng mây, cờ, thác mới. Hiệu ứng lên luật (buff theo trời) chưa làm, chờ bot đo.
+- Ngày 2026-11-07 (code, ảnh vẽ tạm): item hỗ trợ (Búa, Xáo bảng, Bình máu, Bom mở màn; mua ở kệ lò rèn, rơi khi thắng trùm/3 sao), 4 tuyệt chiêu còn lại (Lôi Trảm, Hộ Thể, Phong Kiếm, Tinh Kiếm), đòn liên hoàn theo chuỗi nổ, lời khen và hiệu ứng nổ mạnh hơn trên bảng, ô Tên lửa từ nối ô vuông 2×2 kèm 3 hợp thể. Hiệp sĩ vẽ theo lớp trang bị: code đã sẵn (`CharacterRig.set_outfit`), chờ ảnh theo `docs/ideas/hero_gear_layers_request.md`.
 
 Việc mới thì tạo nhánh mới từ `main`, xong thì comment trực tiếp vào issue.
 

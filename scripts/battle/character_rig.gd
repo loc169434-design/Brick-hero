@@ -48,6 +48,8 @@ const BREAK_FX := {"hero_rookie": "splinters"}
 signal clip_impact(clip: StringName)
 
 const ANIM_FILE := "anim/anim.json"
+## Gear layers over the body, nearest last (see layer_paths).
+const LAYER_ORDER := ["boots", "armor", "helmet", "weapon"]
 
 var facing := 1
 ## Drawn acting can opt out of the extra breathing and cheer hops used by still poses.
@@ -77,6 +79,11 @@ var _anim := {}
 ## A set of clips that stands in for the usual ones while it's on: anim/<variant>/ with its own
 ## anim.json (the hero's sword turned into a broom). Clips it doesn't have play as usual.
 var variant := ""
+## What the character wears (Gear.outfit): with gear layers drawn for a clip, the bare body is
+## drawn and each piece worn laid over it, frame for frame (see _layer_paths).
+var outfit := {}
+## Clip key -> the textures to stack for it, or [] when the clip has no layers.
+var _layer_cache := {}
 var _variant_clips := {}
 var _base_clips := {}
 ## Loaded clip sheets by path; null for a missing one.
@@ -122,6 +129,7 @@ func setup(id: String, p_facing: int, layers := -1) -> void:
 	_mood_serial += 1
 	_textures.clear()
 	_sheets.clear()
+	_layer_cache.clear()
 	_clip = &""
 	_clip_key = ""
 	_rig = {}
@@ -350,6 +358,56 @@ func set_variant(name: String) -> void:
 	_body.queue_redraw()
 
 
+## Dresses the character. Takes effect on clips that have gear layers drawn; others keep
+## their painted look.
+func set_outfit(p_outfit: Dictionary) -> void:
+	outfit = p_outfit.duplicate()
+	_layer_cache.clear()
+	_body.queue_redraw()
+
+
+## Gear layers (art request docs/ideas/hero_gear_layers_request.md): every layer of a clip is a
+## sheet on exactly the clip's grid, so the pieces sit on the body frame for frame. In
+## assets/characters/<id>/anim/layers/: body/ the bare hero, <item>/ each piece, and
+## <item>_back/ the part of a piece behind the body (a sword on the far side). Drawn back
+## pieces, then the body, then boots, armor, helmet and weapon. Paths are tried for the hero's
+## wear, then fresh; a clip with no body layer has none and is drawn whole.
+static func layer_paths(id: String, p_outfit: Dictionary, wear_name: String, clip: String, root := "res://assets/characters/") -> Array[String]:
+	var dir := "%s%s/anim/layers/" % [root, id]
+	var pieces: Array[String] = []
+	for slot in LAYER_ORDER:
+		var item: String = p_outfit.get(slot, "")
+		if item:
+			pieces.append(item)
+	var order: Array[String] = []
+	for item in pieces:
+		order.append(item + "_back")
+	order.append("body")
+	order.append_array(pieces)
+	var paths: Array[String] = []
+	for layer in order:
+		for stem in ["%s_%s" % [wear_name, clip], "fresh_%s" % clip]:
+			var path := "%s%s/%s.png" % [dir, layer, stem]
+			if ResourceLoader.exists(path):
+				paths.append(path)
+				break
+		if layer == "body" and (paths.is_empty() or not paths[-1].contains("/body/")):
+			return []
+	return paths
+
+
+func _clip_layers(clip: StringName) -> Array:
+	if outfit.is_empty():
+		return []
+	var key := "%s/%s" % [WEAR_NAMES[wear], clip]
+	if not _layer_cache.has(key):
+		var textures: Array[Texture2D] = []
+		for path in layer_paths(character_id, outfit, WEAR_NAMES[wear], String(clip)):
+			textures.append(load(path))
+		_layer_cache[key] = textures
+	return _layer_cache[key]
+
+
 func _clip_sheet_for(clip: StringName) -> Texture2D:
 	var folder := "anim/%s/" % variant if _variant_clips.has(String(clip)) else "anim/"
 	for stem in ["%s_%s" % [WEAR_NAMES[wear], clip], "fresh_%s" % clip, String(clip)]:
@@ -549,7 +607,12 @@ func _draw_clip_frame() -> void:
 	var columns := int(_anim.get("columns", 4))
 	var frame := _clip_frame()
 	var source := Rect2(Vector2(frame % columns, frame / columns) * cell_size, cell_size)
-	_body.draw_texture_rect_region(_clip_sheet, Rect2(-_feet() * _scale(), cell_size * _scale()), source)
+	var layers := _clip_layers(_clip)
+	if layers.is_empty():
+		_body.draw_texture_rect_region(_clip_sheet, Rect2(-_feet() * _scale(), cell_size * _scale()), source)
+		return
+	for texture: Texture2D in layers:
+		_body.draw_texture_rect_region(texture, Rect2(-_feet() * _scale(), cell_size * _scale()), source)
 
 
 ## How far this frame's shield has moved from the rig's shield point, in canvas pixels.

@@ -152,3 +152,26 @@ func test_clip_sheets_import_vram_compressed() -> void:
 			assert_eq(config.get_value("params", "compress/mode"), 2, folder + file)
 			checked += 1
 	assert_true(checked > 80, "found the clip sheets")
+
+
+func test_the_outfit_follows_the_best_gear() -> void:
+	var outfit := Gear.outfit(["wood_sword", "iron_sword", "leather_armor", "sword_plus_1", "sword_plus_2"])
+	assert_eq(outfit["weapon"], "iron_sword")
+	assert_eq(outfit["armor"], "leather_armor")
+	assert_eq(outfit["helmet"], "")
+	assert_eq(outfit["refine"], 2)
+
+
+func test_without_a_bare_body_layer_a_clip_is_drawn_whole() -> void:
+	var outfit := Gear.outfit(["wood_sword", "iron_armor"])
+	assert_eq(CharacterRig.layer_paths("hero_rookie", outfit, "fresh", "idle"), [] as Array[String], "no layers drawn yet")
+
+
+func test_gear_layers_stack_back_body_then_pieces() -> void:
+	var root := "res://tests/fixtures/characters/"
+	var outfit := {"weapon": "iron_sword", "armor": "leather_armor", "helmet": "iron_helmet", "boots": ""}
+	var paths := CharacterRig.layer_paths("dummy", outfit, "battered", "idle", root)
+	var names: Array[String] = []
+	for path in paths:
+		names.append(path.get_base_dir().get_file() + "/" + path.get_file())
+	assert_eq(names, ["iron_sword_back/fresh_idle.png", "body/battered_idle.png", "leather_armor/fresh_idle.png", "iron_sword/fresh_idle.png"] as Array[String], "a missing helmet layer is skipped; the wear's body wins")

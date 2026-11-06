@@ -231,6 +231,7 @@ func show_campaign(p_campaign: Campaign) -> void:
 
 
 func _restock() -> void:
+	_hero.set_outfit(Gear.outfit(campaign.owned))
 	for slot: String in Gear.SLOTS:
 		var next := Gear.next(campaign.owned, slot)
 		_hanging[slot] = next if next else Gear.best(campaign.owned, slot)

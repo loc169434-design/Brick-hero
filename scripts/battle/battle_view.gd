@@ -161,6 +161,8 @@ var _hud_swords: Array[Texture2D] = []
 var _clash_spark: Texture2D
 var _combat_anim := {}
 var _backdrop: ArenaBackdrop
+## What the hero wears (Gear.outfit), set by the campaign; drawn where gear layers exist.
+var hero_outfit := {}
 ## Holds both fighters, so the hour's light tints them without touching their own flashes.
 var _cast: Node2D
 var _weather: ArenaWeather
@@ -255,6 +257,7 @@ func show_state(state: BattleState) -> void:
 	_weather.set_sky(state.weather)
 	_cast.modulate = _backdrop.fighter_light()
 	_hero.setup(HERO_ID, 1)
+	_hero.set_outfit(hero_outfit)
 	_monster.setup(state.monster.id, -1, state.shield_layers() if state.monster.shield_layers > 0 else -1)
 	_monster.modulate = Color.WHITE
 	_rage_time = 0.0

@@ -75,6 +75,19 @@ static func best(owned: Array, slot: String) -> String:
 	return found
 
 
+## What the hero wears, for drawing: the best owned piece of each slot that shows on the body
+## (CharacterRig.set_outfit), "" for a bare slot, and the sword's refining level 0–3.
+static func outfit(owned: Array) -> Dictionary:
+	var refine := best(owned, "refine")
+	return {
+		"weapon": best(owned, "weapon"),
+		"armor": best(owned, "armor"),
+		"helmet": best(owned, "helmet"),
+		"boots": best(owned, "boots"),
+		"refine": ladder("refine").find(refine) + 1 if refine else 0,
+	}
+
+
 ## The next rung to buy in `slot`, or "" when the ladder is climbed.
 static func next(owned: Array, slot: String) -> String:
 	for id in ladder(slot):

@@ -1,0 +1,36 @@
+{
+  "textures": [
+    {
+      "file": "assets/ui/hud/turn_plaque.png",
+      "size": [
+        360,
+        116
+      ]
+    },
+    {
+      "file": "assets/ui/hud/sword_left.png",
+      "size": [
+        160,
+        160
+      ]
+    },
+    {
+      "file": "assets/ui/hud/sword_right.png",
+      "size": [
+        160,
+        160
+      ]
+    },
+    {
+      "file": "assets/ui/hud/clash_spark.png",
+      "size": [
+        480,
+        320
+      ]
+    }
+  ],
+  "metadata": [
+    "assets/ui/hud/anim.json",
+    "assets/ui/hud/hud_manifest.json"
+  ]
+}

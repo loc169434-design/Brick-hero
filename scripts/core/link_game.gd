@@ -20,20 +20,46 @@ func _init(p_rules: BoardRules = null, seed_value: int = -1) -> void:
 	deal()
 
 
-## Fills the board with no ready-made lines and at least one possible link.
+## Fills the board with no ready-made lines and at least one possible link. Crates, rocks
+## and items stay where they are; only the tiles around them are dealt again.
 func deal() -> void:
-	while true:
+	for attempt in 200:
 		for y in board.rows:
 			for x in board.columns:
-				board.set_cell(Vector2i(x, y), Cell.new(_color_without_line(Vector2i(x, y))))
+				var p := Vector2i(x, y)
+				var cell := board.get_cell(p)
+				if cell == null or not cell.is_blocker():
+					board.set_cell(p, Cell.new(_color_without_line(p)))
 		if has_move():
 			return
+
+
+## Puts `count` obstacles of `kind` (`layers` thick; 0 for items) on random tiles between rows
+## `from_row` and `to_row`, keeping at least one link possible. Returns where they went.
+func place(kind: String, count: int, layers := 0, from_row := 0, to_row := -1) -> Array[Vector2i]:
+	var last := board.rows - 1 if to_row < 0 else mini(to_row, board.rows - 1)
+	var spots: Array[Vector2i] = []
+	for y in range(from_row, last + 1):
+		for x in board.columns:
+			var cell := board.get_cell(Vector2i(x, y))
+			if cell and not cell.is_blocker() and not cell.is_special():
+				spots.append(Vector2i(x, y))
+	var placed: Array[Vector2i] = []
+	while placed.size() < count and not spots.is_empty():
+		var p: Vector2i = spots.pop_at(_rng.randi_range(0, spots.size() - 1))
+		var before := board.get_cell(p)
+		board.set_cell(p, Cell.obstacle(kind, layers))
+		if has_move():
+			placed.append(p)
+		else:
+			board.set_cell(p, before)
+	return placed
 
 
 ## Whether `p` can be added to the end of `path` (or start it, if `path` is empty).
 func can_extend(path: Array[Vector2i], p: Vector2i) -> bool:
 	var cell := board.get_cell(p)
-	if cell == null or path.has(p):
+	if cell == null or cell.is_blocker() or path.has(p):
 		return false
 	if path.is_empty():
 		return true

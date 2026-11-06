@@ -10,17 +10,37 @@ const NEIGHBORS := [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
 ## `refill` returns a new Cell for each square emptied at the top; without it the gaps stay empty.
 static func resolve_link(board: BoardModel, rules: BoardRules, path: Array[Vector2i], refill := Callable()) -> Array[ClearStep]:
 	var steps: Array[ClearStep] = []
+	var chain := 0
 	var step := link_step(board, rules, path)
 	while not step.is_empty():
-		step.chain = steps.size() + 1
+		if step.rescued.is_empty():
+			chain += 1
+		step.chain = maxi(chain, 1)
+		for h in step.hit:
+			board.get_cell(h["at"]).layers = h["layers"]
 		for p in step.cleared:
 			board.set_cell(p, null)
 		for s in step.spawned:
 			board.set_cell(s["at"], Cell.new(s["color"], s["special"]))
 		step.falls = apply_gravity(board, refill)
 		steps.append(step)
-		step = find_lines(board, rules)
+		step = rescue_step(board)
+		if step.is_empty():
+			step = find_lines(board, rules)
 	return steps
+
+
+## Items resting on the bottom row are rescued: taken off the board as a round of their own.
+static func rescue_step(board: BoardModel) -> ClearStep:
+	var step := ClearStep.new()
+	for x in board.columns:
+		var p := Vector2i(x, board.rows - 1)
+		var cell := board.get_cell(p)
+		if cell and cell.is_item():
+			step.cleared.append(p)
+			step.cleared_cells.append(cell)
+			step.rescued.append({"at": p, "kind": cell.blocker})
+	return step
 
 
 ## The link's own round, worked out without touching the board. A long link leaves a special
@@ -39,6 +59,7 @@ static func link_step(board: BoardModel, rules: BoardRules, path: Array[Vector2i
 	for p in path:
 		marked[p] = true
 	_trigger_specials(board, step, marked)
+	_hit_blockers(board, step, marked)
 	_collect(board, step, marked)
 	return step
 
@@ -73,6 +94,7 @@ static func find_lines(board: BoardModel, rules: BoardRules) -> ClearStep:
 	if marked.is_empty():
 		return step
 	_trigger_specials(board, step, marked)
+	_hit_blockers(board, step, marked)
 	_collect(board, step, marked)
 	return step
 
@@ -123,6 +145,31 @@ static func _runs(board: BoardModel, min_length: int) -> Array[Dictionary]:
 						runs.append({"color": color, "cells": run.duplicate()})
 					run.clear()
 	return runs
+
+
+## Crates and rocks take one layer off per round when a square beside them clears, or when a
+## blast covers them; at none left they break and clear with the round. Blasts pass over items.
+static func _hit_blockers(board: BoardModel, step: ClearStep, marked: Dictionary) -> void:
+	var hits := {}
+	for p: Vector2i in marked.keys():
+		var cell := board.get_cell(p)
+		if cell and cell.is_blocker():
+			marked.erase(p)
+			if not cell.is_item():
+				hits[p] = true
+	for p: Vector2i in marked:
+		for d in NEIGHBORS:
+			var q: Vector2i = p + d
+			var other := board.get_cell(q)
+			if other and other.is_blocker() and not other.is_item():
+				hits[q] = true
+	for q: Vector2i in hits:
+		var cell := board.get_cell(q)
+		if cell.layers > 1:
+			step.hit.append({"at": q, "layers": cell.layers - 1})
+		else:
+			marked[q] = true
+			step.broken.append({"at": q, "kind": cell.blocker})
 
 
 static func _collect(board: BoardModel, step: ClearStep, marked: Dictionary) -> void:
@@ -268,7 +315,7 @@ static func _all_of_color(board: BoardModel, color: int) -> Array[Vector2i]:
 	var area: Array[Vector2i] = []
 	for p in _everything(board):
 		var cell := board.get_cell(p)
-		if cell.color == color and not cell.is_special():
+		if cell.color == color and not cell.is_special() and not cell.is_blocker():
 			area.append(p)
 	return area
 

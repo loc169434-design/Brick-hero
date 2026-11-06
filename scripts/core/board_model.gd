@@ -30,7 +30,8 @@ func count() -> int:
 
 
 ## Fills the bottom rows from text, for tests and debug setups.
-## R G Y P are colors, * is a star, . is empty; spaces are ignored.
+## R G Y P are colors, * is a star, . is empty; 1 2 3 are crates of that many layers, K a rock
+## (2 layers), F an orc flag to rescue; spaces are ignored.
 func fill_from_pattern(lines: Array) -> void:
 	var top := rows - lines.size()
 	for i in lines.size():
@@ -51,4 +52,10 @@ static func _cell_from_char(ch: String) -> Cell:
 			return Cell.new(Cell.BlockColor.PURPLE)
 		"*":
 			return Cell.rainbow()
+		"1", "2", "3":
+			return Cell.obstacle("crate", int(ch))
+		"K":
+			return Cell.obstacle("rock", 2)
+		"F":
+			return Cell.obstacle("orc_flag")
 	return null

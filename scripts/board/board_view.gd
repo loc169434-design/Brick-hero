@@ -202,6 +202,17 @@ func _ready() -> void:
 	new_game()
 
 
+## Sets the board up for a level after a restart, without starting over: a fixed deal when
+## `seed` is 0 or more, then `setup` gets the LinkGame to put obstacles on.
+func prepare(seed := -1, setup := Callable()) -> void:
+	if seed >= 0:
+		game = LinkGame.new(BoardRules.new(), seed)
+	if setup.is_valid():
+		setup.call(game)
+	_shown = _snapshot()
+	_redraw()
+
+
 func new_game() -> void:
 	_generation += 1
 	_clear_sprites()

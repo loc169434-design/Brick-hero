@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MonsterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/battle/monster_data.gd" id="1_monster"]
+
+[resource]
+script = ExtResource("1_monster")
+id = "orc_drummer"
+display_name = "Orc Trống Trận"
+max_hp = 60
+shield_layers = 1
+counterattacks = true
+attack = 8
+countdown = 4
+tile_theme = "orc_shield"
+background = "orc_camp"

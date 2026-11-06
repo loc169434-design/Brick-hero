@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level/level_data.gd" id="1_level"]
+
+[resource]
+script = ExtResource("1_level")
+number = 10
+monsters = PackedStringArray("fairy_beggar")
+kill = false
+crates = 6
+crate_layers = 1
+break_crates = true
+turns = 8
+board_seed = 1010

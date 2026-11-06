@@ -1,0 +1,43 @@
+{
+  "id": "fairy_beggar",
+  "canvas": [
+    512,
+    512
+  ],
+  "feet": [
+    256,
+    500
+  ],
+  "anchors": {
+    "fresh_idle": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_beg": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_reveal": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    }
+  }
+}

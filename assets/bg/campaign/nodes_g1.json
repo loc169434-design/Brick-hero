@@ -1,0 +1,182 @@
+[
+  {
+    "level": 1,
+    "segment": 1,
+    "x": 520,
+    "y": 1760,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 2,
+    "segment": 1,
+    "x": 460,
+    "y": 1500,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 3,
+    "segment": 1,
+    "x": 760,
+    "y": 1360,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 4,
+    "segment": 1,
+    "x": 330,
+    "y": 1100,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 5,
+    "segment": 1,
+    "x": 610,
+    "y": 680,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": true
+  },
+  {
+    "level": 6,
+    "segment": 2,
+    "x": 540,
+    "y": 1840,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 7,
+    "segment": 2,
+    "x": 610,
+    "y": 1660,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 8,
+    "segment": 2,
+    "x": 220,
+    "y": 1500,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 9,
+    "segment": 2,
+    "x": 570,
+    "y": 1390,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 10,
+    "segment": 2,
+    "x": 750,
+    "y": 1240,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 11,
+    "segment": 2,
+    "x": 480,
+    "y": 1115,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 12,
+    "segment": 2,
+    "x": 250,
+    "y": 990,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 13,
+    "segment": 2,
+    "x": 630,
+    "y": 875,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 14,
+    "segment": 2,
+    "x": 800,
+    "y": 750,
+    "hard": true,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 15,
+    "segment": 2,
+    "x": 420,
+    "y": 650,
+    "hard": false,
+    "boss": false,
+    "bonus": true,
+    "petal": false
+  },
+  {
+    "level": 16,
+    "segment": 2,
+    "x": 300,
+    "y": 540,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 17,
+    "segment": 2,
+    "x": 740,
+    "y": 425,
+    "hard": false,
+    "boss": false,
+    "bonus": false,
+    "petal": false
+  },
+  {
+    "level": 18,
+    "segment": 2,
+    "x": 575,
+    "y": 230,
+    "hard": false,
+    "boss": true,
+    "bonus": false,
+    "petal": false
+  }
+]

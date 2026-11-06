@@ -15,8 +15,9 @@ signal stop_chosen(id: String)
 signal forge_requested
 
 const SCREEN := Vector2(1080, 1920)
-const BACKGROUND := "res://assets/bg/world_map.png"
-const AMBIENCE := "res://assets/bg/world_map_fx/anim.json"
+## Map segments, segment 1 at the bottom: assets/bg/campaign/segment_01.png and up.
+const SEGMENT := "res://assets/bg/campaign/segment_%02d.png"
+const AMBIENCE := "res://assets/bg/campaign/ambience.json"
 const LOCK_ICON := "res://assets/ui/map_node_locked.png"
 const COIN := "res://assets/fx/props/coin.png"
 const FONT := "res://assets/fonts/baloo_2_extra_bold.ttf"
@@ -40,7 +41,10 @@ const MOUND := Color(0.45, 0.3, 0.16)
 
 var campaign: Campaign
 
-var _background: Texture2D
+## The map's segments, bottom one first.
+var _segments: Array[Texture2D] = []
+## Marks on special stops: hard, boss, bonus, petal.
+var _badges := {}
 ## The map's moving touches, as read from AMBIENCE, and their textures by name.
 var _ambience := {}
 var _ambience_art := {}
@@ -75,7 +79,9 @@ var _intro_done := false
 
 
 func _ready() -> void:
-	_background = load(BACKGROUND) if ResourceLoader.exists(BACKGROUND) else null
+	for kind in ["hard", "boss", "bonus", "petal"]:
+		var path := "res://assets/ui/campaign/node_%s.png" % kind
+		_badges[kind] = load(path) if ResourceLoader.exists(path) else null
 	_lock = load(LOCK_ICON) if ResourceLoader.exists(LOCK_ICON) else null
 	_load_ambience()
 	_coin = load(COIN) if ResourceLoader.exists(COIN) else null
@@ -129,7 +135,14 @@ func _load_ambience() -> void:
 
 
 func map_size() -> Vector2:
-	return Vector2(_background.get_size()) if _background else SCREEN
+	return Vector2(SCREEN.x, SCREEN.y * maxi(_segments.size(), 1))
+
+
+func _load_segments(count: int) -> void:
+	_segments.clear()
+	for i in count:
+		var path := SEGMENT % (i + 1)
+		_segments.append(load(path) if ResourceLoader.exists(path) else null)
 
 
 ## Shows `p_campaign`. `won_at` is the stop of a fight just won (-1 for none), and
@@ -137,6 +150,8 @@ func map_size() -> Vector2:
 ## to the next stop and the monster there pops up.
 func show_campaign(p_campaign: Campaign, won_at := -1, first_clear := false) -> void:
 	campaign = p_campaign
+	if _segments.size() != campaign.segments:
+		_load_segments(campaign.segments)
 	_camera.make_current()
 	_names.clear()
 	for stop in campaign.stops:
@@ -198,7 +213,8 @@ func _monster_piece(index: int) -> CharacterRig:
 	piece.position = campaign.stops[index]["position"] + MONSTER_FEET
 	piece.z_index = 1
 	add_child(piece)
-	piece.setup(campaign.stops[index]["id"], -1)
+	var monster := Campaign.monster(campaign.stops[index]["id"])
+	piece.setup(monster.id if monster else "", -1)
 	return piece
 
 
@@ -332,10 +348,10 @@ func _tap(at: Vector2) -> void:
 # --- drawing -----------------------------------------------------------------
 
 func _draw() -> void:
-	if _background:
-		draw_texture_rect(_background, Rect2(Vector2.ZERO, map_size()), false)
-	else:
-		draw_rect(Rect2(Vector2.ZERO, SCREEN), Color(0.3, 0.5, 0.3))
+	draw_rect(Rect2(Vector2.ZERO, map_size()), Color(0.3, 0.5, 0.3))
+	for i in _segments.size():
+		if _segments[i]:
+			draw_texture_rect(_segments[i], Rect2(Vector2(0, (_segments.size() - 1 - i) * SCREEN.y), SCREEN), false)
 	_draw_ambience()
 	if campaign == null:
 		return
@@ -420,6 +436,22 @@ func _draw_stop(index: int) -> void:
 			_draw_flag(at + Vector2(0, 38), rise)
 			var shown := _stars_shown if index == _planting else campaign.stars_at(id)
 			_draw_stars(at + Vector2(0, NODE_SIZE / 2 + 26), shown)
+	_draw_number(index, at)
+
+
+## The level's number on a small medal by the stop, and its mark (hard, boss, bonus, a petal).
+func _draw_number(index: int, at: Vector2) -> void:
+	var stop: Dictionary = campaign.stops[index]
+	var medal := at + Vector2(-58, -50)
+	draw_circle(medal, 26, INK)
+	draw_circle(medal, 21, PAPER)
+	var text := str(stop.get("level", index + 1))
+	var width := _font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, 26).x
+	draw_string(_font, medal + Vector2(-width / 2, 9), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 26, INK)
+	for kind in ["boss", "hard", "bonus", "petal"]:
+		if stop.get(kind, false) and _badges.get(kind):
+			draw_texture_rect(_badges[kind], Rect2(at + Vector2(30, -92), Vector2(64, 64)), false)
+			break
 
 
 ## The padlock badge; `burst` 0..1 shakes it, then blows it up and away.

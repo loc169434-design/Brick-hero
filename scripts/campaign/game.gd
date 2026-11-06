@@ -33,22 +33,29 @@ func _ready() -> void:
 	_back_layer.hide()
 
 
+## Plays level `id` (its number).
 func start_fight(id: String) -> void:
-	var data := Campaign.monster(id)
-	if data == null or battle:
+	var level := Campaign.level(id)
+	if level == null or battle:
 		return
 	_fighting = id
 	battle = load(BATTLE_SCENE).instantiate()
 	manager = battle.get_node("BattleManager")
-	var encounters: Array[MonsterData] = [data]
+	var encounters: Array[MonsterData] = []
+	for monster_id in level.monsters:
+		encounters.append(Campaign.monster_data(monster_id))
 	manager.encounters = encounters
+	manager.level = level
 	manager.rules = Gear.apply(manager.rules, campaign.owned)
 	manager.rules.skill = campaign.skill
+	manager.rules.yellow_gold *= level.gold_multiplier
 	manager.return_to_map = true
 	manager.starting_gold = campaign.gold
 	manager.fight_over.connect(end_fight)
 	map.hide()
 	add_child(battle)
+	# The map's camera may be scrolled up the map: the fight is seen through its own.
+	(battle.get_node("Feel") as Camera2D).make_current()
 	_back_layer.show()
 
 
@@ -78,7 +85,7 @@ func close_forge() -> void:
 func end_fight(won: bool, gold: int) -> void:
 	if battle == null:
 		return
-	var stars := Campaign.stars_for(manager.state.hero_health()) if won else 0
+	var stars := manager.progress.stars(manager.state.hero_health(), gold - campaign.gold) if won else 0
 	var won_at := campaign.index_of(_fighting) if won else -1
 	var first_clear := campaign.finish_fight(_fighting, won, gold, stars)
 	campaign.save(save_path)

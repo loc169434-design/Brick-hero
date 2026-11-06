@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MonsterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/battle/monster_data.gd" id="1_monster"]
+
+[resource]
+script = ExtResource("1_monster")
+id = "orc_chief"
+display_name = "Tù Trưởng Orc"
+max_hp = 90
+shield_layers = 4
+counterattacks = true
+attack = 14
+countdown = 3
+crit_every = 3
+tile_theme = "orc_shield"
+background = "orc_camp"
+next_phase = "orc_chief_enraged"

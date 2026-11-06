@@ -18,27 +18,27 @@ const SLOT_NAMES := {
 	"boots": "Ủng",
 }
 const STARTING := ["wood_sword"]
-## The hero skills the forge lets the player pick (BattleState.SKILLS), each with the stop that
-## must be cleared before it can be picked ("" for none). The hero takes one into every fight.
-const SKILL_AFTER := {"armor_breaker": "", "second_wind": "orc_shield"}
+## The hero skills the forge lets the player pick (BattleState.SKILLS), each with the level
+## that must be won before it can be picked ("" for none). The hero takes one into every fight.
+const SKILL_AFTER := {"armor_breaker": "", "second_wind": "7"}
 const STARTING_SKILL := "armor_breaker"
 
-## Each item: slot, name, price, `after` (the stop that must be cleared first, "" for none)
+## Each item: slot, name, price, `after` (the level that must be won first, "" for none)
 ## and its effect: `red` damage per red square, `refine` extra red damage, `armor` taken off
 ## every monster attack, `crit_guard` of the monster's critical bonus stopped.
 const ITEMS := {
 	"wood_sword": {"slot": "weapon", "name": "Kiếm gỗ", "price": 0, "after": "", "red": 2.0},
-	"iron_sword": {"slot": "weapon", "name": "Kiếm sắt", "price": 45, "after": "orc_shield", "red": 2.5},
-	"tempered_sword": {"slot": "weapon", "name": "Kiếm thép", "price": 70, "after": "goblin_boss", "red": 3.0},
-	"sword_plus_1": {"slot": "refine", "name": "Rèn kiếm +1", "price": 60, "after": "toad_witch", "refine": 0.25},
-	"sword_plus_2": {"slot": "refine", "name": "Rèn kiếm +2", "price": 90, "after": "toad_witch", "refine": 0.5},
-	"sword_plus_3": {"slot": "refine", "name": "Rèn kiếm +3", "price": 120, "after": "toad_witch", "refine": 0.75},
-	"leather_armor": {"slot": "armor", "name": "Giáp da", "price": 30, "after": "scarecrow", "armor": 2},
-	"iron_armor": {"slot": "armor", "name": "Giáp sắt", "price": 65, "after": "orc_chief", "armor": 4},
-	"leather_helmet": {"slot": "helmet", "name": "Nón da", "price": 35, "after": "orc_chief", "crit_guard": 0.5},
-	"iron_helmet": {"slot": "helmet", "name": "Nón sắt", "price": 60, "after": "goblin_boss", "crit_guard": 1.0},
-	"reinforced_boots": {"slot": "boots", "name": "Ủng gia cố", "price": 35, "after": "orc_shield", "armor": 1},
-	"climbing_boots": {"slot": "boots", "name": "Ủng leo núi", "price": 55, "after": "witch_house", "armor": 2},
+	"iron_sword": {"slot": "weapon", "name": "Kiếm sắt", "price": 45, "after": "7", "red": 2.5},
+	"tempered_sword": {"slot": "weapon", "name": "Kiếm thép", "price": 70, "after": "29", "red": 3.0},
+	"sword_plus_1": {"slot": "refine", "name": "Rèn kiếm +1", "price": 60, "after": "36", "refine": 0.25},
+	"sword_plus_2": {"slot": "refine", "name": "Rèn kiếm +2", "price": 90, "after": "36", "refine": 0.5},
+	"sword_plus_3": {"slot": "refine", "name": "Rèn kiếm +3", "price": 120, "after": "36", "refine": 0.75},
+	"leather_armor": {"slot": "armor", "name": "Giáp da", "price": 30, "after": "5", "armor": 2},
+	"iron_armor": {"slot": "armor", "name": "Giáp sắt", "price": 65, "after": "18", "armor": 4},
+	"leather_helmet": {"slot": "helmet", "name": "Nón da", "price": 35, "after": "18", "crit_guard": 0.5},
+	"iron_helmet": {"slot": "helmet", "name": "Nón sắt", "price": 60, "after": "29", "crit_guard": 1.0},
+	"reinforced_boots": {"slot": "boots", "name": "Ủng gia cố", "price": 35, "after": "7", "armor": 1},
+	"climbing_boots": {"slot": "boots", "name": "Ủng leo núi", "price": 55, "after": "58", "armor": 2},
 }
 
 

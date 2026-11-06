@@ -19,7 +19,7 @@ func test_the_hero_starts_with_the_wooden_sword() -> void:
 func test_an_item_waits_for_its_region_its_lower_rung_and_the_gold() -> void:
 	var campaign := _campaign(100, [])
 	assert_eq(Gear.offer("leather_armor", campaign.owned, campaign.cleared, campaign.gold), Gear.Offer.LOCKED, "road not there yet")
-	campaign.cleared.append("scarecrow")
+	campaign.cleared.append("5")
 	assert_eq(Gear.offer("leather_armor", campaign.owned, campaign.cleared, campaign.gold), Gear.Offer.BUY)
 	assert_eq(Gear.offer("iron_armor", campaign.owned, campaign.cleared, campaign.gold), Gear.Offer.LOCKED, "leather first")
 	campaign.gold = 10
@@ -28,7 +28,7 @@ func test_an_item_waits_for_its_region_its_lower_rung_and_the_gold() -> void:
 
 
 func test_buying_takes_the_gold_once() -> void:
-	var campaign := _campaign(50, ["scarecrow", "orc_shield"])
+	var campaign := _campaign(50, ["5", "7"])
 	assert_true(campaign.buy("iron_sword"))
 	assert_eq(campaign.gold, 5)
 	assert_eq(Gear.best(campaign.owned, "weapon"), "iron_sword")
@@ -62,7 +62,7 @@ func test_an_attack_always_hurts_a_little() -> void:
 
 
 func test_owned_gear_is_saved() -> void:
-	var campaign := _campaign(40, ["scarecrow"])
+	var campaign := _campaign(40, ["5"])
 	campaign.buy("leather_armor")
 	var again := Campaign.from_map()
 	again.apply_dict(campaign.to_dict())
@@ -73,23 +73,23 @@ func test_owned_gear_is_saved() -> void:
 
 
 func test_armor_breaker_comes_first_and_second_wind_after_the_orc() -> void:
-	var campaign := _campaign(0, ["scarecrow"])
+	var campaign := _campaign(0, ["5"])
 	assert_eq(campaign.skill, "armor_breaker")
 	assert_true(not campaign.pick_skill("second_wind"), "locked until the Shield Orc falls")
 	assert_eq(campaign.skill, "armor_breaker")
-	campaign.cleared.append("orc_shield")
+	campaign.cleared.append("7")
 	assert_true(campaign.pick_skill("second_wind"))
 	assert_true(not campaign.pick_skill("nonsense"))
 	assert_eq(campaign.skill, "second_wind")
 
 
 func test_the_picked_skill_is_saved_and_a_locked_one_is_not_restored() -> void:
-	var campaign := _campaign(0, ["scarecrow", "orc_shield"])
+	var campaign := _campaign(0, ["1", "2", "3", "4", "5", "6", "7"])
 	campaign.pick_skill("second_wind")
 	var again := Campaign.from_map()
 	again.apply_dict(campaign.to_dict())
 	assert_eq(again.skill, "second_wind")
-	again.apply_dict({"cleared": ["scarecrow"], "skill": "second_wind"})
+	again.apply_dict({"cleared": ["1"], "skill": "second_wind"})
 	assert_eq(again.skill, "armor_breaker", "a save can't skip the fight that teaches it")
 
 

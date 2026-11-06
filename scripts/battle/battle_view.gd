@@ -32,7 +32,8 @@ const HERO_FEET := Vector2(270, 405)
 const MONSTER_FEET := Vector2(810, 405)
 ## Fighting-game health bars across the top: the hero's half on the left, the monster's on
 ## the right, the countdown between them.
-const BAR_SIZE := Vector2(440, 30)
+## The bars stop short of the middle, where the turn plaque and its swords swing.
+const BAR_SIZE := Vector2(370, 30)
 const BAR_RADIUS := 8
 ## The dark frame around each bar and shield pip.
 const BAR_RIM := 4
@@ -60,7 +61,11 @@ const COMBAT_DIR := "res://assets/fx/combat/"
 const COMBAT_ANIM := "res://assets/fx/combat/anim/anim.json"
 const PROP_DIR := "res://assets/fx/props/"
 const WEATHER_DIR := "res://assets/fx/weather/"
-const SKY_ICON := 44.0
+const SKY_ICON := 46.0
+## How far the hour and weather icons sit either side of the countdown's centre.
+const SKY_ICON_GAP := 72.0
+## Where the hour, weather and status icons start in the hero's row, after its name.
+const ROW_ICONS_X := 108.0
 const NUMBER_FONT := "res://assets/fonts/Bangers-Regular.ttf"
 ## Comic lettering pops to this scale (of its 512×320 art).
 const COMIC_SCALE := 0.55
@@ -101,7 +106,7 @@ const CLASH_AT := 0.35
 const HUD_DIR := "res://assets/ui/hud/"
 ## The painted swords lean this far on their own (left one to the left), in radians.
 const SWORD_LEAN := 0.1745
-const SWORD_SIZE := 88.0
+const SWORD_SIZE := 76.0
 ## clash_spark.png: 6 cels of 160 in 3 columns at 24 fps.
 const SPARK_FRAMES := 6
 const SPARK_COLUMNS := 3
@@ -1080,7 +1085,8 @@ func _draw_overlay() -> void:
 	_draw_text(monster_name, Vector2(MONSTER_BAR.x + BAR_SIZE.x - 4 - _text_width(monster_name, LABEL_SIZE), ROW_Y + LABEL_SIZE), LABEL_SIZE, TEXT)
 	_draw_shield_layers()
 	_draw_gold()
-	_draw_statuses(_draw_sky_icons(HERO_BAR.x + 128.0))
+	_draw_statuses(HERO_BAR.x + ROW_ICONS_X)
+	_draw_sky_icons(COUNTDOWN_AT + Vector2(0, 76))
 	_draw_turn_plaque(COUNTDOWN_AT)
 	if _state.outcome == BattleState.Outcome.ONGOING and _state.monster.counterattacks:
 		_draw_countdown(COUNTDOWN_AT + Vector2(0, 76))
@@ -1194,21 +1200,19 @@ func _draw_statuses(x: float) -> void:
 		if icon:
 			_overlay.draw_texture_rect(icon, rect, false)
 		_draw_text(str(status[1]), Vector2(rect.end.x - 6, rect.end.y), 26, TEXT, _number_font)
-		x += 66.0
+		x += 58.0
 
 
-## The hour, and the weather unless it's clear, as small icons in the hero's row from `x`.
-## Returns where the row carries on.
-func _draw_sky_icons(x: float) -> float:
-	var names: Array[StringName] = [_state.time_of_day]
+## The hour to the left of the countdown, and the weather unless it's clear to its right.
+func _draw_sky_icons(center: Vector2) -> void:
+	var sides := {_state.time_of_day: -1.0}
 	if _state.weather != Weather.DEFAULT_SKY:
-		names.append(_state.weather)
-	for name in names:
+		sides[_state.weather] = 1.0
+	for name: StringName in sides:
 		var icon := _weather_icon(name)
 		if icon:
-			_overlay.draw_texture_rect(icon, Rect2(Vector2(x, ROW_Y - 4), Vector2.ONE * SKY_ICON), false)
-			x += SKY_ICON + 6
-	return x + 14 if x > HERO_BAR.x + 128.0 else x
+			var at := center + Vector2(sides[name] * SKY_ICON_GAP, 0)
+			_overlay.draw_texture_rect(icon, Rect2(at - Vector2.ONE * SKY_ICON / 2, Vector2.ONE * SKY_ICON), false)
 
 
 func _weather_icon(name: StringName) -> Texture2D:

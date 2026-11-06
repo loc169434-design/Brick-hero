@@ -1,0 +1,155 @@
+{
+  "canvas": [
+    1080,
+    660
+  ],
+  "static_order": [
+    "sky",
+    "far",
+    "mid",
+    "ground"
+  ],
+  "flag": null,
+  "smoke": [],
+  "torch": [],
+  "grass": [],
+  "bird_lane_y": [],
+  "ambient_effects": {
+    "firefly": {
+      "file": "firefly.png",
+      "columns": 4,
+      "frame_size": [
+        256,
+        256
+      ],
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "positions": [
+        [
+          210,
+          350
+        ],
+        [
+          850,
+          300
+        ],
+        [
+          640,
+          200
+        ]
+      ],
+      "origin": [
+        128,
+        128
+      ],
+      "scale": 0.15
+    },
+    "bubble": {
+      "file": "bubble.png",
+      "columns": 4,
+      "frame_size": [
+        256,
+        256
+      ],
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "positions": [
+        [
+          400,
+          570
+        ],
+        [
+          800,
+          580
+        ]
+      ],
+      "origin": [
+        128,
+        128
+      ],
+      "scale": 0.2
+    },
+    "lotus": {
+      "file": "lotus.png",
+      "columns": 4,
+      "frame_size": [
+        256,
+        256
+      ],
+      "frames": 4,
+      "fps": 8,
+      "loop": true,
+      "positions": [
+        [
+          200,
+          590
+        ],
+        [
+          900,
+          600
+        ]
+      ],
+      "origin": [
+        128,
+        128
+      ],
+      "scale": 0.5
+    }
+  },
+  "safe_parallax": {
+    "zoom_min_when_panning": 1.1,
+    "zoom_max": 1.15,
+    "x_offsets": {
+      "sky": 0,
+      "far": -8,
+      "mid": 8,
+      "ground": 12
+    },
+    "y_offset": 0
+  },
+  "standing_floor": {
+    "top_y": 380,
+    "bottom_y": 525,
+    "feet_native": [
+      [
+        270,
+        405
+      ],
+      [
+        810,
+        405
+      ]
+    ],
+    "feet_with_game_backdrop_shift": [
+      [
+        270,
+        485
+      ],
+      [
+        810,
+        485
+      ]
+    ],
+    "backdrop_shift": [
+      0,
+      -80
+    ]
+  },
+  "fighter_clear_zones": [
+    [
+      150,
+      150,
+      390,
+      485
+    ],
+    [
+      690,
+      150,
+      930,
+      485
+    ]
+  ],
+  "art_revision": "issue48_warm_flat_floor"
+}

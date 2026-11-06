@@ -83,6 +83,10 @@ const GOLD := Color(0.98, 0.8, 0.25)
 const WARN := Color(0.95, 0.3, 0.25)
 const HIT_SPARK := Color(1, 0.85, 0.45)
 const HURT_SPARK := Color(1, 0.45, 0.35)
+const POISON := Color(0.55, 0.9, 0.3)
+const CURSE := Color(0.75, 0.55, 1.0)
+const CURSE_DIR := "res://assets/fx/curse/"
+const STATUS_DIR := "res://assets/ui/status/"
 const OUTLINE := Color(0.1, 0.07, 0.05)
 const OUTLINE_SIZE := 8
 ## Floating numbers: a dark rim, then a ring of their color around a warm white core.
@@ -107,6 +111,7 @@ var _number_font: Font
 ## The level's goals, shown as small chips under the countdown; null outside a level.
 var _goal: LevelProgress
 var _goal_art := ObstacleArt.new()
+var _status_icons := {}
 var _combat_anim := {}
 var _backdrop: ArenaBackdrop
 var _hero: CharacterRig
@@ -152,7 +157,15 @@ func _ready() -> void:
 	if ResourceLoader.exists(COMBAT_ANIM):
 		var json: JSON = load(COMBAT_ANIM)
 		if json.data is Dictionary:
-			_combat_anim = json.data
+			_combat_anim = json.data.duplicate()
+	# Curse effects (green poof, the broom spell) sit in their own folder.
+	if ResourceLoader.exists(CURSE_DIR + "anim.json"):
+		var curses: JSON = load(CURSE_DIR + "anim.json")
+		if curses.data is Dictionary:
+			for effect: String in curses.data:
+				var info: Dictionary = curses.data[effect].duplicate()
+				info["path"] = CURSE_DIR + effect + ".png"
+				_combat_anim[effect] = info
 	_coin = load(PROP_DIR + "coin.png") if ResourceLoader.exists(PROP_DIR + "coin.png") else null
 	_box.shadow_color = Color(0, 0, 0, 0.35)
 	_overlay = Node2D.new()
@@ -235,6 +248,7 @@ func _play_report(report: TurnReport) -> void:
 	if report.gold > 0:
 		_float("+%d VÀNG" % report.gold, _coin_center() + Vector2(0, 70), GOLD)
 		Sfx.play(&"coin", 1.0, -4.0)
+	_show_afflictions(report)
 	_drain_trails()
 
 	match report.outcome:
@@ -273,6 +287,7 @@ func _play_report(report: TurnReport) -> void:
 		if fight != _fight:
 			return
 		_monster.react(&"cheer")
+		_show_spell(report)
 	elif _state.attacks_next_move() and _state.hero_health() <= 0.3:
 		_hero.react(&"scared", 0.0)
 	if _state.attacks_next_move():
@@ -280,6 +295,65 @@ func _play_report(report: TurnReport) -> void:
 		if _state.next_attack_is_critical():
 			# Rubbing its hands, eyes glowing: the critical blow is coming.
 			_monster.react(&"windup", 0.0)
+
+
+## What the poison, the board and the curses did to the hero this move.
+func _show_afflictions(report: TurnReport) -> void:
+	var over_head := _local(_hero.point("head")) + Vector2(0, -70)
+	if report.cured:
+		_float("GIẢI ĐỘC!", over_head, HP_HERO.lightened(0.3), 46)
+		Sfx.play(&"heal", 1.3)
+	if report.poison_damage > 0:
+		_float("-%d" % report.poison_damage, over_head + Vector2(-60, 0), POISON)
+		_hero.flash()
+	if report.board_damage > 0:
+		_float("-%d" % report.board_damage, over_head + Vector2(60, 0), HURT_SPARK)
+		_hero.react(&"hurt", 0.6)
+		Sfx.play(&"boom")
+		impact.emit(0.5, 0.06)
+	if report.poison_damage > 0 or report.board_damage > 0:
+		_hero.set_health(_state.hero_health())
+	if report.turned_toad:
+		_turn_toad(true)
+	elif report.toad_back:
+		_turn_toad(false)
+	if report.broom_broken and _hero.variant == "broom":
+		_hero.react(&"broom_out", 0.42)
+		_comic("crack", over_head, 0.8)
+		await get_tree().create_timer(0.42).timeout
+		_hero.set_variant("")
+	if report.stolen > 0:
+		_float("-%d VÀNG" % report.stolen, _coin_center() + Vector2(0, 70), HURT_SPARK)
+	_redraw()
+
+
+## Spells the monster's attack cast on the hero.
+func _show_spell(report: TurnReport) -> void:
+	if report.broomed and _hero.character_id == HERO_ID:
+		_hero.set_variant("broom")
+		_hero.react(&"broom_in", 0.7)
+		Sfx.play(&"whoosh", 1.4)
+		_float("CHỔI!", _local(_hero.point("head")) + Vector2(0, -80), CURSE, 52)
+	if report.poisoned:
+		_float("TRÚNG ĐỘC!", _local(_hero.point("head")) + Vector2(0, -80), POISON, 46)
+	_redraw()
+
+
+## The hero turns into a toad in a puff of green smoke, or back.
+func _turn_toad(into: bool) -> void:
+	var feet := _hero.position
+	_flash("poof_green", _local(_hero.point("head")) + Vector2(0, 80), 0.6, 1.4, 0.4)
+	Sfx.play(&"special")
+	if into:
+		_hero.setup("hero_toad", 1)
+		_hero.react(&"transform_in", 1.0)
+		_float("ỘP!", _local(_hero.point("head")) + Vector2(0, -60), CURSE, 56)
+	else:
+		_hero.react(&"transform_out", 1.0)
+		await get_tree().create_timer(0.9).timeout
+		_hero.setup(HERO_ID, 1)
+		_hero.set_health(_state.hero_health())
+	_hero.position = feet
 
 
 func _process(_delta: float) -> void:
@@ -498,6 +572,11 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 		await get_tree().create_timer(0.35).timeout
 		if fight != _fight:
 			return
+	if report.board_spell or report.poisoned or report.leeched > 0:
+		await _monster_spell(report)
+		if fight == _fight:
+			_camera(1.0, SIZE / 2, 0.35)
+		return
 	var kind: StringName = MONSTER_ATTACKS[_attack_turn % MONSTER_ATTACKS.size()]
 	if _state.monster.special == "rock":
 		kind = &"rock"
@@ -530,6 +609,47 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 			await _monster.home(0.3)
 	if fight == _fight:
 		_camera(1.0, SIZE / 2, 0.35)
+
+
+## Clips the monster plays for each spell, and the word that pops up.
+const SPELL_CLIPS := {
+	"toads": [&"cast_toads", "zap"], "broom": [&"cast_broom", "zap"], "potion": [&"throw_potion", "whoosh"],
+	"burp": [&"burp_toads", "boom"], "web": [&"special", "whoosh"], "ice": [&"special", "zap"],
+	"bomb": [&"special", "boom"], "marks": [&"special", "heh"],
+}
+
+
+## A monster whose attack is a spell or a special blow: its own clip, the hit on the hero, and
+## for spells on the board a cue that something is coming down (the board shows it land).
+func _monster_spell(report: TurnReport) -> void:
+	var entry: Array = SPELL_CLIPS.get(report.board_spell, [&"special" if report.board_spell else &"attack", "bam"])
+	var clip: StringName = entry[0] if _monster.has_clip(entry[0]) else _monster_clip(&"special")
+	_monster.react(clip, 1.0)
+	await _wait(_monster.strike_time(clip, 0.35))
+	var head := _local(_hero.point("head"))
+	_comic(entry[1], _local(_monster.point("head")) + Vector2(-80, -110), 0.8)
+	if report.board_spell in ["toads", "burp"]:
+		# Toads hop off toward the board.
+		for i in _state.monster.special_power:
+			_flash("toad_hop", _local(_monster.point("hand")) + Vector2(-80 - 90 * i, 60), 0.4, 0.6, 0.5)
+	if report.board_spell == "broom":
+		_flash("broom_spell", head + Vector2(80, 60), 0.5, 0.9, 0.4)
+	if report.leeched > 0:
+		_float("+%d" % report.leeched, MONSTER_FEET + Vector2(0, -230), HP_MONSTER.lightened(0.3))
+		_monster.set_health(_state.monster_health())
+	_hero_hit(report, "ouch", &"hurt")
+
+
+## The boss drinks its potion and swells into its next form, in a cloud of green smoke.
+func play_transform() -> void:
+	if _monster.has_clip(&"drink_transform"):
+		_monster.react(&"drink_transform", 2.0)
+		Sfx.play(&"charge")
+		await get_tree().create_timer(1.1).timeout
+	_flash("poof_green", _local(_monster.point("head")) + Vector2(0, 80), 0.8, 1.8, 0.5)
+	Sfx.play(&"boom")
+	impact.emit(0.6, 0.08)
+	await get_tree().create_timer(0.25).timeout
 
 
 ## `clip` if the monster has it, else its plain attack: the act 1 Orcs are drawn with attack
@@ -638,8 +758,10 @@ func _flash(effect: String, at: Vector2, from_scale: float, to_scale: float, sec
 
 ## Plays the frame-by-frame version of `effect` once, if there is one.
 func _play_effect_clip(effect: String, at: Vector2, size: float, angle: float, additive: bool) -> bool:
-	var path := COMBAT_DIR + "anim/" + effect + ".png"
-	if not _combat_anim.has(effect) or not ResourceLoader.exists(path):
+	if not _combat_anim.has(effect):
+		return false
+	var path: String = _combat_anim[effect].get("path", COMBAT_DIR + "anim/" + effect + ".png")
+	if not ResourceLoader.exists(path):
 		return false
 	var info: Dictionary = _combat_anim[effect]
 	var sprite := _sprite(path, at, _fx)
@@ -653,7 +775,8 @@ func _play_effect_clip(effect: String, at: Vector2, size: float, angle: float, a
 		var blend := CanvasItemMaterial.new()
 		blend.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
 		sprite.material = blend
-	var tween := create_tween()
+	# Bound to the sprite, so the tween ends with it if the fight clears its effects early.
+	var tween := sprite.create_tween()
 	tween.tween_method(func(f: float) -> void: sprite.frame = mini(int(f), frames - 1), 0.0, float(frames), frames / float(info.get("fps", 24)))
 	tween.tween_callback(sprite.queue_free)
 	return true
@@ -816,6 +939,7 @@ func _draw_overlay() -> void:
 	_draw_text(monster_name, Vector2(MONSTER_BAR.x + BAR_SIZE.x - 4 - _text_width(monster_name, LABEL_SIZE), ROW_Y + LABEL_SIZE), LABEL_SIZE, TEXT)
 	_draw_shield_layers()
 	_draw_gold()
+	_draw_statuses()
 	if _state.outcome == BattleState.Outcome.ONGOING and _state.monster.counterattacks:
 		_draw_countdown(COUNTDOWN_AT)
 	if _hint:
@@ -913,6 +1037,32 @@ func _draw_gold() -> void:
 	_draw_text(text, Vector2(text_x, ROW_Y + 28), 30, GOLD, _number_font)
 
 
+## Poison, toad and broom on the hero, as icons by their name with the moves left.
+func _draw_statuses() -> void:
+	var statuses: Array = []
+	if _state.poison_turns > 0:
+		statuses.append(["poison", _state.poison_turns])
+	if _state.toad_turns > 0:
+		statuses.append(["toad", _state.toad_turns])
+	if _state.broom_turns > 0:
+		statuses.append(["broom", _state.broom_turns])
+	var x := HERO_BAR.x + 128.0
+	for status in statuses:
+		var icon := _status_icon(status[0])
+		var rect := Rect2(Vector2(x, ROW_Y - 4), Vector2(44, 44))
+		if icon:
+			_overlay.draw_texture_rect(icon, rect, false)
+		_draw_text(str(status[1]), Vector2(rect.end.x - 6, rect.end.y), 26, TEXT, _number_font)
+		x += 66.0
+
+
+func _status_icon(name: String) -> Texture2D:
+	if not _status_icons.has(name):
+		var path := STATUS_DIR + name + ".png"
+		_status_icons[name] = load(path) if ResourceLoader.exists(path) else null
+	return _status_icons[name]
+
+
 ## The level's goals as picture chips, centred on `center`: squares of the color to gather,
 ## crates to break and items to bring down with how many so far, and the moves left.
 func _draw_goal(center: Vector2) -> void:
@@ -922,6 +1072,8 @@ func _draw_goal(center: Vector2) -> void:
 		chips.append(["collect", "%d/%d" % [mini(_goal.collected, level.collect), level.collect]])
 	if level.break_crates:
 		chips.append(["crate", "%d/%d" % [mini(_goal.broken, level.crates), level.crates]])
+	if level.break_cover:
+		chips.append(["cover", "%d/%d" % [mini(_goal.uncovered, level.cover_count), level.cover_count]])
 	if level.rescue > 0:
 		chips.append(["rescue", "%d/%d" % [mini(_goal.rescued, level.rescue), level.rescue]])
 	if level.turns > 0:
@@ -951,9 +1103,13 @@ func _draw_goal(center: Vector2) -> void:
 				_box.shadow_size = 0
 				_box.draw(_overlay.get_canvas_item(), icon.grow(-4))
 			"crate":
-				var crate := _goal_art.texture(Cell.obstacle("crate", 1))
+				var crate := _goal_art.texture(Cell.obstacle(level.obstacle, 1))
 				if crate:
 					_overlay.draw_texture_rect(crate, icon, false)
+			"cover":
+				var cover := _goal_art.overlay(level.cover, level.cover_layers)
+				if cover:
+					_overlay.draw_texture_rect(cover, icon, false)
 			"rescue":
 				var item := _goal_art.texture(Cell.obstacle(level.rescue_item))
 				if item:

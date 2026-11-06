@@ -1,0 +1,43 @@
+{
+  "id": "fairy_fickle",
+  "canvas": [
+    512,
+    512
+  ],
+  "feet": [
+    256,
+    500
+  ],
+  "anchors": {
+    "fresh_idle": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_wave": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_laugh": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    }
+  }
+}

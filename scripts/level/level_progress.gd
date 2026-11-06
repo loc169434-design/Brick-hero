@@ -7,6 +7,8 @@ var level: LevelData
 var moves := 0
 var collected := 0
 var broken := 0
+## Overlays of the level's `cover` kind cleared (ice melted through, webs torn).
+var uncovered := 0
 var rescued := 0
 
 
@@ -20,8 +22,10 @@ func record(result: MoveResult) -> void:
 		if level.collect_color >= 0:
 			collected += step.count_by_color().get(level.collect_color, 0)
 		for b in step.broken:
-			if b["kind"] == "crate":
+			if b["kind"] == level.obstacle:
 				broken += 1
+			elif b["kind"] == level.cover:
+				uncovered += 1
 		rescued += step.rescued.size()
 
 
@@ -43,6 +47,8 @@ func goals_met(monsters_down: bool) -> bool:
 	if level.collect > 0 and collected < level.collect:
 		return false
 	if level.break_crates and broken < level.crates:
+		return false
+	if level.break_cover and uncovered < level.cover_count:
 		return false
 	if level.rescue > 0 and rescued < level.rescue:
 		return false

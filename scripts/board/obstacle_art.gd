@@ -8,6 +8,8 @@ const DIR := "res://assets/board/obstacles/"
 const ITEM_DIR := "res://assets/ui/campaign/"
 ## Rock layers, outermost first: two layers show whole, the last one cracked.
 const ROCK_LAYERS := {2: "rock.png", 1: "rock_cracked.png"}
+## Break-up clips not named <kind>_break.
+const BREAK_CLIPS := {"potion_bottle": "potion_break", "mark": "gold_mark_break"}
 
 var _textures := {}
 var _break_frames := {}
@@ -34,12 +36,38 @@ func texture(cell: Cell) -> Texture2D:
 	return _load(DIR + cell.blocker + ".png")
 
 
+## An overlay drawn on top of a tile: "ice" (by layers left), "web" or "mark".
+func overlay(kind: String, layers := 1) -> Texture2D:
+	match kind:
+		"ice":
+			return _load(DIR + "ice_%d.png" % clampi(layers, 1, 2))
+		"web":
+			return _load(DIR + "web.png")
+		"mark":
+			return _load(DIR + "gold_mark.png")
+	return null
+
+
+## The frame of `kind`'s idle loop (e.g. the poison toad breathing) at `time`: the sheet and
+## its region, or {} if it has none.
+func idle_frame(kind: String, time: float) -> Dictionary:
+	var clip: Dictionary = _info.get("clips", {}).get(kind + "_idle", {})
+	var sheet := _load(DIR + kind + "_idle.png")
+	if clip.is_empty() or sheet == null:
+		return {}
+	var size := Vector2(clip.get("frame_width", 512), clip.get("frame_height", 512))
+	var columns := maxi(int(sheet.get_width() / size.x), 1)
+	var frame := int(time * float(clip.get("fps", 10))) % int(clip.get("frames", 1))
+	return {"sheet": sheet, "region": Rect2(Vector2(frame % columns, frame / columns) * size, size)}
+
+
 ## The clip of `kind` breaking apart (SpriteFrames with one "break" animation), or null.
 func break_frames(kind: String) -> SpriteFrames:
 	if _break_frames.has(kind):
 		return _break_frames[kind]
-	var clip: Dictionary = _info.get("clips", {}).get(kind + "_break", {})
-	var sheet := _load(DIR + kind + "_break.png")
+	var clip_name: String = BREAK_CLIPS.get(kind, kind + "_break")
+	var clip: Dictionary = _info.get("clips", {}).get(clip_name, {})
+	var sheet := _load(DIR + clip_name + ".png")
 	var frames: SpriteFrames = null
 	if sheet and not clip.is_empty():
 		frames = SpriteFrames.new()

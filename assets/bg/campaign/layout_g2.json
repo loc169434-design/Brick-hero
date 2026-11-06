@@ -1,0 +1,28 @@
+{
+  "segment_size": [
+    1080,
+    1920
+  ],
+  "overlap_px": 200,
+  "top_to_bottom": [
+    3,
+    2,
+    1
+  ],
+  "origins": {
+    "3": [
+      0,
+      0
+    ],
+    "2": [
+      0,
+      1720
+    ],
+    "1": [
+      0,
+      3440
+    ]
+  },
+  "requires_g1_commit": "8241c12",
+  "updates_segment_02_top_px": 400
+}

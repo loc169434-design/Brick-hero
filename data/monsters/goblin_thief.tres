@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MonsterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/battle/monster_data.gd" id="1_monster"]
+
+[resource]
+script = ExtResource("1_monster")
+id = "goblin_thief"
+display_name = "Goblin Móc Túi"
+max_hp = 60
+attack = 7
+countdown = 3
+special = "marks"
+special_power = 2
+tile_theme = "swamp_b"
+background = "goblin_camp"

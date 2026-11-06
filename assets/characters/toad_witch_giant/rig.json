@@ -1,0 +1,93 @@
+{
+  "id": "toad_witch_giant",
+  "canvas": [
+    512,
+    512
+  ],
+  "feet": [
+    256,
+    500
+  ],
+  "anchors": {
+    "fresh_idle": {
+      "head": [
+        203,
+        303
+      ],
+      "mouth": [
+        122,
+        369
+      ]
+    },
+    "fresh_attack": {
+      "head": [
+        203,
+        303
+      ],
+      "mouth": [
+        122,
+        369
+      ]
+    },
+    "fresh_hurt": {
+      "head": [
+        203,
+        303
+      ],
+      "mouth": [
+        122,
+        369
+      ]
+    },
+    "fresh_special": {
+      "head": [
+        203,
+        303
+      ],
+      "mouth": [
+        122,
+        369
+      ]
+    },
+    "fresh_defeat": {
+      "head": [
+        203,
+        303
+      ],
+      "mouth": [
+        122,
+        369
+      ]
+    },
+    "fresh_special2": {
+      "head": [
+        203,
+        303
+      ],
+      "mouth": [
+        122,
+        369
+      ]
+    },
+    "fresh_burp_toads": {
+      "head": [
+        203,
+        303
+      ],
+      "mouth": [
+        122,
+        369
+      ]
+    },
+    "fresh_victory": {
+      "head": [
+        203,
+        303
+      ],
+      "mouth": [
+        122,
+        369
+      ]
+    }
+  }
+}

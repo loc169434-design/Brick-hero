@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level/level_data.gd" id="1_level"]
+
+[resource]
+script = ExtResource("1_level")
+number = 21
+monsters = PackedStringArray("swamp_old_man")
+kill = false
+collect = 20
+collect_color = 1
+turns = 16

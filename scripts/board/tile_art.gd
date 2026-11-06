@@ -30,6 +30,16 @@ func _init(p_family: String) -> void:
 	for entry: Dictionary in manifest.data.get("atlases", []):
 		if entry["family"] == family:
 			_atlases["%s/%s" % [entry["color"], entry["animation"]]] = entry
+	# Newer themes ship their own list of clips: assets/tiles/<theme>/*_manifest.json.
+	var dir := "res://assets/tiles/%s/" % family
+	for file in DirAccess.get_files_at(dir):
+		if not file.ends_with("_manifest.json"):
+			continue
+		var json := JSON.new()
+		if json.parse(FileAccess.get_file_as_string(dir + file)) != OK or not json.data is Dictionary:
+			continue
+		for entry: Dictionary in json.data.get("animations", []):
+			_atlases["%s/%s" % [entry["color"], entry["animation"]]] = entry
 
 
 func has_clip(clip: StringName) -> bool:

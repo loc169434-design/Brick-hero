@@ -87,6 +87,10 @@ const LINK_TREMBLE := 1.8
 const RELIEF_TIME := 0.7
 ## How long a crate or rock shakes after losing a layer.
 const KNOCK_TIME := 0.3
+## Idle tiles fidget now and then: a blink, a chuckle, a little hop. About this many a second.
+const FIDGETS_PER_SECOND := 2.2
+const FIDGET_POSES := ["blink", "blink", "blink", "chuckle", "laugh"]
+const FIDGET_HOP := 14.0
 ## A break-up clip is drawn this many squares wide, so splinters fly past the square.
 const BREAK_SCALE := 1.6
 ## Dust thrown off when a crate or rock breaks.
@@ -119,6 +123,8 @@ var _special_art := SpecialArt.new()
 var _obstacles := ObstacleArt.new()
 ## Crates and rocks that just lost a layer shake until this time, by square.
 var _knocked := {}
+## Idle tiles fidgeting: square -> {"pose", "start", "end"}.
+var _fidgets := {}
 ## Placeholder tile style per color, used only when there's no tile art.
 var _styles := {}
 ## What's on screen. Lags behind the model while a chain is being replayed.
@@ -202,9 +208,39 @@ func _ready() -> void:
 	new_game()
 
 
+## The board's own turn after a move (LinkGame.end_turn): bombs and potions that run out go
+## off with a flash, mud creeps. Returns the events for the fight to act on.
+func end_turn(mud_hit: bool) -> Dictionary:
+	var events := game.end_turn(mud_hit)
+	for p: Vector2i in events["bombs"] + events["potions"]:
+		var center := (Vector2(p) + Vector2(0.5, 0.5)) * CELL
+		_lights.flare(center, Color(1, 0.55, 0.2) if events["bombs"].has(p) else Color(0.5, 1, 0.4), 3.0)
+		_shards.shatter(center, Color(0.3, 0.3, 0.3), 16)
+		_play_break(p, "time_bomb" if events["bombs"].has(p) else "potion_bottle", true)
+	if events["mud"] != null:
+		_knocked[events["mud"]] = _time + KNOCK_TIME * 2.0
+	_shown = _snapshot()
+	_redraw()
+	return events
+
+
+## Lays an overlay (ice, web, mark) on `count` tiles once the board is still.
+func cover(kind: String, count: int, layers := 1) -> void:
+	var generation := _generation
+	while _busy or not path.is_empty():
+		await get_tree().process_frame
+		if generation != _generation or _finished:
+			return
+	for p in game.cover(kind, count, layers):
+		_knocked[p] = _time + KNOCK_TIME
+		_lights.flare((Vector2(p) + Vector2(0.5, 0.5)) * CELL, Color(0.8, 0.95, 1.0) if kind == "ice" else Color(1, 1, 1), 1.2)
+	_shown = _snapshot()
+	_redraw()
+
+
 ## An obstacle thrown onto the board lands on a random tile with a thud. Waits for the board to
-## be still and the finger off it, so it never lands mid-link.
-func drop_obstacle(kind: String, layers: int) -> void:
+## be still and the finger off it, so it never lands mid-link. `timer` for bombs and potions.
+func drop_obstacle(kind: String, layers: int, timer := 0) -> void:
 	var generation := _generation
 	while _busy or not path.is_empty():
 		await get_tree().process_frame
@@ -216,6 +252,7 @@ func drop_obstacle(kind: String, layers: int) -> void:
 	if placed.is_empty():
 		return
 	var p: Vector2i = placed[0]
+	game.board.get_cell(p).timer = timer
 	_shown = _snapshot()
 	_falling[p] = 3
 	_fall_t = 0.0
@@ -415,6 +452,14 @@ func _replay(result: MoveResult, before: Dictionary) -> void:
 			Sfx.play(&"thud", 1.2)
 		for r in step.rescued:
 			_rescue_item(r["at"], r["kind"])
+		for t in step.thawed:
+			if _shown.has(t["at"]):
+				_shown[t["at"]].ice = t["ice"]
+				_knocked[t["at"]] = _time + KNOCK_TIME
+		for b in step.broken:
+			if b["kind"] in ["ice", "web"] and _shown.has(b["at"]):
+				_shown[b["at"]].web = _shown[b["at"]].web and b["kind"] != "web"
+				_play_break(b["at"], b["kind"], true)
 		for i in step.cleared.size():
 			var cleared_cell: Cell = step.cleared_cells[i]
 			if cleared_cell.is_blocker():
@@ -548,11 +593,23 @@ func _play_clip(p: Vector2i, clip: StringName, cell: Cell = null, free_when_done
 	return _art.clip_seconds(target.color, clip) / speed
 
 
-## A crate or rock at `p` breaks apart. Returns how long that takes.
-func _play_break(p: Vector2i, kind: String) -> float:
+## An obstacle at `p` breaks apart. Returns how long that takes. An `overlay` (ice, web) breaks
+## off a tile that stays: its clip plays over the tile instead of taking the square's place.
+func _play_break(p: Vector2i, kind: String, overlay := false) -> float:
 	var frames := _obstacles.break_frames(kind)
 	if frames == null:
-		_flashing[p] = true
+		if not overlay:
+			_flashing[p] = true
+		return 0.0
+	if overlay:
+		var shard := AnimatedSprite2D.new()
+		shard.sprite_frames = frames
+		shard.position = (Vector2(p) + Vector2(0.5, 0.5)) * CELL
+		shard.scale = Vector2.ONE * CELL * BREAK_SCALE / 512.0
+		shard.speed_scale = REPLAY_SPEED
+		_sprite_layer.add_child(shard)
+		shard.play(&"break")
+		shard.animation_finished.connect(shard.queue_free)
 		return 0.0
 	_free_sprite(p)
 	var sprite := AnimatedSprite2D.new()
@@ -636,9 +693,15 @@ func _snapshot() -> Dictionary:
 	for y in game.board.rows:
 		for x in game.board.columns:
 			var cell := game.board.get_cell(Vector2i(x, y))
-			if cell and cell.is_blocker():
-				# A copy, so a crate keeps its layers on screen until the replay knocks one off.
-				var copy := Cell.obstacle(cell.blocker, cell.layers)
+			if cell and (cell.is_blocker() or cell.ice > 0 or cell.web or cell.marked):
+				# A copy, so a crate keeps its layers (and ice its thickness) on screen until the
+				# replay knocks one off.
+				var copy := Cell.obstacle(cell.blocker, cell.layers) if cell.is_blocker() else Cell.new(cell.color, cell.special)
+				copy.timer = cell.timer
+				copy.ice = cell.ice
+				copy.web = cell.web
+				copy.marked = cell.marked
+				copy.critical = cell.critical
 				cells[Vector2i(x, y)] = copy
 			elif cell:
 				cells[Vector2i(x, y)] = cell
@@ -647,8 +710,27 @@ func _snapshot() -> Dictionary:
 
 func _process(delta: float) -> void:
 	_time += delta
+	_fidget(delta)
 	queue_redraw()
 	_overlay.queue_redraw()
+
+
+## Now and then an idle tile blinks, chuckles or hops, so a still board still looks alive.
+func _fidget(delta: float) -> void:
+	for p: Vector2i in _fidgets.keys():
+		if _fidgets[p]["end"] <= _time or not _shown.has(p) or path.has(p):
+			_fidgets.erase(p)
+	if _busy or _finished or randf() > FIDGETS_PER_SECOND * delta:
+		return
+	var p := Vector2i(randi() % game.board.columns, randi() % game.board.rows)
+	var cell: Cell = _shown.get(p)
+	if cell == null or cell.is_special() or cell.is_blocker() or _sprites.has(p) or path.has(p) or _fidgets.has(p):
+		return
+	var pose: String = FIDGET_POSES[randi() % FIDGET_POSES.size()]
+	if _art.expression(cell.color, pose) == null:
+		pose = ""
+	var length := 0.18 if pose == "blink" else 0.6
+	_fidgets[p] = {"pose": pose, "start": _time, "end": _time + length}
 
 
 func _redraw() -> void:
@@ -682,6 +764,12 @@ func _draw() -> void:
 		elif _knocked.get(p, 0.0) > _time:
 			# A crate or rock that just lost a layer shudders.
 			rect.position.x += 7.0 * sin(_time * 60.0) * (_knocked[p] - _time) / KNOCK_TIME
+		elif _fidgets.has(p) and _fidgets[p]["pose"] != "blink":
+			# A little hop with a squash on landing.
+			var f: Dictionary = _fidgets[p]
+			var t: float = (_time - f["start"]) / (f["end"] - f["start"])
+			rect.position.y -= FIDGET_HOP * sin(t * PI)
+			rect = rect.grow_individual(0, -3.0 * sin(t * PI), 0, 0)
 		elif not _falling.has(p) and not _flashing.has(p) and not _finished and not (_shown[p].is_blocker() and not _shown[p].is_item()):
 			# Breathing: each tile bobs a little out of step with its neighbors.
 			var breath := sin(_time * BREATH_SPEED + p.x * 0.7 + p.y * 0.45)
@@ -713,6 +801,8 @@ func _pose_for(p: Vector2i) -> String:
 		return "scream" if path.size() > 1 and p == path[-1] else "fear"
 	if _relief.get(p, 0.0) > _time:
 		return "relief"
+	if _fidgets.has(p):
+		return _fidgets[p]["pose"]
 	return ""
 
 
@@ -903,11 +993,27 @@ func _draw_cell(rect: Rect2, cell: Cell, alpha := 1.0, phase := 0.0, pose := "")
 		_draw_special(rect, cell, alpha, _time + phase)
 		return
 	if cell.is_blocker():
-		var picture := _obstacles.texture(cell)
-		if picture:
-			draw_texture_rect(picture, rect.grow(-4 if cell.is_item() else 2), false, Color(1, 1, 1, alpha))
+		var idle := _obstacles.idle_frame(cell.blocker, _time + phase)
+		if idle:
+			# The looping creatures (poison toads) sit small in the middle of their 512 px frame:
+			# take the middle and fill the square with it.
+			var region: Rect2 = idle["region"]
+			draw_texture_rect_region(idle["sheet"], rect.grow(4), region.grow(-region.size.x * 0.3), Color(1, 1, 1, alpha))
 		else:
-			draw_rect(rect.grow(-6), Color(0.45, 0.3, 0.16, alpha))
+			var picture := _obstacles.texture(cell)
+			if picture:
+				draw_texture_rect(picture, rect.grow(-4 if cell.is_item() else 2), false, Color(1, 1, 1, alpha))
+			else:
+				draw_rect(rect.grow(-6), Color(0.45, 0.3, 0.16, alpha))
+		if cell.timer > 0:
+			# Moves left before it goes off, on a red badge.
+			var badge := rect.position + Vector2(rect.size.x - 30, 30)
+			draw_circle(badge, 24, Color(0.75, 0.12, 0.1, alpha))
+			draw_circle(badge, 24, Color(0.1, 0.05, 0.05, alpha), false, 4.0)
+			var digits := str(cell.timer)
+			var font := ThemeDB.fallback_font
+			var width := font.get_string_size(digits, HORIZONTAL_ALIGNMENT_LEFT, -1, 32).x
+			draw_string(font, badge + Vector2(-width / 2, 11), digits, HORIZONTAL_ALIGNMENT_LEFT, -1, 32, Color(1, 1, 1, alpha))
 		return
 	var inner := rect.grow(-3)
 	var texture: Texture2D = _art.expression(cell.color, pose) if pose else null
@@ -918,6 +1024,23 @@ func _draw_cell(rect: Rect2, cell: Cell, alpha := 1.0, phase := 0.0, pose := "")
 	else:
 		_style_for(cell.color).draw(get_canvas_item(), inner.grow(-2))
 		_draw_symbol(cell.color, inner.get_center(), inner.size.x * 0.21, BLOCK_COLORS[cell.color].lightened(0.5))
+	_draw_overlays(rect, cell, alpha)
+
+
+## Ice over a tile (by its layers), a web across it, or a thief's mark in its corner.
+func _draw_overlays(rect: Rect2, cell: Cell, alpha: float) -> void:
+	if cell.marked:
+		var mark := _obstacles.overlay("mark")
+		if mark:
+			draw_texture_rect(mark, Rect2(rect.position + rect.size * 0.48, rect.size * 0.56), false, Color(1, 1, 1, alpha))
+	if cell.ice > 0:
+		var ice := _obstacles.overlay("ice", cell.ice)
+		if ice:
+			draw_texture_rect(ice, rect.grow(4), false, Color(1, 1, 1, alpha * 0.92))
+	if cell.web:
+		var web := _obstacles.overlay("web")
+		if web:
+			draw_texture_rect(web, rect.grow(8), false, Color(1, 1, 1, alpha))
 
 
 ## Specials are drawn bare, with nothing behind them, and never sit still: the bomb shivers

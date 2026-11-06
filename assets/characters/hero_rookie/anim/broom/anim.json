@@ -1,0 +1,49 @@
+{
+  "frame_size": [
+    512,
+    512
+  ],
+  "columns": 4,
+  "variant": "broom",
+  "facing": 1,
+  "wears": [
+    "fresh",
+    "bruised",
+    "battered"
+  ],
+  "clips": {
+    "idle": {
+      "frames": 8,
+      "fps": 12,
+      "loop": true
+    },
+    "attack": {
+      "frames": 12,
+      "fps": 24,
+      "loop": false,
+      "impact": 6
+    },
+    "hurt": {
+      "frames": 8,
+      "fps": 24,
+      "loop": false
+    },
+    "broom_in": {
+      "frames": 12,
+      "fps": 14,
+      "loop": false,
+      "impact": 7
+    },
+    "broom_out": {
+      "frames": 12,
+      "fps": 14,
+      "loop": false,
+      "impact": 6
+    }
+  },
+  "fresh_only": [
+    "broom_in",
+    "broom_out"
+  ],
+  "requires_loader_support_for_subdirectory": true
+}

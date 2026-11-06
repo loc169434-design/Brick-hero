@@ -29,3 +29,6 @@ extends Resource
 ## obstacle of two layers), "drum" beats the war drum so every later attack comes a move
 ## sooner (down to every 2 moves), even from the monster after it. "" for none.
 @export var special := ""
+## How strong the special is: poison per move for "poison", how many toads, webs, ice or marks
+## a board spell lays.
+@export var special_power := 2

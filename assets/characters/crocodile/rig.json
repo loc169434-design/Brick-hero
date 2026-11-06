@@ -1,0 +1,73 @@
+{
+  "id": "crocodile",
+  "canvas": [
+    512,
+    512
+  ],
+  "feet": [
+    256,
+    500
+  ],
+  "anchors": {
+    "fresh_idle": {
+      "head": [
+        223,
+        301
+      ],
+      "mouth": [
+        131,
+        338
+      ]
+    },
+    "fresh_attack": {
+      "head": [
+        223,
+        301
+      ],
+      "mouth": [
+        131,
+        338
+      ]
+    },
+    "fresh_hurt": {
+      "head": [
+        223,
+        301
+      ],
+      "mouth": [
+        131,
+        338
+      ]
+    },
+    "fresh_special": {
+      "head": [
+        223,
+        301
+      ],
+      "mouth": [
+        131,
+        338
+      ]
+    },
+    "fresh_defeat": {
+      "head": [
+        223,
+        301
+      ],
+      "mouth": [
+        131,
+        338
+      ]
+    },
+    "fresh_victory": {
+      "head": [
+        223,
+        301
+      ],
+      "mouth": [
+        131,
+        338
+      ]
+    }
+  }
+}

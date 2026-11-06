@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level/level_data.gd" id="1_level"]
+
+[resource]
+script = ExtResource("1_level")
+number = 28
+monsters = PackedStringArray("goblin_thief", "goblin_archer", "goblin_bomber")
+cover = "web"
+cover_count = 6
+hard = true

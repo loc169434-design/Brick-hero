@@ -18,6 +18,11 @@ static func resolve_link(board: BoardModel, rules: BoardRules, path: Array[Vecto
 		step.chain = maxi(chain, 1)
 		for h in step.hit:
 			board.get_cell(h["at"]).layers = h["layers"]
+		for t in step.thawed:
+			board.get_cell(t["at"]).ice = t["ice"]
+		for b in step.broken:
+			if b["kind"] == "web":
+				board.get_cell(b["at"]).web = false
 		for p in step.cleared:
 			board.set_cell(p, null)
 		for s in step.spawned:
@@ -151,18 +156,33 @@ static func _runs(board: BoardModel, min_length: int) -> Array[Dictionary]:
 ## blast covers them; at none left they break and clear with the round. Blasts pass over items.
 static func _hit_blockers(board: BoardModel, step: ClearStep, marked: Dictionary) -> void:
 	var hits := {}
+	var webs := {}
 	for p: Vector2i in marked.keys():
 		var cell := board.get_cell(p)
 		if cell and cell.is_blocker():
 			marked.erase(p)
 			if not cell.is_item():
 				hits[p] = true
+		elif cell and cell.web:
+			# A blast tears the web away; the tile under it stays.
+			marked.erase(p)
+			webs[p] = true
+		elif cell and cell.ice > 0:
+			# Ice takes the blow: one layer melts and the tile stays.
+			marked.erase(p)
+			step.thawed.append({"at": p, "ice": cell.ice - 1})
+			if cell.ice == 1:
+				step.broken.append({"at": p, "kind": "ice"})
 	for p: Vector2i in marked:
 		for d in NEIGHBORS:
 			var q: Vector2i = p + d
 			var other := board.get_cell(q)
 			if other and other.is_blocker() and not other.is_item():
 				hits[q] = true
+			elif other and other.web and not marked.has(q):
+				webs[q] = true
+	for q: Vector2i in webs:
+		step.broken.append({"at": q, "kind": "web"})
 	for q: Vector2i in hits:
 		var cell := board.get_cell(q)
 		if cell.layers > 1:

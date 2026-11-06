@@ -130,7 +130,7 @@ func test_the_war_drum_speeds_the_attacks_up_to_every_two_moves() -> void:
 
 
 func test_the_story_chapters_after_levels_have_panels_and_captions() -> void:
-	for number in [1, 2]:
+	for number in [1, 2, 3]:
 		assert_true(StoryView.has_chapter(number), "chapter %d" % number)
 		var captions := StoryView._json(StoryView.CAPTIONS % number)
 		var info := StoryView._json(StoryView.STORY_DIR % number + "chapter.json")

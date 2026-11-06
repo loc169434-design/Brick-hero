@@ -4,6 +4,8 @@ extends RefCounted
 ## from the top, and any straight line that forms clears too. Each clear is one round of the chain.
 
 const NEIGHBORS := [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
+## A rocket flies to this many squares; two fused fly to twice as many.
+const ROCKET_TARGETS := 3
 
 
 ## Plays `path` (already checked by LinkGame) and every round it sets off.
@@ -87,7 +89,7 @@ static func link_step(board: BoardModel, rules: BoardRules, path: Array[Vector2i
 		return step
 	var color := link_color(board, path)
 	step.clusters.append({"color": color, "cells": path.duplicate()})
-	var kind := special_for_link(rules, path.size())
+	var kind := special_for_path(rules, path)
 	if kind != Cell.Special.NONE:
 		var spawn_color := Cell.NO_COLOR if kind == Cell.Special.RAINBOW else color
 		step.spawned.append({"at": path[-1], "special": kind, "color": spawn_color})
@@ -107,6 +109,25 @@ static func link_color(board: BoardModel, path: Array[Vector2i]) -> int:
 		if cell and not cell.is_special():
 			return cell.color
 	return Cell.NO_COLOR
+
+
+## What a link leaves behind: by its length, or a rocket for a shorter one that closes a 2×2
+## square of its own squares.
+static func special_for_path(rules: BoardRules, path: Array[Vector2i]) -> Cell.Special:
+	var kind := special_for_link(rules, path.size())
+	if kind == Cell.Special.NONE and has_square(path):
+		return Cell.Special.ROCKET
+	return kind
+
+
+static func has_square(path: Array[Vector2i]) -> bool:
+	var squares := {}
+	for p in path:
+		squares[p] = true
+	for p in path:
+		if squares.has(p + Vector2i.RIGHT) and squares.has(p + Vector2i.DOWN) and squares.has(p + Vector2i.ONE):
+			return true
+	return false
 
 
 static func special_for_link(rules: BoardRules, length: int) -> Cell.Special:
@@ -281,6 +302,15 @@ static func _fusion_area(board: BoardModel, step: ClearStep, p: Vector2i, q: Vec
 		for target in _all_of_color(board, _rainbow_target(board, step, [p, q])):
 			area.append_array(_area(board, step, target, partner_kind))
 		return area
+	if a == Cell.Special.ROCKET or b == Cell.Special.ROCKET:
+		var other := b if a == Cell.Special.ROCKET else a
+		if other == Cell.Special.ROCKET:
+			return _rockets(board, step, p, ROCKET_TARGETS * 2)
+		# Each rocket carries the partner: a lightning's cross or a bomb's 3×3 where it lands.
+		var area: Array[Vector2i] = []
+		for target in _rockets(board, step, p, ROCKET_TARGETS):
+			area.append_array(_cross(board, target, 0) if other == Cell.Special.LIGHTNING else _square(board, target, 1))
+		return area
 	if a == Cell.Special.BOMB and b == Cell.Special.BOMB:
 		return _square(board, p, 2)
 	if a == Cell.Special.LIGHTNING and b == Cell.Special.LIGHTNING:
@@ -300,7 +330,39 @@ static func _area(board: BoardModel, step: ClearStep, p: Vector2i, kind: Cell.Sp
 			return _square(board, p, 1)
 		Cell.Special.RAINBOW:
 			return _all_of_color(board, _rainbow_target(board, step, [p]))
+		Cell.Special.ROCKET:
+			var area := _rockets(board, step, p, ROCKET_TARGETS)
+			area.append(p)
+			return area
 	return []
+
+
+## Where `count` rockets from `from` fly, noted on `step`: obstacles, ice, webs and marks first,
+## nearest first (they're what's in the way); then plain tiles, furthest first, to spread the
+## blow. Never specials or items. The same board always gives the same targets.
+static func _rockets(board: BoardModel, step: ClearStep, from: Vector2i, count: int) -> Array[Vector2i]:
+	var blocked: Array[Vector2i] = []
+	var plain: Array[Vector2i] = []
+	for y in board.rows:
+		for x in board.columns:
+			var q := Vector2i(x, y)
+			var cell := board.get_cell(q)
+			if q == from or cell == null or cell.is_item() or cell.is_special():
+				continue
+			if cell.is_blocker() or cell.ice > 0 or cell.web or cell.marked:
+				blocked.append(q)
+			else:
+				plain.append(q)
+	var distance := func(q: Vector2i) -> int: return absi(q.x - from.x) + absi(q.y - from.y)
+	blocked.sort_custom(func(a: Vector2i, b: Vector2i) -> bool: return distance.call(a) < distance.call(b) or (distance.call(a) == distance.call(b) and (a.y > b.y or (a.y == b.y and a.x < b.x))))
+	plain.sort_custom(func(a: Vector2i, b: Vector2i) -> bool: return distance.call(a) > distance.call(b) or (distance.call(a) == distance.call(b) and (a.y > b.y or (a.y == b.y and a.x < b.x))))
+	var targets: Array[Vector2i] = []
+	for q in blocked + plain:
+		if targets.size() >= count:
+			break
+		targets.append(q)
+	step.rockets.append({"from": from, "to": targets})
+	return targets
 
 
 ## The color a star goes after, one the player can see: that of the longest colored link or

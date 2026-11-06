@@ -242,3 +242,43 @@ func test_star_set_off_by_a_blast_takes_the_most_common_plain_color() -> void:
 	# Plain squares: 8 red, 7 yellow, 3 green.
 	assert_true(steps[0].cleared.has(Vector2i(4, 3)), "red goes")
 	assert_true(not steps[0].cleared.has(Vector2i(4, 1)), "yellow stays")
+
+
+func test_a_link_closing_a_square_leaves_a_rocket() -> void:
+	var rules := BoardRules.new()
+	var square: Array[Vector2i] = [Vector2i(0, 0), Vector2i(1, 0), Vector2i(1, 1), Vector2i(0, 1)]
+	assert_eq(Resolver.special_for_path(rules, square), Cell.Special.ROCKET)
+	var line: Array[Vector2i] = [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+	assert_eq(Resolver.special_for_path(rules, line), Cell.Special.NONE, "four in a row is not a square")
+	var long_square := square.duplicate()
+	for i in rules.lightning_link - 4:
+		long_square.append(Vector2i(0, 2 + i))
+	assert_eq(Resolver.special_for_path(rules, long_square), Cell.Special.LIGHTNING, "length wins over shape")
+	var board := _board(4, ["RRYG", "RRGY", "GYPP", "PGYG"])
+	var steps := _link(board, square)
+	assert_eq(steps[0].spawned[0]["special"], Cell.Special.ROCKET)
+	assert_eq(steps[0].spawned[0]["color"], R, "a rocket keeps the link's color")
+
+
+func test_a_rocket_flies_to_obstacles_first() -> void:
+	var board := _board(5, ["RGYPG", "GY1PY", "YPGYP", "PGYP2", "GYPGY"])
+	board.get_cell(Vector2i(0, 4)).special = Cell.Special.ROCKET
+	var step := ClearStep.new()
+	var targets := Resolver._rockets(board, step, Vector2i(0, 4), 3)
+	assert_eq(targets.size(), 3)
+	assert_true(targets.has(Vector2i(2, 1)) and targets.has(Vector2i(4, 3)), "both crates: %s" % [targets])
+	assert_eq(step.rockets.size(), 1)
+	var again := Resolver._rockets(board, ClearStep.new(), Vector2i(0, 4), 3)
+	assert_eq(again, targets, "the same board, the same targets")
+
+
+func test_rockets_fuse_with_the_others() -> void:
+	var board := _board(5, ["RGYPG", "GYRPY", "YPGYP", "PGYPG", "GYPGY"])
+	board.get_cell(Vector2i(0, 4)).special = Cell.Special.ROCKET
+	board.get_cell(Vector2i(1, 4)).special = Cell.Special.ROCKET
+	var step := ClearStep.new()
+	var area := Resolver._fusion_area(board, step, Vector2i(0, 4), Vector2i(1, 4))
+	assert_eq(area.size(), 6, "two rockets: six targets")
+	board.get_cell(Vector2i(1, 4)).special = Cell.Special.BOMB
+	area = Resolver._fusion_area(board, ClearStep.new(), Vector2i(0, 4), Vector2i(1, 4))
+	assert_true(area.size() > 6, "each rocket carries a bomb")

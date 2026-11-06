@@ -18,6 +18,8 @@ const SHEET_COLUMNS := 8
 const TILE_ART_SIZE := 128.0
 ## Two lightnings fire their cross, then their diagonals this much later, so all eight read.
 const DIAGONAL_DELAY := 0.1
+## Seconds a rocket takes to reach its target.
+const ROCKET_FLIGHT := 0.32
 
 var cell_size := 140.0
 var board_size := Vector2(980, 1120)
@@ -102,6 +104,20 @@ func _draw_light() -> void:
 				var to: Vector2 = shape["to"]
 				_light.draw_line(at, to, Color(color, 0.6 * (1.0 - k)), 70.0 * (1.0 - out * 0.7))
 				_light.draw_line(at, to, Color(1, 1, 1, 1.0 - k), 22.0 * (1.0 - k))
+			"rocket":
+				# A little rocket on a curve from its square to its target, a fiery trail behind.
+				var to: Vector2 = shape["to"]
+				var bend: Vector2 = shape["bend"]
+				var flight := ease(k, -1.8)
+				var here := _bezier(at, at.lerp(to, 0.5) + bend, to, flight)
+				for i in 6:
+					var back := maxf(flight - i * 0.035, 0.0)
+					_light.draw_circle(_bezier(at, at.lerp(to, 0.5) + bend, to, back), 16.0 - i * 2.2, Color(1, 0.55 + i * 0.07, 0.2, 0.75 - i * 0.11))
+				var ahead := _bezier(at, at.lerp(to, 0.5) + bend, to, minf(flight + 0.05, 1.0))
+				var heading := (ahead - here).angle()
+				_light.draw_set_transform(here, heading, Vector2.ONE)
+				_light.draw_colored_polygon(PackedVector2Array([Vector2(26, 0), Vector2(-14, -11), Vector2(-14, 11)]), Color(1, 0.95, 0.85))
+				_light.draw_set_transform(Vector2.ZERO)
 			"rays":
 				var spin: float = shape["spin"] + k * 1.4
 				for i in 12:
@@ -112,7 +128,10 @@ func _draw_light() -> void:
 
 
 ## Everything `step` set off. Squares that fused play the fusion instead of their own blast.
+## Every rocket launched flies to its targets and lands with a burst.
 func play_step(step: ClearStep) -> void:
+	for flight in step.rockets:
+		_launch(flight["from"], flight["to"])
 	var fused := {}
 	for fusion in step.fusions:
 		fused[fusion["at"]] = true
@@ -136,6 +155,8 @@ func play_step(step: ClearStep) -> void:
 				_sparks(step, p)
 				_boom(_center(p), Color(1, 0.95, 0.7), cell_size * 2.0)
 				_shape("rays", _center(p), 0.5, Color.WHITE, {"radius": cell_size * 4.0, "spin": randf() * TAU})
+			Cell.Special.ROCKET:
+				_boom(_center(p), Color(1, 0.6, 0.25), cell_size * 1.3)
 
 
 func _play_fusion(step: ClearStep, fusion: Dictionary) -> void:
@@ -164,6 +185,26 @@ func _play_fusion(step: ClearStep, fusion: Dictionary) -> void:
 	else:
 		# Two bombs: a 5×5 blast.
 		_play("bomb_blast", _center(at), tint, 0.0, Vector2.ONE * 5.0 / 3.0)
+
+
+## Rockets from `from` to each of `targets`, each on its own curve, bursting on arrival.
+func _launch(from: Vector2i, targets: Array) -> void:
+	var start := _center(from)
+	for i in targets.size():
+		var to := _center(targets[i])
+		var side := 1.0 if i % 2 == 0 else -1.0
+		var bend := (to - start).orthogonal().normalized() * cell_size * 1.2 * side + Vector2(0, -cell_size)
+		_shape("rocket", start, ROCKET_FLIGHT, Color.WHITE, {"to": to, "bend": bend})
+		get_tree().create_timer(ROCKET_FLIGHT).timeout.connect(_rocket_lands.bind(to, _generation))
+
+
+func _rocket_lands(at: Vector2, generation: int) -> void:
+	if generation == _generation:
+		_boom(at, Color(1, 0.6, 0.25), cell_size * 1.1)
+
+
+static func _bezier(a: Vector2, control: Vector2, b: Vector2, t: float) -> Vector2:
+	return a.lerp(control, t).lerp(control.lerp(b, t), t)
 
 
 ## Beams along the rows and columns within `half_width` of `p`, crossing at a flash on `p`.

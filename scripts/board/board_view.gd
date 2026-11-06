@@ -59,6 +59,7 @@ const SPECIAL_NAMES := {
 	Cell.Special.LIGHTNING: "SÉT",
 	Cell.Special.BOMB: "BOM",
 	Cell.Special.RAINBOW: "SAO",
+	Cell.Special.ROCKET: "TÊN LỬA",
 }
 const BOARD_BG := Color(0.1, 0.1, 0.15)
 ## Where the board's surface art sits, relative to the board, which is placed at (50, 530):
@@ -312,7 +313,7 @@ func mark_lift() -> void:
 			var cell := game.board.get_cell(Vector2i(x, y))
 			if cell == null or cell.is_blocker() or cell.ice > 0 or cell.web or cell.marked:
 				continue
-			if cell.special in [Cell.Special.BOMB, Cell.Special.LIGHTNING]:
+			if cell.special in [Cell.Special.BOMB, Cell.Special.LIGHTNING, Cell.Special.ROCKET]:
 				specials.append(cell)
 			elif not cell.is_special() and y < game.board.rows / 2:
 				picks.append(cell)
@@ -528,7 +529,8 @@ func extend_link(p: Vector2i) -> void:
 func _on_link_grew() -> void:
 	var count := path.size()
 	Sfx.play(&"tick", _link_pitch(count), 0.0, true)
-	if count in [game.rules.lightning_link, game.rules.bomb_link, game.rules.star_link]:
+	var closed_square := Resolver.has_square(path) and not Resolver.has_square(path.slice(0, count - 1))
+	if count in [game.rules.lightning_link, game.rules.bomb_link, game.rules.star_link] or closed_square:
 		Sfx.play(&"charge", 1.0, -2.0)
 	_link_pop = 1.0
 	if _link_pop_tween:
@@ -1319,7 +1321,7 @@ func _draw_link() -> void:
 	# Length so far and what the link will leave behind, under the board.
 	var count := path.size()
 	var label := "%d ô" % count
-	var kind := Resolver.special_for_link(game.rules, count)
+	var kind := Resolver.special_for_path(game.rules, path)
 	if kind != Cell.Special.NONE:
 		label += "  →  %s" % SPECIAL_NAMES[kind]
 	elif count < game.rules.min_link:
@@ -1399,6 +1401,8 @@ func _draw_special(rect: Rect2, cell: Cell, alpha: float, t: float) -> void:
 			_draw_lightning(center, size, alpha, t)
 		Cell.Special.RAINBOW:
 			_draw_star(center, size, alpha, t)
+		Cell.Special.ROCKET:
+			_draw_rocket(center, size, alpha, t)
 
 
 ## `kind`'s art, `size` across, centered on the current transform's origin: the still under
@@ -1491,6 +1495,27 @@ func _draw_star(center: Vector2, size: float, alpha: float, t: float) -> void:
 	var tip := int(t * 2.0) % 4
 	var twinkle := sin(fmod(t * 2.0, 1.0) * PI)
 	_draw_spark(center + Vector2.from_angle(turn + tip * PI / 2 - PI / 2) * outer, size * 0.35 * twinkle, 0.0, Color(1, 1, 1, alpha * twinkle))
+
+
+## Leans and trembles, its flame flickering, ready to go. Its art when there is some; without
+## it a red-nosed rocket with fins, drawn by hand.
+func _draw_rocket(center: Vector2, size: float, alpha: float, t: float) -> void:
+	var shake := Vector2(sin(t * 37.0), cos(t * 29.0)) * size * 0.012
+	draw_set_transform(center + shake, -PI / 4 + 0.05 * sin(t * 6.0), Vector2.ONE)
+	var drawn := _draw_special_art(Cell.Special.ROCKET, size, alpha, t)
+	if not drawn:
+		var s := size * 0.5
+		var flame := 0.75 + 0.25 * sin(t * 30.0)
+		draw_colored_polygon(PackedVector2Array([Vector2(-s * 0.2, s * 0.62), Vector2(0, s * (0.62 + 0.45 * flame)), Vector2(s * 0.2, s * 0.62)]), Color(1, 0.6, 0.15, alpha))
+		draw_colored_polygon(PackedVector2Array([Vector2(-s * 0.3, s * 0.15), Vector2(-s * 0.5, s * 0.65), Vector2(-s * 0.18, s * 0.5)]), Color(0.75, 0.15, 0.12, alpha))
+		draw_colored_polygon(PackedVector2Array([Vector2(s * 0.3, s * 0.15), Vector2(s * 0.5, s * 0.65), Vector2(s * 0.18, s * 0.5)]), Color(0.75, 0.15, 0.12, alpha))
+		var body := Rect2(Vector2(-s * 0.26, -s * 0.45), Vector2(s * 0.52, s * 1.05))
+		draw_rect(body.grow(4), Color(0.15, 0.08, 0.05, alpha))
+		draw_rect(body, Color(0.93, 0.93, 0.9, alpha))
+		draw_colored_polygon(PackedVector2Array([Vector2(-s * 0.26 - 4, -s * 0.45), Vector2(0, -s * 0.95), Vector2(s * 0.26 + 4, -s * 0.45)]), Color(0.85, 0.18, 0.15, alpha))
+		draw_circle(Vector2(0, -s * 0.1), s * 0.14 + 3, Color(0.15, 0.08, 0.05, alpha))
+		draw_circle(Vector2(0, -s * 0.1), s * 0.14, Color(0.45, 0.8, 1.0, alpha))
+	draw_set_transform(Vector2.ZERO)
 
 
 func _draw_glow(at: Vector2, size: float, color: Color) -> void:

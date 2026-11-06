@@ -12,11 +12,13 @@ const STILLS := {
 	Cell.Special.BOMB: "bomb.png",
 	Cell.Special.LIGHTNING: "lightning.png",
 	Cell.Special.RAINBOW: "star.png",
+	Cell.Special.ROCKET: "rocket.png",
 }
 const SHEETS := {
 	Cell.Special.BOMB: "bomb_fuse.png",
 	Cell.Special.LIGHTNING: "lightning_idle.png",
 	Cell.Special.RAINBOW: "star_idle.png",
+	Cell.Special.ROCKET: "rocket_idle.png",
 }
 
 var _manifest := {}

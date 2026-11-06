@@ -15,6 +15,8 @@ var clusters: Array[Dictionary] = []
 var triggered: Array[Vector2i] = []
 ## { "at": Vector2i, "with": Vector2i, "kinds": [Cell.Special, Cell.Special] }
 var fusions: Array[Dictionary] = []
+## Rockets launched: { "from": Vector2i, "to": Array[Vector2i] }, for the replay to fly them.
+var rockets: Array[Dictionary] = []
 ## { "at": Vector2i, "special": Cell.Special, "color": int }
 var spawned: Array[Dictionary] = []
 ## Crates and rocks that lost a layer and still stand: { "at": Vector2i, "layers": int left }.

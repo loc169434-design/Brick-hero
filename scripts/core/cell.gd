@@ -3,7 +3,8 @@ extends RefCounted
 ## One occupied square on the board. Empty squares are `null`.
 
 enum BlockColor { RED, GREEN, YELLOW, PURPLE }
-enum Special { NONE, LIGHTNING, BOMB, RAINBOW }
+## ROCKET comes from a link that closes a 2×2 square (Resolver.special_for_path).
+enum Special { NONE, LIGHTNING, BOMB, RAINBOW, ROCKET }
 
 const COLOR_COUNT := 4
 const NO_COLOR := -1

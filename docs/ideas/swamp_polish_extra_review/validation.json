@@ -1,0 +1,40 @@
+{
+  "checks_passed": 306,
+  "actor_cels": 52,
+  "fx_cels": 16,
+  "reviewed_heat_masks": 28,
+  "previews": [
+    {
+      "file": "lift_scene.gif",
+      "bytes": 700891
+    },
+    {
+      "file": "levitate.gif",
+      "bytes": 243390
+    },
+    {
+      "file": "orc_shield_rage.gif",
+      "bytes": 236220
+    },
+    {
+      "file": "orc_rock_rage.gif",
+      "bytes": 200156
+    },
+    {
+      "file": "orc_boar_rage.gif",
+      "bytes": 193339
+    },
+    {
+      "file": "rage_steam.gif",
+      "bytes": 96103
+    },
+    {
+      "file": "orc_drummer_rage.gif",
+      "bytes": 226096
+    },
+    {
+      "file": "toad_witch_lift.gif",
+      "bytes": 168304
+    }
+  ]
+}

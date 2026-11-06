@@ -1,0 +1,370 @@
+{
+  "alpha_threshold": 32,
+  "connectivity": 8,
+  "reviewed": [
+    {
+      "actor": "orc_shield",
+      "frame": 6,
+      "area": 433,
+      "box": [
+        200,
+        77,
+        219,
+        124
+      ],
+      "mask_sha256": "96d1ed40541995ec977d528ebcab4f7edca66c4fe7eb2e6c00b14051af4ea746",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_shield",
+      "frame": 6,
+      "area": 433,
+      "box": [
+        263,
+        104,
+        301,
+        136
+      ],
+      "mask_sha256": "c7340865415ba7ad9dfc0145a2211dd85ff7043562208d92b65a1c26c03acd37",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_shield",
+      "frame": 7,
+      "area": 734,
+      "box": [
+        294,
+        80,
+        320,
+        146
+      ],
+      "mask_sha256": "724c959c13d6e8eeab6c832ca48c3d0612d9bc2b9b259e66a38d830e546b49eb",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_shield",
+      "frame": 8,
+      "area": 689,
+      "box": [
+        150,
+        90,
+        176,
+        149
+      ],
+      "mask_sha256": "9931e214edcf7331d8bdc8d2866568ab1af6eb261b85d7fb0dce81cbdba181d5",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_shield",
+      "frame": 8,
+      "area": 550,
+      "box": [
+        189,
+        90,
+        212,
+        150
+      ],
+      "mask_sha256": "b9bb70c5cc075fe567261f88c2bbaa651a0c137cc67db3de7e7f6df21cb881a3",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_rock",
+      "frame": 6,
+      "area": 377,
+      "box": [
+        196,
+        128,
+        215,
+        172
+      ],
+      "mask_sha256": "734d0c49dba90c55e42681b281b250b2d7f55b28b084e40babbb0c1cc1fcac0e",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_rock",
+      "frame": 6,
+      "area": 433,
+      "box": [
+        223,
+        128,
+        245,
+        174
+      ],
+      "mask_sha256": "4bb50c2dbe78d08476049a63067717248fa9db43f76bba4aeac59b52c3a91057",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_rock",
+      "frame": 6,
+      "area": 429,
+      "box": [
+        243,
+        141,
+        268,
+        187
+      ],
+      "mask_sha256": "41c4537c74c2adc184070a320ebbd5a36e7c8a42c9c0458ffac6023395933e3a",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_rock",
+      "frame": 7,
+      "area": 404,
+      "box": [
+        144,
+        150,
+        163,
+        197
+      ],
+      "mask_sha256": "3b06860fceb29ef046a3b6daf02e70fd7b7c871cd80ab286f7ab41fb8d1c9ae9",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_rock",
+      "frame": 7,
+      "area": 244,
+      "box": [
+        167,
+        160,
+        181,
+        196
+      ],
+      "mask_sha256": "d5f454648553a75003c1ea186ce78a9b008b20878893a0315d751cf7227f2224",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_rock",
+      "frame": 8,
+      "area": 414,
+      "box": [
+        287,
+        145,
+        306,
+        199
+      ],
+      "mask_sha256": "790c79b8ce1b1f0325cfcca9f402ca852c6b9b554e6bcc80dbc77a7176d81fac",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_rock",
+      "frame": 8,
+      "area": 477,
+      "box": [
+        260,
+        153,
+        280,
+        210
+      ],
+      "mask_sha256": "65b48211aaaf736f4e1c279458c90a94109cb685b280c678f9cf1bc8a41e8cb7",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_drummer",
+      "frame": 6,
+      "area": 576,
+      "box": [
+        338,
+        110,
+        364,
+        159
+      ],
+      "mask_sha256": "15772efc7c63a3b3a24133ed8e2b34fafb25b0174b6955bae8331a956960c8db",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_drummer",
+      "frame": 6,
+      "area": 554,
+      "box": [
+        369,
+        118,
+        397,
+        169
+      ],
+      "mask_sha256": "2179515195acb0bf1f182e1ae507a01ed6bccaa11a2e46bd9b51aff4e4e526d2",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_drummer",
+      "frame": 6,
+      "area": 366,
+      "box": [
+        308,
+        120,
+        328,
+        159
+      ],
+      "mask_sha256": "770b27fe64805241dc18fe19539b7fb9963caa4e88d4105b2ef3fd069c609f53",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_drummer",
+      "frame": 7,
+      "area": 588,
+      "box": [
+        300,
+        131,
+        324,
+        181
+      ],
+      "mask_sha256": "f3062377f0f008123c1c6ceed768c67606c116f1119747351666f4ee465cd993",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_drummer",
+      "frame": 7,
+      "area": 533,
+      "box": [
+        334,
+        137,
+        361,
+        188
+      ],
+      "mask_sha256": "15285404d8770c23f3a3a3cb8129533b58d5dac63afee8076507c1c45afbf83d",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_drummer",
+      "frame": 7,
+      "area": 223,
+      "box": [
+        276,
+        153,
+        290,
+        184
+      ],
+      "mask_sha256": "2ae19bb4ad18b04cf2de834c0d2772c7849e72883a50511c24dce87bfebd33e0",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_drummer",
+      "frame": 8,
+      "area": 470,
+      "box": [
+        298,
+        144,
+        320,
+        186
+      ],
+      "mask_sha256": "e24479548e295a29b0a3da6e42c76894a93d9d50f2ab2102ea482685deae8be7",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_drummer",
+      "frame": 8,
+      "area": 504,
+      "box": [
+        334,
+        145,
+        359,
+        192
+      ],
+      "mask_sha256": "201d7008d1ae0b6ff38e3d4b6c21ee405d255e900a264ec4d3f0909ccc38b1b9",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_drummer",
+      "frame": 8,
+      "area": 216,
+      "box": [
+        273,
+        158,
+        288,
+        187
+      ],
+      "mask_sha256": "b3db4ed012efca6ba45a175639a2a7cf3fd0b2ccac8c4cea0a8f8bc706761406",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_boar",
+      "frame": 6,
+      "area": 627,
+      "box": [
+        299,
+        135,
+        325,
+        198
+      ],
+      "mask_sha256": "55d2305d7f0e42a865c712fb6c99945032153a3943646ff8200a8f5bfe63ea0c",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_boar",
+      "frame": 6,
+      "area": 406,
+      "box": [
+        315,
+        162,
+        346,
+        206
+      ],
+      "mask_sha256": "e09a95f89d9bd281d370e3bf5a73039b7c809734d3967db56a0d14b648b3880d",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_boar",
+      "frame": 7,
+      "area": 406,
+      "box": [
+        251,
+        164,
+        267,
+        210
+      ],
+      "mask_sha256": "abe524e691ee6f4f987b058d7e15b77f44197cb1db3a2d2ca3086dbeed990177",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_boar",
+      "frame": 7,
+      "area": 339,
+      "box": [
+        276,
+        170,
+        295,
+        211
+      ],
+      "mask_sha256": "4b0e4e60b7680640fc5c274ca2538eaf68a5b97f6f6a14b8f9b90a8c8abff93f",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_boar",
+      "frame": 7,
+      "area": 225,
+      "box": [
+        297,
+        186,
+        317,
+        216
+      ],
+      "mask_sha256": "1d4521c2462e8b998e5bf6c21d5744a57f3359ab6232c308bb9e2e0244cb1b66",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_boar",
+      "frame": 8,
+      "area": 411,
+      "box": [
+        246,
+        175,
+        263,
+        223
+      ],
+      "mask_sha256": "6070a1571cc47680da271b43dc4b273ba5a22e9c5660a52b1dff1fa5a2f5c164",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    },
+    {
+      "actor": "orc_boar",
+      "frame": 8,
+      "area": 263,
+      "box": [
+        274,
+        189,
+        288,
+        226
+      ],
+      "mask_sha256": "a0247d4dcf8a59330792e2eca57771f203fb3ed79c0c02b1d9c5d428f78d19c8",
+      "reason": "visually reviewed orange-red heat wisp above head"
+    }
+  ]
+}

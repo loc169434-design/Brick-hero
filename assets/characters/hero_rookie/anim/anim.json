@@ -79,6 +79,11 @@
       "frames": 12,
       "fps": 12,
       "loop": false
+    },
+    "run": {
+      "frames": 8,
+      "fps": 16,
+      "loop": true
     }
   }
 }

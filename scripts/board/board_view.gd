@@ -202,6 +202,30 @@ func _ready() -> void:
 	new_game()
 
 
+## An obstacle thrown onto the board lands on a random tile with a thud. Waits for the board to
+## be still and the finger off it, so it never lands mid-link.
+func drop_obstacle(kind: String, layers: int) -> void:
+	var generation := _generation
+	while _busy or not path.is_empty():
+		await get_tree().process_frame
+		if generation != _generation or _finished:
+			return
+	if _finished:
+		return
+	var placed := game.place(kind, 1, layers)
+	if placed.is_empty():
+		return
+	var p: Vector2i = placed[0]
+	_shown = _snapshot()
+	_falling[p] = 3
+	_fall_t = 0.0
+	_knocked[p] = _time + KNOCK_TIME + 0.25
+	await _animate_falls(0.25, generation)
+	_shards.shatter((Vector2(p) + Vector2(0.5, 0.5)) * CELL, BLOCKER_DUST.get(kind, BLOCKER_DUST["crate"]), 12)
+	Sfx.play(&"thud", 0.8)
+	impact.emit(0.35, 0.04)
+
+
 ## Sets the board up for a level after a restart, without starting over: a fixed deal when
 ## `seed` is 0 or more, then `setup` gets the LinkGame to put obstacles on.
 func prepare(seed := -1, setup := Callable()) -> void:

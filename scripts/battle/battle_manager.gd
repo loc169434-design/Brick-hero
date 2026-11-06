@@ -15,6 +15,8 @@ signal fight_over(won: bool, gold: int)
 const NEAR_MISS_HEALTH := 0.15
 ## Below this much health, the hero is close enough to losing for the tiles to gloat.
 const GLOAT_HEALTH := 0.3
+## Seconds after the move until the thrown rock lands on the board.
+const ROCK_LANDS := 1.0
 
 @export var board: BoardView
 @export var battle_view: BattleView
@@ -111,6 +113,8 @@ func _on_move_finished(result: MoveResult) -> void:
 		progress.record(result)
 		_judge(report)
 	battle_view.play_report(report)
+	if report.rock_thrown:
+		_throw_rock()
 	if skill_bar:
 		skill_bar.refresh()
 	_settle(report)
@@ -137,6 +141,14 @@ func _on_skill_pressed() -> void:
 	await battle_view.play_report(report)
 	if fight == state:
 		board.locked = false
+
+
+## The Orc's rock lands on the board as it hits: a two-layer obstacle on a random tile.
+func _throw_rock() -> void:
+	var fight := state
+	await get_tree().create_timer(ROCK_LANDS).timeout
+	if fight == state:
+		board.drop_obstacle("rock", 2)
 
 
 func _set_up_board(game: LinkGame) -> void:
@@ -191,6 +203,9 @@ func _bring_on_next() -> void:
 	state.hero_hp = carried.hero_hp
 	state.gold = carried.gold
 	state.rage = carried.rage
+	# The drum keeps beating for whoever steps in next.
+	state.tempo = carried.tempo
+	state.countdown = state.attack_every()
 	_next_up = false
 	battle_view.show_state(state)
 	battle_view.show_goal(progress)

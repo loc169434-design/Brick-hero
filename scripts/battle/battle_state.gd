@@ -20,6 +20,8 @@ var monster_hp: int
 var shield: int
 ## Moves left until the monster attacks.
 var countdown: int
+## Moves the war drum has taken off the monster's countdown (MonsterData.special "drum").
+var tempo := 0
 var gold := 0
 ## Fills from cleared squares; at rules.rage_max the hero skill is ready. Starts empty each fight.
 var rage := 0
@@ -106,7 +108,13 @@ func apply_move(result: MoveResult) -> TurnReport:
 			report.monster_attack = monster_hit(report.monster_critical)
 			hero_hp = maxi(hero_hp - report.monster_attack, 0)
 			attacks_made += 1
-			countdown = monster.countdown
+			match monster.special:
+				"rock":
+					report.rock_thrown = true
+				"drum":
+					tempo += 1
+					report.drummed = true
+			countdown = attack_every()
 			if hero_hp == 0:
 				outcome = Outcome.LOST
 	report.rage_gained = _gain_rage(result)
@@ -178,6 +186,11 @@ func _gain_rage(result: MoveResult) -> int:
 func monster_hit(critical: bool) -> int:
 	var crit_bonus := (rules.monster_crit_multiplier - 1.0) * (1.0 - rules.crit_guard) if critical else 0.0
 	return maxi(roundi(monster.attack * (1.0 + crit_bonus)) - rules.armor, 1)
+
+
+## Moves between the monster's attacks, sped up by the war drum, but never under 2.
+func attack_every() -> int:
+	return maxi(monster.countdown - tempo, mini(2, monster.countdown))
 
 
 func hero_health() -> float:

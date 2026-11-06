@@ -95,3 +95,46 @@ func test_every_level_file_loads_and_names_real_monsters() -> void:
 				assert_true(ResourceLoader.exists("res://data/monsters/%s.tres" % monster.next_phase), monster.next_phase)
 		found += 1
 	assert_true(found >= 18, "act 1 is there")
+
+
+func _attack_move() -> MoveResult:
+	var result := MoveResult.new()
+	result.steps.append(ClearStep.new())
+	return result
+
+
+func test_the_rock_thrower_throws_a_rock_with_every_attack() -> void:
+	var rules: BattleRules = load("res://data/balance.tres")
+	var state := BattleState.new(rules, load("res://data/monsters/orc_rock.tres"))
+	var thrown := 0
+	for i in 9:
+		if state.apply_move(_attack_move()).rock_thrown:
+			thrown += 1
+	assert_eq(thrown, 3, "an attack every 3 moves, each with a rock")
+
+
+func test_the_war_drum_speeds_the_attacks_up_to_every_two_moves() -> void:
+	var rules: BattleRules = load("res://data/balance.tres")
+	var drummer: MonsterData = load("res://data/monsters/orc_drummer.tres")
+	var state := BattleState.new(rules, drummer)
+	assert_eq(state.attack_every(), 4)
+	var gaps: Array[int] = []
+	var since := 0
+	for i in 16:
+		since += 1
+		if state.apply_move(_attack_move()).drummed:
+			gaps.append(since)
+			since = 0
+	assert_eq(gaps.slice(0, 4), [4, 3, 2, 2], "4 moves, then 3, then never under 2")
+	state.hero_hp = rules.hero_max_hp
+
+
+func test_the_story_chapters_after_levels_have_panels_and_captions() -> void:
+	for number in [1, 2]:
+		assert_true(StoryView.has_chapter(number), "chapter %d" % number)
+		var captions := StoryView._json(StoryView.CAPTIONS % number)
+		var info := StoryView._json(StoryView.STORY_DIR % number + "chapter.json")
+		assert_eq(captions.get("captions", []).size(), info.get("panels", []).size(), "a caption per panel")
+	assert_true(not StoryView.has_chapter(0))
+	var five: LevelData = load("res://data/levels/level_005.tres")
+	assert_eq(five.chapter, 1)

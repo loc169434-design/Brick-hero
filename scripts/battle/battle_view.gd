@@ -487,12 +487,25 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 		await _cinematic("orc_eye_glare", false, HERO_FEET)
 		if fight != _fight:
 			return
+	if report.drummed:
+		# The war drum: a big beat before the blow, and the countdown speeds up.
+		_monster.react(_monster_clip(&"special"), 0.0)
+		await _wait(_monster.strike_time(_monster_clip(&"special"), 0.3))
+		_comic("boom", _local(_monster.point("head")) + Vector2(-60, -120), 0.9)
+		Sfx.play(&"warn", 0.8)
+		impact.emit(0.3, 0.0)
+		_float("TRỐNG THÚC!", COUNTDOWN_AT + Vector2(0, 90), GOLD, 46)
+		await get_tree().create_timer(0.35).timeout
+		if fight != _fight:
+			return
 	var kind: StringName = MONSTER_ATTACKS[_attack_turn % MONSTER_ATTACKS.size()]
+	if _state.monster.special == "rock":
+		kind = &"rock"
 	_attack_turn += 1
 	match kind:
 		&"rock":
-			_monster.react(&"throw", 0.7)
-			await _wait(_monster.strike_time(&"throw", 0.0))
+			_monster.react(_monster_clip(&"throw"), 0.7)
+			await _wait(_monster.strike_time(_monster_clip(&"throw"), 0.0))
 			Sfx.play(&"whoosh")
 			var rock := _prop("rock")
 			await _fly(rock, _local(_monster.point("hand")), _local(_hero.point("crown")), 0.4, 130.0, 2.0)
@@ -500,8 +513,8 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 			_hero.daze()
 			_hero_hit(report, "bonk", &"dizzy")
 		&"club":
-			_monster.react(&"throw", 0.7)
-			await _wait(_monster.strike_time(&"throw", 0.0))
+			_monster.react(_monster_clip(&"throw"), 0.7)
+			await _wait(_monster.strike_time(_monster_clip(&"throw"), 0.0))
 			Sfx.play(&"whoosh", 0.7)
 			var club := _prop("club")
 			await _fly(club, _local(_monster.point("hand")), _local(_hero.point("head")) + Vector2(0, 60), 0.32, 50.0, -3.0)
@@ -509,14 +522,22 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 			_hero.knockback(70.0, 0.5)
 			_hero_hit(report, "thud", &"knocked")
 		_:
-			_monster.react(&"charge", 0.0)
-			await _monster.dash_to(Vector2(HERO_FEET.x - MONSTER_FEET.x + 200, 0), _monster.strike_time(&"charge", 0.18))
+			_monster.react(_monster_clip(&"charge"), 0.0)
+			await _monster.dash_to(Vector2(HERO_FEET.x - MONSTER_FEET.x + 200, 0), _monster.strike_time(_monster_clip(&"charge"), 0.18))
 			_monster.reach_impact()
 			_hero.knockback(90.0, 0.5)
 			_hero_hit(report, "bam", &"knocked")
 			await _monster.home(0.3)
 	if fight == _fight:
 		_camera(1.0, SIZE / 2, 0.35)
+
+
+## `clip` if the monster has it, else its plain attack: the act 1 Orcs are drawn with attack
+## and special clips rather than the Shield Orc's throw and charge.
+func _monster_clip(clip: StringName) -> StringName:
+	if _monster.has_clip(clip) or not _monster.has_clip(&"attack"):
+		return clip
+	return &"attack"
 
 
 func _hero_hit(report: TurnReport, comic: String, pose: StringName) -> void:

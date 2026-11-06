@@ -22,4 +22,8 @@ var monster_critical := false
 var skill := ""
 ## Rage the move filled; the bar is already updated.
 var rage_gained := 0
+## The monster's attack threw a rock onto the board (MonsterData.special "rock").
+var rock_thrown := false
+## The monster's attack beat the war drum: its attacks now come a move sooner.
+var drummed := false
 var outcome := BattleState.Outcome.ONGOING

@@ -93,7 +93,10 @@ const FIDGET_POSES := ["blink", "blink", "blink", "chuckle", "laugh"]
 const FIDGET_HOP := 14.0
 ## The witch's lifted tile: how long it rises, then flies, and how big it gets on the way.
 const LIFT_RISE := 0.45
-const LIFT_FLIGHT := 0.55
+## It spins in the air, getting dizzy, before it's thrown.
+const LIFT_SPIN := 0.7
+const LIFT_FLIGHT := 0.5
+const LIFT_TOTAL := LIFT_RISE + LIFT_SPIN + LIFT_FLIGHT
 const LIFT_GROW := 1.9
 const SPELL_GLOW := Color(0.75, 0.45, 1.0)
 ## A break-up clip is drawn this many squares wide, so splinters fly past the square.
@@ -333,7 +336,7 @@ func throw_lifted(target: Vector2) -> void:
 	var tween := create_tween()
 	tween.tween_method(func(t: float) -> void:
 		_flying["t"] = t
-		_redraw(), 0.0, 1.0, LIFT_RISE + LIFT_FLIGHT)
+		_redraw(), 0.0, 1.0, LIFT_TOTAL)
 	# Halfway up, the hole closes: the column falls into its place.
 	await get_tree().create_timer(LIFT_RISE * 0.6).timeout
 	if generation != _generation:
@@ -904,6 +907,9 @@ func _pose_for(p: Vector2i) -> String:
 		return "relief"
 	if _fidgets.has(p):
 		return _fidgets[p]["pose"]
+	# Caught by the witch's spell, the tile grins slyly, eyeing the hero.
+	if lift_cell and _shown.get(p) == lift_cell:
+		return "gloat"
 	return ""
 
 
@@ -1030,23 +1036,27 @@ func _draw_lift() -> void:
 				_overlay.draw_arc(center, CELL * 0.6, a, a + 1.4, 16, Color(SPELL_GLOW, 0.9), 5.0, true)
 	if _flying.is_empty():
 		return
-	var t: float = _flying["t"]
+	# Seconds into the throw: rising off the board, spinning in the air, then flying.
+	var s: float = _flying["t"] * LIFT_TOTAL
 	var from: Vector2 = _flying["from"]
 	var to: Vector2 = _flying["to"]
-	var rise := clampf(t / (LIFT_RISE / (LIFT_RISE + LIFT_FLIGHT)), 0.0, 1.0)
-	var fly := clampf((t - LIFT_RISE / (LIFT_RISE + LIFT_FLIGHT)) / (LIFT_FLIGHT / (LIFT_RISE + LIFT_FLIGHT)), 0.0, 1.0)
+	var rise := clampf(s / LIFT_RISE, 0.0, 1.0)
+	var whirl := clampf((s - LIFT_RISE) / LIFT_SPIN, 0.0, 1.0)
+	var fly := clampf((s - LIFT_RISE - LIFT_SPIN) / LIFT_FLIGHT, 0.0, 1.0)
 	# The shadow stays on the board, shrinking and fading as the tile comes off it.
 	if fly < 1.0:
 		_overlay.draw_set_transform(from + Vector2(10, 18), 0.0, Vector2(1.0, 0.5))
 		_overlay.draw_circle(Vector2.ZERO, CELL * 0.5 * (1.0 - rise * 0.6), Color(0, 0, 0, 0.45 * (1.0 - fly)))
 		_overlay.draw_set_transform(Vector2.ZERO)
-	var lifted := from + Vector2(0, -CELL * 0.9 * ease(rise, 0.5))
+	var lifted := from + Vector2(0, -CELL * 0.9 * ease(rise, 0.5)) + Vector2(0, sin(whirl * TAU * 2.0) * 8.0)
 	var arc := Vector2(0, -CELL * 2.4 * sin(fly * PI))
 	var at := lifted.lerp(to, ease(fly, 1.6)) + arc
 	var grow := lerpf(1.0, LIFT_GROW, ease(rise, 0.5)) * lerpf(1.0, 0.75, fly)
-	# Tumbling towards the screen: it turns, and squashes across as it spins (a 2D hint of 3D).
-	var spin := rise * 0.25 + fly * TAU * 1.25
-	var squash := Vector2(absf(cos(fly * TAU)) * 0.6 + 0.4, 1.0)
+	# Whirled round and round, then tumbling towards the screen; it squashes across as it
+	# turns, a 2D hint of 3D.
+	var turns := ease(whirl, 0.6) * 3.0 + fly * 1.25
+	var spin := turns * TAU
+	var squash := Vector2(absf(cos(turns * TAU * 0.5)) * 0.6 + 0.4, 1.0)
 	_overlay.draw_circle(at, CELL * 0.75 * grow, Color(SPELL_GLOW, 0.3))
 	_overlay.draw_set_transform(at, spin, squash * grow)
 	var cell: Cell = _flying["cell"]
@@ -1055,7 +1065,11 @@ func _draw_lift() -> void:
 		_overlay.draw_circle(Vector2.ZERO, CELL * 0.4, Color(0.2, 0.2, 0.25))
 		_overlay.draw_circle(Vector2.ZERO, CELL * 0.4, Color(1, 0.7, 0.3), false, 6.0)
 	else:
-		var texture := _art.tile(cell.color)
+		# Sly grin on the way up; dizzy from the spinning after.
+		var face := "gloat" if whirl < 0.35 else _first_expression(cell.color, ["dizzy", "hurt", "scream"])
+		var texture := _art.expression(cell.color, face) if face else null
+		if texture == null:
+			texture = _art.tile(cell.color)
 		if texture:
 			_overlay.draw_texture_rect(texture, Rect2(-size / 2, size), false)
 		else:
@@ -1064,6 +1078,22 @@ func _draw_lift() -> void:
 	for i in 3:
 		var a := _time * 6.0 + i * TAU / 3.0
 		_overlay.draw_arc(at, CELL * 0.62 * grow, a, a + 1.2, 16, Color(SPELL_GLOW, 0.85), 5.0, true)
+	if whirl > 0.35:
+		# Stars circling over its head: it's seeing them.
+		for i in 3:
+			var a := _time * 7.0 + i * TAU / 3.0
+			var star := at + Vector2(cos(a) * CELL * 0.45, -CELL * 0.55 * grow + sin(a) * CELL * 0.14)
+			var points := PackedVector2Array()
+			for k in 8:
+				points.append(star + Vector2.from_angle(a + k * PI / 4) * (14.0 if k % 2 == 0 else 5.0))
+			_overlay.draw_colored_polygon(points, Color(1, 0.9, 0.3))
+
+
+func _first_expression(color: int, poses: Array) -> String:
+	for pose: String in poses:
+		if _art.expression(color, pose):
+			return pose
+	return ""
 
 
 ## Shows what the traced link would blow up besides its own squares: the rest dims.

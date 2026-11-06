@@ -88,6 +88,11 @@ const HURT_SPARK := Color(1, 0.45, 0.35)
 const POISON := Color(0.55, 0.9, 0.3)
 const CURSE := Color(0.75, 0.55, 1.0)
 const RAGE := Color(1.0, 0.3, 0.15)
+const PLAQUE := Color(0.27, 0.17, 0.1)
+const PLAQUE_RIM := Color(0.86, 0.66, 0.3)
+## The plaque's swords clash this often, the clash landing this far into each round.
+const SWORD_CLASH := 2.0
+const CLASH_AT := 0.35
 const CURSE_DIR := "res://assets/fx/curse/"
 const STATUS_DIR := "res://assets/ui/status/"
 const OUTLINE := Color(0.1, 0.07, 0.05)
@@ -116,6 +121,7 @@ var _goal: LevelProgress
 var _goal_art := ObstacleArt.new()
 var _status_icons := {}
 var _rage_time := 0.0
+var _sword: Texture2D
 var _combat_anim := {}
 var _backdrop: ArenaBackdrop
 var _hero: CharacterRig
@@ -171,6 +177,8 @@ func _ready() -> void:
 				info["path"] = CURSE_DIR + effect + ".png"
 				_combat_anim[effect] = info
 	_coin = load(PROP_DIR + "coin.png") if ResourceLoader.exists(PROP_DIR + "coin.png") else null
+	var sword := "res://assets/ui/items/iron_sword.png"
+	_sword = load(sword) if ResourceLoader.exists(sword) else null
 	_box.shadow_color = Color(0, 0, 0, 0.35)
 	_overlay = Node2D.new()
 	add_child(_overlay)
@@ -391,8 +399,8 @@ func _process(delta: float) -> void:
 			_sparks.flare(_local(_monster.point("head")) + Vector2(randf_range(-60, 60), randf_range(-40, 20)), RAGE, 0.6)
 	elif _monster.modulate != Color.WHITE:
 		_monster.modulate = Color.WHITE
-	# The countdown pulses while the monster is winding up; low health bars throb.
-	if _state and (_state.attacks_next_move() or _state.hero_health() <= LOW_HEALTH or _state.monster_health() <= LOW_HEALTH):
+	# The plaque's swords never rest; the countdown pulses; low health bars throb.
+	if _state:
 		_overlay.queue_redraw()
 
 
@@ -602,7 +610,7 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 		_comic("boom", _local(_monster.point("head")) + Vector2(-60, -120), 0.9)
 		Sfx.play(&"warn", 0.8)
 		impact.emit(0.3, 0.0)
-		_float("TRỐNG THÚC!", COUNTDOWN_AT + Vector2(0, 90), GOLD, 46)
+		_float("TRỐNG THÚC!", COUNTDOWN_AT + Vector2(0, 150), GOLD, 46)
 		await get_tree().create_timer(0.35).timeout
 		if fight != _fight:
 			return
@@ -652,7 +660,7 @@ const SPELL_CLIPS := {
 	"bomb": [&"special", "boom"], "marks": [&"special", "heh"], "lift": [&"cast_broom", "zap"],
 }
 ## Seconds from the wand flick until the thrown tile reaches the hero.
-const LIFT_TIME := 1.0
+const LIFT_TIME := BoardView.LIFT_TOTAL
 
 
 ## A monster whose attack is a spell or a special blow: its own clip, the hit on the hero, and
@@ -986,14 +994,15 @@ func _draw_overlay() -> void:
 	_draw_shield_layers()
 	_draw_gold()
 	_draw_statuses()
+	_draw_turn_plaque(COUNTDOWN_AT)
 	if _state.outcome == BattleState.Outcome.ONGOING and _state.monster.counterattacks:
-		_draw_countdown(COUNTDOWN_AT)
+		_draw_countdown(COUNTDOWN_AT + Vector2(0, 76))
 	if _hint:
 		var box := Rect2(30, 110, SIZE.x - 60, 96)
 		_rounded(box, Color(0, 0, 0, 0.6), 18)
 		_overlay.draw_multiline_string(ThemeDB.fallback_font, box.position + Vector2(20, 40), _hint, HORIZONTAL_ALIGNMENT_LEFT, box.size.x - 40, 32, 2, TEXT)
 	if _goal:
-		_draw_goal(Vector2(SIZE.x / 2, 236.0 if _hint else 120.0))
+		_draw_goal(Vector2(SIZE.x / 2, 236.0 if _hint else 176.0))
 	for floater in _floaters:
 		var t: float = floater["t"]
 		var at: Vector2 = floater["at"] + Vector2(0, -FLOAT_RISE * ease(t, 0.4))
@@ -1187,15 +1196,58 @@ func _rounded(rect: Rect2, color: Color, radius: int, shadow := 0) -> void:
 
 ## Moves left until the monster attacks, between the bars like a round timer; turns red one
 ## move ahead, with a warning underneath.
+## "Lượt N" on a wooden plaque between the health bars, a pair of crossed swords either side
+## that swing apart and clash every SWORD_CLASH seconds.
+func _draw_turn_plaque(center: Vector2) -> void:
+	var size := Vector2(176, 58)
+	var box := Rect2(center - size / 2, size)
+	var t := fmod(Time.get_ticks_msec() / 1000.0, SWORD_CLASH)
+	# Apart, then a fast swing in and a ring: the clash lands at CLASH_AT.
+	var swing := 0.0
+	if t < CLASH_AT:
+		swing = ease(t / CLASH_AT, 2.4)
+	else:
+		swing = 1.0 - ease(clampf((t - CLASH_AT) / 0.5, 0.0, 1.0), 0.5)
+	var spread := lerpf(0.0, 0.5, swing)
+	for side in [-1.0, 1.0]:
+		var at := center + Vector2(side * (size.x / 2 + 26), 2)
+		for k in [-1.0, 1.0]:
+			_draw_sword(at, k * (0.62 - spread), 72.0)
+		if t >= CLASH_AT and t < CLASH_AT + 0.18:
+			var flash := 1.0 - (t - CLASH_AT) / 0.18
+			_overlay.draw_circle(at + Vector2(0, -16), 18.0 * flash + 6.0, Color(1, 0.95, 0.6, 0.8 * flash))
+	_box.bg_color = PLAQUE
+	_box.border_color = PLAQUE_RIM
+	_box.set_border_width_all(4)
+	_box.set_corner_radius_all(16)
+	_box.shadow_size = 6
+	_box.shadow_offset = Vector2(0, 4)
+	_box.draw(_overlay.get_canvas_item(), box)
+	_box.set_border_width_all(0)
+	_draw_text_centered("Lượt %d" % (_state.moves + 1), center + Vector2(0, 14), 38, TEXT)
+
+
+## A sword standing on its tip's opposite end at `at`, leaned by `angle` (0 = upright).
+func _draw_sword(at: Vector2, angle: float, length: float) -> void:
+	if _sword == null:
+		_overlay.draw_set_transform(at, angle, Vector2.ONE)
+		_overlay.draw_line(Vector2(0, length * 0.4), Vector2(0, -length * 0.5), Color(0.85, 0.88, 0.92), 6.0)
+		_overlay.draw_line(Vector2(-12, length * 0.2), Vector2(12, length * 0.2), GOLD, 6.0)
+	else:
+		_overlay.draw_set_transform(at, angle, Vector2.ONE)
+		_overlay.draw_texture_rect(_sword, Rect2(Vector2(-length / 2, -length / 2), Vector2(length, length)), false)
+	_overlay.draw_set_transform(Vector2.ZERO)
+
+
 func _draw_countdown(center: Vector2) -> void:
 	var warn := _state.attacks_next_move()
-	var radius := 34.0
+	var radius := 26.0
 	if warn:
 		radius += 5.0 * absf(sin(Time.get_ticks_msec() / 1000.0 * 6.0))
 	_overlay.draw_circle(center + Vector2(0, 4), radius + BAR_RIM, Color(0, 0, 0, 0.35))
 	_overlay.draw_circle(center, radius + BAR_RIM, BAR_RIM_COLOR)
 	_overlay.draw_circle(center, radius, WARN if warn else BAR_EMPTY)
-	_draw_text_centered(str(_state.countdown), center + Vector2(0, 15), 44, TEXT, _number_font)
+	_draw_text_centered(str(_state.countdown), center + Vector2(0, 12), 34, TEXT, _number_font)
 	if warn:
 		if _state.next_attack_is_critical():
 			_draw_text_centered("SẮP CHÍ MẠNG %d!" % roundi(_state.monster.attack * _state.rules.monster_crit_multiplier), center + Vector2(0, radius + 44), 30, Color(1, 0.85, 0.2))

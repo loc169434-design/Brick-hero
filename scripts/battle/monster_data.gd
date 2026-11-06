@@ -25,3 +25,7 @@ extends Resource
 ## A boss's next form: when this one's health runs out it turns into that monster
 ## (data/monsters/<next_phase>.tres) instead of falling.
 @export var next_phase := ""
+## What its attacks do besides the damage: "rock" also throws a rock onto the board (an
+## obstacle of two layers), "drum" beats the war drum so every later attack comes a move
+## sooner (down to every 2 moves), even from the monster after it. "" for none.
+@export var special := ""

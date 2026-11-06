@@ -13,3 +13,4 @@ attack = 10
 countdown = 3
 tile_theme = "orc_shield"
 background = "orc_camp"
+special = "rock"

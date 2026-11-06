@@ -24,13 +24,27 @@ func _ready() -> void:
 	campaign.load_progress(save_path)
 	map = MapView.new()
 	add_child(map)
-	map.stop_chosen.connect(start_fight)
+	map.stop_chosen.connect(show_card)
 	map.forge_requested.connect(open_forge)
 	map.show_campaign(campaign)
 	_back_layer = CanvasLayer.new()
 	add_child(_back_layer)
 	_back_layer.add_child(_back_button())
 	_back_layer.hide()
+
+
+## The level card for stop `id`: who's there, what to do, the stars so far, and a button to fight.
+func show_card(id: String) -> void:
+	var level := Campaign.level(id)
+	if level == null or battle or has_node("Card"):
+		return
+	var card := LevelCard.new()
+	card.name = "Card"
+	add_child(card)
+	card.show_level(id, level, campaign.stars_at(id))
+	card.play.connect(func(level_id: String) -> void:
+		card.queue_free()
+		start_fight(level_id))
 
 
 ## Plays level `id` (its number).
@@ -88,14 +102,28 @@ func end_fight(won: bool, gold: int) -> void:
 	var stars := manager.progress.stars(manager.state.hero_health(), gold - campaign.gold) if won else 0
 	var won_at := campaign.index_of(_fighting) if won else -1
 	var first_clear := campaign.finish_fight(_fighting, won, gold, stars)
+	var level := Campaign.level(_fighting)
 	campaign.save(save_path)
 	battle.queue_free()
 	battle = null
 	manager = null
 	_fighting = ""
 	_back_layer.hide()
+	var chapter := level.chapter if level else 0
+	if first_clear and StoryView.has_chapter(chapter):
+		await read_story(chapter)
 	map.show()
 	map.show_campaign(campaign, won_at, first_clear)
+
+
+## Shows story chapter `number` over everything until it's read or skipped.
+func read_story(number: int) -> void:
+	var story := StoryView.new()
+	add_child(story)
+	story.show_chapter(number)
+	map.hide()
+	await story.finished
+	story.queue_free()
 
 
 func _leave_fight() -> void:

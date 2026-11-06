@@ -104,6 +104,9 @@ var _focus := SIZE / 2
 var _camera_tween: Tween
 var _attack_turn := 0
 var _number_font: Font
+## The level's goals, shown as small chips under the countdown; null outside a level.
+var _goal: LevelProgress
+var _goal_art := ObstacleArt.new()
 var _combat_anim := {}
 var _backdrop: ArenaBackdrop
 var _hero: CharacterRig
@@ -188,6 +191,11 @@ func orb_targets() -> Dictionary:
 		Cell.BlockColor.YELLOW: to_global(_coin_center()),
 		Cell.BlockColor.PURPLE: to_global(MONSTER_FEET + Vector2(-110, -150)),
 	}
+
+
+func show_goal(progress: LevelProgress) -> void:
+	_goal = progress
+	_redraw()
 
 
 func show_hint(text: String) -> void:
@@ -793,6 +801,8 @@ func _draw_overlay() -> void:
 		var box := Rect2(30, 110, SIZE.x - 60, 96)
 		_rounded(box, Color(0, 0, 0, 0.6), 18)
 		_overlay.draw_multiline_string(ThemeDB.fallback_font, box.position + Vector2(20, 40), _hint, HORIZONTAL_ALIGNMENT_LEFT, box.size.x - 40, 32, 2, TEXT)
+	if _goal:
+		_draw_goal(Vector2(SIZE.x / 2, 236.0 if _hint else 120.0))
 	for floater in _floaters:
 		var t: float = floater["t"]
 		var at: Vector2 = floater["at"] + Vector2(0, -FLOAT_RISE * ease(t, 0.4))
@@ -880,6 +890,61 @@ func _draw_gold() -> void:
 	else:
 		_overlay.draw_circle(coin, COIN_SIZE * 0.4, GOLD)
 	_draw_text(text, Vector2(text_x, ROW_Y + 28), 30, GOLD, _number_font)
+
+
+## The level's goals as picture chips, centred on `center`: squares of the color to gather,
+## crates to break and items to bring down with how many so far, and the moves left.
+func _draw_goal(center: Vector2) -> void:
+	var level := _goal.level
+	var chips: Array = []
+	if level.collect > 0 and level.collect_color >= 0:
+		chips.append(["collect", "%d/%d" % [mini(_goal.collected, level.collect), level.collect]])
+	if level.break_crates:
+		chips.append(["crate", "%d/%d" % [mini(_goal.broken, level.crates), level.crates]])
+	if level.rescue > 0:
+		chips.append(["rescue", "%d/%d" % [mini(_goal.rescued, level.rescue), level.rescue]])
+	if level.turns > 0:
+		chips.append(["turns", str(_goal.turns_left())])
+	if chips.is_empty():
+		return
+	const ICON := 40.0
+	const HEIGHT := 54.0
+	const GAP := 14.0
+	var widths: Array[float] = []
+	var total := -GAP
+	for chip in chips:
+		var w := ICON + 10.0 + _text_width(chip[1], 34, _number_font) + 28.0
+		widths.append(w)
+		total += w + GAP
+	var x := center.x - total / 2
+	for i in chips.size():
+		var box := Rect2(Vector2(x, center.y - HEIGHT / 2), Vector2(widths[i], HEIGHT))
+		var urgent: bool = chips[i][0] == "turns" and _goal.turns_left() <= 3
+		_rounded(box, Color(0.6, 0.1, 0.1, 0.8) if urgent else Color(0, 0, 0, 0.55), 27)
+		var icon := Rect2(box.position + Vector2(12, (HEIGHT - ICON) / 2), Vector2(ICON, ICON))
+		match chips[i][0]:
+			"collect":
+				var tint: Color = BoardView.BLOCK_COLORS.get(level.collect_color, GOLD)
+				_box.bg_color = tint
+				_box.set_corner_radius_all(9)
+				_box.shadow_size = 0
+				_box.draw(_overlay.get_canvas_item(), icon.grow(-4))
+			"crate":
+				var crate := _goal_art.texture(Cell.obstacle("crate", 1))
+				if crate:
+					_overlay.draw_texture_rect(crate, icon, false)
+			"rescue":
+				var item := _goal_art.texture(Cell.obstacle(level.rescue_item))
+				if item:
+					_overlay.draw_texture_rect(item, icon, false)
+			"turns":
+				# An hourglass.
+				var c := icon.get_center()
+				var s := ICON * 0.36
+				_overlay.draw_colored_polygon(PackedVector2Array([c + Vector2(-s, -s), c + Vector2(s, -s), c, ]), TEXT)
+				_overlay.draw_colored_polygon(PackedVector2Array([c, c + Vector2(s, s), c + Vector2(-s, s)]), TEXT)
+		_draw_text(chips[i][1], Vector2(icon.end.x + 10, box.position.y + 41), 34, TEXT, _number_font)
+		x += widths[i] + GAP
 
 
 ## Where the coin sits, give or take the width of the number beside it.

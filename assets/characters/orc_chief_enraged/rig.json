@@ -1,0 +1,43 @@
+{
+  "id": "orc_chief_enraged",
+  "canvas": [
+    512,
+    512
+  ],
+  "feet": [
+    256,
+    500
+  ],
+  "anchors": {
+    "fresh_idle": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_attack": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    },
+    "fresh_special": {
+      "head": [
+        256,
+        150
+      ],
+      "mouth": [
+        256,
+        190
+      ]
+    }
+  }
+}

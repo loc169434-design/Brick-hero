@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MonsterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/battle/monster_data.gd" id="1_monster"]
+
+[resource]
+script = ExtResource("1_monster")
+id = "scarecrow_wood"
+display_name = "Bù nhìn gỗ"
+max_hp = 50
+shield_layers = 0
+counterattacks = true
+attack = 4
+countdown = 4
+tile_theme = "training"
+background = "training_field"

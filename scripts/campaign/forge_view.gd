@@ -275,8 +275,7 @@ func _on_skill_tapped(id: String) -> void:
 	var title: String = BattleState.SKILLS[id]
 	if not campaign.pick_skill(id):
 		Sfx.play(&"untick")
-		var monster := Campaign.monster(Gear.SKILL_AFTER[id])
-		_say("Thắng %s để học %s!" % [monster.display_name if monster else "trận sau", title])
+		_say("Qua màn %s để học %s!" % [Gear.SKILL_AFTER[id], title])
 		return
 	if _picked_t <= 0.0 or campaign.skill != id:
 		Sfx.play(&"charge")
@@ -296,8 +295,8 @@ func _locked_reason(id: String) -> String:
 	var below: String = ladder[ladder.find(id) - 1] if ladder.find(id) > 0 else ""
 	if below and not campaign.owned.has(below):
 		return "Cần %s" % String(Gear.ITEMS[below]["name"]).to_lower()
-	var monster := Campaign.monster(Gear.ITEMS[id]["after"])
-	return "Thắng %s" % monster.display_name if monster else "Vùng sau"
+	var after: String = Gear.ITEMS[id]["after"]
+	return "Qua màn %s" % after if Campaign.has_level(after) else "Vùng sau"
 
 
 func _show_note(slot: String, text: String) -> void:

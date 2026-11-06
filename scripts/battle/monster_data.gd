@@ -22,3 +22,6 @@ extends Resource
 @export var background := ""
 ## Shown one per move, in order, above the fight. For the tutorial.
 @export var hints: PackedStringArray = []
+## A boss's next form: when this one's health runs out it turns into that monster
+## (data/monsters/<next_phase>.tres) instead of falling.
+@export var next_phase := ""

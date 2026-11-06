@@ -1,24 +1,29 @@
 class_name Campaign
 extends RefCounted
-## The journey from the castle to the dragon's cave: the stops on the world map in order,
-## which ones are cleared, and the gold the hero carries between fights. Pure rules, no Node.
+## The journey from the castle to the dragon's cave: the levels on the world map in order,
+## which ones are won, and the gold the hero carries between fights. Pure rules, no Node.
 ##
-## Stops come from assets/bg/world_map.json, bottom to top. Each stop is a fight against the
-## monster with the same id; a stop whose monster has no data in data/monsters/ yet is shown
-## as coming soon. The next stop opens when every stop before it is cleared, and cleared
-## stops can be fought again for gold and for more stars: 1 to 3 by the health the hero has
-## left when the monster falls.
+## Stops are the levels of docs/campaign_100.md, laid out on the map segments of
+## assets/bg/campaign/ (nodes_g*.json; segment 1 at the bottom). A stop's id is its level
+## number; a level without data in data/levels/ yet is shown as coming soon. The next level
+## opens when every one before it is won, and won levels can be played again for gold and
+## for more stars (LevelProgress.stars).
 
 enum Stop { LOCKED, OPEN, DONE, SOON }
 
-const MAP_FILE := "res://assets/bg/world_map.json"
+const MAP_DIR := "res://assets/bg/campaign/"
+const SEGMENT_HEIGHT := 1920.0
 const MONSTER_DIR := "res://data/monsters/"
+const LEVEL_FILE := "res://data/levels/level_%03d.tres"
 const SAVE_FILE := "user://campaign.json"
 ## Hero health left for 2 and 3 stars; any win earns 1.
 const STAR_HEALTH := [0.4, 0.7]
 
-## [{id, position}], bottom to top, position on the 1080×1920 map.
+## [{id, position, level, hard, boss, bonus, petal}], bottom to top; position on the whole
+## map, its segments stacked with segment 1 at the bottom.
 var stops: Array[Dictionary] = []
+## How many map segments the stops are laid out on.
+var segments := 1
 var cleared: Array[String] = []
 var gold := 0
 ## Best stars won at each cleared stop, by id.
@@ -33,13 +38,30 @@ func _init() -> void:
 	owned.assign(Gear.STARTING)
 
 
-static func from_map(path := MAP_FILE) -> Campaign:
+## Reads every nodes_g*.json in `dir` (one per batch of levels).
+static func from_map(dir := MAP_DIR) -> Campaign:
 	var campaign := Campaign.new()
-	if ResourceLoader.exists(path):
-		var json: JSON = load(path)
-		if json.data is Array:
-			for stop: Dictionary in json.data:
-				campaign.stops.append({"id": String(stop["id"]), "position": Vector2(stop["x"], stop["y"])})
+	var nodes: Array[Dictionary] = []
+	for file in DirAccess.get_files_at(dir):
+		if file.begins_with("nodes_") and file.ends_with(".json"):
+			var json := JSON.new()
+			if json.parse(FileAccess.get_file_as_string(dir + file)) == OK and json.data is Array:
+				for node: Dictionary in json.data:
+					nodes.append(node)
+	nodes.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return int(a["level"]) < int(b["level"]))
+	for node in nodes:
+		campaign.segments = maxi(campaign.segments, int(node.get("segment", 1)))
+	for node in nodes:
+		var lift := (campaign.segments - int(node.get("segment", 1))) * SEGMENT_HEIGHT
+		campaign.stops.append({
+			"id": str(int(node["level"])),
+			"level": int(node["level"]),
+			"position": Vector2(node["x"], float(node["y"]) + lift),
+			"hard": bool(node.get("hard", false)),
+			"boss": bool(node.get("boss", false)),
+			"bonus": bool(node.get("bonus", false)),
+			"petal": bool(node.get("petal", false)),
+		})
 	return campaign
 
 
@@ -68,7 +90,7 @@ func state_of(id: String) -> Stop:
 	var i := index_of(id)
 	if i < 0 or i != next_index():
 		return Stop.LOCKED
-	return Stop.OPEN if has_monster(id) else Stop.SOON
+	return Stop.OPEN if has_level(id) else Stop.SOON
 
 
 ## Where the hero stands on the map: the next stop, or the last one when all are cleared.
@@ -77,12 +99,25 @@ func hero_index() -> int:
 	return i if i >= 0 else stops.size() - 1
 
 
-static func has_monster(id: String) -> bool:
-	return ResourceLoader.exists(MONSTER_DIR + id + ".tres")
+static func has_level(id: String) -> bool:
+	return id.is_valid_int() and ResourceLoader.exists(LEVEL_FILE % int(id))
 
 
+static func level(id: String) -> LevelData:
+	return load(LEVEL_FILE % int(id)) if has_level(id) else null
+
+
+## The first monster met at stop `id`: who stands on it on the map.
 static func monster(id: String) -> MonsterData:
-	return load(MONSTER_DIR + id + ".tres") if has_monster(id) else null
+	var data := level(id)
+	if data == null or data.monsters.is_empty():
+		return null
+	return monster_data(data.monsters[0])
+
+
+static func monster_data(monster_id: String) -> MonsterData:
+	var path := MONSTER_DIR + monster_id + ".tres"
+	return load(path) if ResourceLoader.exists(path) else null
 
 
 ## Stars for a win with `hero_health` (0..1) left.

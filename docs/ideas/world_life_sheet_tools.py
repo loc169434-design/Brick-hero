@@ -1,4 +1,4 @@
-"""Shared crop/registration/atlas/review helpers. Never paint or recolor artwork."""
+"""World-life crop/registration/atlas/review helpers. Never paint or recolor art."""
 from pathlib import Path
 import hashlib
 import json

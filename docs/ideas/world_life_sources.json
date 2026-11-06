@@ -525,6 +525,194 @@
           887
         ]
       ]
+    },
+    "map_clouds": {
+      "path": "/workspace/generated_images/exec-68ebac9d-33ae-42a9-967b-5627ccd54666.png",
+      "sha256": "971427b563f2b96b82614b473cee45e3099411c091fececb0e13712753b2c20d",
+      "grid": [
+        1,
+        3
+      ],
+      "crop_boxes": [
+        [
+          0,
+          0,
+          1024,
+          512
+        ],
+        [
+          0,
+          512,
+          1024,
+          1019
+        ],
+        [
+          0,
+          1019,
+          1024,
+          1536
+        ]
+      ]
+    },
+    "map_smoke_flags": {
+      "path": "/workspace/generated_images/exec-feed8b94-ab03-4844-ade3-bd9fd96385fc.png",
+      "sha256": "527b72e6aea5f0ebb7f3f44aeaf2c313f8950385d3882cc33df504f90eea9bc7",
+      "grid": [
+        3,
+        4
+      ],
+      "crop_boxes": [
+        [
+          0,
+          0,
+          362,
+          362
+        ],
+        [
+          362,
+          0,
+          724,
+          362
+        ],
+        [
+          724,
+          0,
+          1086,
+          362
+        ],
+        [
+          0,
+          362,
+          362,
+          724
+        ],
+        [
+          362,
+          362,
+          724,
+          724
+        ],
+        [
+          724,
+          362,
+          1086,
+          724
+        ],
+        [
+          0,
+          724,
+          362,
+          1086
+        ],
+        [
+          362,
+          724,
+          724,
+          1086
+        ],
+        [
+          724,
+          724,
+          1086,
+          1086
+        ],
+        [
+          0,
+          1086,
+          362,
+          1448
+        ],
+        [
+          362,
+          1086,
+          724,
+          1448
+        ],
+        [
+          724,
+          1086,
+          1086,
+          1448
+        ]
+      ],
+      "flag_registration": {
+        "top_bar_anchors": [
+          189.0,
+          183.0,
+          181.0,
+          190.0,
+          183.0,
+          176.0
+        ],
+        "uniform_scale": 0.4409448818897638,
+        "destination_origin": [
+          64,
+          20
+        ]
+      }
+    },
+    "waterfall": {
+      "path": "/workspace/generated_images/exec-cef75686-0363-4e0b-92ab-2992af92b6c0.png",
+      "sha256": "75caebfb2d33a2b38bd926ba489b064d6c79bd89e93354bbd00c62c79f6bc7f4",
+      "grid": [
+        3,
+        2
+      ],
+      "crop_boxes": [
+        [
+          0,
+          0,
+          418,
+          627
+        ],
+        [
+          418,
+          0,
+          836,
+          627
+        ],
+        [
+          836,
+          0,
+          1254,
+          627
+        ],
+        [
+          0,
+          627,
+          418,
+          1254
+        ],
+        [
+          418,
+          627,
+          836,
+          1254
+        ],
+        [
+          836,
+          627,
+          1254,
+          1254
+        ]
+      ]
+    }
+  },
+  "map_reference_segments": {
+    "3": {
+      "path": "/workspace/issue49_sources/map_segment_03.png",
+      "sha256": "7868b515625176cb199335f5f14bd281c1fb97cc87d9222d9d486bc2bfcb1b31",
+      "source_ref": "e35ebff4"
+    },
+    "2": {
+      "path": "/workspace/issue49_sources/map_segment_02.png",
+      "sha256": "3e34183f48b3d4a27df67cf408be570884a5b1de3dc9540bdb41cfa88961472a",
+      "source_ref": "e35ebff4"
+    },
+    "1": {
+      "path": "/workspace/issue49_sources/map_segment_01.png",
+      "sha256": "270818d4f989e9656d5f1c880cdd48b754bca3915214873ddcdd0e97d2436584",
+      "source_ref": "e35ebff4"
     }
   }
 }

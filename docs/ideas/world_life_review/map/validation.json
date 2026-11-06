@@ -1,0 +1,47 @@
+{
+  "checks_passed": 123,
+  "clouds": 3,
+  "drawn_smoke_flag_waterfall_cels": 18,
+  "coordinate_profiles": [
+    3,
+    2
+  ],
+  "previews": [
+    {
+      "file": "map_clouds.gif",
+      "bytes": 138192
+    },
+    {
+      "file": "village_life.gif",
+      "bytes": 1774411
+    },
+    {
+      "file": "waterfall.gif",
+      "bytes": 136665
+    },
+    {
+      "file": "map_positions_3_segments.jpg",
+      "bytes": 794683
+    },
+    {
+      "file": "orc_camp_life.jpg",
+      "bytes": 95975
+    },
+    {
+      "file": "village_life.jpg",
+      "bytes": 96815
+    },
+    {
+      "file": "map_flag.gif",
+      "bytes": 44581
+    },
+    {
+      "file": "map_smoke.gif",
+      "bytes": 35216
+    },
+    {
+      "file": "orc_camp_life.gif",
+      "bytes": 1776730
+    }
+  ]
+}

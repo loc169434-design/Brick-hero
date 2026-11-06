@@ -1,5 +1,5 @@
 """Issue49 part1: complete-object crops and HUD preview assembly."""
-from art48_49_sheet_tools import *
+from world_life_sheet_tools import *
 
 DOC=ROOT/'docs/ideas';REVIEW=DOC/'world_life_review/hud'
 DATA=DOC/'world_life_sources.json';DEST=ROOT/'assets/ui/hud'

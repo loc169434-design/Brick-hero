@@ -1,5 +1,5 @@
 """Issue49 part2: crop drawn faces, preserve original expressions and clip art."""
-from art48_49_sheet_tools import *
+from world_life_sheet_tools import *
 
 DOC=ROOT/'docs/ideas';DATA=DOC/'world_life_sources.json';DEST=ROOT/'assets/tiles/swamp_b';REVIEW=DOC/'world_life_review/faces'
 

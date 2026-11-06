@@ -1,5 +1,5 @@
 """Issue49 part3: sky crops, weather atlas assembly, actual rendered reviews."""
-from art48_49_sheet_tools import *
+from world_life_sheet_tools import *
 import sys
 
 DOC=ROOT/'docs/ideas';DATA=DOC/'world_life_sources.json';REVIEW=DOC/'world_life_review/weather';DEST=ROOT/'assets/fx/weather'

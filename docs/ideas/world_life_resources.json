@@ -307,9 +307,61 @@
         128,
         128
       ]
+    },
+    {
+      "file": "assets/bg/campaign/map_cloud_1.png",
+      "size": [
+        600,
+        260
+      ]
+    },
+    {
+      "file": "assets/bg/campaign/map_cloud_2.png",
+      "size": [
+        600,
+        260
+      ]
+    },
+    {
+      "file": "assets/bg/campaign/map_cloud_3.png",
+      "size": [
+        600,
+        260
+      ]
+    },
+    {
+      "file": "assets/bg/campaign/map_smoke.png",
+      "size": [
+        576,
+        384
+      ]
+    },
+    {
+      "file": "assets/bg/campaign/map_flag.png",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "file": "assets/bg/campaign/waterfall.png",
+      "size": [
+        768,
+        768
+      ]
+    },
+    {
+      "file": "assets/bg/campaign/map_water_glint.png",
+      "size": [
+        128,
+        128
+      ]
     }
   ],
   "metadata": [
+    "assets/bg/campaign/ambience.json",
+    "assets/bg/campaign/ambience_g2.json",
+    "assets/bg/campaign/anim.json",
     "assets/bg/goblin_camp/layers.json",
     "assets/bg/orc_camp/layers.json",
     "assets/bg/swamp/layers.json",

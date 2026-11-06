@@ -1,0 +1,345 @@
+{
+  "version": 1,
+  "map_size": [
+    1080,
+    3840
+  ],
+  "segment_size": [
+    1080,
+    1920
+  ],
+  "segment_count": 2,
+  "top_to_bottom": [
+    2,
+    1
+  ],
+  "segment_origins": {
+    "1": [
+      0,
+      1920
+    ],
+    "2": [
+      0,
+      0
+    ]
+  },
+  "coordinate_contract": "Game map:segment1atbottom;eachsegment1920px,no200pxart-contact-sheetoverlap.",
+  "loop_seconds": 4,
+  "preview_fps": 12,
+  "textures": {
+    "smoke": {
+      "file": "map_smoke.png",
+      "frame_size": [
+        192,
+        192
+      ],
+      "columns": 3,
+      "frames": 6,
+      "fps": 12,
+      "loop": true
+    },
+    "flag": {
+      "file": "map_flag.png",
+      "frame_size": [
+        128,
+        192
+      ],
+      "columns": 3,
+      "frames": 6,
+      "fps": 12,
+      "loop": true,
+      "origin": [
+        64,
+        20
+      ]
+    },
+    "waterfall": {
+      "file": "waterfall.png",
+      "frame_size": [
+        256,
+        384
+      ],
+      "columns": 3,
+      "frames": 6,
+      "fps": 12,
+      "loop": true,
+      "origin": [
+        128,
+        192
+      ]
+    },
+    "sparkle": {
+      "file": "map_water_glint.png",
+      "frame_size": [
+        128,
+        128
+      ],
+      "columns": 1,
+      "frames": 1
+    },
+    "cloud_1": {
+      "file": "map_cloud_1.png",
+      "frame_size": [
+        600,
+        260
+      ],
+      "columns": 1,
+      "frames": 1
+    },
+    "cloud_2": {
+      "file": "map_cloud_2.png",
+      "frame_size": [
+        600,
+        260
+      ],
+      "columns": 1,
+      "frames": 1
+    },
+    "cloud_3": {
+      "file": "map_cloud_3.png",
+      "frame_size": [
+        600,
+        260
+      ],
+      "columns": 1,
+      "frames": 1
+    }
+  },
+  "smoke": [
+    {
+      "segment": 1,
+      "local_position": [
+        159,
+        510
+      ],
+      "position": [
+        159,
+        2430
+      ],
+      "phase": 0.15
+    },
+    {
+      "segment": 2,
+      "local_position": [
+        373,
+        1357
+      ],
+      "position": [
+        373,
+        1357
+      ],
+      "phase": 0.55
+    }
+  ],
+  "water_glints": [
+    [
+      195,
+      2261
+    ],
+    [
+      255,
+      2278
+    ],
+    [
+      874,
+      2890
+    ],
+    [
+      989,
+      2849
+    ],
+    [
+      816,
+      2886
+    ]
+  ],
+  "water_glint_sources": [
+    {
+      "segment": 1,
+      "local_position": [
+        195,
+        341
+      ]
+    },
+    {
+      "segment": 1,
+      "local_position": [
+        255,
+        358
+      ]
+    },
+    {
+      "segment": 1,
+      "local_position": [
+        874,
+        970
+      ]
+    },
+    {
+      "segment": 1,
+      "local_position": [
+        989,
+        929
+      ]
+    },
+    {
+      "segment": 1,
+      "local_position": [
+        816,
+        966
+      ]
+    }
+  ],
+  "flags": [
+    {
+      "segment": 2,
+      "local_position": [
+        635,
+        788
+      ],
+      "position": [
+        635,
+        788
+      ],
+      "size_px": [
+        36,
+        64
+      ],
+      "origin": [
+        64,
+        20
+      ],
+      "phase": 0.0
+    },
+    {
+      "segment": 2,
+      "local_position": [
+        270,
+        1328
+      ],
+      "position": [
+        270,
+        1328
+      ],
+      "size_px": [
+        30,
+        58
+      ],
+      "origin": [
+        64,
+        20
+      ],
+      "phase": 0.4
+    }
+  ],
+  "waterfalls": [
+    {
+      "segment": 1,
+      "local_position": [
+        158,
+        298
+      ],
+      "position": [
+        158,
+        2218
+      ],
+      "size_px": [
+        60,
+        90
+      ],
+      "origin": [
+        128,
+        192
+      ],
+      "phase": 0.0
+    },
+    {
+      "segment": 1,
+      "local_position": [
+        936,
+        920
+      ],
+      "position": [
+        936,
+        2840
+      ],
+      "size_px": [
+        84,
+        126
+      ],
+      "origin": [
+        128,
+        192
+      ],
+      "phase": 0.5
+    }
+  ],
+  "smoke_motion": {
+    "size_px": 82,
+    "rise_px": 56,
+    "drift_px": 12,
+    "opacity": 0.72,
+    "tint": [
+      245,
+      240,
+      227
+    ]
+  },
+  "water_motion": {
+    "size_px": [
+      5,
+      18
+    ],
+    "travel_y_px": 8,
+    "period_seconds": 2,
+    "opacity": 0.55,
+    "tint": [
+      190,
+      239,
+      255
+    ]
+  },
+  "cloud_motion": {
+    "opacity": 0.5,
+    "shadow_opacity": 0.13,
+    "shadow_offset": [
+      90,
+      260
+    ],
+    "speed_px_per_second": [
+      12,
+      25
+    ],
+    "wrap_x": [
+      -700,
+      1180
+    ]
+  },
+  "clouds": [
+    {
+      "segment": 1,
+      "texture": "cloud_1",
+      "position": [
+        720,
+        2160
+      ],
+      "scale": 0.8,
+      "speed": 20
+    },
+    {
+      "segment": 2,
+      "texture": "cloud_2",
+      "position": [
+        720,
+        240
+      ],
+      "scale": 0.8,
+      "speed": 22
+    }
+  ],
+  "profiles": {
+    "2": "ambience.json",
+    "3": "ambience_g2.json"
+  },
+  "target": "Current main:two map segments. Select ambience_g2.json when Campaign.segments is3 after PR47."
+}

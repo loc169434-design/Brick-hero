@@ -1,5 +1,5 @@
 """Issue49 weather integrity: real seams, blank eyes, placements and preservation."""
-from art48_49_sheet_tools import *
+from world_life_sheet_tools import *
 import subprocess
 
 DOC=ROOT/'docs/ideas';REVIEW=DOC/'world_life_review/weather';checks=0

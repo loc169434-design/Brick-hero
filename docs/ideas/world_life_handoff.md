@@ -50,3 +50,26 @@ Bảy biểu tượng **128×128** cùng viền vàng/nét game: `icon_morning`,
 [Biểu tượng](world_life_review/weather/weather_icons.jpg) · [mưa trong cảnh](world_life_review/weather/rain_scene.gif) · [sét](world_life_review/weather/lightning_bolt_scene.gif) · [sương](world_life_review/weather/fog_scene.gif) · [mắt đỏ](world_life_review/weather/red_eyes.gif) · [giọt bắn](world_life_review/weather/rain_splash.gif).
 
 Kiểm tra `check_world_life_weather.py` đối chiếu byte ảnh nền/nhân vật cũ, ánh sáng đêm, vị trí mắt, cel trống, đường nối của lớp lặp, VRAM và giới hạn 2 MB. [Kết quả](world_life_review/weather/validation.json) · [Godot resource smoke](world_life_review/weather/resource_smoke.log). `world_life_render_hours.gd` xuất 16 cảnh bằng Godot; PNG render gốc giữ ngoài repo, chỉ JPG/GIF nhỏ được đưa vào git.
+
+## 4. Bản đồ sống động
+
+Thêm `assets/bg/campaign/map_cloud_1.png` đến `map_cloud_3.png`, **600×260**, ba dáng mây trắng mềm có alpha. `map_smoke.png`: **6 cel192×192**, `map_flag.png`: **6 cel128×192** (chỉ vải đỏ lay, chồng giữa cột có sẵn), `waterfall.png`: **6 cel256×384**. Ba atlas ba cột, **12fps, lặp**, nén VRAM. `anim.json` ghi đủ hợp đồng. `map_water_glint.png` dùng lại nguyên byte bản sparkle có sẵn, màu/độ mờ do runtime điều chỉnh.
+
+`ambience.json` theo cấu trúc `world_map_fx/anim.json` cũ: `textures`, `smoke` (dict position/phase), `water_glints` (cặp tọa độ), `smoke_motion`, `water_motion`; bổ sung `flags`, `waterfalls`, `clouds` và cách tạo bóng mây. Có hai bộ tọa độ rõ ràng:
+
+- **`ambience.json` mặc định cho main hiện có hai đoạn**:1080×3840, đoạn2 y=0, đoạn1 y=1920. Như vậy dữ liệu mới không đặt khói/đốm nước sai chỗ trên main chưa có PR47.
+- **`ambience_g2.json` cho hồi2 ba đoạn của PR47**:1080×5760, đoạn3 y=0, đoạn2 y=1920, đoạn1 y=3840. Khi Claude ghép với chiến dịch ba đoạn, chọn file này theo `Campaign.segments`. `profiles` trong file mặc định dẫn tới hai tên file.
+
+Không dùng độ chồng200px của ảnh liên khung để tính tọa độ: game xếp từng đoạn trọn1920px. Mỗi vị trí còn ghi `segment` và `local_position` để đối chiếu nguồn. Khói bám đúng miệng ống khói nhà dân `(159,510)` và miệng nồi trại Orc `(373,1357)` theo tọa độ cục bộ; hai cờ ở `(635,788)` và `(270,1328)`. Hai thác đoạn1 đặt tâm ở `(158,298)` và `(936,920)` với kích thước60×90/84×126. Đốm nước có điểm ở suối và đầm; không đặt trên đường đất trại Orc.
+
+[Vị trí trên bản đồ ba đoạn](world_life_review/map/map_positions_3_segments.jpg) · [GIF làng/suối/thác/khói/mây](world_life_review/map/village_life.gif) · [GIF trại Orc, cờ và khói nồi](world_life_review/map/orc_camp_life.gif). Cảnh được dựng bằng Godot từ các đoạn bản đồ PR47 đã có; PNG tranh bản đồ, layout và node trên nhánh này giữ nguyên byte.
+
+[Ba mây](world_life_review/map/map_clouds.gif) · [khói](world_life_review/map/map_smoke.gif) · [cờ](world_life_review/map/map_flag.gif) · [thác](world_life_review/map/waterfall.gif).
+
+Claude đổi nguồn mây đang mượn của trại Orc sang ba `map_cloud_*`, chọn đúng profile hai/ba đoạn, và nối các entry cờ/thác vào renderer ambience. Cờ lấy gốc `(64,20)` trên canvas128×192 tại mép treo; thác lấy tâm `(128,192)` và giữ tỉ lệ cel256×384 khi vẽ, không ép ô vuông. Khói/glint vẫn tải bằng định dạng cũ. Các tọa độ là map-local toàn bản đồ để cuộn cùng cảnh.
+
+Kiểm tra `check_world_life_map.py`: hệ tọa độ2/3đoạn, điểm trong biên, kích thước/cel/mép alpha, sáu cel riêng cho từng FX, VRAM, byte map/layout/node cũ và preview dưới2MB. [Kết quả](world_life_review/map/validation.json) · [Godot smoke](world_life_review/map/resource_smoke.log) · [suite](world_life_review/map/godot_tests.log).
+
+## Tái xuất
+
+Các script `pack_world_life_hud.py`, `pack_world_life_faces.py`, `pack_world_life_weather.py`, `pack_world_life_map.py` chỉ cắt nguyên hình, chuẩn hóa và ghép atlas; nguồn/hash/crop trong `world_life_sources.json`, ảnh gốc giữ ngoài repo. Các script render Godot trong docs xuất PNG tham chiếu ngoài repo, sau đó dùng `--reviews-only` để ghép JPG/GIF nhỏ. Resource smoke dùng `world_life_resources.json`, bao gồm51texture mới/cập nhật. Bộ đóng gói #48 đã được chỉnh để giữ các nét `sly/dizzy` khi tái xuất bảng, thay vì ghi lại bảng12nét cũ.

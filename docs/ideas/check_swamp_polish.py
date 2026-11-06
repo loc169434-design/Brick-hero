@@ -122,7 +122,7 @@ for color in COLORS:
         im = image(f'assets/tiles/swamp_b/expressions/{color}_{pose}.png')
         check(im.size == (128, 128), f'{color}/{pose} static dimensions')
         check(im.tobytes() == all_frames[color, 'idle', f].crop((32, 32, 160, 160)).tobytes(), f'{color}/{pose} matches drawn idle cel')
-    check(image(f'assets/tiles/swamp_b/expressions_{color}.png').size == (384, 512), f'{color} extended expressions grid')
+    check(image(f'assets/tiles/swamp_b/expressions_{color}.png').size == (384, 128*((len(manifest['expressions'])+2)//3)), f'{color} extended expressions grid')
 
 pack = json.loads((ROOT / 'assets/tiles/animation_pack.json').read_text())
 before = json.loads(old('assets/tiles/animation_pack.json', SOURCE['base']))

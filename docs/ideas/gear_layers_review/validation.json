@@ -1,0 +1,300 @@
+{
+  "status": "draft_incomplete",
+  "base": "6604efa",
+  "missing": [
+    "wood_sword/*_attack.png",
+    "iron_sword/fresh_attack.png",
+    "tempered_sword/fresh_attack.png"
+  ],
+  "limitations": [
+    "Cloth-edge silhouette fraying and helmet/armor fit still need visual approval; cosmetic decals are not a full redraw of the damaged silhouette.",
+    "Equipment registration requires visual approval; no seamlessness claim.",
+    "Attack comparison omits unavailable swords and labels them missing."
+  ],
+  "layers": {
+    "body/battered_attack.png": {
+      "size": [
+        2048,
+        1536
+      ],
+      "mode": "RGBA",
+      "sha256": "6744a9cf373d9a4d3175ecf71c7f1839647a2a2372d2098285366b401c7b3159"
+    },
+    "body/battered_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "e970094cf6a575ceaa4876d9d9b19b4a2fe6a0211de3c95b1c94a354ffb6d8ca"
+    },
+    "body/bruised_attack.png": {
+      "size": [
+        2048,
+        1536
+      ],
+      "mode": "RGBA",
+      "sha256": "cff8c5b7dc209675973149c23f506bc9d05131770248f9501c0cee849f547fd4"
+    },
+    "body/bruised_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "6e650d13c72418522c6599743cddfde97e622fd0fe9f10b481faa09179a0112e"
+    },
+    "body/fresh_attack.png": {
+      "size": [
+        2048,
+        1536
+      ],
+      "mode": "RGBA",
+      "sha256": "e5e052eb79512888f912288f7bdd6d36090dc41a44f9ae200b2db6fc0083f78d"
+    },
+    "body/fresh_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "ec38df713b67b3fecdf3d7dff46005cba9e137415f11b63474e7069d86742724"
+    },
+    "climbing_boots/fresh_attack.png": {
+      "size": [
+        2048,
+        1536
+      ],
+      "mode": "RGBA",
+      "sha256": "3098ee42bab9ad288d379761af548d9f7ce337bb0712cccc300698b5556259f1"
+    },
+    "climbing_boots/fresh_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "74068d23c7aaad4d6d36e7eddff22d821cad0c34e56472fc7185a26852638208"
+    },
+    "iron_armor/fresh_attack.png": {
+      "size": [
+        2048,
+        1536
+      ],
+      "mode": "RGBA",
+      "sha256": "57a9d9b8a50fe8c12b653951590251831bc4f3caf0ba85355ec9885898b7e042"
+    },
+    "iron_armor/fresh_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "7e5d0fb205067e01f4c0cffc749e299311e72e43a53ed97fca4b7422ad52fea4"
+    },
+    "iron_helmet/fresh_attack.png": {
+      "size": [
+        2048,
+        1536
+      ],
+      "mode": "RGBA",
+      "sha256": "0ea318c16850cfd098bd1a9d17a0721dd6fef8a37686ce8c7719a97641770d33"
+    },
+    "iron_helmet/fresh_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "faaf72db61339e68ec33737bc1a809dcead8d005b590dfc177b7175ed29c8ac8"
+    },
+    "iron_sword/fresh_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "724da5855deeeb41aa484288978a0b0190b15b3e239f82be96eaa156d0a11c6c"
+    },
+    "iron_sword_back/fresh_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "8168fd9583fb285a974f4b92c3d7ff3b37da4070dcfb2b1474b3c25b62cca61d"
+    },
+    "leather_armor/fresh_attack.png": {
+      "size": [
+        2048,
+        1536
+      ],
+      "mode": "RGBA",
+      "sha256": "7ec756f3168c09a2a332bf2f372900c94bb9bb3ac2aa593c38671dcbe8828bd2"
+    },
+    "leather_armor/fresh_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "ee10f718b3435c64ab84ba0e3ed36fd0d958b668842967898f0e7258b4682dd0"
+    },
+    "leather_helmet/fresh_attack.png": {
+      "size": [
+        2048,
+        1536
+      ],
+      "mode": "RGBA",
+      "sha256": "7131ba33bff496970a93d0fe243feccac9befea2b9b5027af6042fec625c63d4"
+    },
+    "leather_helmet/fresh_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "5c990405d8ae1e32e2c0b42fa5579a523396cc0be4ee1688804a11c2a79ea755"
+    },
+    "reinforced_boots/fresh_attack.png": {
+      "size": [
+        2048,
+        1536
+      ],
+      "mode": "RGBA",
+      "sha256": "9eb983559eed5586a65672b6e5944beef0be8103f89884e51a4fe3f56d14f6e8"
+    },
+    "reinforced_boots/fresh_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "7f2b583cff3dc9f6d768f0f0f2342b105c312c62c9d0a7f371ad362b5a256b78"
+    },
+    "tempered_sword/fresh_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "3f3de761423eae7f1f27423c0ea937ccb98d6113ab047140e09ae26b0397fcd5"
+    },
+    "tempered_sword_back/fresh_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "4e0c839f3431e3ec4e48161571f4ae39ef6d191e89695695d43452e4e9cc8f09"
+    },
+    "wood_sword/battered_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "ba6f832a52a42867612b78ad47b9ac2b6a0c6da37dbb9b91e17dc3eebe003387"
+    },
+    "wood_sword/fresh_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "b77116a512438e6129950605b2cb5ca3578805d8e2f03bc6b134aba0dfc320fe"
+    },
+    "wood_sword_back/battered_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "a0556cd10fcfc084a27d093b6b5927b30f2495daf3da07dbaf326b746a1dc8fc"
+    },
+    "wood_sword_back/fresh_idle.png": {
+      "size": [
+        2048,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "6a909383afd203506b8328c8c2655e4cea1d323e71b48385218e3a37cba5a27e"
+    }
+  },
+  "registration_x_offsets": {
+    "idle": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1,
+      2
+    ],
+    "attack": [
+      -1,
+      14,
+      6,
+      6,
+      7,
+      32,
+      32,
+      29,
+      20,
+      8,
+      16,
+      4
+    ]
+  },
+  "sources": {
+    "body_idle": {
+      "filename": "8fe5532d-a5a3-4e48-8523-dbb665fbb34d.png",
+      "sha256": "d5814ba98f6291744a89714fd04cbfc9e20c1659d21e9f1c3aa9bb61e4edd22b"
+    },
+    "body_attack": {
+      "filename": "baf3fcad-9242-4cf4-bf0a-da7879907c37.png",
+      "sha256": "099949ed8195e8f2f3b97767aa5dc8fcd5fdc3f5510cfa539bf1b8ddce47b992"
+    },
+    "wood_idle": {
+      "filename": "b27b8a2d-29f5-452d-9e30-fcfd48c8f0a8.png",
+      "sha256": "f72de18fcc1e54ea0b23fc1ea7844319fec59005aa06a4fc2f5ab5be8998708e"
+    },
+    "wood_battered_idle": {
+      "filename": "f1523d46-be32-4d63-b46c-10e7af30e637.png",
+      "sha256": "c08b51c27f695f5b76939c5e8cbb21c6e45380949e25867e2e439163701b1e03"
+    },
+    "swords_idle": {
+      "filename": "463a1b43-5f37-483f-bb15-f37d23d83ab5.png",
+      "sha256": "a995fd8710cf60067e9d1ac744de15008a0679a6e0f16b159864418ef56c1e56"
+    },
+    "armor_attack": {
+      "filename": "e621cd57-0238-4f81-89b3-e01d4495200c.png",
+      "sha256": "6a97da7da756fdb99cff835e20e6c8d1beb4d9226d73cb2b2bd956dfc6725d30"
+    },
+    "helmets_idle": {
+      "filename": "a991e2d4-7ab8-4ff3-b435-914961ae207a.png",
+      "sha256": "0ce567853e7f4ed1dbef220ee63445083c5a99862856cdd307d8fc02ab20b506"
+    },
+    "helmets_attack": {
+      "filename": "3c11834d-7610-4820-8255-79d8b0aeefe2.png",
+      "sha256": "923b3df3c2ea95f8ee1b2918797a382b1b7df856e2bc78548b707e52e7194ea1"
+    },
+    "boots_idle": {
+      "filename": "62e0b712-df40-4abc-91ad-16dd34e965db.png",
+      "sha256": "bf1602167ab6f776cc87b1431b9a101883304c312e1ca95e1630c2120c9fe855"
+    },
+    "boots_attack": {
+      "filename": "1d9b0cde-62af-4b13-b579-6917d96fc710.png",
+      "sha256": "1f3c906c1de6a877808974d8d657c89d1c5f03de9cb394ca1344b251a9f4d7d9"
+    },
+    "wear_idle": {
+      "filename": "484e8e39-3f5a-4dbc-b2a0-0438e2604dfe.png",
+      "sha256": "6622f78fa562c30c7e4cd162c3c7796a56ca77e4bfe2320fabb1b75fb2013a3c"
+    },
+    "wear_decals": {
+      "filename": "6a03e01d-a440-4a65-906f-9c5b1f01a1d6.png",
+      "sha256": "dba57c1bfcec4e898fa424a39dac951e3a34834a8a60b27ae07fbfc71f14c09b"
+    }
+  }
+}

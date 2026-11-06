@@ -1,0 +1,12 @@
+{
+  "status": "incomplete",
+  "existing_atlases_checked": 26,
+  "technical_errors": [],
+  "missing_required_atlases": [
+    "assets/characters/hero_rookie/anim/layers/wood_sword/fresh_attack.png",
+    "assets/characters/hero_rookie/anim/layers/iron_sword/fresh_attack.png",
+    "assets/characters/hero_rookie/anim/layers/tempered_sword/fresh_attack.png",
+    "assets/characters/hero_rookie/anim/layers/wood_sword/battered_attack.png"
+  ],
+  "visual_seam_check": "not_approved; inspect numbered grids, especially helmet fit and cloth edges"
+}

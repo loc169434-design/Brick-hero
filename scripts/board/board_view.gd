@@ -194,6 +194,8 @@ var _overlay: Node2D
 ## Tile shards (normal blend) and sparks, glows and orbs (added light).
 var _shards: TileParticles
 var _lights: TileParticles
+## Praise words, rings, "+N" and the chain glow (BoardJuice).
+var _juice: BoardJuice
 ## Backdrop, panel and slot art for the current theme; missing pieces are skipped.
 var _surface := {}
 var _shine: Texture2D
@@ -227,6 +229,9 @@ func _ready() -> void:
 	_lights = TileParticles.new()
 	_lights.additive = true
 	add_child(_lights)
+	_juice = BoardJuice.new()
+	_juice.cell_size = CELL
+	add_child(_juice)
 	_overlay = Node2D.new()
 	add_child(_overlay)
 	_overlay.draw.connect(_draw_overlay)
@@ -420,6 +425,8 @@ func new_game() -> void:
 	_finished = false
 	game = LinkGame.new(BoardRules.new(), seed_value)
 	_special_fx.board_size = board_size()
+	_juice.board_size = board_size()
+	_juice.clear()
 	_shown = _snapshot()
 	_busy = false
 	_redraw()
@@ -606,6 +613,7 @@ func _replay(result: MoveResult, before: Dictionary, free := false) -> void:
 		_burst_into_light(step)
 		_feel_step(step, result.path.size())
 		_special_fx.play_step(step)
+		_juice.play_round(step, BLOCK_COLORS)
 		await get_tree().create_timer(burst if burst > 0.0 else FLASH_TIME).timeout
 		if generation != _generation:
 			return
@@ -642,6 +650,7 @@ func _replay(result: MoveResult, before: Dictionary, free := false) -> void:
 		Sfx.play(&"shuffle")
 	_shown = _snapshot()
 	_busy = false
+	_juice.praise(result)
 	_redraw()
 	if free:
 		smashed.emit(result)
@@ -821,6 +830,12 @@ func _play_clip(p: Vector2i, clip: StringName, cell: Cell = null, free_when_done
 	sprite.speed_scale = speed
 	_sprite_layer.add_child(sprite)
 	sprite.play(clip)
+	if clip == &"combo":
+		# The tile swells for a beat before it bursts.
+		var base := sprite.scale
+		var pop := create_tween()
+		pop.tween_property(sprite, "scale", base * 1.22, 0.07).set_ease(Tween.EASE_OUT)
+		pop.tween_property(sprite, "scale", base, 0.12).set_ease(Tween.EASE_IN)
 	_sprites[p] = sprite
 	if free_when_done:
 		sprite.animation_finished.connect(_on_clip_finished.bind(p, sprite))

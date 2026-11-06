@@ -67,3 +67,26 @@ func test_training_dummy_never_taunts() -> void:
 
 func test_striking_a_nearly_beaten_hero_gloats() -> void:
 	assert_eq(BattleManager.board_reaction(_report(10, 0, 12), _state(60, 20)), [&"gloat", 1])
+
+
+func test_bigger_moves_earn_bigger_praise() -> void:
+	var small := MoveResult.new()
+	var step := ClearStep.new()
+	for i in 3:
+		step.cleared.append(Vector2i(i, 0))
+		step.cleared_cells.append(Cell.new(0))
+	small.steps.append(step)
+	small.path.assign([Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0)])
+	assert_eq(BoardJuice.praise_for(small), -1, "a plain three is not praised")
+	var chain := MoveResult.new()
+	for i in 4:
+		chain.steps.append(step)
+	assert_eq(BoardJuice.praise_for(chain), 3, "four rounds")
+	var blast := MoveResult.new()
+	var big := ClearStep.new()
+	for i in 34:
+		big.cleared.append(Vector2i(i % 7, i / 7))
+		big.cleared_cells.append(Cell.new(1))
+	big.fusions.append({"at": Vector2i.ZERO})
+	blast.steps.append(big)
+	assert_eq(BoardJuice.praise_for(blast), 4, "a fusion clearing half the board")

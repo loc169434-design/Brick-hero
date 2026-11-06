@@ -32,6 +32,13 @@ const RECIPES := {
 		{"wave": "noise", "length": 0.4, "volume": 0.7, "smooth": 0.8},
 		{"wave": "sine", "from": 140.0, "to": 38.0, "length": 0.35, "volume": 0.7},
 	],
+	# A praise word slamming in over the board (BoardJuice): a bright rising arpeggio.
+	"praise": [
+		{"wave": "triangle", "from": 784.0, "to": 784.0, "length": 0.09, "volume": 0.35},
+		{"wave": "triangle", "from": 988.0, "to": 988.0, "start": 0.07, "length": 0.09, "volume": 0.35},
+		{"wave": "triangle", "from": 1175.0, "to": 1175.0, "start": 0.14, "length": 0.09, "volume": 0.35},
+		{"wave": "sine", "from": 1568.0, "to": 1568.0, "start": 0.21, "length": 0.3, "volume": 0.4},
+	],
 	# A storm's thunder rolling after the flash (ArenaWeather).
 	"thunder": [
 		{"wave": "noise", "length": 0.25, "volume": 0.6, "smooth": 0.5},

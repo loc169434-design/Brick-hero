@@ -4,14 +4,15 @@
 # for an elbow on the upper arm and a forearm sliced straight down: raised, the arm left its
 # sleeve on the body and broke at the elbow. Here the arm's regions (sleeve, cuff, upper-arm
 # skin) are cut from the assembled hero, right of where the arm meets the body:
-#   sword_arm_upper  sleeve + cuff + skin down to the elbow, behind the torso, with a shoulder
-#                    and an elbow cap painted where the torso and forearm hide them;
+#   sword_arm_upper  sleeve + cuff + skin down to the elbow, now drawn over the torso, with an
+#                    elbow painted on where the forearm hides it;
 #   sword_arm_lower  the bracer as drawn, what the fist hides repainted in its colours;
-#   torso            the body without the arm, outlined where the arm was.
+#   torso            the body without the arm, but with its shoulder painted on under the
+#                    sleeve, so a raised arm shows a shoulder, not a tear beside the neck.
 # Armour painted over the sleeve moves from gear/<armour>/torso.png onto the shoulder piece,
 # gear/<armour>/sword_arm_upper.png. joints.json gets the elbow where the bracer meets the arm.
-# Run it after underpaint.py: the torso stays empty where the arm was, so a raised arm leaves
-# the body's outlined edge, not a painted stub.
+# Run it after underpaint.py: the torso stays empty where the arm was below the shoulder, so a
+# raised arm leaves the body's outlined edge, not a painted stub.
 import sys, glob, json
 from PIL import Image
 import numpy as np
@@ -55,8 +56,8 @@ boundary = np.where(yy < 300, 297, 299)
 arm_zone = (yy >= 250) & (yy <= 343) & (xx >= boundary) & (xx <= 336) & ~((yy < 258) & (xx < 300))
 # where the body may not reach: the arm and, under the fist, anything underpaint.py spread there
 clear_zone = arm_zone | ((yy >= 250) & (yy <= 343) & (xx > 336) & (xx <= 360))
-# the old upper arm also held a bit of the scarf above the shoulder: that belongs to the body
-scarf = (layers['sword_arm_upper'][..., 3] >= 128) & (yy < 258) & ~arm_zone
+# the old upper arm also held the scarf's end and its outline by the shoulder: the body's
+scarf = (layers['sword_arm_upper'][..., 3] >= 128) & ~arm_zone
 upper_mask = arm_zone & solid & ~old_lower & ~hand
 lower_mask = old_lower
 
@@ -86,28 +87,45 @@ def outline(img, area, px=2):
     img[edge, :3] = INK
 
 
-# The torso without the arm, also under the forearm; its new edge gets the outline it used to
-# share with the arm.
+# The shoulder under the sleeve: the body's, painted on (the sleeve hides it at rest).
+SHOULDER = upper_mask & (yy < 298) & (xx <= 314)
+
+
+def without_arm(img, zone=None):
+    # clears the arm (`zone`) from a body layer, paints its shoulder under the sleeve, and
+    # outlines the edge left where the arm was
+    zone = clear_zone if zone is None else zone
+    had = img[..., 3] >= 128
+    img[zone] = 0
+    body = (img[..., 3] >= 128) & ~ink
+    near = ndimage.binary_dilation(img[..., 3] >= 128, iterations=6)
+    shoulder = SHOULDER & near
+    if shoulder.any():
+        fill_from(img, shoulder, body)
+    open_ = img[..., 3] < 128
+    rim = (img[..., 3] >= 128) & ndimage.binary_dilation(open_ & zone, iterations=2)
+    img[rim, :3] = INK
+    return int((had & zone).sum())
+
+
+# The torso without the arm, also under the forearm.
 torso = layers['torso'].copy()
-taken = clear_zone & (torso[..., 3] > 0)
-torso[taken] = 0
-rim = (torso[..., 3] >= 128) & ndimage.binary_dilation(clear_zone, iterations=2) & ~clear_zone
-torso[rim, :3] = INK
+taken = without_arm(torso)
 torso[scarf] = ref[scarf]
 
-# The upper arm, behind the torso. Inside its outline, wherever the torso or forearm hides it
-# (the shoulder, the elbow), it's painted on in its own colours, so turning shows arm, not a gap.
+# The upper arm, now over the torso. Where the forearm or fist hides it (the elbow) it's
+# painted on in its own colours, so bending shows arm, not a gap.
 upper = np.zeros((512, 512, 4), np.uint8)
 upper[upper_mask] = ref[upper_mask]
 upper[upper_mask, 3] = 255
-hidden = (torso[..., 3] >= 200) | lower_mask | hand
-shape = hull(upper_mask | disc(ELBOW, 12) | disc(joints['shoulder_sword'], 14))
+hidden = lower_mask | hand
+shape = hull(upper_mask | disc(ELBOW, 12))
 # rounded, so a bent elbow shows a curve, not the hull's corner
 round_ = (np.mgrid[-6:7, -6:7] ** 2).sum(0) <= 36
 shape = ndimage.binary_erosion(ndimage.binary_opening(shape, structure=round_), iterations=1)
 caps = shape & hidden & ~upper_mask
 fill_from(upper, caps, upper_mask & ~ink & (xx >= 302))
-outline(upper, caps | (upper_mask & (xx <= boundary + 2)))
+outline(upper, caps)
 
 # The forearm, in front: as drawn, but what the fist hides repainted from the bracer.
 lower = layers['sword_arm_lower'].copy()
@@ -120,7 +138,7 @@ outline(lower, wcap)
 save('parts/torso.png', torso)
 save('parts/sword_arm_upper.png', upper)
 save('parts/sword_arm_lower.png', lower)
-print('upper', int(upper_mask.sum()), '+hidden', int(caps.sum()), '| lower +cap', int(wcap.sum()), '| torso gave up', int(taken.sum()))
+print('upper', int(upper_mask.sum()), '+hidden', int(caps.sum()), '| lower +cap', int(wcap.sum()), '| torso gave up', taken)
 
 # Armour painted over the sleeve rides the shoulder piece now; what it painted under the
 # forearm goes.
@@ -135,11 +153,13 @@ for f in sorted(glob.glob(D + '/gear/*/torso.png')):
     merged = Image.fromarray(under)
     merged.alpha_composite(Image.fromarray(pad))
     merged.save(pad_path)
-    armour[clear_zone] = 0
-    rim = (armour[..., 3] >= 128) & ndimage.binary_dilation(clear_zone, iterations=2) & ~clear_zone
-    armour[rim, :3] = INK
+    # armour reaching past the bare body (a flank below the elbow) stays where it shows
+    without_arm(armour, clear_zone & (upper_mask | lower_mask | hand | (xx > 336)))
     Image.fromarray(armour).save(f)
     print(item, 'moved', int(move.sum()))
 
 meta['joints']['elbow_sword'] = list(ELBOW)
+# the upper arm (and its armour) now lies over the body, under the head
+meta['order'].remove('sword_arm_upper')
+meta['order'].insert(meta['order'].index('torso') + 1, 'sword_arm_upper')
 open(D + '/joints.json', 'w').write(json.dumps(meta, indent=2) + '\n')

@@ -14,6 +14,6 @@
 set -e
 T=$(cd "$(dirname "$0")" && pwd)
 cd "$T/../../assets/characters/hero_rig"
-for pass in fix_nape fix_scarf fix_ears despeckle fix_crotch fix_thigh underpaint rebuild_sword_arm despeckle; do
+for pass in fix_nape fix_scarf fix_ears despeckle fix_crotch fix_thigh underpaint rebuild_sword_arm fix_neck despeckle; do
 	python3 "$T/$pass.py" .
 done

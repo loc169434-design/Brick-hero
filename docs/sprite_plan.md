@@ -76,8 +76,8 @@ Hiệu ứng (sét, ánh sáng, vệt chém) **do code vẽ**, không vẽ vào 
 | Đợt | Ai | Việc |
 |---|---|---|
 | 0 | Claude | Code bậc trang bị + tủ đồ, khung 384, `check_sheet.py`, dọn rig; hủy đợt "xóa kiếm" của ChatGPT. **Xong 07/11.** |
-| 1 | Gemini | 9 động tác mới cho bậc 0 (bảng mục 2) |
+| 1 | Gemini | 9 động tác mới cho bậc 0 (bảng mục 2). **Xong 07/11**, chờ sửa 1 khung |
 | 1b | Claude | Gắn động tác vào trận: combo theo độ dài dây, đỡ khiên, lướt tới, kĩ năng |
-| 2 | Gemini | Bậc 1 (Bộ da): vẽ lại toàn bộ clip của bậc 0 theo bộ da. Duyệt xong mới làm bậc 2–5 |
+| 2 | Gemini | Bậc 1 (Bộ da): vẽ lại toàn bộ clip của bậc 0 theo bộ da ([round2_leather.md](ideas/sprites/round2_leather.md)). Duyệt xong mới làm bậc 2–5 |
 | 3 | Gemini | Quái: bổ sung clip thiếu, làm lại đòn yếu |
 | 4 | Claude | Đo dung lượng, nén, dọn |

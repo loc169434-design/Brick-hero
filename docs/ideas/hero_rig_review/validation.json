@@ -1,5 +1,5 @@
 {
-  "png_count": 26,
+  "png_count": 35,
   "canvas": [
     512,
     512
@@ -28,6 +28,132 @@
     "ankle_front"
   ],
   "files": [
+    {
+      "path": "assets/characters/hero_rig/gear/climbing_boots/back_foot.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        134,
+        454,
+        217,
+        500
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/climbing_boots/back_leg_lower.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        158,
+        421,
+        231,
+        484
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/climbing_boots/front_foot.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        276,
+        454,
+        376,
+        500
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/climbing_boots/front_leg_lower.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        273,
+        421,
+        340,
+        484
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/iron_armor/pelvis.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        193,
+        324,
+        320,
+        402
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/iron_armor/shield_arm_upper.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        160,
+        251,
+        224,
+        308
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/iron_armor/sword_arm_upper.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        284,
+        249,
+        340,
+        305
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/iron_armor/torso.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        195,
+        237,
+        323,
+        378
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/iron_helmet/head.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        171,
+        101,
+        333,
+        210
+      ]
+    },
     {
       "path": "assets/characters/hero_rig/gear/leather_armor/pelvis.png",
       "mode": "RGBA",

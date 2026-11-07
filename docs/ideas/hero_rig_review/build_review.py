@@ -40,11 +40,30 @@ G={
 'sword_arm_upper':(19,(284,249,340,293)), 'pelvis':(20,(193,324,320,402))},
 'leather_helmet':{'head':(21,(173,105,330,205))},
 'reinforced_boots':{'back_leg_lower':(22,(158,421,231,484)), 'front_leg_lower':(23,(273,421,340,484)),
-'back_foot':(24,(134,456,217,500)), 'front_foot':(24,(276,456,376,500))}}
+'back_foot':(24,(134,456,217,500)), 'front_foot':(24,(276,456,376,500))},
+'iron_armor':{'torso':(100,(195,237,323,378)),
+'shield_arm_upper':(101,(160,251,224,308)), 'sword_arm_upper':(102,(284,249,340,305)),
+'pelvis':(103,(193,324,320,402))},
+'iron_helmet':{'head':(104,(171,101,333,210))},
+'climbing_boots':{'back_leg_lower':(105,(158,421,231,484)),
+'front_leg_lower':(106,(273,421,340,484)),
+'back_foot':(107,(134,454,217,500)), 'front_foot':(108,(276,454,376,500))}}
+
+OUTFITS={
+ 'leather':('leather_armor','leather_helmet','reinforced_boots'),
+ 'iron':('iron_armor','iron_helmet','climbing_boots'),
+}
+def selected_items(equipped):
+ return OUTFITS['leather' if equipped is True else equipped] if equipped else ()
+
 
 def component(cell,sub=None):
  x,y=(cell%5)*256,(cell//5)*256
  im=S.crop((x,y,x+256,y+256))
+ if cell>=100:
+  atlas=Image.open(REVIEW/'iron_equipment_atlas.png').convert('RGBA')
+  w,h=atlas.size; col,row=(cell-100)%3,(cell-100)//3
+  im=atlas.crop((round(col*w/3),round(row*h/3),round((col+1)*w/3),round((row+1)*h/3)))
  if cell in (21,24):
   fix=Image.open(REVIEW/'equipment_atlas.png').convert('RGBA')
   if cell==21: im=fix.crop((0,0,640,640))
@@ -92,7 +111,7 @@ def render(equipped=False,turn=None,angle=0, margin=0):
   if name=='sword':continue
   im=ART[name].copy()
   if equipped:
-   for item in GEAR:
+   for item in selected_items(equipped):
     if name in GEAR[item]:im.alpha_composite(GEAR[item][name])
   m=matrix(name).copy();m[0,2]+=margin;m[1,2]+=margin
   inv=np.linalg.inv(m)
@@ -100,7 +119,7 @@ def render(equipped=False,turn=None,angle=0, margin=0):
  return result
 bare=render();bare.save(REVIEW/'assembled_bare.png')
 render(True).save(REVIEW/'assembled_leather.png')
-# Explicitly deferred: do not manufacture an assembled_iron image from leather.
+render('iron').save(REVIEW/'assembled_iron.png')
 font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',13)
 small=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',11)
 over=Image.new('RGBA',(900,630),(245,239,221,255));over.alpha_composite(bare,(194,45));d=ImageDraw.Draw(over)
@@ -115,7 +134,7 @@ for group,x in [(left,12),(right,714)]:
   d.text((x,y+16),str(J[k]),fill='#534039',font=small)
 over.convert('RGB').save(REVIEW/'joints_overlay.png')
 turns=['neck','shoulder_sword','elbow_sword','wrist_sword','shoulder_shield','elbow_shield','wrist_shield','hip_back','knee_back','ankle_back','hip_front','knee_front','ankle_front']
-for equipped, filename in [(False, "rotation_test_bare.png"), (True, "rotation_test.png")]:
+for equipped, filename in [(False, "rotation_test_bare.png"), (True, "rotation_test_leather.png"), ("iron", "rotation_test_iron.png")]:
  contact=Image.new('RGB',(1536,5*300),'#eee8d8');d=ImageDraw.Draw(contact)
  for i,(joint,angle) in enumerate((j,a) for j in turns for a in [-35,35]):
   x=(i%6)*256;y=(i//6)*300
@@ -123,19 +142,20 @@ for equipped, filename in [(False, "rotation_test_bare.png"), (True, "rotation_t
   contact.paste(panel,(x,y+28),panel)
   d.text((x+8,y+8),f'{joint} {angle:+} deg',font=font,fill='#382b22')
  contact.save(REVIEW/filename)
+ if equipped=='iron':contact.save(REVIEW/'rotation_test.png')
 report=[]
 for p in sorted(OUT.rglob('*.png')):
  im=Image.open(p);box=im.getbbox()
  assert im.mode=='RGBA' and im.size==(512,512) and box and min(box[:2])>0 and max(box[2:])<512,p
  report.append({'path':str(p.relative_to(ROOT)),'mode':im.mode,'size':list(im.size),'alpha_bbox':list(box)})
-assert len(report)==26
-assert bare.getbbox()[3]==500
+assert len(report)==35
+assert all(render(outfit).getbbox()[3]==500 for outfit in (False,True,'iron'))
 (REVIEW/'validation.json').write_text(json.dumps({'png_count':len(report),'canvas':[512,512],'ground_anchor':[256,500], 'rotation_degrees':[-35,35],'rotation_joints':turns,'files':report},indent=2)+'\n')
-print('26 RGBA layers verified; all inside canvas. Ground y=500. Review images rebuilt.')
+print('35 RGBA layers verified; all inside canvas. Ground y=500. Review images rebuilt.')
 # Inspect contact at every limb/neck pivot in bare and equipped poses.
 # This local test is deliberately narrower than the visual silhouette review.
 checks=[]
-for equipped in (False,True):
+for equipped in (False,True,"iron"):
  for joint in turns:
   jx,jy=J[joint]
   points=np.array([[jx+dx,jy+dy,1.] for dx in range(-4,5) for dy in range(-4,5) if dx*dx+dy*dy<=16]).T
@@ -153,11 +173,11 @@ for equipped in (False,True):
     q=np.rint(np.linalg.inv(mat(name))@points).astype(int)
     im=ART[name].copy()
     if equipped:
-     for item in GEAR:
+     for item in selected_items(equipped):
       if name in GEAR[item]:im.alpha_composite(GEAR[item][name])
     a=np.array(im)[:,:,3];valid=(q[0]>=0)&(q[0]<512)&(q[1]>=0)&(q[1]<512)
     cover[valid]=np.maximum(cover[valid],a[q[1,valid],q[0,valid]])
-   checks.append({'equipped':equipped,'joint':joint,'angle':angle,'transparent_pixels_in_radius_4':int((cover<200).sum())})
+   checks.append({'outfit':('leather' if equipped is True else equipped or 'bare'),'joint':joint,'angle':angle,'transparent_pixels_in_radius_4':int((cover<200).sum())})
 (REVIEW/'joint_contact_checks.json').write_text(json.dumps({'method':'49 nearest-pixel alpha samples in a radius-4 disk at each pivot; alpha <200 flags a local gap. Does not validate the entire silhouette.','checks':checks},indent=2)+'\n')
 assert not any(c['transparent_pixels_in_radius_4'] for c in checks)
-print('78 local joint-contact checks passed (bare/equipped; -35, 0, +35 degrees).')
+print('117 local joint-contact checks passed (bare/leather/iron; -35, 0, +35 degrees).')

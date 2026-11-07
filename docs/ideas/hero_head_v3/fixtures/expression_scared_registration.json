@@ -1,0 +1,25 @@
+{
+  "source": "docs/ideas/hero_rig_v2/inputs/head_scared_edit.png",
+  "source_sha256": "1d7619b23c9d70f6d032c7f09149cbe6a53af1b2c231f19f04dfe58c3f9ba1c0",
+  "initial_crop": [
+    102,
+    143,
+    1154,
+    1157
+  ],
+  "initial_size": [
+    155,
+    145
+  ],
+  "initial_position": [
+    174,
+    105
+  ],
+  "tx_ty_sx_sy": [
+    -0.8775218193576392,
+    1.9480152939385875,
+    1.002091692263979,
+    0.9996126953044295
+  ],
+  "anchor_rgb_mae": 11.533127094612013
+}

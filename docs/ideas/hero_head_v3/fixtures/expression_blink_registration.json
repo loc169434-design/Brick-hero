@@ -1,0 +1,25 @@
+{
+  "source": "docs/ideas/hero_rig_v2/inputs/head_blink_edit.png",
+  "source_sha256": "c9b9e15b5b2e00ffb6c8b2c042f9eb9258b36a7ac2a4026eec9b136c47540e29",
+  "initial_crop": [
+    107,
+    138,
+    1151,
+    1141
+  ],
+  "initial_size": [
+    155,
+    145
+  ],
+  "initial_position": [
+    174,
+    105
+  ],
+  "tx_ty_sx_sy": [
+    -0.4312906727034067,
+    1.9385034778599608,
+    1.0021960280502735,
+    1.0006219007620636
+  ],
+  "anchor_rgb_mae": 10.517659190513019
+}

@@ -1,0 +1,105 @@
+{
+  "branch": "art/hero-head-v3",
+  "base_commit": "0f77e55afe8c75acc18859d2e8688823e307d774",
+  "selected_check_round": 6,
+  "selected_image_edit_round": 4,
+  "neck": [
+    262,
+    237
+  ],
+  "inputs": {
+    "docs/ideas/hero_rig_v2/assembled_bare.png": "37afbf389b4712f82a950064b7a0fc5d87fbf754aa98c545f8417ab5d2610183",
+    "assets/characters/hero_rig/heads/bare_normal.png": "906cbe82aee9aea86de84cd703ac25cc05b9244b733ec5efd948dbe96c174131",
+    "assets/ui/items/leather_helmet.png": "7b509a1a98a970daf08caa4c720db8ca832beb918947c24d6706697abdd5bcfd",
+    "assets/ui/items/iron_helmet.png": "9d3d0f5b1f6a3abbe35727740100ab5b1357684a4eff1bc94a0c5157f859fe84",
+    "docs/ideas/hero_rig_v2/inputs/head_blink_edit.png": "c9b9e15b5b2e00ffb6c8b2c042f9eb9258b36a7ac2a4026eec9b136c47540e29",
+    "docs/ideas/hero_rig_v2/inputs/head_angry_edit.png": "d84205aff7fd87f298a6e818e088a05dabd3371e34aaf3b2bd69e0ad6f813aa6",
+    "docs/ideas/hero_rig_v2/inputs/head_hurt_edit.png": "5201fb9f89f0c51f58b247b6f88cc26db422a256956362bd651b84103467de5e",
+    "docs/ideas/hero_rig_v2/inputs/head_happy_edit.png": "fda2e305bcdabf20432260a2cc39343b48b658705e7ba9e6b52345c46d5115b5",
+    "docs/ideas/hero_rig_v2/inputs/head_scared_edit.png": "1d7619b23c9d70f6d032c7f09149cbe6a53af1b2c231f19f04dfe58c3f9ba1c0"
+  },
+  "selected_image_edits": {
+    "leather_helmet": "62c80368da29590cfad730af0625fad4ee02584a1c638b27409953876cde657b",
+    "iron_helmet": "953cffaf0d53938b448678162d07dac3b3cb4eceeb10491437a074ac57dab20e"
+  },
+  "outputs": {
+    "assets/characters/hero_rig/head/bare.png": {
+      "sha256": "681ea55711dafb3ebc7ae24c58c9d0f4664b6fc2406884c6b1a766d6a8c053bc",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA"
+    },
+    "assets/characters/hero_rig/head/leather_helmet.png": {
+      "sha256": "41207013b6fed5d438704b87cff5810f84d669999e0ac6d6586c9ab03fff6712",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA"
+    },
+    "assets/characters/hero_rig/head/iron_helmet.png": {
+      "sha256": "0e61c19190857f7bbeafc757c7ad6b98da2619c1393c91fbe794f4adb9a03326",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA"
+    },
+    "assets/characters/hero_rig/faces/normal.png": {
+      "sha256": "6bcc69776c4aa58fdc676d50cadf420921df1a854d0c494aabb81cf6cbaf4bd2",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA"
+    },
+    "assets/characters/hero_rig/faces/blink.png": {
+      "sha256": "1ed18e2e8e9fa19b4f150eb036198216c8a6f8edd95127b9ffc33397a0deb551",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA"
+    },
+    "assets/characters/hero_rig/faces/angry.png": {
+      "sha256": "b6b7d60bd4d84d4c65c1991fd9c9b5be6cc5468e6c98c59c6ca042b01065a945",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA"
+    },
+    "assets/characters/hero_rig/faces/hurt.png": {
+      "sha256": "a17f24e98a300c2dfe8a0e335f6059799e96dad921756ab291a5759f40bc1e83",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA"
+    },
+    "assets/characters/hero_rig/faces/happy.png": {
+      "sha256": "2bc883bd40b86db1564e01f3bae17e831b98ece28f9a9a78cc57451443cd01d1",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA"
+    },
+    "assets/characters/hero_rig/faces/scared.png": {
+      "sha256": "ef629f52e8f9d205c8b4f3412a1141cc2e8fb969373951f0517056f900692823",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA"
+    }
+  },
+  "face_mask_sha256": "c31a36bec7dfffc37cbacf932ce072dab93836eeb225f5ad247de11cd2f46de9",
+  "python_packages": {
+    "Pillow": "13.0.0",
+    "NumPy": "2.3.5",
+    "SciPy": "1.17.0"
+  }
+}

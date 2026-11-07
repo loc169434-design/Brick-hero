@@ -57,11 +57,11 @@ func _initialize() -> void:
 		sprite.z_index = order.find(part)
 		_add(parts, sprite)
 		if part == "sword":
-			var hold: Dictionary = HeroRig.SWORDS["wood_sword"]
+			var hold: Dictionary = SwordArt.hold("wood_sword")
 			sprite.texture = load("res://assets/ui/items/wood_sword.png")
 			sprite.offset = -hold["grip"]
 			sprite.rotation_degrees = hold["turn"]
-			sprite.scale = Vector2.ONE * HeroRig.SWORD_SIZE / 256.0 * hold["size"]
+			sprite.scale = Vector2.ONE * SwordArt.SIZE / 256.0 * hold["size"]
 			continue
 		if part == "head":
 			sprite.texture = load(HeroRig.DIR + "head/bare.png")

@@ -82,18 +82,7 @@ const CLIP_MOODS := {&"idle": "normal", &"attack": "angry", &"hurt": "hurt", &"c
 ## Seconds between blinks while standing, and how long the eyes stay shut.
 const BLINK_EVERY := Vector2(2.2, 4.5)
 const BLINK_TIME := 0.14
-## How each sword icon (256 canvas) is held: "grip", the middle of its handle, goes in the fist;
-## "turn" (degrees) stands its blade straight up (the wooden one is drawn slanting); "size"
-## evens out their lengths (the slanting one spans more of its canvas). Measured along each
-## icon's long axis, between the guard and the pommel. A sword not listed is held as SWORD_HOLD.
-const SWORDS := {
-	"wood_sword": {"grip": Vector2(68, 197), "turn": -40.9, "size": 0.77},
-	"iron_sword": {"grip": Vector2(127, 200), "turn": -0.2, "size": 1.0},
-	"tempered_sword": {"grip": Vector2(128, 203), "turn": -0.3, "size": 1.0},
-}
-const SWORD_HOLD := {"grip": Vector2(128, 200), "turn": 0.0, "size": 1.0}
-## A straight sword's length held, in canvas pixels per 256 of icon.
-const SWORD_SIZE := 210.0
+## Swords are held as SwordArt holds them (by the middle of the handle, blade up).
 
 ## Placeholder colours, until there's art. Gear placeholders by item.
 const SKIN := Color(0.96, 0.78, 0.6)
@@ -316,13 +305,9 @@ func _draw_part(part: String, skin: Node2D) -> void:
 
 func _draw_sword(skin: Node2D) -> void:
 	var item: String = outfit.get("weapon", "")
-	var icon := _texture("res://assets/ui/items/%s.png" % item) if item else null
-	if icon == null:
+	if item == "":
 		return
-	var hold: Dictionary = SWORDS.get(item, SWORD_HOLD)
-	skin.draw_set_transform(_joints["grip"], deg_to_rad(hold["turn"]), Vector2.ONE * SWORD_SIZE / 256.0 * hold["size"])
-	skin.draw_texture(icon, -hold["grip"])
-	skin.draw_set_transform(Vector2.ZERO)
+	SwordArt.draw(skin, item, _joints["grip"], 0.0, 1.0)
 
 
 func _texture(path: String) -> Texture2D:

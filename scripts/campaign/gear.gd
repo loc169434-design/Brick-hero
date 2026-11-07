@@ -131,6 +131,7 @@ static func apply(base: BattleRules, owned: Array) -> BattleRules:
 			rules.armor += int(ITEMS[id]["armor"])
 	var helmet := best(owned, "helmet")
 	rules.crit_guard = float(ITEMS[helmet]["crit_guard"]) if helmet else 0.0
+	rules.outfit = outfit(owned)
 	return rules
 
 

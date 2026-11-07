@@ -95,14 +95,14 @@ func _bone(part: String, rig_node: Node2D, made: Dictionary, outfit: Dictionary)
 		if sword:
 			# Held as HeroRig holds it: the icon turned upright inside the bone, so the bone
 			# itself rests at 0 like every other; a click on the icon picks the bone.
-			var hold: Dictionary = HeroRig.SWORDS.get(sword, HeroRig.SWORD_HOLD)
+			var hold: Dictionary = SwordArt.hold(sword)
 			var icon := Sprite2D.new()
 			icon.name = "icon"
 			icon.texture = load("res://assets/ui/items/%s.png" % sword)
 			icon.centered = false
 			icon.offset = -hold["grip"]
 			icon.rotation_degrees = hold["turn"]
-			icon.scale = Vector2.ONE * HeroRig.SWORD_SIZE / 256.0 * hold["size"]
+			icon.scale = Vector2.ONE * SwordArt.SIZE / 256.0 * hold["size"]
 			_add(bone, icon)
 			bone.set_meta("_edit_group_", true)
 		return bone

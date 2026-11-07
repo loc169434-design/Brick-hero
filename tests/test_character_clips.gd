@@ -161,3 +161,52 @@ func test_the_outfit_follows_the_best_gear() -> void:
 	assert_eq(outfit["helmet"], "")
 	assert_eq(outfit["refine"], 2)
 
+
+
+func test_gear_dresses_the_hero_for_the_fight() -> void:
+	var rules := Gear.apply(BattleRules.new(), ["wood_sword", "iron_sword", "leather_armor"])
+	assert_eq(rules.outfit["weapon"], "iron_sword")
+	assert_eq(rules.outfit["armor"], "leather_armor")
+
+
+func test_the_sword_worn_is_held_where_the_frame_says() -> void:
+	var rig := _rig()
+	rig._anim["clips"]["attack"]["sword"] = [[300, 320, 0, 0], [320, 300, -60, 1], null]
+	rig._base_clips = rig._anim["clips"].duplicate(true)
+	rig.mood = &"attack"
+	rig._mood_serial += 1
+	rig._update_clip(0.0)
+	assert_eq(rig.sword_key(), [], "no weapon worn, no sword")
+	rig.set_outfit({"weapon": "iron_sword", "armor": ""})
+	rig._sheets["res://assets/characters/hero_rookie/anim/fresh_attack.png"] = ImageTexture.create_from_image(Image.create(8, 8, false, Image.FORMAT_RGBA8))
+	rig._sheets["res://assets/characters/hero_rookie/anim/fresh_idle.png"] = rig._sheets["res://assets/characters/hero_rookie/anim/fresh_attack.png"]
+	rig._update_clip(0.0)
+	assert_eq(rig.sword_key(), [300.0, 320.0, 0.0, 0], "frame 0: behind the body")
+	rig._update_clip(1.0 / 24.0)
+	assert_eq(rig.sword_key(), [320.0, 300.0, -60.0, 1], "frame 1: in front, raised")
+	rig._update_clip(1.0 / 24.0)
+	assert_eq(rig.sword_key(), [], "frame 2 holds none")
+	rig._update_clip(1.0 / 24.0)
+	assert_eq(rig.sword_key(), [], "past the track, its last key holds")
+	rig._clip_time = 0.0
+	rig.variant = "broom"
+	assert_eq(rig.sword_key(), [], "the broom replaces the sword")
+	rig._body.free()
+	rig.free()
+
+
+func test_armour_without_its_own_clips_wears_the_usual_ones() -> void:
+	var rig := _rig()
+	rig._base_clips = rig._anim["clips"].duplicate(true)
+	rig.set_outfit({"weapon": "wood_sword", "armor": "no_such_armor"})
+	assert_eq(rig._armor_clips, {})
+	assert_true(rig.has_clip(&"idle"))
+	assert_eq(rig._clip_sheet_for(&"idle"), rig._sheets["res://assets/characters/hero_rookie/anim/fresh_idle.png"])
+	rig._body.free()
+	rig.free()
+
+
+func test_swords_are_held_by_the_middle_of_the_handle() -> void:
+	assert_eq(SwordArt.hold("wood_sword")["turn"], -40.9, "the slanting icon is stood up")
+	assert_eq(SwordArt.hold("no_such_sword"), SwordArt.HOLD)
+	assert_true(SwordArt.icon("iron_sword") != null)

@@ -13,6 +13,13 @@ extends Node2D
 ## battle view moves the body with dash_to(), hop_to(), squash() and knockback(). A blow to
 ## the head spins stars around it (daze).
 ##
+## Gear (the hero, set_outfit): the armour worn picks a clip set, anim/<armour>/ with its own
+## anim.json and sheets, laid over the usual clips like a variant (clips it lacks play as usual).
+## The sword isn't drawn into the frames: a clip's per-frame "sword" track says where the fist
+## holds it, [x, y, degrees, front] in canvas pixels (degrees: the blade's turn from straight up,
+## clockwise; front: 1 draws it over the body, 0 behind), or null for a frame without it; the
+## weapon worn is drawn there (SwordArt). Clips without a track draw no sword.
+##
 ## Frame-by-frame clips: when assets/characters/<id>/anim/anim.json lists a clip named after
 ## the current mood or end pose (idle, attack, hurt, throw, victory...), that clip plays
 ## instead of the still pose: <wear>_<clip>.png (or fresh_<clip>.png, or <clip>.png), a grid
@@ -40,7 +47,8 @@ void fragment() {
 """
 ## Burst played when the character is hit, by character id.
 const HURT_FX := {"scarecrow": "straw"}
-## Burst played when the character first looks battered: the rookie's wooden sword snaps.
+## Burst played when the character first looks battered: the rookie's wooden sword snaps (only
+## while he holds the wooden one).
 const BREAK_FX := {"hero_rookie": "splinters"}
 
 ## Faces right for 1 (the hero), left for -1 (monsters). Attacks lunge this way.
@@ -79,6 +87,10 @@ var _anim := {}
 var variant := ""
 var _variant_clips := {}
 var _base_clips := {}
+## What the hero wears (Gear.outfit): weapon, armor, helmet, boots. Empty for everyone else.
+var outfit := {}
+## The worn armour's clip set (anim/<armor>/anim.json), laid over the usual clips.
+var _armor_clips := {}
 ## Loaded clip sheets by path; null for a missing one.
 var _sheets := {}
 ## The clip playing: its name, sheet, settings, and seconds since it started. Empty name: none.
@@ -138,6 +150,8 @@ func setup(id: String, p_facing: int, layers := -1) -> void:
 			_anim = anim_json.data.duplicate(true)
 	variant = ""
 	_variant_clips = {}
+	outfit = {}
+	_armor_clips = {}
 	_base_clips = _anim.get("clips", {}).duplicate(true)
 	if _motion:
 		_motion.kill()
@@ -159,7 +173,7 @@ func set_health(fraction: float) -> void:
 		new_wear = Wear.BRUISED
 	if new_wear == wear:
 		return
-	if new_wear == Wear.BATTERED and BREAK_FX.has(character_id):
+	if new_wear == Wear.BATTERED and BREAK_FX.has(character_id) and outfit.get("weapon", "wood_sword") == "wood_sword":
 		_burst(BREAK_FX[character_id], _anchor("head") + Vector2(facing * 70, 120))
 	wear = new_wear
 	# Clips of the old wear are no longer drawn; free their sheets.
@@ -335,13 +349,31 @@ func set_variant(name: String) -> void:
 	if name == variant:
 		return
 	variant = name
-	_variant_clips = {}
+	_variant_clips = _clip_set(name)
+	_merge_clips()
+
+
+## Dresses the character (Gear.outfit): the armour's clip set, if drawn, and the sword held
+## by each frame's sword track.
+func set_outfit(p_outfit: Dictionary) -> void:
+	outfit = p_outfit.duplicate()
+	_armor_clips = _clip_set(outfit.get("armor", ""))
+	_merge_clips()
+
+
+func _clip_set(name: String) -> Dictionary:
 	var path := "res://assets/characters/%s/anim/%s/anim.json" % [character_id, name]
-	if name and ResourceLoader.exists(path):
-		var json: JSON = load(path)
-		if json.data is Dictionary:
-			_variant_clips = json.data.get("clips", {})
+	if name.is_empty() or not ResourceLoader.exists(path):
+		return {}
+	var json: JSON = load(path)
+	return json.data.get("clips", {}) if json.data is Dictionary else {}
+
+
+## The usual clips, then the armour's over them, then the variant's over both.
+func _merge_clips() -> void:
 	var clips: Dictionary = _base_clips.duplicate(true)
+	for clip in _armor_clips:
+		clips[clip] = _armor_clips[clip]
 	for clip in _variant_clips:
 		clips[clip] = _variant_clips[clip]
 	_anim["clips"] = clips
@@ -351,7 +383,11 @@ func set_variant(name: String) -> void:
 
 
 func _clip_sheet_for(clip: StringName) -> Texture2D:
-	var folder := "anim/%s/" % variant if _variant_clips.has(String(clip)) else "anim/"
+	var folder := "anim/"
+	if _variant_clips.has(String(clip)):
+		folder = "anim/%s/" % variant
+	elif _armor_clips.has(String(clip)):
+		folder = "anim/%s/" % outfit.get("armor", "")
 	for stem in ["%s_%s" % [WEAR_NAMES[wear], clip], "fresh_%s" % clip, String(clip)]:
 		var path := "res://assets/characters/%s/%s%s.png" % [character_id, folder, stem]
 		if not _sheets.has(path):
@@ -529,7 +565,9 @@ static func _vec(value: Variant, fallback: Vector2) -> Vector2:
 
 func _draw_body() -> void:
 	if _clip != &"":
+		_draw_sword(false)
 		_draw_clip_frame()
+		_draw_sword(true)
 		if shield_layers >= 0 and end_pose != &"defeat" and mood != &"bald":
 			_draw_shield(false, _clip_shield_offset())
 		return
@@ -550,6 +588,27 @@ func _draw_clip_frame() -> void:
 	var frame := _clip_frame()
 	var source := Rect2(Vector2(frame % columns, frame / columns) * cell_size, cell_size)
 	_body.draw_texture_rect_region(_clip_sheet, Rect2(-_feet() * _scale(), cell_size * _scale()), source)
+
+
+## Where this frame holds the sword: [x, y, degrees, front] (see the header), or [] for none:
+## no weapon worn, a variant on (the broom), or a clip or frame without one.
+func sword_key() -> Array:
+	if outfit.get("weapon", "") == "" or variant != "" or _clip == &"":
+		return []
+	var track: Array = _clip_info.get("sword", [])
+	if track.is_empty():
+		return []
+	var key: Variant = track[mini(_clip_frame(), track.size() - 1)]
+	if not key is Array or key.size() < 3:
+		return []
+	return [float(key[0]), float(key[1]), float(key[2]), int(key[3]) if key.size() > 3 else 0]
+
+
+func _draw_sword(in_front: bool) -> void:
+	var key := sword_key()
+	if key.is_empty() or (key[3] > 0) != in_front:
+		return
+	SwordArt.draw(_body, outfit["weapon"], _to_local(Vector2(key[0], key[1])), deg_to_rad(key[2]), _scale())
 
 
 ## How far this frame's shield has moved from the rig's shield point, in canvas pixels.

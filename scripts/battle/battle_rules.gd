@@ -68,3 +68,5 @@ extends Resource
 @export var blade_vortex_squares := 3.0
 ## Tinh Kiếm: hits like this many red squares straight through any shield, leaving it whole.
 @export var starfall_squares := 7.0
+## What the hero wears, for drawing him (Gear.outfit); set with the gear by Gear.apply.
+@export var outfit := {}

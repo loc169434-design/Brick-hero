@@ -255,6 +255,7 @@ func show_state(state: BattleState) -> void:
 	_weather.set_sky(state.weather)
 	_cast.modulate = _backdrop.fighter_light()
 	_hero.setup(HERO_ID, 1)
+	_hero.set_outfit(_state.rules.outfit)
 	_monster.setup(state.monster.id, -1, state.shield_layers() if state.monster.shield_layers > 0 else -1)
 	_monster.modulate = Color.WHITE
 	_rage_time = 0.0
@@ -466,6 +467,7 @@ func _turn_toad(into: bool) -> void:
 		_hero.react(&"transform_out", 1.0)
 		await get_tree().create_timer(0.9).timeout
 		_hero.setup(HERO_ID, 1)
+		_hero.set_outfit(_state.rules.outfit)
 		_hero.set_health(_state.hero_health())
 	_hero.position = feet
 

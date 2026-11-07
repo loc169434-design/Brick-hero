@@ -226,6 +226,7 @@ func _ready() -> void:
 func show_campaign(p_campaign: Campaign) -> void:
 	campaign = p_campaign
 	_camera.make_current()
+	_hero.set_outfit(Gear.outfit(campaign.owned))
 	_restock()
 	var first := Gear.best(campaign.owned, "weapon") == "wood_sword" and Gear.best(campaign.owned, "armor") == ""
 	_say(HELLO_FIRST if first else HELLO)
@@ -392,6 +393,7 @@ func _show_note(slot: String, text: String) -> void:
 func _start_forging(slot: String, id: String) -> void:
 	campaign.buy(id)
 	bought.emit(id)
+	_hero.set_outfit(Gear.outfit(campaign.owned))
 	_forging = id
 	_forge_slot = slot
 	_strikes = 0

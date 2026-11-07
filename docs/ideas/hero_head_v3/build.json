@@ -1,0 +1,15 @@
+{
+  "round": 6,
+  "neck": [
+    262,
+    237
+  ],
+  "method": "Full-body helmet image edits; generated head silhouette + original protected face/ear/chin/neck; shared opaque face patches.",
+  "face_padding_px": 6,
+  "clip_padding_to_skin": "Approved by user when padding reaches hairline.",
+  "border_color_harmonization": "Outer 3px original skin RGB, then 1px transition; alpha remains 255 throughout face mask.",
+  "face_mask_pixels": 3618,
+  "protected_frame_pixels": 5924,
+  "expression_inputs": "docs/ideas/hero_rig_v2/inputs/head_<expression>_edit.png",
+  "old_heads_modified": false
+}

@@ -1,0 +1,25 @@
+{
+  "source": "docs/ideas/hero_rig_v2/inputs/head_happy_edit.png",
+  "source_sha256": "fda2e305bcdabf20432260a2cc39343b48b658705e7ba9e6b52345c46d5115b5",
+  "initial_crop": [
+    116,
+    133,
+    1143,
+    1119
+  ],
+  "initial_size": [
+    155,
+    145
+  ],
+  "initial_position": [
+    174,
+    105
+  ],
+  "tx_ty_sx_sy": [
+    0.067220547552033,
+    0.9826507070774645,
+    1.0002079637002537,
+    1.0006322076617806
+  ],
+  "anchor_rgb_mae": 11.680329981954111
+}

@@ -1,0 +1,25 @@
+{
+  "source": "docs/ideas/hero_rig_v2/inputs/head_hurt_edit.png",
+  "source_sha256": "5201fb9f89f0c51f58b247b6f88cc26db422a256956362bd651b84103467de5e",
+  "initial_crop": [
+    120,
+    139,
+    1148,
+    1129
+  ],
+  "initial_size": [
+    155,
+    145
+  ],
+  "initial_position": [
+    174,
+    105
+  ],
+  "tx_ty_sx_sy": [
+    0.14504009411089816,
+    1.1890318643901563,
+    1.001580198319121,
+    1.0003248583790971
+  ],
+  "anchor_rgb_mae": 13.317865429234338
+}

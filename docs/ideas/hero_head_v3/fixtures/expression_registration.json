@@ -1,0 +1,127 @@
+{
+  "blink": {
+    "source": "docs/ideas/hero_rig_v2/inputs/head_blink_edit.png",
+    "source_sha256": "c9b9e15b5b2e00ffb6c8b2c042f9eb9258b36a7ac2a4026eec9b136c47540e29",
+    "initial_crop": [
+      107,
+      138,
+      1151,
+      1141
+    ],
+    "initial_size": [
+      155,
+      145
+    ],
+    "initial_position": [
+      174,
+      105
+    ],
+    "tx_ty_sx_sy": [
+      -0.4312906727034067,
+      1.9385034778599608,
+      1.0021960280502735,
+      1.0006219007620636
+    ],
+    "anchor_rgb_mae": 10.517659190513019
+  },
+  "angry": {
+    "source": "docs/ideas/hero_rig_v2/inputs/head_angry_edit.png",
+    "source_sha256": "d84205aff7fd87f298a6e818e088a05dabd3371e34aaf3b2bd69e0ad6f813aa6",
+    "initial_crop": [
+      111,
+      137,
+      1150,
+      1125
+    ],
+    "initial_size": [
+      155,
+      145
+    ],
+    "initial_position": [
+      174,
+      105
+    ],
+    "tx_ty_sx_sy": [
+      0.9674419763838479,
+      3.9409941259937695,
+      0.9975292653525658,
+      0.9853361449560675
+    ],
+    "anchor_rgb_mae": 11.480278422273782
+  },
+  "hurt": {
+    "source": "docs/ideas/hero_rig_v2/inputs/head_hurt_edit.png",
+    "source_sha256": "5201fb9f89f0c51f58b247b6f88cc26db422a256956362bd651b84103467de5e",
+    "initial_crop": [
+      120,
+      139,
+      1148,
+      1129
+    ],
+    "initial_size": [
+      155,
+      145
+    ],
+    "initial_position": [
+      174,
+      105
+    ],
+    "tx_ty_sx_sy": [
+      0.14504009411089816,
+      1.1890318643901563,
+      1.001580198319121,
+      1.0003248583790971
+    ],
+    "anchor_rgb_mae": 13.317865429234338
+  },
+  "happy": {
+    "source": "docs/ideas/hero_rig_v2/inputs/head_happy_edit.png",
+    "source_sha256": "fda2e305bcdabf20432260a2cc39343b48b658705e7ba9e6b52345c46d5115b5",
+    "initial_crop": [
+      116,
+      133,
+      1143,
+      1119
+    ],
+    "initial_size": [
+      155,
+      145
+    ],
+    "initial_position": [
+      174,
+      105
+    ],
+    "tx_ty_sx_sy": [
+      0.067220547552033,
+      0.9826507070774645,
+      1.0002079637002537,
+      1.0006322076617806
+    ],
+    "anchor_rgb_mae": 11.680329981954111
+  },
+  "scared": {
+    "source": "docs/ideas/hero_rig_v2/inputs/head_scared_edit.png",
+    "source_sha256": "1d7619b23c9d70f6d032c7f09149cbe6a53af1b2c231f19f04dfe58c3f9ba1c0",
+    "initial_crop": [
+      102,
+      143,
+      1154,
+      1157
+    ],
+    "initial_size": [
+      155,
+      145
+    ],
+    "initial_position": [
+      174,
+      105
+    ],
+    "tx_ty_sx_sy": [
+      -0.8775218193576392,
+      1.9480152939385875,
+      1.002091692263979,
+      0.9996126953044295
+    ],
+    "anchor_rgb_mae": 11.533127094612013
+  }
+}

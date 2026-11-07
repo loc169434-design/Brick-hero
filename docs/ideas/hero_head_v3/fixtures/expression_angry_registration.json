@@ -1,0 +1,25 @@
+{
+  "source": "docs/ideas/hero_rig_v2/inputs/head_angry_edit.png",
+  "source_sha256": "d84205aff7fd87f298a6e818e088a05dabd3371e34aaf3b2bd69e0ad6f813aa6",
+  "initial_crop": [
+    111,
+    137,
+    1150,
+    1125
+  ],
+  "initial_size": [
+    155,
+    145
+  ],
+  "initial_position": [
+    174,
+    105
+  ],
+  "tx_ty_sx_sy": [
+    0.9674419763838479,
+    3.9409941259937695,
+    0.9975292653525658,
+    0.9853361449560675
+  ],
+  "anchor_rgb_mae": 11.480278422273782
+}

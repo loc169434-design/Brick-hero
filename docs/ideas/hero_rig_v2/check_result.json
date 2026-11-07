@@ -1,0 +1,55 @@
+{
+  "all_passed": true,
+  "A_rest_match": {
+    "passed": true,
+    "iou_alpha_gt_32": 0.99625,
+    "iou_vs_raw_with_sword": 0.908302,
+    "mean_color_diff_255": 0.0904,
+    "bad_regions_gt_3x3": 0
+  },
+  "B_no_gap_on_rotation": {
+    "passed": true,
+    "passed_samples": 56,
+    "total_samples": 56,
+    "missing_opaque_pixels_total": 0,
+    "failures": []
+  },
+  "C_continuous_outline": {
+    "passed": true,
+    "passed_samples": 56,
+    "total_samples": 56,
+    "leaked_pixels_total": 0,
+    "failures": []
+  },
+  "D_leather_gear": {
+    "passed": true,
+    "outside_24px_total": 0,
+    "face_max_diff_leather": 0,
+    "face_max_diff_iron": 0,
+    "layers_outside_24px": {
+      "leather_armor/pelvis": 0,
+      "leather_armor/shield_arm_upper": 0,
+      "leather_armor/sword_arm_upper": 0,
+      "leather_armor/torso": 0,
+      "leather_helmet/head": 0,
+      "reinforced_boots/back_foot": 0,
+      "reinforced_boots/back_leg_lower": 0,
+      "reinforced_boots/front_foot": 0,
+      "reinforced_boots/front_leg_lower": 0,
+      "iron_armor/pelvis": 0,
+      "iron_armor/shield_arm_upper": 0,
+      "iron_armor/sword_arm_upper": 0,
+      "iron_armor/torso": 0,
+      "iron_helmet/head": 0,
+      "climbing_boots/back_foot": 0,
+      "climbing_boots/back_leg_lower": 0,
+      "climbing_boots/front_foot": 0,
+      "climbing_boots/front_leg_lower": 0
+    }
+  },
+  "E_canvas_format": {
+    "passed": true,
+    "checked_files": 35,
+    "violations": []
+  }
+}

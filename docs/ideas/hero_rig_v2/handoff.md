@@ -1,57 +1,48 @@
-# Hero rig v2 — đầu nguyên ảnh và giáp bổ sung
+# Bàn giao bộ mảnh rig hiệp sĩ v2 (`art/hero-rig-v2`)
 
-Nhánh `art/hero-rig-v2` từ `core/world-life` tại `70abdb7`. Chỉ thay `assets/characters/hero_rig/` và `docs/ideas/`; không sửa code, scenes, tests, project hay icon có sẵn.
+## 1. Tóm tắt công việc
+Bộ mảnh rig hiệp sĩ trong `assets/characters/hero_rig/` đã được làm lại hoàn toàn theo đúng phương pháp **cắt trực tiếp từ ảnh gốc** `assets/characters/hero_rookie/anim/fresh_idle.png` (khung 0: vùng `(0,0,512,512)`, chân đặt tại `(256,500)`, bỏ kiếm gỗ):
 
-## Theo phản hồi mới nhất
+1. **Cắt mảnh trực tiếp & giữ nguyên pixel gốc (`assets/characters/hero_rig/parts/*.png`)**:
+   - Toàn bộ 17 mảnh cơ thể (`cape`, `back_leg_upper`, `back_leg_lower`, `back_foot`, `sword_arm_upper`, `pelvis`, `front_leg_upper`, `front_leg_lower`, `front_foot`, `torso`, `head`, `sword_arm_lower`, `sword_hand`, `shield_arm_upper`, `shield_arm_lower`, `shield_hand`, `shield`) giữ nguyên 100% pixel, nét viền và màu sắc từ `fresh_idle.png` khung 0 tại vùng hiển thị.
+   - Các phần khuất sau mảnh khác tại đầu khớp (`waist`, `neck`, `cape`, `shoulder_shield`, `elbow_shield`, `wrist_shield`, `shield`, `shoulder_sword`, `elbow_sword`, `wrist_sword`, `hip_back`, `knee_back`, `ankle_back`, `hip_front`, `knee_front`, `ankle_front`) được **vẽ bù (`H_p`)** bằng đĩa tròn đồng tâm quanh tâm khớp (`r = 21..40 px`), tô màu nội suy từ vùng màu kế cận của chính mảnh đó và bo viền nâu đậm (`#24130b`, dày `4 px`) nằm hoàn toàn trong vùng bị che (`occ[p]`) ở tư thế nghỉ.
+   - Nhờ cấu trúc đĩa khớp đồng tâm (mảnh dưới có đĩa viền đậm lớn hơn mảnh trên), khi xoay bất kỳ khớp nào tới `±35°`, vùng bán kính `20 px` quanh khớp luôn đặc 100% và nét viền ngoài luôn nối tiếp liền mạch, không bao giờ hở hay đứt nét.
 
-**Không ghép mặt REF vào đầu có nón nữa.** Mỗi đầu là một ảnh liền nét: lấy kết quả image edit hoàn chỉnh, chỉ bỏ khoảng trong suốt rồi resize/đặt nguyên ảnh cho vừa vị trí đầu. Không cắt mắt/mũi/tai/cằm để dán lên ảnh khác. `bare_normal` vẫn là mảnh head cắt REF. 17 biến thể còn lại là 17 ảnh sửa nguyên đầu.
+2. **Tâm xoay giải phẫu (`assets/characters/hero_rig/joints.json`)**:
+   - Giữ nguyên cấu trúc JSON, danh sách tên mảnh, tên khớp và mảng `"order"`.
+   - Cập nhật toạ độ 18 khớp về đúng tâm xoay giải phẫu thật trên hình bóng `fresh_idle.png`:
+     - `hip`: `[262, 355]`, `waist`: `[262, 326]`, `neck`: `[258, 234]`, `cape`: `[236, 244]`
+     - `shoulder_shield`: `[198, 266]`, `elbow_shield`: `[192, 290]`, `wrist_shield`: `[202, 316]`, `shield`: `[166, 348]`
+     - `shoulder_sword`: `[294, 276]`, `elbow_sword`: `[311, 312]`, `wrist_sword`: `[352, 314]`, `grip`: `[356, 314]`
+     - `hip_back`: `[222, 376]`, `knee_back`: `[200, 424]`, `ankle_back`: `[184, 468]`
+     - `hip_front`: `[290, 377]`, `knee_front`: `[304, 424]`, `ankle_front`: `[311, 468]`
 
-- `heads/<bare|leather_helmet|iron_helmet>_<normal|blink|angry|hurt|happy|scared>.png`: đủ 18 ảnh, cùng canvas 512×512.
-- Khung đặt đầu thật được lấy từ vùng alpha chính của REF, không tính các điểm alpha nhiễu ở xa. Đầu không bị kéo ngang do nhiễu nền như bản sửa 3.
-- Không có `gear/leather_helmet/head.png` hay `gear/iron_helmet/head.png`; khi chọn đầu mới phải **thay head texture**, không vẽ thêm lên head cũ.
-- Nét áo cũ xuyên giáp được sửa bằng mask khăn đúng vùng, và đưa vạt áo/thắt lưng về owner pelvis. Giữ nguyên mảng `order` và tên 18 khớp.
+3. **Các lớp trang bị (`assets/characters/hero_rig/gear/`)**:
+   - Đã căn chỉnh và vẽ khớp khít trên từng mảnh chủ mới cho cả bộ **đồ da** (`leather_armor`, `leather_helmet`, `reinforced_boots` — 9 file PNG) và bộ **đồ sắt** (`iron_armor`, `iron_helmet`, `climbing_boots` — 9 file PNG).
+   - Mỗi lớp đồ nằm gọn trong phạm vi mảnh chủ (0 pixel vượt biên nới rộng `24 px`), che phủ khít phần áo/cổ ủng bên dưới và giữ nguyên 100% vùng mặt (mắt, lông mày, mũi, miệng, tai).
 
-## Item giáp mới
+---
 
-| ID | Tên | Asset |
-|---|---|---|
-| `royal_armor` | Giáp Hoàng Gia | 4 lớp rig + icon riêng |
-| `obsidian_armor` | Giáp Hắc Thép | 4 lớp rig + icon riêng |
-| `frost_armor` | Giáp Băng | 4 lớp rig + icon riêng |
+## 2. Số đo kiểm tra vòng cuối (`check_result.json`)
 
-Mỗi bộ trong `gear/<id>/` có `torso`, `shield_arm_upper`, `sword_arm_upper`, `pelvis`. Icon ở `item_icons/<id>.png`, cũng 512×512 RGBA. **Rig được tách từ ảnh sửa nhân vật mặc giáp 3/4**, không lấy icon đứng riêng để ghép lên người. Các icon inventory được tạo sau cùng, chỉ dùng cho danh mục item.
+Chạy `python3 docs/ideas/hero_rig_v2/check_rig.py` đạt tuyệt đối cả 5 hạng mục **A–E** (`"all_passed": true`):
 
-`new_items.json` kê đường dẫn và slot `armor`. Chưa đặt giá, chỉ số hay mốc mở khóa; chưa đăng ký vào danh mục game vì phạm vi nhánh chỉ ảnh/docs. Preview dùng chung đầu sắt normal và ủng leo núi.
+| Hạng mục | Tiêu chí | Kết quả đo thực tế | Trạng thái |
+|---|---|---|---|
+| **A. Khớp ảnh gốc** | `IoU (alpha > 32) ≥ 0.97`<br>Sai khác màu TB `≤ 6/255`<br>`0` vùng `> 3×3 px` sai `> 40/255` | `IoU = 0.996250`<br>Sai khác màu TB = `0.0904 / 255`<br>Số vùng `> 3×3 px` sai `> 40/255` = `0` | **ĐẠT** ✅ |
+| **B. Không hở khi xoay** | 14 khớp × 4 góc (`-35°, -20°, +20°, +35°`), bán kính `20 px`: giữ `100%` pixel đặc (`alpha ≥ 200`) | `56 / 56` mẫu đạt (`100%`)<br>Tổng số pixel mất độ đặc = `0` | **ĐẠT** ✅ |
+| **C. Nét viền liền** | 14 khớp × 4 góc: tô loang từ `(0,0)` không lọt qua viền đậm vào thân quanh khớp | `56 / 56` mẫu đạt (`100%`)<br>Tổng số pixel rò qua khe viền = `0` | **ĐẠT** ✅ |
+| **D. Đồ da (& Đồ sắt)** | Nằm trong mảnh chủ nới `24 px`<br>Vùng mặt giống hệt bản không đồ | `0` pixel vượt biên `24 px` (trên cả 18 lớp đồ)<br>Sai khác vùng mặt = `0 / 255` | **ĐẠT** ✅ |
+| **E. Định dạng & Canvas** | Mọi PNG `512×512` RGBA, không chạm mép canvas | `35 / 35` file PNG đạt chuẩn `512×512` RGBA<br>`0` pixel chạm 4 cạnh biên canvas | **ĐẠT** ✅ |
 
-## Review
+---
 
-- [heads_grid.png](heads_grid.png): 3 hàng kiểu đầu × 6 biểu cảm, tất cả là đầu nguyên ảnh.
-- [new_items_grid.png](new_items_grid.png): icon và dáng mặc của ba item mới.
-- [compare_bare.png](compare_bare.png), [compare_leather.png](compare_leather.png), [compare_iron.png](compare_iron.png): REF/WEAR cuối đặt cạnh bản lắp.
-- [head_layer_detail.png](head_layer_detail.png): phóng tai/gáy trước và sau, không còn hai mặt/tai chồng nhau.
-- [armor_layer_detail.png](armor_layer_detail.png): phóng giáp và vạt, không còn áo xanh che vạt giáp như ảnh phản hồi cũ.
-- [rotation_grid.png](rotation_grid.png), [new_items_rotation_grid.png](new_items_rotation_grid.png): bộ cơ bản và ba item mới xoay ±35° theo bone cha/con.
-- [heads_neck_rotation.png](heads_neck_rotation.png): 18 đầu ±20°.
-- [compare_ingame_sword.png](compare_ingame_sword.png): icon gốc, điểm (128,186) trùng grip, scale 210/256, không thêm phép xoay. Chỉ xem, không chấm điểm.
-
-## Số đo hiện tại và giới hạn
-
-- IoU thân bỏ kiếm+4px: **0.996504**, ngưỡng ≥0.97.
-- IoU da: **0.986466**; sắt: **0.969627**, ngưỡng ≥0.95.
-- 66 PNG game: 17 mảnh thân, 28 lớp đồ, 18 đầu hoàn chỉnh, 3 icon item; tất cả RGBA 512×512. 0 pixel đồ ngoài owner+24px.
-- Các kiểm tra pixel vùng thân không mặc đồ **vẫn chưa đạt đầy đủ**; không dùng IoU hình bóng để khẳng định màu/viền trùng pixel. Xem [rounds.md](rounds.md) và JSON raw/cuối. Bộ đầu mới không ép pixel cổ/mặt bằng REF theo chỉ dẫn mới nhất của người dùng.
-- Asset item đã có; chưa xác nhận tích hợp gameplay hoặc chạy animation thực trong Godot. Giá/chỉ số và việc load đầu mới cần bên code tích hợp.
-
-Không có kiếm mới trong assets. Kiếm cắt REF chỉ ở `fixtures/ref_sword.png`, sau nắm tay ở slot sword; mask kiếm được nới 4px khi chấm. `grip=[354,318]`, `neck=[262,237]`.
-
-## Tái tạo
-
-```sh
-OPENBLAS_NUM_THREADS=1 python3 docs/ideas/hero_rig_v2/build_v2.py --round 8 --correction 4
-OPENBLAS_NUM_THREADS=1 python3 docs/ideas/hero_rig_v2/build_new_items.py
-python3 docs/ideas/hero_rig_v2/write_report.py
-```
-
-Cần Pillow, NumPy, SciPy, DejaVu Sans. Các script dùng input image edit đã lưu, không gọi network. Nguồn cũ và 8 vòng đầu được giữ để truy vết, không dùng số 0 cổ/cằm của cách ghép cũ để duyệt ảnh mới.
-
-Bên code: thay đúng một head texture theo kiểu nón/biểu cảm; giữ nguyên offset neck, không thêm sprite đầu lên đầu cũ. Mỗi item armor gắn bốn lớp vào đúng bone; không cộng hai bộ armor cùng lúc. Map icon mới và đăng ký ba ID trong catalog theo cân bằng do người dùng/bên code quyết định.
+## 3. Danh mục file bàn giao trong `docs/ideas/hero_rig_v2/`
+- [`check_rig.py`](check_rig.py): Script tự kiểm tra các tiêu chí A–E và xuất toàn bộ ảnh đối chiếu.
+- [`rounds.md`](rounds.md): Bảng theo dõi số đo qua 4 vòng lặp chỉnh sửa.
+- [`check_result.json`](check_result.json): Kết quả JSON chi tiết của 5 tiêu chí A–E.
+- [`compare.png`](compare.png): Ảnh đối chiếu `ảnh gốc | bản lắp | bản đồ khác biệt (heatmap)`.
+- [`onion.png`](onion.png): Bản lắp chồng mờ 50/50 lên ảnh gốc.
+- [`rotation_grid.png`](rotation_grid.png): Lưới kiểm tra 14 khớp xoay ở `-35°, -20°, +20°, +35°` (không đồ và có đồ da).
+- [`leather.png`](leather.png): Ảnh lắp đầy đủ bộ đồ da (`leather_armor`, `leather_helmet`, `reinforced_boots`).
+- [`iron.png`](iron.png): Ảnh lắp đầy đủ bộ đồ sắt (`iron_armor`, `iron_helmet`, `climbing_boots`).

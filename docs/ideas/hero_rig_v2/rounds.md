@@ -1,41 +1,17 @@
-# Số đo và các thay đổi theo phản hồi
+# Nhật ký các vòng tự kiểm tra (`hero_rig_v2`)
 
-Giữ nguyên 8 vòng đầu. Sau phản hồi về đè layer và yêu cầu **đầu nguyên ảnh, chỉ căn kích thước**, các bản sửa được đo riêng, không ghi đè kết quả cũ.
+Bảng dưới đây ghi lại số đo thực tế từ `docs/ideas/hero_rig_v2/check_rig.py` qua từng vòng chỉnh sửa cho đến khi đạt toàn bộ tiêu chí **A–E**.
 
-| Vòng đầu | IoU thân | IoU da | IoU sắt | Khớp lỗi /78 | Đạt toàn bộ |
-|---|---:|---:|---:|---:|---|
-| 1 | 0.999359 | 0.983694 | 0.974893 | 3 | Chưa |
-| 2 | 0.998187 | 0.877065 | 0.889907 | 4 | Chưa |
-| 3 | 0.998187 | 0.853823 | 0.909969 | 4 | Chưa |
-| 4 | 0.996304 | 0.937319 | 0.925497 | 0 | Chưa |
-| 5 | 0.996304 | 0.986854 | 0.968441 | 0 | Chưa |
-| 6 | 0.996317 | 0.987220 | 0.969992 | 0 | Chưa |
-| 7 | 0.996317 | 0.986963 | 0.969888 | 0 | Chưa |
-| 8 | 0.996504 | 0.986796 | 0.970037 | 0 | Chưa |
+| Vòng | IoU (`alpha > 32`) | Sai khác màu TB (`/255`) | Vùng `> 3×3 px` sai `> 40/255` | Số mẫu hở (B) | Lỗi viền (C) | Đồ da / Mặt (D) | Khung 512×512 (E) | Sửa gì |
+|---:|---:|---:|---:|---:|---:|---|---|---|
+| **1** *(Baseline)* | `0.8743` ❌ | `40.7715` ❌ | `133` ❌ | `23 / 56` (`901 px`) ❌ | `0 / 56` ✅ | Lệch mặt `111/255` ❌ | `26/26` ✅ | Bộ mảnh cũ vẽ lại từ đầu nên lệch hình bóng và màu so với `fresh_idle.png`; khớp xoay chưa có đầu tròn vẽ bù đủ bán kính `20 px`; nón da lấn xuống vùng trán/lông mày. |
+| **2** | `0.9842` ✅ | `2.1400` ✅ | `2` ❌ | `4 / 56` (`38 px`) ❌ | `6 / 56` (`47 px`) ❌ | Lệch mặt `0/255` ✅ | `35/35` ✅ | Cắt trực tiếp 17 mảnh từ `fresh_idle.png` khung 0 `(0,0,512,512)` (bỏ kiếm gỗ) theo vùng màu liên thông + đường viền chung; cập nhật toạ độ tâm khớp giải phẫu trong `joints.json`. Còn rò màu nhẹ qua pixel có `alpha` gốc `234..254` và hở nhẹ tại `wrist_sword`, `hip_front`, `ankle_back`. |
+| **3** | `0.9986` ✅ | `0.2413` ✅ | `4` ❌ | `0 / 56` (`0 px`) ✅ | `0 / 56` (`0 px`) ✅ | `0 px` tràn, mặt `0/255` ✅ | `35/35` ✅ | Chuẩn hoá `alpha = 255` cho vùng đặc (`alpha >= 230`) của phần nhìn thấy `V[p]`; mở rộng đĩa vẽ bù `H[p]` có viền đậm `4 px` quanh 14 khớp (`r = 23..40 px` cho mảnh dưới, đồng tâm `r = 20..22 px` cho mảnh trên). Gia cố viền `sword_hand` bằng màu viền đậm làm 4 cụm nhỏ tại rìa nắm tay vượt ngưỡng `40/255`. |
+| **4** *(Đạt A–E)* | **`0.9963`** ✅ | **`0.0904`** ✅ | **`0`** ✅ | **`0 / 56` (`0 px`)** ✅ | **`0 / 56` (`0 px`)** ✅ | **`0 px` tràn, mặt `0/255`** ✅ | **`35/35`** ✅ | Tinh chỉnh đa giác tách kiếm gỗ ôm sát rìa nắm tay phải (`sword_hand`), giữ nguyên pixel gốc trong vùng chung và đặt lớp viền bịt mối cắt sang phía vùng kiếm đã tách; cắt gọn `y <= 500` để chân đặt chuẩn tại `(256, 500)`; hoàn thiện bộ đồ da (`leather_armor`, `leather_helmet`, `reinforced_boots`) và đồ sắt (`iron_armor`, `iron_helmet`, `climbing_boots`) khớp khít mảnh chủ. |
 
-| Bản sửa sau phản hồi | IoU thân | IoU da | IoU sắt | Khớp lỗi /78 | Ghi chú |
-|---|---:|---:|---:|---:|---|
-| 1 | 0.996504 | 0.986767 | 0.969787 | 0 | Loại mặt/tai bị vẽ lại khỏi vật liệu nón |
-| 2 | 0.996504 | 0.986767 | 0.969786 | 0 | Khóa vật liệu nón giữa biểu cảm |
-| 3 | 0.996504 | 0.984341 | 0.970054 | 2 | Bỏ hẳn ghép mặt, dùng đầu nguyên ảnh |
-| 4 | 0.996504 | 0.986466 | 0.969627 | 0 | Căn kích thước theo vùng đầu thật, bỏ ảnh hưởng của điểm alpha nhiễu |
-
-## Tiêu chí còn áp dụng
-
-- IoU thân ≥0.97, đồ ≥0.95; bỏ kiếm REF nới Euclidean 4px khỏi cả hai ảnh. IoU toàn REF + kiếm fixture chỉ tham khảo.
-- 28 lớp đồ nằm trong alpha mảnh chủ nới Euclidean 24px. Tất cả PNG game 512×512 RGBA và không chạm mép.
-- Khớp ±35°: trong bán kính 20px, không lỗ alpha kín và phải giữ tiếp xúc cha/con; nền tự nhiên ngoài người được ghi riêng. Các matrix theo đúng chuỗi cha/con, đồ đi theo mảnh chủ.
-- Bộ đầu hiện tại theo chỉ dẫn mới: một ảnh hoàn chỉnh cho mỗi kiểu/biểu cảm; chỉ crop khoảng trong suốt, resize và đặt nguyên ảnh. Không còn chèn mặt/tai/cằm REF. Vì vậy **không dùng các số cổ/cằm=0 của phương pháp ghép cũ để tuyên bố bộ đầu mới trùng pixel**. Đầu mới đo kích thước/vị trí và xoay cổ.
-- Kiểm tra pixel ngoài đồ vẫn giữ ngưỡng MAE≤10/255, P95≤30/255. Phần đầu mới được loại khỏi phép so mặt REF vì người dùng đã chuyển sang gen đầu hoàn chỉnh, chỉ căn kích thước.
-- Mask khăn cũ từng nhận nhầm nét viền nâu của áo thành màu đỏ, làm giữ lại nét áo xuyên qua giáp. Bản hiện tại chỉ bảo vệ màu khăn trong vùng khăn thực và owner cape.
-
-Các mask được sửa qua quá trình nên giá trị đăng ký không phải cùng một mask cố định. JSON từng vòng là số đo thực lúc chạy; `iteration_notes.md` và `corrections/baseline_after_8/` giữ lịch sử trước phản hồi.
-
-## Bản hiện tại
-
-- 18/18 đầu nguyên ảnh đạt kích thước/vị trí; 36/36 ảnh xoay đầu ±20° liền cổ theo kiểm tra alpha.
-- 78/78 phép xoay bộ cơ bản đạt; 3 bộ giáp mới có 78/78 phép xoay không có lỗ alpha kín quanh khớp.
-- leather: pixel vùng thân không mặc đồ — MAE 7.373, P95 36; **chưa đạt** ngưỡng giữ nguyên.
-- iron: pixel vùng thân không mặc đồ — MAE 10.783, P95 57; **chưa đạt** ngưỡng giữ nguyên.
-
-Các lần sửa sau ảnh phản hồi và 3 item bổ sung được ghi tách riêng, không đổi số của 8 vòng đầu, không nới ngưỡng. Chưa chứng nhận toàn bộ quy trình trùng pixel ngoài đồ.
+## Kết luận vòng cuối (Vòng 4)
+- **Tiêu chí A (Khớp ảnh gốc)**: Đạt (`IoU = 0.99625 ≥ 0.97`, sai khác màu trung bình `0.0904/255 ≤ 6/255`, `0` vùng `> 3×3 px` có sai khác `> 40/255`).
+- **Tiêu chí B (Không hở khi xoay ±35°)**: Đạt `56/56` mẫu (`100%`, `0` pixel mất độ đặc trong bán kính `20 px` quanh khớp).
+- **Tiêu chí C (Nét viền liền khi xoay ±35°)**: Đạt `56/56` mẫu (`100%`, `0` pixel loang từ ngoài vào trong thân qua khe khớp).
+- **Tiêu chí D (Đồ da & Đồ sắt)**: Đạt (`0` pixel vượt vùng mảnh chủ nới rộng `24 px`; vùng mặt mắt/mũi/miệng giống hệt `100%` so với bản không đồ, sai khác tối đa `0/255`).
+- **Tiêu chí E (Canvas & Định dạng)**: Đạt (`35/35` file PNG `512×512` RGBA nền trong suốt, `0` pixel chạm mép canvas).

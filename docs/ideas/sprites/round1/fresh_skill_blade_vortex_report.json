@@ -1,5 +1,5 @@
 {
- "sheet": "/Users/locnguyen/Desktop/Brick-hero-main/assets/characters/hero_rookie/anim/fresh_skill_blade_vortex.png",
+ "sheet": "/Users/locnguyen/Desktop/brick-hero-gemini/assets/characters/hero_rookie/anim/fresh_skill_blade_vortex.png",
  "frames": 16,
  "cell": 512,
  "checks": {
@@ -120,9 +120,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.0
+    256.5
    ],
-   "height": 393,
+   "height": 395,
    "stray": 0,
    "specks": 0,
    "edge": 0

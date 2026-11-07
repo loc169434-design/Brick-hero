@@ -17,6 +17,10 @@
 #             near-invisible haze (alpha 1-15) AI art leaves round a figure is only counted,
 #             shrink_sheet.py clears it
 #   inside    nothing cut by the frame's edge
+#   key       with --key: no pixel of the key background left anywhere (gaps between the hair,
+#             the arm and the sword included) and no rim tinted by it. Art is drawn on a key
+#             colour the character never wears (green #00ff00 for the hero) and keyed out
+#             everywhere: drawn on white, the gaps the outline encloses stay white.
 # Writes <out>/<name>_report.json, <name>_frames.png (numbered, feet line drawn) and
 # <name>.gif (the clip at its speed). Exit code 0 when every check passes.
 import sys, json, argparse, os
@@ -34,6 +38,7 @@ p.add_argument("--ref", default="assets/characters/hero_rookie/anim/fresh_idle.p
 p.add_argument("--ref-cell", type=int, default=512)
 p.add_argument("--out", default=None)
 p.add_argument("--airborne", action="store_true")
+p.add_argument("--key", default="", help="the key background, hex: 00ff00")
 a = p.parse_args()
 
 k = a.cell / 512.0
@@ -92,6 +97,17 @@ for i, f in enumerate(frames):
     sizes = ndimage.sum(alpha >= 64, lab, range(1, n + 1)) if n else []
     small = sum(1 for s_ in sizes if s_ < 20 * k * k)
     edge = np.concatenate([alpha[0], alpha[-1], alpha[:, 0], alpha[:, -1]])
+    if a.key:
+        kc = np.array([int(a.key[i:i + 2], 16) for i in (0, 2, 4)])
+        rgb = f[..., :3].astype(int)
+        seen = alpha > 0
+        left = seen & (np.abs(rgb - kc).max(-1) <= 60)
+        # a rim tinted by the key: the key's strongest channel well over the other two
+        main = int(np.argmax(kc))
+        others = [c for c in range(3) if c != main]
+        tint = seen & ~left & (rgb[..., main] > rgb[..., others].max(-1) + 50) & ~ndimage.binary_erosion(alpha >= 200, iterations=2)
+        info["key_left"] = int(left.sum())
+        info["key_tint"] = int(tint.sum())
     info.update({"feet": feet(f), "height": int(body_height(f)), "stray": int(stray.sum()), "specks": small, "edge": int((edge >= 128).sum())})
     strays += int(stray.sum())
     specks += small
@@ -119,6 +135,10 @@ if frames:
     worst = max(f_["stray"] for f_ in report["per_frame"])
     check("clean", worst <= 400 and specks <= a.frames, "worst frame %d stray pixels, %d specks in %d frames (and %d haze pixels, cleared on shrinking)" % (worst, specks, a.frames, haze))
     check("inside", not cut, "frames touching the edge: %s" % (cut or "none"))
+    if a.key:
+        left = sum(f_["key_left"] for f_ in report["per_frame"])
+        tint = sum(f_["key_tint"] for f_ in report["per_frame"])
+        check("key", left == 0 and tint <= 20 * a.frames, "#%s left: %d px; rim tinted by it: %d px" % (a.key, left, tint))
 
 # previews: numbered frames over a checkerboard with the ground line, and the clip as a GIF
 if frames:

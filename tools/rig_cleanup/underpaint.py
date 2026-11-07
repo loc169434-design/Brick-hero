@@ -49,6 +49,8 @@ for part, covers in COVERS.items():
         # outline the new edge: filled pixels within 2 px of what stays empty
         empty = img[..., 3] < 128
         edge = region & ndimage.binary_dilation(empty, iterations=2)
+        # a sliver thinner than the outline stays cloth: inked, it would be a black spike
+        edge &= ndimage.maximum_filter(ndimage.distance_transform_edt(region), size=7) >= 3
         img[edge, :3] = INK
         Image.fromarray(img).save(f)
         print(f.replace(D + '/', ''), 'filled', int(region.sum()), 'outlined', int(edge.sum()))

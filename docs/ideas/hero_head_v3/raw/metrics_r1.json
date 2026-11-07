@@ -1,0 +1,67 @@
+{
+  "round": 1,
+  "reference": {
+    "head_width": 127,
+    "hair_top": 105,
+    "brow_top": 161
+  },
+  "helmets": {
+    "leather": {
+      "outside_premult_rgba_mae": 2.033664704512938,
+      "outside_foreground_rgb_mae_informational": 10.286887326550099,
+      "cap_width_px": 112,
+      "head_width_px": 127,
+      "width_ratio": 0.8818897637795275,
+      "cap_top_y": 123,
+      "original_hair_top_y": 105,
+      "brim_max_thickness_px": 18.0,
+      "front_brim_max_bottom_y": 170.0,
+      "brow_clearance_px": -9.0,
+      "hair_pixels_outside_cap_above_brim": 0,
+      "whole_image_transform": [
+        -0.035070639896253405,
+        -0.09072669712956345,
+        0.9994198458245948,
+        1.0004100085126089
+      ],
+      "checks": {
+        "outside_mae": true,
+        "width": true,
+        "top": true,
+        "brim": false,
+        "brows": false,
+        "hair": true
+      },
+      "all_pass": false
+    },
+    "iron": {
+      "outside_premult_rgba_mae": 2.2230696972047173,
+      "outside_foreground_rgb_mae_informational": 10.967052524946688,
+      "cap_width_px": 111,
+      "head_width_px": 127,
+      "width_ratio": 0.8740157480314961,
+      "cap_top_y": 123,
+      "original_hair_top_y": 105,
+      "brim_max_thickness_px": 15.0,
+      "front_brim_max_bottom_y": 173.0,
+      "brow_clearance_px": -12.0,
+      "hair_pixels_outside_cap_above_brim": 0,
+      "whole_image_transform": [
+        -0.06934686112825518,
+        -0.08845420867796996,
+        0.9995646607803167,
+        1.0004210590018405
+      ],
+      "checks": {
+        "outside_mae": true,
+        "width": true,
+        "top": true,
+        "brim": false,
+        "brows": false,
+        "hair": true
+      },
+      "all_pass": false
+    }
+  },
+  "all_pass": false
+}

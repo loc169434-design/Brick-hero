@@ -1,0 +1,122 @@
+{
+  "round": 5,
+  "reference": {
+    "head_width": 127,
+    "hair_top": 105,
+    "brow_top": 161
+  },
+  "helmets": {
+    "leather": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": 194997,
+      "width_limit_revised_by_user": true,
+      "cap_connected_to_character": true,
+      "outside_premult_rgba_mae": 2.4902858064092843,
+      "outside_foreground_rgb_mae_informational": 12.222089673652484,
+      "cap_width_px": 131,
+      "head_width_px": 127,
+      "width_ratio": 1.031496062992126,
+      "cap_top_y": 106,
+      "original_hair_top_y": 105,
+      "brim_max_thickness_px": 12.0,
+      "front_brim_max_bottom_y": 167.0,
+      "brow_clearance_px": -6.0,
+      "hair_pixels_outside_cap_above_brim": 0,
+      "whole_image_transform": [
+        -0.07912224542148959,
+        -0.10370261296283118,
+        0.999346216328472,
+        1.0003887885005225
+      ],
+      "checks": {
+        "outside_mae": true,
+        "width": true,
+        "top": true,
+        "brim": true,
+        "brows": false,
+        "hair": true,
+        "anchor_connected": true
+      },
+      "all_pass": false
+    },
+    "iron": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": 195422,
+      "width_limit_revised_by_user": true,
+      "cap_connected_to_character": true,
+      "outside_premult_rgba_mae": 2.5720966265814753,
+      "outside_foreground_rgb_mae_informational": 13.052366730795528,
+      "cap_width_px": 136,
+      "head_width_px": 127,
+      "width_ratio": 1.0708661417322836,
+      "cap_top_y": 107,
+      "original_hair_top_y": 105,
+      "brim_max_thickness_px": 17.86100178084601,
+      "front_brim_max_bottom_y": 161.21428571428572,
+      "brow_clearance_px": -0.2142857142857224,
+      "hair_pixels_outside_cap_above_brim": 0,
+      "whole_image_transform": [
+        -0.10526823273118546,
+        -0.0381056568929862,
+        0.999408663168371,
+        1.0005629172550417
+      ],
+      "checks": {
+        "outside_mae": true,
+        "width": true,
+        "top": true,
+        "brim": false,
+        "brows": false,
+        "hair": true,
+        "anchor_connected": true
+      },
+      "all_pass": false
+    },
+    "leather_ranger": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": 194407,
+      "width_limit_revised_by_user": true,
+      "cap_connected_to_character": true,
+      "outside_premult_rgba_mae": 2.599955074165395,
+      "outside_foreground_rgb_mae_informational": 13.209363642535369,
+      "cap_width_px": 139,
+      "head_width_px": 127,
+      "width_ratio": 1.094488188976378,
+      "cap_top_y": 108,
+      "original_hair_top_y": 105,
+      "brim_max_thickness_px": 11.0,
+      "front_brim_max_bottom_y": 162.0,
+      "brow_clearance_px": -1.0,
+      "hair_pixels_outside_cap_above_brim": 0,
+      "whole_image_transform": [
+        -0.07239278720506448,
+        -0.04720923505156904,
+        0.9988470060308492,
+        1.0003277622395383
+      ],
+      "checks": {
+        "outside_mae": true,
+        "width": true,
+        "top": true,
+        "brim": true,
+        "brows": false,
+        "hair": true,
+        "anchor_connected": true
+      },
+      "all_pass": false
+    }
+  },
+  "all_pass": false
+}

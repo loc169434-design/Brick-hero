@@ -1,0 +1,14 @@
+{
+  "source_sha256": "a2c938ff7df4295a653931beb5c4427f5b2fedefd9598afb07b59fbc56c07d3c",
+  "body_roi": "y>=240; foreground silhouette dilated5px",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "tx_ty_sx_sy": [
+    -5.671701448118266,
+    -17.98294690074151,
+    1.0171537499610963,
+    1.0368146306704522
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "branch": "art/hero-head-raw",
+  "base": "origin/core/world-life",
+  "base_commit": "0f77e55afe8c75acc18859d2e8688823e307d774",
+  "selected_round": 5,
+  "edit_round_limit": 5,
+  "method": "Full-body image edit from assembled_bare; only global body-based translation/scaling after generation. No layer extraction or face compositing.",
+  "inputs": {
+    "docs/ideas/hero_rig_v2/assembled_bare.png": "37afbf389b4712f82a950064b7a0fc5d87fbf754aa98c545f8417ab5d2610183",
+    "assets/characters/hero_rig/heads/bare_normal.png": "906cbe82aee9aea86de84cd703ac25cc05b9244b733ec5efd948dbe96c174131",
+    "assets/ui/items/leather_helmet.png": "7b509a1a98a970daf08caa4c720db8ca832beb918947c24d6706697abdd5bcfd",
+    "assets/ui/items/iron_helmet.png": "9d3d0f5b1f6a3abbe35727740100ab5b1357684a4eff1bc94a0c5157f859fe84"
+  },
+  "round_intents": {
+    "1": "Snug caps matching item colors.",
+    "2": "Thinner raised bands, smaller fit.",
+    "3": "User revision: bolder medieval silhouettes, looser fit, two leather styles.",
+    "4": "User revision: match original game chibi style, bold brown outlines and simple cel planes.",
+    "5": "Retain round4 style, raise front brow bands, lower iron crown."
+  },
+  "outputs": {
+    "leather_helmet_raw.png": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "0896ac57ef87806edce8d8bca980665744c02ff8753199febe3fd3238553c3f6"
+    },
+    "iron_helmet_raw.png": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "8fa51d94d8f48097a53bbae24a44cdace1b9e9e868f5db923d30f039338df0af"
+    },
+    "leather_ranger_raw.png": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "75a78077e639097a5c2f341ff205226bc3a5d24b46edf064ac414f71bf19b480"
+    }
+  }
+}

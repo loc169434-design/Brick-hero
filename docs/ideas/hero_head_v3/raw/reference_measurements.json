@@ -1,0 +1,18 @@
+{
+  "forehead_y": 158,
+  "head_forehead_x": [
+    199,
+    325
+  ],
+  "head_forehead_width": 127,
+  "hair_top_y": 105,
+  "brow_top_y": 161,
+  "front_brow_x_span": [
+    257,
+    305
+  ],
+  "max_width_ratio": 1.06,
+  "max_brim_thickness": 14,
+  "min_brow_clearance": 6,
+  "max_outside_mae": 6
+}

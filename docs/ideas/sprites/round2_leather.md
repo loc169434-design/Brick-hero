@@ -25,7 +25,20 @@ Vẫn **đúng cậu hiệp sĩ đó**: mặt, tóc nâu bù xù, khăn đỏ, �
 
 Màu chủ đạo: nâu da `#8B5A2B` và `#A86B35`, đồng `#D9A441`, sắt `#9AA3AD`. **Không dùng màu xanh lá** (vì tách nền xanh).
 
-Trước khi vẽ động tác, vẽ **1 trang mẫu** `docs/ideas/sprites/round2/leather_model_sheet.png`: đứng thẳng nhìn nghiêng phải, nhìn chính diện và nhìn sau lưng, kèm cận cảnh kiếm và khiên. Mọi khung sau phải khớp trang mẫu này: đồ không được tự đổi chi tiết giữa các khung.
+**Gương mặt giữ nguyên 100%.** Bản trang mẫu đầu tiên bị đổi mặt: mặt tròn non hơn, mắt khác, tóc bị mũ giấu hết. Như vậy là sai. Phải giữ đúng:
+- mắt to viền đen, lông mày rậm nhíu lại, cười toe lộ răng, cằm, tai (xem cận mặt `docs/ideas/sprites/round2/rookie_face_ref.png`);
+- **tóc nâu bù xù lòi ra nhiều**: mái trước trán dưới vành mũ, hai bên thái dương và sau gáy.
+
+Mũ chỉ đội **lên trên** cái đầu sẵn có, không vẽ lại đầu.
+
+Cách làm để giữ mặt:
+- Không vẽ nhân vật mới từ chữ.
+- Lấy ảnh `docs/ideas/sprites/round2/rookie_ref.png` (khung đứng của Tân binh trên nền xanh) làm ảnh gốc và **sửa ảnh đó**: thay áo thành giáp da, đội mũ, đổi kiếm và khiên.
+- Mặt, tóc, dáng đứng và nét viền để nguyên.
+
+Trước khi vẽ động tác, vẽ **1 trang mẫu** `docs/ideas/sprites/round2/leather_model_sheet.png` trên nền xanh `#00FF00`. Trang mẫu gồm: đứng nhìn nghiêng phải (sửa từ `rookie_ref.png`), nhìn chính diện, nhìn sau lưng, kèm cận cảnh kiếm và khiên. Mọi khung sau phải khớp trang mẫu này: đồ không được tự đổi chi tiết giữa các khung.
+
+**Điểm dừng duyệt:** làm xong trang mẫu và `idle` thì commit, push, báo, rồi **dừng chờ duyệt**. Chỉ khi được báo "duyệt mẫu" mới làm 23 clip còn lại.
 
 ## Cách vẽ: chép dáng Tân binh, thay đồ
 

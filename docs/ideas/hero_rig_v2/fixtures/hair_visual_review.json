@@ -1,0 +1,14 @@
+{
+  "method": "Manual inspection of both edited cap silhouettes and heads_grid; no crown tufts above/through either cap. Upper-cap pixels must then stay identical across expressions. Not a generic semantic color classifier.",
+  "ref_sha256": "7bb6c8794555840a0005618a31074aeb43afad8c688796139a54d02a207c36fe",
+  "reviewed_inputs": {
+    "leather_helmet": {
+      "sha256": "efbe9eeb8f8437e61f8100c5d88fa7fa68455f8aac16925806b61b460f2ed98f",
+      "no_hair_above_brim": true
+    },
+    "iron_helmet": {
+      "sha256": "39322d3ca7e66c1a9d494edd51204ecdabecaca0bc49a886e76c9799a2ae43c6",
+      "no_hair_above_brim": true
+    }
+  }
+}

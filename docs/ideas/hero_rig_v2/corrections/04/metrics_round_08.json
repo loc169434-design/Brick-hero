@@ -1,0 +1,1911 @@
+{
+  "round": 8,
+  "correction_after_user_feedback": 4,
+  "ref_sha256": "7bb6c8794555840a0005618a31074aeb43afad8c688796139a54d02a207c36fe",
+  "body_iou_without_sword_4px": 0.9965040422012048,
+  "body_iou_pass": true,
+  "full_ref_iou_with_fixture_informational": 0.9968203046261729,
+  "head_acceptance": "whole_head_size_only_per_latest_user_request",
+  "head_rotation": [
+    {
+      "head": "bare_normal",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_normal",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_blink",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_blink",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_angry",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_angry",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_hurt",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_hurt",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_happy",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_happy",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_scared",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_scared",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_normal",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_normal",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_blink",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_blink",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_angry",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_angry",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_hurt",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_hurt",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_happy",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_happy",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_scared",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_scared",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_normal",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_normal",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_blink",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_blink",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_angry",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_angry",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_hurt",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_hurt",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_happy",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_happy",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_scared",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_scared",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    }
+  ],
+  "head_checks": [
+    {
+      "head": "bare_normal",
+      "mode": "direct_ref_cut",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "REF cut: parts/head.png",
+      "source_sha256": "e89bb9536a43a325c33bb310bda4de13a3ec2ed9286f5adf6b922a2bf2fb8bf7",
+      "source_crop": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        92,
+        105,
+        331,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "bare_blink",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/head_blink_edit.png",
+      "source_sha256": "c9b9e15b5b2e00ffb6c8b2c042f9eb9258b36a7ac2a4026eec9b136c47540e29",
+      "source_crop": [
+        107,
+        138,
+        1151,
+        1141
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "bare_angry",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/head_angry_edit.png",
+      "source_sha256": "d84205aff7fd87f298a6e818e088a05dabd3371e34aaf3b2bd69e0ad6f813aa6",
+      "source_crop": [
+        111,
+        137,
+        1150,
+        1125
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "bare_hurt",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/head_hurt_edit.png",
+      "source_sha256": "5201fb9f89f0c51f58b247b6f88cc26db422a256956362bd651b84103467de5e",
+      "source_crop": [
+        120,
+        139,
+        1148,
+        1129
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "bare_happy",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/head_happy_edit.png",
+      "source_sha256": "fda2e305bcdabf20432260a2cc39343b48b658705e7ba9e6b52345c46d5115b5",
+      "source_crop": [
+        116,
+        133,
+        1143,
+        1119
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "bare_scared",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/head_scared_edit.png",
+      "source_sha256": "1d7619b23c9d70f6d032c7f09149cbe6a53af1b2c231f19f04dfe58c3f9ba1c0",
+      "source_crop": [
+        102,
+        143,
+        1154,
+        1157
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "leather_helmet_normal",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/leather_head_edit.png",
+      "source_sha256": "efbe9eeb8f8437e61f8100c5d88fa7fa68455f8aac16925806b61b460f2ed98f",
+      "source_crop": [
+        447,
+        316,
+        814,
+        714
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        101,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "leather_helmet_blink",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/whole_leather_blink.png",
+      "source_sha256": "41a0dfc397d648281bafebb563846fdc73bc88dd63d80713aa7297f60be27c21",
+      "source_crop": [
+        446,
+        314,
+        814,
+        716
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        101,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "leather_helmet_angry",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/whole_leather_angry.png",
+      "source_sha256": "9edfcbb33802dc9b4f71580f57aca09350e3645e97f1ce3767edf498f3de569e",
+      "source_crop": [
+        447,
+        314,
+        813,
+        719
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        101,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "leather_helmet_hurt",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/whole_leather_hurt.png",
+      "source_sha256": "a1cd60115b8419e52d567e4d3e7cd311736638b98531b19a5678818c72ce1f59",
+      "source_crop": [
+        445,
+        314,
+        813,
+        715
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        101,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "leather_helmet_happy",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/whole_leather_happy.png",
+      "source_sha256": "93ffddcf258edc14bea734f5ede5afb54a386a71a4e48295d3698c3a3e91b6b8",
+      "source_crop": [
+        444,
+        312,
+        814,
+        720
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        101,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "leather_helmet_scared",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/whole_leather_scared.png",
+      "source_sha256": "aa39206201b8849a1dd574b5b08183e327e479d6fc294389fb125ca6f7a09e8f",
+      "source_crop": [
+        446,
+        314,
+        814,
+        717
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        101,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "iron_helmet_normal",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/iron_head_edit.png",
+      "source_sha256": "39322d3ca7e66c1a9d494edd51204ecdabecaca0bc49a886e76c9799a2ae43c6",
+      "source_crop": [
+        419,
+        318,
+        840,
+        778
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        101,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "iron_helmet_blink",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/whole_iron_blink.png",
+      "source_sha256": "7db843519dfe0dd182361d648d276766558478105cddf7d6892b70eb9a1814ff",
+      "source_crop": [
+        419,
+        317,
+        840,
+        779
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        101,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "iron_helmet_angry",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/whole_iron_angry.png",
+      "source_sha256": "f9e6aadccd2b8b860897647496d381c78b19a7ce7994590de0b44d002a921170",
+      "source_crop": [
+        417,
+        316,
+        839,
+        780
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        101,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "iron_helmet_hurt",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/whole_iron_hurt.png",
+      "source_sha256": "edc4bd419071c5655bfa89ba9e78328c4d6fb19e001cb024e4822cef9c988ac9",
+      "source_crop": [
+        417,
+        316,
+        840,
+        787
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        101,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "iron_helmet_happy",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/whole_iron_happy.png",
+      "source_sha256": "c182768ea6ce5dd8c95768a2e88c0f26988b8791d78dbac0a9ba91646c75ca58",
+      "source_crop": [
+        416,
+        317,
+        841,
+        782
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        101,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    },
+    {
+      "head": "iron_helmet_scared",
+      "mode": "single_complete_image_edit",
+      "face_collage": false,
+      "pass_size": true,
+      "source": "inputs/whole_iron_scared.png",
+      "source_sha256": "58f614245003186aeb21d21c3757c69ffeca614fb6b4d9c3fec2d0a32ed9c1be",
+      "source_crop": [
+        418,
+        316,
+        839,
+        782
+      ],
+      "fit_reference_rectangle": [
+        174,
+        105,
+        329,
+        251
+      ],
+      "output_bbox": [
+        174,
+        101,
+        329,
+        251
+      ],
+      "neck_anchor": [
+        262,
+        237
+      ],
+      "acceptance": "Latest user clarification: complete coherent face/head; size and placement only. Old pixel-equality constraints are not forced by patching REF.",
+      "hair_review": "Visual inspection of full edited head; no separate hair/face/helmet layers exist."
+    }
+  ],
+  "registration": {
+    "leather": {
+      "input": "inputs/wear_leather_r5.png",
+      "transform_tx_ty_sx_sy": [
+        -0.2923624780894116,
+        -1.0037769628191158,
+        1.00149843523738,
+        1.0033971880637862
+      ],
+      "protected_regions": {
+        "face": {
+          "mae_rgb": 10.453703703703704,
+          "p95_max_channel_error": 47.0
+        },
+        "shield": {
+          "mae_rgb": 7.4891235596622945,
+          "p95_max_channel_error": 36.0
+        },
+        "cape": {
+          "mae_rgb": 6.779325016922928,
+          "p95_max_channel_error": 39.0
+        },
+        "bare_arm": {
+          "mae_rgb": 8.005817610062893,
+          "p95_max_channel_error": 32.0
+        },
+        "fist": {
+          "mae_rgb": 8.539163196510014,
+          "p95_max_channel_error": 38.0
+        }
+      },
+      "protected_mae_rgb": 7.8846144297134915,
+      "protected_p95_max_channel_error": 39.0,
+      "raw_edit_nearly_identical": false,
+      "final_wear_protected_mae_rgb": 7.372628467918772,
+      "final_wear_protected_p95_max_channel_error": 36.0
+    },
+    "iron": {
+      "input": "inputs/wear_iron_r5.png",
+      "transform_tx_ty_sx_sy": [
+        -0.35235575092133886,
+        -0.5910951761805712,
+        1.000505794889559,
+        1.0025081803013571
+      ],
+      "protected_regions": {
+        "face": {
+          "mae_rgb": 8.780917874396135,
+          "p95_max_channel_error": 38.0
+        },
+        "shield": {
+          "mae_rgb": 10.442345241041718,
+          "p95_max_channel_error": 50.0
+        },
+        "cape": {
+          "mae_rgb": 10.106759501015375,
+          "p95_max_channel_error": 86.0
+        },
+        "bare_arm": {
+          "mae_rgb": 12.065723270440252,
+          "p95_max_channel_error": 49.0
+        },
+        "fist": {
+          "mae_rgb": 10.361094586555621,
+          "p95_max_channel_error": 50.0
+        }
+      },
+      "protected_mae_rgb": 10.23033666021153,
+      "protected_p95_max_channel_error": 52.0,
+      "raw_edit_nearly_identical": false,
+      "final_wear_protected_mae_rgb": 10.78316966981282,
+      "final_wear_protected_p95_max_channel_error": 57.0
+    }
+  },
+  "gear_owner_checks": {
+    "leather": [
+      {
+        "item": "leather_armor",
+        "part": "torso",
+        "pixels": 4633,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          184,
+          246,
+          327,
+          377
+        ]
+      },
+      {
+        "item": "leather_armor",
+        "part": "pelvis",
+        "pixels": 4112,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          215,
+          330,
+          323,
+          411
+        ]
+      },
+      {
+        "item": "leather_armor",
+        "part": "sword_arm_upper",
+        "pixels": 659,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          291,
+          244,
+          339,
+          298
+        ]
+      },
+      {
+        "item": "leather_armor",
+        "part": "shield_arm_upper",
+        "pixels": 1396,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          157,
+          255,
+          229,
+          313
+        ]
+      },
+      {
+        "item": "reinforced_boots",
+        "part": "back_leg_lower",
+        "pixels": 2193,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          155,
+          410,
+          238,
+          469
+        ]
+      },
+      {
+        "item": "reinforced_boots",
+        "part": "back_foot",
+        "pixels": 2971,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          135,
+          454,
+          219,
+          504
+        ]
+      },
+      {
+        "item": "reinforced_boots",
+        "part": "front_leg_lower",
+        "pixels": 2286,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          267,
+          409,
+          348,
+          484
+        ]
+      },
+      {
+        "item": "reinforced_boots",
+        "part": "front_foot",
+        "pixels": 3396,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          278,
+          452,
+          377,
+          504
+        ]
+      }
+    ],
+    "iron": [
+      {
+        "item": "iron_armor",
+        "part": "torso",
+        "pixels": 5143,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          184,
+          246,
+          322,
+          377
+        ]
+      },
+      {
+        "item": "iron_armor",
+        "part": "pelvis",
+        "pixels": 4382,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          215,
+          330,
+          324,
+          411
+        ]
+      },
+      {
+        "item": "iron_armor",
+        "part": "sword_arm_upper",
+        "pixels": 482,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          291,
+          245,
+          339,
+          298
+        ]
+      },
+      {
+        "item": "iron_armor",
+        "part": "shield_arm_upper",
+        "pixels": 1445,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          157,
+          255,
+          229,
+          313
+        ]
+      },
+      {
+        "item": "climbing_boots",
+        "part": "back_leg_lower",
+        "pixels": 2071,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          155,
+          410,
+          237,
+          458
+        ]
+      },
+      {
+        "item": "climbing_boots",
+        "part": "back_foot",
+        "pixels": 2815,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          137,
+          454,
+          216,
+          505
+        ]
+      },
+      {
+        "item": "climbing_boots",
+        "part": "front_leg_lower",
+        "pixels": 2192,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          268,
+          409,
+          340,
+          458
+        ]
+      },
+      {
+        "item": "climbing_boots",
+        "part": "front_foot",
+        "pixels": 3193,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          278,
+          454,
+          369,
+          506
+        ]
+      }
+    ]
+  },
+  "rotation": [
+    {
+      "outfit": "bare",
+      "joint": "neck",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 881,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "neck",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 929,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "neck",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 961,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "neck",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 999,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "neck",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 966,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "neck",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1002,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "shoulder_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 841,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 49,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "shoulder_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 835,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 61,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "shoulder_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 841,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "shoulder_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 841,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "shoulder_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 841,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 22,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "shoulder_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 841,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 38,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "elbow_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1190,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "elbow_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1200,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "elbow_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1193,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "elbow_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1203,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "elbow_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1191,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "elbow_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1201,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "wrist_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 811,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 31,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "wrist_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 813,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 3,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "wrist_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 811,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 31,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "wrist_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 813,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 3,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "wrist_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 811,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 31,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "wrist_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 813,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 3,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "shoulder_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1252,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "shoulder_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1238,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "shoulder_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1252,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "shoulder_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1238,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "shoulder_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1252,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "shoulder_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1238,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "elbow_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1255,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "elbow_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1254,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "elbow_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1255,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "elbow_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1254,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "elbow_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1255,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "elbow_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1254,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "wrist_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1184,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "wrist_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1180,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "wrist_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1184,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "wrist_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1180,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "wrist_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1184,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "wrist_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1180,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "hip_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1187,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "hip_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1184,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "hip_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1187,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "hip_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1184,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "hip_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1187,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "hip_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1184,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "knee_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1014,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "knee_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 994,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 2,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "knee_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1016,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "knee_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 993,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 2,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "knee_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1015,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "knee_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 996,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 2,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "ankle_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1225,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "ankle_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1212,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "ankle_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1225,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "ankle_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1214,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "ankle_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1225,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "ankle_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1213,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "hip_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 771,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "hip_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 757,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "hip_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 771,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "hip_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 757,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "hip_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 771,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "hip_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 757,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "knee_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1019,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "knee_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1000,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "knee_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1019,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "knee_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1000,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "knee_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1033,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "knee_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1013,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "ankle_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1243,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "ankle_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1234,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "ankle_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1243,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "ankle_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1234,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "ankle_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1243,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "ankle_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1234,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    }
+  ],
+  "rotation_pass": true,
+  "outfits": {
+    "leather": {
+      "raw_edit_iou_informational": 0.9455421401865015,
+      "iou_without_sword_4px": 0.9864655608826419,
+      "iou_pass": true,
+      "unclothed_pixels_nearly_identical": false
+    },
+    "iron": {
+      "raw_edit_iou_informational": 0.9237848848447002,
+      "iou_without_sword_4px": 0.9696266578844944,
+      "iou_pass": true,
+      "unclothed_pixels_nearly_identical": false
+    }
+  },
+  "all_pass": false
+}

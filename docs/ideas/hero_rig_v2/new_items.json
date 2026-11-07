@@ -1,0 +1,608 @@
+{
+  "items": [
+    {
+      "id": "royal_armor",
+      "name": "Giáp Hoàng Gia",
+      "slot": "armor",
+      "icon": "assets/characters/hero_rig/item_icons/royal_armor.png",
+      "layers": [
+        {
+          "part": "torso",
+          "path": "assets/characters/hero_rig/gear/royal_armor/torso.png",
+          "pixels": 5574,
+          "outside_owner_plus24": 0
+        },
+        {
+          "part": "pelvis",
+          "path": "assets/characters/hero_rig/gear/royal_armor/pelvis.png",
+          "pixels": 5253,
+          "outside_owner_plus24": 0
+        },
+        {
+          "part": "sword_arm_upper",
+          "path": "assets/characters/hero_rig/gear/royal_armor/sword_arm_upper.png",
+          "pixels": 1010,
+          "outside_owner_plus24": 0
+        },
+        {
+          "part": "shield_arm_upper",
+          "path": "assets/characters/hero_rig/gear/royal_armor/shield_arm_upper.png",
+          "pixels": 1815,
+          "outside_owner_plus24": 0
+        }
+      ],
+      "alignment_tx_ty_sx_sy": [
+        0.05475586991284115,
+        0.0003539986923289458,
+        1.0013838570224542,
+        0.9999967933489117
+      ],
+      "rotation_checks": [
+        {
+          "joint": "neck",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "neck",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "shoulder_sword",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "shoulder_sword",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "elbow_sword",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "elbow_sword",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "wrist_sword",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "wrist_sword",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "shoulder_shield",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "shoulder_shield",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "elbow_shield",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "elbow_shield",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "wrist_shield",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "wrist_shield",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "hip_back",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "hip_back",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "knee_back",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "knee_back",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "ankle_back",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "ankle_back",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "hip_front",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "hip_front",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "knee_front",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "knee_front",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "ankle_front",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "ankle_front",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        }
+      ],
+      "status": "visual_assets_only_not_registered_in_game_catalog",
+      "price": null,
+      "unlock": null,
+      "head_used_in_preview": "iron_helmet_normal",
+      "boots_used_in_preview": "climbing_boots"
+    },
+    {
+      "id": "obsidian_armor",
+      "name": "Giáp Hắc Thép",
+      "slot": "armor",
+      "icon": "assets/characters/hero_rig/item_icons/obsidian_armor.png",
+      "layers": [
+        {
+          "part": "torso",
+          "path": "assets/characters/hero_rig/gear/obsidian_armor/torso.png",
+          "pixels": 5552,
+          "outside_owner_plus24": 0
+        },
+        {
+          "part": "pelvis",
+          "path": "assets/characters/hero_rig/gear/obsidian_armor/pelvis.png",
+          "pixels": 6366,
+          "outside_owner_plus24": 0
+        },
+        {
+          "part": "sword_arm_upper",
+          "path": "assets/characters/hero_rig/gear/obsidian_armor/sword_arm_upper.png",
+          "pixels": 971,
+          "outside_owner_plus24": 0
+        },
+        {
+          "part": "shield_arm_upper",
+          "path": "assets/characters/hero_rig/gear/obsidian_armor/shield_arm_upper.png",
+          "pixels": 1757,
+          "outside_owner_plus24": 0
+        }
+      ],
+      "alignment_tx_ty_sx_sy": [
+        -0.08403583773386554,
+        -0.037179085412415894,
+        1.0010529724104265,
+        1.000302686091299
+      ],
+      "rotation_checks": [
+        {
+          "joint": "neck",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "neck",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "shoulder_sword",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "shoulder_sword",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "elbow_sword",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "elbow_sword",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "wrist_sword",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "wrist_sword",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "shoulder_shield",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "shoulder_shield",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "elbow_shield",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "elbow_shield",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "wrist_shield",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "wrist_shield",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "hip_back",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "hip_back",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "knee_back",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "knee_back",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "ankle_back",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "ankle_back",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "hip_front",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "hip_front",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "knee_front",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "knee_front",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "ankle_front",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "ankle_front",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        }
+      ],
+      "status": "visual_assets_only_not_registered_in_game_catalog",
+      "price": null,
+      "unlock": null,
+      "head_used_in_preview": "iron_helmet_normal",
+      "boots_used_in_preview": "climbing_boots"
+    },
+    {
+      "id": "frost_armor",
+      "name": "Giáp Băng",
+      "slot": "armor",
+      "icon": "assets/characters/hero_rig/item_icons/frost_armor.png",
+      "layers": [
+        {
+          "part": "torso",
+          "path": "assets/characters/hero_rig/gear/frost_armor/torso.png",
+          "pixels": 5598,
+          "outside_owner_plus24": 0
+        },
+        {
+          "part": "pelvis",
+          "path": "assets/characters/hero_rig/gear/frost_armor/pelvis.png",
+          "pixels": 6418,
+          "outside_owner_plus24": 0
+        },
+        {
+          "part": "sword_arm_upper",
+          "path": "assets/characters/hero_rig/gear/frost_armor/sword_arm_upper.png",
+          "pixels": 894,
+          "outside_owner_plus24": 0
+        },
+        {
+          "part": "shield_arm_upper",
+          "path": "assets/characters/hero_rig/gear/frost_armor/shield_arm_upper.png",
+          "pixels": 1631,
+          "outside_owner_plus24": 0
+        }
+      ],
+      "alignment_tx_ty_sx_sy": [
+        -0.016978185603768965,
+        -0.03293755155281145,
+        1.0011227650699301,
+        1.0002398137384199
+      ],
+      "rotation_checks": [
+        {
+          "joint": "neck",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "neck",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "shoulder_sword",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "shoulder_sword",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "elbow_sword",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "elbow_sword",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "wrist_sword",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "wrist_sword",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "shoulder_shield",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "shoulder_shield",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "elbow_shield",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "elbow_shield",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "wrist_shield",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "wrist_shield",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "hip_back",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "hip_back",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "knee_back",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "knee_back",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "ankle_back",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "ankle_back",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "hip_front",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "hip_front",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "knee_front",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "knee_front",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "ankle_front",
+          "angle": -35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        },
+        {
+          "joint": "ankle_front",
+          "angle": 35,
+          "gap_pixels_radius20": 0,
+          "pass": true
+        }
+      ],
+      "status": "visual_assets_only_not_registered_in_game_catalog",
+      "price": null,
+      "unlock": null,
+      "head_used_in_preview": "iron_helmet_normal",
+      "boots_used_in_preview": "climbing_boots"
+    }
+  ],
+  "integration": "Register these IDs in game data/code and map icons; source files remain inside the authorized art directory. No balance values invented."
+}

@@ -54,16 +54,19 @@ func test_the_strike_calls_its_blow_once_at_the_impact() -> void:
 	rig.free()
 
 
-func test_a_helmet_swaps_the_whole_head_and_the_face_follows_the_clip() -> void:
+func test_a_helmet_swaps_the_head_and_the_face_follows_the_clip() -> void:
 	var rig := _rig()
 	rig.set_outfit(Gear.outfit(["wood_sword"]))
-	assert_eq(rig.head_texture().resource_path, HeroRig.DIR + "heads/bare_normal.png")
+	assert_eq(rig.head_texture().resource_path, HeroRig.DIR + "head/bare.png")
+	assert_eq(rig.face_texture().resource_path, HeroRig.DIR + "faces/normal.png")
 	rig.set_outfit(Gear.outfit(["wood_sword", "leather_helmet"]))
-	assert_eq(rig.head_texture().resource_path, HeroRig.DIR + "heads/leather_helmet_normal.png",
-		"a helmet is a whole head, not a layer over the hair")
+	assert_eq(rig.head_texture().resource_path, HeroRig.DIR + "head/leather_helmet.png",
+		"a helmet comes on its own head, not as a layer over the hair")
+	assert_eq(rig.face_texture().resource_path, HeroRig.DIR + "faces/normal.png", "the same face on every head")
 	rig.play(&"attack")
 	assert_eq(rig.mood, "angry")
-	assert_eq(rig.head_texture().resource_path, HeroRig.DIR + "heads/leather_helmet_angry.png")
+	assert_eq(rig.head_texture().resource_path, HeroRig.DIR + "head/leather_helmet.png")
+	assert_eq(rig.face_texture().resource_path, HeroRig.DIR + "faces/angry.png")
 	rig.play(&"hurt")
 	assert_eq(rig.mood, "hurt")
 	rig.play(&"cheer")
@@ -77,9 +80,11 @@ func test_a_helmet_swaps_the_whole_head_and_the_face_follows_the_clip() -> void:
 
 func test_every_head_and_armor_is_drawn() -> void:
 	for kind: String in ["bare"] + Gear.ladder("helmet"):
-		for face: String in HeroRig.MOODS:
-			var path := HeroRig.DIR + "heads/%s_%s.png" % [kind, face]
-			assert_true(ResourceLoader.exists(path), path)
+		var path := HeroRig.DIR + "head/%s.png" % kind
+		assert_true(ResourceLoader.exists(path), path)
+	for face: String in HeroRig.MOODS:
+		var path := HeroRig.DIR + "faces/%s.png" % face
+		assert_true(ResourceLoader.exists(path), path)
 	for armor: String in Gear.ladder("armor"):
 		for part: String in HeroRig.GEAR_PARTS["armor"]:
 			var path := HeroRig.DIR + "gear/%s/%s.png" % [armor, part]

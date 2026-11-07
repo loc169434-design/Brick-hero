@@ -11,8 +11,10 @@ extends Node2D
 ## drawing order. Gear layers are drawn on the same canvas over the part they cover, so they
 ## can't drift from it. Swords are the forge's icons (assets/ui/items/<sword>.png), held at
 ## their grip. Without art every part is a plain shape, enough to judge the motion.
-## The head is a whole picture per helmet and face, heads/<helmet|bare>_<mood>.png on the same
-## canvas: a helmet is never laid over the bare head, whose hair would poke through it.
+## The head is drawn per helmet, head/<helmet|bare>.png, with the helmet already on it (laid over
+## the bare head, the hair would poke through), and over it the face for the mood,
+## faces/<mood>.png: an opaque patch of skin, eyes and mouth inside one fixed frame, the same on
+## every head, so the face never shifts or changes size when the helmet does.
 ##
 ## Clips are built in code (see _build_clips): idle loops, the others play once and go back
 ## to idle; attack emits clip_impact at the blow. Each clip shows its face (CLIP_MOODS), and
@@ -176,13 +178,17 @@ func _process(delta: float) -> void:
 		set_mood("blink")
 
 
-## The picture of the whole head for the helmet worn and the face shown, or null when that
-## head isn't drawn (then the bare head and a helmet layer over it, as before heads existed).
+## The head with the helmet worn, or null when that head isn't drawn (then the plain head part
+## and a helmet layer over it).
 func head_texture() -> Texture2D:
 	var helmet: String = outfit.get("helmet", "")
-	var kind := helmet if helmet else "bare"
-	var head := _texture(DIR + "heads/%s_%s.png" % [kind, mood])
-	return head if head else _texture(DIR + "heads/%s_normal.png" % kind)
+	return _texture(DIR + "head/%s.png" % (helmet if helmet else "bare"))
+
+
+## The face patch for the mood shown, laid over whichever head.
+func face_texture() -> Texture2D:
+	var face := _texture(DIR + "faces/%s.png" % mood)
+	return face if face else _texture(DIR + "faces/normal.png")
 
 
 ## Seconds into `name` at which its blow lands, or 0.
@@ -266,16 +272,19 @@ func _draw_part(part: String, skin: Node2D) -> void:
 		_draw_sword(skin)
 		return
 	var base: Texture2D = _art[part]
-	var whole_head: Texture2D = head_texture() if part == "head" else null
-	if whole_head:
-		base = whole_head
+	var head: Texture2D = head_texture() if part == "head" else null
+	if head:
+		base = head
 	if base:
 		skin.draw_texture(base, Vector2.ZERO)
 	else:
 		_draw_placeholder(part, skin)
+	var face: Texture2D = face_texture() if head else null
+	if face:
+		skin.draw_texture(face, Vector2.ZERO)
 	for slot: String in GEAR_PARTS:
 		var item: String = outfit.get(slot, "")
-		if item == "" or not part in GEAR_PARTS[slot] or (whole_head and slot == "helmet"):
+		if item == "" or not part in GEAR_PARTS[slot] or (head and slot == "helmet"):
 			continue
 		var layer := _texture(DIR + "gear/%s/%s.png" % [item, part])
 		if layer:

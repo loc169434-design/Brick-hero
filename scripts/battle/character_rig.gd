@@ -87,7 +87,7 @@ var _anim := {}
 var variant := ""
 var _variant_clips := {}
 var _base_clips := {}
-## What the hero wears (Gear.outfit): weapon, armor, helmet, boots. Empty for everyone else.
+## What the hero wears (Gear.outfit): weapon, armor (a whole outfit), refine. Empty for everyone else.
 var outfit := {}
 ## The worn armour's clip set (anim/<armor>/anim.json), laid over the usual clips.
 var _armor_clips := {}

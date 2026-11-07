@@ -158,7 +158,7 @@ func test_the_outfit_follows_the_best_gear() -> void:
 	var outfit := Gear.outfit(["wood_sword", "iron_sword", "leather_armor", "sword_plus_1", "sword_plus_2"])
 	assert_eq(outfit["weapon"], "iron_sword")
 	assert_eq(outfit["armor"], "leather_armor")
-	assert_eq(outfit["helmet"], "")
+	assert_true(not outfit.has("helmet"), "the helmet comes with the armour")
 	assert_eq(outfit["refine"], 2)
 
 

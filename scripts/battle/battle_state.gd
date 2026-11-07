@@ -289,7 +289,7 @@ func _gain_rage(result: MoveResult) -> int:
 	return gain
 
 
-## What a monster attack takes off the hero after the helmet and armor.
+## What a monster attack takes off the hero after the armour.
 func monster_hit(critical: bool) -> int:
 	var crit_bonus := (rules.monster_crit_multiplier - 1.0) * (1.0 - rules.crit_guard) if critical else 0.0
 	var rage := RAGE_POWER if raging else 1.0

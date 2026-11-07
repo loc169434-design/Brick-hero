@@ -23,11 +23,11 @@ func test_every_part_hangs_on_its_joint() -> void:
 
 func test_the_outfit_can_change_at_any_time() -> void:
 	var rig := _rig()
-	rig.set_outfit(Gear.outfit(["iron_sword", "iron_armor", "iron_helmet"]))
+	rig.set_outfit({"weapon": "iron_sword", "armor": "iron_armor", "helmet": "iron_helmet"})
 	assert_eq(rig.outfit["weapon"], "iron_sword")
 	assert_eq(rig.outfit["helmet"], "iron_helmet")
-	rig.set_outfit(Gear.outfit(["wood_sword"]))
-	assert_eq(rig.outfit["helmet"], "")
+	rig.set_outfit({"weapon": "wood_sword"})
+	assert_eq(rig.outfit.get("helmet", ""), "")
 	rig.free()
 
 
@@ -59,7 +59,7 @@ func test_a_helmet_swaps_the_head_and_the_face_follows_the_clip() -> void:
 	rig.set_outfit(Gear.outfit(["wood_sword"]))
 	assert_eq(rig.head_texture().resource_path, HeroRig.DIR + "head/bare.png")
 	assert_eq(rig.face_texture().resource_path, HeroRig.DIR + "faces/normal.png")
-	rig.set_outfit(Gear.outfit(["wood_sword", "leather_helmet"]))
+	rig.set_outfit({"weapon": "wood_sword", "helmet": "leather_helmet"})
 	assert_eq(rig.head_texture().resource_path, HeroRig.DIR + "head/leather_helmet.png",
 		"a helmet comes on its own head, not as a layer over the hair")
 	assert_eq(rig.face_texture().resource_path, HeroRig.DIR + "faces/normal.png", "the same face on every head")
@@ -97,7 +97,7 @@ func test_the_clips_he_plays_move_his_own_bones() -> void:
 
 
 func test_every_head_and_armor_is_drawn() -> void:
-	for kind: String in ["bare"] + Gear.ladder("helmet"):
+	for kind: String in ["bare", "leather_helmet", "iron_helmet"]:
 		var path := HeroRig.DIR + "head/%s.png" % kind
 		assert_true(ResourceLoader.exists(path), path)
 	for face: String in HeroRig.MOODS:

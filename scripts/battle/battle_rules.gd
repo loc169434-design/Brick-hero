@@ -27,9 +27,9 @@ extends Resource
 @export var monster_crit_multiplier := 1.5
 
 @export_group("Hero gear")
-## Taken off every monster attack by armor and boots; an attack still does at least 1.
+## Taken off every monster attack by the armour; an attack still does at least 1.
 @export var armor := 0
-## 0..1: how much of a monster's critical bonus the helmet stops. 1 makes critical attacks
+## 0..1: how much of a monster's critical bonus the armour (its helmet) stops. 1 makes critical attacks
 ## hit like normal ones.
 @export_range(0.0, 1.0) var crit_guard := 0.0
 

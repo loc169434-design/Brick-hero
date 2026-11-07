@@ -39,30 +39,30 @@ func test_buying_takes_the_gold_once() -> void:
 
 func test_gear_changes_the_fight_numbers() -> void:
 	var base: BattleRules = load("res://data/balance.tres")
-	var rules := Gear.apply(base, ["wood_sword", "iron_sword", "sword_plus_1", "leather_armor", "reinforced_boots", "leather_helmet"])
+	var rules := Gear.apply(base, ["wood_sword", "iron_sword", "sword_plus_1", "leather_armor"])
 	assert_eq(rules.red_damage, 2.75)
-	assert_eq(rules.armor, 3)
-	assert_eq(rules.crit_guard, 0.5)
+	assert_eq(rules.armor, 3, "the leather outfit: armour and boots together")
+	assert_eq(rules.crit_guard, 0.25, "and its helmet")
 	assert_eq(base.armor, 0, "the shared balance file is untouched")
 	var orc: MonsterData = load("res://data/monsters/orc_shield.tres")
 	var state := BattleState.new(rules, orc)
 	assert_eq(state.monster_hit(false), orc.attack - 3)
-	# Critical: 12 × (1 + 0.5 × 0.5) = 15, minus 3 armor.
-	assert_eq(state.monster_hit(true), 12)
+	# Critical: 12 × (1 + 0.5 × 0.75) = 16.5, rounded to 17, minus 3 armor.
+	assert_eq(state.monster_hit(true), 14)
 	var bare := BattleState.new(base, orc)
 	assert_eq(bare.monster_hit(true), 18)
 
 
 func test_an_attack_always_hurts_a_little() -> void:
 	var base: BattleRules = load("res://data/balance.tres")
-	var rules := Gear.apply(base, ["iron_armor", "climbing_boots"])
+	var rules := Gear.apply(base, ["leather_armor", "iron_armor"])
 	rules.armor = 50
 	var orc: MonsterData = load("res://data/monsters/orc_shield.tres")
 	assert_eq(BattleState.new(rules, orc).monster_hit(false), 1)
 
 
 func test_owned_gear_is_saved() -> void:
-	var campaign := _campaign(40, ["5"])
+	var campaign := _campaign(55, ["5"])
 	campaign.buy("leather_armor")
 	var again := Campaign.from_map()
 	again.apply_dict(campaign.to_dict())
@@ -107,3 +107,19 @@ func test_every_script_compiles() -> void:
 				assert_true(script != null and script.can_instantiate(), folder + file)
 				checked += 1
 	assert_true(checked > 20, "found the scripts")
+
+
+func test_an_old_save_gets_its_helmets_and_boots_back_as_gold() -> void:
+	var campaign := Campaign.from_map()
+	campaign.apply_dict({"gold": 7, "cleared": [], "owned": ["wood_sword", "leather_armor", "leather_helmet", "reinforced_boots"]})
+	assert_eq(campaign.owned, ["wood_sword", "leather_armor"], "helmets and boots are part of the armour now")
+	assert_eq(campaign.gold, 7 + 35 + 35, "their price comes back")
+
+
+func test_an_armour_is_a_whole_outfit() -> void:
+	assert_eq(Gear.SLOTS, ["weapon", "refine", "armor"])
+	var outfit := Gear.outfit(["wood_sword", "frost_armor"])
+	assert_eq(outfit.keys(), ["weapon", "armor", "refine"])
+	for id in Gear.ladder("armor"):
+		assert_true(Gear.ITEMS[id].has("crit_guard"), "%s guards against critical blows" % id)
+	assert_eq(Gear.describe("iron_armor"), "Mỗi đòn quái nhẹ đi 5 máu, đỡ 75% chí mạng")

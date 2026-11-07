@@ -966,35 +966,12 @@ func _draw_item(canvas: CanvasItem, id: String, at: Vector2, size: float, angle:
 		icon = _icon("sword_refine")
 		if icon == null:
 			icon = _icon(Gear.best(campaign.owned, "weapon"))
-	if icon == null and id == "climbing_boots":
-		icon = _icon("reinforced_boots")
 	canvas.draw_set_transform(at, angle, Vector2.ONE)
 	if icon:
 		canvas.draw_texture_rect(icon, Rect2(-Vector2.ONE * size / 2, Vector2.ONE * size), false, tint)
-	elif slot == "helmet":
-		_draw_helmet(canvas, size, id == "iron_helmet", tint)
 	if slot == "refine":
 		var plus := "+%d" % (Gear.ladder("refine").find(id) + 1)
 		var font_size := int(size * 0.3)
 		canvas.draw_string_outline(_comic_font, Vector2(size * 0.08, size * 0.45), plus, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, 10, Color(INK, tint.a))
 		canvas.draw_string(_comic_font, Vector2(size * 0.08, size * 0.45), plus, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, Color(GOLD, tint.a))
 	canvas.draw_set_transform(Vector2.ZERO)
-
-
-## A plain helmet for when the icon is missing: a dome, a brim and rivets.
-func _draw_helmet(canvas: CanvasItem, size: float, iron: bool, tint: Color) -> void:
-	var r := size * 0.34
-	var base := (Color(0.62, 0.66, 0.7) if iron else Color(0.6, 0.38, 0.2)) * tint
-	var dome := PackedVector2Array()
-	for i in 21:
-		dome.append(Vector2.from_angle(PI + PI * i / 20.0) * r + Vector2(0, size * 0.08))
-	canvas.draw_colored_polygon(dome, base)
-	dome.append(dome[0])
-	canvas.draw_polyline(dome, Color(INK, tint.a), 5.0, true)
-	var brim := Rect2(Vector2(-r * 1.2, size * 0.06), Vector2(r * 2.4, size * 0.12))
-	canvas.draw_rect(brim, base.darkened(0.2))
-	canvas.draw_rect(brim, Color(INK, tint.a), false, 4.0)
-	if iron:
-		canvas.draw_line(Vector2(0, size * 0.08 - r), Vector2(0, size * 0.08), Color(INK, tint.a), 5.0)
-		for x: float in [-0.6, 0.6]:
-			canvas.draw_circle(Vector2(r * x, size * 0.12), size * 0.025, Color(INK, tint.a))

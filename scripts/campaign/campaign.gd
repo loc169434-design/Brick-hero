@@ -212,6 +212,8 @@ func apply_dict(data: Dictionary) -> void:
 	for id in data.get("owned", []):
 		if Gear.ITEMS.has(String(id)) and not owned.has(String(id)):
 			owned.append(String(id))
+		elif Gear.RETIRED.has(String(id)):
+			gold += int(Gear.RETIRED[String(id)])
 	skill = Gear.STARTING_SKILL
 	pick_skill(String(data.get("skill", "")))
 	boosters.clear()

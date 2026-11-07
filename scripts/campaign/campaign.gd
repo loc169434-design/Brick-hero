@@ -30,6 +30,8 @@ var gold := 0
 var stars := {}
 ## Gear bought at the forge (Gear.ITEMS ids); the hero uses the best of each slot.
 var owned: Array[String] = []
+## The outfit the hero wears for its look, "" for his best (Gear.outfit).
+var look := ""
 ## The hero skill taken into every fight, picked at the forge.
 var skill := Gear.STARTING_SKILL
 ## Boosters in the bag, by Boosters id: how many of each.
@@ -155,7 +157,25 @@ func buy(id: String) -> bool:
 		return false
 	gold -= int(Gear.ITEMS[id]["price"])
 	owned.append(id)
+	if Gear.ITEMS[id]["slot"] == "outfit":
+		look = ""
 	return true
+
+
+## Puts on outfit `id` for its look, if owned. Returns whether he changed.
+func wear(id: String) -> bool:
+	if not owned.has(id) or Gear.ITEMS.get(id, {}).get("slot") != "outfit":
+		return false
+	var wanted := "" if id == Gear.best(owned, "outfit") else id
+	if wanted == look:
+		return false
+	look = wanted
+	return true
+
+
+## The outfit he has on.
+func worn() -> String:
+	return Gear.outfit(owned, look)["outfit"]
 
 
 func booster_count(id: String) -> int:
@@ -199,7 +219,7 @@ func pick_skill(id: String) -> bool:
 
 
 func to_dict() -> Dictionary:
-	return {"cleared": cleared.duplicate(), "gold": gold, "stars": stars.duplicate(), "owned": owned.duplicate(), "skill": skill, "boosters": boosters.duplicate()}
+	return {"cleared": cleared.duplicate(), "gold": gold, "stars": stars.duplicate(), "owned": owned.duplicate(), "look": look, "skill": skill, "boosters": boosters.duplicate()}
 
 
 func apply_dict(data: Dictionary) -> void:
@@ -209,11 +229,13 @@ func apply_dict(data: Dictionary) -> void:
 			cleared.append(String(id))
 	gold = maxi(int(data.get("gold", 0)), 0)
 	owned.assign(Gear.STARTING)
-	for id in data.get("owned", []):
+	var had: Array = data.get("owned", []).duplicate()
+	gold += Gear.migrate(had)
+	for id in had:
 		if Gear.ITEMS.has(String(id)) and not owned.has(String(id)):
 			owned.append(String(id))
-		elif Gear.RETIRED.has(String(id)):
-			gold += int(Gear.RETIRED[String(id)])
+	look = ""
+	wear(String(data.get("look", "")))
 	skill = Gear.STARTING_SKILL
 	pick_skill(String(data.get("skill", "")))
 	boosters.clear()

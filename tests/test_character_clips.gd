@@ -154,59 +154,39 @@ func test_clip_sheets_import_vram_compressed() -> void:
 	assert_true(checked > 80, "found the clip sheets")
 
 
-func test_the_outfit_follows_the_best_gear() -> void:
-	var outfit := Gear.outfit(["wood_sword", "iron_sword", "leather_armor", "sword_plus_1", "sword_plus_2"])
-	assert_eq(outfit["weapon"], "iron_sword")
-	assert_eq(outfit["armor"], "leather_armor")
-	assert_true(not outfit.has("helmet"), "the helmet comes with the armour")
-	assert_eq(outfit["refine"], 2)
+func test_the_outfit_follows_the_best_gear_or_the_look_picked() -> void:
+	var owned := ["rookie", "leather", "iron", "sword_plus_1", "sword_plus_2"]
+	assert_eq(Gear.outfit(owned), {"outfit": "iron", "refine": 2})
+	assert_eq(Gear.outfit(owned, "leather")["outfit"], "leather", "an outfit he owns can be worn for its look")
+	assert_eq(Gear.outfit(owned, "frost")["outfit"], "iron", "not one he doesn't own")
+	var rules := Gear.apply(BattleRules.new(), owned, "leather")
+	assert_eq(rules.outfit["outfit"], "leather", "the fight dresses him as picked")
+	assert_eq(rules.armor, 5, "while the numbers stay those of his best")
 
 
-
-func test_gear_dresses_the_hero_for_the_fight() -> void:
-	var rules := Gear.apply(BattleRules.new(), ["wood_sword", "iron_sword", "leather_armor"])
-	assert_eq(rules.outfit["weapon"], "iron_sword")
-	assert_eq(rules.outfit["armor"], "leather_armor")
-
-
-func test_the_sword_worn_is_held_where_the_frame_says() -> void:
-	var rig := _rig()
-	rig._anim["clips"]["attack"]["sword"] = [[300, 320, 0, 0], [320, 300, -60, 1], null]
-	rig._base_clips = rig._anim["clips"].duplicate(true)
-	rig.mood = &"attack"
-	rig._mood_serial += 1
-	rig._update_clip(0.0)
-	assert_eq(rig.sword_key(), [], "no weapon worn, no sword")
-	rig.set_outfit({"weapon": "iron_sword", "armor": ""})
-	rig._sheets["res://assets/characters/hero_rookie/anim/fresh_attack.png"] = ImageTexture.create_from_image(Image.create(8, 8, false, Image.FORMAT_RGBA8))
-	rig._sheets["res://assets/characters/hero_rookie/anim/fresh_idle.png"] = rig._sheets["res://assets/characters/hero_rookie/anim/fresh_attack.png"]
-	rig._update_clip(0.0)
-	assert_eq(rig.sword_key(), [300.0, 320.0, 0.0, 0], "frame 0: behind the body")
-	rig._update_clip(1.0 / 24.0)
-	assert_eq(rig.sword_key(), [320.0, 300.0, -60.0, 1], "frame 1: in front, raised")
-	rig._update_clip(1.0 / 24.0)
-	assert_eq(rig.sword_key(), [], "frame 2 holds none")
-	rig._update_clip(1.0 / 24.0)
-	assert_eq(rig.sword_key(), [], "past the track, its last key holds")
-	rig._clip_time = 0.0
-	rig.variant = "broom"
-	assert_eq(rig.sword_key(), [], "the broom replaces the sword")
-	rig._body.free()
-	rig.free()
-
-
-func test_armour_without_its_own_clips_wears_the_usual_ones() -> void:
+func test_an_outfit_plays_its_own_clip_set_and_the_rookie_the_usual_one() -> void:
 	var rig := _rig()
 	rig._base_clips = rig._anim["clips"].duplicate(true)
-	rig.set_outfit({"weapon": "wood_sword", "armor": "no_such_armor"})
-	assert_eq(rig._armor_clips, {})
+	rig.set_outfit({"outfit": "rookie", "refine": 0})
+	assert_eq(rig._outfit_folder(), "")
+	rig.set_outfit({"outfit": "leather", "refine": 0})
+	assert_eq(rig._outfit_folder(), "leather")
+	# No leather sheets yet: the usual clips stand in.
+	assert_eq(rig._outfit_clips, {})
 	assert_true(rig.has_clip(&"idle"))
 	assert_eq(rig._clip_sheet_for(&"idle"), rig._sheets["res://assets/characters/hero_rookie/anim/fresh_idle.png"])
 	rig._body.free()
 	rig.free()
 
 
-func test_swords_are_held_by_the_middle_of_the_handle() -> void:
-	assert_eq(SwordArt.hold("wood_sword")["turn"], -40.9, "the slanting icon is stood up")
-	assert_eq(SwordArt.hold("no_such_sword"), SwordArt.HOLD)
-	assert_true(SwordArt.icon("iron_sword") != null)
+func test_a_light_384_sheet_shows_as_big_as_a_512_one() -> void:
+	var rig := _rig()
+	rig._update_clip(0.0)
+	var full := rig.frame_layout()
+	rig._clip_info = rig._clip_info.duplicate()
+	rig._clip_info["frame_size"] = [384, 384]
+	var light := rig.frame_layout()
+	assert_eq(light[0].size, Vector2(384, 384), "read at its own size")
+	assert_eq(light[1], full[1], "drawn the same size and place")
+	rig._body.free()
+	rig.free()

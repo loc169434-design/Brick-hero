@@ -15,14 +15,14 @@ extends Node2D
 signal closed
 ## Something was bought: the campaign changed and should be saved.
 signal bought(id: String)
+## The hero put on another outfit he owns (Campaign.look): save it.
+signal dressed(id: String)
 ## Another skill was picked: the campaign changed and should be saved.
 signal skill_picked(id: String)
 
 const SCREEN := Vector2(1080, 1920)
 const BACKGROUND := "res://assets/bg/forge.png"
 const ITEM_ICONS := "res://assets/ui/items/%s.png"
-## Icons drawn with the hero rig's gear, for items not yet in assets/ui/items.
-const RIG_ITEM_ICONS := "res://assets/characters/hero_rig/item_icons/%s.png"
 const COMIC_FONT := "res://assets/fonts/Bangers-Regular.ttf"
 
 ## Where things are on the painted room.
@@ -73,6 +73,8 @@ const BOOSTER_LINES := {
 }
 const HERO_FEET := Vector2(190, 1850)
 const HERO_SCALE := 0.74
+## Tapping the hero here puts on the next outfit he owns (below the skill buttons).
+const HERO_TAP := Rect2(100, 1640, 180, 230)
 const ROW_ICON := 78.0
 const ROW_X := 370.0
 const ROW_Y0 := 1462.0
@@ -226,9 +228,9 @@ func _ready() -> void:
 func show_campaign(p_campaign: Campaign) -> void:
 	campaign = p_campaign
 	_camera.make_current()
-	_hero.set_outfit(Gear.outfit(campaign.owned))
+	_hero.set_outfit(Gear.outfit(campaign.owned, campaign.look))
 	_restock()
-	var first := Gear.best(campaign.owned, "weapon") == "wood_sword" and Gear.best(campaign.owned, "armor") == ""
+	var first := Gear.best(campaign.owned, "outfit") == "rookie"
 	_say(HELLO_FIRST if first else HELLO)
 	_smith.react(&"talk", 1.4)
 
@@ -275,6 +277,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.position.distance_to(_skill_spot(id)) <= SKILL_RADIUS + 8:
 			_on_skill_tapped(id)
 			return
+	if HERO_TAP.has_point(event.position):
+		_on_hero_tapped()
+		return
 	for slot: String in Gear.SLOTS:
 		var at := _hang_point(slot)
 		if event.position.distance_to(at) < TAP_REACH or event.position.distance_to(Vector2(at.x, TAG_Y)) < 60:
@@ -295,6 +300,30 @@ func _on_piece_tapped(slot: String) -> void:
 			_show_note(slot, _locked_reason(id))
 		Gear.Offer.TOP:
 			_show_note(slot, "Tốt nhất rồi!")
+
+
+## The outfits he owns, cheapest first.
+func _owned_outfits() -> Array[String]:
+	var ids: Array[String] = []
+	for id in Gear.ladder("outfit"):
+		if campaign.owned.has(id):
+			ids.append(id)
+	return ids
+
+
+## Puts on the next outfit he owns, for its look; the numbers stay those of his best.
+func _on_hero_tapped() -> void:
+	var outfits := _owned_outfits()
+	if outfits.size() < 2:
+		_hero.react(&"cheer", 0.8)
+		return
+	var next := outfits[(outfits.find(campaign.worn()) + 1) % outfits.size()]
+	campaign.wear(next)
+	_hero.set_outfit(Gear.outfit(campaign.owned, campaign.look))
+	_hero.react(&"cheer", 0.8)
+	Sfx.play(&"land")
+	_say("Mặc %s!" % Gear.ITEMS[next]["name"])
+	dressed.emit(next)
 
 
 ## A learned skill is picked (and explained); a locked one says which fight teaches it.
@@ -393,7 +422,7 @@ func _show_note(slot: String, text: String) -> void:
 func _start_forging(slot: String, id: String) -> void:
 	campaign.buy(id)
 	bought.emit(id)
-	_hero.set_outfit(Gear.outfit(campaign.owned))
+	_hero.set_outfit(Gear.outfit(campaign.owned, campaign.look))
 	_forging = id
 	_forge_slot = slot
 	_strikes = 0
@@ -604,7 +633,7 @@ func _draw_front() -> void:
 		var tint := Color(1, 1 - _heat * 0.45, 1 - _heat * 0.8).lerp(Color.WHITE, _flash)
 		if _piece_at.is_equal_approx(ANVIL_TOP):
 			# On the anvil it lies low and flat (blades on their side) so the hammer is seen coming down on it.
-			var flat: bool = Gear.ITEMS[_forging]["slot"] in ["weapon", "refine"]
+			var flat: bool = Gear.ITEMS[_forging]["slot"] == "refine"
 			var size := ICON_SIZE * ON_ANVIL_SCALE
 			_draw_item(_front, _forging, ANVIL_TOP + Vector2(0, -10.0 if flat else -size * 0.3), size, -PI / 2 if flat else 0.0, tint)
 		else:
@@ -850,6 +879,8 @@ func _draw_hud() -> void:
 			best = ladder[ladder.find(_forging) - 1] if ladder.find(_forging) > 0 else ""
 		_draw_row(slot, best)
 	_draw_skills()
+	if _owned_outfits().size() > 1 and not flying:
+		_text(_hud, "◀ chạm để đổi bộ ▶", HERO_FEET + Vector2(0, 40), 22, WOOD_DARK)
 	if not flying:
 		_draw_shelf()
 	if flying and _camera.zoom.x <= 1.001:
@@ -952,8 +983,6 @@ func _draw_purse() -> void:
 func _icon(id: String) -> Texture2D:
 	if not _icons.has(id):
 		var path := ITEM_ICONS % id
-		if not ResourceLoader.exists(path):
-			path = RIG_ITEM_ICONS % id
 		_icons[id] = load(path) if ResourceLoader.exists(path) else null
 	return _icons[id]
 
@@ -961,11 +990,7 @@ func _icon(id: String) -> Texture2D:
 ## Draws item `id` centred at `at`, `size` across. Items without art yet get a drawn stand-in.
 func _draw_item(canvas: CanvasItem, id: String, at: Vector2, size: float, angle: float, tint: Color) -> void:
 	var slot: String = Gear.ITEMS[id]["slot"]
-	var icon := _icon(id)
-	if icon == null and slot == "refine":
-		icon = _icon("sword_refine")
-		if icon == null:
-			icon = _icon(Gear.best(campaign.owned, "weapon"))
+	var icon := _icon(Gear.ITEMS[id].get("icon", id))
 	canvas.draw_set_transform(at, angle, Vector2.ONE)
 	if icon:
 		canvas.draw_texture_rect(icon, Rect2(-Vector2.ONE * size / 2, Vector2.ONE * size), false, tint)

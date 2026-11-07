@@ -39,9 +39,9 @@ func run() -> void:
 	var view := fixture()
 	var bought: Array[String] = []
 	view.bought.connect(func(id: String) -> void: bought.append(id))
-	view._on_piece_tapped("weapon")
-	check(view.campaign.gold == 55, "one purchase spends 45 gold")
-	check(bought == ["iron_sword"], "one purchase/save signal")
+	view._on_piece_tapped("outfit")
+	check(view.campaign.gold == 30, "one purchase spends 70 gold")
+	check(bought == ["leather"], "one purchase/save signal")
 	check(await wait_until(func() -> bool: return view._waiting_strike), "metal reaches anvil")
 	for strike in range(1, 4):
 		var clip := &"hammer_final" if strike == 3 else &"hammer"
@@ -70,7 +70,7 @@ func run() -> void:
 			check(view._smith.mood == &"hammer_final", "cheer does not replace final contact")
 			check(await wait_until(func() -> bool: return view._smith.mood == &"cheer"), "cheer starts after final recovery")
 	check(await wait_until(func() -> bool: return view._forging.is_empty()), "item lands in equipment board")
-	check(view._landed == "weapon" and view._smith.mood == &"grin", "landing triggers proud grin")
+	check(view._landed == "outfit" and view._smith.mood == &"grin", "landing triggers proud grin")
 	check(view._glint == 0.0, "drawn tooth glint replaces procedural one")
 	check(view._smith.position.distance_to(ForgeView.SMITH_FEET) < 0.01, "smith steps home")
 	check(await wait_until(func() -> bool: return view._smith.mood == &"idle"), "grin finishes at idle")
@@ -80,8 +80,8 @@ func run() -> void:
 	# Missing final art still uses a complete ordinary swing, and patience resumes after it.
 	view = fixture()
 	view._smith._anim["clips"].erase("hammer_final")
-	view._forging = "iron_sword"
-	view._forge_slot = "weapon"
+	view._forging = "leather"
+	view._forge_slot = "outfit"
 	view._strikes = 2
 	view._waiting_strike = true
 	view._strike()
@@ -92,8 +92,8 @@ func run() -> void:
 	# A still-art fallback must finish too, even though it emits no clip_impact signal.
 	view = fixture()
 	view._smith._anim["clips"].erase("hammer")
-	view._forging = "iron_sword"
-	view._forge_slot = "weapon"
+	view._forging = "leather"
+	view._forge_slot = "outfit"
 	view._waiting_strike = true
 	view._strike()
 	check(await wait_until(func() -> bool: return view._strike_landed), "still-art fallback lands")

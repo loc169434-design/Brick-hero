@@ -62,7 +62,7 @@ Hiệu ứng (sét, ánh sáng, vệt chém) **do code vẽ**, không vẽ vào 
 
 1. Claude viết **yêu cầu từng đợt** vào `docs/ideas/sprites/`, Gemini đọc file rồi vẽ.
 2. Gemini đẩy lên nhánh `art/...` và **dừng**.
-3. Claude chạy `tools/check_sheet.py`:
+3. Claude chạy `tools/sprites/check_sheet.py`:
    - đúng lưới, đúng số khung;
    - chân đứng đúng điểm (256, 500) ở mọi khung, lệch ≤ 6 px;
    - cỡ người khớp `fresh_idle` (±8%);
@@ -75,7 +75,7 @@ Hiệu ứng (sét, ánh sáng, vệt chém) **do code vẽ**, không vẽ vào 
 
 | Đợt | Ai | Việc |
 |---|---|---|
-| 0 | Claude | Code bậc trang bị + tủ đồ, khung 384, `check_sheet.py`, dọn rig; hủy đợt "xóa kiếm" của ChatGPT |
+| 0 | Claude | Code bậc trang bị + tủ đồ, khung 384, `check_sheet.py`, dọn rig; hủy đợt "xóa kiếm" của ChatGPT. **Xong 07/11.** |
 | 1 | Gemini | 9 động tác mới cho bậc 0 (bảng mục 2) |
 | 1b | Claude | Gắn động tác vào trận: combo theo độ dài dây, đỡ khiên, lướt tới, kĩ năng |
 | 2 | Gemini | Bậc 1 (Bộ da): vẽ lại toàn bộ clip của bậc 0 theo bộ da. Duyệt xong mới làm bậc 2–5 |

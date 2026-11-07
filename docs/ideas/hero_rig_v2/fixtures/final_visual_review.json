@@ -1,0 +1,10 @@
+{
+  "review": "Inspected the current ear/nape before-after panel and complete head grid. No second generated ear/face remains behind REF; armor comparison now includes full tassets, not exposed old blue tunic. This does not approve the failed protected-pixel criterion.",
+  "sha256": {
+    "head_layer_detail.png": "104118ec33936aa0ba4edd41d0e0b3b046b7fe7d1d476c842a14c0774056c305",
+    "armor_layer_detail.png": "963576f34207ad25b02ef88eb91803934ef0556962e860b3f0c813eeb6e78820",
+    "heads_grid.png": "1512a1004ce79495e528fa5312ea4851c2cfd0535234a0bc544c1f4c5393e72e",
+    "compare_iron.png": "ecd09279c24711e7833c45e1c0acf0c6e282cf3a759a279ba5428fab08075b03",
+    "compare_leather.png": "982ca79198b12095b8fc7a64bd25f1bf3fe437ca699aa2d518b32af7e75415c9"
+  }
+}

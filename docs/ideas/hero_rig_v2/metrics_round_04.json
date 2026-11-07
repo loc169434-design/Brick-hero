@@ -1,0 +1,1540 @@
+{
+  "round": 4,
+  "body_iou_without_sword_4px": 0.9963035171176792,
+  "body_iou_pass": true,
+  "full_ref_iou_with_fixture_informational": 0.9966081008203003,
+  "head_rotation": [
+    {
+      "head": "bare_normal",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_normal",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_blink",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_blink",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_angry",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_angry",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_hurt",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_hurt",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_happy",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_happy",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_scared",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "bare_scared",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_normal",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_normal",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_blink",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_blink",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_angry",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_angry",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_hurt",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_hurt",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_happy",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_happy",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_scared",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "leather_helmet_scared",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_normal",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_normal",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_blink",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_blink",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_angry",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_angry",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_hurt",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_hurt",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_happy",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_happy",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_scared",
+      "angle": -20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    },
+    {
+      "head": "iron_helmet_scared",
+      "angle": 20,
+      "interior_gap_pixels_radius20": 0,
+      "components_ge4px": 1,
+      "pass": true
+    }
+  ],
+  "head_checks": [
+    {
+      "head": "bare_normal",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "bare_blink",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "bare_angry",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "bare_hurt",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "bare_happy",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "bare_scared",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "leather_helmet_normal",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "leather_helmet_blink",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "leather_helmet_angry",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "leather_helmet_hurt",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "leather_helmet_happy",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "leather_helmet_scared",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "iron_helmet_normal",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "iron_helmet_blink",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "iron_helmet_angry",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "iron_helmet_hurt",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "iron_helmet_happy",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "iron_helmet_scared",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    }
+  ],
+  "registration": {
+    "leather": {
+      "input": "inputs/wear_leather_r4.png",
+      "transform_tx_ty_sx_sy": [
+        -0.031357300544134895,
+        -0.025087504956063617,
+        1.0012066418650623,
+        1.0004398709701603
+      ],
+      "protected_regions": {
+        "face": {
+          "mae_rgb": 11.52109500805153,
+          "p95_max_channel_error": 57.0
+        },
+        "shield": {
+          "mae_rgb": 10.41435215946844,
+          "p95_max_channel_error": 40.0
+        },
+        "cape": {
+          "mae_rgb": 8.976319176319176,
+          "p95_max_channel_error": 64.0
+        },
+        "bare_arm": {
+          "mae_rgb": 14.42001163467132,
+          "p95_max_channel_error": 62.39999999999998
+        },
+        "fist": {
+          "mae_rgb": 7.211583924349882,
+          "p95_max_channel_error": 26.0
+        }
+      },
+      "protected_mae_rgb": 10.501819126819127,
+      "protected_p95_max_channel_error": 48.0
+    },
+    "iron": {
+      "input": "inputs/wear_iron_r4.png",
+      "transform_tx_ty_sx_sy": [
+        -0.024121789719219144,
+        -0.03483063423375902,
+        1.0015195435010682,
+        1.0005663820724062
+      ],
+      "protected_regions": {
+        "face": {
+          "mae_rgb": 14.51779388083736,
+          "p95_max_channel_error": 73.0
+        },
+        "shield": {
+          "mae_rgb": 11.373200442967885,
+          "p95_max_channel_error": 41.79999999999927
+        },
+        "cape": {
+          "mae_rgb": 10.992664092664093,
+          "p95_max_channel_error": 58.0
+        },
+        "bare_arm": {
+          "mae_rgb": 17.639906922629436,
+          "p95_max_channel_error": 80.79999999999995
+        },
+        "fist": {
+          "mae_rgb": 8.965721040189125,
+          "p95_max_channel_error": 30.0
+        }
+      },
+      "protected_mae_rgb": 12.300047643797644,
+      "protected_p95_max_channel_error": 56.0
+    }
+  },
+  "gear_owner_checks": {
+    "leather": [
+      {
+        "item": "leather_armor",
+        "part": "torso",
+        "pixels": 2245,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          218,
+          276,
+          317,
+          329
+        ]
+      },
+      {
+        "item": "leather_armor",
+        "part": "pelvis",
+        "pixels": 5589,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          193,
+          317,
+          325,
+          410
+        ]
+      },
+      {
+        "item": "leather_armor",
+        "part": "sword_arm_upper",
+        "pixels": 1544,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          289,
+          247,
+          342,
+          317
+        ]
+      },
+      {
+        "item": "leather_armor",
+        "part": "shield_arm_upper",
+        "pixels": 2815,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          157,
+          245,
+          233,
+          320
+        ]
+      },
+      {
+        "item": "reinforced_boots",
+        "part": "back_leg_lower",
+        "pixels": 2154,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          155,
+          410,
+          238,
+          455
+        ]
+      },
+      {
+        "item": "reinforced_boots",
+        "part": "back_foot",
+        "pixels": 2829,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          135,
+          452,
+          219,
+          504
+        ]
+      },
+      {
+        "item": "reinforced_boots",
+        "part": "front_leg_lower",
+        "pixels": 2154,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          268,
+          409,
+          342,
+          453
+        ]
+      },
+      {
+        "item": "reinforced_boots",
+        "part": "front_foot",
+        "pixels": 3137,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          277,
+          451,
+          377,
+          505
+        ]
+      }
+    ],
+    "iron": [
+      {
+        "item": "iron_armor",
+        "part": "torso",
+        "pixels": 2515,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          217,
+          276,
+          317,
+          329
+        ]
+      },
+      {
+        "item": "iron_armor",
+        "part": "pelvis",
+        "pixels": 5401,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          193,
+          317,
+          325,
+          410
+        ]
+      },
+      {
+        "item": "iron_armor",
+        "part": "sword_arm_upper",
+        "pixels": 1639,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          289,
+          247,
+          342,
+          317
+        ]
+      },
+      {
+        "item": "iron_armor",
+        "part": "shield_arm_upper",
+        "pixels": 2902,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          155,
+          244,
+          233,
+          320
+        ]
+      },
+      {
+        "item": "climbing_boots",
+        "part": "back_leg_lower",
+        "pixels": 2077,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          155,
+          410,
+          238,
+          455
+        ]
+      },
+      {
+        "item": "climbing_boots",
+        "part": "back_foot",
+        "pixels": 2880,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          140,
+          452,
+          219,
+          504
+        ]
+      },
+      {
+        "item": "climbing_boots",
+        "part": "front_leg_lower",
+        "pixels": 2035,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          268,
+          409,
+          345,
+          453
+        ]
+      },
+      {
+        "item": "climbing_boots",
+        "part": "front_foot",
+        "pixels": 3207,
+        "outside_owner_plus_24": 0,
+        "bbox": [
+          278,
+          451,
+          370,
+          503
+        ]
+      }
+    ]
+  },
+  "rotation": [
+    {
+      "outfit": "bare",
+      "joint": "neck",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 958,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "neck",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 988,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "neck",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 958,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "neck",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 988,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "neck",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 958,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "neck",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 988,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "shoulder_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1173,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 24,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "shoulder_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1161,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 30,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "shoulder_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1197,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "shoulder_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1196,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "shoulder_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1197,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "shoulder_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1197,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "elbow_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1244,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "elbow_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1238,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "elbow_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1245,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "elbow_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1239,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "elbow_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1246,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "elbow_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1240,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "wrist_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1195,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 6,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "wrist_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1203,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 3,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "wrist_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1195,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 6,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "wrist_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1203,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 3,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "wrist_sword",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1195,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 6,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "wrist_sword",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1203,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 3,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "shoulder_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "shoulder_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "shoulder_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "shoulder_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "shoulder_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "shoulder_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "elbow_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "elbow_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "elbow_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "elbow_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "elbow_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "elbow_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "wrist_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "wrist_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "wrist_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "wrist_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "wrist_shield",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "wrist_shield",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "hip_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1187,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "hip_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1184,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "hip_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1187,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "hip_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1184,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "hip_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1187,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "hip_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1184,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "knee_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1253,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "knee_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1251,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "knee_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1254,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "knee_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1252,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "knee_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1254,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "knee_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1254,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "ankle_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1256,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "ankle_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1254,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "ankle_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1256,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "ankle_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1256,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "ankle_back",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1256,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "ankle_back",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1256,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "hip_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1254,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "hip_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "hip_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1254,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "hip_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "hip_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1254,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "hip_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "knee_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "knee_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "knee_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "knee_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "knee_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "knee_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "ankle_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "bare",
+      "joint": "ankle_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "ankle_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "leather",
+      "joint": "ankle_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "ankle_front",
+      "angle": -35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    },
+    {
+      "outfit": "iron",
+      "joint": "ankle_front",
+      "angle": 35,
+      "interior_gap_pixels_radius20": 0,
+      "parent_child_overlap_pixels_radius20": 1257,
+      "local_components_ge4px": 1,
+      "exterior_background_pixels_radius20": 0,
+      "pass": true
+    }
+  ],
+  "rotation_pass": true,
+  "outfits": {
+    "leather": {
+      "iou_without_sword_4px": 0.9373186644869586,
+      "iou_pass": false,
+      "unclothed_pixels_nearly_identical": false
+    },
+    "iron": {
+      "iou_without_sword_4px": 0.9254966643594539,
+      "iou_pass": false,
+      "unclothed_pixels_nearly_identical": false
+    }
+  },
+  "all_pass": false
+}

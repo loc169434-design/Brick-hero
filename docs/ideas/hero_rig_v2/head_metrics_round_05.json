@@ -1,0 +1,223 @@
+{
+  "seam_region": "3px inner jaw contour in the 40px above neck, plus throat polygon; mask saved in fixtures. Mouth interior is excluded.",
+  "feature_method": "Cross-correlate the same eye/mouth/nose template for each expression across cap variants; search +-3 pixels.",
+  "hair_method": "Track REF crown-hair provenance above forehead y160; additionally inspect actual edited cap silhouette. This is not a semantic hair classifier.",
+  "checks": [
+    {
+      "head": "bare_normal",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "bare_blink",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "bare_angry",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "bare_hurt",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "bare_happy",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "bare_scared",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "leather_helmet_normal",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "leather_helmet_blink",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "leather_helmet_angry",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "leather_helmet_hurt",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "leather_helmet_happy",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "leather_helmet_scared",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "iron_helmet_normal",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "iron_helmet_blink",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "iron_helmet_angry",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "iron_helmet_hurt",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "iron_helmet_happy",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    },
+    {
+      "head": "iron_helmet_scared",
+      "neck_chin_max_rgba_error": 0,
+      "feature_template_offset_px": [
+        0,
+        0
+      ],
+      "feature_template_mae": 0.0,
+      "ref_crown_hair_copied_above_forehead": 0,
+      "pass_neck": true,
+      "pass_features": true
+    }
+  ]
+}

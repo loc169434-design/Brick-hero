@@ -2,9 +2,8 @@
 
 Claude viết. Bỏ rig xương, quay về hoạt ảnh vẽ từng khung (`assets/characters/hero_rookie/anim/`, 15 clip, 156 khung, lưới 4 cột, khung 512×512, chân tại (256, 500)).
 
-- **Giáp:** mua giáp nào thì hiệp sĩ mặc đúng bộ đó. Mỗi bộ giáp có một bộ khung riêng trong `anim/<giáp>/`.
+- **Bộ giáp là một bộ trang phục trọn gói:** nón, áo giáp, khiên và giày vẽ đồng bộ. Mua bộ nào thì cả người đổi theo bộ đó. Mỗi bộ có một bộ khung riêng trong `anim/<giáp>/`.
 - **Kiếm:** không vẽ vào khung nữa. Game tự gắn icon kiếm đang dùng vào nắm tay ở từng khung.
-- **Nón, ủng:** chỉ cộng chỉ số, không hiện trên người.
 
 Code đã xong (`CharacterRig.set_outfit`). Giờ chỉ cần ảnh. Làm **hai đợt**. Xong mỗi đợt thì push rồi **dừng chờ duyệt**, không tự làm tiếp.
 
@@ -30,28 +29,32 @@ Ghi đè đúng tên file cũ, để file `.import` giữ nguyên.
 
 ## Đợt 2: bộ khung theo giáp (nhánh `art/hero-armor-sets`, làm sau khi đợt 1 được duyệt)
 
-Năm bộ giáp, mỗi bộ vẽ lại trên **bản không kiếm của đợt 1, chỉ bản `fresh_`** (bộ giáp không có bản bầm dập):
+Năm bộ trang phục, mỗi bộ vẽ lại trên **bản không kiếm của đợt 1, chỉ bản `fresh_`** (bộ giáp không có bản bầm dập). Mỗi bộ gồm **nón + áo giáp + khiên + giày**, cùng chất liệu, cùng màu:
 
-| Thư mục | Giáp | Kiểu dáng |
-|---|---|---|
-| `anim/leather_armor/` | Giáp da | Áo giáp da nâu, đường khâu, vai da |
-| `anim/iron_armor/` | Giáp sắt | Giáp xám bạc, đinh tán |
-| `anim/royal_armor/` | Giáp Hoàng Gia | Xanh hoàng gia, viền vàng |
-| `anim/obsidian_armor/` | Giáp Hắc Thép | Đen ánh tím, cạnh sắc |
-| `anim/frost_armor/` | Giáp Băng | Xanh băng nhạt, hoa văn tuyết |
+| Thư mục | Bộ | Nón | Áo giáp | Khiên | Giày |
+|---|---|---|---|---|---|
+| `anim/leather_armor/` | Da | Mũ da ôm đầu, đường khâu | Áo da nâu, vai da | Khiên gỗ bọc da | Ủng da cổ cao |
+| `anim/iron_armor/` | Sắt | Mũ sắt tròn có vành | Giáp xám bạc, đinh tán | Khiên tròn viền sắt | Ủng bọc sắt |
+| `anim/royal_armor/` | Hoàng Gia | Mũ xanh viền vàng, chóp nhỏ | Xanh hoàng gia, viền vàng | Khiên xanh, huy hiệu vàng | Ủng xanh, viền vàng |
+| `anim/obsidian_armor/` | Hắc Thép | Mũ đen ánh tím, cạnh sắc | Đen ánh tím, cạnh sắc | Khiên đen viền gai | Ủng đen có gai |
+| `anim/frost_armor/` | Băng | Mũ băng xanh nhạt | Xanh băng, hoa văn tuyết | Khiên băng hoa tuyết | Ủng băng |
 
-Màu và kiểu theo icon trong `assets/ui/items/<giáp>.png`, và theo giáp đã vẽ ở `assets/characters/hero_rig/gear/<giáp>/` để thống nhất.
+Màu và kiểu lấy theo icon trong `assets/ui/items/` (giáp, nón, ủng có icon) và theo đồ đã vẽ ở `assets/characters/hero_rig/gear/<giáp>/` để thống nhất. Vẽ trước một tấm `set_<giáp>.png` gồm 4 món của bộ, đứng cạnh nhau, rồi bám đúng tấm đó cho mọi khung.
 
-- **Chỉ vẽ lại áo, vai và vạt áo.** Đầu, mặt, tóc, tay trần, nắm tay, quần, ủng, khiên và khăn giữ y nguyên từng điểm ảnh. Như vậy kiếm vẫn gắn đúng tay, mặt vẫn đồng bộ.
+- **Được vẽ lại:** nón (che phần đỉnh tóc), áo, vai, vạt áo, khiên, giày.
+- **Giữ y nguyên từng điểm ảnh:** mặt (mắt, mày, mũi, miệng, má, tai), cổ, tay trần, **nắm tay cầm kiếm**, quần từ đùi tới cổ giày, khăn. Nhờ vậy kiếm vẫn gắn đúng tay và biểu cảm không đổi.
+- **Nón ôm sát đầu**, rút kinh nghiệm từ đợt đầu ghép: bề ngang nón ≤ 1,06 lần đầu ở ngang trán, đỉnh nón không cao hơn đỉnh tóc gốc quá 6 px, vành nằm trên lông mày, không che mắt hay tai. Tóc không lọn nào lòi ra ngoài viền nón.
+- **Khiên** giữ đúng chỗ, đúng cỡ và đúng góc của khiên gốc trong từng khung (tâm lệch ≤ 3 px, bán kính lệch ≤ 5%). Chỉ đổi chất liệu và hoa văn.
 - Mỗi thư mục có đủ 15 file `fresh_<clip>.png`, cùng kích thước và lưới như bản gốc. Mỗi thư mục có một `anim.json` chép từ `anim/anim.json`; Claude sẽ tự thêm track kiếm vào sau.
 - **Làm `leather_armor` trước, push, dừng chờ duyệt.** Duyệt xong mới làm bốn bộ còn lại.
 
 **Tự kiểm tra** (`check_armor.py`):
 
-- Mỗi khung: hình bóng (alpha ≥ 128) trùng bản không kiếm ≥ 92% (IoU). Giáp có thể phồng ra một chút.
-- Vùng đầu, cổ, nắm tay, quần dưới đầu gối, ủng và khiên lệch ≤ 6/255 so với bản không kiếm. Tự tô mask "vùng được sửa" cho từng khung và lưu lại.
-- Giáp trông giống nhau giữa các khung: cùng chi tiết, cùng màu. Không được khung có đinh tán, khung không.
-- Ảnh duyệt `armor_<giáp>_<clip>.png`: khung giáp có kiếm sắt gắn theo track của đợt 1, đặt cạnh khung áo thường.
+- Mỗi khung: hình bóng (alpha ≥ 128) trùng bản không kiếm ≥ 90% (IoU). Nón và giáp có thể phồng ra một chút.
+- Vùng mặt, cổ, tay trần, nắm tay, quần và khăn lệch ≤ 6/255 so với bản không kiếm. Tự tô mask "vùng được sửa" cho từng khung và lưu lại.
+- Số đo nón (rộng, đỉnh, vành) và khiên (tâm, bán kính) đạt ở **mọi** khung.
+- Bốn món trông giống nhau giữa các khung và giống `set_<giáp>.png`: cùng chi tiết, cùng màu. Không được khung có đinh tán, khung không.
+- Ảnh duyệt `armor_<giáp>_<clip>.png`: khung mặc bộ đồ có kiếm sắt gắn theo track của đợt 1, đặt cạnh khung áo thường.
 
 ## Bàn giao mỗi đợt
 

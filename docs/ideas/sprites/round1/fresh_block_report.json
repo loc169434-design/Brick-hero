@@ -1,5 +1,5 @@
 {
- "sheet": "assets/characters/hero_rookie/anim/fresh_block.png",
+ "sheet": "/Users/locnguyen/Desktop/Brick-hero-main/assets/characters/hero_rookie/anim/fresh_block.png",
  "frames": 8,
  "cell": 512,
  "checks": {
@@ -22,12 +22,18 @@
   "inside": {
    "pass": true,
    "detail": "frames touching the edge: none"
+  },
+  "key": {
+   "pass": true,
+   "detail": "#00ff00 left: 0 px; rim tinted by it: 0 px"
   }
  },
  "per_frame": [
   {
    "frame": 0,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
     256.0
@@ -40,11 +46,13 @@
   {
    "frame": 1,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    255.5
+    256.0
    ],
-   "height": 389,
+   "height": 390,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -52,45 +60,11 @@
   {
    "frame": 2,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    253.0
-   ],
-   "height": 379,
-   "stray": 0,
-   "specks": 0,
-   "edge": 0
-  },
-  {
-   "frame": 3,
-   "haze": 0,
-   "feet": [
-    500.0,
-    247.0
-   ],
-   "height": 375,
-   "stray": 0,
-   "specks": 0,
-   "edge": 0
-  },
-  {
-   "frame": 4,
-   "haze": 0,
-   "feet": [
-    500.0,
-    245.0
-   ],
-   "height": 371,
-   "stray": 0,
-   "specks": 0,
-   "edge": 0
-  },
-  {
-   "frame": 5,
-   "haze": 0,
-   "feet": [
-    500.0,
-    250.0
+    256.0
    ],
    "height": 381,
    "stray": 0,
@@ -98,13 +72,57 @@
    "edge": 0
   },
   {
-   "frame": 6,
+   "frame": 3,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    254.0
+    256.0
    ],
-   "height": 388,
+   "height": 379,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 4,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    255.5
+   ],
+   "height": 370,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 5,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    256.5
+   ],
+   "height": 382,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 6,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    256.0
+   ],
+   "height": 389,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -112,6 +130,8 @@
   {
    "frame": 7,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
     256.5

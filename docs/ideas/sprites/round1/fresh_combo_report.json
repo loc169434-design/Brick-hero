@@ -1,5 +1,5 @@
 {
- "sheet": "assets/characters/hero_rookie/anim/fresh_combo.png",
+ "sheet": "/Users/locnguyen/Desktop/Brick-hero-main/assets/characters/hero_rookie/anim/fresh_combo.png",
  "frames": 16,
  "cell": 512,
  "checks": {
@@ -22,15 +22,21 @@
   "inside": {
    "pass": true,
    "detail": "frames touching the edge: none"
+  },
+  "key": {
+   "pass": true,
+   "detail": "#00ff00 left: 0 px; rim tinted by it: 0 px"
   }
  },
  "per_frame": [
   {
    "frame": 0,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    256.0
+    255.5
    ],
    "height": 394,
    "stray": 0,
@@ -40,9 +46,11 @@
   {
    "frame": 1,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    258.5
+    255.5
    ],
    "height": 386,
    "stray": 0,
@@ -52,9 +60,11 @@
   {
    "frame": 2,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    257.0
+    256.0
    ],
    "height": 432,
    "stray": 0,
@@ -64,9 +74,11 @@
   {
    "frame": 3,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    259.0
+    256.5
    ],
    "height": 376,
    "stray": 0,
@@ -76,9 +88,11 @@
   {
    "frame": 4,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    262.0
+    256.5
    ],
    "height": 358,
    "stray": 0,
@@ -88,9 +102,11 @@
   {
    "frame": 5,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    259.5
+    256.5
    ],
    "height": 356,
    "stray": 0,
@@ -100,9 +116,11 @@
   {
    "frame": 6,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    258.0
+    255.5
    ],
    "height": 340,
    "stray": 0,
@@ -112,9 +130,11 @@
   {
    "frame": 7,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    258.5
+    255.5
    ],
    "height": 364,
    "stray": 0,
@@ -124,9 +144,11 @@
   {
    "frame": 8,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    260.0
+    255.5
    ],
    "height": 398,
    "stray": 0,
@@ -136,11 +158,13 @@
   {
    "frame": 9,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    262.5
+    255.5
    ],
-   "height": 420,
+   "height": 418,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -148,6 +172,8 @@
   {
    "frame": 10,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
     255.5
@@ -160,9 +186,11 @@
   {
    "frame": 11,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    253.0
+    255.5
    ],
    "height": 374,
    "stray": 0,
@@ -172,9 +200,11 @@
   {
    "frame": 12,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    250.5
+    255.5
    ],
    "height": 366,
    "stray": 0,
@@ -184,9 +214,11 @@
   {
    "frame": 13,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    242.0
+    239.0
    ],
    "height": 356,
    "stray": 0,
@@ -196,11 +228,13 @@
   {
    "frame": 14,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    231.0
+    229.0
    ],
-   "height": 360,
+   "height": 362,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -208,9 +242,11 @@
   {
    "frame": 15,
    "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
    "feet": [
     500.0,
-    256.0
+    255.5
    ],
    "height": 394,
    "stray": 0,

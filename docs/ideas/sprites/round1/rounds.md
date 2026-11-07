@@ -1,85 +1,57 @@
-# Báo cáo kiểm tra Bước A — Đợt 1 (`fresh_combo` & `fresh_block`)
+# Báo cáo kiểm tra Đợt 1 — Toàn bộ 9 động tác chiến đấu & kỹ năng (`#00FF00` Key Out)
 
-Nhánh: `art/hero-moves-1` (tạo từ `origin/core/world-life`).
+Nhánh: `art/hero-moves-1` (cập nhật công cụ từ `origin/core/world-life`).
 Tham chiếu chuẩn: `assets/characters/hero_rookie/anim/fresh_idle.png` (khung 0 cao `394 px`, chân tại `(254.5, 500.0)`).
 
 ---
 
-## Vòng 1 — Bản vẽ thô đầu tiên & đóng gói thử
+## Quy trình nền xanh `#00FF00` & Tách nền chuẩn
 
-- **Phát hiện qua kiểm tra mắt:**
-  - `fresh_block` (bản nháp v2): Khung 1–4 bị đảo bên tay cầm khiên/kiếm (khiên nhảy sang phải, kiếm sang trái), khung 3 mất kiếm sau lưng, khung 5–6 trùng tư thế đứng với khung 7.
-  - `fresh_combo` (bản nháp v2): Khung 1 bị vẽ thừa khiên ở cả hai tay; khung 7–9 mũi kiếm chém ngược về bên trái qua đầu thay vì chém hất lên về phía quái bên phải.
-- **Xử lý:** Yêu cầu vẽ lại sheet `fresh_block` (v4) và `fresh_combo` (v3) giữ đúng thiết kế nhân vật Tân binh, mặt quay sang phải, khiên tròn gỗ viền sắt và kiếm gỗ đúng tay, đòn đánh hướng về phía phải, không vẽ vệt chém/bụi/bóng đất.
-- **Số đo đóng gói Vòng 1 (`check_sheet.py`):**
-  - `fresh_combo.png` (2048×2048, 16 khung, 24 fps): `grid` ĐẠT, `feet` ĐẠT (`(500.0, 256.0)` đầu/cuối), `size` ĐẠT (`394 px` vs `394 px`), `clean` ĐẠT (`0 stray, 0 specks, 0 haze`), `inside` ĐẠT (`none`). Tuy nhiên khe giữa hai chân ở các khung 2, 5, 7, 13, 14 còn sót mảng trắng kín chưa tách nền và thứ tự thu kiếm khung 10–12 chưa mượt.
-  - `fresh_block.png` (2048×1024, 8 khung, 24 fps): `grid` ĐẠT, `feet` ĐẠT (`(500.0, 256.5)` và `(500.0, 255.5)`), `size` ĐẠT (`385 px` vs `394 px`, lệch `-2.3%`), `clean` ĐẠT (`0 stray, 0 specks, 0 haze`), `inside` ĐẠT (`none`).
-
----
-
-## Vòng 2 — Xử lý tách nền vùng kín giữa hai chân & chuẩn hóa chiều cao khung đầu/cuối
-
-- **Cải tiến:**
-  - Bổ sung bộ lọc tách nền cho các vùng trắng/xám sáng khép kín bên dưới vùng đầu (`rel_y_max >= 0.43`, loại trừ mắt và răng) để làm trong suốt hoàn toàn khe giữa hai chân/ủng ở các khung `2, 5, 7, 13, 14` của `fresh_combo` và khe giữa kiếm/khiên ở khung `2, 3, 4` của `fresh_block`.
-  - Sắp xếp lại nhịp thu kiếm xoay vai ở khung `10 -> 11 -> 12` của `fresh_combo` theo đúng đường đi của tay cầm kiếm: rút kiếm ra sau vai (`10`) -> hạ thấp về sau hông (`11`) -> gập khuỷu tay nạp kiếm ngang vai (`12`) trước khi đâm thẳng tới (`13–14`).
-  - Chuẩn hóa chiều cao khung 0 và khung cuối của cả hai sheet khớp tuyệt đối `394 px` với `fresh_idle` khung 0.
-- **Phát hiện qua kiểm tra mắt:**
-  - Ở `fresh_combo` khung 13–14, thu nhỏ chiều cao xuống `344–346 px` làm cỡ đầu hơi nhỏ hơn một chút so với khung 12 (`364 px`).
+1. **Vẽ trên nền xanh thuần `#00FF00`:**
+   - Làm lại `fresh_combo` (16 khung) và `fresh_block` (8 khung) trên nền `#00FF00` giữ nguyên động tác đã duyệt ở Bước A, xử lý triệt để mọi khe hẹp giữa các lọn tóc, cổ tay giơ cao, chuôi kiếm và thân người.
+   - Thực hiện tiếp 7 động tác còn lại (`fresh_dash` và 6 chiêu kỹ năng) trên nền `#00FF00`.
+   - Lưu đầy đủ 9 bản gốc nền xanh tại `docs/ideas/sprites/round1/raw/fresh_<name>_green.png`.
+2. **Tách nền duy nhất bằng `tools/sprites/key_out.py`:**
+   - Chạy `python3 tools/sprites/key_out.py docs/ideas/sprites/round1/raw/fresh_<name>_green.png assets/characters/hero_rookie/anim/fresh_<name>.png` cho toàn bộ 9 sheet.
+3. **Kiểm tra tự động bằng `tools/sprites/check_sheet.py --key 00ff00` & đối chiếu nền tối:**
+   - Cả 9 sheet đều **ĐẠT** tuyệt đối cả 6 hạng mục (`grid`, `feet`, `size`, `clean`, `inside`, `key`) với `0` điểm rác (`stray`), `0` đốm rời (`specks`), `0` sương mờ (`haze`), `0` chạm mép (`edge`), `0 px` sót nền `#00ff00` (`key_left = 0`) và `0 px` viền ám xanh (`key_tint = 0`).
+   - Đặt thử các khung có nhiều khe hẹp (tay giơ kiếm qua đầu, đỡ khiên, nhảy bổ từ trên cao) lên nền tối `#181A24` tại `docs/ideas/sprites/round1/dark_bg_check.png`: hoàn toàn sạch, không còn bất kỳ khe trắng hay viền xanh nào.
 
 ---
 
-## Vòng 3 (Chốt bàn giao) — Cân chỉnh tỉ lệ đầu/thân khung đâm kiếm & độ mượt tổng thể
+## Tổng hợp kết quả `check_sheet.py --key 00ff00` cho cả 9 sheet
 
-- **Cải tiến:**
-  - Nâng chiều cao khung `13–14` của `fresh_combo` lên `356 px` và `360 px` để cỡ đầu và thân khi chùng chân đâm thẳng khớp đồng nhất với các khung chém chéo (`358 px` ở khung 4) và khung nạp đà (`366 px` ở khung 12), đồng thời mũi kiếm vẫn nằm gọn trong khung 512×512 (`edge = 0`) và chân không trôi quá giới hạn (`x = 242.0` và `231.0`, lệch tối đa `25 px <= 40 px` so với `x = 256`).
-- **Kết quả chạy `tools/sprites/check_sheet.py`:**
+| # | Sheet (`assets/characters/hero_rookie/anim/`) | Bản gốc nền xanh (`docs/ideas/sprites/round1/raw/`) | Khung | FPS | Kích thước | `grid` | `feet` (đầu / cuối) | `size` (f0 vs 394) | `clean` (stray / specks / haze) | `inside` | `key` (`#00ff00` left / tint) |
+|---:|---|---|---:|---:|---|---|---|---|---|---|---|
+| 1 | `fresh_combo.png` | `fresh_combo_green.png` | 16 | 24 | 2048×2048 | **ĐẠT** | **ĐẠT** `(500.0, 256.0)` / `(500.0, 256.0)` | **ĐẠT** `394 px` | **ĐẠT** `0 / 0 / 0` | **ĐẠT** | **ĐẠT** `0 px / 0 px` |
+| 2 | `fresh_block.png` | `fresh_block_green.png` | 8 | 24 | 2048×1024 | **ĐẠT** | **ĐẠT** `(500.0, 256.0)` / `(500.0, 256.0)` | **ĐẠT** `394 px` | **ĐẠT** `0 / 0 / 0` | **ĐẠT** | **ĐẠT** `0 px / 0 px` |
+| 3 | `fresh_dash.png` | `fresh_dash_green.png` | 6 | 24 | 2048×1024 | **ĐẠT** | **ĐẠT** `(500.0, 256.0)` / `(500.0, 256.0)` | **ĐẠT** `394 px` | **ĐẠT** `0 / 0 / 0` | **ĐẠT** | **ĐẠT** `0 px / 0 px` |
+| 4 | `fresh_skill_armor_breaker.png` | `fresh_skill_armor_breaker_green.png` | 14 | 24 | 2048×2048 | **ĐẠT** | **ĐẠT** `(500.0, 256.0)` / `(500.0, 256.0)` | **ĐẠT** `394 px` | **ĐẠT** `0 / 0 / 0` | **ĐẠT** | **ĐẠT** `0 px / 0 px` |
+| 5 | `fresh_skill_second_wind.png` | `fresh_skill_second_wind_green.png` | 14 | 12 | 2048×2048 | **ĐẠT** | **ĐẠT** `(500.0, 256.0)` / `(500.0, 256.0)` | **ĐẠT** `394 px` | **ĐẠT** `0 / 0 / 0` | **ĐẠT** | **ĐẠT** `0 px / 0 px` |
+| 6 | `fresh_skill_thunder_slash.png` | `fresh_skill_thunder_slash_green.png` | 14 | 24 | 2048×2048 | **ĐẠT** | **ĐẠT** `(500.0, 256.0)` / `(500.0, 256.0)` | **ĐẠT** `394 px` | **ĐẠT** `0 / 0 / 0` | **ĐẠT** | **ĐẠT** `0 px / 0 px` |
+| 7 | `fresh_skill_iron_guard.png` | `fresh_skill_iron_guard_green.png` | 10 | 12 | 2048×1536 | **ĐẠT** | **ĐẠT** `(500.0, 256.0)` / `(500.0, 256.0)` | **ĐẠT** `394 px` | **ĐẠT** `0 / 0 / 0` | **ĐẠT** | **ĐẠT** `0 px / 0 px` |
+| 8 | `fresh_skill_blade_vortex.png` | `fresh_skill_blade_vortex_green.png` | 16 | 24 | 2048×2048 | **ĐẠT** | **ĐẠT** `(500.0, 256.0)` / `(500.0, 256.0)` | **ĐẠT** `394 px` | **ĐẠT** `0 / 0 / 0` | **ĐẠT** | **ĐẠT** `0 px / 0 px` |
+| 9 | `fresh_skill_starfall_strike.png` | `fresh_skill_starfall_strike_green.png` | 16 | 24 | 2048×2048 | **ĐẠT** | **ĐẠT** `(500.0, 256.0)` / `(500.0, 256.0)` | **ĐẠT** `394 px` | **ĐẠT** `0 / 0 / 0` | **ĐẠT** | **ĐẠT** `0 px / 0 px` |
 
-### 1. `fresh_combo.png` (`--frames 16 --fps 24`)
-```text
-grid    ĐẠT  sheet 2048x2048 ok; empty frames: []
-feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
-size    ĐẠT  frame 0 body 394 px tall, reference 394
-clean   ĐẠT  worst frame 0 stray pixels, 0 specks in 16 frames (and 0 haze pixels, cleared on shrinking)
-inside  ĐẠT  frames touching the edge: none
-=> ĐẠT
-```
+---
 
-| Khung | Nhịp diễn (`impact`: 4, 9, 14) | Chân `(y, x)` | Cao (`px`) | Stray | Specks | Edge |
-|---:|---|---:|---:|---:|---:|---:|
-| 0 | Thủ thế chuẩn (`fresh_idle` f0) | `(500.0, 256.0)` | 394 | 0 | 0 | 0 |
-| 1 | Nhích người tới, hạ nhẹ gối | `(500.0, 258.5)` | 386 | 0 | 0 | 0 |
-| 2 | Vung kiếm gỗ cao qua đầu lấy đà | `(500.0, 257.0)` | 432 | 0 | 0 | 0 |
-| 3 | Bắt đầu bổ chéo từ trên xuống | `(500.0, 259.0)` | 376 | 0 | 0 | 0 |
-| 4 | **Impact 1:** Chém chéo xuống hết tầm | `(500.0, 262.0)` | 358 | 0 | 0 | 0 |
-| 5 | Theo đà thấp, xoay cổ tay | `(500.0, 259.5)` | 356 | 0 | 0 | 0 |
-| 6 | Hạ thấp trọng tâm, nạp đà cổ tay | `(500.0, 258.0)` | 340 | 0 | 0 | 0 |
-| 7 | Đứng lên bắt đầu vớt kiếm lên | `(500.0, 258.5)` | 364 | 0 | 0 | 0 |
-| 8 | Chém hất ngược lên ngang ngực | `(500.0, 260.0)` | 398 | 0 | 0 | 0 |
-| 9 | **Impact 2:** Đỉnh nhát chém hất ngược lên | `(500.0, 262.5)` | 420 | 0 | 0 | 0 |
-| 10 | Rút kiếm ra sau vai | `(500.0, 255.5)` | 384 | 0 | 0 | 0 |
-| 11 | Xoay vai, kéo kiếm về sau hông | `(500.0, 253.0)` | 374 | 0 | 0 | 0 |
-| 12 | Gập khuỷu tay nạp kiếm ngang vai | `(500.0, 250.5)` | 366 | 0 | 0 | 0 |
-| 13 | Lao người đâm thẳng kiếm tới trước | `(500.0, 242.0)` | 356 | 0 | 0 | 0 |
-| 14 | **Impact 3:** Đâm thẳng hết tầm, gầm chiến đấu | `(500.0, 231.0)` | 360 | 0 | 0 | 0 |
-| 15 | Thu kiếm về thủ thế chuẩn | `(500.0, 256.0)` | 394 | 0 | 0 | 0 |
+## Chi tiết từng động tác
 
-### 2. `fresh_block.png` (`--frames 8 --fps 24`)
-```text
-grid    ĐẠT  sheet 2048x1024 ok; empty frames: []
-feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
-size    ĐẠT  frame 0 body 394 px tall, reference 394
-clean   ĐẠT  worst frame 0 stray pixels, 0 specks in 8 frames (and 0 haze pixels, cleared on shrinking)
-inside  ĐẠT  frames touching the edge: none
-=> ĐẠT
-```
-
-| Khung | Nhịp diễn | Chân `(y, x)` | Cao (`px`) | Stray | Specks | Edge |
-|---:|---|---:|---:|---:|---:|---:|
-| 0 | Thủ thế chuẩn (`fresh_idle` f0) | `(500.0, 256.0)` | 394 | 0 | 0 | 0 |
-| 1 | Khom người, bắt đầu nâng khiên | `(500.0, 255.5)` | 389 | 0 | 0 | 0 |
-| 2 | Giơ khiên che trước ngực, mắt nhìn tới | `(500.0, 253.0)` | 379 | 0 | 0 | 0 |
-| 3 | Bị đánh trúng khiên: giật lùi nửa bước, nhăn mặt | `(500.0, 247.0)` | 375 | 0 | 0 | 0 |
-| 4 | Giữ thế đỡ chịu lực, nhăn mặt nghiến răng | `(500.0, 245.0)` | 371 | 0 | 0 | 0 |
-| 5 | Bắt đầu hạ khiên, mở mắt quyết tâm | `(500.0, 250.0)` | 381 | 0 | 0 | 0 |
-| 6 | Đứng thẳng dần, đưa khiên và kiếm về vị trí | `(500.0, 254.0)` | 388 | 0 | 0 | 0 |
-| 7 | Về thủ thế chuẩn | `(500.0, 256.5)` | 394 | 0 | 0 | 0 |
+1. **`fresh_combo.png` (16 khung, 24 fps, impact: `4, 9, 14`):**
+   - `0–2`: vung kiếm gỗ qua đầu lấy đà; `3`: bổ chéo xuống; `4`: **impact 1**; `5–6`: giữ thế thấp xoay cổ tay; `7–8`: chém hất ngược lên; `9`: **impact 2**; `10–12`: rút kiếm xoay vai nạp đà; `13`: lao người đâm thẳng; `14`: **impact 3**; `15`: thu về thế đứng chuẩn.
+2. **`fresh_block.png` (8 khung, 24 fps):**
+   - `0–1`: nâng khiên tròn trước ngực; `2`: khóa thế đỡ; `3–4`: bị đánh trúng khiên, dồn lực chịu đòn; `5–7`: hạ khiên về thế đứng chuẩn.
+3. **`fresh_dash.png` (6 khung, 24 fps):**
+   - `0`: khuỵu gối lấy đà; `1`: bật chân khỏi đất; `2–3`: lao vọt ngang trên không, thân chúi thấp, áo choàng bay ngang; `4–5`: đáp đất trượt nhẹ rồi đứng dậy về thế chuẩn.
+4. **`fresh_skill_armor_breaker.png` (14 khung, 24 fps, impact: `9`):**
+   - `0–3`: hai tay nắm chuôi kiếm vung cao qua đầu; `4–6`: nhảy bật lên giữ thế giơ kiếm ở đỉnh; `7–8`: bổ mạnh toàn thân từ trên xuống; `9`: **impact** cắm mũi kiếm xuống đất; `10`: giữ thế cắm kiếm; `11–13`: rút kiếm đứng dậy về thế chuẩn.
+5. **`fresh_skill_second_wind.png` (14 khung, 12 fps):**
+   - `0–2`: hạ một gối chống kiếm gỗ xuống đất; `3–5`: nhắm mắt hít sâu; `6–8`: ngẩng đầu thở mạnh hồi sức; `9–10`: mở mắt quyết tâm; `11–13`: đứng dậy nhấc kiếm về thế chuẩn.
+6. **`fresh_skill_thunder_slash.png` (14 khung, 24 fps, impact: `8`):**
+   - `0–4`: hạ thấp người kéo kiếm ra sau hông nạp thế; `5–6`: giữ thế nén lực; `7`: lao vọt tới chém ngang; `8`: **impact** đâm/chém ngang hết tầm; `9`: giữ thế vươn kiếm; `10–13`: thu kiếm xoay người về thế chuẩn.
+7. **`fresh_skill_iron_guard.png` (10 khung, 12 fps):**
+   - `0–2`: bước chân rộng, đưa khiên ra trước; `3–4`: dựng khiên lớn che kín thân; `5–7`: gồng giữ thế phòng thủ vững chắc; `8–9`: thu khiên về thế chuẩn.
+8. **`fresh_skill_blade_vortex.png` (16 khung, 24 fps, impact: `4, 8, 12`):**
+   - `0–2`: xoắn người lấy đà; `3–12`: xoay tròn 3 vòng liên tiếp vung kiếm ngang tầm ngực, áo choàng tung tròn (`impact` tại `4, 8, 12`); `13–15`: hãm đà xoay trở về thế chuẩn.
+9. **`fresh_skill_starfall_strike.png` (16 khung, 24 fps, impact: `12`):**
+   - `0–3`: khuỵu sâu tích lực; `4–6`: bật nhảy vọt lên cao, giơ kiếm qua đầu; `7–8`: lơ lửng ở đỉnh nhảy chuyển hướng mũi kiếm; `9–11`: lao thẳng từ trên cao xuống, mũi kiếm chúc đứng; `12`: **impact** cắm thẳng kiếm xuống đất; `13–15`: bật nhẹ và trở về thế đứng chuẩn.

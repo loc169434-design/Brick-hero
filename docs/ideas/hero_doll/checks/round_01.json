@@ -1,0 +1,977 @@
+{
+  "round": 1,
+  "criteria": {
+    "1_format": {
+      "pass": true,
+      "body_files": 17,
+      "face_files": 6
+    },
+    "2_connected_no_holes": {
+      "pass": true
+    },
+    "3_closed_ink_outline": {
+      "pass": true,
+      "max_distance_px": 2,
+      "applies_to": "17 body pieces; opaque skin patches are checked separately in item 9"
+    },
+    "4_no_dust": {
+      "pass": true
+    },
+    "5_standing": {
+      "pass": false,
+      "minimum_iou": 0.9,
+      "max_joint_deviation": 6,
+      "ground_y": 500
+    },
+    "6_rotation": {
+      "pass": true,
+      "tested_poses": 34,
+      "maximum_gap_pixels": 0
+    },
+    "7_round_shield": {
+      "pass": true,
+      "minimum_coverage": 0.97,
+      "maximum_notch_px": 2
+    },
+    "8_swords": {
+      "pass": true
+    },
+    "9_faces": {
+      "pass": true
+    }
+  },
+  "parts": {
+    "cape": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        77,
+        218,
+        265,
+        310
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "back_leg_upper": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        171,
+        352,
+        263,
+        454
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "back_leg_lower": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        161,
+        398,
+        235,
+        499
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "back_foot": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        135,
+        460,
+        216,
+        504
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "pelvis": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        208,
+        306,
+        314,
+        409
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "front_leg_upper": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        258,
+        351,
+        330,
+        453
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "front_leg_lower": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        271,
+        398,
+        341,
+        501
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "front_foot": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        279,
+        460,
+        376,
+        504
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "torso": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        168,
+        210,
+        330,
+        388
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "sword_arm_upper": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        275,
+        245,
+        337,
+        342
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "head": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        175,
+        106,
+        328,
+        241
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "sword_arm_lower": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        282,
+        287,
+        371,
+        345
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "sword_hand": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        332,
+        294,
+        375,
+        336
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "shield_arm_upper": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        164,
+        248,
+        223,
+        335
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "shield_arm_lower": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        167,
+        280,
+        223,
+        373
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "shield_hand": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        173,
+        321,
+        216,
+        363
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "shield": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        101,
+        287,
+        232,
+        418
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 0.0,
+      "outline_bad_pixels": 0,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "face_normal": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        244,
+        160,
+        312,
+        230
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 13.92838827718412,
+      "outline_bad_pixels": 174,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "face_blink": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        244,
+        160,
+        312,
+        230
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 15.0,
+      "outline_bad_pixels": 174,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "face_angry": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        244,
+        160,
+        312,
+        230
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 16.0,
+      "outline_bad_pixels": 174,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "face_hurt": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        244,
+        160,
+        312,
+        230
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 15.620499351813308,
+      "outline_bad_pixels": 174,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "face_happy": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        244,
+        160,
+        312,
+        230
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 14.317821063276353,
+      "outline_bad_pixels": 174,
+      "isolated_alpha_1_63_pixels": 0
+    },
+    "face_scared": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bbox": [
+        244,
+        160,
+        312,
+        230
+      ],
+      "components_at_128": 1,
+      "holes": 0,
+      "outline_max_ink_distance_px": 15.231546211727817,
+      "outline_bad_pixels": 174,
+      "isolated_alpha_1_63_pixels": 0
+    }
+  },
+  "poses": {
+    "cape_-40": {
+      "joint": "cape",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        365.0,
+        373.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "cape_+40": {
+      "joint": "cape",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        365.0,
+        373.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "back_leg_upper_-40": {
+      "joint": "hip_back",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        363.0,
+        509.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "back_leg_upper_+40": {
+      "joint": "hip_back",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        363.0,
+        509.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "back_leg_lower_-40": {
+      "joint": "knee_back",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        333.0,
+        553.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "back_leg_lower_+40": {
+      "joint": "knee_back",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        333.0,
+        553.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "back_foot_-40": {
+      "joint": "ankle_back",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        318.0,
+        599.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "back_foot_+40": {
+      "joint": "ankle_back",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        318.0,
+        599.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "pelvis_-40": {
+      "joint": "hip",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        390.0,
+        500.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "pelvis_+40": {
+      "joint": "hip",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        390.0,
+        500.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "front_leg_upper_-40": {
+      "joint": "hip_front",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        414.0,
+        508.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "front_leg_upper_+40": {
+      "joint": "hip_front",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        414.0,
+        508.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "front_leg_lower_-40": {
+      "joint": "knee_front",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        428.0,
+        553.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "front_leg_lower_+40": {
+      "joint": "knee_front",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        428.0,
+        553.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "front_foot_-40": {
+      "joint": "ankle_front",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        440.0,
+        601.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "front_foot_+40": {
+      "joint": "ankle_front",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        440.0,
+        601.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "torso_-20": {
+      "joint": "waist",
+      "angle": -20,
+      "radius": 24,
+      "world_center": [
+        390.0,
+        462.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "torso_+20": {
+      "joint": "waist",
+      "angle": 20,
+      "radius": 24,
+      "world_center": [
+        390.0,
+        462.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "sword_arm_upper_-40": {
+      "joint": "shoulder_sword",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        430.0,
+        400.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "sword_arm_upper_+40": {
+      "joint": "shoulder_sword",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        430.0,
+        400.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "head_-25": {
+      "joint": "neck",
+      "angle": -25,
+      "radius": 24,
+      "world_center": [
+        390.0,
+        365.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "head_+25": {
+      "joint": "neck",
+      "angle": 25,
+      "radius": 24,
+      "world_center": [
+        390.0,
+        365.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "sword_arm_lower_-40": {
+      "joint": "elbow_sword",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        437.0,
+        442.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "sword_arm_lower_+40": {
+      "joint": "elbow_sword",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        437.0,
+        442.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "sword_hand_-40": {
+      "joint": "wrist_sword",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        471.0,
+        445.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "sword_hand_+40": {
+      "joint": "wrist_sword",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        471.0,
+        445.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "shield_arm_upper_-40": {
+      "joint": "shoulder_shield",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        323.0,
+        403.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "shield_arm_upper_+40": {
+      "joint": "shoulder_shield",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        323.0,
+        403.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "shield_arm_lower_-40": {
+      "joint": "elbow_shield",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        322.0,
+        435.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "shield_arm_lower_+40": {
+      "joint": "elbow_shield",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        322.0,
+        435.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "shield_hand_-40": {
+      "joint": "wrist_shield",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        323.0,
+        473.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "shield_hand_+40": {
+      "joint": "wrist_shield",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        323.0,
+        473.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "shield_-40": {
+      "joint": "shield",
+      "angle": -40,
+      "radius": 24,
+      "world_center": [
+        294.0,
+        480.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    },
+    "shield_+40": {
+      "joint": "shield",
+      "angle": 40,
+      "radius": 24,
+      "world_center": [
+        294.0,
+        480.0
+      ],
+      "transparent_inside_global_convex_hull": 0,
+      "pass": true
+    }
+  },
+  "swords": {
+    "wood_sword": {
+      "icon_grip": [
+        68,
+        197
+      ],
+      "turn": -40.9,
+      "scale": 0.6316406250000001,
+      "channel_center": [
+        354.0,
+        318.0
+      ],
+      "channel_error_px": 0.0,
+      "channel_width_px": 30,
+      "hand_height_px": 39,
+      "handle_pixels": 604,
+      "handle_covered_fraction": 0.9933774834437086,
+      "guard_to_hand_gap_px": 0,
+      "guard_covered_fraction_informational": 0.20508866615265997,
+      "pass": true
+    },
+    "iron_sword": {
+      "icon_grip": [
+        127,
+        200
+      ],
+      "turn": -0.2,
+      "scale": 0.8203125,
+      "channel_center": [
+        354.0,
+        318.0
+      ],
+      "channel_error_px": 0.0,
+      "channel_width_px": 30,
+      "hand_height_px": 39,
+      "handle_pixels": 842,
+      "handle_covered_fraction": 0.995249406175772,
+      "guard_to_hand_gap_px": 0,
+      "guard_covered_fraction_informational": 0.08251748251748252,
+      "pass": true
+    },
+    "tempered_sword": {
+      "icon_grip": [
+        128,
+        203
+      ],
+      "turn": -0.3,
+      "scale": 0.8203125,
+      "channel_center": [
+        354.0,
+        318.0
+      ],
+      "channel_error_px": 0.0,
+      "channel_width_px": 30,
+      "hand_height_px": 39,
+      "handle_pixels": 766,
+      "handle_covered_fraction": 0.9986945169712794,
+      "guard_to_hand_gap_px": 0,
+      "guard_covered_fraction_informational": 0.08109619686800895,
+      "pass": true
+    }
+  },
+  "faces": {
+    "normal": {
+      "mask_pixels": 3645,
+      "coverage": 1.0,
+      "outside_mask_pixels": 0,
+      "border_3px_max_rgb_error": 0,
+      "pass": true
+    },
+    "blink": {
+      "mask_pixels": 3645,
+      "coverage": 1.0,
+      "outside_mask_pixels": 0,
+      "border_3px_max_rgb_error": 0,
+      "pass": true
+    },
+    "angry": {
+      "mask_pixels": 3645,
+      "coverage": 1.0,
+      "outside_mask_pixels": 0,
+      "border_3px_max_rgb_error": 0,
+      "pass": true
+    },
+    "hurt": {
+      "mask_pixels": 3645,
+      "coverage": 1.0,
+      "outside_mask_pixels": 0,
+      "border_3px_max_rgb_error": 0,
+      "pass": true
+    },
+    "happy": {
+      "mask_pixels": 3645,
+      "coverage": 1.0,
+      "outside_mask_pixels": 0,
+      "border_3px_max_rgb_error": 0,
+      "pass": true
+    },
+    "scared": {
+      "mask_pixels": 3645,
+      "coverage": 1.0,
+      "outside_mask_pixels": 0,
+      "border_3px_max_rgb_error": 0,
+      "pass": true
+    }
+  },
+  "joint_deviation": {
+    "hip": 0.0,
+    "waist": 0.0,
+    "neck": 0.0,
+    "cape": 0.0,
+    "shoulder_shield": 0.0,
+    "elbow_shield": 0.0,
+    "wrist_shield": 0.0,
+    "shield": 0.0,
+    "shoulder_sword": 0.0,
+    "elbow_sword": 0.0,
+    "wrist_sword": 6.0,
+    "grip": 0.0,
+    "hip_back": 0.0,
+    "knee_back": 6.0,
+    "ankle_back": 0.0,
+    "hip_front": 0.0,
+    "knee_front": 4.0,
+    "ankle_front": 0.0
+  },
+  "standing": {
+    "iou": 0.9224512899958291,
+    "intersection": 61926,
+    "union": 67132,
+    "feet_bottom_y": 502
+  },
+  "shield_circle": {
+    "fit_center": [
+      165.99999999989254,
+      352.0000000000713
+    ],
+    "fit_radius": 63.328618443799954,
+    "coverage": 1.0,
+    "max_inward_defect_px": 0.7027451965237219
+  },
+  "pass": false
+}

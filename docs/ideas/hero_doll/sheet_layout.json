@@ -1,0 +1,240 @@
+{
+  "head": {
+    "sheet_bbox": [
+      51,
+      60,
+      204,
+      195
+    ],
+    "canvas_bbox": [
+      175,
+      106,
+      328,
+      241
+    ]
+  },
+  "torso": {
+    "sheet_bbox": [
+      321,
+      28,
+      446,
+      227
+    ],
+    "canvas_bbox": [
+      203,
+      189,
+      328,
+      388
+    ]
+  },
+  "cape": {
+    "sheet_bbox": [
+      546,
+      82,
+      734,
+      174
+    ],
+    "canvas_bbox": [
+      77,
+      218,
+      265,
+      310
+    ]
+  },
+  "shield": {
+    "sheet_bbox": [
+      830,
+      62,
+      961,
+      193
+    ],
+    "canvas_bbox": [
+      101,
+      287,
+      232,
+      418
+    ]
+  },
+  "pelvis": {
+    "sheet_bbox": [
+      75,
+      333,
+      180,
+      435
+    ],
+    "canvas_bbox": [
+      209,
+      306,
+      314,
+      408
+    ]
+  },
+  "sword_arm_upper": {
+    "sheet_bbox": [
+      353,
+      335,
+      415,
+      432
+    ],
+    "canvas_bbox": [
+      275,
+      245,
+      337,
+      342
+    ]
+  },
+  "sword_arm_lower": {
+    "sheet_bbox": [
+      606,
+      356,
+      673,
+      412
+    ],
+    "canvas_bbox": [
+      304,
+      289,
+      371,
+      345
+    ]
+  },
+  "sword_hand": {
+    "sheet_bbox": [
+      874,
+      363,
+      917,
+      405
+    ],
+    "canvas_bbox": [
+      332,
+      294,
+      375,
+      336
+    ]
+  },
+  "shield_arm_upper": {
+    "sheet_bbox": [
+      98,
+      596,
+      157,
+      683
+    ],
+    "canvas_bbox": [
+      164,
+      248,
+      223,
+      335
+    ]
+  },
+  "shield_arm_lower": {
+    "sheet_bbox": [
+      356,
+      604,
+      411,
+      675
+    ],
+    "canvas_bbox": [
+      168,
+      302,
+      223,
+      373
+    ]
+  },
+  "shield_hand": {
+    "sheet_bbox": [
+      618,
+      619,
+      661,
+      661
+    ],
+    "canvas_bbox": [
+      173,
+      321,
+      216,
+      363
+    ]
+  },
+  "back_leg_upper": {
+    "sheet_bbox": [
+      850,
+      589,
+      942,
+      691
+    ],
+    "canvas_bbox": [
+      171,
+      352,
+      263,
+      454
+    ]
+  },
+  "back_leg_lower": {
+    "sheet_bbox": [
+      91,
+      855,
+      164,
+      936
+    ],
+    "canvas_bbox": [
+      161,
+      418,
+      234,
+      499
+    ]
+  },
+  "back_foot": {
+    "sheet_bbox": [
+      343,
+      875,
+      424,
+      917
+    ],
+    "canvas_bbox": [
+      135,
+      460,
+      216,
+      502
+    ]
+  },
+  "front_leg_upper": {
+    "sheet_bbox": [
+      604,
+      845,
+      676,
+      947
+    ],
+    "canvas_bbox": [
+      258,
+      351,
+      330,
+      453
+    ]
+  },
+  "front_leg_lower": {
+    "sheet_bbox": [
+      861,
+      855,
+      931,
+      937
+    ],
+    "canvas_bbox": [
+      271,
+      419,
+      341,
+      501
+    ]
+  },
+  "front_foot": {
+    "sheet_bbox": [
+      79,
+      1131,
+      176,
+      1173
+    ],
+    "canvas_bbox": [
+      279,
+      460,
+      376,
+      502
+    ]
+  }
+}

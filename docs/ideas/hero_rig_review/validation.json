@@ -1,0 +1,396 @@
+{
+  "png_count": 26,
+  "canvas": [
+    512,
+    512
+  ],
+  "ground_anchor": [
+    256,
+    500
+  ],
+  "rotation_degrees": [
+    -35,
+    35
+  ],
+  "rotation_joints": [
+    "neck",
+    "shoulder_sword",
+    "elbow_sword",
+    "wrist_sword",
+    "shoulder_shield",
+    "elbow_shield",
+    "wrist_shield",
+    "hip_back",
+    "knee_back",
+    "ankle_back",
+    "hip_front",
+    "knee_front",
+    "ankle_front"
+  ],
+  "files": [
+    {
+      "path": "assets/characters/hero_rig/gear/leather_armor/pelvis.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        193,
+        324,
+        320,
+        402
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/leather_armor/shield_arm_upper.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        160,
+        251,
+        224,
+        296
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/leather_armor/sword_arm_upper.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        284,
+        249,
+        340,
+        293
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/leather_armor/torso.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        195,
+        237,
+        323,
+        365
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/leather_helmet/head.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        173,
+        105,
+        330,
+        205
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/reinforced_boots/back_foot.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        134,
+        456,
+        217,
+        500
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/reinforced_boots/back_leg_lower.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        158,
+        421,
+        231,
+        484
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/reinforced_boots/front_foot.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        276,
+        456,
+        376,
+        500
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/gear/reinforced_boots/front_leg_lower.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        273,
+        421,
+        340,
+        484
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/back_foot.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        138,
+        456,
+        214,
+        500
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/back_leg_lower.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        161,
+        413,
+        232,
+        483
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/back_leg_upper.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        183,
+        366,
+        253,
+        448
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/cape.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        80,
+        224,
+        292,
+        288
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/front_foot.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        279,
+        458,
+        373,
+        500
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/front_leg_lower.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        276,
+        412,
+        338,
+        484
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/front_leg_upper.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        267,
+        366,
+        329,
+        449
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/head.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        174,
+        105,
+        329,
+        255
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/pelvis.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        198,
+        327,
+        313,
+        407
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/shield.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        104,
+        287,
+        227,
+        415
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/shield_arm_lower.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        174,
+        290,
+        222,
+        359
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/shield_arm_upper.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        164,
+        252,
+        221,
+        327
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/shield_hand.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        185,
+        330,
+        224,
+        368
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/sword_arm_lower.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        308,
+        287,
+        358,
+        344
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/sword_arm_upper.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        288,
+        250,
+        338,
+        320
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/sword_hand.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        334,
+        296,
+        377,
+        343
+      ]
+    },
+    {
+      "path": "assets/characters/hero_rig/parts/torso.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bbox": [
+        200,
+        237,
+        319,
+        378
+      ]
+    }
+  ]
+}

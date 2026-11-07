@@ -1,0 +1,96 @@
+{
+  "joints": {
+    "hip": [
+      262,
+      372
+    ],
+    "waist": [
+      262,
+      335
+    ],
+    "neck": [
+      262,
+      236
+    ],
+    "cape": [
+      236,
+      246
+    ],
+    "shoulder_shield": [
+      196,
+      274
+    ],
+    "elbow_shield": [
+      196,
+      313
+    ],
+    "wrist_shield": [
+      206,
+      348
+    ],
+    "shield": [
+      166,
+      352
+    ],
+    "shoulder_sword": [
+      308,
+      268
+    ],
+    "elbow_sword": [
+      327,
+      305
+    ],
+    "wrist_sword": [
+      351,
+      322
+    ],
+    "grip": [
+      354,
+      320
+    ],
+    "hip_back": [
+      236,
+      384
+    ],
+    "knee_back": [
+      212,
+      432
+    ],
+    "ankle_back": [
+      192,
+      474
+    ],
+    "hip_front": [
+      290,
+      384
+    ],
+    "knee_front": [
+      300,
+      432
+    ],
+    "ankle_front": [
+      316,
+      474
+    ]
+  },
+  "order": [
+    "cape",
+    "back_leg_upper",
+    "back_leg_lower",
+    "back_foot",
+    "sword_arm_upper",
+    "pelvis",
+    "front_leg_upper",
+    "front_leg_lower",
+    "front_foot",
+    "torso",
+    "head",
+    "sword",
+    "sword_arm_lower",
+    "sword_hand",
+    "shield_arm_upper",
+    "shield_arm_lower",
+    "shield_hand",
+    "shield"
+  ]
+}

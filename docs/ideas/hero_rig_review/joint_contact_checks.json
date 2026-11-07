@@ -1,0 +1,473 @@
+{
+  "method": "49 nearest-pixel alpha samples in a radius-4 disk at each pivot; alpha <200 flags a local gap. Does not validate the entire silhouette.",
+  "checks": [
+    {
+      "equipped": false,
+      "joint": "neck",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "neck",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "neck",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "shoulder_sword",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "shoulder_sword",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "shoulder_sword",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "elbow_sword",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "elbow_sword",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "elbow_sword",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "wrist_sword",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "wrist_sword",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "wrist_sword",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "shoulder_shield",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "shoulder_shield",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "shoulder_shield",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "elbow_shield",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "elbow_shield",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "elbow_shield",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "wrist_shield",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "wrist_shield",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "wrist_shield",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "hip_back",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "hip_back",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "hip_back",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "knee_back",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "knee_back",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "knee_back",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "ankle_back",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "ankle_back",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "ankle_back",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "hip_front",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "hip_front",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "hip_front",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "knee_front",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "knee_front",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "knee_front",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "ankle_front",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "ankle_front",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": false,
+      "joint": "ankle_front",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "neck",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "neck",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "neck",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "shoulder_sword",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "shoulder_sword",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "shoulder_sword",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "elbow_sword",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "elbow_sword",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "elbow_sword",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "wrist_sword",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "wrist_sword",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "wrist_sword",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "shoulder_shield",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "shoulder_shield",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "shoulder_shield",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "elbow_shield",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "elbow_shield",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "elbow_shield",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "wrist_shield",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "wrist_shield",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "wrist_shield",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "hip_back",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "hip_back",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "hip_back",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "knee_back",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "knee_back",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "knee_back",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "ankle_back",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "ankle_back",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "ankle_back",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "hip_front",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "hip_front",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "hip_front",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "knee_front",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "knee_front",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "knee_front",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "ankle_front",
+      "angle": -35,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "ankle_front",
+      "angle": 0,
+      "transparent_pixels_in_radius_4": 0
+    },
+    {
+      "equipped": true,
+      "joint": "ankle_front",
+      "angle": 35,
+      "transparent_pixels_in_radius_4": 0
+    }
+  ]
+}

@@ -156,7 +156,7 @@ static func describe(id: String) -> String:
 		"outfit":
 			var text := "Ô đỏ %s sát thương" % _number(item["red"])
 			if int(item["armor"]) > 0:
-				text += ", đỡ %d máu mỗi đòn, %d%% chí mạng" % [int(item["armor"]), roundi(float(item["crit_guard"]) * 100)]
+				text = "Ô đỏ %s · đỡ %d máu/đòn · %d%% chí mạng" % [_number(item["red"]), int(item["armor"]), roundi(float(item["crit_guard"]) * 100)]
 			return text
 		"refine":
 			return "Thêm %s sát thương mỗi ô đỏ" % _number(item["refine"])

@@ -880,7 +880,7 @@ func _draw_hud() -> void:
 		_draw_row(slot, best)
 	_draw_skills()
 	if _owned_outfits().size() > 1 and not flying:
-		_text(_hud, "◀ chạm để đổi bộ ▶", HERO_FEET + Vector2(0, 40), 22, WOOD_DARK)
+		_text(_hud, "◀ chạm để đổi bộ ▶", HERO_FEET + Vector2(0, 19), 20, INK)
 	if not flying:
 		_draw_shelf()
 	if flying and _camera.zoom.x <= 1.001:

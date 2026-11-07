@@ -140,5 +140,5 @@ func test_an_outfit_is_the_whole_kit() -> void:
 		assert_true(float(item["price"]) >= last, "%s costs no less than the one below" % id)
 		last = float(item["price"])
 		assert_true(ResourceLoader.exists("res://assets/ui/items/%s.png" % item["icon"]), "%s has a shop icon" % id)
-	assert_eq(Gear.describe("iron"), "Ô đỏ 2,5 sát thương, đỡ 5 máu mỗi đòn, 75% chí mạng")
+	assert_eq(Gear.describe("iron"), "Ô đỏ 2,5 · đỡ 5 máu/đòn · 75% chí mạng")
 	assert_eq(Gear.describe("rookie"), "Ô đỏ 2 sát thương")

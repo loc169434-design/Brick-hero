@@ -16,13 +16,18 @@ extends Node2D
 ## faces/<mood>.png: an opaque patch of skin, eyes and mouth inside one fixed frame, the same on
 ## every head, so the face never shifts or changes size when the helmet does.
 ##
-## Clips are built in code (see _build_clips): idle loops, the others play once and go back
-## to idle; attack emits clip_impact at the blow. Each clip shows its face (CLIP_MOODS), and
+## Clips are edited by hand in Godot's animation editor (scenes/hero_rig_poser.tscn, made by
+## tools/make_rig_poser.gd) and saved to CLIPS_FILE; until that file exists they're built from
+## CLIPS. Idle loops, the others play once and go back to idle; attack emits clip_impact at
+## the blow (a call to _on_impact in the clip). Each clip shows its face (CLIP_MOODS), and
 ## standing he blinks now and then.
 
 signal clip_impact(clip: StringName)
 
 const DIR := "res://assets/characters/hero_rig/"
+## The clips as edited in Godot; a track's path is a bone's path from the pelvis
+## ("pelvis/torso/head:rotation"), and "pelvis:position" moves him.
+const CLIPS_FILE := "res://data/hero_rig/clips.tres"
 const CANVAS := 512.0
 const FEET := Vector2(256, 500)
 ## Drawn size: the canvas is shown as big as CharacterRig shows its poses.
@@ -127,10 +132,8 @@ func _init() -> void:
 	_root.add_child(_player)
 	# The blow's call goes out the moment the clip reaches it, not at the end of the frame.
 	_player.callback_mode_method = AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_IMMEDIATE
-	var library := AnimationLibrary.new()
-	for name: StringName in CLIPS:
-		library.add_animation(name, _build_clip(name))
-	_player.add_animation_library(&"", library)
+	var saved: AnimationLibrary = load(CLIPS_FILE) if ResourceLoader.exists(CLIPS_FILE) else null
+	_player.add_animation_library(&"", saved if saved else build_code_clips())
 	_player.animation_finished.connect(func(name: StringName) -> void:
 		if name != &"idle":
 			play(&"idle"))
@@ -191,9 +194,18 @@ func face_texture() -> Texture2D:
 	return face if face else _texture(DIR + "faces/normal.png")
 
 
-## Seconds into `name` at which its blow lands, or 0.
+## Seconds into `name` at which its blow lands (its call to _on_impact), or 0.
 func impact_seconds(name: StringName) -> float:
-	return float(CLIPS.get(name, {}).get("impact", 0.0))
+	if _player == null or not _player.has_animation(name):
+		return 0.0
+	var animation := _player.get_animation(name)
+	for track in animation.get_track_count():
+		if animation.track_get_type(track) != Animation.TYPE_METHOD:
+			continue
+		for key in animation.track_get_key_count(track):
+			if animation.method_track_get_name(track, key) == &"_on_impact":
+				return animation.track_get_key_time(track, key)
+	return 0.0
 
 
 ## The part's bone, for tests and for effects that follow a hand or the head.
@@ -402,9 +414,10 @@ func _draw_gear_placeholder(slot: String, item: String, part: String, skin: Node
 
 # --- clips -----------------------------------------------------------------------
 
-## Each clip: length, loop, the blow's time, and keys {time: {part: degrees}} for the bones
-## that move, plus "lift" (the pelvis's offset, in canvas pixels). Bones not keyed stay at
-## rest. Times are seconds. The shield arm barely moves until the torso is painted under it:
+## The clips first written in code, kept as the starting point for CLIPS_FILE (and used while
+## it's missing). Each clip: length, loop, the blow's time, and keys {time: {part: degrees}}
+## for the bones that move, plus "lift" (the pelvis's offset, in canvas pixels). Bones not
+## keyed stay at rest. Times are seconds. The shield arm barely moves until the torso is painted under it:
 ## turned further, it opens holes beside the shield.
 const CLIPS := {
 	&"idle": {
@@ -454,6 +467,14 @@ const CLIPS := {
 		},
 	},
 }
+
+
+## CLIPS as Godot animations, on this rig's bones.
+func build_code_clips() -> AnimationLibrary:
+	var library := AnimationLibrary.new()
+	for name: StringName in CLIPS:
+		library.add_animation(name, _build_clip(name))
+	return library
 
 
 func _build_clip(name: StringName) -> Animation:

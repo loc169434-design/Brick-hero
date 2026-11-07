@@ -78,6 +78,24 @@ func test_a_helmet_swaps_the_head_and_the_face_follows_the_clip() -> void:
 	rig.free()
 
 
+func test_the_clips_he_plays_move_his_own_bones() -> void:
+	var rig := _rig()
+	var player: AnimationPlayer = rig._player
+	for clip: StringName in [&"idle", &"attack", &"hurt", &"cheer"]:
+		assert_true(player.has_animation(clip), "plays %s" % clip)
+	for clip: StringName in player.get_animation_list():
+		var animation := player.get_animation(clip)
+		for track in animation.get_track_count():
+			if animation.track_get_type(track) == Animation.TYPE_METHOD:
+				continue
+			var path := animation.track_get_path(track)
+			assert_true(rig._root.get_node_or_null(NodePath(path.get_concatenated_names())) != null,
+				"%s moves a bone he has: %s" % [clip, path])
+	var blow := rig.impact_seconds(&"attack")
+	assert_true(blow > 0.0 and blow < player.get_animation(&"attack").length, "the blow lands partway through: %s" % blow)
+	rig.free()
+
+
 func test_every_head_and_armor_is_drawn() -> void:
 	for kind: String in ["bare"] + Gear.ladder("helmet"):
 		var path := HeroRig.DIR + "head/%s.png" % kind

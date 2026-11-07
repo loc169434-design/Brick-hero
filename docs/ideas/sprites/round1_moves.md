@@ -22,6 +22,19 @@ Làm trên nhánh `art/hero-moves-1`, tạo từ `origin/core/world-life`. Chỉ
 - Khung đầu và khung cuối gần giống tư thế đứng (`fresh_idle` khung 0), để nối mượt với các động tác khác.
 - Không bụi, không viền mờ lem nhem quanh người.
 
+## Xóa nền: vẽ trên nền xanh, không vẽ trên nền trắng
+
+Bản bước A bị lỗi **khe trắng**: vẽ trên nền trắng rồi xóa nền loang từ mép vào, nên các khe bị viền bao kín vẫn trắng (giữa các lọn tóc, giữa tay và kiếm, dưới nách). Mắt và răng cũng trắng nên máy không tách ra được. Từ nay làm thế này:
+
+1. Vẽ mọi khung trên **nền xanh lá thuần #00FF00**, phẳng một màu, không đổ bóng, không chuyển màu. Nhân vật không được có màu xanh lá nào.
+2. Lưu bản gốc nền xanh vào `docs/ideas/sprites/round1/raw/fresh_<tên>_green.png` (cùng lưới 4 cột × 512).
+3. Tách nền bằng công cụ có sẵn (không tự xóa nền kiểu khác):
+   ```sh
+   python3 tools/sprites/key_out.py docs/ideas/sprites/round1/raw/fresh_<tên>_green.png assets/characters/hero_rookie/anim/fresh_<tên>.png
+   ```
+   Công cụ xóa mọi điểm màu xanh ở khắp nơi, kể cả khe kín, làm mềm mép và khử quầng xanh.
+4. Nếu sau khi tách thấy mép bị khuyết hay còn quầng, **sửa bản gốc nền xanh** rồi tách lại. Không sửa tay trên bản đã tách.
+
 ## Danh sách
 
 `impact` là số khung (đếm từ 0) mà đòn chạm quái. Game dùng số này để rung màn hình và trừ máu.
@@ -38,24 +51,28 @@ Làm trên nhánh `art/hero-moves-1`, tạo từ `origin/core/world-life`. Chỉ
 | `fresh_skill_blade_vortex.png` | 16 | 24 | 4, 8, 12 | Phong Kiếm: 0–2 vặn người lấy đà · 3–14 xoay tròn ba vòng tại chỗ, kiếm dang ngang, mỗi vòng một nhát (khung 4, 8, 12 kiếm quét qua phía trước) · 15 dừng, chóng mặt nhẹ |
 | `fresh_skill_starfall_strike.png` | 16 | 24 | 12 | Tinh Kiếm: 0–3 ngồi sâu lấy đà · 4–9 tư thế bay lên cao (tại chỗ), kiếm giơ thẳng trời, người duỗi · 10–12 chúc xuống, kiếm đâm thẳng xuống đất · 13–15 quỳ một gối, rút kiếm đứng dậy |
 
-## Làm thử trước (tiết kiệm công)
+## Phạm vi đợt này
 
-**Bước A:** chỉ làm `fresh_combo.png` và `fresh_block.png`. Kiểm tra, push, rồi **dừng chờ duyệt**. Nếu nét vẽ hoặc tỉ lệ lệch thì sửa ở đây, đỡ phí công cho 7 động tác còn lại.
+Bước A (`combo`, `block`) đã duyệt về dáng và nhịp, nhưng phải **làm lại trên nền xanh** vì lỗi khe trắng. Giữ nguyên động tác, chỉ đổi cách vẽ nền.
 
-**Bước B** (sau khi duyệt): 7 động tác còn lại.
+Làm luôn **cả 9 động tác** trong bảng trên (2 động tác làm lại + 7 động tác mới), trong một lần, trên cùng nhánh `art/hero-moves-1`.
 
 ## Tự kiểm tra
 
 Với mỗi sheet, chạy:
 
 ```sh
-python3 tools/sprites/check_sheet.py assets/characters/hero_rookie/anim/fresh_<tên>.png --frames <số khung> --fps <fps> --out docs/ideas/sprites/round1
+python3 tools/sprites/check_sheet.py assets/characters/hero_rookie/anim/fresh_<tên>.png --frames <số khung> --fps <fps> --key 00ff00 --out docs/ideas/sprites/round1
 ```
 
-Lệnh in ĐẠT hoặc TRƯỢT cho từng mục (lưới, chân, cỡ người, sạch, trong khung), và ghi kèm ảnh khung đánh số và file GIF. **Tất cả phải ĐẠT** mới push, tối đa 5 vòng sửa. Ghi số đo từng vòng vào `docs/ideas/sprites/round1/rounds.md`.
+Lệnh in ĐẠT hoặc TRƯỢT cho từng mục (lưới, chân, cỡ người, sạch, trong khung, nền khóa), và ghi kèm ảnh khung đánh số và file GIF. Claude sẽ tự chạy lại `key_out.py` trên bản nền xanh để đối chiếu, nên bản gốc nền xanh là bắt buộc. **Tất cả phải ĐẠT** mới push, tối đa 5 vòng sửa. Ghi số đo từng vòng vào `docs/ideas/sprites/round1/rounds.md`.
 
-Ngoài script, tự xem GIF: động tác phải liền mạch, không giật, không khung nào người đổi cỡ hay đổi màu áo.
+Ngoài script, tự xem GIF: động tác phải liền mạch, không giật, không khung nào người đổi cỡ hay đổi màu áo. Đặt thử một khung lên nền tối để chắc không còn khe trắng hay quầng sáng quanh người.
 
 ## Bàn giao
 
-Các sheet trong `anim/`, GIF và report trong `docs/ideas/sprites/round1/`. Commit, push `art/hero-moves-1`, báo kết quả kiểm tra, rồi **dừng**.
+- 9 sheet đã tách nền trong `anim/`.
+- 9 bản gốc nền xanh trong `docs/ideas/sprites/round1/raw/`.
+- GIF và report trong `docs/ideas/sprites/round1/`.
+
+Commit, push `art/hero-moves-1` (không force push), báo kết quả kiểm tra cả 9 sheet, rồi **dừng**.

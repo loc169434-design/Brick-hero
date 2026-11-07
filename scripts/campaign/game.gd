@@ -67,7 +67,6 @@ func start_fight(id: String) -> void:
 	manager.starting_gold = campaign.gold
 	# The bag is shared: what the fight uses is gone, and saved at once.
 	manager.boosters = campaign.boosters
-	(battle.get_node("Battle") as BattleView).hero_outfit = Gear.outfit(campaign.owned)
 	manager.booster_used.connect(func(_id: String) -> void: campaign.save(save_path))
 	manager.fight_over.connect(end_fight)
 	map.hide()

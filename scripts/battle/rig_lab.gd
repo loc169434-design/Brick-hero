@@ -35,7 +35,7 @@ func _ready() -> void:
 	drawn.setup("hero_rookie", 1)
 	for i in 2:
 		var title := Label.new()
-		title.text = ["RIG XƯƠNG (mảnh tạm)", "VẼ TAY (hiện tại)"][i]
+		title.text = ["RIG XƯƠNG (mới)", "VẼ TAY (hiện tại)"][i]
 		title.position = Vector2(80 + i * 560, 600)
 		title.add_theme_font_size_override("font_size", 40)
 		title.add_theme_color_override("font_color", Color(0.1, 0.07, 0.05))

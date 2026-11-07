@@ -20,8 +20,8 @@ signal clip_impact(clip: StringName)
 const DIR := "res://assets/characters/hero_rig/"
 const CANVAS := 512.0
 const FEET := Vector2(256, 500)
-## Drawn size: the canvas is shown at this scale, like CharacterRig's poses.
-const DRAW_SCALE := 0.7
+## Drawn size: the canvas is shown as big as CharacterRig shows its poses.
+const DRAW_SCALE := CharacterRig.DISPLAY_SIZE / CANVAS
 
 ## Each part: the bone it turns on (a joint name), its parent part, and its placeholder shape.
 ## The root is the pelvis.
@@ -167,7 +167,11 @@ func _load_joints() -> void:
 	for name: String in joints:
 		_joints[name] = Vector2(joints[name][0], joints[name][1])
 	if json.data.get("order") is Array:
-		_order = json.data["order"]
+		_order = json.data["order"].duplicate()
+	# The sword swings back over the shoulder in the wind-up: it passes behind the head.
+	if _order.has("sword") and _order.has("head") and _order.find("sword") > _order.find("head"):
+		_order.erase("sword")
+		_order.insert(_order.find("head"), "sword")
 
 
 ## Bones nest as the parts do; each sits at its joint's offset from its parent's joint, so at
@@ -355,11 +359,15 @@ const CLIPS := {
 		"length": 0.85, "loop": false, "impact": 0.34,
 		"keys": {
 			0.0: {"lift": Vector2(0, 0), "torso": 0.0, "head": 0.0, "sword_arm_upper": 0.0, "sword_arm_lower": 0.0, "sword_hand": 0.0, "shield_arm_upper": 0.0, "front_leg_upper": 0.0, "front_leg_lower": 0.0, "back_leg_upper": 0.0, "cape": 0.0},
-			# Wind-up: leans back, the sword arm swings up and over the shoulder.
-			0.24: {"lift": Vector2(-10, 4), "torso": -12.0, "head": -6.0, "sword_arm_upper": -150.0, "sword_arm_lower": -40.0, "sword_hand": -20.0, "shield_arm_upper": 18.0, "front_leg_upper": -10.0, "front_leg_lower": 8.0, "back_leg_upper": 6.0, "cape": 10.0},
-			# The cut: steps in, the blade comes down in front.
-			0.34: {"lift": Vector2(24, 10), "torso": 16.0, "head": 8.0, "sword_arm_upper": 20.0, "sword_arm_lower": 10.0, "sword_hand": 30.0, "shield_arm_upper": -20.0, "front_leg_upper": -28.0, "front_leg_lower": 18.0, "back_leg_upper": 22.0, "cape": -18.0},
-			0.5: {"lift": Vector2(20, 8), "torso": 12.0, "head": 6.0, "sword_arm_upper": 35.0, "sword_arm_lower": 14.0, "sword_hand": 34.0, "shield_arm_upper": -14.0, "front_leg_upper": -24.0, "front_leg_lower": 16.0, "back_leg_upper": 18.0, "cape": -10.0},
+			# Wind-up: leans back, the arm goes up in front (a chibi's short arm can't clear the big
+			# head overhead) and the wrist cocks the blade back
+			# over the head. (At rest the blade stands up from a hanging arm, about 153° off
+			# the forearm's line, so the wrist turns a long way through a cut.)
+			0.24: {"lift": Vector2(-10, 4), "torso": -12.0, "head": -6.0, "sword_arm_upper": -113.0, "sword_arm_lower": -20.0, "sword_hand": 63.0, "shield_arm_upper": 18.0, "front_leg_upper": -10.0, "front_leg_lower": 8.0, "back_leg_upper": 6.0, "cape": 10.0},
+			# The cut: steps in, the arm comes down in front and the blade lands level.
+			0.34: {"lift": Vector2(24, 10), "torso": 16.0, "head": 8.0, "sword_arm_upper": -35.0, "sword_arm_lower": -5.0, "sword_hand": 125.0, "shield_arm_upper": -20.0, "front_leg_upper": -28.0, "front_leg_lower": 18.0, "back_leg_upper": 22.0, "cape": -18.0},
+			# Follow-through, the blade carrying on down.
+			0.5: {"lift": Vector2(20, 8), "torso": 12.0, "head": 6.0, "sword_arm_upper": 10.0, "sword_arm_lower": 5.0, "sword_hand": 140.0, "shield_arm_upper": -14.0, "front_leg_upper": -24.0, "front_leg_lower": 16.0, "back_leg_upper": 18.0, "cape": -10.0},
 			0.85: {"lift": Vector2(0, 0), "torso": 0.0, "head": 0.0, "sword_arm_upper": 0.0, "sword_arm_lower": 0.0, "sword_hand": 0.0, "shield_arm_upper": 0.0, "front_leg_upper": 0.0, "front_leg_lower": 0.0, "back_leg_upper": 0.0, "cape": 0.0},
 		},
 	},

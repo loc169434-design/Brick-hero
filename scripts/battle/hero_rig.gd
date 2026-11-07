@@ -11,9 +11,12 @@ extends Node2D
 ## drawing order. Gear layers are drawn on the same canvas over the part they cover, so they
 ## can't drift from it. Swords are the forge's icons (assets/ui/items/<sword>.png), held at
 ## their grip. Without art every part is a plain shape, enough to judge the motion.
+## The head is a whole picture per helmet and face, heads/<helmet|bare>_<mood>.png on the same
+## canvas: a helmet is never laid over the bare head, whose hair would poke through it.
 ##
-## Clips are built in code (see _build_clips): idle loops, attack plays once and emits
-## clip_impact at the blow.
+## Clips are built in code (see _build_clips): idle loops, the others play once and go back
+## to idle; attack emits clip_impact at the blow. Each clip shows its face (CLIP_MOODS), and
+## standing he blinks now and then.
 
 signal clip_impact(clip: StringName)
 
@@ -66,6 +69,12 @@ const GEAR_PARTS := {
 	"helmet": ["head"],
 	"boots": ["back_leg_lower", "back_foot", "front_leg_lower", "front_foot"],
 }
+## The faces drawn for every head, and the one each clip shows.
+const MOODS := ["normal", "blink", "angry", "hurt", "happy", "scared"]
+const CLIP_MOODS := {&"idle": "normal", &"attack": "angry", &"hurt": "hurt", &"cheer": "happy"}
+## Seconds between blinks while standing, and how long the eyes stay shut.
+const BLINK_EVERY := Vector2(2.2, 4.5)
+const BLINK_TIME := 0.14
 ## A sword icon's grip on its 256 canvas, and its size held: the handle in the fist, the blade up.
 const SWORD_GRIP := Vector2(128, 186)
 const SWORD_SIZE := 210.0
@@ -80,6 +89,7 @@ const HAIR := Color(0.62, 0.32, 0.12)
 const OUTLINE := Color(0.14, 0.08, 0.05)
 const GEAR_COLORS := {
 	"leather_armor": Color(0.62, 0.4, 0.2), "iron_armor": Color(0.7, 0.72, 0.78),
+	"royal_armor": Color(0.18, 0.3, 0.7), "obsidian_armor": Color(0.2, 0.2, 0.24), "frost_armor": Color(0.7, 0.88, 0.95),
 	"leather_helmet": Color(0.6, 0.38, 0.18), "iron_helmet": Color(0.75, 0.77, 0.83),
 	"reinforced_boots": Color(0.5, 0.3, 0.14), "climbing_boots": Color(0.3, 0.32, 0.36),
 }
@@ -87,6 +97,8 @@ const GEAR_COLORS := {
 ## What he wears (Gear.outfit): weapon, armor, helmet, boots.
 var outfit := {}
 var clip := &""
+## The face he shows (MOODS); set_mood to hold one, play() sets the clip's.
+var mood := "normal"
 var _joints := JOINTS.duplicate()
 var _order: Array = ORDER.duplicate()
 ## part -> the Node2D turning on its joint.
@@ -99,6 +111,8 @@ var _art := {}
 var _textures := {}
 var _player: AnimationPlayer
 var _root: Node2D
+var _blink_in := 3.0
+var _blink_left := 0.0
 
 
 func _init() -> void:
@@ -130,12 +144,45 @@ func set_outfit(p_outfit: Dictionary) -> void:
 		_skins[part].queue_redraw()
 
 
+func set_mood(p_mood: String) -> void:
+	if not p_mood in MOODS or p_mood == mood:
+		return
+	mood = p_mood
+	_skins["head"].queue_redraw()
+
+
 func play(name: StringName) -> void:
 	if _player == null or not _player.has_animation(name):
 		return
 	clip = name
+	_blink_left = 0.0
+	set_mood(CLIP_MOODS.get(name, "normal"))
 	_player.stop()
 	_player.play(name)
+
+
+func _process(delta: float) -> void:
+	if clip != &"idle":
+		return
+	if _blink_left > 0.0:
+		_blink_left -= delta
+		if _blink_left <= 0.0:
+			set_mood("normal")
+		return
+	_blink_in -= delta
+	if _blink_in <= 0.0 and mood == "normal":
+		_blink_in = randf_range(BLINK_EVERY.x, BLINK_EVERY.y)
+		_blink_left = BLINK_TIME
+		set_mood("blink")
+
+
+## The picture of the whole head for the helmet worn and the face shown, or null when that
+## head isn't drawn (then the bare head and a helmet layer over it, as before heads existed).
+func head_texture() -> Texture2D:
+	var helmet: String = outfit.get("helmet", "")
+	var kind := helmet if helmet else "bare"
+	var head := _texture(DIR + "heads/%s_%s.png" % [kind, mood])
+	return head if head else _texture(DIR + "heads/%s_normal.png" % kind)
 
 
 ## Seconds into `name` at which its blow lands, or 0.
@@ -219,13 +266,16 @@ func _draw_part(part: String, skin: Node2D) -> void:
 		_draw_sword(skin)
 		return
 	var base: Texture2D = _art[part]
+	var whole_head: Texture2D = head_texture() if part == "head" else null
+	if whole_head:
+		base = whole_head
 	if base:
 		skin.draw_texture(base, Vector2.ZERO)
 	else:
 		_draw_placeholder(part, skin)
 	for slot: String in GEAR_PARTS:
 		var item: String = outfit.get(slot, "")
-		if item == "" or not part in GEAR_PARTS[slot]:
+		if item == "" or not part in GEAR_PARTS[slot] or (whole_head and slot == "helmet"):
 			continue
 		var layer := _texture(DIR + "gear/%s/%s.png" % [item, part])
 		if layer:
@@ -345,13 +395,14 @@ func _draw_gear_placeholder(slot: String, item: String, part: String, skin: Node
 
 ## Each clip: length, loop, the blow's time, and keys {time: {part: degrees}} for the bones
 ## that move, plus "lift" (the pelvis's offset, in canvas pixels). Bones not keyed stay at
-## rest. Times are seconds.
+## rest. Times are seconds. The shield arm barely moves until the torso is painted under it:
+## turned further, it opens holes beside the shield.
 const CLIPS := {
 	&"idle": {
 		"length": 2.4, "loop": true,
 		"keys": {
 			0.0: {"lift": Vector2(0, 0), "torso": 0.0, "head": 0.0, "sword_arm_upper": 0.0, "shield_arm_upper": 0.0, "cape": 0.0},
-			1.2: {"lift": Vector2(0, 5), "torso": -2.0, "head": 2.5, "sword_arm_upper": 4.0, "shield_arm_upper": -3.0, "cape": -6.0},
+			1.2: {"lift": Vector2(0, 5), "torso": -2.0, "head": 2.5, "sword_arm_upper": 4.0, "shield_arm_upper": -0.8, "cape": -6.0},
 			2.4: {"lift": Vector2(0, 0), "torso": 0.0, "head": 0.0, "sword_arm_upper": 0.0, "shield_arm_upper": 0.0, "cape": 0.0},
 		},
 	},
@@ -359,16 +410,38 @@ const CLIPS := {
 		"length": 0.85, "loop": false, "impact": 0.34,
 		"keys": {
 			0.0: {"lift": Vector2(0, 0), "torso": 0.0, "head": 0.0, "sword_arm_upper": 0.0, "sword_arm_lower": 0.0, "sword_hand": 0.0, "shield_arm_upper": 0.0, "front_leg_upper": 0.0, "front_leg_lower": 0.0, "back_leg_upper": 0.0, "cape": 0.0},
-			# Wind-up: leans back, the arm goes up in front (a chibi's short arm can't clear the big
-			# head overhead) and the wrist cocks the blade back
-			# over the head. (At rest the blade stands up from a hanging arm, about 153° off
+			# Wind-up: leans back, the fist comes up to the chest in front (a chibi's short arm
+			# can't clear the big head, and higher it hides the face) and the wrist cocks the
+			# blade back over the head. (At rest the blade stands up from a hanging arm, about 153° off
 			# the forearm's line, so the wrist turns a long way through a cut.)
-			0.24: {"lift": Vector2(-10, 4), "torso": -12.0, "head": -6.0, "sword_arm_upper": -113.0, "sword_arm_lower": -20.0, "sword_hand": 63.0, "shield_arm_upper": 18.0, "front_leg_upper": -10.0, "front_leg_lower": 8.0, "back_leg_upper": 6.0, "cape": 10.0},
+			0.24: {"lift": Vector2(-10, 4), "torso": -12.0, "head": -6.0, "sword_arm_upper": -60.0, "sword_arm_lower": -25.0, "sword_hand": 45.0, "shield_arm_upper": 4.5, "front_leg_upper": -10.0, "front_leg_lower": 8.0, "back_leg_upper": 6.0, "cape": 10.0},
 			# The cut: steps in, the arm comes down in front and the blade lands level.
-			0.34: {"lift": Vector2(24, 10), "torso": 16.0, "head": 8.0, "sword_arm_upper": -35.0, "sword_arm_lower": -5.0, "sword_hand": 125.0, "shield_arm_upper": -20.0, "front_leg_upper": -28.0, "front_leg_lower": 18.0, "back_leg_upper": 22.0, "cape": -18.0},
+			0.34: {"lift": Vector2(24, 10), "torso": 16.0, "head": 8.0, "sword_arm_upper": -35.0, "sword_arm_lower": -5.0, "sword_hand": 125.0, "shield_arm_upper": -5.0, "front_leg_upper": -28.0, "front_leg_lower": 18.0, "back_leg_upper": 22.0, "cape": -18.0},
 			# Follow-through, the blade carrying on down.
-			0.5: {"lift": Vector2(20, 8), "torso": 12.0, "head": 6.0, "sword_arm_upper": 10.0, "sword_arm_lower": 5.0, "sword_hand": 140.0, "shield_arm_upper": -14.0, "front_leg_upper": -24.0, "front_leg_lower": 16.0, "back_leg_upper": 18.0, "cape": -10.0},
+			0.5: {"lift": Vector2(20, 8), "torso": 12.0, "head": 6.0, "sword_arm_upper": 10.0, "sword_arm_lower": 5.0, "sword_hand": 140.0, "shield_arm_upper": -3.5, "front_leg_upper": -24.0, "front_leg_lower": 16.0, "back_leg_upper": 18.0, "cape": -10.0},
 			0.85: {"lift": Vector2(0, 0), "torso": 0.0, "head": 0.0, "sword_arm_upper": 0.0, "sword_arm_lower": 0.0, "sword_hand": 0.0, "shield_arm_upper": 0.0, "front_leg_upper": 0.0, "front_leg_lower": 0.0, "back_leg_upper": 0.0, "cape": 0.0},
+		},
+	},
+	# Struck: knocked back a step, head thrown back, then steadies.
+	&"hurt": {
+		"length": 0.55, "loop": false,
+		"keys": {
+			0.0: {"lift": Vector2(0, 0), "torso": 0.0, "head": 0.0, "sword_arm_upper": 0.0, "shield_arm_upper": 0.0, "front_leg_upper": 0.0, "back_leg_upper": 0.0, "cape": 0.0},
+			0.08: {"lift": Vector2(-22, 4), "torso": -14.0, "head": -12.0, "sword_arm_upper": 18.0, "shield_arm_upper": 4.0, "front_leg_upper": 10.0, "back_leg_upper": -8.0, "cape": 14.0},
+			0.25: {"lift": Vector2(-14, 3), "torso": -8.0, "head": -6.0, "sword_arm_upper": 10.0, "shield_arm_upper": 2.0, "front_leg_upper": 6.0, "back_leg_upper": -5.0, "cape": 8.0},
+			0.55: {"lift": Vector2(0, 0), "torso": 0.0, "head": 0.0, "sword_arm_upper": 0.0, "shield_arm_upper": 0.0, "front_leg_upper": 0.0, "back_leg_upper": 0.0, "cape": 0.0},
+		},
+	},
+	# A win: two hops, the sword raised.
+	&"cheer": {
+		"length": 1.1, "loop": false,
+		"keys": {
+			0.0: {"lift": Vector2(0, 0), "torso": 0.0, "head": 0.0, "sword_arm_upper": 0.0, "sword_arm_lower": 0.0, "sword_hand": 0.0, "shield_arm_upper": 0.0, "front_leg_upper": 0.0, "front_leg_lower": 0.0, "back_leg_upper": 0.0, "back_leg_lower": 0.0, "cape": 0.0},
+			0.22: {"lift": Vector2(0, -42), "torso": -4.0, "head": -5.0, "sword_arm_upper": -100.0, "sword_arm_lower": -40.0, "sword_hand": 150.0, "shield_arm_upper": 2.5, "front_leg_upper": -18.0, "front_leg_lower": 26.0, "back_leg_upper": 14.0, "back_leg_lower": 18.0, "cape": 14.0},
+			0.42: {"lift": Vector2(0, 0), "torso": 2.0, "head": 0.0, "sword_arm_upper": -100.0, "sword_arm_lower": -40.0, "sword_hand": 150.0, "shield_arm_upper": 1.0, "front_leg_upper": 0.0, "front_leg_lower": 0.0, "back_leg_upper": 0.0, "back_leg_lower": 0.0, "cape": 0.0},
+			0.64: {"lift": Vector2(0, -28), "torso": -4.0, "head": -5.0, "sword_arm_upper": -106.0, "sword_arm_lower": -40.0, "sword_hand": 146.0, "shield_arm_upper": 2.5, "front_leg_upper": -14.0, "front_leg_lower": 20.0, "back_leg_upper": 10.0, "back_leg_lower": 14.0, "cape": 10.0},
+			0.84: {"lift": Vector2(0, 0), "torso": 2.0, "head": 0.0, "sword_arm_upper": -100.0, "sword_arm_lower": -40.0, "sword_hand": 150.0, "shield_arm_upper": 1.0, "front_leg_upper": 0.0, "front_leg_lower": 0.0, "back_leg_upper": 0.0, "back_leg_lower": 0.0, "cape": 0.0},
+			1.1: {"lift": Vector2(0, 0), "torso": 0.0, "head": 0.0, "sword_arm_upper": 0.0, "sword_arm_lower": 0.0, "sword_hand": 0.0, "shield_arm_upper": 0.0, "front_leg_upper": 0.0, "front_leg_lower": 0.0, "back_leg_upper": 0.0, "back_leg_lower": 0.0, "cape": 0.0},
 		},
 	},
 }

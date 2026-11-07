@@ -21,6 +21,8 @@ signal skill_picked(id: String)
 const SCREEN := Vector2(1080, 1920)
 const BACKGROUND := "res://assets/bg/forge.png"
 const ITEM_ICONS := "res://assets/ui/items/%s.png"
+## Icons drawn with the hero rig's gear, for items not yet in assets/ui/items.
+const RIG_ITEM_ICONS := "res://assets/characters/hero_rig/item_icons/%s.png"
 const COMIC_FONT := "res://assets/fonts/Bangers-Regular.ttf"
 
 ## Where things are on the painted room.
@@ -948,6 +950,8 @@ func _draw_purse() -> void:
 func _icon(id: String) -> Texture2D:
 	if not _icons.has(id):
 		var path := ITEM_ICONS % id
+		if not ResourceLoader.exists(path):
+			path = RIG_ITEM_ICONS % id
 		_icons[id] = load(path) if ResourceLoader.exists(path) else null
 	return _icons[id]
 

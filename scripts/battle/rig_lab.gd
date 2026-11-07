@@ -1,12 +1,15 @@
 extends Node2D
 ## A bench to judge the hero rig (HeroRig) against the hand-drawn hero (CharacterRig): both
-## stand side by side and play the same clip. Buttons (or keys 1, 2, O): stand, strike, and
-## change into the next outfit. Run scenes/rig_lab.tscn.
+## stand side by side and play the same clip. Buttons (or keys 1, 2, O, 3, 4, 5): stand, strike,
+## change into the next outfit, get hit, cheer, and look scared. Run scenes/rig_lab.tscn.
 
 const OUTFITS := [
 	{"name": "Tân binh", "gear": ["wood_sword"]},
 	{"name": "Đồ da", "gear": ["iron_sword", "leather_armor", "leather_helmet", "reinforced_boots"]},
 	{"name": "Đồ sắt", "gear": ["tempered_sword", "iron_armor", "iron_helmet", "climbing_boots"]},
+	{"name": "Giáp Hoàng Gia", "gear": ["tempered_sword", "royal_armor", "iron_helmet", "climbing_boots"]},
+	{"name": "Giáp Hắc Thép", "gear": ["tempered_sword", "obsidian_armor", "iron_helmet", "climbing_boots"]},
+	{"name": "Giáp Băng", "gear": ["tempered_sword", "frost_armor", "leather_helmet", "climbing_boots"]},
 ]
 const GROUND := 1180.0
 
@@ -44,11 +47,12 @@ func _ready() -> void:
 	_label.position = Vector2(80, 1250)
 	_label.add_theme_font_size_override("font_size", 44)
 	add_child(_label)
-	var actions := [["ĐỨNG", _stand], ["CHÉM", _strike], ["ĐỔI ĐỒ", _next_outfit]]
+	var actions := [["ĐỨNG", _stand], ["CHÉM", _strike], ["ĐỔI ĐỒ", _next_outfit],
+		["TRÚNG ĐÒN", _hurt], ["MỪNG", _cheer], ["SỢ", _scared]]
 	for i in actions.size():
 		var button := Button.new()
 		button.text = actions[i][0]
-		button.position = Vector2(60 + i * 330, 1700)
+		button.position = Vector2(60 + (i % 3) * 330, 1560 + (i / 3) * 150)
 		button.size = Vector2(300, 120)
 		button.add_theme_font_size_override("font_size", 44)
 		button.pressed.connect(actions[i][1])
@@ -65,6 +69,12 @@ func _unhandled_input(event: InputEvent) -> void:
 				_strike()
 			KEY_O:
 				_next_outfit()
+			KEY_3:
+				_hurt()
+			KEY_4:
+				_cheer()
+			KEY_5:
+				_scared()
 
 
 func _stand() -> void:
@@ -75,6 +85,22 @@ func _stand() -> void:
 func _strike() -> void:
 	rig.play(&"attack")
 	drawn.attack()
+
+
+func _hurt() -> void:
+	rig.play(&"hurt")
+	drawn.react(&"hurt")
+
+
+func _cheer() -> void:
+	rig.play(&"cheer")
+	drawn.react(&"idle")
+
+
+## No clip of his own yet: just the face, held until the next button.
+func _scared() -> void:
+	rig.play(&"idle")
+	rig.set_mood("scared")
 
 
 func _next_outfit() -> void:

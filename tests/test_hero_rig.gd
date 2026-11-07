@@ -13,8 +13,8 @@ func test_every_part_hangs_on_its_joint() -> void:
 	for part: String in HeroRig.PARTS:
 		assert_true(rig.bone(part) != null, part)
 	# At rest a bone sits at its joint's offset from its parent's, so layers land where drawn.
-	var neck: Vector2 = HeroRig.JOINTS["neck"]
-	var waist: Vector2 = HeroRig.JOINTS["waist"]
+	var neck: Vector2 = rig._joints["neck"]
+	var waist: Vector2 = rig._joints["waist"]
 	assert_eq(rig.bone("head").position, neck - waist)
 	assert_eq(rig.bone("head").get_parent(), rig.bone("torso"))
 	assert_eq(rig.bone("sword").get_parent(), rig.bone("sword_hand"), "the sword is held in the hand")
@@ -52,3 +52,35 @@ func test_the_strike_calls_its_blow_once_at_the_impact() -> void:
 		for part: String in keys[times[0]]:
 			assert_eq(keys[times[0]][part], keys[times[-1]][part], "%s %s returns to rest" % [name, part])
 	rig.free()
+
+
+func test_a_helmet_swaps_the_whole_head_and_the_face_follows_the_clip() -> void:
+	var rig := _rig()
+	rig.set_outfit(Gear.outfit(["wood_sword"]))
+	assert_eq(rig.head_texture().resource_path, HeroRig.DIR + "heads/bare_normal.png")
+	rig.set_outfit(Gear.outfit(["wood_sword", "leather_helmet"]))
+	assert_eq(rig.head_texture().resource_path, HeroRig.DIR + "heads/leather_helmet_normal.png",
+		"a helmet is a whole head, not a layer over the hair")
+	rig.play(&"attack")
+	assert_eq(rig.mood, "angry")
+	assert_eq(rig.head_texture().resource_path, HeroRig.DIR + "heads/leather_helmet_angry.png")
+	rig.play(&"hurt")
+	assert_eq(rig.mood, "hurt")
+	rig.play(&"cheer")
+	assert_eq(rig.mood, "happy")
+	rig.play(&"idle")
+	assert_eq(rig.mood, "normal")
+	rig.set_mood("not a face")
+	assert_eq(rig.mood, "normal")
+	rig.free()
+
+
+func test_every_head_and_armor_is_drawn() -> void:
+	for kind: String in ["bare"] + Gear.ladder("helmet"):
+		for face: String in HeroRig.MOODS:
+			var path := HeroRig.DIR + "heads/%s_%s.png" % [kind, face]
+			assert_true(ResourceLoader.exists(path), path)
+	for armor: String in Gear.ladder("armor"):
+		for part: String in HeroRig.GEAR_PARTS["armor"]:
+			var path := HeroRig.DIR + "gear/%s/%s.png" % [armor, part]
+			assert_true(ResourceLoader.exists(path), path)

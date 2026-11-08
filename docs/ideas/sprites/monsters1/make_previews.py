@@ -2,8 +2,9 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 import json
 
-BASE = Path(__file__).resolve().parent
-REPO = BASE.parents[3]
+ROOT = Path(__file__).resolve().parent
+BASE = ROOT / "orc_chief"
+REPO = ROOT.parents[3]
 CLIPS = {'idle': (8, 12, None), 'attack': (12, 24, 6), 'hurt': (8, 24, None),
          'special': (12, 24, 7), 'defeat': (12, 12, None), 'victory': (8, 12, None), 'rage': (10, 12, None)}
 BG = (22, 29, 39, 255)

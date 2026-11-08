@@ -27,7 +27,7 @@ Tất cả: 0 stray, 0 speck, 0 haze, 0 pixel nền #FF00FF, 0 pixel viền hồ
 
 ## Kiểm trực quan
 
-Đã xem từng khung của cả 7 clip trên nền tối, rồi tải cả 7 GIF trong Chromium và xem các ảnh chụp ở nhiều thời điểm. Tư thế nối vòng về ready; giữ vũ khí và màu, không thấy viền hồng hay hình bị cắt. GIF ở `dark/` dùng đúng fps (làm tròn thời lượng từng khung theo lưới 10 ms của GIF, giữ đúng tổng thời lượng); xem `review.html` hoặc từng GIF/contact sheet. Đây là kiểm art, chưa phải tích hợp gameplay.
+Đã xem từng khung của cả 7 clip trên nền tối, rồi tải cả 7 GIF trong Chromium và xem các ảnh chụp ở nhiều thời điểm. Tư thế nối vòng về ready; giữ vũ khí và màu, không thấy viền hồng hay hình bị cắt. GIF ở `orc_chief/dark/` dùng đúng fps (làm tròn thời lượng từng khung theo lưới 10 ms của GIF, giữ đúng tổng thời lượng); xem `orc_chief/review.html` hoặc từng GIF/contact sheet. Đây là kiểm art, chưa phải tích hợp gameplay.
 
 ## Chạy lại
 
@@ -39,8 +39,38 @@ python3 tools/sprites/key_out.py docs/ideas/sprites/monsters1/raw/orc_chief_atta
 python3 tools/sprites/check_sheet.py assets/characters/orc_chief/anim/fresh_attack.png --frames 12 --fps 24 --key ff00ff --ref docs/ideas/sprites/monsters1/ref/orc_chief_idle_old.png --out docs/ideas/sprites/monsters1
 ```
 
-Lặp lại hai lệnh cuối cho các clip theo bảng; defeat thêm `--airborne`. `python3 docs/ideas/sprites/monsters1/make_previews.py` tái tạo GIF nền tối. Log từng lệnh kiểm: `fresh_<clip>_check.log`; số đo từng khung: `fresh_<clip>_report.json`.
+Lặp lại hai lệnh cuối cho các clip theo bảng; defeat thêm `--airborne`. `python3 docs/ideas/sprites/monsters1/make_previews.py` tái tạo GIF nền tối. Log từng lệnh kiểm: `orc_chief/fresh_<clip>_check.log`; số đo từng khung: `orc_chief/fresh_<clip>_report.json`.
 
 ## Bàn giao
 
 Chỉ thay 7 PNG trong `assets/characters/orc_chief/anim/` và thêm hồ sơ này. Không sửa `anim.json`, `.import`, scripts, scenes, tests, project.godot hay hero_rookie. Claude cập nhật frame count/fps/impact trong anim.json sau khi duyệt. Chưa chạy nhập asset bằng Godot để tránh phát sinh/chỉnh .import. Không làm quái thứ 2 cho đến khi được duyệt.
+
+
+## orc_chief_enraged — vòng kiểm 1/5
+
+| Sheet | Khung | fps | impact | Cao 0 / mẫu | Lệch x dải chân tối đa | Kết quả |
+|---|---:|---:|---:|---|---:|---|
+| `idle` | 8 | 12 | — | 408 / 408 px | 1 px | **ĐẠT** |
+| `attack` | 12 | 24 | 6 | 408 / 408 px | 37 px | **ĐẠT** |
+| `hurt` | 8 | 24 | — | 408 / 408 px | 1 px | **ĐẠT** |
+| `special` | 12 | 24 | 7 | 408 / 408 px | 16 px | **ĐẠT** |
+| `defeat` | 12 | 12 | — | 408 / 408 px | 2 px | **ĐẠT** |
+| `victory` | 8 | 12 | — | 408 / 408 px | 1 px | **ĐẠT** |
+| `rage` | 10 | 12 | — | 408 / 408 px | 6 px | **ĐẠT** |
+
+Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`orc_chief_enraged/review.html`](orc_chief_enraged/review.html). Ảnh RGB gốc nằm ở `orc_chief_enraged/generated/`, bản nền hồng chuẩn lưới ở `raw/orc_chief_enraged_<clip>_key.png`. Dùng cùng ready ở đầu/cuối (trừ defeat), hệ số cỡ người cố định từng clip; chỉ key_out.py tạo alpha. Idle thở/nhún rõ hơn, hurt bật ngửa mạnh hơn. Chưa đổi anim.json hoặc .import; chưa tích hợp gameplay.
+
+
+## orc_chief_enraged — vòng kiểm 2/5
+
+| Sheet | Khung | fps | impact | Cao 0 / mẫu | Lệch x dải chân tối đa | Kết quả |
+|---|---:|---:|---:|---|---:|---|
+| `idle` | 8 | 12 | — | 408 / 408 px | 1 px | **ĐẠT** |
+| `attack` | 12 | 24 | 6 | 408 / 408 px | 37 px | **ĐẠT** |
+| `hurt` | 8 | 24 | — | 408 / 408 px | 1 px | **ĐẠT** |
+| `special` | 12 | 24 | 7 | 408 / 408 px | 26.5 px | **ĐẠT** |
+| `defeat` | 12 | 12 | — | 408 / 408 px | 2 px | **ĐẠT** |
+| `victory` | 8 | 12 | — | 408 / 408 px | 1 px | **ĐẠT** |
+| `rage` | 10 | 12 | — | 408 / 408 px | 6 px | **ĐẠT** |
+
+Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`orc_chief_enraged/review.html`](orc_chief_enraged/review.html). Ảnh RGB gốc nằm ở `orc_chief_enraged/generated/`, bản nền hồng chuẩn lưới ở `raw/orc_chief_enraged_<clip>_key.png`. Dùng cùng ready ở đầu/cuối (trừ defeat), hệ số cỡ người cố định từng clip; chỉ key_out.py tạo alpha. Idle thở/nhún rõ hơn, hurt bật ngửa mạnh hơn. Chưa đổi anim.json hoặc .import; chưa tích hợp gameplay.

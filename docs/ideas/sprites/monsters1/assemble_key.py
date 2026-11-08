@@ -68,5 +68,5 @@ for clip, (count, fps) in CLIPS.items():
                                    'drawing_xy': [x, y], 'shared_ready': i == 0 or (i == count-1 and clip != 'defeat')})
     sheet.save(ROOT / f'raw/orc_chief_{clip}_key.png', optimize=True)
     layout[clip] = info
-(ROOT / 'layout.json').write_text(json.dumps(layout, indent=2) + '\n')
+(ROOT / 'orc_chief/layout.json').write_text(json.dumps(layout, indent=2) + '\n')
 print('7 opaque magenta sheets assembled; final alpha must be made with tools/sprites/key_out.py')

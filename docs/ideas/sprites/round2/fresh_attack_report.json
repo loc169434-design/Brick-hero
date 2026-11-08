@@ -1,0 +1,202 @@
+{
+ "sheet": "/Users/locnguyen/Desktop/brick-hero-gemini/assets/characters/hero_rookie/anim/leather/fresh_attack.png",
+ "frames": 12,
+ "cell": 512,
+ "checks": {
+  "grid": {
+   "pass": true,
+   "detail": "sheet 2048x1536 ok; empty frames: []"
+  },
+  "feet": {
+   "pass": true,
+   "detail": "first/last frame feet (y, x) vs (500, 256): ok"
+  },
+  "size": {
+   "pass": true,
+   "detail": "frame 0 body 403 px tall, reference 394"
+  },
+  "clean": {
+   "pass": true,
+   "detail": "worst frame 0 stray pixels, 0 specks in 12 frames (and 0 haze pixels, cleared on shrinking)"
+  },
+  "inside": {
+   "pass": true,
+   "detail": "frames touching the edge: none"
+  },
+  "key": {
+   "pass": true,
+   "detail": "#00ff00 left: 0 px; rim tinted by it: 0 px"
+  }
+ },
+ "per_frame": [
+  {
+   "frame": 0,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    256.0
+   ],
+   "height": 403,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 1,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    499.0,
+    246.0
+   ],
+   "height": 367,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 2,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    251.5
+   ],
+   "height": 351,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 3,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    251.0
+   ],
+   "height": 367,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 4,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    502.0,
+    255.0
+   ],
+   "height": 370,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 5,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    499.0,
+    224.5
+   ],
+   "height": 323,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 6,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    499.0,
+    224.5
+   ],
+   "height": 322,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 7,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    499.0,
+    290.5
+   ],
+   "height": 313,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 8,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    499.0,
+    298.0
+   ],
+   "height": 328,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 9,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    250.5
+   ],
+   "height": 356,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 10,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    238.5
+   ],
+   "height": 370,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 11,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    256.5
+   ],
+   "height": 378,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  }
+ ],
+ "pass": true
+}

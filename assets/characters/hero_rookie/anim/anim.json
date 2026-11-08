@@ -99,7 +99,8 @@
     "block": {
       "frames": 8,
       "fps": 24,
-      "loop": false
+      "loop": false,
+      "impact": 3
     },
     "dash": {
       "frames": 6,

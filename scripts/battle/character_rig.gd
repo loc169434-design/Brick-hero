@@ -289,6 +289,24 @@ func impact_seconds(clip: StringName) -> float:
 	return float(info.get("impact", 0)) / float(info.get("fps", 24))
 
 
+## Seconds from the start of `clip` to each of its blows: its "impacts", else its one "impact".
+func impact_times(clip: StringName) -> Array[float]:
+	var times: Array[float] = []
+	if not has_clip(clip):
+		return times
+	var info: Dictionary = _anim["clips"][String(clip)]
+	var fps := float(info.get("fps", 24))
+	for frame in info.get("impacts", [info["impact"]] if info.has("impact") else []):
+		times.append(float(frame) / fps)
+	return times
+
+
+## Whether `clip` is drawn for the look worn now. Under a variant (the broom) only the variant's
+## own clips count, so a move drawn without the broom doesn't play while he holds one.
+func fits_look(clip: StringName) -> bool:
+	return has_clip(clip) and (variant == "" or _variant_clips.has(String(clip)))
+
+
 ## How long a move's wind-up takes: up to the clip's impact frame, or `fallback` seconds when
 ## the character has no clip for it.
 func strike_time(clip: StringName, fallback: float) -> float:

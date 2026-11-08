@@ -320,6 +320,18 @@ func test_every_skill_can_be_learned_and_named() -> void:
 		assert_true(after.is_empty() or Campaign.has_level(after), "%s is taught by a real level" % id)
 
 
+func test_the_shield_takes_blows_the_armour_or_the_guard_mostly_stopped() -> void:
+	var report := TurnReport.new()
+	report.monster_attack = 6
+	assert_true(not BattleView.blocks(report, 0), "no armour, no block")
+	assert_true(not BattleView.blocks(report, 5), "more got through than the armour stopped")
+	assert_true(BattleView.blocks(report, 6))
+	report.guarded = 4
+	assert_true(BattleView.blocks(report, 0), "Hộ Thể caught some of it")
+	report.monster_critical = true
+	assert_true(not BattleView.blocks(report, 9), "a critical blow gets through the guard")
+
+
 func test_longer_chains_string_more_blows() -> void:
 	var report := TurnReport.new()
 	report.link_length = 7

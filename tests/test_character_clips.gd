@@ -191,6 +191,45 @@ func test_an_outfit_plays_its_own_clip_set_and_the_rookie_the_usual_one() -> voi
 	rig.free()
 
 
+func test_a_clip_of_several_blows_times_each_and_one_blow_its_impact() -> void:
+	var rig := _rig()
+	rig._anim["clips"]["combo"] = {"frames": 16, "fps": 24, "impact": 4, "impacts": [4, 9, 14]}
+	rig._sheets["res://assets/characters/hero_rookie/anim/fresh_combo.png"] = rig._sheets["res://assets/characters/hero_rookie/anim/fresh_attack.png"]
+	assert_eq(rig.impact_times(&"combo"), [4.0 / 24.0, 9.0 / 24.0, 14.0 / 24.0] as Array[float])
+	assert_eq(rig.impact_times(&"attack"), [0.25] as Array[float])
+	assert_eq(rig.impact_times(&"idle"), [] as Array[float])
+	assert_eq(rig.impact_times(&"block"), [] as Array[float], "not drawn")
+	rig._body.free()
+	rig.free()
+
+
+func test_moves_drawn_without_the_broom_wait_while_he_holds_it() -> void:
+	var rig := _rig()
+	rig._base_clips = rig._anim["clips"].duplicate(true)
+	assert_true(rig.fits_look(&"attack"))
+	rig.variant = "broom"
+	rig._variant_clips = {"idle": {"frames": 8, "fps": 12, "loop": true}}
+	assert_true(rig.fits_look(&"idle"), "the broom has its own idle")
+	assert_true(not rig.fits_look(&"attack"), "the usual attack is drawn without the broom")
+	assert_true(not rig.fits_look(&"combo"), "nor anything not drawn at all")
+	rig._body.free()
+	rig.free()
+
+
+func test_the_hero_has_every_new_move_drawn_in_every_outfit() -> void:
+	var rig := CharacterRig.new()
+	rig._ready()
+	rig.setup("hero_rookie", 1)
+	for worn in ["rookie", "leather", "iron"]:
+		rig.set_outfit({"outfit": worn, "refine": 0})
+		for clip in [&"combo", &"block", &"dash", &"skill_armor_breaker", &"skill_second_wind", &"skill_thunder_slash", &"skill_iron_guard", &"skill_blade_vortex", &"skill_starfall_strike"]:
+			assert_true(rig.fits_look(clip), "%s %s" % [worn, clip])
+		assert_eq(rig.impact_times(&"combo").size(), 3, worn + " combo cuts three times")
+		assert_eq(rig.impact_times(&"skill_blade_vortex").size(), 3, worn + " vortex cuts three times")
+	rig._body.free()
+	rig.free()
+
+
 func test_a_light_384_sheet_shows_as_big_as_a_512_one() -> void:
 	var rig := _rig()
 	rig._update_clip(0.0)

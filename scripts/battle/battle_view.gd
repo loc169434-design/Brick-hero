@@ -587,11 +587,22 @@ static func combo_sequence(hits: int) -> Array[StringName]:
 
 
 ## A string of blows (combo_sequence): the hero closes in, each blow flinches the monster and
-## bumps the hit counter, and the last shows the damage.
+## bumps the hit counter, and the last shows the damage. With the drawn moves he dashes in and
+## opens with his three-cut combo (Phong Kiếm spins its own cuts, again for any left), and the
+## usual blows finish a longer string.
 func _move_combo(report: TurnReport) -> void:
-	var sequence := combo_sequence(combo_hits(report))
+	var hits := combo_hits(report)
+	var sequence := combo_sequence(hits)
 	var close := Vector2(MONSTER_FEET.x - HERO_FEET.x - 190, -10)
-	for i in sequence.size():
+	var drawn := &"skill_blade_vortex" if report.skill == "blade_vortex" else &"combo"
+	var first := 0
+	if _hero.fits_look(drawn) and not _hero.impact_times(drawn).is_empty():
+		await _dash_in(close)
+		while first < hits:
+			first = await _clip_blows(report, drawn, first, hits)
+			if drawn == &"combo":
+				break
+	for i in range(first, sequence.size()):
 		var blow := sequence[i]
 		var last := i == sequence.size() - 1
 		var comic: String = "combo" if last else COMBO_COMICS[i % COMBO_COMICS.size()]
@@ -623,6 +634,37 @@ func _move_combo(report: TurnReport) -> void:
 			await get_tree().create_timer(COMBO_GAP).timeout
 	await _hero.home(0.3)
 	_hero.react(&"idle")
+
+
+## Lunges in to `to`, low and fast, with the dash clip when it's drawn for his look.
+func _dash_in(to: Vector2) -> void:
+	if not _hero.fits_look(&"dash"):
+		await _hero.dash_to(to, 0.15)
+		return
+	_hero.react(&"dash", 0.0)
+	Sfx.play(&"whoosh", 1.2)
+	await _hero.dash_to(to, _hero.clip_seconds(&"dash") * 0.8)
+
+
+## Plays `clip` and lands a blow on each of its impact frames, counting on from `landed` up to
+## `hits` in all; the last blow of the string shows the damage. Returns the count after.
+func _clip_blows(report: TurnReport, clip: StringName, landed: int, hits: int) -> int:
+	_hero.react(clip, 0.0)
+	var elapsed := 0.0
+	for at in _hero.impact_times(clip):
+		if landed >= hits:
+			break
+		await _wait(at - elapsed)
+		elapsed = at
+		var last := landed == hits - 1
+		if last:
+			_monster.knockback(90.0)
+		_land_hit(report, "combo" if last else COMBO_COMICS[landed % COMBO_COMICS.size()], false, last)
+		_show_combo_count(landed + 1)
+		landed += 1
+	# Let the clip settle after the string's last cut; go straight on when there's more.
+	await _wait(_hero.clip_seconds(clip) - elapsed if landed >= hits else COMBO_GAP)
+	return landed
 
 
 ## "N HIT!" over the monster, bigger and hotter with each blow.
@@ -663,21 +705,40 @@ func _hero_skill(report: TurnReport) -> void:
 		return
 	match report.skill:
 		"armor_breaker":
-			await _move_bash(report)
+			if _hero.fits_look(&"skill_armor_breaker"):
+				await _move_armor_breaker(report)
+			else:
+				await _move_bash(report)
 		"second_wind":
-			_hero.react(&"drink", 1.0)
+			# Down on one knee, then the light comes as he lifts his head and rises.
+			var drawn := _hero.fits_look(&"skill_second_wind")
+			var seconds := _hero.clip_seconds(&"skill_second_wind", 1.0) if drawn else 1.0
+			_hero.react(&"skill_second_wind" if drawn else &"drink", seconds)
+			var glow := 0.4 if drawn else 0.0
+			await _wait(glow)
 			var chest := _local(_hero.point("head")) + Vector2(0, 90)
 			_sparks.flare(chest, HP_HERO.lightened(0.3), 2.5)
 			_flash("shockwave", chest, 0.2, 1.6, 0.5, 0.0, true)
-			await _wait(0.6)
+			await _wait(maxf(seconds - glow, 0.6))
 		"thunder_slash":
-			# Lightning gathers on the raised blade, then the cut comes down with the bolt.
+			# Lightning gathers on the blade drawn back, then the cut comes with the bolt.
+			var drawn := _hero.fits_look(&"skill_thunder_slash")
+			if drawn:
+				_hero.react(&"skill_thunder_slash", 0.0)
 			var blade := _local(_hero.point("hand")) + Vector2(0, -80)
 			for i in 3:
 				_sparks.flare(blade + Vector2(randf_range(-30, 30), randf_range(-40, 10)), THUNDER, 1.2)
 			Sfx.play(&"charge", 0.8)
-			await _wait(0.3)
-			await _hero.attack()
+			if drawn:
+				# Half a step back, then he flies in low and cuts on the clip's impact frame.
+				var strike := _hero.strike_time(&"skill_thunder_slash", 0.33)
+				await _wait(strike * 0.45)
+				Sfx.play(&"whoosh", 1.1)
+				await _hero.dash_to(Vector2(MONSTER_FEET.x - HERO_FEET.x - 200, -10), strike * 0.55)
+				_hero.reach_impact()
+			else:
+				await _wait(0.3)
+				await _hero.attack()
 			var struck := _local(_monster.point("head")) + Vector2(0, 40)
 			_flash("slash_crit", struck, 0.4, 1.3, 0.3, -0.5, true)
 			for i in 6:
@@ -686,9 +747,16 @@ func _hero_skill(report: TurnReport) -> void:
 			_land_hit(report, "zap")
 			if report.delayed:
 				_float("+1 LƯỢT", COUNTDOWN_AT + Vector2(0, 150), THUNDER, 52)
+			if drawn:
+				# He skids to a stop, then walks back to his place.
+				await _wait(0.3)
+				await _hero.home(0.3)
+				_hero.react(&"idle")
 		"iron_guard":
-			_hero.react(&"bash", 0.0)
-			await _wait(0.25)
+			# Wide stance, the shield's rim driven into the ground, shoulder against it.
+			var drawn := _hero.fits_look(&"skill_iron_guard")
+			_hero.react(&"skill_iron_guard" if drawn else &"bash", 0.0)
+			await _wait(0.4 if drawn else 0.25)
 			var body := _local(_hero.point("head")) + Vector2(0, 110)
 			_flash("shockwave", body, 0.3, 2.0, 0.6, 0.0, true)
 			for i in 8:
@@ -700,16 +768,67 @@ func _hero_skill(report: TurnReport) -> void:
 		"blade_vortex":
 			await _move_combo(report)
 		"starfall_strike":
-			var star := _local(_hero.point("hand")) + Vector2(0, -120)
-			_sparks.flare(star, STARFALL, 2.5)
-			Sfx.play(&"special", 0.9)
-			await _wait(0.3)
-			await _move_leap(report)
-			var through := _local(_monster.point("head")) + Vector2(0, 60)
-			for i in 10:
-				_sparks.flare(through + Vector2(randf_range(-90, 90), randf_range(-120, 80)), STARFALL, 1.4)
-			_float("XUYÊN KHIÊN!", MONSTER_FEET + Vector2(-150, -260), STARFALL, 50)
+			if _hero.fits_look(&"skill_starfall_strike"):
+				await _move_starfall(report)
+			else:
+				var star := _local(_hero.point("hand")) + Vector2(0, -120)
+				_sparks.flare(star, STARFALL, 2.5)
+				Sfx.play(&"special", 0.9)
+				await _wait(0.3)
+				await _move_leap(report)
+				_starfall_burst()
 	_camera(1.0, SIZE / 2, 0.35)
+
+
+## Phá Giáp: dashes in, crouches with the sword raised in both hands, springs up and splits the
+## monster's guard on the way down (the clip's impact frame), then walks back.
+func _move_armor_breaker(report: TurnReport) -> void:
+	var close := Vector2(MONSTER_FEET.x - HERO_FEET.x - 200, 0)
+	await _dash_in(close)
+	_hero.react(&"skill_armor_breaker", 0.0)
+	var strike := _hero.strike_time(&"skill_armor_breaker", 0.4)
+	# The crouch takes the clip's first four frames; the spring up and the chop the rest.
+	await _wait(strike * 0.45)
+	Sfx.play(&"whoosh", 0.9)
+	await _hero.hop_to(close, 150.0, strike * 0.55)
+	_hero.reach_impact()
+	_monster.squash(0.3)
+	_monster.knockback(45.0)
+	_flash("dust_puff", MONSTER_FEET + Vector2(0, -10), 0.5, 1.2, 0.4)
+	_land_hit(report, "crack" if report.layers_broken > 0 else "clang")
+	await _wait(0.35)
+	await _hero.home(0.3)
+	_hero.react(&"idle")
+
+
+## Tinh Kiếm: a deep crouch with the star gathering on the blade, a leap high over the monster
+## and a dive with the sword point down (the clip's impact frame), then up off one knee.
+func _move_starfall(report: TurnReport) -> void:
+	_hero.react(&"skill_starfall_strike", 0.0)
+	var star := _local(_hero.point("hand")) + Vector2(0, -120)
+	_sparks.flare(star, STARFALL, 2.5)
+	Sfx.play(&"special", 0.9)
+	var strike := _hero.strike_time(&"skill_starfall_strike", 0.5)
+	await _wait(strike * 0.25)
+	Sfx.play(&"whoosh")
+	_camera(1.06, (HERO_FEET + MONSTER_FEET) / 2 + Vector2(0, -150), 0.3)
+	await _hero.hop_to(Vector2(MONSTER_FEET.x - HERO_FEET.x - 150, -20), 320.0, strike * 0.75)
+	_hero.reach_impact()
+	_monster.squash(0.45)
+	_flash("dust_puff", MONSTER_FEET + Vector2(0, -10), 0.6, 1.4, 0.45)
+	_land_hit(report, "wham", true)
+	_starfall_burst()
+	await _wait(0.3)
+	await _hero.hop_to(Vector2.ZERO, 140.0, 0.35)
+	_hero.react(&"idle")
+
+
+## Starlight bursting through the monster, shield and all.
+func _starfall_burst() -> void:
+	var through := _local(_monster.point("head")) + Vector2(0, 60)
+	for i in 10:
+		_sparks.flare(through + Vector2(randf_range(-90, 90), randf_range(-120, 80)), STARFALL, 1.4)
+	_float("XUYÊN KHIÊN!", MONSTER_FEET + Vector2(-150, -260), STARFALL, 50)
 
 
 ## The blow connects. `final` is the hit that shows the numbers; earlier hits of a combo only
@@ -807,6 +926,8 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 	if _state.monster.special == "rock":
 		kind = &"rock"
 	_attack_turn += 1
+	# Caught on the shield: no daze, half the shove, and the block instead of the stagger.
+	var blocked := _hero.fits_look(&"block") and blocks(report, _state.rules.armor)
 	match kind:
 		&"rock":
 			_monster.react(_monster_clip(&"throw"), 0.7)
@@ -815,8 +936,9 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 			var rock := _prop("rock")
 			await _fly(rock, _local(_monster.point("hand")), _local(_hero.point("crown")), 0.4, 130.0, 2.0)
 			rock.queue_free()
-			_hero.daze()
-			_hero_hit(report, "bonk", &"dizzy")
+			if not blocked:
+				_hero.daze()
+			_hero_hit(report, "bonk", &"block" if blocked else &"dizzy")
 		&"club":
 			_monster.react(_monster_clip(&"throw"), 0.7)
 			await _wait(_monster.strike_time(_monster_clip(&"throw"), 0.0))
@@ -824,14 +946,14 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 			var club := _prop("club")
 			await _fly(club, _local(_monster.point("hand")), _local(_hero.point("head")) + Vector2(0, 60), 0.32, 50.0, -3.0)
 			club.queue_free()
-			_hero.knockback(70.0, 0.5)
-			_hero_hit(report, "thud", &"knocked")
+			_hero.knockback(35.0 if blocked else 70.0, 0.5)
+			_hero_hit(report, "thud", &"block" if blocked else &"knocked")
 		_:
 			_monster.react(_monster_clip(&"charge"), 0.0)
 			await _monster.dash_to(Vector2(HERO_FEET.x - MONSTER_FEET.x + 200, 0), _monster.strike_time(_monster_clip(&"charge"), 0.18))
 			_monster.reach_impact()
-			_hero.knockback(90.0, 0.5)
-			_hero_hit(report, "bam", &"knocked")
+			_hero.knockback(45.0 if blocked else 90.0, 0.5)
+			_hero_hit(report, "bam", &"block" if blocked else &"knocked")
 			await _monster.home(0.3)
 	if fight == _fight:
 		_camera(1.0, SIZE / 2, 0.35)
@@ -913,8 +1035,21 @@ func _monster_clip(clip: StringName) -> StringName:
 	return &"attack"
 
 
+## Whether the hero takes a blow on his shield: Hộ Thể caught some of it, or his armour took at
+## least as much as got through (`armor` is what it takes off each blow). Never a critical one.
+static func blocks(report: TurnReport, armor: int) -> bool:
+	if report.monster_critical:
+		return false
+	return report.guarded > 0 or (armor > 0 and armor >= report.monster_attack)
+
+
 func _hero_hit(report: TurnReport, comic: String, pose: StringName) -> void:
 	_hero.react(pose, 1.0)
+	if pose == &"block":
+		# The block clip's impact frame is the blow landing on the raised shield.
+		_hero.reach_impact()
+		comic = "clang"
+		Sfx.play(&"clang", 0.9)
 	_hero.flash()
 	_hero.set_health(_state.hero_health())
 	var head := _local(_hero.point("head"))
@@ -927,7 +1062,8 @@ func _hero_hit(report: TurnReport, comic: String, pose: StringName) -> void:
 		slow_motion.emit(0.3, 0.45)
 	else:
 		_comic(comic, head + Vector2(110, -40))
-	_comic("ouch", head + Vector2(-30, -10), 0.6)
+	if pose != &"block":
+		_comic("ouch", head + Vector2(-30, -10), 0.6)
 	if report.monster_attack > 0:
 		_float("-%d" % report.monster_attack, HERO_FEET + Vector2(0, -200), WARN, FLOAT_SIZE + (40 if report.monster_critical else 16))
 	if report.guarded > 0:

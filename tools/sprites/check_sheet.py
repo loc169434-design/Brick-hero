@@ -17,7 +17,7 @@
 #             near-invisible haze (alpha 1-15) AI art leaves round a figure is only counted,
 #             shrink_sheet.py clears it
 #   inside    nothing cut by the frame's edge
-#   key       with --key: no pixel of the key background left anywhere (gaps between the hair,
+#   key       with --key (00ff00, or ff00ff for green-skinned characters): no pixel of the key background left anywhere (gaps between the hair,
 #             the arm and the sword included) and no rim tinted by it. Art is drawn on a key
 #             colour the character never wears (green #00ff00 for the hero) and keyed out
 #             everywhere: drawn on white, the gaps the outline encloses stay white.
@@ -102,10 +102,10 @@ for i, f in enumerate(frames):
         rgb = f[..., :3].astype(int)
         seen = alpha > 0
         left = seen & (np.abs(rgb - kc).max(-1) <= 60)
-        # a rim tinted by the key: the key's strongest channel well over the other two
-        main = int(np.argmax(kc))
-        others = [c for c in range(3) if c != main]
-        tint = seen & ~left & (rgb[..., main] > rgb[..., others].max(-1) + 50) & ~ndimage.binary_erosion(alpha >= 200, iterations=2)
+        # a rim tinted by the key: the key's strong channels well over its weak ones
+        strong = [c for c in range(3) if kc[c] >= 128]
+        weak = [c for c in range(3) if kc[c] < 128]
+        tint = seen & ~left & (rgb[..., strong].min(-1) > rgb[..., weak].max(-1) + 50) & ~ndimage.binary_erosion(alpha >= 200, iterations=2)
         info["key_left"] = int(left.sum())
         info["key_tint"] = int(tint.sum())
     info.update({"feet": feet(f), "height": int(body_height(f)), "stray": int(stray.sum()), "specks": small, "edge": int((edge >= 128).sum())})

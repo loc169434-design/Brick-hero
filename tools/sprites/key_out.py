@@ -1,7 +1,8 @@
-# Keys the background out of a sheet drawn on a flat key colour (green #00ff00 by default):
-# every pixel of that colour goes, wherever it is (the gaps the outline encloses included),
-# edges fade with the distance to the key, the green the edges picked up is taken back out,
-# and specks under 20 px are dropped.
+# Keys the background out of a sheet drawn on a flat key colour (green #00ff00 by default,
+# magenta #ff00ff for green-skinned characters): every pixel of that colour goes, wherever it is
+# (the gaps the outline encloses included), edges fade with the distance to the key, the key
+# colour the edges picked up is taken back out (only near the edge, so the character's own
+# colours stay), and specks under 20 px are dropped.
 #
 #   python3 tools/sprites/key_out.py <drawn_on_key.png> <out.png> [--key 00ff00] [--soft 60 140]
 #
@@ -26,11 +27,14 @@ dist = np.sqrt(((rgb - key) ** 2).sum(-1))
 low, high = a.soft
 alpha = np.clip((dist - low) / (high - low), 0, 1) * (img[..., 3] / 255.0)
 
-# take the key's spill out: its strongest channel no higher than the larger of the other two
-main = int(np.argmax(key))
-others = [c for c in range(3) if c != main]
-cap = rgb[..., others].max(-1)
-rgb[..., main] = np.minimum(rgb[..., main], cap)
+# take the key's spill out near the edge: the key's strong channels (green; red and blue for
+# magenta) pulled down to the strongest of its weak ones
+strong = [c for c in range(3) if key[c] >= 128]
+weak = [c for c in range(3) if key[c] < 128]
+edge = ndimage.binary_dilation(alpha < 0.98, iterations=3)
+spill = np.clip(rgb[..., strong].min(-1) - rgb[..., weak].max(-1), 0, None) * edge
+for c in strong:
+    rgb[..., c] -= spill
 
 # drop specks
 solid = alpha >= 0.25

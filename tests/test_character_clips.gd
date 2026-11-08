@@ -139,7 +139,12 @@ func test_drawn_blacksmith_acting_can_disable_extra_breathing_and_cheer_hops() -
 func test_clip_sheets_import_vram_compressed() -> void:
 	var folders := ["res://assets/fx/combat/anim/"]
 	for id in DirAccess.get_directories_at("res://assets/characters/"):
-		folders.append("res://assets/characters/%s/anim/" % id)
+		var anim := "res://assets/characters/%s/anim/" % id
+		folders.append(anim)
+		# outfit and variant clip sets
+		if DirAccess.dir_exists_absolute(anim):
+			for sub in DirAccess.get_directories_at(anim):
+				folders.append(anim + sub + "/")
 	var checked := 0
 	for folder: String in folders:
 		if not DirAccess.dir_exists_absolute(folder):
@@ -169,11 +174,18 @@ func test_an_outfit_plays_its_own_clip_set_and_the_rookie_the_usual_one() -> voi
 	rig._base_clips = rig._anim["clips"].duplicate(true)
 	rig.set_outfit({"outfit": "rookie", "refine": 0})
 	assert_eq(rig._outfit_folder(), "")
-	rig.set_outfit({"outfit": "leather", "refine": 0})
-	assert_eq(rig._outfit_folder(), "leather")
-	# No leather sheets yet: the usual clips stand in.
+	assert_eq(rig._clip_sheet_for(&"idle"), rig._sheets["res://assets/characters/hero_rookie/anim/fresh_idle.png"])
+	var usual: Dictionary = (load("res://assets/characters/hero_rookie/anim/anim.json") as JSON).data["clips"]
+	for worn in ["leather", "iron"]:
+		rig.set_outfit({"outfit": worn, "refine": 0})
+		assert_eq(rig._outfit_folder(), worn)
+		assert_eq(rig._outfit_clips.keys(), usual.keys(), worn + " is drawn for every clip")
+		for clip: String in usual:
+			var sheet := rig._clip_sheet_for(StringName(clip))
+			assert_true(sheet != null and sheet.resource_path.contains("/anim/%s/" % worn), "%s %s" % [worn, clip])
+	# An outfit not drawn yet: the usual clips stand in.
+	rig.set_outfit({"outfit": "frost", "refine": 0})
 	assert_eq(rig._outfit_clips, {})
-	assert_true(rig.has_clip(&"idle"))
 	assert_eq(rig._clip_sheet_for(&"idle"), rig._sheets["res://assets/characters/hero_rookie/anim/fresh_idle.png"])
 	rig._body.free()
 	rig.free()

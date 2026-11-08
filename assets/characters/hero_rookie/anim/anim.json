@@ -84,6 +84,66 @@
       "frames": 8,
       "fps": 16,
       "loop": true
+    },
+    "combo": {
+      "frames": 16,
+      "fps": 24,
+      "loop": false,
+      "impact": 4,
+      "impacts": [
+        4,
+        9,
+        14
+      ]
+    },
+    "block": {
+      "frames": 8,
+      "fps": 24,
+      "loop": false
+    },
+    "dash": {
+      "frames": 6,
+      "fps": 24,
+      "loop": false
+    },
+    "skill_armor_breaker": {
+      "frames": 14,
+      "fps": 24,
+      "loop": false,
+      "impact": 9
+    },
+    "skill_second_wind": {
+      "frames": 14,
+      "fps": 12,
+      "loop": false
+    },
+    "skill_thunder_slash": {
+      "frames": 14,
+      "fps": 24,
+      "loop": false,
+      "impact": 8
+    },
+    "skill_iron_guard": {
+      "frames": 10,
+      "fps": 12,
+      "loop": false
+    },
+    "skill_blade_vortex": {
+      "frames": 16,
+      "fps": 24,
+      "loop": false,
+      "impact": 4,
+      "impacts": [
+        4,
+        8,
+        12
+      ]
+    },
+    "skill_starfall_strike": {
+      "frames": 16,
+      "fps": 24,
+      "loop": false,
+      "impact": 12
     }
   }
 }

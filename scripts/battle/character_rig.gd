@@ -22,7 +22,8 @@ extends Node2D
 ## instead of the still pose: <wear>_<clip>.png (or fresh_<clip>.png, or <clip>.png), a grid
 ## of `columns` frames of `frame_size`, feet at the usual point. A frame is the 512 canvas at
 ## `frame_size` pixels (384 keeps sheets light: the body shows only 360 tall). Looping clips repeat; others
-## hold their last frame. A clip's "impact" frame is when the blow lands (clip_impact), and an
+## hold their last frame. A clip's "impact" frame is when the blow lands (clip_impact); a
+## clip of several blows also lists them all in "impacts", its first being "impact". An
 ## optional per-frame "shield" track moves the Orc's shield with its hand.
 
 enum Wear { FRESH, BRUISED, BATTERED }

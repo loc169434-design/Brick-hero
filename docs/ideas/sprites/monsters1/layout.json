@@ -1,0 +1,1045 @@
+{
+  "idle": {
+    "frames": 8,
+    "fps": 12,
+    "scale_x": 1.0723860589812333,
+    "scale_y": 1.0025641025641026,
+    "reference_height": 391,
+    "placement": [
+      {
+        "frame": 0,
+        "source_bbox": [
+          32,
+          29,
+          405,
+          419
+        ],
+        "drawing_xy": [
+          50,
+          107
+        ],
+        "shared_ready": true
+      },
+      {
+        "frame": 1,
+        "source_bbox": [
+          476,
+          27,
+          850,
+          419
+        ],
+        "drawing_xy": [
+          50,
+          105
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 2,
+        "source_bbox": [
+          919,
+          23,
+          1294,
+          419
+        ],
+        "drawing_xy": [
+          50,
+          101
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 3,
+        "source_bbox": [
+          1363,
+          19,
+          1736,
+          419
+        ],
+        "drawing_xy": [
+          50,
+          97
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 4,
+        "source_bbox": [
+          33,
+          464,
+          407,
+          863
+        ],
+        "drawing_xy": [
+          51,
+          98
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 5,
+        "source_bbox": [
+          476,
+          470,
+          849,
+          863
+        ],
+        "drawing_xy": [
+          50,
+          104
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 6,
+        "source_bbox": [
+          919,
+          471,
+          1291,
+          863
+        ],
+        "drawing_xy": [
+          50,
+          105
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 7,
+        "source_bbox": [
+          1362,
+          473,
+          1736,
+          863
+        ],
+        "drawing_xy": [
+          49,
+          107
+        ],
+        "shared_ready": true
+      }
+    ]
+  },
+  "attack": {
+    "frames": 12,
+    "fps": 24,
+    "scale_x": 1.3297297297297297,
+    "scale_y": 1.2653721682847896,
+    "reference_height": 391,
+    "placement": [
+      {
+        "frame": 0,
+        "source_bbox": [
+          34,
+          27,
+          328,
+          336
+        ],
+        "drawing_xy": [
+          53,
+          106
+        ],
+        "shared_ready": true
+      },
+      {
+        "frame": 1,
+        "source_bbox": [
+          411,
+          29,
+          697,
+          336
+        ],
+        "drawing_xy": [
+          72,
+          109
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 2,
+        "source_bbox": [
+          779,
+          31,
+          1058,
+          336
+        ],
+        "drawing_xy": [
+          80,
+          112
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 3,
+        "source_bbox": [
+          1154,
+          13,
+          1410,
+          336
+        ],
+        "drawing_xy": [
+          98,
+          89
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 4,
+        "source_bbox": [
+          69,
+          380,
+          341,
+          699
+        ],
+        "drawing_xy": [
+          99,
+          94
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 5,
+        "source_bbox": [
+          378,
+          387,
+          710,
+          698
+        ],
+        "drawing_xy": [
+          29,
+          104
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 6,
+        "source_bbox": [
+          710,
+          404,
+          1080,
+          698
+        ],
+        "drawing_xy": [
+          5,
+          125
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 7,
+        "source_bbox": [
+          1090,
+          421,
+          1440,
+          699
+        ],
+        "drawing_xy": [
+          13,
+          146
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 8,
+        "source_bbox": [
+          13,
+          769,
+          351,
+          1061
+        ],
+        "drawing_xy": [
+          25,
+          128
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 9,
+        "source_bbox": [
+          394,
+          757,
+          709,
+          1061
+        ],
+        "drawing_xy": [
+          50,
+          113
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 10,
+        "source_bbox": [
+          754,
+          756,
+          1059,
+          1061
+        ],
+        "drawing_xy": [
+          47,
+          112
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 11,
+        "source_bbox": [
+          1120,
+          752,
+          1415,
+          1060
+        ],
+        "drawing_xy": [
+          53,
+          108
+        ],
+        "shared_ready": true
+      }
+    ]
+  },
+  "hurt": {
+    "frames": 8,
+    "fps": 24,
+    "scale_x": 1.075268817204301,
+    "scale_y": 0.9974489795918368,
+    "reference_height": 391,
+    "placement": [
+      {
+        "frame": 0,
+        "source_bbox": [
+          32,
+          27,
+          404,
+          419
+        ],
+        "drawing_xy": [
+          49,
+          107
+        ],
+        "shared_ready": true
+      },
+      {
+        "frame": 1,
+        "source_bbox": [
+          479,
+          26,
+          849,
+          418
+        ],
+        "drawing_xy": [
+          53,
+          107
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 2,
+        "source_bbox": [
+          919,
+          25,
+          1275,
+          419
+        ],
+        "drawing_xy": [
+          49,
+          105
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 3,
+        "source_bbox": [
+          1363,
+          28,
+          1710,
+          419
+        ],
+        "drawing_xy": [
+          50,
+          108
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 4,
+        "source_bbox": [
+          31,
+          482,
+          404,
+          863
+        ],
+        "drawing_xy": [
+          48,
+          118
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 5,
+        "source_bbox": [
+          476,
+          474,
+          849,
+          863
+        ],
+        "drawing_xy": [
+          50,
+          110
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 6,
+        "source_bbox": [
+          920,
+          470,
+          1291,
+          863
+        ],
+        "drawing_xy": [
+          50,
+          106
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 7,
+        "source_bbox": [
+          1362,
+          469,
+          1735,
+          863
+        ],
+        "drawing_xy": [
+          48,
+          105
+        ],
+        "shared_ready": true
+      }
+    ]
+  },
+  "special": {
+    "frames": 12,
+    "fps": 24,
+    "scale_x": 1.444043321299639,
+    "scale_y": 1.2452229299363058,
+    "reference_height": 391,
+    "placement": [
+      {
+        "frame": 0,
+        "source_bbox": [
+          41,
+          23,
+          318,
+          337
+        ],
+        "drawing_xy": [
+          46,
+          107
+        ],
+        "shared_ready": true
+      },
+      {
+        "frame": 1,
+        "source_bbox": [
+          403,
+          23,
+          685,
+          337
+        ],
+        "drawing_xy": [
+          46,
+          107
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 2,
+        "source_bbox": [
+          771,
+          23,
+          1043,
+          337
+        ],
+        "drawing_xy": [
+          55,
+          107
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 3,
+        "source_bbox": [
+          1152,
+          25,
+          1397,
+          337
+        ],
+        "drawing_xy": [
+          82,
+          109
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 4,
+        "source_bbox": [
+          83,
+          382,
+          313,
+          699
+        ],
+        "drawing_xy": [
+          107,
+          103
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 5,
+        "source_bbox": [
+          438,
+          367,
+          676,
+          699
+        ],
+        "drawing_xy": [
+          96,
+          84
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 6,
+        "source_bbox": [
+          752,
+          411,
+          1044,
+          699
+        ],
+        "drawing_xy": [
+          27,
+          139
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 7,
+        "source_bbox": [
+          1106,
+          437,
+          1422,
+          700
+        ],
+        "drawing_xy": [
+          16,
+          170
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 8,
+        "source_bbox": [
+          31,
+          778,
+          344,
+          1061
+        ],
+        "drawing_xy": [
+          31,
+          145
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 9,
+        "source_bbox": [
+          397,
+          757,
+          694,
+          1061
+        ],
+        "drawing_xy": [
+          37,
+          119
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 10,
+        "source_bbox": [
+          761,
+          747,
+          1046,
+          1061
+        ],
+        "drawing_xy": [
+          40,
+          107
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 11,
+        "source_bbox": [
+          1127,
+          748,
+          1404,
+          1061
+        ],
+        "drawing_xy": [
+          46,
+          108
+        ],
+        "shared_ready": true
+      }
+    ]
+  },
+  "defeat": {
+    "frames": 12,
+    "fps": 12,
+    "scale_x": 1.3559322033898304,
+    "scale_y": 1.2373417721518987,
+    "reference_height": 391,
+    "placement": [
+      {
+        "frame": 0,
+        "source_bbox": [
+          26,
+          22,
+          321,
+          338
+        ],
+        "drawing_xy": [
+          45,
+          107
+        ],
+        "shared_ready": true
+      },
+      {
+        "frame": 1,
+        "source_bbox": [
+          389,
+          30,
+          685,
+          338
+        ],
+        "drawing_xy": [
+          47,
+          116
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 2,
+        "source_bbox": [
+          752,
+          43,
+          1050,
+          339
+        ],
+        "drawing_xy": [
+          48,
+          131
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 3,
+        "source_bbox": [
+          1111,
+          54,
+          1419,
+          338
+        ],
+        "drawing_xy": [
+          44,
+          146
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 4,
+        "source_bbox": [
+          28,
+          420,
+          344,
+          693
+        ],
+        "drawing_xy": [
+          48,
+          160
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 5,
+        "source_bbox": [
+          381,
+          439,
+          702,
+          692
+        ],
+        "drawing_xy": [
+          36,
+          184
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 6,
+        "source_bbox": [
+          736,
+          457,
+          1064,
+          694
+        ],
+        "drawing_xy": [
+          26,
+          204
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 7,
+        "source_bbox": [
+          1094,
+          478,
+          1430,
+          695
+        ],
+        "drawing_xy": [
+          21,
+          229
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 8,
+        "source_bbox": [
+          12,
+          848,
+          347,
+          1038
+        ],
+        "drawing_xy": [
+          26,
+          262
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 9,
+        "source_bbox": [
+          374,
+          872,
+          710,
+          1038
+        ],
+        "drawing_xy": [
+          26,
+          292
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 10,
+        "source_bbox": [
+          733,
+          894,
+          1073,
+          1040
+        ],
+        "drawing_xy": [
+          22,
+          317
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 11,
+        "source_bbox": [
+          1093,
+          911,
+          1435,
+          1045
+        ],
+        "drawing_xy": [
+          19,
+          332
+        ],
+        "shared_ready": false
+      }
+    ]
+  },
+  "victory": {
+    "frames": 8,
+    "fps": 12,
+    "scale_x": 1.075268817204301,
+    "scale_y": 1.0025641025641026,
+    "reference_height": 391,
+    "placement": [
+      {
+        "frame": 0,
+        "source_bbox": [
+          32,
+          29,
+          404,
+          419
+        ],
+        "drawing_xy": [
+          49,
+          107
+        ],
+        "shared_ready": true
+      },
+      {
+        "frame": 1,
+        "source_bbox": [
+          477,
+          27,
+          851,
+          419
+        ],
+        "drawing_xy": [
+          51,
+          105
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 2,
+        "source_bbox": [
+          930,
+          21,
+          1294,
+          419
+        ],
+        "drawing_xy": [
+          61,
+          99
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 3,
+        "source_bbox": [
+          1382,
+          15,
+          1735,
+          419
+        ],
+        "drawing_xy": [
+          70,
+          93
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 4,
+        "source_bbox": [
+          58,
+          460,
+          407,
+          863
+        ],
+        "drawing_xy": [
+          77,
+          94
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 5,
+        "source_bbox": [
+          488,
+          466,
+          850,
+          863
+        ],
+        "drawing_xy": [
+          62,
+          100
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 6,
+        "source_bbox": [
+          917,
+          470,
+          1290,
+          863
+        ],
+        "drawing_xy": [
+          47,
+          104
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 7,
+        "source_bbox": [
+          1361,
+          472,
+          1735,
+          863
+        ],
+        "drawing_xy": [
+          47,
+          106
+        ],
+        "shared_ready": true
+      }
+    ]
+  },
+  "rage": {
+    "frames": 10,
+    "fps": 12,
+    "scale_x": 1.3245033112582782,
+    "scale_y": 1.221875,
+    "reference_height": 391,
+    "placement": [
+      {
+        "frame": 0,
+        "source_bbox": [
+          27,
+          21,
+          329,
+          341
+        ],
+        "drawing_xy": [
+          45,
+          107
+        ],
+        "shared_ready": true
+      },
+      {
+        "frame": 1,
+        "source_bbox": [
+          389,
+          22,
+          699,
+          341
+        ],
+        "drawing_xy": [
+          45,
+          108
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 2,
+        "source_bbox": [
+          746,
+          38,
+          1063,
+          341
+        ],
+        "drawing_xy": [
+          38,
+          127
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 3,
+        "source_bbox": [
+          1108,
+          48,
+          1427,
+          341
+        ],
+        "drawing_xy": [
+          38,
+          140
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 4,
+        "source_bbox": [
+          23,
+          396,
+          340,
+          703
+        ],
+        "drawing_xy": [
+          39,
+          122
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 5,
+        "source_bbox": [
+          386,
+          383,
+          701,
+          704
+        ],
+        "drawing_xy": [
+          41,
+          105
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 6,
+        "source_bbox": [
+          745,
+          372,
+          1061,
+          704
+        ],
+        "drawing_xy": [
+          37,
+          92
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 7,
+        "source_bbox": [
+          1110,
+          385,
+          1425,
+          704
+        ],
+        "drawing_xy": [
+          41,
+          108
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 8,
+        "source_bbox": [
+          25,
+          750,
+          339,
+          1065
+        ],
+        "drawing_xy": [
+          42,
+          113
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 9,
+        "source_bbox": [
+          389,
+          746,
+          691,
+          1065
+        ],
+        "drawing_xy": [
+          45,
+          108
+        ],
+        "shared_ready": true
+      }
+    ]
+  }
+}

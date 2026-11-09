@@ -1,0 +1,542 @@
+{
+  "orc_chief": {
+    "idle": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 0.0,
+      "height_0": 392,
+      "sha256": "3ee7b455ccb551c69202c20f643b88cc5808a01cc8d439f480a32f981197a541"
+    },
+    "attack": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 13.5,
+      "height_0": 392,
+      "sha256": "7c45e8edd37fc7c2c3058d5db1b8a9019ba4d48c74528557eba3b69db9edb857"
+    },
+    "hurt": {
+      "pass": true,
+      "frames": 8,
+      "fps": 24,
+      "max_ground_band_x_deviation": 8.0,
+      "height_0": 392,
+      "sha256": "26ca0e05789ff22efa30f13230a0d4c7bdcee2149fb54821fd28a68c9a5d38d1"
+    },
+    "special": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 38.0,
+      "height_0": 392,
+      "sha256": "c9eda3d1af5e6b9e388919235431ab5d65d92a58287ba1c25027222b1d68d934"
+    },
+    "defeat": {
+      "pass": true,
+      "frames": 12,
+      "fps": 12,
+      "max_ground_band_x_deviation": 29.5,
+      "height_0": 392,
+      "sha256": "ad2a382ca7ec4232bea12acbbe456c6e87db9511201f784a319c50b05059c955"
+    },
+    "victory": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.5,
+      "height_0": 392,
+      "sha256": "eaadd4c85d91e51d784a7cfdaee10d122d7ccc522478ae7293740223376a9f27"
+    },
+    "rage": {
+      "pass": true,
+      "frames": 10,
+      "fps": 12,
+      "max_ground_band_x_deviation": 2.5,
+      "height_0": 392,
+      "sha256": "9117fe0b75a875fb9651de42dbaba147c15c5527d3192bd74eea1e7580d35c96"
+    }
+  },
+  "orc_chief_enraged": {
+    "idle": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 408,
+      "sha256": "ccbda8c721f7485293fd1b60eee1c6ce0d1bc9d0bb0f4f329c56898e767cec04"
+    },
+    "attack": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 37.0,
+      "height_0": 408,
+      "sha256": "df681802715d614250e3c4b5588ad2f895f309b00a2874c92a32bd2bfbea1cfd"
+    },
+    "hurt": {
+      "pass": true,
+      "frames": 8,
+      "fps": 24,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 408,
+      "sha256": "7ed4fb653222f3bb7597e5a78a6c722353c12dc87425988e37d3c432702d2307"
+    },
+    "special": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 26.5,
+      "height_0": 408,
+      "sha256": "f0be059ef26cbc9105f47cc5db61d89cf9bb8de74ce5485f2a1ac05330e4a34a"
+    },
+    "defeat": {
+      "pass": true,
+      "frames": 12,
+      "fps": 12,
+      "max_ground_band_x_deviation": 2.0,
+      "height_0": 408,
+      "sha256": "9db465f54a557e0cb0c31e480a62a83771202c6c129b9cf8811379d06e793457"
+    },
+    "victory": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 408,
+      "sha256": "40d701420e27e11ef78e838a17ea22f80aaa401f7ac34cc2b939bbb9c0410925"
+    },
+    "rage": {
+      "pass": true,
+      "frames": 10,
+      "fps": 12,
+      "max_ground_band_x_deviation": 6.0,
+      "height_0": 408,
+      "sha256": "9a8f9a440de4d37821236c94c0335f817df24566ed1af8435ff116a8f3dc4904"
+    }
+  },
+  "orc_rock": {
+    "idle": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 0.5,
+      "height_0": 385,
+      "sha256": "d2177199db7b6a8ee9043d3349c0113ae1ee133d62d22993ea901221eb493a2c"
+    },
+    "attack": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 6.0,
+      "height_0": 385,
+      "sha256": "ea57f87a6f6f881bff02c2f3bf27a0705a8325db28d04c81656fa5b964ffe483"
+    },
+    "hurt": {
+      "pass": true,
+      "frames": 8,
+      "fps": 24,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 385,
+      "sha256": "fe111deb5ab98b1ec18bab67656c3e532abb51a403b5ff91ea09be46ba95bf9f"
+    },
+    "special": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 20.0,
+      "height_0": 385,
+      "sha256": "2fd40f5c8564fd96476bcb4f78392502eb9cb8b40563b9ce76b0160d23a7df99"
+    },
+    "defeat": {
+      "pass": true,
+      "frames": 12,
+      "fps": 12,
+      "max_ground_band_x_deviation": 2.5,
+      "height_0": 385,
+      "sha256": "0e4826d424ec62b3a1e12bd0d54b27b734098ed7acaa523b1b6e1448da429cd2"
+    },
+    "victory": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 0.5,
+      "height_0": 385,
+      "sha256": "361a7938bdfcc59d9a082c14a1817890869c12edea2d852a313358a4b183ec35"
+    },
+    "rage": {
+      "pass": true,
+      "frames": 10,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 385,
+      "sha256": "2cb839d6e0f9413c8d93279b3f662cd20b4fa7c18aced89cf24893e0d453eb74"
+    }
+  },
+  "orc_drummer": {
+    "idle": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 0.0,
+      "height_0": 323,
+      "sha256": "d92899c26194d9a7509a5a424bce4d028934062448ee8af10c14d12f82735d41"
+    },
+    "attack": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 0.5,
+      "height_0": 323,
+      "sha256": "6a573dd39e2cd7a7dcff268f8aecf498d8fde7fa66bbeb6b1a180c2fce7772fe"
+    },
+    "hurt": {
+      "pass": true,
+      "frames": 8,
+      "fps": 24,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 323,
+      "sha256": "0fadfe84b19bc083573e856681203c2ad51287f63e51ae9029539ecddc955375"
+    },
+    "special": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 1.5,
+      "height_0": 323,
+      "sha256": "0ec9d2f2ca9c899eb3f8e129d75f86b9b17d38eb6b6e1b8949b382c0d502e53e"
+    },
+    "defeat": {
+      "pass": true,
+      "frames": 12,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 323,
+      "sha256": "28d325329db67dc7ff8dcf1b36896a9c1625f9e50cfa86a6c9d4a2f7290e17a1"
+    },
+    "victory": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 0.5,
+      "height_0": 323,
+      "sha256": "62523d8c4dfc5061941be037d4bf54c33b3c461b696d57b39f57ec7eccc946a7"
+    },
+    "rage": {
+      "pass": true,
+      "frames": 10,
+      "fps": 12,
+      "max_ground_band_x_deviation": 0.5,
+      "height_0": 323,
+      "sha256": "58f849fee5b41e2b2ed3870227551dabf09e2734ac32a5c5e4b160d67a72e514"
+    }
+  },
+  "orc_boar": {
+    "idle": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 265,
+      "sha256": "3d220f61f67032bf5e9afadb661dac8f33d01cae9a6419fda660d6c9f32df79b"
+    },
+    "attack": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 265,
+      "sha256": "5eaa9fa7f510f6808fb1bf484eafc0c6fbd217e471e0bb99f3cc0fd461b96bf4"
+    },
+    "hurt": {
+      "pass": true,
+      "frames": 8,
+      "fps": 24,
+      "max_ground_band_x_deviation": 24.5,
+      "height_0": 265,
+      "sha256": "a9f43ab90869ed23b76dcce106d7ca0af904800ce37261c7b3e6ed9f56aa6444"
+    },
+    "special": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 265,
+      "sha256": "456cce1e18ace50d18d0dab612578f05501294ffd7fc9603a9a21c616be0d26f"
+    },
+    "defeat": {
+      "pass": true,
+      "frames": 12,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 265,
+      "sha256": "2fcb15d4764c19e3ddc2946859e71f766f46a8ab93e91294d716b3ac4f9ccc5f"
+    },
+    "victory": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 265,
+      "sha256": "1148650a8d02342ed5d76f6718103c4e366fc1ba41fb35ab23b8fa70f0235003"
+    },
+    "rage": {
+      "pass": true,
+      "frames": 10,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 265,
+      "sha256": "af003bff6aa597e43e0da5a698089cd73468c6c4d55b75b4f2b792dde542f58c"
+    }
+  },
+  "goblin_thief": {
+    "idle": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 0.5,
+      "height_0": 385,
+      "sha256": "3efdd439211d3eb6479f3bd22e0f4eabfa6cec7810ee793007e1d3cbe6ccdb22"
+    },
+    "attack": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 36.5,
+      "height_0": 385,
+      "sha256": "2109224b4e8148cd111779a6bb1f0d9a0b624a8f9d045b7be505ed099234d0d6"
+    },
+    "hurt": {
+      "pass": true,
+      "frames": 8,
+      "fps": 24,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 385,
+      "sha256": "287b8fca499c6f712e1e0e88c6daa764291e615c37b5d613a6f0e6e1c991c67b"
+    },
+    "special": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 37.0,
+      "height_0": 385,
+      "sha256": "14d0f3442593cdc127fd17508f0d3ea074d57ca32b08bd789c88ee902fabb76d"
+    },
+    "defeat": {
+      "pass": true,
+      "frames": 12,
+      "fps": 12,
+      "max_ground_band_x_deviation": 6.5,
+      "height_0": 385,
+      "sha256": "cd6b88e2d53505511d240c9a564cb6218c7fd51c66362078bbc2e7e5b2bdbaf6"
+    },
+    "victory": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 385,
+      "sha256": "9cb6dfd1ddb6e3d94179ef99d123d2ff96c549b8c4e4d84eef50f464db118572"
+    }
+  },
+  "goblin_archer": {
+    "idle": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 391,
+      "sha256": "084e16456b2111d08e4fab1022f650b913245167509c170e1d94e9e1a5e88043"
+    },
+    "attack": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 5.0,
+      "height_0": 391,
+      "sha256": "76f9bf22ef6247479dd686f73d0e8fa4b2add7012fcd69607e61de6764703b89"
+    },
+    "hurt": {
+      "pass": true,
+      "frames": 8,
+      "fps": 24,
+      "max_ground_band_x_deviation": 12.5,
+      "height_0": 391,
+      "sha256": "053c78d48db7ede1c4f997854ca6a051fe8cbcc257a921007edadf62a8c17849"
+    },
+    "special": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 391,
+      "sha256": "a77e0b296d8cf8c47bce328072fa1dd01a026c8c9d3399374be9b69b20ef27c2"
+    },
+    "defeat": {
+      "pass": true,
+      "frames": 12,
+      "fps": 12,
+      "max_ground_band_x_deviation": 25.0,
+      "height_0": 391,
+      "sha256": "1d3a8bba2bef543e2930094fb0109b820a9ca05a89a614ecf82f3c9e06ae035b"
+    },
+    "victory": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 391,
+      "sha256": "84fd48cd991e91ebbe72f35d046fb4f6b4dc11368a7f8d54b0a443c1c6a09b50"
+    }
+  },
+  "goblin_bomber": {
+    "idle": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 0.5,
+      "height_0": 396,
+      "sha256": "a3b1667c7f750056f8e6d6b86f5adccbfc64782c33cea38086c6e9593ed974d3"
+    },
+    "attack": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 21.5,
+      "height_0": 396,
+      "sha256": "72082f12c52f057a6fac76c6275655cfa6f3a1371d012c0f763db915b15844fe"
+    },
+    "hurt": {
+      "pass": true,
+      "frames": 8,
+      "fps": 24,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 396,
+      "sha256": "eccaecb8f25f36a2142347e6dec85cb678bc1330c67023693b5cd2e4cc45b2e0"
+    },
+    "special": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 0.5,
+      "height_0": 396,
+      "sha256": "7a562130312a3eb5812ca1fa032ff18737d937151925ce1a9523206f2fcdefe3"
+    },
+    "defeat": {
+      "pass": true,
+      "frames": 12,
+      "fps": 12,
+      "max_ground_band_x_deviation": 2.5,
+      "height_0": 396,
+      "sha256": "ee55348a7c56339729a10d6b847b3c799904061917544cd18acec1a0a3f1989a"
+    },
+    "victory": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 396,
+      "sha256": "fc2d989c3f9a2b2117b1f1ead2f6d2b7e3186860988d026fec52665e3cb55306"
+    }
+  },
+  "crocodile": {
+    "idle": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 0.5,
+      "height_0": 258,
+      "sha256": "0fae15518a69987651e70445362f513a9ca350d0625bdde042d7fee4b1ef1a6b"
+    },
+    "attack": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 2.0,
+      "height_0": 258,
+      "sha256": "6770460fd7d8823a64154dc92a657784fd650d64bada5ef9d58192e618401f28"
+    },
+    "hurt": {
+      "pass": true,
+      "frames": 8,
+      "fps": 24,
+      "max_ground_band_x_deviation": 6.0,
+      "height_0": 258,
+      "sha256": "8bd9c2d06bc588c343bcbbdff7835b082d6cf1cf30076acebbb5e71073cbad16"
+    },
+    "special": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 1.5,
+      "height_0": 258,
+      "sha256": "d4801a2be2a62014fe82125efb3b747b3fa79c8e3af70ea12490d64ab142f543"
+    },
+    "defeat": {
+      "pass": true,
+      "frames": 12,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.5,
+      "height_0": 258,
+      "sha256": "3a33458695bba48603bfb32c4c9fc1da041b2530c0aae4cba9ca43fdbb4a5cd7"
+    },
+    "victory": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 3.0,
+      "height_0": 258,
+      "sha256": "e57b5ad3bf178864a7c3057bafc9bbd35882f02a880ceafba3f5ad875092a240"
+    }
+  },
+  "frost_slime": {
+    "idle": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 331,
+      "sha256": "94df823e42d68d42ba34b83ecb7793e4f587effdab6ac51e183fa79d299203c5"
+    },
+    "attack": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 2.0,
+      "height_0": 331,
+      "sha256": "bad06f15346c6147dcec62f132a447c813aa33c2964882595018d3f5044b93de"
+    },
+    "hurt": {
+      "pass": true,
+      "frames": 8,
+      "fps": 24,
+      "max_ground_band_x_deviation": 3.0,
+      "height_0": 331,
+      "sha256": "fe0a55f3fa5e92e0a3164d538aac25cdcdf46a2eab1c992e3ee3e1c571a3b764"
+    },
+    "special": {
+      "pass": true,
+      "frames": 12,
+      "fps": 24,
+      "max_ground_band_x_deviation": 2.5,
+      "height_0": 331,
+      "sha256": "657228cfa8fd0d885cbdfdb9e3577beeea0a984a8e696dec191c472c530cdf2c"
+    },
+    "defeat": {
+      "pass": true,
+      "frames": 12,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.5,
+      "height_0": 331,
+      "sha256": "ee8a6a777218d84fa08c5a94d8137b7768a805fae4de51a9080d7dbc5cbf8c4a"
+    },
+    "victory": {
+      "pass": true,
+      "frames": 8,
+      "fps": 12,
+      "max_ground_band_x_deviation": 1.0,
+      "height_0": 331,
+      "sha256": "e9796d82cabf229a9bcf37307c2f69607c2e82c7a286882b3d2de852eeadfecf"
+    }
+  }
+}

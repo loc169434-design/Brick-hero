@@ -190,3 +190,27 @@ Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`goblin_bomber/r
 | `victory` | 8 | 12 | — | 258 / 258 px | 3 px | **ĐẠT** |
 
 Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`crocodile/review.html`](crocodile/review.html). Ảnh RGB gốc nằm ở `crocodile/generated/`, bản nền hồng chuẩn lưới ở `raw/crocodile_<clip>_key.png`. Dùng cùng ready ở đầu/cuối (trừ defeat), hệ số cỡ người cố định từng clip; chỉ key_out.py tạo alpha. Idle thở/nhún rõ hơn, hurt bật ngửa mạnh hơn. Chưa đổi anim.json hoặc .import; chưa tích hợp gameplay.
+
+
+## frost_slime — vòng kiểm 1/5
+
+| Sheet | Khung | fps | impact | Cao 0 / mẫu | Lệch x dải chân tối đa | Kết quả |
+|---|---:|---:|---:|---|---:|---|
+| `idle` | 8 | 12 | — | 331 / 331 px | 1 px | **ĐẠT** |
+| `attack` | 12 | 24 | 6 | 331 / 331 px | 2 px | **ĐẠT** |
+| `hurt` | 8 | 24 | — | 331 / 331 px | 3 px | **ĐẠT** |
+| `special` | 12 | 24 | 7 | 331 / 331 px | 2.5 px | **ĐẠT** |
+| `defeat` | 12 | 12 | — | 331 / 331 px | 1.5 px | **ĐẠT** |
+| `victory` | 8 | 12 | — | 331 / 331 px | 1 px | **ĐẠT** |
+
+Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`frost_slime/review.html`](frost_slime/review.html). Ảnh RGB gốc nằm ở `frost_slime/generated/`, bản nền hồng chuẩn lưới ở `raw/frost_slime_<clip>_key.png`. Dùng cùng ready ở đầu/cuối (trừ defeat), hệ số cỡ người cố định từng clip; chỉ key_out.py tạo alpha. Idle thở/nhún rõ hơn, hurt bật ngửa mạnh hơn. Chưa đổi anim.json hoặc .import; chưa tích hợp gameplay.
+
+## Tổng kiểm sau khi đủ 10 quái
+
+- `final_check.py` chạy lại check_sheet.py nguyên bản trên **65 sheet** đang bàn giao: **65 ĐẠT, 0 TRƯỢT**. Bảng từng sheet: [final_results.md](final_results.md); JSON từng khung, log và preview trong `final_check/<quái>/`.
+- Đã xem các contact sheet nền tối của cả tám quái mới. Chromium tải đủ GIF mỗi quái, các ảnh chụp theo thời gian khác nhau; hồ sơ trong `<quái>/browser_review.json`.
+- Xác minh tám `ref/<quái>_idle_old.png` khớp byte với idle trên nhánh trước khi sửa (`cb01a39`), được sao lưu trước khi ghi đè.
+- `orc_drummer/rage`: bản sinh có 9 tư thế; khung 9 kết vòng dùng ready chung như các clip khác, đủ 10 khung, hai ô dư trong suốt.
+- `orc_boar/defeat`: không dùng ô cuối sinh nhầm đứng dậy; giữ tư thế gục ở khung 10 sang khung 11. Không sửa tay ảnh alpha; key_out.py tạo alpha từ bản RGB nền hồng đã ghép.
+- Bomber special: khung 6 còn cầm bom, khung 7 bom tách khỏi bàn tay, không có hình nổ/vệt bay. Frost slime special chỉ phồng và há miệng, không vẽ tia băng.
+- Chưa chỉnh anim.json, .import, code, scene, tests, project.godot hoặc hero_rookie. Dừng sau báo cáo, chờ duyệt tiếp theo.

@@ -104,3 +104,18 @@ Báo cáo chi tiết và GIF được cập nhật trong orc_chief/. Không thay
 | `rage` | 10 | 12 | — | 385 / 385 px | 1 px | **ĐẠT** |
 
 Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`orc_rock/review.html`](orc_rock/review.html). Ảnh RGB gốc nằm ở `orc_rock/generated/`, bản nền hồng chuẩn lưới ở `raw/orc_rock_<clip>_key.png`. Dùng cùng ready ở đầu/cuối (trừ defeat), hệ số cỡ người cố định từng clip; chỉ key_out.py tạo alpha. Idle thở/nhún rõ hơn, hurt bật ngửa mạnh hơn. Chưa đổi anim.json hoặc .import; chưa tích hợp gameplay.
+
+
+## orc_drummer — vòng kiểm 1/5
+
+| Sheet | Khung | fps | impact | Cao 0 / mẫu | Lệch x dải chân tối đa | Kết quả |
+|---|---:|---:|---:|---|---:|---|
+| `idle` | 8 | 12 | — | 323 / 323 px | 0 px | **ĐẠT** |
+| `attack` | 12 | 24 | 6 | 323 / 323 px | 0.5 px | **ĐẠT** |
+| `hurt` | 8 | 24 | — | 323 / 323 px | 1 px | **ĐẠT** |
+| `special` | 12 | 24 | 7 | 323 / 323 px | 1.5 px | **ĐẠT** |
+| `defeat` | 12 | 12 | — | 323 / 323 px | 1 px | **ĐẠT** |
+| `victory` | 8 | 12 | — | 323 / 323 px | 0.5 px | **ĐẠT** |
+| `rage` | 10 | 12 | — | 323 / 323 px | 0.5 px | **ĐẠT** |
+
+Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`orc_drummer/review.html`](orc_drummer/review.html). Ảnh RGB gốc nằm ở `orc_drummer/generated/`, bản nền hồng chuẩn lưới ở `raw/orc_drummer_<clip>_key.png`. Dùng cùng ready ở đầu/cuối (trừ defeat), hệ số cỡ người cố định từng clip; chỉ key_out.py tạo alpha. Idle thở/nhún rõ hơn, hurt bật ngửa mạnh hơn. Chưa đổi anim.json hoặc .import; chưa tích hợp gameplay.

@@ -20,6 +20,8 @@ for clip,(count,fps,impact) in CLIPS.items():
  main=[(i,b) for i,b in enumerate(boxes,1) if b is not None and sizes[i]>3000]
  main=sorted(main,key=lambda v:sizes[v[0]],reverse=True)[:count]
  main.sort(key=lambda v:(int((v[1][0].start+v[1][0].stop)/2/(hh/rows)),v[1][1].start))
+ # A missing final ready cel can reuse the final generated ready (canonical below).
+ if len(main)==count-1 and clip=='rage':main.append(main[-1])
  assert len(main)==count,(m,clip,len(main),count)
  assert [int((b[0].start+b[0].stop)/2/(hh/rows)) for _,b in main]==[i//4 for i in range(count)],(m,clip,'rows')
  groups=[{label} for label,_ in main];main_ids={v[0] for v in main}

@@ -89,3 +89,18 @@ Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`orc_chief_enrag
 | fresh_idle | 8 | 12 | ĐẠT |
 
 Báo cáo chi tiết và GIF được cập nhật trong orc_chief/. Không thay các sheet đã duyệt khác, anim.json hoặc .import.
+
+
+## orc_rock — vòng kiểm 1/5
+
+| Sheet | Khung | fps | impact | Cao 0 / mẫu | Lệch x dải chân tối đa | Kết quả |
+|---|---:|---:|---:|---|---:|---|
+| `idle` | 8 | 12 | — | 385 / 385 px | 0.5 px | **ĐẠT** |
+| `attack` | 12 | 24 | 6 | 385 / 385 px | 6 px | **ĐẠT** |
+| `hurt` | 8 | 24 | — | 385 / 385 px | 1 px | **ĐẠT** |
+| `special` | 12 | 24 | 7 | 385 / 385 px | 20 px | **ĐẠT** |
+| `defeat` | 12 | 12 | — | 385 / 385 px | 2.5 px | **ĐẠT** |
+| `victory` | 8 | 12 | — | 385 / 385 px | 0.5 px | **ĐẠT** |
+| `rage` | 10 | 12 | — | 385 / 385 px | 1 px | **ĐẠT** |
+
+Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`orc_rock/review.html`](orc_rock/review.html). Ảnh RGB gốc nằm ở `orc_rock/generated/`, bản nền hồng chuẩn lưới ở `raw/orc_rock_<clip>_key.png`. Dùng cùng ready ở đầu/cuối (trừ defeat), hệ số cỡ người cố định từng clip; chỉ key_out.py tạo alpha. Idle thở/nhún rõ hơn, hurt bật ngửa mạnh hơn. Chưa đổi anim.json hoặc .import; chưa tích hợp gameplay.

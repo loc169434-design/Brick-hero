@@ -176,3 +176,17 @@ Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`goblin_archer/r
 | `victory` | 8 | 12 | — | 396 / 394 px | 1 px | **ĐẠT** |
 
 Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`goblin_bomber/review.html`](goblin_bomber/review.html). Ảnh RGB gốc nằm ở `goblin_bomber/generated/`, bản nền hồng chuẩn lưới ở `raw/goblin_bomber_<clip>_key.png`. Dùng cùng ready ở đầu/cuối (trừ defeat), hệ số cỡ người cố định từng clip; chỉ key_out.py tạo alpha. Idle thở/nhún rõ hơn, hurt bật ngửa mạnh hơn. Chưa đổi anim.json hoặc .import; chưa tích hợp gameplay.
+
+
+## crocodile — vòng kiểm 1/5
+
+| Sheet | Khung | fps | impact | Cao 0 / mẫu | Lệch x dải chân tối đa | Kết quả |
+|---|---:|---:|---:|---|---:|---|
+| `idle` | 8 | 12 | — | 258 / 258 px | 0.5 px | **ĐẠT** |
+| `attack` | 12 | 24 | 6 | 258 / 258 px | 2 px | **ĐẠT** |
+| `hurt` | 8 | 24 | — | 258 / 258 px | 6 px | **ĐẠT** |
+| `special` | 12 | 24 | 7 | 258 / 258 px | 1.5 px | **ĐẠT** |
+| `defeat` | 12 | 12 | — | 258 / 258 px | 1.5 px | **ĐẠT** |
+| `victory` | 8 | 12 | — | 258 / 258 px | 3 px | **ĐẠT** |
+
+Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`crocodile/review.html`](crocodile/review.html). Ảnh RGB gốc nằm ở `crocodile/generated/`, bản nền hồng chuẩn lưới ở `raw/crocodile_<clip>_key.png`. Dùng cùng ready ở đầu/cuối (trừ defeat), hệ số cỡ người cố định từng clip; chỉ key_out.py tạo alpha. Idle thở/nhún rõ hơn, hurt bật ngửa mạnh hơn. Chưa đổi anim.json hoặc .import; chưa tích hợp gameplay.

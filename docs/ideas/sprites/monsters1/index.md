@@ -12,3 +12,4 @@ Tất cả dùng nền #FF00FF, key_out.py/check_sheet.py nguyên bản. Mỗi q
 | `goblin_thief` | 6 | ĐẠT | [goblin_thief](goblin_thief/review.html) · [dark GIFs](goblin_thief/dark/) |
 | `goblin_archer` | 6 | ĐẠT | [goblin_archer](goblin_archer/review.html) · [dark GIFs](goblin_archer/dark/) |
 | `goblin_bomber` | 6 | ĐẠT | [goblin_bomber](goblin_bomber/review.html) · [dark GIFs](goblin_bomber/dark/) |
+| `crocodile` | 6 | ĐẠT | [crocodile](crocodile/review.html) · [dark GIFs](crocodile/dark/) |

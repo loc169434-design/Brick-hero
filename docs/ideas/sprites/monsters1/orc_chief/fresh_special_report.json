@@ -105,10 +105,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    500.0,
-    256.0
+    499.0,
+    241.0
    ],
-   "height": 413,
+   "height": 405,
    "stray": 0,
    "specks": 0,
    "edge": 0

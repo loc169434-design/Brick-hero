@@ -74,3 +74,18 @@ Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`orc_chief_enrag
 | `rage` | 10 | 12 | — | 408 / 408 px | 6 px | **ĐẠT** |
 
 Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`orc_chief_enraged/review.html`](orc_chief_enraged/review.html). Ảnh RGB gốc nằm ở `orc_chief_enraged/generated/`, bản nền hồng chuẩn lưới ở `raw/orc_chief_enraged_<clip>_key.png`. Dùng cùng ready ở đầu/cuối (trừ defeat), hệ số cỡ người cố định từng clip; chỉ key_out.py tạo alpha. Idle thở/nhún rõ hơn, hurt bật ngửa mạnh hơn. Chưa đổi anim.json hoặc .import; chưa tích hợp gameplay.
+
+## orc_chief — sửa theo duyệt, vòng 2/5 (idle vòng 3/5)
+
+- special/5: vẽ lại hướng trái, hai tay giơ chùy trên đầu, mặt và vương miện rõ, giữ khiên tay trái. Chỉ thay ô 5.
+- attack/1: vẽ lại thân thấp, bè và khiên cùng cỡ khung 0. Chỉ thay ô 1.
+- idle: đăng ký lại nhịp thở 0–2–4–6–6–4–2–0 px ở vai/bụng, giữ nguyên toàn bộ phần chân y>=420. Loại bản ghép có đường nối sau kiểm trực quan; không dùng bản đó.
+- Chỉ xử lý ảnh RGB nền hồng; alpha được tách lại bằng key_out.py. Ảnh sinh gốc sửa được lưu trong orc_chief/generated_revision_*.png.
+
+| Sheet | Khung | fps | Kết quả check_sheet |
+|---|---:|---:|---|
+| fresh_special | 12 | 24 | ĐẠT |
+| fresh_attack | 12 | 24 | ĐẠT |
+| fresh_idle | 8 | 12 | ĐẠT |
+
+Báo cáo chi tiết và GIF được cập nhật trong orc_chief/. Không thay các sheet đã duyệt khác, anim.json hoặc .import.

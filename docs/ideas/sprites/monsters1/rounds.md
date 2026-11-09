@@ -148,3 +148,17 @@ Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`orc_boar/review
 | `victory` | 8 | 12 | — | 385 / 385 px | 1 px | **ĐẠT** |
 
 Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`goblin_thief/review.html`](goblin_thief/review.html). Ảnh RGB gốc nằm ở `goblin_thief/generated/`, bản nền hồng chuẩn lưới ở `raw/goblin_thief_<clip>_key.png`. Dùng cùng ready ở đầu/cuối (trừ defeat), hệ số cỡ người cố định từng clip; chỉ key_out.py tạo alpha. Idle thở/nhún rõ hơn, hurt bật ngửa mạnh hơn. Chưa đổi anim.json hoặc .import; chưa tích hợp gameplay.
+
+
+## goblin_archer — vòng kiểm 1/5
+
+| Sheet | Khung | fps | impact | Cao 0 / mẫu | Lệch x dải chân tối đa | Kết quả |
+|---|---:|---:|---:|---|---:|---|
+| `idle` | 8 | 12 | — | 391 / 391 px | 1 px | **ĐẠT** |
+| `attack` | 12 | 24 | 6 | 391 / 391 px | 5 px | **ĐẠT** |
+| `hurt` | 8 | 24 | — | 391 / 391 px | 12.5 px | **ĐẠT** |
+| `special` | 12 | 24 | 7 | 391 / 391 px | 1 px | **ĐẠT** |
+| `defeat` | 12 | 12 | — | 391 / 391 px | 25 px | **ĐẠT** |
+| `victory` | 8 | 12 | — | 391 / 391 px | 1 px | **ĐẠT** |
+
+Hồ sơ từng khung, log kiểm, GIF nền tối và review: [`goblin_archer/review.html`](goblin_archer/review.html). Ảnh RGB gốc nằm ở `goblin_archer/generated/`, bản nền hồng chuẩn lưới ở `raw/goblin_archer_<clip>_key.png`. Dùng cùng ready ở đầu/cuối (trừ defeat), hệ số cỡ người cố định từng clip; chỉ key_out.py tạo alpha. Idle thở/nhún rõ hơn, hurt bật ngửa mạnh hơn. Chưa đổi anim.json hoặc .import; chưa tích hợp gameplay.

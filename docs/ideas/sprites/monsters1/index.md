@@ -10,3 +10,4 @@ Tất cả dùng nền #FF00FF, key_out.py/check_sheet.py nguyên bản. Mỗi q
 | `orc_drummer` | 7 | ĐẠT | [orc_drummer](orc_drummer/review.html) · [dark GIFs](orc_drummer/dark/) |
 | `orc_boar` | 7 | ĐẠT | [orc_boar](orc_boar/review.html) · [dark GIFs](orc_boar/dark/) |
 | `goblin_thief` | 6 | ĐẠT | [goblin_thief](goblin_thief/review.html) · [dark GIFs](goblin_thief/dark/) |
+| `goblin_archer` | 6 | ĐẠT | [goblin_archer](goblin_archer/review.html) · [dark GIFs](goblin_archer/dark/) |

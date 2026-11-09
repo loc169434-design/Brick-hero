@@ -8,3 +8,4 @@ Tất cả dùng nền #FF00FF, key_out.py/check_sheet.py nguyên bản. Mỗi q
 | `orc_chief_enraged` | 7 | ĐẠT | [orc_chief_enraged](orc_chief_enraged/review.html) · [dark GIFs](orc_chief_enraged/dark/) |
 | `orc_rock` | 7 | ĐẠT | [orc_rock](orc_rock/review.html) · [dark GIFs](orc_rock/dark/) |
 | `orc_drummer` | 7 | ĐẠT | [orc_drummer](orc_drummer/review.html) · [dark GIFs](orc_drummer/dark/) |
+| `orc_boar` | 7 | ĐẠT | [orc_boar](orc_boar/review.html) · [dark GIFs](orc_boar/dark/) |

@@ -37,6 +37,7 @@ for clip,(count,fps,impact) in CLIPS.items():
   rgb[~near]=KEY;rgb[np.linalg.norm(rgb.astype(float)-KEY,axis=2)<=60]=KEY
   bm=lab==label;by=body[0].stop-1;xs=np.where(bm[max(0,by-19):by+1].any(0))[0];anchor=float((xs[0]+xs[-1])/2)
   drawings.append((rgb,x0,y0,by,anchor,body,[int(xx.min()),int(yy.min()),int(xx.max())+1,int(yy.max())+1]))
+ if m=='orc_boar' and clip=='defeat':drawings[-1]=drawings[-2]
  first=main[0][1];sy=target_h/(first[0].stop-first[0].start)
  sx=min(target_w/(first[1].stop-first[1].start),492/max(d[0].shape[1] for d in drawings),288/max(d[4]-d[1] for d in drawings),288/max(d[1]+d[0].shape[1]-d[4] for d in drawings))
  if max(d[0].shape[0]*sy for d in drawings)>490:sy=490/max(d[0].shape[0] for d in drawings)

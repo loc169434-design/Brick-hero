@@ -1,0 +1,174 @@
+{
+ "sheet": "assets/characters/hero_rookie/anim/royal/fresh_bash.png",
+ "frames": 10,
+ "cell": 512,
+ "checks": {
+  "grid": {
+   "pass": true,
+   "detail": "sheet 2048x1536 ok; empty frames: []"
+  },
+  "feet": {
+   "pass": true,
+   "detail": "first/last frame feet (y, x) vs (500, 256): ok"
+  },
+  "size": {
+   "pass": true,
+   "detail": "frame 0 body 416 px tall, reference 394"
+  },
+  "clean": {
+   "pass": true,
+   "detail": "worst frame 0 stray pixels, 0 specks in 10 frames (and 0 haze pixels, cleared on shrinking)"
+  },
+  "inside": {
+   "pass": true,
+   "detail": "frames touching the edge: none"
+  },
+  "key": {
+   "pass": true,
+   "detail": "#00ff00 left: 0 px; rim tinted by it: 0 px"
+  }
+ },
+ "per_frame": [
+  {
+   "frame": 0,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    256.0
+   ],
+   "height": 416,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 1,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    499.0,
+    255.5
+   ],
+   "height": 416,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 2,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    499.0,
+    255.0
+   ],
+   "height": 436,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 3,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    499.0,
+    255.5
+   ],
+   "height": 441,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 4,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    499.0,
+    241.5
+   ],
+   "height": 439,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 5,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    499.0,
+    226.5
+   ],
+   "height": 366,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 6,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    499.0,
+    227.0
+   ],
+   "height": 370,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 7,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    499.0,
+    228.5
+   ],
+   "height": 374,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 8,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    499.0,
+    254.5
+   ],
+   "height": 416,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 9,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    256.0
+   ],
+   "height": 417,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  }
+ ],
+ "pass": true
+}

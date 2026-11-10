@@ -6,21 +6,41 @@
   "columns": 4,
   "clips": {
     "idle": {
-      "frames": 4,
-      "fps": 8,
+      "frames": 8,
+      "fps": 12,
       "loop": true
     },
     "attack": {
-      "frames": 8,
-      "fps": 16,
+      "frames": 12,
+      "fps": 24,
       "loop": false,
-      "impact": 4
+      "impact": 6
+    },
+    "hurt": {
+      "frames": 8,
+      "fps": 24,
+      "loop": false
     },
     "special": {
-      "frames": 4,
-      "fps": 8,
+      "frames": 12,
+      "fps": 24,
       "loop": false,
-      "impact": 2
+      "impact": 7
+    },
+    "defeat": {
+      "frames": 12,
+      "fps": 12,
+      "loop": false
+    },
+    "victory": {
+      "frames": 8,
+      "fps": 12,
+      "loop": false
+    },
+    "rage": {
+      "frames": 10,
+      "fps": 12,
+      "loop": false
     }
   }
 }

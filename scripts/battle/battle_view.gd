@@ -930,8 +930,11 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 	var blocked := _hero.fits_look(&"block") and blocks(report, _state.rules.armor)
 	match kind:
 		&"rock":
-			_monster.react(_monster_clip(&"throw"), 0.7)
-			await _wait(_monster.strike_time(_monster_clip(&"throw"), 0.0))
+			# The rock thrower's own special is the overhead throw; the rock leaves his hands
+			# on its impact frame.
+			var hurl := &"special" if _state.monster.special == "rock" and _monster.has_clip(&"special") else _monster_clip(&"throw")
+			_monster.react(hurl, _monster.clip_seconds(hurl, 0.7))
+			await _wait(_monster.strike_time(hurl, 0.0))
 			Sfx.play(&"whoosh")
 			var rock := _prop("rock")
 			await _fly(rock, _local(_monster.point("hand")), _local(_hero.point("crown")), 0.4, 130.0, 2.0)

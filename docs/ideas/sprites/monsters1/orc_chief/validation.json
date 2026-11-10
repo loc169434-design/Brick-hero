@@ -1,0 +1,72 @@
+{
+  "idle": {
+    "pass": true,
+    "frames": 8,
+    "fps": 12,
+    "impact": null,
+    "gif_frames": 8,
+    "gif_duration_ms": 670,
+    "max_ground_band_x_deviation_px": 0.5,
+    "sha256": "ca9575f683c224dd5c6cea703f85842d7d22bcb4d4f27cadc0cea9a995c3f500"
+  },
+  "attack": {
+    "pass": true,
+    "frames": 12,
+    "fps": 24,
+    "impact": 6,
+    "gif_frames": 12,
+    "gif_duration_ms": 500,
+    "max_ground_band_x_deviation_px": 10.5,
+    "sha256": "c47de38128c17d73ec930c13491f901b0359db00a5a8831b473ab61a0ea454f6"
+  },
+  "hurt": {
+    "pass": true,
+    "frames": 8,
+    "fps": 24,
+    "impact": null,
+    "gif_frames": 8,
+    "gif_duration_ms": 330,
+    "max_ground_band_x_deviation_px": 8.0,
+    "sha256": "26ca0e05789ff22efa30f13230a0d4c7bdcee2149fb54821fd28a68c9a5d38d1"
+  },
+  "special": {
+    "pass": true,
+    "frames": 12,
+    "fps": 24,
+    "impact": 7,
+    "gif_frames": 12,
+    "gif_duration_ms": 500,
+    "max_ground_band_x_deviation_px": 38.0,
+    "sha256": "3f55c8362f93f2e5c2cdc8f30855391af751c3054b1cf96b7eeeb3979d6bb402"
+  },
+  "defeat": {
+    "pass": true,
+    "frames": 12,
+    "fps": 12,
+    "impact": null,
+    "gif_frames": 12,
+    "gif_duration_ms": 1000,
+    "max_ground_band_x_deviation_px": 29.5,
+    "sha256": "ad2a382ca7ec4232bea12acbbe456c6e87db9511201f784a319c50b05059c955"
+  },
+  "victory": {
+    "pass": true,
+    "frames": 8,
+    "fps": 12,
+    "impact": null,
+    "gif_frames": 8,
+    "gif_duration_ms": 670,
+    "max_ground_band_x_deviation_px": 1.5,
+    "sha256": "eaadd4c85d91e51d784a7cfdaee10d122d7ccc522478ae7293740223376a9f27"
+  },
+  "rage": {
+    "pass": true,
+    "frames": 10,
+    "fps": 12,
+    "impact": null,
+    "gif_frames": 10,
+    "gif_duration_ms": 830,
+    "max_ground_band_x_deviation_px": 2.5,
+    "sha256": "9117fe0b75a875fb9651de42dbaba147c15c5527d3192bd74eea1e7580d35c96"
+  }
+}

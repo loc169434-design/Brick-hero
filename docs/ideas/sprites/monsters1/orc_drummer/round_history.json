@@ -1,0 +1,77 @@
+[
+  {
+    "round": 1,
+    "results": {
+      "idle": {
+        "pass": true,
+        "frames": 8,
+        "fps": 12,
+        "impact": null,
+        "height_0": 323,
+        "ref_height": 323,
+        "max_ground_band_x_deviation": 0.0,
+        "sha256": "d92899c26194d9a7509a5a424bce4d028934062448ee8af10c14d12f82735d41"
+      },
+      "attack": {
+        "pass": true,
+        "frames": 12,
+        "fps": 24,
+        "impact": 6,
+        "height_0": 323,
+        "ref_height": 323,
+        "max_ground_band_x_deviation": 0.5,
+        "sha256": "6a573dd39e2cd7a7dcff268f8aecf498d8fde7fa66bbeb6b1a180c2fce7772fe"
+      },
+      "hurt": {
+        "pass": true,
+        "frames": 8,
+        "fps": 24,
+        "impact": null,
+        "height_0": 323,
+        "ref_height": 323,
+        "max_ground_band_x_deviation": 1.0,
+        "sha256": "0fadfe84b19bc083573e856681203c2ad51287f63e51ae9029539ecddc955375"
+      },
+      "special": {
+        "pass": true,
+        "frames": 12,
+        "fps": 24,
+        "impact": 7,
+        "height_0": 323,
+        "ref_height": 323,
+        "max_ground_band_x_deviation": 1.5,
+        "sha256": "0ec9d2f2ca9c899eb3f8e129d75f86b9b17d38eb6b6e1b8949b382c0d502e53e"
+      },
+      "defeat": {
+        "pass": true,
+        "frames": 12,
+        "fps": 12,
+        "impact": null,
+        "height_0": 323,
+        "ref_height": 323,
+        "max_ground_band_x_deviation": 1.0,
+        "sha256": "28d325329db67dc7ff8dcf1b36896a9c1625f9e50cfa86a6c9d4a2f7290e17a1"
+      },
+      "victory": {
+        "pass": true,
+        "frames": 8,
+        "fps": 12,
+        "impact": null,
+        "height_0": 323,
+        "ref_height": 323,
+        "max_ground_band_x_deviation": 0.5,
+        "sha256": "62523d8c4dfc5061941be037d4bf54c33b3c461b696d57b39f57ec7eccc946a7"
+      },
+      "rage": {
+        "pass": true,
+        "frames": 10,
+        "fps": 12,
+        "impact": null,
+        "height_0": 323,
+        "ref_height": 323,
+        "max_ground_band_x_deviation": 0.5,
+        "sha256": "58f849fee5b41e2b2ed3870227551dabf09e2734ac32a5c5e4b160d67a72e514"
+      }
+    }
+  }
+]

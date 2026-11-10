@@ -1,0 +1,7 @@
+grid    ĐẠT  sheet 2048x1536 ok; empty frames: []
+feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
+size    ĐẠT  frame 0 body 396 px tall, reference 394
+clean   ĐẠT  worst frame 0 stray pixels, 0 specks in 12 frames (and 0 haze pixels, cleared on shrinking)
+inside  ĐẠT  frames touching the edge: none
+key     ĐẠT  #ff00ff left: 0 px; rim tinted by it: 0 px
+=> ĐẠT

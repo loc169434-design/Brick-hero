@@ -1,0 +1,9 @@
+{
+  "idle": 0,
+  "attack": 0,
+  "hurt": 0,
+  "special": 0,
+  "defeat": 0,
+  "victory": 0,
+  "rage": 0
+}

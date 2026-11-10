@@ -1,0 +1,67 @@
+[
+  {
+    "round": 1,
+    "results": {
+      "idle": {
+        "pass": true,
+        "frames": 8,
+        "fps": 12,
+        "impact": null,
+        "height_0": 391,
+        "ref_height": 391,
+        "max_ground_band_x_deviation": 1.0,
+        "sha256": "084e16456b2111d08e4fab1022f650b913245167509c170e1d94e9e1a5e88043"
+      },
+      "attack": {
+        "pass": true,
+        "frames": 12,
+        "fps": 24,
+        "impact": 6,
+        "height_0": 391,
+        "ref_height": 391,
+        "max_ground_band_x_deviation": 5.0,
+        "sha256": "76f9bf22ef6247479dd686f73d0e8fa4b2add7012fcd69607e61de6764703b89"
+      },
+      "hurt": {
+        "pass": true,
+        "frames": 8,
+        "fps": 24,
+        "impact": null,
+        "height_0": 391,
+        "ref_height": 391,
+        "max_ground_band_x_deviation": 12.5,
+        "sha256": "053c78d48db7ede1c4f997854ca6a051fe8cbcc257a921007edadf62a8c17849"
+      },
+      "special": {
+        "pass": true,
+        "frames": 12,
+        "fps": 24,
+        "impact": 7,
+        "height_0": 391,
+        "ref_height": 391,
+        "max_ground_band_x_deviation": 1.0,
+        "sha256": "a77e0b296d8cf8c47bce328072fa1dd01a026c8c9d3399374be9b69b20ef27c2"
+      },
+      "defeat": {
+        "pass": true,
+        "frames": 12,
+        "fps": 12,
+        "impact": null,
+        "height_0": 391,
+        "ref_height": 391,
+        "max_ground_band_x_deviation": 25.0,
+        "sha256": "1d3a8bba2bef543e2930094fb0109b820a9ca05a89a614ecf82f3c9e06ae035b"
+      },
+      "victory": {
+        "pass": true,
+        "frames": 8,
+        "fps": 12,
+        "impact": null,
+        "height_0": 391,
+        "ref_height": 391,
+        "max_ground_band_x_deviation": 1.0,
+        "sha256": "84fd48cd991e91ebbe72f35d046fb4f6b4dc11368a7f8d54b0a443c1c6a09b50"
+      }
+    }
+  }
+]

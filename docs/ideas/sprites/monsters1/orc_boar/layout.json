@@ -1,0 +1,1038 @@
+{
+  "idle": {
+    "scale_x": 0.8644578313253012,
+    "scale_y": 0.8380952380952381,
+    "target_height": 264,
+    "target_width": 287,
+    "frames": [
+      {
+        "frame": 0,
+        "bbox": [
+          66,
+          66,
+          398,
+          381
+        ],
+        "xy": [
+          97,
+          234
+        ],
+        "shared_ready": true
+      },
+      {
+        "frame": 1,
+        "bbox": [
+          510,
+          51,
+          840,
+          381
+        ],
+        "xy": [
+          98,
+          222
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          953,
+          49,
+          1284,
+          381
+        ],
+        "xy": [
+          98,
+          220
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          1397,
+          59,
+          1728,
+          381
+        ],
+        "xy": [
+          99,
+          228
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          66,
+          506,
+          398,
+          825
+        ],
+        "xy": [
+          98,
+          231
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          510,
+          507,
+          840,
+          825
+        ],
+        "xy": [
+          98,
+          232
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          953,
+          504,
+          1284,
+          825
+        ],
+        "xy": [
+          98,
+          229
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 7,
+        "bbox": [
+          1397,
+          500,
+          1728,
+          825
+        ],
+        "xy": [
+          98,
+          226
+        ],
+        "shared_ready": true
+      }
+    ]
+  },
+  "attack": {
+    "scale_x": 1.0830188679245283,
+    "scale_y": 1.056,
+    "target_height": 264,
+    "target_width": 287,
+    "frames": [
+      {
+        "frame": 0,
+        "bbox": [
+          67,
+          54,
+          332,
+          304
+        ],
+        "xy": [
+          95,
+          234
+        ],
+        "shared_ready": true
+      },
+      {
+        "frame": 1,
+        "bbox": [
+          445,
+          51,
+          709,
+          302
+        ],
+        "xy": [
+          89,
+          233
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          821,
+          28,
+          1085,
+          303
+        ],
+        "xy": [
+          103,
+          207
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          1203,
+          51,
+          1488,
+          303
+        ],
+        "xy": [
+          106,
+          232
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          52,
+          392,
+          319,
+          643
+        ],
+        "xy": [
+          102,
+          233
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          411,
+          392,
+          715,
+          643
+        ],
+        "xy": [
+          66,
+          233
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          770,
+          401,
+          1105,
+          643
+        ],
+        "xy": [
+          35,
+          242
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 7,
+        "bbox": [
+          1174,
+          392,
+          1491,
+          643
+        ],
+        "xy": [
+          39,
+          233
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 8,
+        "bbox": [
+          60,
+          733,
+          333,
+          984
+        ],
+        "xy": [
+          85,
+          233
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 9,
+        "bbox": [
+          449,
+          732,
+          714,
+          984
+        ],
+        "xy": [
+          94,
+          232
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 10,
+        "bbox": [
+          833,
+          732,
+          1098,
+          984
+        ],
+        "xy": [
+          94,
+          232
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 11,
+        "bbox": [
+          1216,
+          732,
+          1480,
+          984
+        ],
+        "xy": [
+          95,
+          232
+        ],
+        "shared_ready": true
+      }
+    ]
+  },
+  "hurt": {
+    "scale_x": 0.8247126436781609,
+    "scale_y": 0.8123076923076923,
+    "target_height": 264,
+    "target_width": 287,
+    "frames": [
+      {
+        "frame": 0,
+        "bbox": [
+          46,
+          68,
+          394,
+          393
+        ],
+        "xy": [
+          100,
+          234
+        ],
+        "shared_ready": true
+      },
+      {
+        "frame": 1,
+        "bbox": [
+          485,
+          58,
+          822,
+          389
+        ],
+        "xy": [
+          54,
+          230
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          944,
+          32,
+          1287,
+          390
+        ],
+        "xy": [
+          82,
+          208
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          1379,
+          63,
+          1711,
+          390
+        ],
+        "xy": [
+          88,
+          233
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          48,
+          510,
+          391,
+          836
+        ],
+        "xy": [
+          104,
+          234
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          491,
+          511,
+          839,
+          837
+        ],
+        "xy": [
+          100,
+          234
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          934,
+          512,
+          1280,
+          837
+        ],
+        "xy": [
+          100,
+          234
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 7,
+        "bbox": [
+          1377,
+          512,
+          1723,
+          837
+        ],
+        "xy": [
+          100,
+          234
+        ],
+        "shared_ready": true
+      }
+    ]
+  },
+  "special": {
+    "scale_x": 1.0590405904059041,
+    "scale_y": 1.0476190476190477,
+    "target_height": 264,
+    "target_width": 287,
+    "frames": [
+      {
+        "frame": 0,
+        "bbox": [
+          51,
+          61,
+          322,
+          313
+        ],
+        "xy": [
+          100,
+          234
+        ],
+        "shared_ready": true
+      },
+      {
+        "frame": 1,
+        "bbox": [
+          414,
+          43,
+          682,
+          313
+        ],
+        "xy": [
+          72,
+          215
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          797,
+          18,
+          1053,
+          313
+        ],
+        "xy": [
+          100,
+          189
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          1159,
+          4,
+          1419,
+          313
+        ],
+        "xy": [
+          108,
+          174
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          65,
+          364,
+          331,
+          673
+        ],
+        "xy": [
+          105,
+          174
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          418,
+          378,
+          673,
+          670
+        ],
+        "xy": [
+          72,
+          192
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          737,
+          429,
+          1055,
+          669
+        ],
+        "xy": [
+          63,
+          246
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 7,
+        "bbox": [
+          1093,
+          450,
+          1422,
+          671
+        ],
+        "xy": [
+          72,
+          266
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 8,
+        "bbox": [
+          40,
+          783,
+          332,
+          1030
+        ],
+        "xy": [
+          85,
+          239
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 9,
+        "bbox": [
+          407,
+          775,
+          690,
+          1029
+        ],
+        "xy": [
+          92,
+          232
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 10,
+        "bbox": [
+          767,
+          775,
+          1048,
+          1029
+        ],
+        "xy": [
+          90,
+          232
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 11,
+        "bbox": [
+          1134,
+          778,
+          1410,
+          1030
+        ],
+        "xy": [
+          94,
+          234
+        ],
+        "shared_ready": true
+      }
+    ]
+  },
+  "defeat": {
+    "scale_x": 1.0512820512820513,
+    "scale_y": 1.0232558139534884,
+    "target_height": 264,
+    "target_width": 287,
+    "frames": [
+      {
+        "frame": 0,
+        "bbox": [
+          62,
+          51,
+          335,
+          309
+        ],
+        "xy": [
+          98,
+          234
+        ],
+        "shared_ready": true
+      },
+      {
+        "frame": 1,
+        "bbox": [
+          418,
+          54,
+          686,
+          310
+        ],
+        "xy": [
+          103,
+          236
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          768,
+          71,
+          1040,
+          310
+        ],
+        "xy": [
+          98,
+          253
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          1123,
+          82,
+          1395,
+          311
+        ],
+        "xy": [
+          113,
+          264
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          48,
+          429,
+          319,
+          658
+        ],
+        "xy": [
+          108,
+          264
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          407,
+          437,
+          685,
+          660
+        ],
+        "xy": [
+          112,
+          270
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          749,
+          454,
+          1040,
+          663
+        ],
+        "xy": [
+          100,
+          284
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 7,
+        "bbox": [
+          1090,
+          459,
+          1397,
+          665
+        ],
+        "xy": [
+          104,
+          287
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 8,
+        "bbox": [
+          23,
+          828,
+          342,
+          1019
+        ],
+        "xy": [
+          68,
+          303
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 9,
+        "bbox": [
+          372,
+          838,
+          694,
+          1019
+        ],
+        "xy": [
+          69,
+          313
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 10,
+        "bbox": [
+          722,
+          845,
+          1046,
+          1019
+        ],
+        "xy": [
+          68,
+          320
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 11,
+        "bbox": [
+          722,
+          845,
+          1046,
+          1019
+        ],
+        "xy": [
+          68,
+          320
+        ],
+        "shared_ready": false
+      }
+    ]
+  },
+  "victory": {
+    "scale_x": 0.896875,
+    "scale_y": 0.9103448275862069,
+    "target_height": 264,
+    "target_width": 287,
+    "frames": [
+      {
+        "frame": 0,
+        "bbox": [
+          74,
+          109,
+          394,
+          399
+        ],
+        "xy": [
+          93,
+          234
+        ],
+        "shared_ready": true
+      },
+      {
+        "frame": 1,
+        "bbox": [
+          503,
+          97,
+          819,
+          399
+        ],
+        "xy": [
+          90,
+          223
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          938,
+          35,
+          1257,
+          399
+        ],
+        "xy": [
+          86,
+          167
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          1385,
+          12,
+          1694,
+          399
+        ],
+        "xy": [
+          92,
+          146
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          62,
+          476,
+          372,
+          841
+        ],
+        "xy": [
+          95,
+          166
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          506,
+          540,
+          828,
+          842
+        ],
+        "xy": [
+          91,
+          223
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          953,
+          548,
+          1276,
+          842
+        ],
+        "xy": [
+          92,
+          231
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 7,
+        "bbox": [
+          1397,
+          552,
+          1720,
+          842
+        ],
+        "xy": [
+          92,
+          234
+        ],
+        "shared_ready": true
+      }
+    ]
+  },
+  "rage": {
+    "scale_x": 0.9630872483221476,
+    "scale_y": 0.9361702127659575,
+    "target_height": 264,
+    "target_width": 287,
+    "frames": [
+      {
+        "frame": 0,
+        "bbox": [
+          45,
+          38,
+          343,
+          320
+        ],
+        "xy": [
+          97,
+          234
+        ],
+        "shared_ready": true
+      },
+      {
+        "frame": 1,
+        "bbox": [
+          406,
+          39,
+          704,
+          320
+        ],
+        "xy": [
+          98,
+          235
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          769,
+          42,
+          1067,
+          320
+        ],
+        "xy": [
+          98,
+          238
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          1130,
+          43,
+          1427,
+          320
+        ],
+        "xy": [
+          97,
+          239
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          44,
+          405,
+          343,
+          682
+        ],
+        "xy": [
+          96,
+          239
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          406,
+          404,
+          704,
+          682
+        ],
+        "xy": [
+          98,
+          238
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          769,
+          403,
+          1067,
+          683
+        ],
+        "xy": [
+          98,
+          236
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 7,
+        "bbox": [
+          1131,
+          401,
+          1428,
+          683
+        ],
+        "xy": [
+          98,
+          234
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 8,
+        "bbox": [
+          45,
+          762,
+          343,
+          1044
+        ],
+        "xy": [
+          98,
+          234
+        ],
+        "shared_ready": false
+      },
+      {
+        "frame": 9,
+        "bbox": [
+          406,
+          762,
+          704,
+          1044
+        ],
+        "xy": [
+          98,
+          234
+        ],
+        "shared_ready": true
+      }
+    ]
+  }
+}

@@ -176,7 +176,7 @@ func test_an_outfit_plays_its_own_clip_set_and_the_rookie_the_usual_one() -> voi
 	assert_eq(rig._outfit_folder(), "")
 	assert_eq(rig._clip_sheet_for(&"idle"), rig._sheets["res://assets/characters/hero_rookie/anim/fresh_idle.png"])
 	var usual: Dictionary = (load("res://assets/characters/hero_rookie/anim/anim.json") as JSON).data["clips"]
-	for worn in ["leather", "iron"]:
+	for worn in ["leather", "iron", "royal"]:
 		rig.set_outfit({"outfit": worn, "refine": 0})
 		assert_eq(rig._outfit_folder(), worn)
 		assert_eq(rig._outfit_clips.keys(), usual.keys(), worn + " is drawn for every clip")
@@ -220,7 +220,7 @@ func test_the_hero_has_every_new_move_drawn_in_every_outfit() -> void:
 	var rig := CharacterRig.new()
 	rig._ready()
 	rig.setup("hero_rookie", 1)
-	for worn in ["rookie", "leather", "iron"]:
+	for worn in ["rookie", "leather", "iron", "royal"]:
 		rig.set_outfit({"outfit": worn, "refine": 0})
 		for clip in [&"combo", &"block", &"dash", &"skill_armor_breaker", &"skill_second_wind", &"skill_thunder_slash", &"skill_iron_guard", &"skill_blade_vortex", &"skill_starfall_strike"]:
 			assert_true(rig.fits_look(clip), "%s %s" % [worn, clip])

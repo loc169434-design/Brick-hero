@@ -1,0 +1,151 @@
+{
+  "frame_size": [
+    512,
+    512
+  ],
+  "columns": 4,
+  "outfit": "royal",
+  "clips": {
+    "idle": {
+      "frames": 8,
+      "fps": 12,
+      "loop": true
+    },
+    "attack": {
+      "frames": 12,
+      "fps": 24,
+      "loop": false,
+      "impact": 6
+    },
+    "throw": {
+      "frames": 10,
+      "fps": 24,
+      "loop": false,
+      "impact": 4
+    },
+    "leap": {
+      "frames": 16,
+      "fps": 24,
+      "loop": false,
+      "impact": 10
+    },
+    "kick": {
+      "frames": 8,
+      "fps": 24,
+      "loop": false,
+      "impact": 3
+    },
+    "bash": {
+      "frames": 10,
+      "fps": 24,
+      "loop": false,
+      "impact": 4
+    },
+    "drink": {
+      "frames": 12,
+      "fps": 12,
+      "loop": false
+    },
+    "hurt": {
+      "frames": 8,
+      "fps": 24,
+      "loop": false
+    },
+    "dizzy": {
+      "frames": 12,
+      "fps": 12,
+      "loop": true
+    },
+    "knocked": {
+      "frames": 8,
+      "fps": 24,
+      "loop": false
+    },
+    "scared": {
+      "frames": 8,
+      "fps": 12,
+      "loop": true
+    },
+    "cheer": {
+      "frames": 12,
+      "fps": 12,
+      "loop": false
+    },
+    "victory": {
+      "frames": 12,
+      "fps": 12,
+      "loop": true
+    },
+    "defeat": {
+      "frames": 12,
+      "fps": 12,
+      "loop": false
+    },
+    "run": {
+      "frames": 8,
+      "fps": 16,
+      "loop": true
+    },
+    "combo": {
+      "frames": 16,
+      "fps": 24,
+      "loop": false,
+      "impact": 4,
+      "impacts": [
+        4,
+        9,
+        14
+      ]
+    },
+    "block": {
+      "frames": 8,
+      "fps": 24,
+      "loop": false,
+      "impact": 3
+    },
+    "dash": {
+      "frames": 6,
+      "fps": 24,
+      "loop": false
+    },
+    "skill_armor_breaker": {
+      "frames": 14,
+      "fps": 24,
+      "loop": false,
+      "impact": 9
+    },
+    "skill_second_wind": {
+      "frames": 14,
+      "fps": 12,
+      "loop": false
+    },
+    "skill_thunder_slash": {
+      "frames": 14,
+      "fps": 24,
+      "loop": false,
+      "impact": 8
+    },
+    "skill_iron_guard": {
+      "frames": 10,
+      "fps": 12,
+      "loop": false
+    },
+    "skill_blade_vortex": {
+      "frames": 16,
+      "fps": 24,
+      "loop": false,
+      "impact": 4,
+      "impacts": [
+        4,
+        8,
+        12
+      ]
+    },
+    "skill_starfall_strike": {
+      "frames": 16,
+      "fps": 24,
+      "loop": false,
+      "impact": 12
+    }
+  }
+}

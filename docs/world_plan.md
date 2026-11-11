@@ -1,5 +1,7 @@
 # Kế hoạch thế giới – Brickbound Hero
 
+> Kế hoạch mở rộng thành 100 màn: [campaign_100.md](campaign_100.md).
+
 Viết ngày 2026-11-04, sau khi trận đánh với Orc đã có hoạt hình từng khung (PR #22, #25).
 Mục tiêu giai đoạn này: **từ một trận đánh thành một chuyến phiêu lưu**. Đi qua từng vùng đất, mỗi vùng một loại quái và một kiểu combo mới. Giữa các vùng có lò rèn nâng cấp đồ, và những đoạn truyện tranh kể chuyện chính. **Cái kết (hang rồng, cứu công chúa) chưa làm**, chỉ chừa chỗ.
 

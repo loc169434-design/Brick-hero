@@ -1,0 +1,8 @@
+{
+  "browser": "Chromium",
+  "loaded_gifs": 42,
+  "sample_interval_ms": 137,
+  "samples": 4,
+  "changed_between_samples": 42,
+  "page_errors": []
+}

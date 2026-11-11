@@ -1,0 +1,258 @@
+{
+ "sheet": "assets/characters/hero_rookie/anim/iron/fresh_skill_shield_charge.png",
+ "frames": 16,
+ "cell": 512,
+ "checks": {
+  "grid": {
+   "pass": true,
+   "detail": "sheet 2048x2048 ok; empty frames: []"
+  },
+  "feet": {
+   "pass": true,
+   "detail": "first/last frame feet (y, x) vs (500, 256): ok"
+  },
+  "size": {
+   "pass": true,
+   "detail": "frame 0 body 408 px tall, reference 408"
+  },
+  "clean": {
+   "pass": true,
+   "detail": "worst frame 0 stray pixels, 0 specks in 16 frames (and 0 haze pixels, cleared on shrinking)"
+  },
+  "inside": {
+   "pass": true,
+   "detail": "frames touching the edge: none"
+  },
+  "key": {
+   "pass": true,
+   "detail": "#00ff00 left: 0 px; rim tinted by it: 0 px"
+  }
+ },
+ "per_frame": [
+  {
+   "frame": 0,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    256.0
+   ],
+   "height": 408,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 1,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    503.0,
+    250.0
+   ],
+   "height": 375,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 2,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    503.0,
+    244.0
+   ],
+   "height": 379,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 3,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    503.0,
+    240.5
+   ],
+   "height": 379,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 4,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    503.0,
+    212.5
+   ],
+   "height": 394,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 5,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    502.0,
+    260.5
+   ],
+   "height": 398,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 6,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    206.5
+   ],
+   "height": 388,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 7,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    502.0,
+    289.5
+   ],
+   "height": 398,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 8,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    503.0,
+    303.5
+   ],
+   "height": 398,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 9,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    503.0,
+    297.5
+   ],
+   "height": 398,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 10,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    503.0,
+    282.0
+   ],
+   "height": 379,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 11,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    502.0,
+    272.0
+   ],
+   "height": 418,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 12,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    501.0,
+    264.0
+   ],
+   "height": 420,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 13,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    259.0
+   ],
+   "height": 424,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 14,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    256.5
+   ],
+   "height": 408,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 15,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    256.0
+   ],
+   "height": 408,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  }
+ ],
+ "pass": true
+}

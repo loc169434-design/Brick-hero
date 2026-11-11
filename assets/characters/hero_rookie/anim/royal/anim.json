@@ -146,6 +146,12 @@
       "fps": 24,
       "loop": false,
       "impact": 12
+    },
+    "skill_royal_rally": {
+      "frames": 16,
+      "fps": 24,
+      "loop": false,
+      "impact": 8
     }
   }
 }

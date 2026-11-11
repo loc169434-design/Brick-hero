@@ -6,12 +6,17 @@
   "columns": 4,
   "clips": {
     "idle": {
-      "frames": 4,
-      "fps": 8,
+      "frames": 8,
+      "fps": 12,
       "loop": true
     },
     "hurt": {
-      "frames": 4,
+      "frames": 8,
+      "fps": 24,
+      "loop": false
+    },
+    "defeat": {
+      "frames": 12,
       "fps": 12,
       "loop": false
     }

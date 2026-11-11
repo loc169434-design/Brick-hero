@@ -1,5 +1,11 @@
 extends "res://tests/test_case.gd"
 
+## The skill only each outfit draws (docs/ideas/outfit_skills.md).
+const OUTFIT_SKILLS := {
+	"leather": "skill_tumble_cut", "iron": "skill_shield_charge", "royal": "skill_royal_rally",
+	"obsidian": "skill_obsidian_cleave", "frost": "skill_frost_nova",
+}
+
 ## A rig with made-up clips; the sheets are blank images, only the timing matters here.
 func _rig() -> CharacterRig:
 	var rig := CharacterRig.new()
@@ -176,15 +182,20 @@ func test_an_outfit_plays_its_own_clip_set_and_the_rookie_the_usual_one() -> voi
 	assert_eq(rig._outfit_folder(), "")
 	assert_eq(rig._clip_sheet_for(&"idle"), rig._sheets["res://assets/characters/hero_rookie/anim/fresh_idle.png"])
 	var usual: Dictionary = (load("res://assets/characters/hero_rookie/anim/anim.json") as JSON).data["clips"]
-	for worn in ["leather", "iron", "royal"]:
+	for worn in ["leather", "iron", "royal", "obsidian", "frost"]:
 		rig.set_outfit({"outfit": worn, "refine": 0})
 		assert_eq(rig._outfit_folder(), worn)
-		assert_eq(rig._outfit_clips.keys(), usual.keys(), worn + " is drawn for every clip")
+		for clip: String in usual:
+			assert_true(rig._outfit_clips.has(clip), "%s is drawn for %s" % [worn, clip])
+		# Besides the usual clips, each outfit draws its own signature skill and nothing else.
+		assert_eq(rig._outfit_clips.size(), usual.size() + 1, worn + " adds one signature skill")
+		var own: String = OUTFIT_SKILLS[worn]
+		assert_true(rig._clip_sheet_for(StringName(own)).resource_path.contains("/anim/%s/" % worn), own)
 		for clip: String in usual:
 			var sheet := rig._clip_sheet_for(StringName(clip))
 			assert_true(sheet != null and sheet.resource_path.contains("/anim/%s/" % worn), "%s %s" % [worn, clip])
 	# An outfit not drawn yet: the usual clips stand in.
-	rig.set_outfit({"outfit": "frost", "refine": 0})
+	rig.set_outfit({"outfit": "not_drawn_yet", "refine": 0})
 	assert_eq(rig._outfit_clips, {})
 	assert_eq(rig._clip_sheet_for(&"idle"), rig._sheets["res://assets/characters/hero_rookie/anim/fresh_idle.png"])
 	rig._body.free()
@@ -220,7 +231,7 @@ func test_the_hero_has_every_new_move_drawn_in_every_outfit() -> void:
 	var rig := CharacterRig.new()
 	rig._ready()
 	rig.setup("hero_rookie", 1)
-	for worn in ["rookie", "leather", "iron", "royal"]:
+	for worn in ["rookie", "leather", "iron", "royal", "obsidian", "frost"]:
 		rig.set_outfit({"outfit": worn, "refine": 0})
 		for clip in [&"combo", &"block", &"dash", &"skill_armor_breaker", &"skill_second_wind", &"skill_thunder_slash", &"skill_iron_guard", &"skill_blade_vortex", &"skill_starfall_strike"]:
 			assert_true(rig.fits_look(clip), "%s %s" % [worn, clip])

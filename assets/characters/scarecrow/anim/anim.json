@@ -14,6 +14,11 @@
       "frames": 8,
       "fps": 24,
       "loop": false
+    },
+    "defeat": {
+      "frames": 12,
+      "fps": 12,
+      "loop": false
     }
   }
 }

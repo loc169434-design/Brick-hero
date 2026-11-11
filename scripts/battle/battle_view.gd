@@ -962,9 +962,8 @@ func _monster_move(report: TurnReport, fight: int) -> void:
 		_camera(1.0, SIZE / 2, 0.35)
 
 
-## The witch's lift clip. Her drawn `lift` clip paints her at half her size (art issue #48), so
-## she waves her broom spell until it's redrawn; then this becomes &"lift".
-const LIFT_CLIP := &"cast_broom"
+## The witch's lift clip: both hands raise something unseen and hurl it on the impact frame.
+const LIFT_CLIP := &"lift"
 ## Clips the monster plays for each spell, and the word that pops up.
 const SPELL_CLIPS := {
 	"toads": [&"cast_toads", "zap"], "broom": [&"cast_broom", "zap"], "potion": [&"throw_potion", "whoosh"],

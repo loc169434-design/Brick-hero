@@ -146,6 +146,12 @@
       "fps": 24,
       "loop": false,
       "impact": 12
+    },
+    "skill_tumble_cut": {
+      "frames": 16,
+      "fps": 24,
+      "loop": false,
+      "impact": 10
     }
   }
 }

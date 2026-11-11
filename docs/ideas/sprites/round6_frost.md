@@ -1,4 +1,4 @@
-# Đợt 6 cho Gemini Carbon: Bộ Băng (bậc 5, bộ cuối)
+# Đợt 6 cho Gemini Carbon: Bộ Băng (bậc 5, bộ cuối) và tuyệt kĩ của bốn bộ
 
 Claude viết, 11/11/2026. Cách làm **y hệt đợt 4** ([round4_royal.md](round4_royal.md), [round2_leather.md](round2_leather.md) cho bảng clip và số khung). File này chỉ ghi những gì khác.
 
@@ -7,7 +7,10 @@ Song song có một AI khác vẽ Bộ Hắc Thép ([round5_obsidian.md](round5_
 ## Nhánh và thư mục
 
 - Nhánh mới `art/hero-frost`, tạo từ `origin/core/world-life` (git fetch trước).
-- Chỉ thêm file vào `assets/characters/hero_rookie/anim/frost/` và `docs/ideas/sprites/round6/`.
+- Chỉ thêm file vào:
+  - `assets/characters/hero_rookie/anim/frost/`;
+  - `docs/ideas/sprites/round6/`;
+  - riêng Việc 2, ba file tuyệt kĩ trong `anim/leather/`, `anim/iron/`, `anim/royal/` (chỉ thêm file mới, không sửa file đã có).
 - Không sửa `scripts/`, `scenes/`, `tests/`, `project.godot`, mọi `anim.json`, các file `.import`. Không force push.
 
 ## Trông thế nào
@@ -54,7 +57,15 @@ Màu chủ đạo:
 3. **`idle`**, rồi lần lượt **23 clip còn lại**, cùng danh sách, cùng số khung, cùng fps như bảng trong `round2_leather.md`. Mỗi clip chép đúng dáng clip Tân binh cùng tên trong `assets/characters/hero_rookie/anim/fresh_<tên>.png`, kể cả:
    - độ nghiêng người;
    - chân co ở `kick`, `hurt`, `knocked`, `scared`.
-4. **Mỗi clip xong và ĐẠT thì commit và push ngay**, để Claude theo dõi giữa chừng. Thứ tự gợi ý: idle, attack, hurt, run, block, dash, combo, rồi các clip còn lại.
+4. **Clip thứ 25: tuyệt kĩ `skill_frost_nova` (BĂNG PHONG)**, 16 khung, 24 fps, đòn trúng ở khung 7. Đây là clip mới, Tân binh không có, nên không có dáng để chép. Đọc kĩ dáng trong [../outfit_skills.md](../outfit_skills.md):
+   - nhảy nhẹ;
+   - hai tay cắm kiếm xuống đất ở khung 7;
+   - quỳ một gối giữ kiếm 4 khung;
+   - đứng dậy;
+   - khung 0 và khung 15 là dáng `idle` của bộ.
+
+   Không vẽ băng lan hay khói lạnh.
+5. **Mỗi clip xong và ĐẠT thì commit và push ngay**, để Claude theo dõi giữa chừng. Thứ tự gợi ý: idle, attack, hurt, run, block, dash, combo, rồi các clip còn lại.
 
 Đường dẫn:
 - Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/fresh_<tên>_green.png`.
@@ -74,6 +85,20 @@ Màu chủ đạo:
 
 Một clip sửa tối đa 5 vòng. Quá 5 vòng vẫn trượt thì ghi lý do vào `rounds.md` rồi làm clip tiếp theo.
 
-## Khi xong cả 24 clip
+## Việc 2: tuyệt kĩ cho ba bộ đã có (làm sau khi xong 25 clip Bộ Băng)
+
+Mỗi bộ một clip, 16 khung, 24 fps. Dáng xem [../outfit_skills.md](../outfit_skills.md). Vẽ **đúng đồ của bộ đó**: mở `fresh_idle.png` của bộ ra mà chép mặt, giáp, kiếm, khiên.
+
+| Bộ | File | Đòn trúng | Dáng |
+|---|---|---|---|
+| Bộ da | `anim/leather/fresh_skill_tumble_cut.png` | khung 10 | lộn nhào về trước, bật dậy chém hất từ dưới lên |
+| Bộ sắt | `anim/iron/fresh_skill_shield_charge.png` | khung 8 | cúi thấp, khiên chắn trước, lao tới húc, lùi về |
+| Hoàng Gia | `anim/royal/fresh_skill_royal_rally.png` | khung 8 | cắm khiên, giơ kiếm thẳng lên trời, hô to, giữ 3 khung, hạ kiếm |
+
+- Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/<bộ>_fresh_<clip>_green.png`.
+- `check_sheet.py`: `--ref` là `fresh_idle.png` của chính bộ đó. `skill_tumble_cut` thêm `--airborne`.
+- Mỗi clip ĐẠT thì commit và push ngay.
+
+## Khi xong hết (25 clip Bộ Băng và 3 tuyệt kĩ)
 
 Báo một bảng gồm tên clip, ĐẠT hay TRƯỢT, và số vòng sửa. Rồi **dừng**.

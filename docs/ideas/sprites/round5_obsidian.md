@@ -1,4 +1,4 @@
-# Đợt 5 cho Gemini: Bộ Hắc Thép (bậc 4)
+# Đợt 5 cho Gemini: Bộ Hắc Thép (bậc 4) và tuyệt kĩ HẮC TRẢM
 
 Claude viết, 11/11/2026. Cách làm **y hệt đợt 4** ([round4_royal.md](round4_royal.md), [round2_leather.md](round2_leather.md) cho bảng clip và số khung). File này chỉ ghi những gì khác.
 
@@ -52,7 +52,14 @@ Màu chủ đạo:
 3. **`idle`**, rồi lần lượt **23 clip còn lại**, cùng danh sách, cùng số khung, cùng fps như bảng trong `round2_leather.md`. Mỗi clip chép đúng dáng clip Tân binh cùng tên trong `assets/characters/hero_rookie/anim/fresh_<tên>.png`, kể cả:
    - độ nghiêng người;
    - chân co ở `kick`, `hurt`, `knocked`, `scared`.
-4. **Mỗi clip xong và ĐẠT thì commit và push ngay**, để Claude theo dõi giữa chừng. Thứ tự gợi ý: idle, attack, hurt, run, block, dash, combo, rồi các clip còn lại.
+4. **Clip thứ 25: tuyệt kĩ `skill_obsidian_cleave` (HẮC TRẢM)**, 16 khung, 24 fps, đòn trúng ở khung 9. Đây là clip mới, Tân binh không có, nên không có dáng để chép. Đọc kĩ dáng trong [../outfit_skills.md](../outfit_skills.md):
+   - hai tay vung kiếm ra sau lưng, xoay hông;
+   - bổ chéo xuống ở khung 9, mũi kiếm cắm đất;
+   - rút kiếm lên;
+   - khung 0 và khung 15 là dáng `idle` của bộ.
+
+   Đòn phải nặng: lấy đà chậm (khung 1–6), chém thật nhanh (khung 7–9), giữ kiếm cắm đất 3 khung. Không vẽ vệt chém hay đá vỡ.
+5. **Mỗi clip xong và ĐẠT thì commit và push ngay**, để Claude theo dõi giữa chừng. Thứ tự gợi ý: idle, attack, hurt, run, block, dash, combo, rồi các clip còn lại.
 
 Đường dẫn:
 - Bản gốc nền xanh: `docs/ideas/sprites/round5/raw/fresh_<tên>_green.png`.
@@ -72,6 +79,6 @@ Màu chủ đạo:
 
 Một clip sửa tối đa 5 vòng. Quá 5 vòng vẫn trượt thì ghi lý do vào `rounds.md` rồi làm clip tiếp theo.
 
-## Khi xong cả 24 clip
+## Khi xong cả 25 clip
 
 Báo một bảng gồm tên clip, ĐẠT hay TRƯỢT, và số vòng sửa. Rồi **dừng**.

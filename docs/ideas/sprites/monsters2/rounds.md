@@ -6,6 +6,7 @@ Nhánh `art/monsters-2` từ `e68e8554e5164e486d15e968523817557492f550`. Chỉ s
 |---|---|---|---:|---|---|
 | goblin_archer | special | ĐẠT | 1 | frame 0 body 391 px tall, reference 391 | [499.0, 254.5] / [500.0, 259.5] |
 | goblin_thief | victory | ĐẠT | 1 | frame 0 body 385 px tall, reference 385 | [500.0, 259.5] / [500.0, 260.0] |
+| scarecrow | defeat | ĐẠT | 1 | frame 0 body 437 px tall, reference 438 | [500.0, 256.5] / [500.0, 152.0] |
 | swamp_leech | attack | ĐẠT | 1 | frame 0 body 267 px tall, reference 267 | [500.0, 278.5] / [499.0, 279.5] |
 | swamp_leech | defeat | ĐẠT | 1 | frame 0 body 267 px tall, reference 267 | [500.0, 274.5] / [500.0, 258.5] |
 | swamp_leech | hurt | ĐẠT | 1 | frame 0 body 267 px tall, reference 267 | [500.0, 276.0] / [499.0, 280.0] |
@@ -31,3 +32,9 @@ Nhánh `art/monsters-2` từ `e68e8554e5164e486d15e968523817557492f550`. Chỉ s
 | toad_witch | lift | ĐẠT | 1 | frame 0 body 366 px tall, reference 366 | [500.0, 256.0] / [500.0, 256.5] |
 | toad_witch | special | ĐẠT | 1 | frame 0 body 365 px tall, reference 366 | [500.0, 256.5] / [500.0, 256.5] |
 | toad_witch | victory | ĐẠT | 1 | frame 0 body 366 px tall, reference 366 | [500.0, 256.5] / [500.0, 256.5] |
+| toad_witch_giant | attack | ĐẠT | 1 | frame 0 body 301 px tall, reference 301 | [500.0, 256.5] / [500.0, 256.5] |
+| toad_witch_giant | defeat | ĐẠT | 1 | frame 0 body 301 px tall, reference 301 | [500.0, 256.5] / [500.0, 256.0] |
+| toad_witch_giant | hurt | ĐẠT | 1 | frame 0 body 301 px tall, reference 301 | [500.0, 256.0] / [500.0, 256.0] |
+| toad_witch_giant | idle | ĐẠT | 1 | frame 0 body 301 px tall, reference 301 | [500.0, 256.5] / [499.0, 256.5] |
+| toad_witch_giant | special | ĐẠT | 1 | frame 0 body 301 px tall, reference 301 | [500.0, 256.0] / [500.0, 256.0] |
+| toad_witch_giant | victory | ĐẠT | 1 | frame 0 body 301 px tall, reference 301 | [500.0, 256.5] / [500.0, 256.0] |

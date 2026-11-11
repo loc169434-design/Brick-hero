@@ -21,7 +21,7 @@ for i in range(a.offset,a.offset+a.frames):
     x=i%4; y=i//4
     f=im.crop((round(x*im.width/4),round(y*im.height/a.source_rows),round((x+1)*im.width/4),round((y+1)*im.height/a.source_rows)))
     m=mask(np.array(f)); lab,n=ndimage.label(m)
-    sizes=np.bincount(lab.ravel()); valid=np.flatnonzero(sizes>=20); valid=valid[valid!=0]
+    sizes=np.bincount(lab.ravel()); valid=np.flatnonzero(sizes>=max(20, sizes[1:].max()*.015)); valid=valid[valid!=0]
     m=np.isin(lab,valid); yy,xx=np.where(m)
     box=(int(xx.min()),int(yy.min()),int(xx.max()+1),int(yy.max()+1)); boxes.append(box); poses.append(f.crop(box))
 rr=np.array(Image.open(ref).convert('RGBA'))[:512,:512,3]>=128

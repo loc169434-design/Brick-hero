@@ -24,3 +24,10 @@ Nhánh `art/monsters-2` từ `e68e8554e5164e486d15e968523817557492f550`. Chỉ s
 | toad_spitter | idle | ĐẠT | 1 | frame 0 body 178 px tall, reference 178 | [500.0, 253.0] / [500.0, 252.5] |
 | toad_spitter | special | ĐẠT | 1 | frame 0 body 178 px tall, reference 178 | [499.0, 252.5] / [499.0, 254.5] |
 | toad_spitter | victory | ĐẠT | 1 | frame 0 body 177 px tall, reference 178 | [499.0, 254.0] / [500.0, 254.5] |
+| toad_witch | attack | ĐẠT | 1 | frame 0 body 366 px tall, reference 366 | [500.0, 257.5] / [499.0, 256.0] |
+| toad_witch | defeat | ĐẠT | 1 | frame 0 body 366 px tall, reference 366 | [500.0, 256.5] / [500.0, 256.0] |
+| toad_witch | hurt | ĐẠT | 1 | frame 0 body 366 px tall, reference 366 | [500.0, 256.0] / [500.0, 256.0] |
+| toad_witch | idle | ĐẠT | 1 | frame 0 body 365 px tall, reference 366 | [499.0, 256.5] / [500.0, 256.0] |
+| toad_witch | lift | ĐẠT | 1 | frame 0 body 366 px tall, reference 366 | [500.0, 256.0] / [500.0, 256.5] |
+| toad_witch | special | ĐẠT | 1 | frame 0 body 365 px tall, reference 366 | [500.0, 256.5] / [500.0, 256.5] |
+| toad_witch | victory | ĐẠT | 1 | frame 0 body 366 px tall, reference 366 | [500.0, 256.5] / [500.0, 256.5] |

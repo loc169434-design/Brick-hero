@@ -20,6 +20,8 @@ poses=[]; boxes=[]
 for i in range(a.offset,a.offset+a.frames):
     x=i%4; y=i//4
     f=im.crop((round(x*im.width/4),round(y*im.height/a.source_rows),round((x+1)*im.width/4),round((y+1)*im.height/a.source_rows)))
+    # Exclude atlas separators from cell extraction, outside the padded drawings.
+    f=f.crop((3,3,f.width-3,f.height-3))
     m=mask(np.array(f)); lab,n=ndimage.label(m)
     sizes=np.bincount(lab.ravel()); valid=np.flatnonzero(sizes>=max(20, sizes[1:].max()*.015)); valid=valid[valid!=0]
     m=np.isin(lab,valid); yy,xx=np.where(m)
@@ -35,7 +37,12 @@ for i,f in enumerate(poses):
     f=f.resize((w,h),Image.Resampling.LANCZOS)
     # Normalize only flat background, leaving drawn pixels intact.
     rgb=np.array(f); bg=~mask(rgb); rgb[bg]=(255,0,255); f=Image.fromarray(rgb)
-    sheet.paste(f,((i%4)*512+256-w//2,(i//4)*512+501-h))
+    mm=mask(rgb); gy,gx=np.where(mm & (np.arange(h)[:,None]>=h-20))
+    anchor=(int(gx.min())+int(gx.max()))//2
+    px=256-anchor
+    if px<2 or px+w>510:
+        px=max(2,min(510-w,px))
+    sheet.paste(f,((i%4)*512+px,(i//4)*512+501-h))
 raw=root/'raw'/f'{a.monster}_{a.clip}_key.png'; sheet.save(raw)
 target=Path('assets/characters')/a.monster/'anim'/f'fresh_{a.clip}.png'
 subprocess.run(['python3','tools/sprites/key_out.py',str(raw),str(target),'--key','ff00ff'],check=True)

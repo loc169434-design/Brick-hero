@@ -12,6 +12,12 @@ Nhánh `art/monsters-2` từ `e68e8554e5164e486d15e968523817557492f550`. Chỉ s
 | swamp_leech | idle | ĐẠT | 1 | frame 0 body 267 px tall, reference 267 | [500.0, 277.5] / [500.0, 278.0] |
 | swamp_leech | special | ĐẠT | 1 | frame 0 body 267 px tall, reference 267 | [500.0, 276.0] / [500.0, 277.5] |
 | swamp_leech | victory | ĐẠT | 1 | frame 0 body 267 px tall, reference 267 | [500.0, 275.5] / [499.0, 276.0] |
+| swamp_spider | attack | ĐẠT | 1 | frame 0 body 236 px tall, reference 236 | [500.0, 255.5] / [500.0, 255.0] |
+| swamp_spider | defeat | ĐẠT | 1 | frame 0 body 236 px tall, reference 236 | [500.0, 253.0] / [499.0, 255.5] |
+| swamp_spider | hurt | ĐẠT | 1 | frame 0 body 236 px tall, reference 236 | [500.0, 252.5] / [500.0, 253.0] |
+| swamp_spider | idle | ĐẠT | 1 | frame 0 body 236 px tall, reference 236 | [500.0, 254.0] / [499.0, 255.5] |
+| swamp_spider | special | ĐẠT | 1 | frame 0 body 236 px tall, reference 236 | [500.0, 253.0] / [500.0, 253.5] |
+| swamp_spider | victory | ĐẠT | 1 | frame 0 body 236 px tall, reference 236 | [500.0, 254.0] / [500.0, 256.0] |
 | toad_spitter | attack | ĐẠT | 1 | frame 0 body 178 px tall, reference 178 | [500.0, 253.0] / [500.0, 253.0] |
 | toad_spitter | defeat | ĐẠT | 1 | frame 0 body 178 px tall, reference 178 | [500.0, 254.0] / [500.0, 256.0] |
 | toad_spitter | hurt | ĐẠT | 1 | frame 0 body 178 px tall, reference 178 | [500.0, 253.5] / [500.0, 253.5] |

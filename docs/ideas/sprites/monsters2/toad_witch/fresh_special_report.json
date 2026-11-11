@@ -13,7 +13,7 @@
   },
   "size": {
    "pass": true,
-   "detail": "frame 0 body 365 px tall, reference 366"
+   "detail": "frame 0 body 366 px tall, reference 366"
   },
   "clean": {
    "pass": true,
@@ -36,9 +36,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.5
+    256.0
    ],
-   "height": 365,
+   "height": 366,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -50,9 +50,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.5
+    256.0
    ],
-   "height": 359,
+   "height": 364,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -66,7 +66,7 @@
     500.0,
     256.5
    ],
-   "height": 378,
+   "height": 380,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -78,9 +78,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.5
+    256.0
    ],
-   "height": 424,
+   "height": 432,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -91,10 +91,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    500.0,
-    256.0
+    499.0,
+    256.5
    ],
-   "height": 424,
+   "height": 435,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -105,10 +105,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    500.0,
+    499.0,
     256.0
    ],
-   "height": 371,
+   "height": 381,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -120,9 +120,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    287.5
+    286.5
    ],
-   "height": 352,
+   "height": 357,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -133,10 +133,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    500.0,
-    299.5
+    499.0,
+    294.0
    ],
-   "height": 352,
+   "height": 356,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -147,22 +147,8 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    499.0,
-    275.0
-   ],
-   "height": 354,
-   "stray": 0,
-   "specks": 0,
-   "edge": 0
-  },
-  {
-   "frame": 9,
-   "haze": 0,
-   "key_left": 0,
-   "key_tint": 0,
-   "feet": [
     500.0,
-    256.5
+    268.5
    ],
    "height": 357,
    "stray": 0,
@@ -170,7 +156,7 @@
    "edge": 0
   },
   {
-   "frame": 10,
+   "frame": 9,
    "haze": 0,
    "key_left": 0,
    "key_tint": 0,
@@ -184,15 +170,29 @@
    "edge": 0
   },
   {
+   "frame": 10,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    256.0
+   ],
+   "height": 366,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
    "frame": 11,
    "haze": 0,
    "key_left": 0,
    "key_tint": 0,
    "feet": [
     500.0,
-    256.5
+    255.5
    ],
-   "height": 364,
+   "height": 368,
    "stray": 0,
    "specks": 0,
    "edge": 0

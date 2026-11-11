@@ -68,5 +68,24 @@ extends Resource
 @export var blade_vortex_squares := 3.0
 ## Tinh Kiếm: hits like this many red squares straight through any shield, leaving it whole.
 @export var starfall_squares := 7.0
+## The outfits' own skills (Gear.ITEMS[outfit]["skill"], docs/ideas/outfit_skills.md).
+## Lộn Chém (leather): hits like this many red squares and washes out any poison.
+@export var tumble_cut_squares := 8.0
+## Khiên Phá (iron): smashes this many whole shield layers, hits like this many red squares,
+## and holds the monster's attack back a move.
+@export var shield_charge_layers := 2
+@export var shield_charge_squares := 4.0
+## Hiệu Lệnh (royal): health back, and the next moves' red squares hit this much harder.
+@export var royal_rally_heal := 10
+@export var royal_rally_moves := 3
+@export var royal_rally_power := 1.5
+## Hắc Trảm (obsidian): hits like this many red squares straight through any shield, and costs
+## the hero this much health. It can't be used with that much health or less.
+@export var obsidian_cleave_squares := 12.0
+@export var obsidian_cleave_cost := 5
+## Băng Phong (frost): hits like this many red squares and holds the monster's attack back
+## this many moves.
+@export var frost_nova_squares := 4.0
+@export var frost_nova_moves := 2
 ## What the hero wears, for drawing him (Gear.outfit); set with the gear by Gear.apply.
 @export var outfit := {}

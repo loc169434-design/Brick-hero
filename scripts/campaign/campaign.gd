@@ -159,6 +159,7 @@ func buy(id: String) -> bool:
 	owned.append(id)
 	if Gear.ITEMS[id]["slot"] == "outfit":
 		look = ""
+		_follow_outfit()
 	return true
 
 
@@ -170,7 +171,17 @@ func wear(id: String) -> bool:
 	if wanted == look:
 		return false
 	look = wanted
+	_follow_outfit()
 	return true
+
+
+## Another outfit's own skill comes off with it: the one he has on now brings its own, or he
+## falls back on the first skill.
+func _follow_outfit() -> void:
+	var from := Gear.skill_outfit(skill)
+	if from and from != worn():
+		var own := Gear.outfit_skill(worn())
+		skill = own if own else Gear.STARTING_SKILL
 
 
 ## The outfit he has on.
@@ -210,9 +221,14 @@ func use_booster(id: String) -> bool:
 	return true
 
 
-## Takes skill `id` into the next fights if it's been learned. Returns whether it was picked.
+## Takes skill `id` into the next fights if it's been learned, or it's the own skill of the
+## outfit he has on. Returns whether it was picked.
 func pick_skill(id: String) -> bool:
-	if not Gear.skill_unlocked(id, cleared):
+	var outfit := Gear.skill_outfit(id)
+	if outfit:
+		if outfit != worn():
+			return false
+	elif not Gear.skill_unlocked(id, cleared):
 		return false
 	skill = id
 	return true

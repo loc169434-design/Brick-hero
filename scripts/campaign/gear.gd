@@ -44,15 +44,16 @@ const STARTING_SKILL := "armor_breaker"
 
 ## Each item: slot, name, price, `after` (the level that must be won first, "" for none),
 ## its shop `icon` (assets/ui/items/) and its effect: an outfit's `red` damage per red square,
-## `armor` taken off every monster attack and `crit_guard` of the monster's critical bonus
-## stopped; a refine's `refine` extra red damage.
+## `armor` taken off every monster attack, `crit_guard` of the monster's critical bonus
+## stopped and its own `skill` (BattleState.SKILLS), picked only while it is worn; a refine's
+## `refine` extra red damage.
 const ITEMS := {
 	"rookie": {"slot": "outfit", "name": "Tân binh", "price": 0, "after": "", "icon": "wood_sword", "red": 2.0, "armor": 0, "crit_guard": 0.0},
-	"leather": {"slot": "outfit", "name": "Bộ da", "price": 70, "after": "5", "icon": "leather_armor", "red": 2.25, "armor": 3, "crit_guard": 0.25},
-	"iron": {"slot": "outfit", "name": "Bộ sắt", "price": 140, "after": "18", "icon": "iron_armor", "red": 2.5, "armor": 5, "crit_guard": 0.75},
-	"royal": {"slot": "outfit", "name": "Hoàng Gia", "price": 190, "after": "45", "icon": "royal_armor", "red": 3.0, "armor": 7, "crit_guard": 1.0},
-	"obsidian": {"slot": "outfit", "name": "Hắc Thép", "price": 210, "after": "65", "icon": "obsidian_armor", "red": 3.0, "armor": 8, "crit_guard": 1.0},
-	"frost": {"slot": "outfit", "name": "Bộ Băng", "price": 240, "after": "85", "icon": "frost_armor", "red": 3.0, "armor": 9, "crit_guard": 1.0},
+	"leather": {"slot": "outfit", "name": "Bộ da", "price": 70, "after": "5", "icon": "leather_armor", "red": 2.25, "armor": 3, "crit_guard": 0.25, "skill": "tumble_cut"},
+	"iron": {"slot": "outfit", "name": "Bộ sắt", "price": 140, "after": "18", "icon": "iron_armor", "red": 2.5, "armor": 5, "crit_guard": 0.75, "skill": "shield_charge"},
+	"royal": {"slot": "outfit", "name": "Hoàng Gia", "price": 190, "after": "45", "icon": "royal_armor", "red": 3.0, "armor": 7, "crit_guard": 1.0, "skill": "royal_rally"},
+	"obsidian": {"slot": "outfit", "name": "Hắc Thép", "price": 210, "after": "65", "icon": "obsidian_armor", "red": 3.0, "armor": 8, "crit_guard": 1.0, "skill": "obsidian_cleave"},
+	"frost": {"slot": "outfit", "name": "Bộ Băng", "price": 240, "after": "85", "icon": "frost_armor", "red": 3.0, "armor": 9, "crit_guard": 1.0, "skill": "frost_nova"},
 	"sword_plus_1": {"slot": "refine", "name": "Rèn kiếm +1", "price": 60, "after": "36", "icon": "sword_refine", "refine": 0.25},
 	"sword_plus_2": {"slot": "refine", "name": "Rèn kiếm +2", "price": 90, "after": "36", "icon": "sword_refine", "refine": 0.5},
 	"sword_plus_3": {"slot": "refine", "name": "Rèn kiếm +3", "price": 120, "after": "36", "icon": "sword_refine", "refine": 0.75},
@@ -65,6 +66,19 @@ static func skill_unlocked(id: String, cleared: Array) -> bool:
 		return false
 	var after: String = SKILL_AFTER[id]
 	return after.is_empty() or cleared.has(after)
+
+
+## The skill only outfit `outfit_id` has, or "" (the rookie has none).
+static func outfit_skill(outfit_id: String) -> String:
+	return String(ITEMS.get(outfit_id, {}).get("skill", ""))
+
+
+## The outfit whose own skill `id` is, or "" for a skill learned by winning fights.
+static func skill_outfit(id: String) -> String:
+	for outfit_id: String in ITEMS:
+		if outfit_skill(outfit_id) == id:
+			return outfit_id
+	return ""
 
 
 ## The items of `slot`, cheapest rung first.

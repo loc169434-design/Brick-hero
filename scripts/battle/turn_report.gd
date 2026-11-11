@@ -60,6 +60,12 @@ var delayed := false
 var guard := 0
 var hits := 0
 var pierced := false
+## Moves Lôi Trảm, Khiên Phá or Băng Phong held the monster's attack back (with `delayed`).
+var held := 0
+## Hiệu Lệnh: the next this-many moves hit harder.
+var rallied := 0
+## Health Hắc Trảm cost the hero.
+var self_damage := 0
 ## Damage Hộ Thể took off the monster's attack.
 var guarded := 0
 ## A booster used ("potion"), played by the fight like a skill.

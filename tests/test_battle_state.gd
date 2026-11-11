@@ -313,6 +313,75 @@ func test_starfall_goes_through_the_shield_and_leaves_it() -> void:
 	assert_true(report.pierced)
 
 
+func test_tumble_cut_hits_and_washes_out_the_poison() -> void:
+	var state := _skilled("tumble_cut", _monster(80))
+	state.poison_hero(4)
+	var report := state.use_skill()
+	assert_eq(report.damage, roundi(state.rules.tumble_cut_squares * state.rules.red_damage))
+	assert_true(report.cured)
+	assert_eq(state.poison_turns, 0)
+	state.rage = state.rules.rage_max
+	assert_true(not state.use_skill().cured, "nothing to wash out the second time")
+
+
+func test_shield_charge_smashes_two_layers_and_holds_the_attack_back() -> void:
+	var orc := _monster(80, 3, 12, 3)
+	orc.counterattacks = true
+	var state := _skilled("shield_charge", orc)
+	var report := state.use_skill()
+	assert_eq(report.layers_broken, 2)
+	assert_eq(state.shield_layers(), 1)
+	assert_eq(report.damage, roundi(state.rules.shield_charge_squares * state.rules.red_damage * state.rules.shielded_damage_factor), "a layer is left, so it's halved")
+	assert_eq(report.held, 1)
+	assert_eq(state.countdown, 4)
+
+
+func test_royal_rally_heals_and_strengthens_the_next_three_moves() -> void:
+	var state := _skilled("royal_rally", _monster(200))
+	state.hero_hp = 50
+	var report := state.use_skill()
+	assert_eq(report.heal, state.rules.royal_rally_heal)
+	assert_eq(report.rallied, 3)
+	for i in 3:
+		assert_eq(state.apply_move(_move([[R, R, R, R]])).damage, 12, "x1.5 on move %d" % (i + 1))
+	assert_eq(state.apply_move(_move([[R, R, R, R]])).damage, 8, "back to normal")
+
+
+func test_obsidian_cleave_pierces_and_costs_health() -> void:
+	var state := _skilled("obsidian_cleave", _monster(80, 3))
+	var shield := state.shield
+	var report := state.use_skill()
+	assert_eq(report.damage, roundi(state.rules.obsidian_cleave_squares * state.rules.red_damage), "full damage through the shield")
+	assert_eq(state.shield, shield)
+	assert_eq(report.self_damage, state.rules.obsidian_cleave_cost)
+	assert_eq(state.hero_hp, state.rules.hero_max_hp - state.rules.obsidian_cleave_cost)
+	state.rage = state.rules.rage_max
+	state.hero_hp = state.rules.obsidian_cleave_cost
+	assert_true(not state.skill_ready(), "not with too little health to pay for it")
+
+
+func test_frost_nova_freezes_the_monster_for_two_moves_once() -> void:
+	var orc := _monster(80, 0, 12, 3)
+	orc.counterattacks = true
+	var state := _skilled("frost_nova", orc)
+	var report := state.use_skill()
+	assert_eq(report.held, 2)
+	assert_eq(state.countdown, 5)
+	state.rules.skill = "thunder_slash"
+	state.rage = state.rules.rage_max
+	assert_true(not state.use_skill().delayed, "the same attack can't be held twice")
+
+
+func test_every_outfit_past_the_rookie_has_its_own_named_skill() -> void:
+	for id in Gear.ladder("outfit"):
+		var own := Gear.outfit_skill(id)
+		assert_eq(own.is_empty(), id == "rookie", id)
+		if own:
+			assert_true(BattleState.SKILLS.has(own), own)
+			assert_true(not Gear.SKILL_AFTER.has(own), "%s is not learned by winning" % own)
+			assert_eq(Gear.skill_outfit(own), id)
+
+
 func test_every_skill_can_be_learned_and_named() -> void:
 	for id: String in Gear.SKILL_AFTER:
 		assert_true(BattleState.SKILLS.has(id), id)

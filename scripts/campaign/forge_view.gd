@@ -92,6 +92,25 @@ const SKILL_LINES := {
 	"iron_guard": "Hộ Thể: đỡ bớt đòn tới của quái!",
 	"blade_vortex": "Phong Kiếm: xoay ba vòng chém!",
 	"starfall_strike": "Tinh Kiếm: xuyên thẳng qua khiên!",
+	"tumble_cut": "Lộn Chém: lộn một vòng, chém bay cả độc!",
+	"shield_charge": "Khiên Phá: húc vỡ hai lớp khiên!",
+	"royal_rally": "Hiệu Lệnh: hồi máu, ba lượt sau chém mạnh!",
+	"obsidian_cleave": "Hắc Trảm: chém xuyên khiên, đổi chút máu!",
+	"frost_nova": "Băng Phong: đóng băng quái hai lượt!",
+}
+## The worn outfit's own skill sits in a row of its own under the gear rows, ringed in the
+## outfit's color; what each one does, in a few words.
+const OWN_SKILL_ROW := 2
+const OWN_SKILL_LINES := {
+	"tumble_cut": "Chém như 8 ô đỏ · giải độc",
+	"shield_charge": "Vỡ 2 lớp khiên · quái chậm 1 lượt",
+	"royal_rally": "Hồi 10 máu · 3 lượt ô đỏ x1,5",
+	"obsidian_cleave": "Chém xuyên khiên như 12 ô · mất 5 máu",
+	"frost_nova": "Đóng băng quái 2 lượt",
+}
+const OUTFIT_COLORS := {
+	"leather": Color(0.72, 0.45, 0.22), "iron": Color(0.72, 0.76, 0.8), "royal": Color(0.25, 0.4, 0.85),
+	"obsidian": Color(0.78, 0.15, 0.18), "frost": Color(0.55, 0.88, 0.95),
 }
 
 const STRIKES := 3
@@ -277,6 +296,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.position.distance_to(_skill_spot(id)) <= SKILL_RADIUS + 8:
 			_on_skill_tapped(id)
 			return
+	if _own_skill_row().has_point(event.position):
+		_on_own_skill_tapped()
+		return
 	if HERO_TAP.has_point(event.position):
 		_on_hero_tapped()
 		return
@@ -339,6 +361,16 @@ func _on_skill_tapped(id: String) -> void:
 	_picked_t = 1.0
 	skill_picked.emit(id)
 	_say(SKILL_LINES.get(id, title))
+
+
+## The worn outfit's own skill: picked like any other; the rookie is told where to get one.
+func _on_own_skill_tapped() -> void:
+	var id := Gear.outfit_skill(campaign.worn())
+	if id.is_empty():
+		Sfx.play(&"untick")
+		_say("Mua bộ da là có tuyệt kĩ riêng!")
+		return
+	_on_skill_tapped(id)
 
 
 func _on_booster_tapped(id: String) -> void:
@@ -866,6 +898,15 @@ func _slot_center(slot: String) -> Vector2:
 	return Vector2(ROW_X + ROW_ICON / 2 + 6, ROW_Y0 + Gear.SLOTS.find(slot) * ROW_STEP)
 
 
+func _own_skill_center() -> Vector2:
+	return Vector2(ROW_X + ROW_ICON / 2 + 6, ROW_Y0 + OWN_SKILL_ROW * ROW_STEP + 12)
+
+
+func _own_skill_row() -> Rect2:
+	var center := _own_skill_center()
+	return Rect2(Vector2(ROW_X - 12, center.y - ROW_STEP / 2), Vector2(BOARD.end.x - 30 - ROW_X, ROW_STEP))
+
+
 func _draw_hud() -> void:
 	if campaign == null:
 		return
@@ -879,6 +920,7 @@ func _draw_hud() -> void:
 			best = ladder[ladder.find(_forging) - 1] if ladder.find(_forging) > 0 else ""
 		_draw_row(slot, best)
 	_draw_skills()
+	_draw_own_skill()
 	if _owned_outfits().size() > 1 and not flying:
 		_text(_hud, "◀ chạm để đổi bộ ▶", HERO_FEET + Vector2(0, 19), 20, INK)
 	if not flying:
@@ -936,6 +978,35 @@ func _draw_skills() -> void:
 		SkillBar.draw_icon(_hud, id, center, radius * 0.9, GOLD if picked else (PAPER if learned else Color(PAPER, 0.35)), Color.WHITE if learned else LOCKED_TINT)
 		if not learned:
 			_draw_padlock_on(_hud, center + Vector2(radius * 0.6, radius * 0.6), Color(PAPER, 0.8))
+
+
+## The worn outfit's own skill under the gear rows: its button ringed in the outfit's color,
+## glowing when picked, its name and what it does. The rookie sees a faint one and where to get it.
+func _draw_own_skill() -> void:
+	var center := _own_skill_center()
+	var row := _own_skill_row()
+	var worn := campaign.worn()
+	var id := Gear.outfit_skill(worn)
+	_hud.draw_line(Vector2(row.position.x + 10, row.position.y), Vector2(row.end.x - 10, row.position.y), Color(WOOD, 0.3), 2.0)
+	var text_x := center.x + ROW_ICON / 2 + 22
+	if id.is_empty():
+		_hud.draw_circle(center, ROW_ICON / 2, Color(WOOD, 0.3))
+		SkillBar.draw_icon(_hud, "tumble_cut", center, ROW_ICON * 0.4, Color(PAPER, 0.35), LOCKED_TINT)
+		_hud.draw_string(_font, Vector2(text_x, center.y - 4), "Tuyệt kĩ: chưa có", HORIZONTAL_ALIGNMENT_LEFT, -1, 32, Color(INK, 0.45))
+		_hud.draw_string(_font, Vector2(text_x, center.y + 28), "Mỗi bộ giáp có một tuyệt kĩ riêng", HORIZONTAL_ALIGNMENT_LEFT, -1, 24, Color(WOOD_DARK, 0.5))
+		return
+	var picked := campaign.skill == id
+	var ring: Color = OUTFIT_COLORS.get(worn, GOLD)
+	var radius := ROW_ICON / 2 + (4.0 * sin(_picked_t * PI) if picked else 0.0)
+	if picked:
+		_box(_hud, row.grow(-4), Color(ring, 0.18), 18)
+	_hud.draw_circle(center, radius + 6, GOLD if picked else INK)
+	_hud.draw_circle(center, radius + 2, ring)
+	_hud.draw_circle(center, radius - 4, RIBBON if picked else WOOD)
+	SkillBar.draw_icon(_hud, id, center, (radius - 4) * 0.9, GOLD if picked else PAPER)
+	var title := "Tuyệt kĩ: " + String(BattleState.SKILLS[id])
+	_hud.draw_string(_font, Vector2(text_x, center.y - 4), title, HORIZONTAL_ALIGNMENT_LEFT, -1, 32, INK)
+	_hud.draw_string(_font, Vector2(text_x, center.y + 28), OWN_SKILL_LINES.get(id, ""), HORIZONTAL_ALIGNMENT_LEFT, -1, 24, WOOD_DARK)
 
 
 ## One row of the board: the piece in a round frame, its name, and what it does. An empty slot

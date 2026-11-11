@@ -172,6 +172,31 @@ static func draw_icon(canvas: CanvasItem, skill: String, center: Vector2, radius
 				var r := size if k % 2 == 0 else size * 0.42
 				points.append(center + Vector2(0, -r).rotated(k * TAU / 10))
 			canvas.draw_colored_polygon(points, color)
+		"tumble_cut":
+			# A roll, and the cut coming out of it.
+			canvas.draw_arc(center, size * 0.7, 0.6, 5.2, 20, color, maxf(size * 0.2, 2.0))
+			canvas.draw_line(center + Vector2(-size * 0.2, size * 0.5), center + Vector2(size, -size), color, maxf(size * 0.22, 2.0))
+		"shield_charge":
+			# A shield driven forward.
+			var shield := PackedVector2Array([center + Vector2(-size, -size * 0.8), center + Vector2(size * 0.4, -size * 0.8), center + Vector2(size * 0.3, size * 0.3), center + Vector2(-size * 0.3, size), center + Vector2(-size * 0.9, size * 0.3)])
+			canvas.draw_colored_polygon(shield, color)
+			canvas.draw_colored_polygon(PackedVector2Array([center + Vector2(size * 0.55, -size * 0.45), center + Vector2(size, 0), center + Vector2(size * 0.55, size * 0.45)]), color)
+		"royal_rally":
+			# A crown.
+			canvas.draw_colored_polygon(PackedVector2Array([center + Vector2(-size, size * 0.6), center + Vector2(-size, -size * 0.5), center + Vector2(-size * 0.5, size * 0.05), center + Vector2(0, -size * 0.8), center + Vector2(size * 0.5, size * 0.05), center + Vector2(size, -size * 0.5), center + Vector2(size, size * 0.6)]), color)
+		"obsidian_cleave":
+			# A heavy blade coming down slantwise.
+			var blade := PackedVector2Array([center + Vector2(size * 0.8, -size), center + Vector2(size, -size * 0.75), center + Vector2(-size * 0.55, size), center + Vector2(-size, size * 0.55)])
+			canvas.draw_colored_polygon(blade, color)
+			canvas.draw_line(center + Vector2(size * 0.35, -size * 0.85), center + Vector2(size * 0.95, -size * 0.2), color, maxf(size * 0.2, 2.0))
+		"frost_nova":
+			# A snowflake.
+			for k in 3:
+				var arm := Vector2(0, -size).rotated(k * PI / 3)
+				canvas.draw_line(center - arm, center + arm, color, maxf(size * 0.18, 2.0))
+				for end in [arm, -arm]:
+					canvas.draw_line(center + end * 0.6, center + end * 0.6 + end.rotated(0.8) * 0.3, color, maxf(size * 0.12, 1.5))
+					canvas.draw_line(center + end * 0.6, center + end * 0.6 + end.rotated(-0.8) * 0.3, color, maxf(size * 0.12, 1.5))
 
 
 func _rounded(rect: Rect2, color: Color, radius: int, shadow := 0) -> void:

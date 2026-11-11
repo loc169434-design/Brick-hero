@@ -86,6 +86,43 @@ func test_armor_breaker_comes_first_and_second_wind_after_the_orc() -> void:
 	assert_eq(campaign.skill, "second_wind")
 
 
+func test_an_outfit_skill_is_picked_only_while_that_outfit_is_worn() -> void:
+	var campaign := _campaign(0, [])
+	assert_true(not campaign.pick_skill("tumble_cut"), "no leather yet")
+	campaign.owned.append("leather")
+	assert_true(campaign.pick_skill("tumble_cut"))
+	assert_true(not campaign.pick_skill("shield_charge"), "another outfit's")
+	campaign.owned.append("iron")
+	campaign.wear("leather")
+	assert_eq(campaign.skill, "tumble_cut")
+	campaign.wear("iron")
+	assert_eq(campaign.skill, "shield_charge", "the outfit put on brings its own")
+	campaign.wear("rookie")
+	assert_eq(campaign.skill, Gear.STARTING_SKILL, "the rookie has none")
+	campaign.pick_skill("armor_breaker")
+	campaign.wear("iron")
+	assert_eq(campaign.skill, "armor_breaker", "a learned skill stays whatever he wears")
+
+
+func test_buying_an_outfit_swaps_the_old_outfit_skill_for_its_own() -> void:
+	var campaign := _campaign(500, ["5", "18"])
+	campaign.owned.append("leather")
+	campaign.pick_skill("tumble_cut")
+	assert_true(campaign.buy("iron"))
+	assert_eq(campaign.skill, "shield_charge")
+
+
+func test_an_outfit_skill_is_saved_while_its_outfit_is_worn() -> void:
+	var campaign := _campaign(0, [])
+	campaign.owned.append("leather")
+	campaign.pick_skill("tumble_cut")
+	var again := Campaign.from_map()
+	again.apply_dict(campaign.to_dict())
+	assert_eq(again.skill, "tumble_cut")
+	again.apply_dict({"owned": ["rookie"], "skill": "tumble_cut"})
+	assert_eq(again.skill, "armor_breaker", "not without the outfit")
+
+
 func test_the_picked_skill_is_saved_and_a_locked_one_is_not_restored() -> void:
 	var campaign := _campaign(0, ["1", "2", "3", "4", "5", "6", "7"])
 	campaign.pick_skill("second_wind")

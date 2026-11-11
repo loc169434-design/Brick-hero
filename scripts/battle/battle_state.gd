@@ -14,6 +14,11 @@ const SKILLS := {
 	"iron_guard": "HỘ THỂ",
 	"blade_vortex": "PHONG KIẾM",
 	"starfall_strike": "TINH KIẾM",
+	"tumble_cut": "LỘN CHÉM",
+	"shield_charge": "KHIÊN PHÁ",
+	"royal_rally": "HIỆU LỆNH",
+	"obsidian_cleave": "HẮC TRẢM",
+	"frost_nova": "BĂNG PHONG",
 }
 
 var rules: BattleRules
@@ -39,8 +44,10 @@ var toad_turns := 0
 var broom_turns := 0
 ## Hộ Thể: this much comes off the monster's next attack, then it's spent.
 var guard := 0
-## Lôi Trảm has already held the monster's current attack back a move.
+## Lôi Trảm, Khiên Phá or Băng Phong has already held the monster's current attack back.
 var delayed := false
+## Hiệu Lệnh: moves left with red squares hitting harder (rules.royal_rally_power).
+var rally_turns := 0
 ## The monster has flown into a rage (MonsterData.rage_below): faster, harder attacks.
 var raging := false
 var gold := 0
@@ -135,6 +142,9 @@ func apply_move(result: MoveResult, free := false) -> TurnReport:
 		red = reds
 	elif broom_turns > 0:
 		red *= 0.5
+	if rally_turns > 0 and not free:
+		red *= rules.royal_rally_power
+		rally_turns -= 1
 	if red > 0.0 and not report.critical and rng.randf() < rules.crit_chance:
 		report.critical = true
 	if report.critical and red > 0.0:
@@ -219,6 +229,8 @@ func skill_ready() -> bool:
 			return hero_hp < rules.hero_max_hp
 		"iron_guard":
 			return guard == 0 and monster.counterattacks
+		"obsidian_cleave":
+			return hero_hp > rules.obsidian_cleave_cost
 	return true
 
 
@@ -239,10 +251,7 @@ func use_skill() -> TurnReport:
 			hero_hp += report.heal
 		"thunder_slash":
 			_strike(rules.thunder_slash_squares * rules.red_damage, 0, 0, report)
-			if monster.counterattacks and not delayed and monster_hp > 0:
-				countdown += 1
-				delayed = true
-				report.delayed = true
+			_hold_back(1, report)
 		"iron_guard":
 			guard = rules.iron_guard_block
 			report.guard = guard
@@ -253,10 +262,43 @@ func use_skill() -> TurnReport:
 			report.damage = mini(roundi(rules.starfall_squares * rules.red_damage), monster_hp)
 			monster_hp -= report.damage
 			report.pierced = true
+		"tumble_cut":
+			_strike(rules.tumble_cut_squares * rules.red_damage, 0, 0, report)
+			if poison_turns > 0:
+				poison = 0
+				poison_turns = 0
+				report.cured = true
+		"shield_charge":
+			_strike(rules.shield_charge_squares * rules.red_damage, 0, rules.shield_charge_layers, report)
+			_hold_back(1, report)
+		"royal_rally":
+			report.heal = mini(rules.royal_rally_heal, rules.hero_max_hp - hero_hp)
+			hero_hp += report.heal
+			rally_turns = rules.royal_rally_moves
+			report.rallied = rally_turns
+		"obsidian_cleave":
+			report.damage = mini(roundi(rules.obsidian_cleave_squares * rules.red_damage), monster_hp)
+			monster_hp -= report.damage
+			report.pierced = true
+			report.self_damage = rules.obsidian_cleave_cost
+			hero_hp -= report.self_damage
+		"frost_nova":
+			_strike(rules.frost_nova_squares * rules.red_damage, 0, 0, report)
+			_hold_back(rules.frost_nova_moves, report)
 	if monster_hp <= 0:
 		outcome = Outcome.WON
 	report.outcome = outcome
 	return report
+
+
+## Holds the monster's coming attack back `moves` moves, once per attack: a second hold before
+## it strikes does nothing.
+func _hold_back(moves: int, report: TurnReport) -> void:
+	if monster.counterattacks and not delayed and monster_hp > 0:
+		countdown += moves
+		delayed = true
+		report.delayed = true
+		report.held = moves
 
 
 ## Shield points come off first, then whole layers for each smash, so purple and long chains open

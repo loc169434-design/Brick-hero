@@ -14,10 +14,10 @@ Claude viết, 11/11/2026. Đây là đề xuất, sẽ chỉnh sau khi chơi th
 
 | Bộ | Clip | Tên | Làm gì trong trận | Dáng (16 khung, 24 fps) |
 |---|---|---|---|---|
-| Bộ da | `skill_tumble_cut` | LỘN CHÉM | Đánh như 6 ô đỏ, rồi **giải hết độc** | Lộn nhào về trước một vòng, bật dậy chém hất từ dưới lên ở khung 10, rồi về thế đứng |
+| Bộ da | `skill_tumble_cut` | LỘN CHÉM | Đánh như 8 ô đỏ, rồi **giải hết độc** | Lộn nhào về trước một vòng, bật dậy chém hất từ dưới lên ở khung 10, rồi về thế đứng |
 | Bộ sắt | `skill_shield_charge` | KHIÊN PHÁ | Đánh như 4 ô đỏ, **phá 2 lớp khiên** của quái, đẩy đòn quái lùi 1 lượt | Cúi thấp, khiên chắn trước, lao tới húc ở khung 8, lùi về |
-| Hoàng Gia | `skill_royal_rally` | HIỆU LỆNH | **Hồi 8 máu**, và 3 lượt tới ô đỏ mạnh thêm 50% | Cắm khiên xuống, giơ kiếm thẳng lên trời, há miệng hô to ở khung 8, giữ 3 khung, hạ kiếm |
-| Hắc Thép | `skill_obsidian_cleave` | HẮC TRẢM | Đánh như 12 ô đỏ, **xuyên khiên**, nhưng mất 3 máu | Hai tay vung kiếm ra sau lưng, xoay hông, bổ chéo xuống ở khung 9, mũi kiếm cắm đất, rút lên |
+| Hoàng Gia | `skill_royal_rally` | HIỆU LỆNH | **Hồi 10 máu**, và 3 lượt tới ô đỏ mạnh thêm 50% | Cắm khiên xuống, giơ kiếm thẳng lên trời, há miệng hô to ở khung 8, giữ 3 khung, hạ kiếm |
+| Hắc Thép | `skill_obsidian_cleave` | HẮC TRẢM | Đánh như 12 ô đỏ, **xuyên khiên**, nhưng mất 5 máu (không dùng được khi còn 5 máu trở xuống) | Hai tay vung kiếm ra sau lưng, xoay hông, bổ chéo xuống ở khung 9, mũi kiếm cắm đất, rút lên |
 | Bộ Băng | `skill_frost_nova` | BĂNG PHONG | Đánh như 4 ô đỏ, **đóng băng quái 2 lượt** (đòn quái lùi 2 lượt) | Nhảy nhẹ, hai tay cắm kiếm xuống đất ở khung 7, quỳ một gối giữ kiếm 4 khung, đứng dậy |
 
 Hiệu ứng (vệt chém, băng lan, hào quang, đá vỡ) **do code vẽ**, không vẽ vào khung.
@@ -29,9 +29,10 @@ Hiệu ứng (vệt chém, băng lan, hào quang, đá vỡ) **do code vẽ**, k
 - Hắc Thép: Gemini, trong đợt 5 ([sprites/round5_obsidian.md](sprites/round5_obsidian.md)).
 - Băng, cùng ba clip bù cho da, sắt, Hoàng Gia: Gemini Carbon, trong đợt 6 ([sprites/round6_frost.md](sprites/round6_frost.md)).
 
-## Code (Claude, sau khi có ảnh)
+## Code (xong 11/11)
 
-- Thêm 5 tuyệt kĩ vào `BattleState.SKILLS` và `Gear.ITEMS[<bộ>]["skill"]`.
-- Lò rèn hiện tuyệt kĩ của bộ đang mặc.
-- Gắn clip và hiệu ứng vào trận.
-- Viết test cho từng hiệu ứng.
+- Luật nằm trong `BattleState.use_skill`, số nằm trong `BattleRules` (nhóm "Rage and hero skill"), bộ nào có tuyệt kĩ nào thì ghi ở `Gear.ITEMS[<bộ>]["skill"]`.
+- Lò rèn có thêm hàng "Tuyệt kĩ" dưới hai hàng trang bị, viền màu của bộ đang mặc.
+- Đổi bộ hoặc mua bộ mới thì tuyệt kĩ của bộ cũ tự đổi sang tuyệt kĩ của bộ mới. Kĩ năng học được bằng cách thắng màn thì giữ nguyên.
+- Lôi Trảm, Khiên Phá, Băng Phong không cộng dồn: mỗi đòn của quái chỉ bị đẩy lùi một lần.
+- Biểu tượng tuyệt kĩ hiện vẽ tạm bằng code. Muốn ảnh thật thì đặt `assets/ui/skill_<tên>.png`.

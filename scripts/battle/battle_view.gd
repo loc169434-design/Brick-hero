@@ -100,6 +100,10 @@ const POISON := Color(0.55, 0.9, 0.3)
 const THUNDER := Color(0.55, 0.9, 1.0)
 const GUARD := Color(0.4, 0.65, 1.0)
 const STARFALL := Color(1.0, 0.9, 0.5)
+## The outfits' own skills: Hiệu Lệnh's gold, Hắc Trảm's dark red, Băng Phong's ice.
+const RALLY := Color(1.0, 0.82, 0.3)
+const CLEAVE := Color(0.85, 0.12, 0.15)
+const FROST := Color(0.7, 0.95, 1.0)
 ## Combos: at most this many blows, each blow's wind-up this much quicker than on its own, this
 ## long between blows, and the lettering for the blows before the last.
 const MAX_COMBO_HITS := 8
@@ -700,7 +704,8 @@ func _hero_skill(report: TurnReport) -> void:
 		_comic(comic, SKILL_NAME_AT, 1.0, 1.0)
 	else:
 		_float(BattleState.SKILLS[report.skill] + "!", SKILL_NAME_AT, Color(1.0, 0.6, 0.15), 84)
-	await _cinematic("hero_eye_glint", true, HERO_FEET if report.skill == "second_wind" else MONSTER_FEET)
+	var on_self: bool = report.skill in ["second_wind", "royal_rally"]
+	await _cinematic("hero_eye_glint", true, HERO_FEET if on_self else MONSTER_FEET)
 	if fight != _fight:
 		return
 	match report.skill:
@@ -777,7 +782,142 @@ func _hero_skill(report: TurnReport) -> void:
 				await _wait(0.3)
 				await _move_leap(report)
 				_starfall_burst()
+		"tumble_cut":
+			await _move_tumble_cut(report)
+		"shield_charge":
+			await _move_shield_charge(report)
+		"royal_rally":
+			await _move_royal_rally(report)
+		"obsidian_cleave":
+			await _move_obsidian_cleave(report)
+		"frost_nova":
+			await _move_frost_nova(report)
 	_camera(1.0, SIZE / 2, 0.35)
+
+
+## The moves the monster's attack was held back, under its countdown, once the hit's numbers
+## have floated clear.
+func _show_held(report: TurnReport, text: String, color: Color) -> void:
+	if report.held > 0:
+		_float(text % report.held, COUNTDOWN_AT + Vector2(-250, 150), color, 46)
+
+
+## How far in front of the monster the hero stops to strike.
+func _close_in() -> Vector2:
+	return Vector2(MONSTER_FEET.x - HERO_FEET.x - 200, 0)
+
+
+## Lộn Chém (leather): rolls forward across the gap and comes up cutting from below (the clip's
+## impact frame), shaking off any poison. Without the clip: a dash and a plain cut.
+func _move_tumble_cut(report: TurnReport) -> void:
+	var clip := &"skill_tumble_cut"
+	if _hero.fits_look(clip):
+		_hero.react(clip, 0.0)
+		var strike := _hero.strike_time(clip, 0.42)
+		Sfx.play(&"whoosh", 0.8)
+		await _hero.dash_to(_close_in(), strike, Tween.EASE_OUT)
+		_hero.reach_impact()
+	else:
+		await _dash_in(_close_in())
+		await _hero.attack()
+	_monster.knockback(30.0)
+	_land_hit(report, "pow")
+	await _wait(0.35)
+	await _hero.home(0.3)
+	_hero.react(&"idle")
+
+
+## Khiên Phá (iron): head down behind the shield, a charge that slams on the clip's impact
+## frame, shield layers cracking off and the monster shoved back a step.
+func _move_shield_charge(report: TurnReport) -> void:
+	var clip := &"skill_shield_charge"
+	var drawn := _hero.fits_look(clip)
+	_hero.react(clip if drawn else &"bash", 0.0)
+	var strike := _hero.strike_time(clip, 0.35) if drawn else 0.3
+	await _wait(strike * 0.4)
+	Sfx.play(&"whoosh", 0.9)
+	await _hero.dash_to(_close_in() + Vector2(40, 0), strike * 0.6)
+	if drawn:
+		_hero.reach_impact()
+	_monster.squash(0.3)
+	_monster.knockback(70.0, 0.5)
+	_flash("dust_puff", MONSTER_FEET + Vector2(0, -10), 0.5, 1.3, 0.4)
+	_land_hit(report, "crack" if report.layers_broken > 0 else "clang", true)
+	await _wait(0.35)
+	_show_held(report, "+%d LƯỢT", GUARD.lightened(0.3))
+	await _hero.home(0.3)
+	_hero.react(&"idle")
+
+
+## Hiệu Lệnh (royal): the shield set down, the sword raised to the sky and a shout on the clip's
+## impact frame; gold light rings out and his next red squares hit harder.
+func _move_royal_rally(report: TurnReport) -> void:
+	var clip := &"skill_royal_rally"
+	var drawn := _hero.fits_look(clip)
+	_hero.react(clip if drawn else &"cheer", 0.0 if drawn else 1.0)
+	await _wait(_hero.strike_time(clip, 0.4) if drawn else 0.4)
+	var sword := _local(_hero.point("hand")) + Vector2(0, -140)
+	for i in 6:
+		_sparks.flare(sword + Vector2(randf_range(-40, 40), randf_range(-60, 30)), RALLY, 1.5)
+	var chest := _local(_hero.point("head")) + Vector2(0, 90)
+	_flash("shockwave", chest, 0.3, 2.4, 0.6, 0.0, true)
+	Sfx.play(&"charge", 1.2)
+	if report.rallied > 0:
+		_float("ĐÒN ĐỎ x%s · %d LƯỢT" % [str(_state.rules.royal_rally_power).replace(".", ","), report.rallied], HERO_FEET + Vector2(170, -110), RALLY, 44)
+	await _wait(maxf(_hero.clip_seconds(clip, 1.0) - _hero.strike_time(clip, 0.4), 0.4) if drawn else 0.6)
+	_hero.react(&"idle")
+
+
+## Hắc Trảm (obsidian): steps in, swings the dark blade back over his shoulder and brings it down
+## slantwise through the shield (the clip's impact frame); the blow costs him some health.
+func _move_obsidian_cleave(report: TurnReport) -> void:
+	var clip := &"skill_obsidian_cleave"
+	await _dash_in(_close_in())
+	var drawn := _hero.fits_look(clip)
+	if drawn:
+		_hero.react(clip, 0.0)
+		var blade := _local(_hero.point("hand")) + Vector2(-60, -100)
+		_sparks.flare(blade, CLEAVE, 1.6)
+		await _wait(_hero.strike_time(clip, 0.4))
+		_hero.reach_impact()
+	else:
+		await _hero.attack()
+	var struck := _local(_monster.point("head")) + Vector2(0, 40)
+	_flash("slash_crit", struck, 0.5, 1.5, 0.35, 0.7, true)
+	for i in 8:
+		_sparks.flare(struck + Vector2(randf_range(-90, 90), randf_range(-110, 80)), CLEAVE, 1.5)
+	_monster.squash(0.4)
+	_land_hit(report, "wham", true)
+	if report.self_damage > 0:
+		_float("-%d" % report.self_damage, _local(_hero.point("head")) + Vector2(-60, -70), CLEAVE.lightened(0.3))
+		_hero.set_health(_state.hero_health())
+	await _wait(0.4)
+	await _hero.home(0.3)
+	_hero.react(&"idle")
+
+
+## Băng Phong (frost): a short hop, the crystal sword driven into the ground on the clip's impact
+## frame, and frost racing along the ground to lock the monster in ice.
+func _move_frost_nova(report: TurnReport) -> void:
+	var clip := &"skill_frost_nova"
+	var drawn := _hero.fits_look(clip)
+	_hero.react(clip if drawn else &"bash", 0.0)
+	await _wait(_hero.strike_time(clip, 0.3) if drawn else 0.25)
+	Sfx.play(&"clang", 0.7)
+	_flash("shockwave", HERO_FEET + Vector2(60, -20), 0.3, 2.2, 0.5, 0.0, true)
+	for i in 8:
+		var along := lerpf(HERO_FEET.x + 80, MONSTER_FEET.x, i / 7.0)
+		_sparks.flare(Vector2(along, HERO_FEET.y - 10 - randf_range(0, 30)), FROST, 1.1)
+		await _wait(0.03)
+	var body := _local(_monster.point("head")) + Vector2(0, 70)
+	for i in 10:
+		_sparks.flare(body + Vector2(randf_range(-100, 100), randf_range(-120, 90)), FROST, 1.4)
+	_monster.daze(1.0)
+	_land_hit(report, "zap")
+	await _wait(0.35)
+	_show_held(report, "ĐÓNG BĂNG +%d LƯỢT", FROST)
+	await _wait(0.3)
+	_hero.react(&"idle")
 
 
 ## Phá Giáp: dashes in, crouches with the sword raised in both hands, springs up and splits the

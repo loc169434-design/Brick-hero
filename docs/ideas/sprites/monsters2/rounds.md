@@ -5,3 +5,4 @@ Nhánh `art/monsters-2` từ `e68e8554e5164e486d15e968523817557492f550`. Chỉ s
 | Quái | Sheet | Kiểm | Vòng kiểm | Cao 0 / mẫu | Chân đầu/cuối (y,x) |
 |---|---|---|---:|---|---|
 | goblin_archer | special | ĐẠT | 1 | frame 0 body 391 px tall, reference 391 | [499.0, 254.5] / [500.0, 259.5] |
+| goblin_thief | victory | ĐẠT | 1 | frame 0 body 385 px tall, reference 385 | [500.0, 259.5] / [500.0, 260.0] |

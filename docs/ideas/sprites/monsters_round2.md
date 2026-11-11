@@ -46,5 +46,7 @@ Bù nhìn đứng trên một cọc, nên "chân" là chân cọc tại (256, 50
 
 - Mỗi sheet chạy `check_sheet.py` như đợt 1, `--ref docs/ideas/sprites/monsters2/ref/<quái>_idle_old.png --out docs/ideas/sprites/monsters2`; `defeat` thêm `--airborne`. Phải ĐẠT tất cả, tối đa 5 vòng sửa. Ghi số đo vào `docs/ideas/sprites/monsters2/rounds.md`.
 - Xem GIF trên nền tối: không khung nào đổi hướng mặt đột ngột, đổi cỡ, đổi màu, mất hay thêm đồ so với `idle`.
-- Làm Việc 0, rồi **trọn `toad_witch`** (7 sheet), commit, push, báo, **dừng chờ duyệt**.
-- Được báo "duyệt quái" thì làm tiếp các quái còn lại, mỗi quái một commit. Xong hết: báo bảng kết quả từng sheet, rồi **dừng**.
+- **Làm một mạch, không dừng giữa chừng** (đổi ngày 11/11): Việc 0, rồi 8 quái theo thứ tự bảng.
+- **Mỗi quái xong thì commit và push ngay**, để Claude theo dõi giữa chừng.
+- Một sheet sửa tối đa 5 vòng. Quá 5 vòng vẫn trượt thì ghi lý do vào `rounds.md` rồi làm sheet tiếp theo.
+- Xong hết: báo bảng kết quả từng sheet (ĐẠT hay TRƯỢT, số vòng sửa), rồi **dừng**.

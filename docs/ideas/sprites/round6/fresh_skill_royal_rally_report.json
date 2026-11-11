@@ -49,10 +49,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    502.0,
-    256.5
+    500.0,
+    256.0
    ],
-   "height": 420,
+   "height": 365,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -63,10 +63,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    503.0,
+    500.0,
     256.0
    ],
-   "height": 426,
+   "height": 366,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -77,10 +77,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    503.0,
+    500.0,
     256.0
    ],
-   "height": 430,
+   "height": 369,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -91,10 +91,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    503.0,
-    256.5
+    500.0,
+    256.0
    ],
-   "height": 420,
+   "height": 365,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -105,10 +105,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    502.0,
+    500.0,
     256.0
    ],
-   "height": 484,
+   "height": 425,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -122,7 +122,7 @@
     500.0,
     256.0
    ],
-   "height": 484,
+   "height": 425,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -134,9 +134,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    255.5
+    256.5
    ],
-   "height": 484,
+   "height": 423,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -150,7 +150,7 @@
     500.0,
     256.0
    ],
-   "height": 484,
+   "height": 425,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -162,9 +162,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.0
+    255.5
    ],
-   "height": 484,
+   "height": 423,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -176,9 +176,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.0
+    256.5
    ],
-   "height": 484,
+   "height": 423,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -190,9 +190,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    255.5
+    256.5
    ],
-   "height": 484,
+   "height": 423,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -203,10 +203,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    502.0,
-    255.5
+    500.0,
+    256.0
    ],
-   "height": 484,
+   "height": 427,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -217,10 +217,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    503.0,
-    256.5
+    500.0,
+    256.0
    ],
-   "height": 420,
+   "height": 366,
    "stray": 0,
    "specks": 0,
    "edge": 0

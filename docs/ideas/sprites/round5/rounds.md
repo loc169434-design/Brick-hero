@@ -27,7 +27,7 @@
 | 12 | `fresh_drink.png` | 12 | 12 | — | ĐẠT | ĐẠT | ĐẠT (410 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
 | 13 | `fresh_dizzy.png` | 12 | 12 | — | ĐẠT | ĐẠT | ĐẠT (410 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
 | 14 | `fresh_knocked.png` | 8 | 24 | — | ĐẠT | ĐẠT | ĐẠT (379 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 2 | **ĐẠT** |
-| 15 | `fresh_scared.png` | 8 | 12 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
+| 15 | `fresh_scared.png` | 8 | 12 | — | ĐẠT | ĐẠT | ĐẠT (412 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 2 | **ĐẠT** |
 | 16 | `fresh_cheer.png` | 12 | 12 | — | ĐẠT | ĐẠT | ĐẠT (410 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
 | 17 | `fresh_victory.png` | 12 | 12 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
 | 18 | `fresh_defeat.png` | 12 | 12 | — | ĐẠT | ĐẠT | ĐẠT (410 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
@@ -255,11 +255,11 @@ key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
 - Bản gốc nền xanh: `docs/ideas/sprites/round5/raw/fresh_scared_green.png`
 - Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/obsidian/fresh_scared.png`
 - Ảnh kiểm tra: `docs/ideas/sprites/round5/fresh_scared_frames.png`, `docs/ideas/sprites/round5/fresh_scared.gif`, `docs/ideas/sprites/round5/fresh_scared_report.json`
-- Số vòng sửa: 1
+- Số vòng sửa: 2
 ```text
 grid    ĐẠT  sheet 2048x1024 ok; empty frames: []
 feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
-size    ĐẠT  frame 0 body 406 px tall, reference 394
+size    ĐẠT  frame 0 body 412 px tall, reference 394
 clean   ĐẠT  worst frame 0 stray pixels, 0 specks in 8 frames (and 0 haze pixels, cleared on shrinking)
 inside  ĐẠT  frames touching the edge: none
 key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px

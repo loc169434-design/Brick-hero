@@ -1,0 +1,344 @@
+{
+  "sheets": 42,
+  "frames": 420,
+  "all_pass": true,
+  "failures": [],
+  "items": [
+    {
+      "monster": "goblin_archer",
+      "clip": "special",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 29.5,
+      "sha256": "b6a0de673ec06ce1366f9492028225c00045695c7fafe354c7e520d0b547a7f4"
+    },
+    {
+      "monster": "goblin_thief",
+      "clip": "victory",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 10.0,
+      "sha256": "f9952e5f9dd41fd3f5d46ebd3947f9e93602e6e01a817bc08ecdd407ef72843e"
+    },
+    {
+      "monster": "scarecrow",
+      "clip": "defeat",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 104.5,
+      "sha256": "c0adf9b1b0556a2046a2d14e4792962554a996fbc2e813c1ced201dc3e56971c"
+    },
+    {
+      "monster": "scarecrow_straw_shield",
+      "clip": "defeat",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 137.5,
+      "sha256": "0bdc58272462035c8217e91d5c2b991e3b61f2ef5805980785695479b9f76d27"
+    },
+    {
+      "monster": "scarecrow_straw_shield",
+      "clip": "hurt",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 0.5,
+      "sha256": "8546c98283de0862d5b271556a6400cc4af05b1d8666d6772ad7208a121663df"
+    },
+    {
+      "monster": "scarecrow_straw_shield",
+      "clip": "idle",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 0.5,
+      "sha256": "cb19b6b7609a355335487eaabff1d966acd699decb8d093283b00e59d3588253"
+    },
+    {
+      "monster": "scarecrow_wood",
+      "clip": "attack",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 0.5,
+      "sha256": "91b2cf4816ded9a62fb1350e371d37ad3aeda99d9836421d9252e69b858dc7f2"
+    },
+    {
+      "monster": "scarecrow_wood",
+      "clip": "defeat",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 79.5,
+      "sha256": "9620b19b86cae8b5c01a95422eb5ffe2198cf1026fbd9cd0b218375ba6bbe1b6"
+    },
+    {
+      "monster": "scarecrow_wood",
+      "clip": "hurt",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 0.5,
+      "sha256": "e274a1c774741888ec3decc9003a0030e3a333f2263d0b9b308fe4a1a8ee8cc2"
+    },
+    {
+      "monster": "scarecrow_wood",
+      "clip": "idle",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 0.5,
+      "sha256": "51afa0550f09bc30d022fe3031ef105775744693053a61ec57d1ddc7771a221b"
+    },
+    {
+      "monster": "scarecrow_wood",
+      "clip": "victory",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 0.5,
+      "sha256": "43d8f3e4800a2d4b25dd5d6e88a2d41ef84411fc2359a2b29aa501d69f1c39df"
+    },
+    {
+      "monster": "swamp_leech",
+      "clip": "attack",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 36.0,
+      "sha256": "a2dc54ea73aaa4b527486520b18a1ebf44328e8ae4809fad52eef0df52444dde"
+    },
+    {
+      "monster": "swamp_leech",
+      "clip": "defeat",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 34.5,
+      "sha256": "6e2685a3e044303f0fdb9d50ed3b0447757e35d9204e5590b1bdc1f850d4c7e6"
+    },
+    {
+      "monster": "swamp_leech",
+      "clip": "hurt",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 24.0,
+      "sha256": "909e45abc588b98320458f49083069e25749ca2f9e6b5e28382a9c68e82d2cd1"
+    },
+    {
+      "monster": "swamp_leech",
+      "clip": "idle",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 23.5,
+      "sha256": "17b62e4a1cb05f1778904b9e1df84a45c83ad1a2e2fb6676a783761e2293781b"
+    },
+    {
+      "monster": "swamp_leech",
+      "clip": "special",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 39.0,
+      "sha256": "649a424c3ae51287deb7b71e2799a3bc0fcb5e691c5624bff9ab4d2804d11658"
+    },
+    {
+      "monster": "swamp_leech",
+      "clip": "victory",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 26.5,
+      "sha256": "8bb5c66399714b14f7dfad61aedee01609267a3b1e1990e3b6bef068cf9b89bf"
+    },
+    {
+      "monster": "swamp_spider",
+      "clip": "attack",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 28.5,
+      "sha256": "4f2f5ebec7e331a766a72c247a971449b00f3f93f8e0d10c0a20e92a16a4b637"
+    },
+    {
+      "monster": "swamp_spider",
+      "clip": "defeat",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 110.5,
+      "sha256": "16a9c78d34cc2be095952262e4d0c76241be7d95fe200db6ebe8b90cadcde377"
+    },
+    {
+      "monster": "swamp_spider",
+      "clip": "hurt",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 14.0,
+      "sha256": "442045768ea936aa914a93d42de6d54e7549b8e82b70f9e1601181194da43aa5"
+    },
+    {
+      "monster": "swamp_spider",
+      "clip": "idle",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 35.5,
+      "sha256": "65145d7ee137ae4bc3d8e5eb412d90030d99d129e55ed02d0028ce375819088e"
+    },
+    {
+      "monster": "swamp_spider",
+      "clip": "special",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 1.0,
+      "sha256": "ee0d886fadfa0229d0efc561d64605c11ef7199df2c4b1c2c0ac92dd438cb0eb"
+    },
+    {
+      "monster": "swamp_spider",
+      "clip": "victory",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 32.0,
+      "sha256": "c2ca0779962d88cef8fbd37918a82edffb3b3b7108d198ba1a44d8ed8330e75c"
+    },
+    {
+      "monster": "toad_spitter",
+      "clip": "attack",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 20.5,
+      "sha256": "41c5799b7bebc2f2640d2567d19ac8cd9bd31629879e2c8a5d6702db4cb7f939"
+    },
+    {
+      "monster": "toad_spitter",
+      "clip": "defeat",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 8.5,
+      "sha256": "4ae4e12079eeca3c3a3dafb7d8844da1cbd471e3652d63b6e61839a76e8e14ac"
+    },
+    {
+      "monster": "toad_spitter",
+      "clip": "hurt",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 1.0,
+      "sha256": "ffdebe2d93f31566c0153099df137121e9848ce88ba64325ef647495c4e65750"
+    },
+    {
+      "monster": "toad_spitter",
+      "clip": "idle",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 3.5,
+      "sha256": "f928cc24d465b62c8175e7613eda6c51a0e9878adb28305e79d2555e0d32553f"
+    },
+    {
+      "monster": "toad_spitter",
+      "clip": "special",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 20.5,
+      "sha256": "489a8a086361cf77d05280d8bd5fd0f7613a12991115f3d2fe351432a351c4f6"
+    },
+    {
+      "monster": "toad_spitter",
+      "clip": "victory",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 3.0,
+      "sha256": "1b83e940524954a2f5c0d9821233fc179a3fe35dd3175f98cfe9d75b8bd0f3cc"
+    },
+    {
+      "monster": "toad_witch",
+      "clip": "attack",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 35.0,
+      "sha256": "82162dec3da7a87d84c9abf545cf3ed2eb78e1917a7c73cbb8d6b61464ac4365"
+    },
+    {
+      "monster": "toad_witch",
+      "clip": "defeat",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 33.0,
+      "sha256": "6dbc90104ca587837466dac9cc55753890d72d107e22a57f3ba95ef4190964d6"
+    },
+    {
+      "monster": "toad_witch",
+      "clip": "hurt",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 1.0,
+      "sha256": "e97de98ada1422b6f52a8b92fbe9358a5aa11bd071dd73aec679a06371a2a616"
+    },
+    {
+      "monster": "toad_witch",
+      "clip": "idle",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 0.5,
+      "sha256": "9e32072aa6e7c1a31eafefba038031a9fb0b0218c35ff9adc4a7f9e503c24d1d"
+    },
+    {
+      "monster": "toad_witch",
+      "clip": "lift",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 0.5,
+      "sha256": "2b692d134c2bbf48c7e82cbb13164b0a6264bdb0c99c2c3bf092b955bb4824b9"
+    },
+    {
+      "monster": "toad_witch",
+      "clip": "special",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 38.0,
+      "sha256": "e0fe81494ec6217ca003c7970580d7f50ef604389fcf8f3d0113ea3a9aa5a352"
+    },
+    {
+      "monster": "toad_witch",
+      "clip": "victory",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 0.5,
+      "sha256": "0353d85722270086da514618c6583516feb8bff9b02b68d12db138b5c619d957"
+    },
+    {
+      "monster": "toad_witch_giant",
+      "clip": "attack",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 0.5,
+      "sha256": "9c7521e0cb86d2924d6050f298395f053695228a90eb0ed0dd0c5d5f3177fdc1"
+    },
+    {
+      "monster": "toad_witch_giant",
+      "clip": "defeat",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 1.0,
+      "sha256": "e9bffd9a442fe173874ed8bfcd790dbbb1818ef2c8a02acbf93a613201da411e"
+    },
+    {
+      "monster": "toad_witch_giant",
+      "clip": "hurt",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 0.5,
+      "sha256": "6299fc31c7adf0d8cdae3c047c1a12b9230e79d8deeefb3031cd1782fc54293e"
+    },
+    {
+      "monster": "toad_witch_giant",
+      "clip": "idle",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 0.5,
+      "sha256": "04a7371a04dbaa4173a59a83b2f073f01d33f919ef973d3fd92bcfbf335d4b84"
+    },
+    {
+      "monster": "toad_witch_giant",
+      "clip": "special",
+      "frames": 12,
+      "pass": true,
+      "max_ground_x_drift": 0.5,
+      "sha256": "2e3415ea01b5781ecd2a5c9b9a810cd5707789103203f7b31e93a0d89e43618e"
+    },
+    {
+      "monster": "toad_witch_giant",
+      "clip": "victory",
+      "frames": 8,
+      "pass": true,
+      "max_ground_x_drift": 0.5,
+      "sha256": "f280b251c6fe33ab4c9f97cb97f7706887502ebb328a1c30d7c1151d19be6832"
+    }
+  ]
+}

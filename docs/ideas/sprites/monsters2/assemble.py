@@ -9,6 +9,7 @@ p=argparse.ArgumentParser()
 p.add_argument('monster'); p.add_argument('clip'); p.add_argument('source')
 p.add_argument('--frames',type=int,required=True); p.add_argument('--fps',type=int,required=True)
 p.add_argument('--source-rows',type=int,default=3); p.add_argument('--offset',type=int,default=0)
+p.add_argument('--x-scale',type=float,default=1.0,help='fixed horizontal layout scale for the whole clip')
 a=p.parse_args()
 root=Path('docs/ideas/sprites/monsters2'); out=root/a.monster; out.mkdir(exist_ok=True)
 ref=root/'ref'/f'{a.monster}_idle_old.png'
@@ -32,12 +33,15 @@ scale=height/poses[0].height
 # Uniform scale within a clip: preserve actual crouches, stretches and falls.
 sheet=Image.new('RGB',(2048,512*((a.frames+3)//4)),(255,0,255))
 for i,f in enumerate(poses):
-    w,h=round(f.width*scale),round(f.height*scale)
+    w,h=round(f.width*scale*a.x_scale),round(f.height*scale)
     if w>500 or h>494: raise RuntimeError(f'pose {i} needs room: {w}x{h}; regenerate')
     f=f.resize((w,h),Image.Resampling.LANCZOS)
     # Normalize only flat background, leaving drawn pixels intact.
     rgb=np.array(f); bg=~mask(rgb); rgb[bg]=(255,0,255); f=Image.fromarray(rgb)
-    mm=mask(rgb); gy,gx=np.where(mm & (np.arange(h)[:,None]>=h-20))
+    mm=np.linalg.norm(rgb.astype(float)-np.array([255,0,255]),axis=2)>=140
+    ground_rows=np.flatnonzero(mm.sum(axis=1)>=8)
+    ground_y=int(ground_rows[-1])
+    gx=np.flatnonzero(mm[max(0,ground_y-20):ground_y+1].any(axis=0))
     anchor=(int(gx.min())+int(gx.max()))//2
     px=256-anchor
     if px<2 or px+w>510:
@@ -50,5 +54,5 @@ cmd=['python3','tools/sprites/check_sheet.py',str(target),'--frames',str(a.frame
 if a.clip=='defeat': cmd+=['--airborne']
 r=subprocess.run(cmd,capture_output=True,text=True); print(r.stdout)
 (out/f'{a.clip}_check.log').write_text(r.stdout+r.stderr)
-(out/f'{a.clip}_layout.json').write_text(json.dumps({'source':a.source,'boxes':boxes,'scale':scale,'reference_height':height},indent=2))
+(out/f'{a.clip}_layout.json').write_text(json.dumps({'source':a.source,'boxes':boxes,'scale':scale,'x_scale':a.x_scale,'reference_height':height},indent=2))
 raise SystemExit(r.returncode)

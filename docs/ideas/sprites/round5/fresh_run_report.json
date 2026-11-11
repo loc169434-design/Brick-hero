@@ -1,0 +1,146 @@
+{
+ "sheet": "assets/characters/hero_rookie/anim/obsidian/fresh_run.png",
+ "frames": 8,
+ "cell": 512,
+ "checks": {
+  "grid": {
+   "pass": true,
+   "detail": "sheet 2048x1024 ok; empty frames: []"
+  },
+  "feet": {
+   "pass": true,
+   "detail": "first/last frame feet (y, x) vs (500, 256): ok"
+  },
+  "size": {
+   "pass": true,
+   "detail": "frame 0 body 347 px tall, reference 338"
+  },
+  "clean": {
+   "pass": true,
+   "detail": "worst frame 0 stray pixels, 0 specks in 8 frames (and 0 haze pixels, cleared on shrinking)"
+  },
+  "inside": {
+   "pass": true,
+   "detail": "frames touching the edge: none"
+  },
+  "key": {
+   "pass": true,
+   "detail": "#00ff00 left: 0 px; rim tinted by it: 0 px"
+  }
+ },
+ "per_frame": [
+  {
+   "frame": 0,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    500.0,
+    256.0
+   ],
+   "height": 347,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 1,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    496.0,
+    248.0
+   ],
+   "height": 335,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 2,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    498.0,
+    218.0
+   ],
+   "height": 351,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 3,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    455.0,
+    233.0
+   ],
+   "height": 321,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 4,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    499.0,
+    276.5
+   ],
+   "height": 349,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 5,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    498.0,
+    248.5
+   ],
+   "height": 338,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 6,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    501.0,
+    222.0
+   ],
+   "height": 355,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  },
+  {
+   "frame": 7,
+   "haze": 0,
+   "key_left": 0,
+   "key_tint": 0,
+   "feet": [
+    459.0,
+    162.5
+   ],
+   "height": 322,
+   "stray": 0,
+   "specks": 0,
+   "edge": 0
+  }
+ ],
+ "pass": true
+}

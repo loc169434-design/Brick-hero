@@ -14,16 +14,16 @@
 | STT | Clip | Khung | FPS | Cờ thêm | `grid` | `feet` | `size` | `clean` | `inside` | `key` | Số vòng | Kết quả |
 |---:|---|---:|---:|---|---|---|---|---|---|---|---:|---|
 | 1 | `fresh_idle.png` | 8 | 12 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
-| 2 | `fresh_attack.png` | 12 | 24 | — | ĐẠT | ĐẠT | ĐẠT (398 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
+| 2 | `fresh_attack.png` | 12 | 24 | — | ĐẠT | ĐẠT | ĐẠT (398 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 2 | **ĐẠT** |
 | 3 | `fresh_hurt.png` | 8 | 24 | — | ĐẠT | ĐẠT | ĐẠT (393 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
-| 4 | `fresh_run.png` | 8 | 16 | `--airborne --ref ...fresh_run.png` | ĐẠT | ĐẠT | ĐẠT (348 px tall / ref 338) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
+| 4 | `fresh_run.png` | 8 | 16 | `--airborne --ref ...fresh_run.png` | ĐẠT | ĐẠT | ĐẠT (348 px tall / ref 338) | ĐẠT | ĐẠT | ĐẠT | 2 | **ĐẠT** |
 | 5 | `fresh_block.png` | 8 | 24 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 2 | **ĐẠT** |
-| 6 | `fresh_dash.png` | 6 | 24 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
-| 7 | `fresh_combo.png` | 16 | 24 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
+| 6 | `fresh_dash.png` | 6 | 24 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 2 | **ĐẠT** |
+| 7 | `fresh_combo.png` | 16 | 24 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 2 | **ĐẠT** |
 | 8 | `fresh_throw.png` | 10 | 24 | — | ĐẠT | ĐẠT | ĐẠT (408 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
 | 9 | `fresh_leap.png` | 16 | 24 | — | ĐẠT | ĐẠT | ĐẠT (410 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
 | 10 | `fresh_kick.png` | 8 | 24 | — | ĐẠT | ĐẠT | ĐẠT (410 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
-| 11 | `fresh_bash.png` | 10 | 24 | — | ĐẠT | ĐẠT | ĐẠT (410 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
+| 11 | `fresh_bash.png` | 10 | 24 | — | ĐẠT | ĐẠT | ĐẠT (410 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 2 | **ĐẠT** |
 | 12 | `fresh_drink.png` | 12 | 12 | — | ĐẠT | ĐẠT | ĐẠT (410 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
 | 13 | `fresh_dizzy.png` | 12 | 12 | — | ĐẠT | ĐẠT | ĐẠT (408 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
 | 14 | `fresh_knocked.png` | 8 | 24 | — | ĐẠT | ĐẠT | ĐẠT (379 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
@@ -31,26 +31,26 @@
 | 16 | `fresh_cheer.png` | 12 | 12 | — | ĐẠT | ĐẠT | ĐẠT (410 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 2 | **ĐẠT** |
 | 17 | `fresh_victory.png` | 12 | 12 | — | ĐẠT | ĐẠT | ĐẠT (405 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
 | 18 | `fresh_defeat.png` | 12 | 12 | — | ĐẠT | ĐẠT | ĐẠT (410 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
-| 19 | `fresh_skill_armor_breaker.png` | 14 | 24 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
-| 20 | `fresh_skill_second_wind.png` | 14 | 12 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 2 | **ĐẠT** |
-| 21 | `fresh_skill_thunder_slash.png` | 14 | 24 | — | — | — | — | — | — | — | 0 | **CHƯA TẠO (HẾT QUOTA MODEL)** |
-| 22 | `fresh_skill_iron_guard.png` | 10 | 12 | — | — | — | — | — | — | — | 0 | **CHƯA TẠO (HẾT QUOTA MODEL)** |
-| 23 | `fresh_skill_blade_vortex.png` | 16 | 24 | — | — | — | — | — | — | — | 0 | **CHƯA TẠO (HẾT QUOTA MODEL)** |
-| 24 | `fresh_skill_starfall_strike.png` | 16 | 24 | — | — | — | — | — | — | — | 0 | **CHƯA TẠO (HẾT QUOTA MODEL)** |
-| 25 | `fresh_skill_frost_nova.png` | 16 | 24 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
+| 19 | `fresh_skill_armor_breaker.png` | 14 | 24 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 2 | **ĐẠT** |
+| 20 | `fresh_skill_second_wind.png` | 14 | 12 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 3 | **ĐẠT** |
+| 21 | `fresh_skill_thunder_slash.png` | 14 | 24 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
+| 22 | `fresh_skill_iron_guard.png` | 10 | 12 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
+| 23 | `fresh_skill_blade_vortex.png` | 16 | 24 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
+| 24 | `fresh_skill_starfall_strike.png` | 16 | 24 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 1 | **ĐẠT** |
+| 25 | `fresh_skill_frost_nova.png` | 16 | 24 | — | ĐẠT | ĐẠT | ĐẠT (406 px tall / ref 394) | ĐẠT | ĐẠT | ĐẠT | 2 | **ĐẠT** |
 
 ## 3. Việc 2 — Kết quả 3 tuyệt kĩ cho các bộ đã có (`check_sheet.py`)
 
 | STT | Bộ | Clip | Khung | FPS | Tham chiếu `--ref` | Số vòng | Kết quả |
 |---:|---|---|---:|---:|---|---:|---|
-| 1 | `leather` | `fresh_skill_tumble_cut.png` | 16 | 24 | `anim/leather/fresh_idle.png` + `--airborne` | 0 | **CHƯA TẠO (HẾT QUOTA MODEL)** |
-| 2 | `iron` | `fresh_skill_shield_charge.png` | 16 | 24 | `anim/iron/fresh_idle.png` | 2 | **ĐẠT** |
-| 3 | `royal` | `fresh_skill_royal_rally.png` | 16 | 24 | `anim/royal/fresh_idle.png` | 2 | **ĐẠT** |
+| 1 | `leather` | `fresh_skill_tumble_cut.png` | 16 | 24 | `anim/leather/fresh_idle.png` + `--airborne` | 1 | **ĐẠT** |
+| 2 | `iron` | `fresh_skill_shield_charge.png` | 16 | 24 | `anim/iron/fresh_idle.png` | 3 | **ĐẠT** |
+| 3 | `royal` | `fresh_skill_royal_rally.png` | 16 | 24 | `anim/royal/fresh_idle.png` | 3 | **ĐẠT** |
 
-> [!WARNING]
-> **Ghi chú 5 clip tạm dừng do chạm giới hạn quota sinh ảnh (`429 RESOURCE_EXHAUSTED`)**:
-> Model `gemini-3.1-flash-image` trả lỗi `You have exhausted your capacity on this model. Your quota will reset after 4h38m14s` (dự kiến mở lại khoảng `15:10 GMT+7` ngày `11/11/2026`).
-> 5 clip chưa sinh gồm: 4 clip kỹ năng chung của Bộ Băng (`skill_thunder_slash`, `skill_iron_guard`, `skill_blade_vortex`, `skill_starfall_strike`) và 1 tuyệt kĩ Bộ Da (`anim/leather/fresh_skill_tumble_cut.png`). Không ghép giả dáng từ clip khác để bảo toàn chất lượng chuyển động xoay 360° và nhào lộn.
+> [!NOTE]
+> **Rà soát bổ sung đã hoàn thành**:
+> - Toàn bộ mặt trong khiên Bộ Băng ở mọi clip lộ mặt trong (`attack`, `combo`, `dash`, `bash`, `run`, `skill_armor_breaker`, `skill_second_wind`, `skill_thunder_slash`, `skill_iron_guard`, `skill_blade_vortex`, `skill_starfall_strike`, `skill_frost_nova`) đều dùng đúng tông **bạc xám xanh** kèm quai da xanh lam (`#2F6FD0`).
+> - Cỡ người và mặt ở `royal/fresh_skill_royal_rally.png` và `iron/fresh_skill_shield_charge.png` đã khớp 1:1 với `fresh_idle.png` của từng bộ, chân neo tại `(256, 500)`.
 
 ## 4. Chi tiết các clip đã hoàn thành
 
@@ -73,7 +73,7 @@ key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
 - Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/fresh_attack_green.png`
 - Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/frost/fresh_attack.png`
 - Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_attack_frames.png`, `docs/ideas/sprites/round6/fresh_attack.gif`, `docs/ideas/sprites/round6/fresh_attack_report.json`
-- Số vòng sửa: 1
+- Số vòng sửa: 2
 ```text
 grid    ĐẠT  sheet 2048x1536 ok; empty frames: []
 feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
@@ -103,7 +103,7 @@ key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
 - Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/fresh_run_green.png`
 - Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/frost/fresh_run.png`
 - Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_run_frames.png`, `docs/ideas/sprites/round6/fresh_run.gif`, `docs/ideas/sprites/round6/fresh_run_report.json`
-- Số vòng sửa: 1
+- Số vòng sửa: 2
 ```text
 grid    ĐẠT  sheet 2048x1024 ok; empty frames: []
 feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
@@ -133,7 +133,7 @@ key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
 - Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/fresh_dash_green.png`
 - Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/frost/fresh_dash.png`
 - Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_dash_frames.png`, `docs/ideas/sprites/round6/fresh_dash.gif`, `docs/ideas/sprites/round6/fresh_dash_report.json`
-- Số vòng sửa: 1
+- Số vòng sửa: 2
 ```text
 grid    ĐẠT  sheet 2048x1024 ok; empty frames: []
 feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
@@ -148,7 +148,7 @@ key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
 - Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/fresh_combo_green.png`
 - Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/frost/fresh_combo.png`
 - Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_combo_frames.png`, `docs/ideas/sprites/round6/fresh_combo.gif`, `docs/ideas/sprites/round6/fresh_combo_report.json`
-- Số vòng sửa: 1
+- Số vòng sửa: 2
 ```text
 grid    ĐẠT  sheet 2048x2048 ok; empty frames: []
 feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
@@ -208,7 +208,7 @@ key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
 - Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/fresh_bash_green.png`
 - Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/frost/fresh_bash.png`
 - Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_bash_frames.png`, `docs/ideas/sprites/round6/fresh_bash.gif`, `docs/ideas/sprites/round6/fresh_bash_report.json`
-- Số vòng sửa: 1
+- Số vòng sửa: 2
 ```text
 grid    ĐẠT  sheet 2048x1536 ok; empty frames: []
 feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
@@ -328,7 +328,7 @@ key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
 - Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/fresh_skill_armor_breaker_green.png`
 - Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/frost/fresh_skill_armor_breaker.png`
 - Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_skill_armor_breaker_frames.png`, `docs/ideas/sprites/round6/fresh_skill_armor_breaker.gif`, `docs/ideas/sprites/round6/fresh_skill_armor_breaker_report.json`
-- Số vòng sửa: 1
+- Số vòng sửa: 2
 ```text
 grid    ĐẠT  sheet 2048x2048 ok; empty frames: []
 feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
@@ -343,7 +343,7 @@ key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
 - Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/fresh_skill_second_wind_green.png`
 - Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/frost/fresh_skill_second_wind.png`
 - Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_skill_second_wind_frames.png`, `docs/ideas/sprites/round6/fresh_skill_second_wind.gif`, `docs/ideas/sprites/round6/fresh_skill_second_wind_report.json`
-- Số vòng sửa: 2
+- Số vòng sửa: 3
 ```text
 grid    ĐẠT  sheet 2048x2048 ok; empty frames: []
 feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
@@ -354,10 +354,40 @@ key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
 => ĐẠT
 ```
 
-### Bộ Băng — `skill_frost_nova` (`fresh_skill_frost_nova.png`)
-- Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/fresh_skill_frost_nova_green.png`
-- Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/frost/fresh_skill_frost_nova.png`
-- Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_skill_frost_nova_frames.png`, `docs/ideas/sprites/round6/fresh_skill_frost_nova.gif`, `docs/ideas/sprites/round6/fresh_skill_frost_nova_report.json`
+### Bộ Băng — `skill_thunder_slash` (`fresh_skill_thunder_slash.png`)
+- Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/fresh_skill_thunder_slash_green.png`
+- Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/frost/fresh_skill_thunder_slash.png`
+- Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_skill_thunder_slash_frames.png`, `docs/ideas/sprites/round6/fresh_skill_thunder_slash.gif`, `docs/ideas/sprites/round6/fresh_skill_thunder_slash_report.json`
+- Số vòng sửa: 1
+```text
+grid    ĐẠT  sheet 2048x2048 ok; empty frames: []
+feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
+size    ĐẠT  frame 0 body 406 px tall, reference 394
+clean   ĐẠT  worst frame 0 stray pixels, 0 specks in 14 frames (and 0 haze pixels, cleared on shrinking)
+inside  ĐẠT  frames touching the edge: none
+key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
+=> ĐẠT
+```
+
+### Bộ Băng — `skill_iron_guard` (`fresh_skill_iron_guard.png`)
+- Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/fresh_skill_iron_guard_green.png`
+- Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/frost/fresh_skill_iron_guard.png`
+- Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_skill_iron_guard_frames.png`, `docs/ideas/sprites/round6/fresh_skill_iron_guard.gif`, `docs/ideas/sprites/round6/fresh_skill_iron_guard_report.json`
+- Số vòng sửa: 1
+```text
+grid    ĐẠT  sheet 2048x1536 ok; empty frames: []
+feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
+size    ĐẠT  frame 0 body 406 px tall, reference 394
+clean   ĐẠT  worst frame 0 stray pixels, 0 specks in 10 frames (and 0 haze pixels, cleared on shrinking)
+inside  ĐẠT  frames touching the edge: none
+key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
+=> ĐẠT
+```
+
+### Bộ Băng — `skill_blade_vortex` (`fresh_skill_blade_vortex.png`)
+- Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/fresh_skill_blade_vortex_green.png`
+- Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/frost/fresh_skill_blade_vortex.png`
+- Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_skill_blade_vortex_frames.png`, `docs/ideas/sprites/round6/fresh_skill_blade_vortex.gif`, `docs/ideas/sprites/round6/fresh_skill_blade_vortex_report.json`
 - Số vòng sửa: 1
 ```text
 grid    ĐẠT  sheet 2048x2048 ok; empty frames: []
@@ -369,11 +399,56 @@ key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
 => ĐẠT
 ```
 
+### Bộ Băng — `skill_starfall_strike` (`fresh_skill_starfall_strike.png`)
+- Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/fresh_skill_starfall_strike_green.png`
+- Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/frost/fresh_skill_starfall_strike.png`
+- Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_skill_starfall_strike_frames.png`, `docs/ideas/sprites/round6/fresh_skill_starfall_strike.gif`, `docs/ideas/sprites/round6/fresh_skill_starfall_strike_report.json`
+- Số vòng sửa: 1
+```text
+grid    ĐẠT  sheet 2048x2048 ok; empty frames: []
+feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
+size    ĐẠT  frame 0 body 406 px tall, reference 394
+clean   ĐẠT  worst frame 0 stray pixels, 0 specks in 16 frames (and 0 haze pixels, cleared on shrinking)
+inside  ĐẠT  frames touching the edge: none
+key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
+=> ĐẠT
+```
+
+### Bộ Băng — `skill_frost_nova` (`fresh_skill_frost_nova.png`)
+- Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/fresh_skill_frost_nova_green.png`
+- Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/frost/fresh_skill_frost_nova.png`
+- Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_skill_frost_nova_frames.png`, `docs/ideas/sprites/round6/fresh_skill_frost_nova.gif`, `docs/ideas/sprites/round6/fresh_skill_frost_nova_report.json`
+- Số vòng sửa: 2
+```text
+grid    ĐẠT  sheet 2048x2048 ok; empty frames: []
+feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
+size    ĐẠT  frame 0 body 406 px tall, reference 394
+clean   ĐẠT  worst frame 0 stray pixels, 0 specks in 16 frames (and 0 haze pixels, cleared on shrinking)
+inside  ĐẠT  frames touching the edge: none
+key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
+=> ĐẠT
+```
+
+### Bộ `leather` — `skill_tumble_cut` (`anim/leather/fresh_skill_tumble_cut.png`)
+- Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/leather_fresh_skill_tumble_cut_green.png`
+- Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/leather/fresh_skill_tumble_cut.png`
+- Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_skill_tumble_cut_frames.png`, `docs/ideas/sprites/round6/fresh_skill_tumble_cut.gif`, `docs/ideas/sprites/round6/fresh_skill_tumble_cut_report.json`
+- Số vòng sửa: 1
+```text
+grid    ĐẠT  sheet 2048x2048 ok; empty frames: []
+feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
+size    ĐẠT  frame 0 body 412 px tall, reference 412
+clean   ĐẠT  worst frame 0 stray pixels, 0 specks in 16 frames (and 0 haze pixels, cleared on shrinking)
+inside  ĐẠT  frames touching the edge: none
+key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
+=> ĐẠT
+```
+
 ### Bộ `iron` — `skill_shield_charge` (`anim/iron/fresh_skill_shield_charge.png`)
 - Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/iron_fresh_skill_shield_charge_green.png`
 - Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/iron/fresh_skill_shield_charge.png`
 - Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_skill_shield_charge_frames.png`, `docs/ideas/sprites/round6/fresh_skill_shield_charge.gif`, `docs/ideas/sprites/round6/fresh_skill_shield_charge_report.json`
-- Số vòng sửa: 2
+- Số vòng sửa: 3
 ```text
 grid    ĐẠT  sheet 2048x2048 ok; empty frames: []
 feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok
@@ -388,7 +463,7 @@ key     ĐẠT  #00ff00 left: 0 px; rim tinted by it: 0 px
 - Bản gốc nền xanh: `docs/ideas/sprites/round6/raw/royal_fresh_skill_royal_rally_green.png`
 - Bản tách nền (`key_out.py`): `assets/characters/hero_rookie/anim/royal/fresh_skill_royal_rally.png`
 - Ảnh kiểm tra: `docs/ideas/sprites/round6/fresh_skill_royal_rally_frames.png`, `docs/ideas/sprites/round6/fresh_skill_royal_rally.gif`, `docs/ideas/sprites/round6/fresh_skill_royal_rally_report.json`
-- Số vòng sửa: 2
+- Số vòng sửa: 3
 ```text
 grid    ĐẠT  sheet 2048x2048 ok; empty frames: []
 feet    ĐẠT  first/last frame feet (y, x) vs (500, 256): ok

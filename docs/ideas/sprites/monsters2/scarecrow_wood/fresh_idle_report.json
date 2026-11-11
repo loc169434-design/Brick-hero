@@ -13,7 +13,7 @@
   },
   "size": {
    "pass": true,
-   "detail": "frame 0 body 434 px tall, reference 434"
+   "detail": "frame 0 body 432 px tall, reference 434"
   },
   "clean": {
    "pass": true,
@@ -35,10 +35,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    500.0,
+    499.0,
     256.0
    ],
-   "height": 434,
+   "height": 432,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -49,10 +49,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    500.0,
-    256.5
+    499.0,
+    256.0
    ],
-   "height": 434,
+   "height": 432,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -64,9 +64,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.5
+    256.0
    ],
-   "height": 434,
+   "height": 432,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -77,8 +77,8 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    500.0,
-    256.5
+    499.0,
+    256.0
    ],
    "height": 434,
    "stray": 0,
@@ -94,7 +94,7 @@
     500.0,
     256.0
    ],
-   "height": 432,
+   "height": 436,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -108,7 +108,7 @@
     500.0,
     256.5
    ],
-   "height": 431,
+   "height": 436,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -120,9 +120,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.0
+    255.5
    ],
-   "height": 434,
+   "height": 439,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -134,9 +134,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.0
+    256.5
    ],
-   "height": 432,
+   "height": 438,
    "stray": 0,
    "specks": 0,
    "edge": 0

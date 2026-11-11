@@ -36,7 +36,7 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.0
+    256.5
    ],
    "height": 434,
    "stray": 0,
@@ -50,9 +50,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.5
+    256.0
    ],
-   "height": 434,
+   "height": 432,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -66,7 +66,7 @@
     500.0,
     256.0
    ],
-   "height": 434,
+   "height": 435,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -78,9 +78,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.0
+    256.5
    ],
-   "height": 434,
+   "height": 437,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -94,7 +94,7 @@
     500.0,
     256.0
    ],
-   "height": 437,
+   "height": 438,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -106,9 +106,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.0
+    256.5
    ],
-   "height": 439,
+   "height": 436,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -119,10 +119,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    499.0,
-    256.5
+    500.0,
+    256.0
    ],
-   "height": 439,
+   "height": 441,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -133,10 +133,10 @@
    "key_left": 0,
    "key_tint": 0,
    "feet": [
-    499.0,
-    256.0
+    500.0,
+    256.5
    ],
-   "height": 439,
+   "height": 438,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -148,9 +148,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.0
+    256.5
    ],
-   "height": 440,
+   "height": 436,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -164,7 +164,7 @@
     500.0,
     256.0
    ],
-   "height": 442,
+   "height": 436,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -178,7 +178,7 @@
     500.0,
     256.0
    ],
-   "height": 440,
+   "height": 437,
    "stray": 0,
    "specks": 0,
    "edge": 0
@@ -190,9 +190,9 @@
    "key_tint": 0,
    "feet": [
     500.0,
-    256.5
+    256.0
    ],
-   "height": 440,
+   "height": 438,
    "stray": 0,
    "specks": 0,
    "edge": 0
